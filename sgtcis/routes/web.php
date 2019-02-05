@@ -14,3 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+/*Ruta para el módulo de administrador (iniciar_sesion)*/
+Route::get('/administrator','UserAdministratorController@login_administrador')
+    ->name('user_administrador.login_administrador');
