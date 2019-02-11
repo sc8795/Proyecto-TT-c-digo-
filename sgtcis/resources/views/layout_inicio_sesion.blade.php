@@ -14,7 +14,7 @@
 <body>
 	<div class="container">
 		@if (session()->has('flash'))
-	<div class="alert alert-info">{{session('flash')}}</div>
+			<div class="alert alert-info">{{session('flash')}}</div>
 		@endif
 		<!--Se agrega yield('content') para el contenido-->
 		@yield('content')
