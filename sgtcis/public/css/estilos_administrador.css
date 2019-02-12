@@ -1,0 +1,51 @@
+body{
+    background-color: #212121;
+}
+.boton_logout{
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    /*background-color: rgba(49, 44, 44, 0.9);*/
+    padding: 10px;
+}
+
+.vertical-menu {
+    width: 100%; /* Set a width if you like */
+  }
+  
+  .vertical-menu a {
+    background-color: #1b1b1b; /* Grey background color */
+    color: white; /* Black text color */
+    display: block; /* Make the links appear below each other */
+    padding: 12px; /* Add some padding */
+    text-decoration: none; /* Remove underline from links */
+  }
+  
+  .vertical-menu a:hover {
+    background-color: rgba(27, 44, 25, 0.2); /* Dark grey background on mouse-over */
+  }
+  
+  .vertical-menu a.active {
+    background-color: #1b1b1b; /* Add a green color to the "active/current" link */
+    color: white;
+  }
+
+  .centrar_img_usuario_logueo{
+    text-align: center;
+}
+.img_usuario_logueo{
+    width: 150px;
+    padding: 20px;
+}
+/*Vista general de la cuenta*/
+.vista_general_cuenta{
+    position: relative;
+    top: 33.33%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    /*background-color: rgba(49, 44, 44, 0.9);*/
+}
+h3{
+    color: #83e6b4;
+}

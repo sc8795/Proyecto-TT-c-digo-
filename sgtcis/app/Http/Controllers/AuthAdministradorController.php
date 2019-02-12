@@ -13,4 +13,8 @@ class AuthAdministradorController extends Controller
     public function index(){
         return view('user_administrador.auth_admin');
     }
+
+    public function vista_general_admin(){
+        return view('user_administrador.vista_general_cuenta');
+    }
 }

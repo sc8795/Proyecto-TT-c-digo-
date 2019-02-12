@@ -32,12 +32,14 @@
                     <div class="centrar_img_usuario_logueo">
                         <img src="{{asset('images/usuario_logueo.png')}}" class="img_usuario_logueo">
                     </div>
-                    <a href="{{route('vista_general_admin')}}">Vista general de la cuenta</a>
+                    <a href="#">Vista general de la cuenta</a>
                     <a href="#">Registrar docente</a>
                 </div>
             </div>
             <div class="col-9">
-                
+                <div class="vista_general_cuenta">
+                    <h3>Vista general de la cuenta</h3>
+                </div>
             </div>
         </div>
     

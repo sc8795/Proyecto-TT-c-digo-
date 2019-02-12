@@ -22,10 +22,10 @@
                                 <a href="#" class="a_ini">Iniciar Sesión</a>
                                 <ul class="submenu">
                                     <li>
-                                        <a href="#">Estudiante</a>
+                                    <a href="{{route('show_login_form_student')}}">Estudiante</a>
                                     </li>
                                     <li>
-                                        <a href="#">Docente</a>
+                                    <a href="{{route('show_login_form_docente')}}">Docente</a>
                                     </li>
                                 </ul>
                             </li>
