@@ -33,7 +33,8 @@
                         <img src="{{asset('images/usuario_logueo.png')}}" class="img_usuario_logueo">
                     </div>
                     <a href="{{route('vista_general_admin')}}">Vista general de la cuenta</a>
-                    <a href="#">Registrar docente</a>
+                    <a href="#">Editar perfil</a>
+                    <a href="{{route('registrar_docente')}}">Registrar docente</a>
                 </div>
             </div>
             <div class="col-9">

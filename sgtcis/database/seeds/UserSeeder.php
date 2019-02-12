@@ -13,7 +13,8 @@ class UserSeeder extends Seeder
     public function run()
     {
         factory(User::class)->create([
-            'name'=>'sgtcisadmin',
+            'name'=>'Administrador',
+            'lastname'=>'SGTCIS',
             'email'=>'adminsgtcis@unl.edu.ec',
             'password'=>bcrypt('sgtcisadmin'),
             'is_admin'=>true,
@@ -21,21 +22,23 @@ class UserSeeder extends Seeder
             'is_estudiante'=>false
         ]);
         factory(User::class)->create([
-            'name'=>'sgtcisadmin3',
-            'email'=>'adminsgtcis3@unl.edu.ec',
-            'password'=>bcrypt('sgtcisadmin3'),
+            'name'=>'Luis Antonio',
+            'lastname'=>'Chamba Eras',
+            'email'=>'luisantonio@unl.edu.ec',
+            'password'=>bcrypt('luisantonio'),
             'is_admin'=>false,
             'is_docente'=>true,
             'is_estudiante'=>false
         ]);
 
         factory(User::class)->create([
-            'name'=>'sgtcisadmin1',
-            'email'=>'adminsgtcis1@unl.edu.ec',
-            'password'=>bcrypt('sgtcisadmin1'),
-            'is_admin'=>true,
+            'name'=>'Serdio David',
+            'lastname'=>'Cartuche Morocho',
+            'email'=>'sdcartuchem@unl.edu.ec',
+            'password'=>bcrypt('sergiodavid'),
+            'is_admin'=>false,
             'is_docente'=>false,
-            'is_estudiante'=>false
+            'is_estudiante'=>true
         ]);
     }
 }

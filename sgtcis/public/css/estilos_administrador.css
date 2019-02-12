@@ -39,13 +39,49 @@ body{
     padding: 20px;
 }
 /*Vista general de la cuenta*/
-.vista_general_cuenta{
+#vista_general_cuenta{
     position: relative;
-    top: 33.33%;
+    top: 25%;
     left: 50%;
     transform: translate(-50%,-50%);
-    /*background-color: rgba(49, 44, 44, 0.9);*/
+}
+#vista_general_cuenta_tabla{
+    position: relative;
+    top: 65.37%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color:  #1b1b1b;
+    padding: 20px;
 }
 h3{
     color: #83e6b4;
+}
+h4{
+    color: #83e6b4;
+}
+.tit_general{
+    color: #4665ac;
+}
+.tit_datos{
+    color: white;
+}
+/*Registrar docente*/
+#registrar_docente{
+    position: relative;
+    top: 15%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+#registrar_docente_tabla{
+    position: relative;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color:  #1b1b1b;
+    padding: 20px;
+    width: 50%;
+    left: 0%;
+}
+.form_registro_docente{
+    width: 100%;
 }

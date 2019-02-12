@@ -51,3 +51,7 @@ Route::post('logout_docente','Auth\LoginController@logout_docente')->name('logou
 |--------------------------------------------------------------------------
 */
 Route::get('vista_general_admin','AuthAdministradorController@vista_general_admin')->name('vista_general_admin');
+
+Route::get('registrar_docente','AuthAdministradorController@registrar_docente')->name('registrar_docente');
+
+Route::post('crear_docente','AuthAdministradorController@crear_docente')->name('crear_docente');

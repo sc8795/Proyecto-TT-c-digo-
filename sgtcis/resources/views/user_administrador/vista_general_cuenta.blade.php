@@ -32,15 +32,26 @@
                     <div class="centrar_img_usuario_logueo">
                         <img src="{{asset('images/usuario_logueo.png')}}" class="img_usuario_logueo">
                     </div>
-                    <a href="#">Vista general de la cuenta</a>
-                    <a href="#">Registrar docente</a>
+                    <a href="{{route('vista_general_admin')}}">Vista general de la cuenta</a>
+                    <a href="#">Editar perfil</a>
+                    <a href="{{route('registrar_docente')}}">Registrar docente</a>
                 </div>
             </div>
             <div class="col-9">
-                <div class="vista_general_cuenta">
+                <div class="container" id="vista_general_cuenta">
                     <h3>Vista general de la cuenta</h3>
+                    <hr>
                 </div>
-            </div>
+                <div class="container" id="vista_general_cuenta_tabla">
+                    <h4>Perfil</h4>
+                    <br>
+                    <h6 class="tit_general">Usuario:</h6>
+                    <h6 class="tit_datos">&nbsp; &nbsp; &nbsp;{{ auth()->user()->name }}&nbsp; {{ auth()->user()->lastname }}</h6>
+                    <hr>
+                    <h6 class="tit_general">Email:</h6>
+                    <h6 class="tit_datos">&nbsp; &nbsp; &nbsp;{{ auth()->user()->email }}</h6>
+                    <hr>
+                </div>
+            </div>    
         </div>
-    
 @endsection
