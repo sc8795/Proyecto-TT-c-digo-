@@ -110,4 +110,37 @@ public function editar_admin(){
 | Funciones para la editar datos de un docente
 |--------------------------------------------------------------------------
 */
+    public function editar_perfil_docente(User $user){
+        return view('user_administrador.editar_perfil_docente',['user'=>$user]);
+    }
+    public function editar_docente(User $user){
+        $data=request()->validate([
+            'name'=>'required',
+            'email'=>[
+                'required',
+                'email',
+                Rule::unique('users')->ignore($user->id)
+            ],
+            'password'=>''
+        ]);
+
+        if ($data["password"]!=null) {
+            $data["password"]=bcrypt($data['password']);
+        }else{
+            unset($data["password"]);
+        }
+        
+        $user->update($data);
+        return redirect()->route('docentes_registrados',['user'=>$user]);
+    }
+
+/* 
+|--------------------------------------------------------------------------
+| Funciones para la eliminar un docente
+|--------------------------------------------------------------------------
+*/
+    public function eliminar_docente(User $user){
+        $user->delete();
+        return redirect()->route('docentes_registrados');
+    }
 }

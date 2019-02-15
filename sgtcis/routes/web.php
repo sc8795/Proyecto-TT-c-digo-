@@ -64,5 +64,9 @@ Route::post('crear_docente','AuthAdministradorController@crear_docente')->name('
 /* Rutas para visualizar los docentes registrados */
 Route::get('docentes_registrados','AuthAdministradorController@docentes_registrados')->name('docentes_registrados');
 
-/* Rutas para editar un docente registrado */
+/* Rutas para editar datos de un docente registrado */
+Route::get('editar_perfil_docente/{user}','AuthAdministradorController@editar_perfil_docente')->name('editar_perfil_docente');
+Route::put('editar_docente/{user}','AuthAdministradorController@editar_docente')->name('editar_docente');
 
+/* Rutas para eliminar un docente registrado */
+Route::delete('eliminar_docente/{user}','AuthAdministradorController@eliminar_docente')->name('eliminar_docente');

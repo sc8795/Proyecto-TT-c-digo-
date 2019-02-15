@@ -33,10 +33,10 @@
                               <td><h6 class="tit_general">{{$user->name}} {{$user->lastname}}</h6></td>
                               <td><h6 class="tit_general">{{$user->email}}</h6></td>
                               <td>
-                                <form method="POST" action="">
+                                <form method="POST" action="{{url("eliminar_docente/{$user->id}")}}">
                                     {{csrf_field()}}
                                     {{method_field('DELETE')}}
-                                    <a href="{{route('editar_docente')}}" class="btn btn-link"><span class="oi oi-pencil"></span></a>
+                                    <a href="{{url("editar_perfil_docente/{$user->id}")}}" class="btn btn-link"><span class="oi oi-pencil"></span></a>
                                     <button type="submit" class="btn btn-link"><span class="oi oi-trash"></span></button>
                                 </form>
                               </td>
@@ -45,7 +45,7 @@
                       </tbody>
                     </table>
                 @else
-                    <p>No hay usuarios registrados</p>
+                    <h6 class="tit_general">No hay usuarios registrados</h6>
                 @endif
             </div>
         </div>
