@@ -120,7 +120,7 @@ class LoginController extends Controller
                 $emailform = $request->input("email");
                 $users = DB::table('users')->where('email',$emailform)->first();
                 if($users->is_docente==true){
-                    return redirect()->route('auth_student');
+                    return redirect()->route('auth_docente');
                 }else{
                     return redirect()->route('show_login_form_docente')->withErrors([$this->username()=>'Usted no es docente'])->withInput(request([$this->username()]));
                 }

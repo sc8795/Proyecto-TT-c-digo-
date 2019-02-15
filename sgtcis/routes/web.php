@@ -50,8 +50,19 @@ Route::post('logout_docente','Auth\LoginController@logout_docente')->name('logou
 | Rutas del Administrador
 |--------------------------------------------------------------------------
 */
+/* Ruta para la vista general */
 Route::get('vista_general_admin','AuthAdministradorController@vista_general_admin')->name('vista_general_admin');
 
-Route::get('registrar_docente','AuthAdministradorController@registrar_docente')->name('registrar_docente');
+/* Rutas para editar perfil del administrador */
+Route::get('editar_perfil_admin','AuthAdministradorController@editar_perfil_admin')->name('editar_perfil_admin');
+Route::put('editar_admin','AuthAdministradorController@editar_admin')->name('editar_admin');
 
+/* Rutas para registrar un docente */
+Route::get('registrar_docente','AuthAdministradorController@registrar_docente')->name('registrar_docente');
 Route::post('crear_docente','AuthAdministradorController@crear_docente')->name('crear_docente');
+
+/* Rutas para visualizar los docentes registrados */
+Route::get('docentes_registrados','AuthAdministradorController@docentes_registrados')->name('docentes_registrados');
+
+/* Rutas para editar un docente registrado */
+

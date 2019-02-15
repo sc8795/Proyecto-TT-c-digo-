@@ -8,7 +8,7 @@
     <div class="row">
         @include('user_administrador.vistas_iguales.imagen_texto')
         <div class="col-9" id="titulo_general">
-            <h3>Registrar docente</h3>
+            <h3>Editar perfil</h3>
         </div>
     </div>
 @endsection
@@ -18,31 +18,32 @@
         @include('user_administrador.vistas_iguales.menu_vertical')
         <div class="col-9">
             <div class="container" id="contenedor_general">
-                <form class="formulario_general" method="POST" action="{{route('crear_docente')}}">
+                <form class="formulario_general" method="POST" action="{{url("editar_admin")}}">
+                    {{method_field("PUT")}}
                     {{ csrf_field() }}
                     <div class="form-group">
                         <label><h6 class="tit_general">Nombres</h6></label>
-                        <input type="text" class="form-control" name="name" id="name" placeholder="Nombres completos">
+                        <input type="text" class="form-control" name="name" id="name" value="{{old('name',auth()->user()->name)}}">
                     </div>
                     <hr>
                     <div class="form-group">
                         <label><h6 class="tit_general">Apellidos</h6></label>
-                        <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Apellidos completos">
+                        <input type="text" class="form-control" name="lastname" id="lastname" value="{{old('lastname',auth()->user()->lastname)}}">
                     </div>
                     <hr>
                     <div class="form-group">
                         <label><h6 class="tit_general">Correo Electrónico</h6></label>
-                        <input type="email" class="form-control" name="email" id="email" placeholder="Correo institucional">
+                        <input type="email" class="form-control" name="email" id="email" value="{{old('email',auth()->user()->email)}}">
                     </div>
                     <hr>
                     <div class="form-group">
                         <label><h6 class="tit_general">Contraseña</h6></label>
-                        <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña">
+                        <input type="password" class="form-control" name="password" id="password">
                     </div>
                     <hr>
-                    <button type="submit" class="btn btn-primary btn-block">Registrar docente</button>
+                    <button type="submit" class="btn btn-primary btn-block">Guardar cambios</button>
                 </form>
             </div>
-        </div>
+        </div>    
     </div>
 @endsection

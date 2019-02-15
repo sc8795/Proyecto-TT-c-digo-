@@ -1,6 +1,8 @@
 body{
     background-color: #212121;
 }
+/* ---------- ESTILOS MENU HORIZONTAL ---------- */
+/*boton cerrar sesion*/
 .boton_logout{
     position: relative;
     top: 50%;
@@ -10,78 +12,70 @@ body{
     padding: 10px;
 }
 
+/* ---------- ESTILOS MENU VERTICAL ---------- */
 .vertical-menu {
     width: 100%; /* Set a width if you like */
-  }
-  
-  .vertical-menu a {
+}
+
+.vertical-menu a {
     background-color: #1b1b1b; /* Grey background color */
     color: white; /* Black text color */
     display: block; /* Make the links appear below each other */
     padding: 12px; /* Add some padding */
     text-decoration: none; /* Remove underline from links */
-  }
+}
   
-  .vertical-menu a:hover {
+.vertical-menu a:hover {
     background-color: rgba(27, 44, 25, 0.2); /* Dark grey background on mouse-over */
-  }
-  
-  .vertical-menu a.active {
+}
+
+.vertical-menu a.active {
     background-color: #1b1b1b; /* Add a green color to the "active/current" link */
     color: white;
-  }
+}
 
-  .centrar_img_usuario_logueo{
+/* ---------- ESTILOS VISTA DE IMAGEN Y TITULO DE MENU VERTICAL ---------- */ 
+/*imagen del usuario administrador*/
+.centrar_img_usuario_logueo{
     text-align: center;
+    background: #1b1b1b;
 }
 .img_usuario_logueo{
     width: 150px;
     padding: 20px;
 }
-/*Vista general de la cuenta*/
-#vista_general_cuenta{
-    position: relative;
-    top: 25%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-}
-#vista_general_cuenta_tabla{
-    position: relative;
-    top: 65.37%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    background-color:  #1b1b1b;
-    padding: 20px;
-}
+/*Titulo general del menu vertical*/
 h3{
     color: #83e6b4;
 }
 h4{
     color: #83e6b4;
 }
+#titulo_general{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+/*.lh_tit_gen {
+    height: 1px;
+    border: 0;
+    background-color: red;
+}*/
+/* ---------- ESTILOS VISTA GENERAL DE LA CUENTA ---------- */ 
 .tit_general{
     color: #4665ac;
 }
 .tit_datos{
     color: white;
 }
-/*Registrar docente*/
-#registrar_docente{
-    position: relative;
-    top: 15%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-}
-#registrar_docente_tabla{
-    position: relative;
-    top: 60%;
-    left: 50%;
-    transform: translate(-50%,-50%);
+
+/* ---------- ESTILOS VISTA REGISTRAR DOCENTE ---------- */ 
+
+/* ---------- ESTILOS USADOS POR TODAS LAS VISTAS ---------- */ 
+#contenedor_general{
     background-color:  #1b1b1b;
     padding: 20px;
-    width: 50%;
-    left: 0%;
 }
-.form_registro_docente{
-    width: 100%;
+.formulario_general{
+    width: 50%;
 }
