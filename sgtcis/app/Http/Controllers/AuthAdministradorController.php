@@ -12,14 +12,14 @@ class AuthAdministradorController extends Controller
 {
 /* 
 |--------------------------------------------------------------------------
-| Funciones para detectar y regirigir a la pagina del administrador autenticado
+| Funciones para detectar y redirigir a la pagina del administrador autenticado
 |--------------------------------------------------------------------------
 */
     public function __construct(){
         $this->middleware('auth');
     }
 
-    public function index(){
+    public function auth_admin(){
         return view('user_administrador.auth_admin');
     }
 /* 

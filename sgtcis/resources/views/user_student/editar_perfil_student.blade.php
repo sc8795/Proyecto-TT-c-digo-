@@ -1,24 +1,24 @@
-@extends('layout_administrador')
+@extends('layout_estudiante')
 
 @section('content')
-    @include('user_administrador.vistas_iguales.menu_horizontal')
+    @include('user_student.vistas_iguales.menu_horizontal')
 @endsection
 
 @section('content2')
     <div class="row">
-        @include('user_administrador.vistas_iguales.imagen_texto')
+        @include('user_student.vistas_iguales.imagen_texto')
         <div class="col-9" id="titulo_general">
-            <h3>Editar perfil del Administrador</h3>
+            <h3>Editar perfil Estudiante</h3>
         </div>
     </div>
 @endsection
 
 @section('content3')
     <div class="row">
-        @include('user_administrador.vistas_iguales.menu_vertical')
+        @include('user_student.vistas_iguales.menu_vertical')
         <div class="col-9">
             <div class="container" id="contenedor_general">
-                <form class="formulario_general" method="POST" action="{{url("editar_admin")}}">
+                <form class="formulario_general" method="POST" action="{{url("editar_student")}}">
                     {{method_field("PUT")}}
                     {{ csrf_field() }}
                     <div class="form-group">
@@ -44,6 +44,6 @@
                     <button type="submit" class="btn btn-primary btn-block">Guardar cambios</button>
                 </form>
             </div>
-        </div>    
+        </div>
     </div>
 @endsection

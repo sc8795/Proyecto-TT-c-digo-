@@ -40,5 +40,14 @@ class UserSeeder extends Seeder
             'is_docente'=>false,
             'is_estudiante'=>true
         ]);
+        factory(User::class)->create([
+            'name'=>'Génesis Yoreli',
+            'lastname'=>'Jumbo Chalán',
+            'email'=>'gyjumboc@unl.edu.ec',
+            'password'=>bcrypt('genesisjumbo'),
+            'is_admin'=>false,
+            'is_docente'=>false,
+            'is_estudiante'=>true
+        ]);
     }
 }

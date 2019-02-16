@@ -14,8 +14,8 @@ class LoginController extends Controller
     /*se utiliza un middleware para que verifique si el usuario esta autenticado y lo redireccione a donde queramos, al usar el middleware guest a esta ruta solo van a pasar los invitados no autenticados*/
     public function __construct(){
         $this->middleware('guest',['only'=>'show_login_form']);
-        $this->middleware('guest',['only'=>'show_login_form_student']);
-        $this->middleware('guest',['only'=>'show_login_form_docente']);
+        //$this->middleware('guest',['only'=>'show_login_form_student'],['except' => ['logout']]);
+        //$this->middleware('guest',['only'=>'show_login_form_docente'],['except' => ['logout']]);
     }
     /* 
     |--------------------------------------------------------------------------
@@ -24,7 +24,11 @@ class LoginController extends Controller
     */
     /*Metodo para devolver el formulario de inicio de sesion del administrador*/
     public function show_login_form(){
-        return view('user_administrador.login_administrador');
+        if(Auth::check()){
+            return redirect()->route('auth_admin');
+        }else{
+            return view('user_administrador.login_administrador');
+        }
     }
 
     public function login_administrador(Request $request){
@@ -42,7 +46,9 @@ class LoginController extends Controller
                 $emailform = $request->input("email");
                 $users = DB::table('users')->where('email',$emailform)->first();
                 if($users->is_admin==true){
-                    return redirect()->route('auth_admin');
+                    if (Auth::check()){
+                        return redirect()->route('auth_admin');
+                    }
                 }else{
                     return redirect()->route('show_login_form')->withErrors([$this->username()=>'Usted no es administrador'])->withInput(request([$this->username()]));
                 }
@@ -64,7 +70,11 @@ class LoginController extends Controller
     */
     /*Metodo para devolver el formulario de inicio de sesion del administrador*/
     public function show_login_form_student(){
-        return view('user_student.login_student');
+        if(Auth::check()){
+            return redirect()->route('auth_student');
+        }else{
+            return view('user_student.login_student');
+        }
     }
     public function login_student(Request $request){
         /*Establecemos las reglas de validacion para el formulario de login admistrador, en donde los campos email y password seran requeridos y de tipo string, estas reglas las guardamos en la variable $credenciales*/
@@ -82,6 +92,7 @@ class LoginController extends Controller
                 $users = DB::table('users')->where('email',$emailform)->first();
                 if($users->is_estudiante==true){
                     return redirect()->route('auth_student');
+                    
                 }else{
                     return redirect()->route('show_login_form_student')->withErrors([$this->username()=>'Usted no es estudiante'])->withInput(request([$this->username()]));
                 }
@@ -103,7 +114,11 @@ class LoginController extends Controller
     */
     /*Metodo para devolver el formulario de inicio de sesion del administrador*/
     public function show_login_form_docente(){
-        return view('user_docente.login_docente');
+        if(Auth::check()){
+            return redirect()->route('auth_docente');
+        }else{
+            return view('user_docente.login_docente');
+        }
     }
     public function login_docente(Request $request){
         /*Establecemos las reglas de validacion para el formulario de login admistrador, en donde los campos email y password seran requeridos y de tipo string, estas reglas las guardamos en la variable $credenciales*/
