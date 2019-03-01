@@ -8,7 +8,7 @@
                         <a href="{{route('editar_perfil_student')}}">Editar perfil</a>
                     </li>
                 </ul>
-                <a href="{{route('vista_general_student')}}">Solicitar tutoría</a>
+                <a href="#">Solicitar tutoría</a>
             </li>
         </ul>
     </div>

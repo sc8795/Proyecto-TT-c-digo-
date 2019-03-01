@@ -15,7 +15,9 @@
 
 @section('content3')
     <div class="row">
-        @include('user_administrador.vistas_iguales.menu_vertical')
+        <div class="col-3">
+            @include('user_administrador.vistas_iguales.menu_vertical')
+        </div>
         <div class="col-9">
             <div class="container" id="contenedor_general">
                 <form class="formulario_general" method="POST" action="{{route('crear_docente')}}">
