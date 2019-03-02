@@ -12,10 +12,19 @@
             <a href="#"><i class="icono izquierda fas fa-cog"></i>Configuración docente<i class="icono derecha fas fa-chevron-down"></i></a>
             <ul class="submenu_vertical">
                 <li>
-                    <a href="{{route('registrar_docente')}}"><i class="icono izquierda fas fa-user-check"></i>Registrar docente</a>
+                    <a href="{{route('registrar_docente')}}"><i class="icono izquierda fas fa-user-plus"></i>Registrar docente</a>
                 </li>
                 <li>
                     <a href="{{route('docentes_registrados')}}"><i class="icono izquierda fas fa-user-check"></i>Docentes registrados</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="#"><i class="icono izquierda fas fa-tasks"></i>Configuración materia<i class="icono derecha fas fa-chevron-down"></i></a>
+            <ul class="submenu_vertical">
+                <li>
+                    <a href="{{route('registrar_materia')}}">Registrar materia</a>
+                    <a href="{{route('materias_registradas')}}">Visualizar materia</a>
                 </li>
             </ul>
         </li>

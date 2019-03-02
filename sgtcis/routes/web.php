@@ -60,6 +60,7 @@ Route::put('editar_admin','AuthAdministradorController@editar_admin')->name('edi
 /* Rutas para registrar un docente */
 Route::get('registrar_docente','AuthAdministradorController@registrar_docente')->name('registrar_docente');
 Route::post('crear_docente','AuthAdministradorController@crear_docente')->name('crear_docente');
+Route::post('registrar_docente_excel','AuthAdministradorController@registrar_docente_excel')->name('registrar_docente_excel');
 
 /* Rutas para visualizar los docentes registrados */
 Route::get('docentes_registrados','AuthAdministradorController@docentes_registrados')->name('docentes_registrados');
@@ -70,6 +71,13 @@ Route::put('editar_docente/{user}','AuthAdministradorController@editar_docente')
 
 /* Rutas para eliminar un docente registrado */
 Route::delete('eliminar_docente/{user}','AuthAdministradorController@eliminar_docente')->name('eliminar_docente');
+
+/* Rutas para registrar una materia */
+Route::get('registrar_materia','AuthAdministradorController@registrar_materia')->name('registrar_materia');
+Route::post('crear_materia','AuthAdministradorController@crear_materia')->name('crear_materia');
+
+/* Rutas para visualizar las materias registradas */
+Route::get('materias_registradas','AuthAdministradorController@materias_registradas')->name('materias_registradas');
 
 /* 
 |--------------------------------------------------------------------------

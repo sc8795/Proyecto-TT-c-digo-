@@ -17,12 +17,13 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('lastname');
+            //$table->string('est_docente');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->boolean('is_admin')->default(false);
-            $table->boolean('is_docente')->default(false);
-            $table->boolean('is_estudiante')->default(false);
+            $table->boolean('is_admin');
+            $table->boolean('is_docente');
+            $table->boolean('is_estudiante');
             $table->rememberToken();
             $table->timestamps();
         });

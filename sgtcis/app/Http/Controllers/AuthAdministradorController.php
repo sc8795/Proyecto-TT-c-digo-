@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Materia;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use Auth;
+use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Storage;
 
 class AuthAdministradorController extends Controller
 {
@@ -82,6 +85,7 @@ public function editar_admin(){
             'name.required'=>'El campo nombre es obligatorio',
             'lastname.required'=>'El campo apellido es obligatorio',
             'email.required'=>'El campo email es obligatorio',
+            'email.unique'=>'Usuario ocupado',
             'password.required'=>'El campo contraseña es obligatorio',
         ]);        
 
@@ -95,7 +99,39 @@ public function editar_admin(){
             'is_estudiante'=>false
         ]);
         return redirect()->route('docentes_registrados');
-    }    
+    }
+    
+    public function registrar_docente_excel(Request $request){
+        $users = DB::table('users')->where('is_docente',true)->get();
+        foreach ($users as $user)
+        {
+            User::destroy($user->id);
+        }
+        $archivo=$request->file('archivo');
+        $nombre_original=$archivo->getClientOriginalName();
+        $extension=$archivo->getClientOriginalExtension();
+        $r1=Storage::disk('archivos')->put($nombre_original,\File::get($archivo));
+        $ruta=storage_path('archivos')."/".$nombre_original;
+
+        if($r1){
+            Excel::load($ruta,function($reader){
+
+                foreach ($reader->get() as $archivo) {
+                    User::create([
+                        'name'=>$archivo->nombres,
+                        'lastname'=>$archivo->apellidos,
+                        'email'=>$archivo->correo,
+                        'password'=>bcrypt($archivo->password),
+                        'is_admin'=>$archivo->is_admin,
+                        'is_docente'=>$archivo->is_docente,
+                        'is_estudiante'=>$archivo->is_estudiante
+                    ]);
+                }
+            });
+            return redirect()->route('docentes_registrados');
+        }
+        
+    }
 /* 
 |--------------------------------------------------------------------------
 | Funciones para visualizar docentes registrados
@@ -142,5 +178,38 @@ public function editar_admin(){
     public function eliminar_docente(User $user){
         $user->delete();
         return redirect()->route('docentes_registrados');
+    }
+/* 
+|--------------------------------------------------------------------------
+| Funciones para registrar materia
+|--------------------------------------------------------------------------
+*/
+    public function registrar_materia(){
+        return view('user_administrador.registrar_materia');
+    }    
+
+    public function crear_materia(){
+        $data=request()->validate([
+            'name'=>'required',
+            'ciclo'=>'required',
+        ],[
+            'name.required'=>'El campo nombre es obligatorio',
+            'ciclo.required'=>'El campo apellido es obligatorio',
+        ]);        
+
+        factory(Materia::class)->create([
+            'name'=>$data['name'],
+            'ciclo'=>$data['ciclo'],
+        ]);
+        return redirect()->route('materias_registradas');
+    }
+/* 
+|--------------------------------------------------------------------------
+| Funciones para visualizar materias registradas
+|--------------------------------------------------------------------------
+*/
+    public function materias_registradas(){
+        $materias = DB::table('materias')->get();
+        return view('user_administrador.materias_registradas',compact('materias'));
     }
 }

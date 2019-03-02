@@ -80,11 +80,7 @@ h4{
     justify-content: left;
     align-items: center;
 }
-/*.lh_tit_gen {
-    height: 1px;
-    border: 0;
-    background-color: red;
-}*/
+
 /* ---------- ESTILOS VISTA GENERAL DE LA CUENTA ---------- */ 
 .tit_general{
     color: #4665ac;
@@ -93,7 +89,10 @@ h4{
     color: white;
 }
 
-/* ---------- ESTILOS VISTA REGISTRAR DOCENTE ---------- */ 
+/* ---------- ESTILOS VISTA REGISTRAR MATERIA ---------- */
+.radios{
+    color: white;
+} 
 
 /* ---------- ESTILOS USADOS POR TODAS LAS VISTAS ---------- */ 
 #contenedor_general{
@@ -101,5 +100,5 @@ h4{
     padding: 20px;
 }
 .formulario_general{
-    width: 50%;
+    width: 100%;
 }
