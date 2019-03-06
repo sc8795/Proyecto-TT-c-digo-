@@ -15,8 +15,13 @@ class CreateMateriasTable extends Migration
     {
         Schema::create('materias', function (Blueprint $table) {
             $table->increments('id');
+
+            $table->unsignedInteger('usuario_id');
+            $table->foreign('usuario_id')->references('id')->on('users');
+
             $table->string('name')->unique();
             $table->string('ciclo');
+            $table->string('paralelo');
             $table->timestamps();
         });
     }

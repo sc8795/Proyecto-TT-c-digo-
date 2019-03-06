@@ -22,23 +22,28 @@ class MateriaSeeder extends Seeder
 */
         Materia::create([
             'name'=>'INTRODUCCIÓN A LAS CIENCIAS DE LA COMPUTACIÓN',
-            'ciclo'=>'primero'
+            'ciclo'=>'primero',
+            'paralelo'=>'A'
         ]);
         Materia::create([
             'name'=>'COMUNICACIÓN PROFESIONAL',
-            'ciclo'=>'primero'
+            'ciclo'=>'primero',
+            'paralelo'=>'A'
         ]);
         Materia::create([
             'name'=>'ÁLGEBRA LINEAL',
-            'ciclo'=>'primero'
+            'ciclo'=>'primero',
+            'paralelo'=>'A'
         ]);
         Materia::create([
             'name'=>'TEORÍA DE LA PROGRAMACIÓN',
-            'ciclo'=>'primero'
+            'ciclo'=>'primero',
+            'paralelo'=>'A'
         ]);
         Materia::create([
             'name'=>'ELECTRICIDAD',
-            'ciclo'=>'primero'
+            'ciclo'=>'primero',
+            'paralelo'=>'A'
         ]);
 /* 
 |--------------------------------------------------------------------------
@@ -47,27 +52,33 @@ class MateriaSeeder extends Seeder
 */
         Materia::create([
             'name'=>'MATEMÁTICAS DISCRETAS',
-            'ciclo'=>'segundo'
+            'ciclo'=>'segundo',
+            'paralelo'=>'A'
         ]);
         Materia::create([
             'name'=>'CÁLCULO DIFERENCIAL',
-            'ciclo'=>'segundo'
+            'ciclo'=>'segundo',
+            'paralelo'=>'A'
         ]);
         Materia::create([
             'name'=>'TEORÍA DE LA DISTRIBUCIÓN Y PROBABILIDAD',
-            'ciclo'=>'segundo'
+            'ciclo'=>'segundo',
+            'paralelo'=>'A'
         ]);
         Materia::create([
             'name'=>'PROGRAMACIÓN ORIENTADA A OBJETOS',
-            'ciclo'=>'segundo'
+            'ciclo'=>'segundo',
+            'paralelo'=>'A'
         ]);
         Materia::create([
             'name'=>'DISEÑO DE CIRCUITOS',
-            'ciclo'=>'segundo'
+            'ciclo'=>'segundo',
+            'paralelo'=>'A'
         ]);
         Materia::create([
             'name'=>'TECNOLOGÍA Y CAMBIO SOCIAL',
-            'ciclo'=>'segundo'
+            'ciclo'=>'segundo',
+            'paralelo'=>'A'
         ]);
 /* 
 |--------------------------------------------------------------------------
@@ -76,27 +87,33 @@ class MateriaSeeder extends Seeder
 */
         Materia::create([
             'name'=>'ESTRUCTURA DE DATOS Y ALGORITMOS FUNDAMENTALES',
-            'ciclo'=>'tercero'
+            'ciclo'=>'tercero',
+            'paralelo'=>'A'
         ]);
         Materia::create([
             'name'=>'CÁLCULO INTEGRAL',
-            'ciclo'=>'tercero'
+            'ciclo'=>'tercero',
+            'paralelo'=>'A'
         ]);
         Materia::create([
             'name'=>'ESTADÍSTICA ANALÍTICA',
-            'ciclo'=>'tercero'
+            'ciclo'=>'tercero',
+            'paralelo'=>'A'
         ]);
         Materia::create([
             'name'=>'BANCOS DE DATOS',
-            'ciclo'=>'tercero'
+            'ciclo'=>'tercero',
+            'paralelo'=>'A'
         ]);
         Materia::create([
             'name'=>'ARQUITECTURA DE ORDENADORES',
-            'ciclo'=>'tercero'
+            'ciclo'=>'tercero',
+            'paralelo'=>'A'
         ]);
         Materia::create([
             'name'=>'CÁTEDRA INTEGRADORA: PROYECTO DE VINCULACIÓN: "CENTRO DE ASESORÍA TECNOLÓGICA"',
-            'ciclo'=>'tercero'
+            'ciclo'=>'tercero',
+            'paralelo'=>'A'
         ]);
 /* 
 |--------------------------------------------------------------------------
@@ -105,23 +122,28 @@ class MateriaSeeder extends Seeder
 */
         Materia::create([
             'name'=>'ESTRUCTURAS DE DATOS AVANZADAS',
-            'ciclo'=>'cuarto'
+            'ciclo'=>'cuarto',
+            'paralelo'=>'A'
         ]);
         Materia::create([
             'name'=>'ECUACIONES DIFERENCIALES',
-            'ciclo'=>'cuarto'
+            'ciclo'=>'cuarto',
+            'paralelo'=>'A'
         ]);
         Materia::create([
             'name'=>'INGENIERÍA DE LA CONTAMINACIÓN',
-            'ciclo'=>'cuarto'
+            'ciclo'=>'cuarto',
+            'paralelo'=>'A'
         ]);
         Materia::create([
             'name'=>'PROCESAMIENTO DE TRANSACCIONES',
-            'ciclo'=>'cuarto'
+            'ciclo'=>'cuarto',
+            'paralelo'=>'A'
         ]);
         Materia::create([
             'name'=>'PROCESOS DE SOFTWARE',
-            'ciclo'=>'cuarto'
+            'ciclo'=>'cuarto',
+            'paralelo'=>'A'
         ]);
 /* 
 |--------------------------------------------------------------------------
@@ -130,23 +152,28 @@ class MateriaSeeder extends Seeder
 */
         Materia::create([
             'name'=>'COMPLEJIDAD COMPUTACIONAL',
-            'ciclo'=>'quinto'
+            'ciclo'=>'quinto',
+            'paralelo'=>'A'
         ]);
         Materia::create([
             'name'=>'ANÁLISIS NUMÉRICO',
-            'ciclo'=>'quinto'
+            'ciclo'=>'quinto',
+            'paralelo'=>'A'
         ]);
         Materia::create([
             'name'=>'ECONOMÍA DE LA COMPUTACIÓN',
-            'ciclo'=>'quinto'
+            'ciclo'=>'quinto',
+            'paralelo'=>'A'
         ]);
         Materia::create([
             'name'=>'PLATAFORMAS WEB',
-            'ciclo'=>'quinto'
+            'ciclo'=>'quinto',
+            'paralelo'=>'A'
         ]);
         Materia::create([
             'name'=>'ADMINISTRACIÓN DE PROYECTOS DE SOFTWARE',
-            'ciclo'=>'quinto'
+            'ciclo'=>'quinto',
+            'paralelo'=>'A'
         ]);
 /* 
 |--------------------------------------------------------------------------
@@ -155,23 +182,28 @@ class MateriaSeeder extends Seeder
 */
         Materia::create([
             'name'=>'TEORÍA DE AUTÓMATAS Y COMPUTABILIDAD AVANZADA',
-            'ciclo'=>'sexto'
+            'ciclo'=>'sexto',
+            'paralelo'=>'A'
         ]);
         Materia::create([
             'name'=>'SISTEMAS OPERATIVOS',
-            'ciclo'=>'sexto'
+            'ciclo'=>'sexto',
+            'paralelo'=>'A'
         ]);
         Materia::create([
             'name'=>'INTRODUCCIÓN A LAS REDES Y COMUNICACIONES',
-            'ciclo'=>'sexto'
+            'ciclo'=>'sexto',
+            'paralelo'=>'A'
         ]);
         Materia::create([
             'name'=>'PLATAFORMAS MÓVILES',
-            'ciclo'=>'sexto'
+            'ciclo'=>'sexto',
+            'paralelo'=>'A'
         ]);
         Materia::create([
             'name'=>'CÁTEGRA INTEGRADORA: APLICACIONES WEB Y MÓVILES',
-            'ciclo'=>'sexto'
+            'ciclo'=>'sexto',
+            'paralelo'=>'A'
         ]);
 /* 
 |--------------------------------------------------------------------------
@@ -180,27 +212,33 @@ class MateriaSeeder extends Seeder
 */
         Materia::create([
             'name'=>'COMPILADORES',
-            'ciclo'=>'septimo'
+            'ciclo'=>'septimo',
+            'paralelo'=>'A'
         ]);
         Materia::create([
             'name'=>'SISTEMAS DISTRIBUIDOS',
-            'ciclo'=>'septimo'
+            'ciclo'=>'septimo',
+            'paralelo'=>'A'
         ]);
         Materia::create([
             'name'=>'GESTIÓN DE REDES Y COMUNICACIONES',
-            'ciclo'=>'septimo'
+            'ciclo'=>'septimo',
+            'paralelo'=>'A'
         ]);
         Materia::create([
             'name'=>'INTERACCIÓN PERSONA-COMPUTADOR',
-            'ciclo'=>'septimo'
+            'ciclo'=>'septimo',
+            'paralelo'=>'A'
         ]);
         Materia::create([
             'name'=>'METODOLOGÍA DE LA INVESTIGACIÓN EN LA COMPUTACIÓN',
-            'ciclo'=>'septimo'
+            'ciclo'=>'septimo',
+            'paralelo'=>'A'
         ]);
         Materia::create([
             'name'=>'CÁTEDRA INTEGRADORA: INFRAESTRUCTURA DE REDES Y COMUNICACIONES',
-            'ciclo'=>'septimo'
+            'ciclo'=>'septimo',
+            'paralelo'=>'A'
         ]);
 /* 
 |--------------------------------------------------------------------------
@@ -209,27 +247,33 @@ class MateriaSeeder extends Seeder
 */
         Materia::create([
             'name'=>'INVESTIGACIÓN DE OPERACIONES',
-            'ciclo'=>'octavo'
+            'ciclo'=>'octavo',
+            'paralelo'=>'A'
         ]);
         Materia::create([
             'name'=>'PERCEPCIÓN Y VISIÓN COMPUTACIONAL',
-            'ciclo'=>'octavo'
+            'ciclo'=>'octavo',
+            'paralelo'=>'A'
         ]);
         Materia::create([
             'name'=>'ÉTICA PROFESIONAL',
-            'ciclo'=>'octavo'
+            'ciclo'=>'octavo',
+            'paralelo'=>'A'
         ]);
         Materia::create([
             'name'=>'ALGORITMOS, ANÁLISIS Y PROGRAMACIÓN PARALELA',
-            'ciclo'=>'octavo'
+            'ciclo'=>'octavo',
+            'paralelo'=>'A'
         ]);
         Materia::create([
             'name'=>'PROYECTOS TECNOLÓGICOS I',
-            'ciclo'=>'octavo'
+            'ciclo'=>'octavo',
+            'paralelo'=>'A'
         ]);
         Materia::create([
             'name'=>'CÁTEDRA INTEGRADORA: PROYECTOS TECNOLÓGICOS Y/O DE EMPRENDIMIENTO ORIENTADOS A LOS SECTORES URBANO MARGINALES, RURALES Y COMUNIDADES VULNERABLES',
-            'ciclo'=>'octavo'
+            'ciclo'=>'octavo',
+            'paralelo'=>'A'
         ]);
 /* 
 |--------------------------------------------------------------------------
@@ -238,23 +282,28 @@ class MateriaSeeder extends Seeder
 */
         Materia::create([
             'name'=>'SEGURIDAD DE LA INFORMACIÓN',
-            'ciclo'=>'noveno'
+            'ciclo'=>'noveno',
+            'paralelo'=>'A'
         ]);
         Materia::create([
             'name'=>'APRENDIZAJE AUTOMÁTICO',
-            'ciclo'=>'noveno'
+            'ciclo'=>'noveno',
+            'paralelo'=>'A'
         ]);
         Materia::create([
             'name'=>'COMPUTACIÓN EN LA NUBE',
-            'ciclo'=>'noveno'
+            'ciclo'=>'noveno',
+            'paralelo'=>'A'
         ]);
         Materia::create([
             'name'=>'PROYECTOS TECNOLÓGICOS II',
-            'ciclo'=>'noveno'
+            'ciclo'=>'noveno',
+            'paralelo'=>'A'
         ]);
         Materia::create([
             'name'=>'CÁTEDRA INNOVADORA: SEGURIDAD Y/O APLICACIONES INTELIGENTES',
-            'ciclo'=>'noveno'
+            'ciclo'=>'noveno',
+            'paralelo'=>'A'
         ]);
 /* 
 |--------------------------------------------------------------------------
@@ -263,19 +312,23 @@ class MateriaSeeder extends Seeder
 */
         Materia::create([
             'name'=>'SIMULACIÓN',
-            'ciclo'=>'decimo'
+            'ciclo'=>'decimo',
+            'paralelo'=>'A'
         ]);
         Materia::create([
             'name'=>'MINERÍA DE DATOS',
-            'ciclo'=>'decimo'
+            'ciclo'=>'decimo',
+            'paralelo'=>'A'
         ]);
         Materia::create([
             'name'=>'REDACCIÓN CIENTÍFICA',
-            'ciclo'=>'decimo'
+            'ciclo'=>'decimo',
+            'paralelo'=>'A'
         ]);
         Materia::create([
             'name'=>'TRABAJO DE TITULACIÓN',
-            'ciclo'=>'decimo'
+            'ciclo'=>'decimo',
+            'paralelo'=>'A'
         ]);
     }
 }

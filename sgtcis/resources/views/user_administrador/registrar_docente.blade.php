@@ -49,7 +49,7 @@
                     </div>
                 </div>
                 <div class="col-6">
-                    <h4>Registro por medio de documento excel</h4>
+                    <h4>Registro de docente por medio de documento excel</h4>
                     <form method="POST" action="{{route('registrar_docente_excel')}}" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <input type="file" name="archivo" /><br />

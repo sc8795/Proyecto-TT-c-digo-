@@ -75,6 +75,7 @@ Route::delete('eliminar_docente/{user}','AuthAdministradorController@eliminar_do
 /* Rutas para registrar una materia */
 Route::get('registrar_materia','AuthAdministradorController@registrar_materia')->name('registrar_materia');
 Route::post('crear_materia','AuthAdministradorController@crear_materia')->name('crear_materia');
+Route::post('registrar_materia_excel','AuthAdministradorController@registrar_materia_excel')->name('registrar_materia_excel');
 
 /* Rutas para visualizar las materias registradas */
 Route::get('materias_registradas','AuthAdministradorController@materias_registradas')->name('materias_registradas');

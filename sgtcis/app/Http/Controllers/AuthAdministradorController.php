@@ -185,23 +185,52 @@ public function editar_admin(){
 |--------------------------------------------------------------------------
 */
     public function registrar_materia(){
-        return view('user_administrador.registrar_materia');
+        $users = DB::table('users')->where('is_docente',true)->get();
+        //dd($users);
+        return view('user_administrador.registrar_materia',compact('users'));
     }    
 
-    public function crear_materia(){
-        $data=request()->validate([
-            'name'=>'required',
-            'ciclo'=>'required',
-        ],[
-            'name.required'=>'El campo nombre es obligatorio',
-            'ciclo.required'=>'El campo apellido es obligatorio',
-        ]);        
-
-        factory(Materia::class)->create([
-            'name'=>$data['name'],
-            'ciclo'=>$data['ciclo'],
+    public function crear_materia(Request $request){
+        $name=$request->input('name');
+        $ciclo=$request->input('gender');
+        $docente=$request->input('docente');
+        $paralelo=$request->input('paralelo');
+        DB::table('materias')->insert([
+            'name'=>$name,
+            'ciclo'=>$ciclo,
+            'id_docente'=>$docente,
+            'paralelo'=>$paralelo,
         ]);
+       
         return redirect()->route('materias_registradas');
+    }
+
+    public function registrar_materia_excel(Request $request){
+        $users = DB::table('materias')->get();
+        foreach ($users as $user)
+        {
+            Materia::destroy($user->id);
+        }
+        $archivo=$request->file('archivo');
+        $nombre_original=$archivo->getClientOriginalName();
+        $extension=$archivo->getClientOriginalExtension();
+        $r1=Storage::disk('archivos')->put($nombre_original,\File::get($archivo));
+        $ruta=storage_path('archivos')."/".$nombre_original;
+
+        if($r1){
+            Excel::load($ruta,function($reader){
+
+                foreach ($reader->get() as $archivo) {
+                    DB::table('materias')->insert([
+                        'name'=>$archivo->nombre,
+                        'ciclo'=>$archivo->ciclo,
+                        'usuario_id'=>$archivo->id_docente,
+                        'paralelo'=>$archivo->paralelo,
+                    ]);
+                }
+            });
+            return redirect()->route('materias_registradas');
+        }
     }
 /* 
 |--------------------------------------------------------------------------
@@ -210,6 +239,7 @@ public function editar_admin(){
 */
     public function materias_registradas(){
         $materias = DB::table('materias')->get();
-        return view('user_administrador.materias_registradas',compact('materias'));
+        $users=DB::table('users')->where('is_docente',true)->get();
+        return view('user_administrador.materias_registradas',compact('materias','users'));
     }
 }

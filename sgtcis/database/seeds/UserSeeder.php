@@ -21,7 +21,7 @@ class UserSeeder extends Seeder
             'is_docente'=>false,
             'is_estudiante'=>false
         ]);
-        factory(User::class)->create([
+        /*factory(User::class)->create([
             'name'=>'Luis Antonio',
             'lastname'=>'Chamba Eras',
             'email'=>'luisantonio@unl.edu.ec',
@@ -48,6 +48,6 @@ class UserSeeder extends Seeder
             'is_admin'=>false,
             'is_docente'=>false,
             'is_estudiante'=>true
-        ]);
+        ]);*/
     }
 }
