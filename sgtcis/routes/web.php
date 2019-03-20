@@ -88,6 +88,6 @@ Route::get('materias_registradas','AuthAdministradorController@materias_registra
 /* Ruta para la vista general */
 Route::get('vista_general_student','AuthStudentController@vista_general_student')->name('vista_general_student');
 
-/* Rutas para editar perfil del administrador */
+/* Rutas para editar perfil */
 Route::get('editar_perfil_student','AuthStudentController@editar_perfil_student')->name('editar_perfil_student');
 Route::put('editar_student','AuthStudentController@editar_student')->name('editar_student');

@@ -35,4 +35,44 @@
             </div>
         <!--/nav-->
     </header>
+    <div class="container-fluid" id="espacio_menu_texto">
+        
+    </div>
+    <div class="container-fluid" id="cont_pag_inicio">
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-3"></div>
+            <div class="col-4">
+                <h1 class="texto_formulario">Registro estudiante</h1>
+                <div>
+                    <form method="POST" action="registrar_estudiante.php">
+                        {{ csrf_field() }}
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="name" id="name" placeholder="Nombres completos">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Apellidos completos">
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                            <input type="email" class="form-control" name="email" id="email" placeholder="Correo institucional">
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                            <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña">
+                        </div>
+                        <hr>
+                        <input type="submit" name="registrarse" class="btn btn-primary btn-block" value="Registrarse">
+                    </form>
+                </div>
+            </div>
+            <div class="col-1"></div>
+        </div>
+    </div>
 @endsection

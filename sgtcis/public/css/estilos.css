@@ -39,3 +39,7 @@ body{
     width: 150px;
     padding: 20px;
 }
+/*estilos para mover texto de registro de estudiante a la izquierda del formulario de logueo*/
+.texto_volver{
+    text-align: center;
+}

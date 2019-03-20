@@ -63,4 +63,13 @@ class AuthStudentController extends Controller
             return redirect()->route('vista_general_student');
         }
     }
+/* 
+|--------------------------------------------------------------------------
+| Funciones para registrar estudiante
+|--------------------------------------------------------------------------
+*/
+    public function crear_estudiante(){
+        $users = DB::table('users')->where('is_docente',true)->get();
+        dd($users);
+    }
 }

@@ -5,6 +5,9 @@
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
+body{
+    background-color:#1b1b1b;
+}
 #contenedor_header{
     background-color: black;
     color: white;
@@ -48,4 +51,14 @@
 .menu li:hover .submenu{
     visibility: visible;
     opacity: 1;
+}
+/*estilos contenededor pagina inicia (contenido)*/
+#espacio_menu_texto{
+    margin-top: 15px;
+}
+#cont_pag_inicio{
+   /* padding: 5px;*/
+}
+.texto_formulario{
+    color: white;
 }
