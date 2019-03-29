@@ -15,7 +15,9 @@
 
 @section('content3')
     <div class="row">
-        @include('user_student.vistas_iguales.menu_vertical')
+        <div class="col-3">
+            @include('user_student.vistas_iguales.menu_vertical')
+        </div>
         <div class="col-9">
             <div class="container" id="contenedor_general">
                 <form action="{{route('editar_perfil_student')}}">

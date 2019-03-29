@@ -6,7 +6,7 @@
     box-sizing: border-box;
 }
 body{
-    background-color:#1b1b1b;
+    background-color:#212121;
 }
 #contenedor_header{
     background-color: black;
@@ -56,9 +56,16 @@ body{
 #espacio_menu_texto{
     margin-top: 15px;
 }
-#cont_pag_inicio{
-   /* padding: 5px;*/
-}
+/*#cont_pag_inicio{
+   padding: 5px;
+}*/
 .texto_formulario{
+    color: white;
+}
+/*ESTILOS PARA FORMULARIO DE REGISTRO DEL ESTUDIANTE*/
+.tit_ciclo_form{
+    color: #4665ac;
+}
+.radios{
     color: white;
 }

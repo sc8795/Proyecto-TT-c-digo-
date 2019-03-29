@@ -23,6 +23,8 @@ class CreateUsersTable extends Migration
             $table->boolean('is_admin');
             $table->boolean('is_docente');
             $table->boolean('is_estudiante');
+            $table->string('paralelo');
+            $table->string('ciclo');
             $table->rememberToken();
             $table->timestamps();
         });

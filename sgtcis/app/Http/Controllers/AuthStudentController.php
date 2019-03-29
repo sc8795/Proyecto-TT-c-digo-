@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use App\User;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\DB;
 
 class AuthStudentController extends Controller
 {
@@ -65,11 +66,13 @@ class AuthStudentController extends Controller
     }
 /* 
 |--------------------------------------------------------------------------
-| Funciones para registrar estudiante
+| Funciones para solicitar tutoria
 |--------------------------------------------------------------------------
 */
-    public function crear_estudiante(){
-        $users = DB::table('users')->where('is_docente',true)->get();
-        dd($users);
+    public function solicitar_tutoria(){
+        $materias = DB::table('materias')->get();
+        $users=DB::table('users')->where('is_estudiante',true)->get();
+        $users_docentes=DB::table('users')->where('is_docente',true)->get();
+        return view('user_student.solicitar_tutoria',compact('materias','users','users_docentes'));
     }
 }

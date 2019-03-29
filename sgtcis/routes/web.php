@@ -91,3 +91,6 @@ Route::get('vista_general_student','AuthStudentController@vista_general_student'
 /* Rutas para editar perfil */
 Route::get('editar_perfil_student','AuthStudentController@editar_perfil_student')->name('editar_perfil_student');
 Route::put('editar_student','AuthStudentController@editar_student')->name('editar_student');
+
+/* Rutas para solicitar tutoria*/
+Route::get('solicitar_tutoria','AuthStudentController@solicitar_tutoria')->name('solicitar_tutoria');

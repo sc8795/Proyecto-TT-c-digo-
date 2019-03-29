@@ -96,7 +96,9 @@ public function editar_admin(){
             'password'=>bcrypt($data['password']),
             'is_admin'=>false,
             'is_docente'=>true,
-            'is_estudiante'=>false
+            'is_estudiante'=>false,
+            'paralelo'=>'NA',
+            'ciclo'=>'NA'
         ]);
         return redirect()->route('docentes_registrados');
     }
@@ -124,7 +126,9 @@ public function editar_admin(){
                         'password'=>bcrypt($archivo->password),
                         'is_admin'=>$archivo->is_admin,
                         'is_docente'=>$archivo->is_docente,
-                        'is_estudiante'=>$archivo->is_estudiante
+                        'is_estudiante'=>$archivo->is_estudiante,
+                        'paralelo'=>$archivo->paralelo,
+                        'ciclo'=>$archivo->ciclo
                     ]);
                 }
             });

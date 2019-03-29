@@ -68,6 +68,40 @@
                             <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña">
                         </div>
                         <hr>
+                        <div class="form-group">
+                            <label><h6 class="tit_ciclo_form">Ciclo</h6></label>
+                            <br>
+                            <div class="row">
+                                <div class="col-4" for="gender">
+                                    <h6 class="radios"><input type="radio" name="gender" ide="gender" value="Primero"> Primero</h6> <br>
+                                    <h6 class="radios"><input type="radio" name="gender" ide="gender" value="Cuarto"> Cuarto</h6> <br>
+                                    <h6 class="radios"><input type="radio" name="gender" ide="gender" value="Séptimo"> Séptimo</h6> <br>
+                                </div>
+                                <div class="col-4">
+                                    <h6 class="radios"><input type="radio" name="gender" ide="gender" value="Segundo"> Segundo</h6> <br>
+                                    <h6 class="radios"><input type="radio" name="gender" ide="gender" value="Quinto"> Quinto</h6> <br>
+                                    <h6 class="radios"><input type="radio" name="gender" ide="gender" value="Octavo"> Octavo</h6> <br>
+                                    <h6 class="radios"><input type="radio" name="gender" ide="gender" value="Décimo"> Décimo</h6> <br>
+                                </div>
+                                <div class="col-4">
+                                    <h6 class="radios"><input type="radio" name="gender" ide="gender" value="Tercero"> Tercero</h6> <br>
+                                    <h6 class="radios"><input type="radio" name="gender" ide="gender" value="Sexto"> Sexto</h6> <br>
+                                    <h6 class="radios"><input type="radio" name="gender" ide="gender" value="Noveno"> Noveno</h6> <br>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                                <label><h6 class="tit_ciclo_form">Paralelo</h6></label>
+                                <br>
+                                <select name="paralelo" id="paralelo">
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="C">C</option>
+                                    <option value="D">D</option>
+                                </select>
+                            </div>
+                            <hr>
                         <input type="submit" name="registrarse" class="btn btn-primary btn-block" value="Registrarse">
                     </form>
                 </div>

@@ -5,9 +5,10 @@
     <title>SGTCIS</title>
 </head>
 <body>
-<?php
-            $con = mysqli_connect("localhost","root","","sgtcis") or die ("Error");
-        ?>
+    <?php
+        $con = mysqli_connect("localhost","root","","sgtcis") or die ("Error");
+        $con->set_charset('utf8');
+    ?>
     
     <?php
         if (isset($_POST['registrarse'])) {
@@ -19,12 +20,14 @@
             $is_admin=false;
             $is_docente=false;
             $is_estudiante=true;
-            $registrar = "INSERT INTO users (name,lastname,email,password,is_admin,is_docente,is_estudiante) VALUES ('$name','$lastname','$email','$passHash','$is_admin','$is_docente','$is_estudiante')";    
+            $ciclo=$_POST["gender"];
+            $paralelo=$_POST["paralelo"];
+            $registrar = "INSERT INTO users (name,lastname,email,password,is_admin,is_docente,is_estudiante,paralelo,ciclo) VALUES ('$name','$lastname','$email','$passHash','$is_admin','$is_docente','$is_estudiante','$paralelo','$ciclo')";    
             $ejecutar=mysqli_query($con,$registrar);
             if($ejecutar){
-                echo "Inserta correctamente";
+                echo "Estudiante registrado correctamente";
             }else{
-                echo "";
+                echo "No se ha podido registrar en nuestra base de datos";
             }
         }
     ?>

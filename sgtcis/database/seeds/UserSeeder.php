@@ -19,7 +19,9 @@ class UserSeeder extends Seeder
             'password'=>bcrypt('sgtcisadmin'),
             'is_admin'=>true,
             'is_docente'=>false,
-            'is_estudiante'=>false
+            'is_estudiante'=>false,
+            'paralelo'=>'NA',
+            'ciclo'=>'NA',
         ]);
         /*factory(User::class)->create([
             'name'=>'Luis Antonio',
