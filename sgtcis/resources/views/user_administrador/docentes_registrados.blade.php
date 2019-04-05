@@ -24,6 +24,7 @@
                     <table class="table">
                       <thead class="thead-dark">
                         <tr>
+                          <th scope="col">Id</th>
                           <th scope="col">Nombres y Apellidos</th>
                           <th scope="col">Correo</th>
                           <th scope="col">Acciones</th>
@@ -32,6 +33,7 @@
                       <tbody>
                           @foreach($users as $user)
                             <tr>
+                              <td><h6 class="tit_general">{{$user->id}}</h6></td>
                               <td><h6 class="tit_general">{{$user->name}} {{$user->lastname}}</h6></td>
                               <td><h6 class="tit_general">{{$user->email}}</h6></td>
                               <td>

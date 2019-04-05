@@ -52,8 +52,8 @@
                     <h4>Registro de docente por medio de documento excel</h4>
                     <form method="POST" action="{{route('registrar_docente_excel')}}" enctype="multipart/form-data">
                         {{ csrf_field() }}
-                        <input type="file" name="archivo" /><br />
-                        <input type="submit" value="Enviar" />
+                        <h6 class="excel"><input type="file" name="archivo"></h6><br>
+                        <input type="submit" value="Enviar">
                     </form>
                 </div>
             </div>

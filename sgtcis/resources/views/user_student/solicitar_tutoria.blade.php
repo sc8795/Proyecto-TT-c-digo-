@@ -20,6 +20,7 @@
         </div>
         <div class="col-9">
             <div class="container" id="contenedor_general">
+                @if($materias->isNotEmpty())
                 <table class="table">
                     <thead class="thead-dark">
                         <tr>
@@ -30,29 +31,30 @@
                     </thead>
                     <tbody>
                         @foreach ($users as $user)
-                            
-                                @foreach ($materias as $materia)
-                                <tr>
-                                    @if ($user->paralelo==$materia->paralelo&&$user->ciclo==$materia->ciclo)
-                                        <td><h6 class="tit_general">{{$materia->name}}</h6>
-                                        </td>
-                                        <td>
-                                            <h6 class="tit_general">
-                                                @foreach ($users_docentes as $user_docente)
-                                                    @if ($materia->usuario_id==$user_docente->id)
-                                                        {{$user_docente->name}} {{$user_docente->lastname}}
-                                                    @endif
-                                                @endforeach
-                                            </h6>
-                                        </td>
-                                        <td><h6 class="tit_general"><a href="#">Solicitar tutoría</a></h6></td>
-                                    @endif
-                                </tr>
-                                @endforeach
-                            
+                            @foreach ($materias as $materia)
+                            <tr>
+                                @if ($user->paralelo==$materia->paralelo&&$user->ciclo==$materia->ciclo)
+                                    <td><h6 class="tit_general">{{$materia->name}}</h6>
+                                    </td>
+                                    <td>
+                                        <h6 class="tit_general">
+                                            @foreach ($users_docentes as $user_docente)
+                                                @if ($materia->usuario_id==$user_docente->id)
+                                                    {{$user_docente->name}} {{$user_docente->lastname}}
+                                                @endif
+                                            @endforeach
+                                        </h6>
+                                    </td>
+                                    <td><h6 class="tit_general"><a href="#">Solicitar tutoría</a></h6></td>
+                                @endif
+                            </tr>
+                            @endforeach   
                         @endforeach
                     </tbody>
                 </table>
+                @else
+                    <h6 class="tit_general">No hay datos registradas</h6>
+                @endif
             </div>
         </div>
     </div>

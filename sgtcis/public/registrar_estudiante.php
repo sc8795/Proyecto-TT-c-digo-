@@ -25,7 +25,8 @@
             $registrar = "INSERT INTO users (name,lastname,email,password,is_admin,is_docente,is_estudiante,paralelo,ciclo) VALUES ('$name','$lastname','$email','$passHash','$is_admin','$is_docente','$is_estudiante','$paralelo','$ciclo')";    
             $ejecutar=mysqli_query($con,$registrar);
             if($ejecutar){
-                echo "Estudiante registrado correctamente";
+                //echo "Estudiante registrado correctamente";
+                header("Location: http://localhost/sgtcis/public/");
             }else{
                 echo "No se ha podido registrar en nuestra base de datos";
             }
