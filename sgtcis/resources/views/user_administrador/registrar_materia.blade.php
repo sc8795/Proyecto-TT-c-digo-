@@ -34,20 +34,20 @@
                                 <br>
                                 <div class="row">
                                     <div class="col-4" for="gender">
-                                        <h6 class="radios"><input type="radio" name="gender" ide="gender" value="Primero"> Primero</h6> <br>
-                                        <h6 class="radios"><input type="radio" name="gender" ide="gender" value="Cuarto"> Cuarto</h6> <br>
-                                        <h6 class="radios"><input type="radio" name="gender" ide="gender" value="Séptimo"> Séptimo</h6> <br>
+                                        <h6 class="radios"><input type="radio" name="gender" id="gender" value="Primero"> Primero</h6> <br>
+                                        <h6 class="radios"><input type="radio" name="gender" id="gender" value="Cuarto"> Cuarto</h6> <br>
+                                        <h6 class="radios"><input type="radio" name="gender" id="gender" value="Séptimo"> Séptimo</h6> <br>
                                     </div>
                                     <div class="col-4">
-                                        <h6 class="radios"><input type="radio" name="gender" ide="gender" value="Segundo"> Segundo</h6> <br>
-                                        <h6 class="radios"><input type="radio" name="gender" ide="gender" value="Quinto"> Quinto</h6> <br>
-                                        <h6 class="radios"><input type="radio" name="gender" ide="gender" value="Octavo"> Octavo</h6> <br>
-                                        <h6 class="radios"><input type="radio" name="gender" ide="gender" value="Décimo"> Décimo</h6> <br>
+                                        <h6 class="radios"><input type="radio" name="gender" id="gender" value="Segundo"> Segundo</h6> <br>
+                                        <h6 class="radios"><input type="radio" name="gender" id="gender" value="Quinto"> Quinto</h6> <br>
+                                        <h6 class="radios"><input type="radio" name="gender" id="gender" value="Octavo"> Octavo</h6> <br>
+                                        <h6 class="radios"><input type="radio" name="gender" id="gender" value="Décimo"> Décimo</h6> <br>
                                     </div>
                                     <div class="col-4">
-                                        <h6 class="radios"><input type="radio" name="gender" ide="gender" value="Tercero"> Tercero</h6> <br>
-                                        <h6 class="radios"><input type="radio" name="gender" ide="gender" value="Sexto"> Sexto</h6> <br>
-                                        <h6 class="radios"><input type="radio" name="gender" ide="gender" value="Noveno"> Noveno</h6> <br>
+                                        <h6 class="radios"><input type="radio" name="gender" id="gender" value="Tercero"> Tercero</h6> <br>
+                                        <h6 class="radios"><input type="radio" name="gender" id="gender" value="Sexto"> Sexto</h6> <br>
+                                        <h6 class="radios"><input type="radio" name="gender" id="gender" value="Noveno"> Noveno</h6> <br>
                                     </div>
                                 </div>
                             </div>
@@ -66,14 +66,22 @@
                             </div>
                             <hr>
                             <div class="form-group">
-                                <label><h6 class="tit_general">Paralelo</h6></label>
+                                <label><h6 class="tit_general">Paralelo (uno o más)</h6></label>
                                 <br>
-                                <select name="paralelo" id="paralelo">
-                                    <option value="A">A</option>
-                                    <option value="B">B</option>
-                                    <option value="C">C</option>
-                                    <option value="D">D</option>
-                                </select>
+                                <div class="row">
+                                    <div class="col-3">
+                                        <h6 class="radios"><input type="checkbox" name="paralelo_a" value="A"> A</h6>
+                                    </div>
+                                    <div class="col-3">
+                                        <h6 class="radios"><input type="checkbox" name="paralelo_b" value="B"> B</h6>
+                                    </div>
+                                    <div class="col-3">
+                                        <h6 class="radios"><input type="checkbox" name="paralelo_c" value="C"> C</h6>
+                                    </div>
+                                    <div class="col-3">
+                                        <h6 class="radios"><input type="checkbox" name="paralelo_d" value="D"> D</h6>
+                                    </div>
+                                </div>
                             </div>
                             <hr>
                             <button type="submit" class="btn btn-primary btn-block">Registrar materia</button>

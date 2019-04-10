@@ -24,16 +24,16 @@
                 <table class="table">
                     <thead class="thead-dark">
                         <tr>
-                            <th scope="col">Nombre materia</th>
-                            <th scope="col">Docente que la imparte</th>
-                            <th scope="col">Acción</th>
+                            <th scope="col" class="col-6">Nombre materia</th>
+                            <th scope="col" class="col-3">Docente que la imparte</th>
+                            <th scope="col" class="col-3">Acción</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($users as $user)
                             @foreach ($materias as $materia)
                             <tr>
-                                @if ($user->paralelo==$materia->paralelo&&$user->ciclo==$materia->ciclo)
+                                @if ($user->paralelo_a==$materia->paralelo_a&&$user->ciclo==$materia->ciclo&&$materia->ciclo=="Décimo")
                                     <td><h6 class="tit_general">{{$materia->name}}</h6>
                                     </td>
                                     <td>

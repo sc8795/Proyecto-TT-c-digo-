@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\User;
 use App\Materia;
 use Illuminate\Support\Facades\DB;
@@ -127,7 +128,10 @@ public function editar_admin(){
                         'is_admin'=>$archivo->is_admin,
                         'is_docente'=>$archivo->is_docente,
                         'is_estudiante'=>$archivo->is_estudiante,
-                        'paralelo'=>$archivo->paralelo,
+                        'paralelo_a'=>$archivo->paralelo_a,
+                        'paralelo_b'=>$archivo->paralelo_b,
+                        'paralelo_c'=>$archivo->paralelo_c,
+                        'paralelo_d'=>$archivo->paralelo_d,
                         'ciclo'=>$archivo->ciclo
                     ]);
                 }
@@ -147,7 +151,7 @@ public function editar_admin(){
     }
 /* 
 |--------------------------------------------------------------------------
-| Funciones para la editar datos de un docente
+| Funciones para editar datos de un docente
 |--------------------------------------------------------------------------
 */
     public function editar_perfil_docente(User $user){
@@ -198,12 +202,31 @@ public function editar_admin(){
         $name=$request->input('name');
         $ciclo=$request->input('gender');
         $docente=$request->input('docente');
-        $paralelo=$request->input('paralelo');
+        $paralelo_a=$request->input('paralelo_a');
+        $paralelo_b=$request->input('paralelo_b');
+        $paralelo_c=$request->input('paralelo_c');
+        $paralelo_d=$request->input('paralelo_d');
+        
+        if($paralelo_a==null){
+            $paralelo_a="NA";
+        }
+        if($paralelo_b==null){
+            $paralelo_b="NA";
+        }
+        if($paralelo_c==null){
+            $paralelo_c="NA";
+        }
+        if($paralelo_d==null){
+            $paralelo_d="NA";
+        }
         DB::table('materias')->insert([
             'name'=>$name,
             'ciclo'=>$ciclo,
-            'id_docente'=>$docente,
-            'paralelo'=>$paralelo,
+            'usuario_id'=>$docente,
+            'paralelo_a'=>$paralelo_a,            
+            'paralelo_b'=>$paralelo_b,
+            'paralelo_c'=>$paralelo_c,
+            'paralelo_d'=>$paralelo_d,
         ]);
        
         return redirect()->route('materias_registradas');
@@ -229,7 +252,10 @@ public function editar_admin(){
                         'name'=>$archivo->nombre,
                         'ciclo'=>$archivo->ciclo,
                         'usuario_id'=>$archivo->id_docente,
-                        'paralelo'=>$archivo->paralelo,
+                        'paralelo_a'=>$archivo->paralelo_a,
+                        'paralelo_b'=>$archivo->paralelo_b,
+                        'paralelo_c'=>$archivo->paralelo_c,
+                        'paralelo_d'=>$archivo->paralelo_d,
                     ]);
                 }
             });
@@ -245,5 +271,68 @@ public function editar_admin(){
         $materias = DB::table('materias')->get();
         $users=DB::table('users')->where('is_docente',true)->get();
         return view('user_administrador.materias_registradas',compact('materias','users'));
+    }
+/* 
+|--------------------------------------------------------------------------
+| Funciones para editar una materia registrada
+|--------------------------------------------------------------------------
+*/
+    public function editar_materia(Materia $materia){
+        $users=DB::table('users')->where('is_docente',true)->get();
+        return view('user_administrador.editar_materia',['materia'=>$materia],compact('users'));
+    }
+    public function editando_materia(Materia $materia, Request $request){
+        /*$name = $request->input('name');
+        $ciclo = $request->input('ciclo');
+        $paralelo_a = $request->input('paralelo_a');
+        $paralelo_b = $request->input('paralelo_b');
+        $paralelo_c = $request->input('paralelo_c');
+        $paralelo_d = $request->input('paralelo_d');
+        if($paralelo_a==null){
+            $paralelo_a="NA";
+        }
+        if($paralelo_b==null){
+            $paralelo_b="NA";
+        }
+        if($paralelo_c==null){
+            $paralelo_c="NA";
+        }
+        if($paralelo_d==null){
+            $paralelo_d="NA";
+        }
+        $docente = $request->input('docente');
+        //dd($docente);
+        
+        DB::table('materias')->update([
+            'name'=>$name,
+            'ciclo'=>$ciclo,
+            'usuario_id'=>$docente,
+            'paralelo_a'=>$paralelo_a,            
+            'paralelo_b'=>$paralelo_b,
+            'paralelo_c'=>$paralelo_c,
+            'paralelo_d'=>$paralelo_d,
+        ]);*/
+        $data=request()->validate([
+            'name'=>'required',
+            'ciclo'=>'required',
+            'usuario_id'=>'required',
+            'paralelo_a'=>'required',
+            'paralelo_b'=>'',
+            'paralelo_c'=>'',
+            'paralelo_d'=>'',
+        ]);
+        
+        //dd($data["paralelo_b"]);
+        $materia->update($data);
+        return redirect()->route('materias_registradas',['materia'=>$materia]);
+    }
+/* 
+|--------------------------------------------------------------------------
+| Funciones para eliminar una materia registrada
+|--------------------------------------------------------------------------
+*/
+    public function eliminar_materia(Materia $materia){
+        $materia->delete();
+        return redirect()->route('materias_registradas');
     }
 }

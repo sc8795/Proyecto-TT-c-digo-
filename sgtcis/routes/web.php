@@ -39,7 +39,7 @@ Route::post('logout_student','Auth\LoginController@logout_student')->name('logou
 */
 Route::get('/docente','Auth\LoginController@show_login_form_docente')->name('show_login_form_docente')->middleware('guest');
 
-Route::get('auth_docente','AuthDocenteController@index')->name('auth_docente');
+Route::get('auth_docente','AuthDocenteController@auth_docente')->name('auth_docente');
 
 Route::post('login_docente','Auth\LoginController@login_docente')->name('login_docente');
 
@@ -47,7 +47,7 @@ Route::post('logout_docente','Auth\LoginController@logout_docente')->name('logou
 
 /* 
 |--------------------------------------------------------------------------
-| Rutas del Administrador
+| RUTAS DEL ADMINISTRADOR 
 |--------------------------------------------------------------------------
 */
 /* Ruta para la vista general */
@@ -80,6 +80,13 @@ Route::post('registrar_materia_excel','AuthAdministradorController@registrar_mat
 /* Rutas para visualizar las materias registradas */
 Route::get('materias_registradas','AuthAdministradorController@materias_registradas')->name('materias_registradas');
 
+/* Rutas para editar una materia registrada */
+Route::get('editar_materia/{materia}','AuthAdministradorController@editar_materia')->name('editar_materia');
+Route::put('editando_materia/{materia}','AuthAdministradorController@editando_materia')->name('editando_materia');
+
+/* Rutas para eliminar una materia registrada */
+Route::delete('eliminar_materia/{materia}','AuthAdministradorController@eliminar_materia')->name('eliminar_materia');
+
 /* 
 |--------------------------------------------------------------------------
 | Rutas del Estudiante
@@ -94,3 +101,10 @@ Route::put('editar_student','AuthStudentController@editar_student')->name('edita
 
 /* Rutas para solicitar tutoria*/
 Route::get('solicitar_tutoria','AuthStudentController@solicitar_tutoria')->name('solicitar_tutoria');
+
+/* 
+|--------------------------------------------------------------------------
+| Rutas del Docente
+|--------------------------------------------------------------------------
+*/
+Route::get('vista_general_docente','AuthDocenteController@vista_general_docente')->name('vista_general_docente');

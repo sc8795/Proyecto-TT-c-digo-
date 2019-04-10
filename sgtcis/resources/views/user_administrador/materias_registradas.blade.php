@@ -24,10 +24,11 @@
                     <table class="table">
                       <thead class="thead-dark">
                         <tr>
-                          <th scope="col">Nombre materia</th>
-                          <th scope="col">Ciclo</th>
-                          <th scope="col">Docente</th>
-                          <th scope="col">Paralelo</th>
+                          <th scope="col" class="col-4">Nombre materia</th>
+                          <th scope="col" class="col-1">Ciclo</th>
+                          <th scope="col" class="col-3">Docente</th>
+                          <th scope="col" class="col-1">Paralelos</th>
+                          <th scope="col" class="col-2">Acciones</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -44,13 +45,37 @@
                                   @endforeach
                                 </h6>
                               </td>
-                              <td><h6 class="tit_general">{{$materia->paralelo}}</h6></td>
+                              <td>
+                                <h6 class="tit_general">
+                                  @if ($materia->paralelo_a!='NA')
+                                    {{$materia->paralelo_a}}
+                                  @endif
+                                  @if ($materia->paralelo_b!='NA')
+                                    , {{$materia->paralelo_b}}
+                                  @endif
+                                  @if ($materia->paralelo_c!='NA')
+                                    , {{$materia->paralelo_c}}
+                                  @endif
+                                  @if ($materia->paralelo_d!='NA')
+                                    , {{$materia->paralelo_d}}
+                                  @endif
+                                </h6>
+                              </td>
+                              <td>
+                                  <form method="POST" action="{{url("eliminar_materia/{$materia->id}")}}">
+                                      {{csrf_field()}}
+                                      {{method_field('DELETE')}}
+                                      <a href="{{url("editar_materia/{$materia->id}")}}" class="btn btn-link"><span class="oi oi-pencil"></span></a>
+                                      <a href="{{url("registrar_materia")}}" class="btn btn-link"><span class="fas fa-plus"></span></a>
+                                      <button type="submit" class="btn btn-link"><span class="oi oi-trash"></span></button>
+                                  </form>
+                                </td>
                             </tr>
                         @endforeach
                       </tbody>
                     </table>
                 @else
-                    <h6 class="tit_general">No hay usuarios materias registradas</h6>
+                    <h6 class="tit_general">No hay materias registradas</h6>
                 @endif
             </div>
         </div>

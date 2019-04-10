@@ -10,12 +10,8 @@
                 </ul>
             </li>
             <li>
-                <a href="{{route('registrar_docente')}}">Registrar docente</a>
-                <ul class="submenu_vertical">
-                    <li>
-                        <a href="{{route('docentes_registrados')}}">Docentes registrados</a>
-                    </li>
-                </ul>
+                <a href="#">Atención a tutorías (Notificaciones)</a>
+                
             </li>
         </ul>
     </div>
