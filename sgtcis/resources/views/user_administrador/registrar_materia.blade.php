@@ -33,7 +33,7 @@
                                 <label><h6 class="tit_general">Ciclo que se imparte</h6></label>
                                 <br>
                                 <div class="row">
-                                    <div class="col-4" for="gender">
+                                    <div class="col-4">
                                         <h6 class="radios"><input type="radio" name="gender" id="gender" value="Primero"> Primero</h6> <br>
                                         <h6 class="radios"><input type="radio" name="gender" id="gender" value="Cuarto"> Cuarto</h6> <br>
                                         <h6 class="radios"><input type="radio" name="gender" id="gender" value="Séptimo"> Séptimo</h6> <br>

@@ -105,3 +105,12 @@ h4{
 .formulario_general{
     width: 100%;
 }
+
+/* ---------- ESTILOS ASIGNAR HORARIO DE DOCENTE ---------- */
+#tit_general_op2{
+    text-decoration: none;
+    color: #4665ac;
+}
+.tit_datos_op2{
+    color: #83e6b4;
+}

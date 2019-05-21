@@ -6,11 +6,18 @@ use Illuminate\Http\Request;
 
 use App\User;
 use App\Materia;
+use App\Horario;
+use App\Horario2;
+use App\Horario3;
+use App\Horario4;
+use App\Horario5;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Storage;
+use Alert;
+use Illuminate\Support\Str;
 
 class AuthAdministradorController extends Controller
 {
@@ -282,36 +289,6 @@ public function editar_admin(){
         return view('user_administrador.editar_materia',['materia'=>$materia],compact('users'));
     }
     public function editando_materia(Materia $materia, Request $request){
-        /*$name = $request->input('name');
-        $ciclo = $request->input('ciclo');
-        $paralelo_a = $request->input('paralelo_a');
-        $paralelo_b = $request->input('paralelo_b');
-        $paralelo_c = $request->input('paralelo_c');
-        $paralelo_d = $request->input('paralelo_d');
-        if($paralelo_a==null){
-            $paralelo_a="NA";
-        }
-        if($paralelo_b==null){
-            $paralelo_b="NA";
-        }
-        if($paralelo_c==null){
-            $paralelo_c="NA";
-        }
-        if($paralelo_d==null){
-            $paralelo_d="NA";
-        }
-        $docente = $request->input('docente');
-        //dd($docente);
-        
-        DB::table('materias')->update([
-            'name'=>$name,
-            'ciclo'=>$ciclo,
-            'usuario_id'=>$docente,
-            'paralelo_a'=>$paralelo_a,            
-            'paralelo_b'=>$paralelo_b,
-            'paralelo_c'=>$paralelo_c,
-            'paralelo_d'=>$paralelo_d,
-        ]);*/
         $data=request()->validate([
             'name'=>'required',
             'ciclo'=>'required',
@@ -334,5 +311,2625 @@ public function editar_admin(){
     public function eliminar_materia(Materia $materia){
         $materia->delete();
         return redirect()->route('materias_registradas');
+    }
+/* 
+|--------------------------------------------------------------------------
+| Funciones para asignar horario de tutoría del docente
+|--------------------------------------------------------------------------
+*/
+    /* Función para buscar docente por nombre, apellido y email */
+    public function asignar_horario_tutoria(Request $request){
+        $name = $request->get('name');
+        $lastname = $request->get('lastname');
+        $email = $request->get('email');
+        $users=User::where('is_docente',true)
+            ->name($name)
+            ->lastname($lastname)
+            ->email($email)
+            ->orderBy('id','DESC')
+            ->paginate(5);
+        return view('user_administrador.asignar_horario_tutoria',compact('users'));
+    }
+
+    public function asignar_horario_docente(User $user){
+        return view('user_administrador.asignar_horario_docente',compact('user'));
+    }
+
+    public function asignar_horario(User $user,Request $request){
+        $dia=$request->input('dia');
+        // ----------------------------- TARDE ----------------------------------// 
+        if($dia==null){
+            $dia=$request->input('tarde');
+            // ----------------------------- TARDE DEL LUNES----------------------------------//
+            $dia1=Str::startsWith($dia,'Lunes');
+            if($dia1==true){
+                $verifica_horarios=DB::table('horarios')->where('usuario_id',$user->id)->exists();
+                if($verifica_horarios==true){
+                    $horarios=DB::table('horarios')->where('usuario_id',$user->id)->first();
+                    if($horarios->cont_tarde==1){
+                        Alert::danger('Aviso: ')
+                            ->details("El docente '{$user->name} {$user->lastname}' ya tiene asignado un horario para el día '{$dia}'. Si los datos ingresados con anterioridad son erróneas, considere editarlos")
+                            ->button('Editar', '#', 'primary');
+                            return view('user_administrador.asignar_horario_docente',compact('user'));
+                    }else{
+                        return view('user_administrador.boton_asignar_tutoria',compact('user','dia'));
+                    }
+                }else{
+                    return view('user_administrador.boton_asignar_tutoria',compact('user','dia'));
+                }
+            }else{
+                // ----------------------------- TARDE DEL MARTES----------------------------------//
+                $dia2=Str::startsWith($dia,'Martes');
+                if($dia2==true){
+                    $verifica_horarios=DB::table('horario2s')->where('usuario_id',$user->id)->exists();
+                    if($verifica_horarios==true){
+                        $horarios=DB::table('horario2s')->where('usuario_id',$user->id)->first();
+                        if($horarios->cont_tarde==1){
+                            Alert::danger('Aviso: ')
+                                ->details("El docente '{$user->name} {$user->lastname}' ya tiene asignado un horario para el día '{$dia}'. Si los datos ingresados con anterioridad son erróneas, considere editarlos")
+                                ->button('Editar', '#', 'primary');
+                                return view('user_administrador.asignar_horario_docente',compact('user'));
+                        }else{
+                            return view('user_administrador.boton_asignar_tutoria',compact('user','dia'));
+                        }
+                    }else{
+                        return view('user_administrador.boton_asignar_tutoria',compact('user','dia'));
+                    }
+                }else{
+                    // ----------------------------- TARDE DEL MIÉRCOLES----------------------------------//
+                    $dia3=Str::startsWith($dia,'Miércoles');
+                    if($dia3==true){
+                        $verifica_horarios=DB::table('horario3s')->where('usuario_id',$user->id)->exists();
+                        if($verifica_horarios==true){
+                            $horarios=DB::table('horario3s')->where('usuario_id',$user->id)->first();
+                            if($horarios->cont_tarde==1){
+                                Alert::danger('Aviso: ')
+                                    ->details("El docente '{$user->name} {$user->lastname}' ya tiene asignado un horario para el día '{$dia}'. Si los datos ingresados con anterioridad son erróneas, considere editarlos")
+                                    ->button('Editar', '#', 'primary');
+                                    return view('user_administrador.asignar_horario_docente',compact('user'));
+                            }else{
+                                return view('user_administrador.boton_asignar_tutoria',compact('user','dia'));
+                            }
+                        }else{
+                            return view('user_administrador.boton_asignar_tutoria',compact('user','dia'));
+                        }
+                    }else{
+                        // ----------------------------- TARDE DEL JUEVES----------------------------------//
+                        $dia4=Str::startsWith($dia,'Jueves');
+                        if($dia4==true){
+                            $verifica_horarios=DB::table('horario4s')->where('usuario_id',$user->id)->exists();
+                            if($verifica_horarios==true){
+                                $horarios=DB::table('horario4s')->where('usuario_id',$user->id)->first();
+                                if($horarios->cont_tarde==1){
+                                    Alert::danger('Aviso: ')
+                                        ->details("El docente '{$user->name} {$user->lastname}' ya tiene asignado un horario para el día '{$dia}'. Si los datos ingresados con anterioridad son erróneas, considere editarlos")
+                                        ->button('Editar', '#', 'primary');
+                                        return view('user_administrador.asignar_horario_docente',compact('user'));
+                                }else{
+                                    return view('user_administrador.boton_asignar_tutoria',compact('user','dia'));
+                                }
+                            }else{
+                                return view('user_administrador.boton_asignar_tutoria',compact('user','dia'));
+                            }
+                        }else{
+                            // ----------------------------- TARDE DEL VIERNES----------------------------------//
+                            $dia5=Str::startsWith($dia,'Viernes');
+                            if($dia5==true){
+                                $verifica_horarios=DB::table('horario5s')->where('usuario_id',$user->id)->exists();
+                                if($verifica_horarios==true){
+                                    $horarios=DB::table('horario5s')->where('usuario_id',$user->id)->first();
+                                    if($horarios->cont_tarde==1){
+                                        Alert::danger('Aviso: ')
+                                            ->details("El docente '{$user->name} {$user->lastname}' ya tiene asignado un horario para el día '{$dia}'. Si los datos ingresados con anterioridad son erróneas, considere editarlos")
+                                            ->button('Editar', '#', 'primary');
+                                            return view('user_administrador.asignar_horario_docente',compact('user'));
+                                    }else{
+                                        return view('user_administrador.boton_asignar_tutoria',compact('user','dia'));
+                                    }
+                                }else{
+                                    return view('user_administrador.boton_asignar_tutoria',compact('user','dia'));
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        // ----------------------------- MAÑANA ----------------------------------//
+        }else{
+            // ----------------------------- MAÑANA DEL LUNES----------------------------------//
+            $dia1=Str::startsWith($dia,'Lunes');
+            if($dia1==true){
+                $verifica_horarios=DB::table('horarios')->where('usuario_id',$user->id)->exists();
+                if($verifica_horarios==true){
+                    $horarios=DB::table('horarios')->where('usuario_id',$user->id)->first();
+                    if($horarios->cont_dia==2){
+                        Alert::danger('Aviso: ')
+                            ->details("El docente '{$user->name} {$user->lastname}' ya tiene asignado un horario para el día '{$dia}'. Si los datos ingresados con anterioridad son erróneas, considere editarlos")
+                            ->button('Editar', '#', 'primary');
+                            return view('user_administrador.asignar_horario_docente',compact('user'));
+                    }else{
+                        return view('user_administrador.boton_asignar_tutoria',compact('user','dia'));
+                    }
+                }else{
+                    return view('user_administrador.boton_asignar_tutoria',compact('user','dia'));
+                }
+            }else{
+                // ----------------------------- MAÑANA DEL MARTES----------------------------------//
+                $dia2=Str::startsWith($dia,'Martes');
+                if($dia2==true){
+                    $verifica_horarios=DB::table('horario2s')->where('usuario_id',$user->id)->exists();
+                    if($verifica_horarios==true){
+                        $horarios=DB::table('horario2s')->where('usuario_id',$user->id)->first();
+                        if($horarios->cont_dia==2){
+                            Alert::danger('Aviso: ')
+                                ->details("El docente '{$user->name} {$user->lastname}' ya tiene asignado un horario para el día '{$dia}'. Si los datos ingresados con anterioridad son erróneas, considere editarlos")
+                                ->button('Editar', '#', 'primary');
+                                return view('user_administrador.asignar_horario_docente',compact('user'));
+                        }else{
+                            return view('user_administrador.boton_asignar_tutoria',compact('user','dia'));
+                        }
+                    }else{
+                        return view('user_administrador.boton_asignar_tutoria',compact('user','dia'));
+                    }
+                }else{
+                    // ----------------------------- MAÑANA DEL MIÉRCOLES----------------------------------//
+                    $dia3=Str::startsWith($dia,'Miércoles');
+                    if($dia3==true){
+                        $verifica_horarios=DB::table('horario3s')->where('usuario_id',$user->id)->exists();
+                        if($verifica_horarios==true){
+                            $horarios=DB::table('horario3s')->where('usuario_id',$user->id)->first();
+                            if($horarios->cont_dia==2){
+                                Alert::danger('Aviso: ')
+                                    ->details("El docente '{$user->name} {$user->lastname}' ya tiene asignado un horario para el día '{$dia}'. Si los datos ingresados con anterioridad son erróneas, considere editarlos")
+                                    ->button('Editar', '#', 'primary');
+                                    return view('user_administrador.asignar_horario_docente',compact('user'));
+                            }else{
+                                return view('user_administrador.boton_asignar_tutoria',compact('user','dia'));
+                            }
+                        }else{
+                            return view('user_administrador.boton_asignar_tutoria',compact('user','dia'));
+                        }
+                    }else{
+                        // ----------------------------- MAÑANA DEL JUEVES----------------------------------//
+                        $dia4=Str::startsWith($dia,'Jueves');
+                        if($dia4==true){
+                            $verifica_horarios=DB::table('horario4s')->where('usuario_id',$user->id)->exists();
+                            if($verifica_horarios==true){
+                                $horarios=DB::table('horario4s')->where('usuario_id',$user->id)->first();
+                                if($horarios->cont_dia==2){
+                                    Alert::danger('Aviso: ')
+                                        ->details("El docente '{$user->name} {$user->lastname}' ya tiene asignado un horario para el día '{$dia}'. Si los datos ingresados con anterioridad son erróneas, considere editarlos")
+                                        ->button('Editar', '#', 'primary');
+                                        return view('user_administrador.asignar_horario_docente',compact('user'));
+                                }else{
+                                    return view('user_administrador.boton_asignar_tutoria',compact('user','dia'));
+                                }
+                            }else{
+                                return view('user_administrador.boton_asignar_tutoria',compact('user','dia'));
+                            }
+                        }else{
+                            // ----------------------------- MAÑANA DEL VIERNES----------------------------------//
+                            $dia5=Str::startsWith($dia,'Viernes');
+                            if($dia5==true){
+                                $verifica_horarios=DB::table('horario5s')->where('usuario_id',$user->id)->exists();
+                                if($verifica_horarios==true){
+                                    $horarios=DB::table('horario5s')->where('usuario_id',$user->id)->first();
+                                    if($horarios->cont_dia==2){
+                                        Alert::danger('Aviso: ')
+                                            ->details("El docente '{$user->name} {$user->lastname}' ya tiene asignado un horario para el día '{$dia}'. Si los datos ingresados con anterioridad son erróneas, considere editarlos")
+                                            ->button('Editar', '#', 'primary');
+                                            return view('user_administrador.asignar_horario_docente',compact('user'));
+                                    }else{
+                                        return view('user_administrador.boton_asignar_tutoria',compact('user','dia'));
+                                    }
+                                }else{
+                                    return view('user_administrador.boton_asignar_tutoria',compact('user','dia'));
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    public function asignar_horario_btn_docente(User $user, Request $request){
+        $dia=$request->input('dia');
+        $docente=$user->id;
+        $hora_inicio=$request->input('hora_inicio1');
+        $hora_fin=$request->input('hora_fin1');
+        $minutos_inicio=$request->input('minutos_inicio1');
+        $minutos_fin=$request->input('minutos_fin1');
+
+        $horarios=DB::table('horarios')->where('usuario_id',$docente)->first();
+        $horario2s=DB::table('horario2s')->where('usuario_id',$docente)->first();
+        $horario3s=DB::table('horario3s')->where('usuario_id',$docente)->first();
+        $horario4s=DB::table('horario4s')->where('usuario_id',$docente)->first();
+        $horario5s=DB::table('horario5s')->where('usuario_id',$docente)->first();
+
+        $dia1=Str::startsWith($dia,'Lunes');
+        if($dia1==true){
+            $verifica_horarios=DB::table('horarios')->where('usuario_id',$user->id)->exists();
+            //------------------------------------------------------------------------------------- 1
+            if($verifica_horarios==true){
+                $horarios=DB::table('horarios')->where('usuario_id',$docente)->first();
+                if($horarios->cont_dia==0 && $horarios->cont_tarde==1){
+                    $id=$horarios->id;
+                    $var1=$horarios->dia1_op3;
+                    $var2=$horarios->hora_inicio_op3;
+                    $var3=$horarios->minutos_inicio_op3;
+                    $var4=$horarios->hora_fin_op3;
+                    $var5=$horarios->minutos_fin_op3;
+                    Horario::destroy($horarios->id);
+                    if($hora_inicio=="NA" || $minutos_inicio=="NA" || $hora_fin=="NA" || $minutos_fin=="NA"){
+                        Alert::danger('Aviso: ')
+                            ->details('Datos de hora y minutos incorrectos. Llene los campos para hora de inicio y fin correctamente.');
+                        return view('user_administrador.boton_asignar_tutoria',compact('user','dia'));
+                    }else{
+                        DB::table('horarios')->insert([
+                            'id'=>$id,
+                            'usuario_id'=>$docente,
+                            'dia1_op1'=>$dia,
+                            'hora_inicio_op1'=>$hora_inicio,
+                            'minutos_inicio_op1'=>$minutos_inicio,
+                            'hora_fin_op1'=>$hora_fin,
+                            'minutos_fin_op1'=>$minutos_fin,
+                            
+                            'dia1_op3'=>$var1,
+                            'hora_inicio_op3'=>$var2,
+                            'minutos_inicio_op3'=>$var3,
+                            'hora_fin_op3'=>$var4,
+                            'minutos_fin_op3'=>$var5,
+                            'cont_dia'=>1,
+                            'cont_tarde'=>1,
+                        ]);
+                        return redirect()->route('horario_tutoria_asignada',['user'=>$user]);
+                    }
+                }else{
+                    if($horarios->cont_dia==1 && $horarios->cont_tarde==0){
+                        $id=$horarios->id;
+                        $var1=$horarios->dia1_op1;
+                        $var2=$horarios->hora_inicio_op1;
+                        $var3=$horarios->minutos_inicio_op1;
+                        $var4=$horarios->hora_fin_op1;
+                        $var5=$horarios->minutos_fin_op1;
+                        Horario::destroy($horarios->id);
+                        $tarde=Str::endsWith($dia,'tarde');
+                        if($tarde==true){
+                            if($hora_inicio=="NA" || $minutos_inicio=="NA" || $hora_fin=="NA" || $minutos_fin=="NA"){
+                                Alert::danger('Aviso: ')
+                                    ->details('Datos de hora y minutos incorrectos. Llene los campos para hora de inicio y fin correctamente.');
+                                return view('user_administrador.boton_asignar_tutoria',compact('user','dia'));
+                            }else{
+                                DB::table('horarios')->insert([
+                                    'id'=>$id,
+                                    'usuario_id'=>$docente,
+                                    'dia1_op1'=>$var1,
+                                    'hora_inicio_op1'=>$var2,
+                                    'minutos_inicio_op1'=>$var3,
+                                    'hora_fin_op1'=>$var4,
+                                    'minutos_fin_op1'=>$var5,
+        
+                                    'dia1_op3'=>$dia,
+                                    'hora_inicio_op3'=>$hora_inicio,
+                                    'minutos_inicio_op3'=>$minutos_inicio,
+                                    'hora_fin_op3'=>$hora_fin,
+                                    'minutos_fin_op3'=>$minutos_fin,
+                                    'cont_dia'=>1,
+                                    'cont_tarde'=>1
+                                ]);
+                                return redirect()->route('horario_tutoria_asignada',['user'=>$user]);   
+                            }
+                        }else{
+                            if($hora_inicio=="NA" || $minutos_inicio=="NA" || $hora_fin=="NA" || $minutos_fin=="NA"){
+                                Alert::danger('Aviso: ')
+                                    ->details('Datos de hora y minutos incorrectos. Llene los campos para hora de inicio y fin correctamente.');
+                                return view('user_administrador.boton_asignar_tutoria',compact('user','dia'));
+                            }else{
+                                DB::table('horarios')->insert([
+                                    'id'=>$id,
+                                    'usuario_id'=>$docente,
+                                    'dia1_op1'=>$var1,
+                                    'hora_inicio_op1'=>$var2,
+                                    'minutos_inicio_op1'=>$var3,
+                                    'hora_fin_op1'=>$var4,
+                                    'minutos_fin_op1'=>$var5,
+        
+                                    'dia1_op2'=>$dia,
+                                    'hora_inicio_op2'=>$hora_inicio,
+                                    'minutos_inicio_op2'=>$minutos_inicio,
+                                    'hora_fin_op2'=>$hora_fin,
+                                    'minutos_fin_op2'=>$minutos_fin,
+                                    'cont_dia'=>2,
+                                    'cont_tarde'=>0
+                                ]);
+                                return redirect()->route('horario_tutoria_asignada',['user'=>$user]);    
+                            }
+                        }
+                    }else{
+                        if($horarios->cont_dia==2 && $horarios->cont_tarde==0){
+                            $id=$horarios->id;
+                            $var1=$horarios->dia1_op1;
+                            $var2=$horarios->hora_inicio_op1;
+                            $var3=$horarios->minutos_inicio_op1;
+                            $var4=$horarios->hora_fin_op1;
+                            $var5=$horarios->minutos_fin_op1;
+                            $var6=$horarios->dia1_op2;
+                            $var7=$horarios->hora_inicio_op2;
+                            $var8=$horarios->minutos_inicio_op2;
+                            $var9=$horarios->hora_fin_op2;
+                            $var10=$horarios->minutos_fin_op2;
+                            Horario::destroy($horarios->id);
+                            if($hora_inicio=="NA" || $minutos_inicio=="NA" || $hora_fin=="NA" || $minutos_fin=="NA"){
+                                Alert::danger('Aviso: ')
+                                    ->details('Datos de hora y minutos incorrectos. Llene los campos para hora de inicio y fin correctamente.');
+                                return view('user_administrador.boton_asignar_tutoria',compact('user','dia'));
+                            }else{
+                                DB::table('horarios')->insert([
+                                    'id'=>$id,
+                                    'usuario_id'=>$docente,
+                                    'dia1_op1'=>$var1,
+                                    'hora_inicio_op1'=>$var2,
+                                    'minutos_inicio_op1'=>$var3,
+                                    'hora_fin_op1'=>$var4,
+                                    'minutos_fin_op1'=>$var5,
+
+                                    'dia1_op2'=>$var6,
+                                    'hora_inicio_op2'=>$var7,
+                                    'minutos_inicio_op2'=>$var8,
+                                    'hora_fin_op2'=>$var9,
+                                    'minutos_fin_op2'=>$var10,
+
+                                    'dia1_op3'=>$dia,
+                                    'hora_inicio_op3'=>$hora_inicio,
+                                    'minutos_inicio_op3'=>$minutos_inicio,
+                                    'hora_fin_op3'=>$hora_fin,
+                                    'minutos_fin_op3'=>$minutos_fin,
+                                    'cont_dia'=>2,
+                                    'cont_tarde'=>1
+                                ]);
+                                return redirect()->route('horario_tutoria_asignada',['user'=>$user]);  
+                            }
+                        }else{
+                            if($horarios->cont_dia==1 && $horarios->cont_tarde==1){
+                                $id=$horarios->id;
+                                $var1=$horarios->dia1_op1;
+                                $var2=$horarios->hora_inicio_op1;
+                                $var3=$horarios->minutos_inicio_op1;
+                                $var4=$horarios->hora_fin_op1;
+                                $var5=$horarios->minutos_fin_op1;
+                                $var6=$horarios->dia1_op3;
+                                $var7=$horarios->hora_inicio_op3;
+                                $var8=$horarios->minutos_inicio_op3;
+                                $var9=$horarios->hora_fin_op3;
+                                $var10=$horarios->minutos_fin_op3;
+                                Horario::destroy($horarios->id);
+                                if($hora_inicio=="NA" || $minutos_inicio=="NA" || $hora_fin=="NA" || $minutos_fin=="NA"){
+                                    Alert::danger('Aviso: ')
+                                        ->details('Datos de hora y minutos incorrectos. Llene los campos para hora de inicio y fin correctamente.');
+                                    return view('user_administrador.boton_asignar_tutoria',compact('user','dia'));
+                                }else{
+                                    DB::table('horarios')->insert([
+                                        'id'=>$id,
+                                        'usuario_id'=>$docente,
+                                        'dia1_op1'=>$var1,
+                                        'hora_inicio_op1'=>$var2,
+                                        'minutos_inicio_op1'=>$var3,
+                                        'hora_fin_op1'=>$var4,
+                                        'minutos_fin_op1'=>$var5,
+
+                                        'dia1_op2'=>$dia,
+                                        'hora_inicio_op2'=>$hora_inicio,
+                                        'minutos_inicio_op2'=>$minutos_inicio,
+                                        'hora_fin_op2'=>$hora_fin,
+                                        'minutos_fin_op2'=>$minutos_fin,
+                                        
+                                        'dia1_op3'=>$var6,
+                                        'hora_inicio_op3'=>$var7,
+                                        'minutos_inicio_op3'=>$var8,
+                                        'hora_fin_op3'=>$var9,
+                                        'minutos_fin_op3'=>$var10,
+
+                                        'cont_dia'=>2,
+                                        'cont_tarde'=>1
+                                    ]);
+                                    return redirect()->route('horario_tutoria_asignada',['user'=>$user]);   
+                                }
+                            }
+                        }
+                    }
+                }
+            // registra horario de tutoria el primero que haga ya sea lunes o tarde, cuando no existe ningun registro en la BD    
+            }else{
+                $tarde=Str::endsWith($dia,'tarde');
+                if($tarde==true){
+                    if($hora_inicio=="NA" || $minutos_inicio=="NA" || $hora_fin=="NA" || $minutos_fin=="NA"){
+                        Alert::danger('Aviso: ')
+                            ->details('Datos de hora y minutos incorrectos. Llene los campos para hora de inicio y fin correctamente.');
+                        return view('user_administrador.boton_asignar_tutoria',compact('user','dia'));
+                    }else{
+                        DB::table('horarios')->insert([
+                            'usuario_id'=>$docente,
+                            'dia1_op3'=>$dia,
+                            'hora_inicio_op3'=>$hora_inicio,
+                            'minutos_inicio_op3'=>$minutos_inicio,
+                            'hora_fin_op3'=>$hora_fin,
+                            'minutos_fin_op3'=>$minutos_fin,
+                            'cont_dia'=>0,
+                            'cont_tarde'=>1,
+                        ]);
+                        return redirect()->route('horario_tutoria_asignada',['user'=>$user]);
+                    }
+                }else{
+                    if($hora_inicio=="NA" || $minutos_inicio=="NA" || $hora_fin=="NA" || $minutos_fin=="NA"){
+                        Alert::danger('Aviso: ')
+                            ->details('Datos de hora y minutos incorrectos. Llene los campos para hora de inicio y fin correctamente.');
+                        return view('user_administrador.boton_asignar_tutoria',compact('user','dia'));
+                    }else{
+                        DB::table('horarios')->insert([
+                            'usuario_id'=>$docente,
+                            'dia1_op1'=>$dia,
+                            'hora_inicio_op1'=>$hora_inicio,
+                            'minutos_inicio_op1'=>$minutos_inicio,
+                            'hora_fin_op1'=>$hora_fin,
+                            'minutos_fin_op1'=>$minutos_fin,
+                            'cont_dia'=>1,
+                            'cont_tarde'=>0
+                        ]); 
+                        return redirect()->route('horario_tutoria_asignada',['user'=>$user]);   
+                    }
+                }
+            }
+        }else{
+            $dia2=Str::startsWith($dia,'Martes');
+            if($dia2==true){
+                $verifica_horarios=DB::table('horario2s')->where('usuario_id',$user->id)->exists();
+                //------------------------------------------------------------------------------------- 2
+                if($verifica_horarios==true){
+                    $horarios=DB::table('horario2s')->where('usuario_id',$docente)->first();
+                    if($horarios->cont_dia==0 && $horarios->cont_tarde==1){
+                        $id=$horarios->id;
+                        $var1=$horarios->dia2_op3;
+                        $var2=$horarios->hora_inicio_op3;
+                        $var3=$horarios->minutos_inicio_op3;
+                        $var4=$horarios->hora_fin_op3;
+                        $var5=$horarios->minutos_fin_op3;
+                        Horario2::destroy($horarios->id);
+                        if($hora_inicio=="NA" || $minutos_inicio=="NA" || $hora_fin=="NA" || $minutos_fin=="NA"){
+                            Alert::danger('Aviso: ')
+                                ->details('Datos de hora y minutos incorrectos. Llene los campos para hora de inicio y fin correctamente.');
+                            return view('user_administrador.boton_asignar_tutoria',compact('user','dia'));
+                        }else{
+                            DB::table('horario2s')->insert([
+                                'id'=>$id,
+                                'usuario_id'=>$docente,
+                                'dia2_op1'=>$dia,
+                                'hora_inicio_op1'=>$hora_inicio,
+                                'minutos_inicio_op1'=>$minutos_inicio,
+                                'hora_fin_op1'=>$hora_fin,
+                                'minutos_fin_op1'=>$minutos_fin,
+                                
+                                'dia2_op3'=>$var1,
+                                'hora_inicio_op3'=>$var2,
+                                'minutos_inicio_op3'=>$var3,
+                                'hora_fin_op3'=>$var4,
+                                'minutos_fin_op3'=>$var5,
+                                'cont_dia'=>1,
+                                'cont_tarde'=>1,
+                            ]);
+                            Alert::success('¡Bien hecho! ')
+                                ->details('Se ha asignado correctamente el horario de tutoría al docente ')
+                                ->html("{$user->name} {$user->lastname}");
+                            return redirect()->route('horario_tutoria_asignada',['user'=>$user]);
+                        }
+                    }else{
+                        if($horarios->cont_dia==1 && $horarios->cont_tarde==0){
+                            $id=$horarios->id;
+                            $var1=$horarios->dia2_op1;
+                            $var2=$horarios->hora_inicio_op1;
+                            $var3=$horarios->minutos_inicio_op1;
+                            $var4=$horarios->hora_fin_op1;
+                            $var5=$horarios->minutos_fin_op1;
+                            Horario2::destroy($horarios->id);
+                            $tarde=Str::endsWith($dia,'tarde');
+                            if($tarde==true){
+                                if($hora_inicio=="NA" || $minutos_inicio=="NA" || $hora_fin=="NA" || $minutos_fin=="NA"){
+                                    Alert::danger('Aviso: ')
+                                        ->details('Datos de hora y minutos incorrectos. Llene los campos para hora de inicio y fin correctamente.');
+                                    return view('user_administrador.boton_asignar_tutoria',compact('user','dia'));
+                                }else{
+                                    DB::table('horario2s')->insert([
+                                        'id'=>$id,
+                                        'usuario_id'=>$docente,
+                                        'dia2_op1'=>$var1,
+                                        'hora_inicio_op1'=>$var2,
+                                        'minutos_inicio_op1'=>$var3,
+                                        'hora_fin_op1'=>$var4,
+                                        'minutos_fin_op1'=>$var5,
+            
+                                        'dia2_op3'=>$dia,
+                                        'hora_inicio_op3'=>$hora_inicio,
+                                        'minutos_inicio_op3'=>$minutos_inicio,
+                                        'hora_fin_op3'=>$hora_fin,
+                                        'minutos_fin_op3'=>$minutos_fin,
+                                        'cont_dia'=>1,
+                                        'cont_tarde'=>1
+                                    ]);
+                                    Alert::success('¡Bien hecho! ')
+                                        ->details('Se ha asignado correctamente el horario de tutoría al docente ')
+                                        ->html("{$user->name} {$user->lastname}");
+                                    return redirect()->route('horario_tutoria_asignada',['user'=>$user]);     
+                                }
+                            }else{
+                                if($hora_inicio=="NA" || $minutos_inicio=="NA" || $hora_fin=="NA" || $minutos_fin=="NA"){
+                                    Alert::danger('Aviso: ')
+                                        ->details('Datos de hora y minutos incorrectos. Llene los campos para hora de inicio y fin correctamente.');
+                                    return view('user_administrador.boton_asignar_tutoria',compact('user','dia'));
+                                }else{
+                                    DB::table('horario2s')->insert([
+                                        'id'=>$id,
+                                        'usuario_id'=>$docente,
+                                        'dia2_op1'=>$var1,
+                                        'hora_inicio_op1'=>$var2,
+                                        'minutos_inicio_op1'=>$var3,
+                                        'hora_fin_op1'=>$var4,
+                                        'minutos_fin_op1'=>$var5,
+            
+                                        'dia2_op2'=>$dia,
+                                        'hora_inicio_op2'=>$hora_inicio,
+                                        'minutos_inicio_op2'=>$minutos_inicio,
+                                        'hora_fin_op2'=>$hora_fin,
+                                        'minutos_fin_op2'=>$minutos_fin,
+                                        'cont_dia'=>2,
+                                        'cont_tarde'=>0
+                                    ]);
+                                    Alert::success('¡Bien hecho! ')
+                                        ->details('Se ha asignado correctamente el horario de tutoría al docente ')
+                                        ->html("{$user->name} {$user->lastname}");
+                                    return redirect()->route('horario_tutoria_asignada',['user'=>$user]);  
+                                }
+                            }
+                        }else{
+                            if($horarios->cont_dia==2 && $horarios->cont_tarde==0){
+                                $id=$horarios->id;
+                                $var1=$horarios->dia2_op1;
+                                $var2=$horarios->hora_inicio_op1;
+                                $var3=$horarios->minutos_inicio_op1;
+                                $var4=$horarios->hora_fin_op1;
+                                $var5=$horarios->minutos_fin_op1;
+                                $var6=$horarios->dia2_op2;
+                                $var7=$horarios->hora_inicio_op2;
+                                $var8=$horarios->minutos_inicio_op2;
+                                $var9=$horarios->hora_fin_op2;
+                                $var10=$horarios->minutos_fin_op2;
+                                Horario2::destroy($horarios->id);
+                                if($hora_inicio=="NA" || $minutos_inicio=="NA" || $hora_fin=="NA" || $minutos_fin=="NA"){
+                                    Alert::danger('Aviso: ')
+                                        ->details('Datos de hora y minutos incorrectos. Llene los campos para hora de inicio y fin correctamente.');
+                                    return view('user_administrador.boton_asignar_tutoria',compact('user','dia'));
+                                }else{
+                                    DB::table('horario2s')->insert([
+                                        'id'=>$id,
+                                        'usuario_id'=>$docente,
+                                        'dia2_op1'=>$var1,
+                                        'hora_inicio_op1'=>$var2,
+                                        'minutos_inicio_op1'=>$var3,
+                                        'hora_fin_op1'=>$var4,
+                                        'minutos_fin_op1'=>$var5,
+
+                                        'dia2_op2'=>$var6,
+                                        'hora_inicio_op2'=>$var7,
+                                        'minutos_inicio_op2'=>$var8,
+                                        'hora_fin_op2'=>$var9,
+                                        'minutos_fin_op2'=>$var10,
+
+                                        'dia2_op3'=>$dia,
+                                        'hora_inicio_op3'=>$hora_inicio,
+                                        'minutos_inicio_op3'=>$minutos_inicio,
+                                        'hora_fin_op3'=>$hora_fin,
+                                        'minutos_fin_op3'=>$minutos_fin,
+                                        'cont_dia'=>2,
+                                        'cont_tarde'=>1
+                                    ]);
+                                    Alert::success('¡Bien hecho! ')
+                                        ->details('Se ha asignado correctamente el horario de tutoría al docente ')
+                                        ->html("{$user->name} {$user->lastname}");
+                                    return redirect()->route('horario_tutoria_asignada',['user'=>$user]);   
+                                }
+                            }else{
+                                if($horarios->cont_dia==1 && $horarios->cont_tarde==1){
+                                    $id=$horarios->id;
+                                    $var1=$horarios->dia2_op1;
+                                    $var2=$horarios->hora_inicio_op1;
+                                    $var3=$horarios->minutos_inicio_op1;
+                                    $var4=$horarios->hora_fin_op1;
+                                    $var5=$horarios->minutos_fin_op1;
+                                    $var6=$horarios->dia2_op3;
+                                    $var7=$horarios->hora_inicio_op3;
+                                    $var8=$horarios->minutos_inicio_op3;
+                                    $var9=$horarios->hora_fin_op3;
+                                    $var10=$horarios->minutos_fin_op3;
+                                    Horario2::destroy($horarios->id);
+                                    if($hora_inicio=="NA" || $minutos_inicio=="NA" || $hora_fin=="NA" || $minutos_fin=="NA"){
+                                        Alert::danger('Aviso: ')
+                                            ->details('Datos de hora y minutos incorrectos. Llene los campos para hora de inicio y fin correctamente.');
+                                        return view('user_administrador.boton_asignar_tutoria',compact('user','dia'));
+                                    }else{
+                                        DB::table('horario2s')->insert([
+                                            'id'=>$id,
+                                            'usuario_id'=>$docente,
+                                            'dia2_op1'=>$var1,
+                                            'hora_inicio_op1'=>$var2,
+                                            'minutos_inicio_op1'=>$var3,
+                                            'hora_fin_op1'=>$var4,
+                                            'minutos_fin_op1'=>$var5,
+
+                                            'dia2_op2'=>$dia,
+                                            'hora_inicio_op2'=>$hora_inicio,
+                                            'minutos_inicio_op2'=>$minutos_inicio,
+                                            'hora_fin_op2'=>$hora_fin,
+                                            'minutos_fin_op2'=>$minutos_fin,
+                                            
+                                            'dia2_op3'=>$var6,
+                                            'hora_inicio_op3'=>$var7,
+                                            'minutos_inicio_op3'=>$var8,
+                                            'hora_fin_op3'=>$var9,
+                                            'minutos_fin_op3'=>$var10,
+
+                                            'cont_dia'=>2,
+                                            'cont_tarde'=>1
+                                        ]);
+                                        Alert::success('¡Bien hecho! ')
+                                            ->details('Se ha asignado correctamente el horario de tutoría al docente ')
+                                            ->html("{$user->name} {$user->lastname}");
+                                        return redirect()->route('horario_tutoria_asignada',['user'=>$user]);     
+                                    }
+                                }
+                            }
+                        }
+                    }
+                // registra horario de tutoria el primero que haga ya sea lunes o tarde, cuando no existe ningun registro en la BD    
+                }else{
+                    $tarde=Str::endsWith($dia,'tarde');
+                    if($tarde==true){
+                        if($hora_inicio=="NA" || $minutos_inicio=="NA" || $hora_fin=="NA" || $minutos_fin=="NA"){
+                            Alert::danger('Aviso: ')
+                                ->details('Datos de hora y minutos incorrectos. Llene los campos para hora de inicio y fin correctamente.');
+                            return view('user_administrador.boton_asignar_tutoria',compact('user','dia'));
+                        }else{
+                            DB::table('horario2s')->insert([
+                                'usuario_id'=>$docente,
+                                'dia2_op3'=>$dia,
+                                'hora_inicio_op3'=>$hora_inicio,
+                                'minutos_inicio_op3'=>$minutos_inicio,
+                                'hora_fin_op3'=>$hora_fin,
+                                'minutos_fin_op3'=>$minutos_fin,
+                                'cont_dia'=>0,
+                                'cont_tarde'=>1,
+                            ]);
+                            Alert::success('¡Bien hecho! ')
+                                ->details('Se ha asignado correctamente el horario de tutoría al docente ')
+                                ->html("{$user->name} {$user->lastname}");
+                            return redirect()->route('horario_tutoria_asignada',['user'=>$user]);
+                        }
+                    }else{
+                        if($hora_inicio=="NA" || $minutos_inicio=="NA" || $hora_fin=="NA" || $minutos_fin=="NA"){
+                            Alert::danger('Aviso: ')
+                                ->details('Datos de hora y minutos incorrectos. Llene los campos para hora de inicio y fin correctamente.');
+                            return view('user_administrador.boton_asignar_tutoria',compact('user','dia'));
+                        }else{
+                            DB::table('horario2s')->insert([
+                                'usuario_id'=>$docente,
+                                'dia2_op1'=>$dia,
+                                'hora_inicio_op1'=>$hora_inicio,
+                                'minutos_inicio_op1'=>$minutos_inicio,
+                                'hora_fin_op1'=>$hora_fin,
+                                'minutos_fin_op1'=>$minutos_fin,
+                                'cont_dia'=>1,
+                                'cont_tarde'=>0
+                            ]);
+                            Alert::success('¡Bien hecho! ')
+                                ->details('Se ha asignado correctamente el horario de tutoría al docente ')
+                                ->html("{$user->name} {$user->lastname}");
+                            return redirect()->route('horario_tutoria_asignada',['user'=>$user]);    
+                        }
+                    }
+                }
+            }else{
+                $dia3=Str::startsWith($dia,'Miércoles');
+                if($dia3==true){
+                    $verifica_horarios=DB::table('horario3s')->where('usuario_id',$user->id)->exists();
+                    //------------------------------------------------------------------------------------- 3
+                    if($verifica_horarios==true){
+                        $horarios=DB::table('horario3s')->where('usuario_id',$docente)->first();
+                        if($horarios->cont_dia==0 && $horarios->cont_tarde==1){
+                            $id=$horarios->id;
+                            $var1=$horarios->dia3_op3;
+                            $var2=$horarios->hora_inicio_op3;
+                            $var3=$horarios->minutos_inicio_op3;
+                            $var4=$horarios->hora_fin_op3;
+                            $var5=$horarios->minutos_fin_op3;
+                            Horario3::destroy($horarios->id);
+                            if($hora_inicio=="NA" || $minutos_inicio=="NA" || $hora_fin=="NA" || $minutos_fin=="NA"){
+                                Alert::danger('Aviso: ')
+                                    ->details('Datos de hora y minutos incorrectos. Llene los campos para hora de inicio y fin correctamente.');
+                                return view('user_administrador.boton_asignar_tutoria',compact('user','dia'));
+                            }else{
+                                DB::table('horario3s')->insert([
+                                    'id'=>$id,
+                                    'usuario_id'=>$docente,
+                                    'dia3_op1'=>$dia,
+                                    'hora_inicio_op1'=>$hora_inicio,
+                                    'minutos_inicio_op1'=>$minutos_inicio,
+                                    'hora_fin_op1'=>$hora_fin,
+                                    'minutos_fin_op1'=>$minutos_fin,
+                                    
+                                    'dia3_op3'=>$var1,
+                                    'hora_inicio_op3'=>$var2,
+                                    'minutos_inicio_op3'=>$var3,
+                                    'hora_fin_op3'=>$var4,
+                                    'minutos_fin_op3'=>$var5,
+                                    'cont_dia'=>1,
+                                    'cont_tarde'=>1,
+                                ]);
+                                Alert::success('¡Bien hecho! ')
+                                    ->details('Se ha asignado correctamente el horario de tutoría al docente ')
+                                    ->html("{$user->name} {$user->lastname}");
+                                return redirect()->route('horario_tutoria_asignada',['user'=>$user]);
+                            }
+                        }else{
+                            if($horarios->cont_dia==1 && $horarios->cont_tarde==0){
+                                $id=$horarios->id;
+                                $var1=$horarios->dia3_op1;
+                                $var2=$horarios->hora_inicio_op1;
+                                $var3=$horarios->minutos_inicio_op1;
+                                $var4=$horarios->hora_fin_op1;
+                                $var5=$horarios->minutos_fin_op1;
+                                Horario3::destroy($horarios->id);
+                                $tarde=Str::endsWith($dia,'tarde');
+                                if($tarde==true){
+                                    if($hora_inicio=="NA" || $minutos_inicio=="NA" || $hora_fin=="NA" || $minutos_fin=="NA"){
+                                        Alert::danger('Aviso: ')
+                                            ->details('Datos de hora y minutos incorrectos. Llene los campos para hora de inicio y fin correctamente.');
+                                        return view('user_administrador.boton_asignar_tutoria',compact('user','dia'));
+                                    }else{
+                                        DB::table('horario3s')->insert([
+                                            'id'=>$id,
+                                            'usuario_id'=>$docente,
+                                            'dia3_op1'=>$var1,
+                                            'hora_inicio_op1'=>$var2,
+                                            'minutos_inicio_op1'=>$var3,
+                                            'hora_fin_op1'=>$var4,
+                                            'minutos_fin_op1'=>$var5,
+                
+                                            'dia3_op3'=>$dia,
+                                            'hora_inicio_op3'=>$hora_inicio,
+                                            'minutos_inicio_op3'=>$minutos_inicio,
+                                            'hora_fin_op3'=>$hora_fin,
+                                            'minutos_fin_op3'=>$minutos_fin,
+                                            'cont_dia'=>1,
+                                            'cont_tarde'=>1
+                                        ]);
+                                        Alert::success('¡Bien hecho! ')
+                                            ->details('Se ha asignado correctamente el horario de tutoría al docente ')
+                                            ->html("{$user->name} {$user->lastname}");
+                                        return redirect()->route('horario_tutoria_asignada',['user'=>$user]);    
+                                    }
+                                }else{
+                                    if($hora_inicio=="NA" || $minutos_inicio=="NA" || $hora_fin=="NA" || $minutos_fin=="NA"){
+                                        Alert::danger('Aviso: ')
+                                            ->details('Datos de hora y minutos incorrectos. Llene los campos para hora de inicio y fin correctamente.');
+                                        return view('user_administrador.boton_asignar_tutoria',compact('user','dia'));
+                                    }else{
+                                        DB::table('horario3s')->insert([
+                                            'id'=>$id,
+                                            'usuario_id'=>$docente,
+                                            'dia3_op1'=>$var1,
+                                            'hora_inicio_op1'=>$var2,
+                                            'minutos_inicio_op1'=>$var3,
+                                            'hora_fin_op1'=>$var4,
+                                            'minutos_fin_op1'=>$var5,
+                
+                                            'dia3_op2'=>$dia,
+                                            'hora_inicio_op2'=>$hora_inicio,
+                                            'minutos_inicio_op2'=>$minutos_inicio,
+                                            'hora_fin_op2'=>$hora_fin,
+                                            'minutos_fin_op2'=>$minutos_fin,
+                                            'cont_dia'=>2,
+                                            'cont_tarde'=>0
+                                        ]);
+                                        Alert::success('¡Bien hecho! ')
+                                            ->details('Se ha asignado correctamente el horario de tutoría al docente ')
+                                            ->html("{$user->name} {$user->lastname}");
+                                        return redirect()->route('horario_tutoria_asignada',['user'=>$user]);     
+                                    }
+                                }
+                            }else{
+                                if($horarios->cont_dia==2 && $horarios->cont_tarde==0){
+                                    $id=$horarios->id;
+                                    $var1=$horarios->dia3_op1;
+                                    $var2=$horarios->hora_inicio_op1;
+                                    $var3=$horarios->minutos_inicio_op1;
+                                    $var4=$horarios->hora_fin_op1;
+                                    $var5=$horarios->minutos_fin_op1;
+                                    $var6=$horarios->dia3_op2;
+                                    $var7=$horarios->hora_inicio_op2;
+                                    $var8=$horarios->minutos_inicio_op2;
+                                    $var9=$horarios->hora_fin_op2;
+                                    $var10=$horarios->minutos_fin_op2;
+                                    Horario3::destroy($horarios->id);
+                                    if($hora_inicio=="NA" || $minutos_inicio=="NA" || $hora_fin=="NA" || $minutos_fin=="NA"){
+                                        Alert::danger('Aviso: ')
+                                            ->details('Datos de hora y minutos incorrectos. Llene los campos para hora de inicio y fin correctamente.');
+                                        return view('user_administrador.boton_asignar_tutoria',compact('user','dia'));
+                                    }else{
+                                        DB::table('horario3s')->insert([
+                                            'id'=>$id,
+                                            'usuario_id'=>$docente,
+                                            'dia3_op1'=>$var1,
+                                            'hora_inicio_op1'=>$var2,
+                                            'minutos_inicio_op1'=>$var3,
+                                            'hora_fin_op1'=>$var4,
+                                            'minutos_fin_op1'=>$var5,
+
+                                            'dia3_op2'=>$var6,
+                                            'hora_inicio_op2'=>$var7,
+                                            'minutos_inicio_op2'=>$var8,
+                                            'hora_fin_op2'=>$var9,
+                                            'minutos_fin_op2'=>$var10,
+
+                                            'dia3_op3'=>$dia,
+                                            'hora_inicio_op3'=>$hora_inicio,
+                                            'minutos_inicio_op3'=>$minutos_inicio,
+                                            'hora_fin_op3'=>$hora_fin,
+                                            'minutos_fin_op3'=>$minutos_fin,
+                                            'cont_dia'=>2,
+                                            'cont_tarde'=>1
+                                        ]);
+                                        Alert::success('¡Bien hecho! ')
+                                            ->details('Se ha asignado correctamente el horario de tutoría al docente ')
+                                            ->html("{$user->name} {$user->lastname}");
+                                        return redirect()->route('horario_tutoria_asignada',['user'=>$user]);     
+                                    }
+                                }else{
+                                    if($horarios->cont_dia==1 && $horarios->cont_tarde==1){
+                                        $id=$horarios->id;
+                                        $var1=$horarios->dia3_op1;
+                                        $var2=$horarios->hora_inicio_op1;
+                                        $var3=$horarios->minutos_inicio_op1;
+                                        $var4=$horarios->hora_fin_op1;
+                                        $var5=$horarios->minutos_fin_op1;
+                                        $var6=$horarios->dia3_op3;
+                                        $var7=$horarios->hora_inicio_op3;
+                                        $var8=$horarios->minutos_inicio_op3;
+                                        $var9=$horarios->hora_fin_op3;
+                                        $var10=$horarios->minutos_fin_op3;
+                                        Horario3::destroy($horarios->id);
+                                        if($hora_inicio=="NA" || $minutos_inicio=="NA" || $hora_fin=="NA" || $minutos_fin=="NA"){
+                                            Alert::danger('Aviso: ')
+                                                ->details('Datos de hora y minutos incorrectos. Llene los campos para hora de inicio y fin correctamente.');
+                                            return view('user_administrador.boton_asignar_tutoria',compact('user','dia'));
+                                        }else{
+                                            DB::table('horario3s')->insert([
+                                                'id'=>$id,
+                                                'usuario_id'=>$docente,
+                                                'dia3_op1'=>$var1,
+                                                'hora_inicio_op1'=>$var2,
+                                                'minutos_inicio_op1'=>$var3,
+                                                'hora_fin_op1'=>$var4,
+                                                'minutos_fin_op1'=>$var5,
+
+                                                'dia3_op2'=>$dia,
+                                                'hora_inicio_op2'=>$hora_inicio,
+                                                'minutos_inicio_op2'=>$minutos_inicio,
+                                                'hora_fin_op2'=>$hora_fin,
+                                                'minutos_fin_op2'=>$minutos_fin,
+                                                
+                                                'dia3_op3'=>$var6,
+                                                'hora_inicio_op3'=>$var7,
+                                                'minutos_inicio_op3'=>$var8,
+                                                'hora_fin_op3'=>$var9,
+                                                'minutos_fin_op3'=>$var10,
+
+                                                'cont_dia'=>2,
+                                                'cont_tarde'=>1
+                                            ]);
+                                            Alert::success('¡Bien hecho! ')
+                                                ->details('Se ha asignado correctamente el horario de tutoría al docente ')
+                                                ->html("{$user->name} {$user->lastname}");
+                                            return redirect()->route('horario_tutoria_asignada',['user'=>$user]);     
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    // registra horario de tutoria el primero que haga ya sea lunes o tarde, cuando no existe ningun registro en la BD    
+                    }else{
+                        $tarde=Str::endsWith($dia,'tarde');
+                        if($tarde==true){
+                            if($hora_inicio=="NA" || $minutos_inicio=="NA" || $hora_fin=="NA" || $minutos_fin=="NA"){
+                                Alert::danger('Aviso: ')
+                                    ->details('Datos de hora y minutos incorrectos. Llene los campos para hora de inicio y fin correctamente.');
+                                return view('user_administrador.boton_asignar_tutoria',compact('user','dia'));
+                            }else{
+                                DB::table('horario3s')->insert([
+                                    'usuario_id'=>$docente,
+                                    'dia3_op3'=>$dia,
+                                    'hora_inicio_op3'=>$hora_inicio,
+                                    'minutos_inicio_op3'=>$minutos_inicio,
+                                    'hora_fin_op3'=>$hora_fin,
+                                    'minutos_fin_op3'=>$minutos_fin,
+                                    'cont_dia'=>0,
+                                    'cont_tarde'=>1,
+                                ]);
+                                Alert::success('¡Bien hecho! ')
+                                    ->details('Se ha asignado correctamente el horario de tutoría al docente ')
+                                    ->html("{$user->name} {$user->lastname}");
+                                return redirect()->route('horario_tutoria_asignada',['user'=>$user]);
+                            }
+                        }else{
+                            if($hora_inicio=="NA" || $minutos_inicio=="NA" || $hora_fin=="NA" || $minutos_fin=="NA"){
+                                Alert::danger('Aviso: ')
+                                    ->details('Datos de hora y minutos incorrectos. Llene los campos para hora de inicio y fin correctamente.');
+                                return view('user_administrador.boton_asignar_tutoria',compact('user','dia'));
+                            }else{
+                                DB::table('horario3s')->insert([
+                                    'usuario_id'=>$docente,
+                                    'dia3_op1'=>$dia,
+                                    'hora_inicio_op1'=>$hora_inicio,
+                                    'minutos_inicio_op1'=>$minutos_inicio,
+                                    'hora_fin_op1'=>$hora_fin,
+                                    'minutos_fin_op1'=>$minutos_fin,
+                                    'cont_dia'=>1,
+                                    'cont_tarde'=>0
+                                ]);
+                                Alert::success('¡Bien hecho! ')
+                                    ->details('Se ha asignado correctamente el horario de tutoría al docente ')
+                                    ->html("{$user->name} {$user->lastname}");
+                                return redirect()->route('horario_tutoria_asignada',['user'=>$user]);   
+                            }
+                        }
+                    }
+                }else{
+                    $dia4=Str::startsWith($dia,'Jueves');
+                    if($dia4==true){
+                        $verifica_horarios=DB::table('horario4s')->where('usuario_id',$user->id)->exists();
+                        //------------------------------------------------------------------------------------- 4
+                        if($verifica_horarios==true){
+                            $horarios=DB::table('horario4s')->where('usuario_id',$docente)->first();
+                            if($horarios->cont_dia==0 && $horarios->cont_tarde==1){
+                                $id=$horarios->id;
+                                $var1=$horarios->dia4_op3;
+                                $var2=$horarios->hora_inicio_op3;
+                                $var3=$horarios->minutos_inicio_op3;
+                                $var4=$horarios->hora_fin_op3;
+                                $var5=$horarios->minutos_fin_op3;
+                                Horario4::destroy($horarios->id);
+                                if($hora_inicio=="NA" || $minutos_inicio=="NA" || $hora_fin=="NA" || $minutos_fin=="NA"){
+                                    Alert::danger('Aviso: ')
+                                        ->details('Datos de hora y minutos incorrectos. Llene los campos para hora de inicio y fin correctamente.');
+                                    return view('user_administrador.boton_asignar_tutoria',compact('user','dia'));
+                                }else{
+                                    DB::table('horario4s')->insert([
+                                        'id'=>$id,
+                                        'usuario_id'=>$docente,
+                                        'dia4_op1'=>$dia,
+                                        'hora_inicio_op1'=>$hora_inicio,
+                                        'minutos_inicio_op1'=>$minutos_inicio,
+                                        'hora_fin_op1'=>$hora_fin,
+                                        'minutos_fin_op1'=>$minutos_fin,
+                                        
+                                        'dia4_op3'=>$var1,
+                                        'hora_inicio_op3'=>$var2,
+                                        'minutos_inicio_op3'=>$var3,
+                                        'hora_fin_op3'=>$var4,
+                                        'minutos_fin_op3'=>$var5,
+                                        'cont_dia'=>1,
+                                        'cont_tarde'=>1,
+                                    ]);
+                                    Alert::success('¡Bien hecho! ')
+                                        ->details('Se ha asignado correctamente el horario de tutoría al docente ')
+                                        ->html("{$user->name} {$user->lastname}");
+                                    return redirect()->route('horario_tutoria_asignada',['user'=>$user]);
+                                }
+                            }else{
+                                if($horarios->cont_dia==1 && $horarios->cont_tarde==0){
+                                    $id=$horarios->id;
+                                    $var1=$horarios->dia4_op1;
+                                    $var2=$horarios->hora_inicio_op1;
+                                    $var3=$horarios->minutos_inicio_op1;
+                                    $var4=$horarios->hora_fin_op1;
+                                    $var5=$horarios->minutos_fin_op1;
+                                    Horario4::destroy($horarios->id);
+                                    $tarde=Str::endsWith($dia,'tarde');
+                                    if($tarde==true){
+                                        if($hora_inicio=="NA" || $minutos_inicio=="NA" || $hora_fin=="NA" || $minutos_fin=="NA"){
+                                            Alert::danger('Aviso: ')
+                                                ->details('Datos de hora y minutos incorrectos. Llene los campos para hora de inicio y fin correctamente.');
+                                            return view('user_administrador.boton_asignar_tutoria',compact('user','dia'));
+                                        }else{
+                                            DB::table('horario4s')->insert([
+                                                'id'=>$id,
+                                                'usuario_id'=>$docente,
+                                                'dia4_op1'=>$var1,
+                                                'hora_inicio_op1'=>$var2,
+                                                'minutos_inicio_op1'=>$var3,
+                                                'hora_fin_op1'=>$var4,
+                                                'minutos_fin_op1'=>$var5,
+                    
+                                                'dia4_op3'=>$dia,
+                                                'hora_inicio_op3'=>$hora_inicio,
+                                                'minutos_inicio_op3'=>$minutos_inicio,
+                                                'hora_fin_op3'=>$hora_fin,
+                                                'minutos_fin_op3'=>$minutos_fin,
+                                                'cont_dia'=>1,
+                                                'cont_tarde'=>1
+                                            ]);
+                                            Alert::success('¡Bien hecho! ')
+                                                ->details('Se ha asignado correctamente el horario de tutoría al docente ')
+                                                ->html("{$user->name} {$user->lastname}");
+                                            return redirect()->route('horario_tutoria_asignada',['user'=>$user]);    
+                                        }
+                                    }else{
+                                        if($hora_inicio=="NA" || $minutos_inicio=="NA" || $hora_fin=="NA" || $minutos_fin=="NA"){
+                                            Alert::danger('Aviso: ')
+                                                ->details('Datos de hora y minutos incorrectos. Llene los campos para hora de inicio y fin correctamente.');
+                                            return view('user_administrador.boton_asignar_tutoria',compact('user','dia'));
+                                        }else{
+                                            DB::table('horario4s')->insert([
+                                                'id'=>$id,
+                                                'usuario_id'=>$docente,
+                                                'dia4_op1'=>$var1,
+                                                'hora_inicio_op1'=>$var2,
+                                                'minutos_inicio_op1'=>$var3,
+                                                'hora_fin_op1'=>$var4,
+                                                'minutos_fin_op1'=>$var5,
+                    
+                                                'dia4_op2'=>$dia,
+                                                'hora_inicio_op2'=>$hora_inicio,
+                                                'minutos_inicio_op2'=>$minutos_inicio,
+                                                'hora_fin_op2'=>$hora_fin,
+                                                'minutos_fin_op2'=>$minutos_fin,
+                                                'cont_dia'=>2,
+                                                'cont_tarde'=>0
+                                            ]);
+                                            Alert::success('¡Bien hecho! ')
+                                                ->details('Se ha asignado correctamente el horario de tutoría al docente ')
+                                                ->html("{$user->name} {$user->lastname}");
+                                            return redirect()->route('horario_tutoria_asignada',['user'=>$user]);    
+                                        }
+                                    }
+                                }else{
+                                    if($horarios->cont_dia==2 && $horarios->cont_tarde==0){
+                                        $id=$horarios->id;
+                                        $var1=$horarios->dia4_op1;
+                                        $var2=$horarios->hora_inicio_op1;
+                                        $var3=$horarios->minutos_inicio_op1;
+                                        $var4=$horarios->hora_fin_op1;
+                                        $var5=$horarios->minutos_fin_op1;
+                                        $var6=$horarios->dia4_op2;
+                                        $var7=$horarios->hora_inicio_op2;
+                                        $var8=$horarios->minutos_inicio_op2;
+                                        $var9=$horarios->hora_fin_op2;
+                                        $var10=$horarios->minutos_fin_op2;
+                                        Horario4::destroy($horarios->id);
+                                        if($hora_inicio=="NA" || $minutos_inicio=="NA" || $hora_fin=="NA" || $minutos_fin=="NA"){
+                                            Alert::danger('Aviso: ')
+                                                ->details('Datos de hora y minutos incorrectos. Llene los campos para hora de inicio y fin correctamente.');
+                                            return view('user_administrador.boton_asignar_tutoria',compact('user','dia'));
+                                        }else{
+                                            DB::table('horario4s')->insert([
+                                                'id'=>$id,
+                                                'usuario_id'=>$docente,
+                                                'dia4_op1'=>$var1,
+                                                'hora_inicio_op1'=>$var2,
+                                                'minutos_inicio_op1'=>$var3,
+                                                'hora_fin_op1'=>$var4,
+                                                'minutos_fin_op1'=>$var5,
+
+                                                'dia4_op2'=>$var6,
+                                                'hora_inicio_op2'=>$var7,
+                                                'minutos_inicio_op2'=>$var8,
+                                                'hora_fin_op2'=>$var9,
+                                                'minutos_fin_op2'=>$var10,
+
+                                                'dia4_op3'=>$dia,
+                                                'hora_inicio_op3'=>$hora_inicio,
+                                                'minutos_inicio_op3'=>$minutos_inicio,
+                                                'hora_fin_op3'=>$hora_fin,
+                                                'minutos_fin_op3'=>$minutos_fin,
+                                                'cont_dia'=>2,
+                                                'cont_tarde'=>1
+                                            ]);
+                                            Alert::success('¡Bien hecho! ')
+                                                ->details('Se ha asignado correctamente el horario de tutoría al docente ')
+                                                ->html("{$user->name} {$user->lastname}");
+                                            return redirect()->route('horario_tutoria_asignada',['user'=>$user]);    
+                                        }
+                                    }else{
+                                        if($horarios->cont_dia==1 && $horarios->cont_tarde==1){
+                                            $id=$horarios->id;
+                                            $var1=$horarios->dia4_op1;
+                                            $var2=$horarios->hora_inicio_op1;
+                                            $var3=$horarios->minutos_inicio_op1;
+                                            $var4=$horarios->hora_fin_op1;
+                                            $var5=$horarios->minutos_fin_op1;
+                                            $var6=$horarios->dia4_op3;
+                                            $var7=$horarios->hora_inicio_op3;
+                                            $var8=$horarios->minutos_inicio_op3;
+                                            $var9=$horarios->hora_fin_op3;
+                                            $var10=$horarios->minutos_fin_op3;
+                                            Horario4::destroy($horarios->id);
+                                            if($hora_inicio=="NA" || $minutos_inicio=="NA" || $hora_fin=="NA" || $minutos_fin=="NA"){
+                                                Alert::danger('Aviso: ')
+                                                    ->details('Datos de hora y minutos incorrectos. Llene los campos para hora de inicio y fin correctamente.');
+                                                return view('user_administrador.boton_asignar_tutoria',compact('user','dia'));
+                                            }else{
+                                                DB::table('horario4s')->insert([
+                                                    'id'=>$id,
+                                                    'usuario_id'=>$docente,
+                                                    'dia4_op1'=>$var1,
+                                                    'hora_inicio_op1'=>$var2,
+                                                    'minutos_inicio_op1'=>$var3,
+                                                    'hora_fin_op1'=>$var4,
+                                                    'minutos_fin_op1'=>$var5,
+
+                                                    'dia4_op2'=>$dia,
+                                                    'hora_inicio_op2'=>$hora_inicio,
+                                                    'minutos_inicio_op2'=>$minutos_inicio,
+                                                    'hora_fin_op2'=>$hora_fin,
+                                                    'minutos_fin_op2'=>$minutos_fin,
+                                                    
+                                                    'dia4_op3'=>$var6,
+                                                    'hora_inicio_op3'=>$var7,
+                                                    'minutos_inicio_op3'=>$var8,
+                                                    'hora_fin_op3'=>$var9,
+                                                    'minutos_fin_op3'=>$var10,
+
+                                                    'cont_dia'=>2,
+                                                    'cont_tarde'=>1
+                                                ]);
+                                                Alert::success('¡Bien hecho! ')
+                                                    ->details('Se ha asignado correctamente el horario de tutoría al docente ')
+                                                    ->html("{$user->name} {$user->lastname}");
+                                                return redirect()->route('horario_tutoria_asignada',['user'=>$user]);    
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        // registra horario de tutoria el primero que haga ya sea lunes o tarde, cuando no existe ningun registro en la BD    
+                        }else{
+                            $tarde=Str::endsWith($dia,'tarde');
+                            if($tarde==true){
+                                if($hora_inicio=="NA" || $minutos_inicio=="NA" || $hora_fin=="NA" || $minutos_fin=="NA"){
+                                    Alert::danger('Aviso: ')
+                                        ->details('Datos de hora y minutos incorrectos. Llene los campos para hora de inicio y fin correctamente.');
+                                    return view('user_administrador.boton_asignar_tutoria',compact('user','dia'));
+                                }else{
+                                    DB::table('horario4s')->insert([
+                                        'usuario_id'=>$docente,
+                                        'dia4_op3'=>$dia,
+                                        'hora_inicio_op3'=>$hora_inicio,
+                                        'minutos_inicio_op3'=>$minutos_inicio,
+                                        'hora_fin_op3'=>$hora_fin,
+                                        'minutos_fin_op3'=>$minutos_fin,
+                                        'cont_dia'=>0,
+                                        'cont_tarde'=>1,
+                                    ]);
+                                    Alert::success('¡Bien hecho! ')
+                                        ->details('Se ha asignado correctamente el horario de tutoría al docente ')
+                                        ->html("{$user->name} {$user->lastname}");
+                                    return redirect()->route('horario_tutoria_asignada',['user'=>$user]);
+                                }
+                            }else{
+                                if($hora_inicio=="NA" || $minutos_inicio=="NA" || $hora_fin=="NA" || $minutos_fin=="NA"){
+                                    Alert::danger('Aviso: ')
+                                        ->details('Datos de hora y minutos incorrectos. Llene los campos para hora de inicio y fin correctamente.');
+                                    return view('user_administrador.boton_asignar_tutoria',compact('user','dia'));
+                                }else{
+                                    DB::table('horario4s')->insert([
+                                        'usuario_id'=>$docente,
+                                        'dia4_op1'=>$dia,
+                                        'hora_inicio_op1'=>$hora_inicio,
+                                        'minutos_inicio_op1'=>$minutos_inicio,
+                                        'hora_fin_op1'=>$hora_fin,
+                                        'minutos_fin_op1'=>$minutos_fin,
+                                        'cont_dia'=>1,
+                                        'cont_tarde'=>0
+                                    ]);
+                                    Alert::success('¡Bien hecho! ')
+                                        ->details('Se ha asignado correctamente el horario de tutoría al docente ')
+                                        ->html("{$user->name} {$user->lastname}");
+                                    return redirect()->route('horario_tutoria_asignada',['user'=>$user]);    
+                                }
+                            }
+                        }
+                    }else{
+                        $dia5=Str::startsWith($dia,'Viernes');
+                        if($dia5==true){
+                            $verifica_horarios=DB::table('horario5s')->where('usuario_id',$user->id)->exists();
+                            //------------------------------------------------------------------------------------- 5
+                            if($verifica_horarios==true){
+                                $horarios=DB::table('horario5s')->where('usuario_id',$docente)->first();
+                                if($horarios->cont_dia==0 && $horarios->cont_tarde==1){
+                                    $id=$horarios->id;
+                                    $var1=$horarios->dia5_op3;
+                                    $var2=$horarios->hora_inicio_op3;
+                                    $var3=$horarios->minutos_inicio_op3;
+                                    $var4=$horarios->hora_fin_op3;
+                                    $var5=$horarios->minutos_fin_op3;
+                                    Horario5::destroy($horarios->id);
+                                    if($hora_inicio=="NA" || $minutos_inicio=="NA" || $hora_fin=="NA" || $minutos_fin=="NA"){
+                                        Alert::danger('Aviso: ')
+                                            ->details('Datos de hora y minutos incorrectos. Llene los campos para hora de inicio y fin correctamente.');
+                                        return view('user_administrador.boton_asignar_tutoria',compact('user','dia'));
+                                    }else{
+                                        DB::table('horario5s')->insert([
+                                            'id'=>$id,
+                                            'usuario_id'=>$docente,
+                                            'dia5_op1'=>$dia,
+                                            'hora_inicio_op1'=>$hora_inicio,
+                                            'minutos_inicio_op1'=>$minutos_inicio,
+                                            'hora_fin_op1'=>$hora_fin,
+                                            'minutos_fin_op1'=>$minutos_fin,
+                                            
+                                            'dia5_op3'=>$var1,
+                                            'hora_inicio_op3'=>$var2,
+                                            'minutos_inicio_op3'=>$var3,
+                                            'hora_fin_op3'=>$var4,
+                                            'minutos_fin_op3'=>$var5,
+                                            'cont_dia'=>1,
+                                            'cont_tarde'=>1,
+                                        ]);
+                                        Alert::success('¡Bien hecho! ')
+                                            ->details('Se ha asignado correctamente el horario de tutoría al docente ')
+                                            ->html("{$user->name} {$user->lastname}");
+                                        return redirect()->route('horario_tutoria_asignada',['user'=>$user]);
+                                    }
+                                }else{
+                                    if($horarios->cont_dia==1 && $horarios->cont_tarde==0){
+                                        $id=$horarios->id;
+                                        $var1=$horarios->dia5_op1;
+                                        $var2=$horarios->hora_inicio_op1;
+                                        $var3=$horarios->minutos_inicio_op1;
+                                        $var4=$horarios->hora_fin_op1;
+                                        $var5=$horarios->minutos_fin_op1;
+                                        Horario5::destroy($horarios->id);
+                                        $tarde=Str::endsWith($dia,'tarde');
+                                        if($tarde==true){
+                                            if($hora_inicio=="NA" || $minutos_inicio=="NA" || $hora_fin=="NA" || $minutos_fin=="NA"){
+                                                Alert::danger('Aviso: ')
+                                                    ->details('Datos de hora y minutos incorrectos. Llene los campos para hora de inicio y fin correctamente.');
+                                                return view('user_administrador.boton_asignar_tutoria',compact('user','dia'));
+                                            }else{
+                                                DB::table('horario5s')->insert([
+                                                    'id'=>$id,
+                                                    'usuario_id'=>$docente,
+                                                    'dia5_op1'=>$var1,
+                                                    'hora_inicio_op1'=>$var2,
+                                                    'minutos_inicio_op1'=>$var3,
+                                                    'hora_fin_op1'=>$var4,
+                                                    'minutos_fin_op1'=>$var5,
+                        
+                                                    'dia5_op3'=>$dia,
+                                                    'hora_inicio_op3'=>$hora_inicio,
+                                                    'minutos_inicio_op3'=>$minutos_inicio,
+                                                    'hora_fin_op3'=>$hora_fin,
+                                                    'minutos_fin_op3'=>$minutos_fin,
+                                                    'cont_dia'=>1,
+                                                    'cont_tarde'=>1
+                                                ]);
+                                                Alert::success('¡Bien hecho! ')
+                                                    ->details('Se ha asignado correctamente el horario de tutoría al docente ')
+                                                    ->html("{$user->name} {$user->lastname}");
+                                                return redirect()->route('horario_tutoria_asignada',['user'=>$user]);    
+                                            }
+                                        }else{
+                                            if($hora_inicio=="NA" || $minutos_inicio=="NA" || $hora_fin=="NA" || $minutos_fin=="NA"){
+                                                Alert::danger('Aviso: ')
+                                                    ->details('Datos de hora y minutos incorrectos. Llene los campos para hora de inicio y fin correctamente.');
+                                                return view('user_administrador.boton_asignar_tutoria',compact('user','dia'));
+                                            }else{
+                                                DB::table('horario5s')->insert([
+                                                    'id'=>$id,
+                                                    'usuario_id'=>$docente,
+                                                    'dia5_op1'=>$var1,
+                                                    'hora_inicio_op1'=>$var2,
+                                                    'minutos_inicio_op1'=>$var3,
+                                                    'hora_fin_op1'=>$var4,
+                                                    'minutos_fin_op1'=>$var5,
+                        
+                                                    'dia5_op2'=>$dia,
+                                                    'hora_inicio_op2'=>$hora_inicio,
+                                                    'minutos_inicio_op2'=>$minutos_inicio,
+                                                    'hora_fin_op2'=>$hora_fin,
+                                                    'minutos_fin_op2'=>$minutos_fin,
+                                                    'cont_dia'=>2,
+                                                    'cont_tarde'=>0
+                                                ]);
+                                                Alert::success('¡Bien hecho! ')
+                                                    ->details('Se ha asignado correctamente el horario de tutoría al docente ')
+                                                    ->html("{$user->name} {$user->lastname}");
+                                                return redirect()->route('horario_tutoria_asignada',['user'=>$user]);     
+                                            }
+                                        }
+                                    }else{
+                                        if($horarios->cont_dia==2 && $horarios->cont_tarde==0){
+                                            $id=$horarios->id;
+                                            $var1=$horarios->dia5_op1;
+                                            $var2=$horarios->hora_inicio_op1;
+                                            $var3=$horarios->minutos_inicio_op1;
+                                            $var4=$horarios->hora_fin_op1;
+                                            $var5=$horarios->minutos_fin_op1;
+                                            $var6=$horarios->dia5_op2;
+                                            $var7=$horarios->hora_inicio_op2;
+                                            $var8=$horarios->minutos_inicio_op2;
+                                            $var9=$horarios->hora_fin_op2;
+                                            $var10=$horarios->minutos_fin_op2;
+                                            Horario5::destroy($horarios->id);
+                                            if($hora_inicio=="NA" || $minutos_inicio=="NA" || $hora_fin=="NA" || $minutos_fin=="NA"){
+                                                Alert::danger('Aviso: ')
+                                                    ->details('Datos de hora y minutos incorrectos. Llene los campos para hora de inicio y fin correctamente.');
+                                                return view('user_administrador.boton_asignar_tutoria',compact('user','dia'));
+                                            }else{
+                                                DB::table('horario5s')->insert([
+                                                    'id'=>$id,
+                                                    'usuario_id'=>$docente,
+                                                    'dia5_op1'=>$var1,
+                                                    'hora_inicio_op1'=>$var2,
+                                                    'minutos_inicio_op1'=>$var3,
+                                                    'hora_fin_op1'=>$var4,
+                                                    'minutos_fin_op1'=>$var5,
+
+                                                    'dia5_op2'=>$var6,
+                                                    'hora_inicio_op2'=>$var7,
+                                                    'minutos_inicio_op2'=>$var8,
+                                                    'hora_fin_op2'=>$var9,
+                                                    'minutos_fin_op2'=>$var10,
+
+                                                    'dia5_op3'=>$dia,
+                                                    'hora_inicio_op3'=>$hora_inicio,
+                                                    'minutos_inicio_op3'=>$minutos_inicio,
+                                                    'hora_fin_op3'=>$hora_fin,
+                                                    'minutos_fin_op3'=>$minutos_fin,
+                                                    'cont_dia'=>2,
+                                                    'cont_tarde'=>1
+                                                ]);
+                                                Alert::success('¡Bien hecho! ')
+                                                    ->details('Se ha asignado correctamente el horario de tutoría al docente ')
+                                                    ->html("{$user->name} {$user->lastname}");
+                                                return redirect()->route('horario_tutoria_asignada',['user'=>$user]);     
+                                            }
+                                        }else{
+                                            if($horarios->cont_dia==1 && $horarios->cont_tarde==1){
+                                                $id=$horarios->id;
+                                                $var1=$horarios->dia5_op1;
+                                                $var2=$horarios->hora_inicio_op1;
+                                                $var3=$horarios->minutos_inicio_op1;
+                                                $var4=$horarios->hora_fin_op1;
+                                                $var5=$horarios->minutos_fin_op1;
+                                                $var6=$horarios->dia5_op3;
+                                                $var7=$horarios->hora_inicio_op3;
+                                                $var8=$horarios->minutos_inicio_op3;
+                                                $var9=$horarios->hora_fin_op3;
+                                                $var10=$horarios->minutos_fin_op3;
+                                                Horario5::destroy($horarios->id);
+                                                if($hora_inicio=="NA" || $minutos_inicio=="NA" || $hora_fin=="NA" || $minutos_fin=="NA"){
+                                                    Alert::danger('Aviso: ')
+                                                        ->details('Datos de hora y minutos incorrectos. Llene los campos para hora de inicio y fin correctamente.');
+                                                    return view('user_administrador.boton_asignar_tutoria',compact('user','dia'));
+                                                }else{
+                                                    DB::table('horario5s')->insert([
+                                                        'id'=>$id,
+                                                        'usuario_id'=>$docente,
+                                                        'dia5_op1'=>$var1,
+                                                        'hora_inicio_op1'=>$var2,
+                                                        'minutos_inicio_op1'=>$var3,
+                                                        'hora_fin_op1'=>$var4,
+                                                        'minutos_fin_op1'=>$var5,
+
+                                                        'dia5_op2'=>$dia,
+                                                        'hora_inicio_op2'=>$hora_inicio,
+                                                        'minutos_inicio_op2'=>$minutos_inicio,
+                                                        'hora_fin_op2'=>$hora_fin,
+                                                        'minutos_fin_op2'=>$minutos_fin,
+                                                        
+                                                        'dia5_op3'=>$var6,
+                                                        'hora_inicio_op3'=>$var7,
+                                                        'minutos_inicio_op3'=>$var8,
+                                                        'hora_fin_op3'=>$var9,
+                                                        'minutos_fin_op3'=>$var10,
+
+                                                        'cont_dia'=>2,
+                                                        'cont_tarde'=>1
+                                                    ]);
+                                                    Alert::success('¡Bien hecho! ')
+                                                        ->details('Se ha asignado correctamente el horario de tutoría al docente ')
+                                                        ->html("{$user->name} {$user->lastname}");
+                                                    return redirect()->route('horario_tutoria_asignada',['user'=>$user]);   
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            // registra horario de tutoria el primero que haga ya sea lunes o tarde, cuando no existe ningun registro en la BD    
+                            }else{
+                                $tarde=Str::endsWith($dia,'tarde');
+                                if($tarde==true){
+                                    if($hora_inicio=="NA" || $minutos_inicio=="NA" || $hora_fin=="NA" || $minutos_fin=="NA"){
+                                        Alert::danger('Aviso: ')
+                                            ->details('Datos de hora y minutos incorrectos. Llene los campos para hora de inicio y fin correctamente.');
+                                        return view('user_administrador.boton_asignar_tutoria',compact('user','dia'));
+                                    }else{
+                                        DB::table('horario5s')->insert([
+                                            'usuario_id'=>$docente,
+                                            'dia5_op3'=>$dia,
+                                            'hora_inicio_op3'=>$hora_inicio,
+                                            'minutos_inicio_op3'=>$minutos_inicio,
+                                            'hora_fin_op3'=>$hora_fin,
+                                            'minutos_fin_op3'=>$minutos_fin,
+                                            'cont_dia'=>0,
+                                            'cont_tarde'=>1,
+                                        ]);
+                                        Alert::success('¡Bien hecho! ')
+                                            ->details('Se ha asignado correctamente el horario de tutoría al docente ')
+                                            ->html("{$user->name} {$user->lastname}");
+                                        return redirect()->route('horario_tutoria_asignada',['user'=>$user]);
+                                    }
+                                }else{
+                                    if($hora_inicio=="NA" || $minutos_inicio=="NA" || $hora_fin=="NA" || $minutos_fin=="NA"){
+                                        Alert::danger('Aviso: ')
+                                            ->details('Datos de hora y minutos incorrectos. Llene los campos para hora de inicio y fin correctamente.');
+                                        return view('user_administrador.boton_asignar_tutoria',compact('user','dia'));
+                                    }else{
+                                        DB::table('horario5s')->insert([
+                                            'usuario_id'=>$docente,
+                                            'dia5_op1'=>$dia,
+                                            'hora_inicio_op1'=>$hora_inicio,
+                                            'minutos_inicio_op1'=>$minutos_inicio,
+                                            'hora_fin_op1'=>$hora_fin,
+                                            'minutos_fin_op1'=>$minutos_fin,
+                                            'cont_dia'=>1,
+                                            'cont_tarde'=>0
+                                        ]);
+                                        Alert::success('¡Bien hecho! ')
+                                            ->details('Se ha asignado correctamente el horario de tutoría al docente ')
+                                            ->html("{$user->name} {$user->lastname}");
+                                        return redirect()->route('horario_tutoria_asignada',['user'=>$user]);     
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+    }
+
+    public function horario_tutoria_asignada(User $user){
+        $docente=$user->id;
+        $horarios=DB::table('horarios')->where('usuario_id',$docente)->first();
+        $horario2s=DB::table('horario2s')->where('usuario_id',$docente)->first();
+        $horario3s=DB::table('horario3s')->where('usuario_id',$docente)->first();
+        $horario4s=DB::table('horario4s')->where('usuario_id',$docente)->first();
+        $horario5s=DB::table('horario5s')->where('usuario_id',$docente)->first();
+        Alert::success('¡Bien hecho! ')
+            ->details('Se ha asignado correctamente el horario de tutoría al docente ')
+            ->html("{$user->name} {$user->lastname}");
+        return view('user_administrador.horario_tutoria_asignada',compact('user','horarios','horario2s','horario3s','horario4s','horario5s'));
+    }
+
+    public function horario_tutoria_asignada_op2(User $user){
+        $docente=$user->id;
+        $horarios=DB::table('horarios')->where('usuario_id',$docente)->first();
+        $horario2s=DB::table('horario2s')->where('usuario_id',$docente)->first();
+        $horario3s=DB::table('horario3s')->where('usuario_id',$docente)->first();
+        $horario4s=DB::table('horario4s')->where('usuario_id',$docente)->first();
+        $horario5s=DB::table('horario5s')->where('usuario_id',$docente)->first();
+        return view('user_administrador.horario_tutoria_asignada',compact('user','horarios','horario2s','horario3s','horario4s','horario5s'));
+    }
+/* 
+|--------------------------------------------------------------------------
+| Funciones para editar horario de tutoria asignada
+|--------------------------------------------------------------------------
+*/
+    public function vista_editar_horario_tutoria_asignada_op1(User $user, Request $request){
+        $docente=$user->id;
+        $horarios=DB::table('horarios')->where('usuario_id',$docente)->first();
+        $aux=1;
+        return view('user_administrador.editar_horario_tutoria_asignada',compact('user','horarios','aux'));
+    }
+/* 
+|--------------------------------------------------------------------------
+| Funciones para eliminar horario de tutoria asignada
+|--------------------------------------------------------------------------
+*/
+    public function eliminar_horario_tutoria_asignada_op1(User $user, Request $request){
+        $docente=$user->id;
+        $horarios=DB::table('horarios')->where('usuario_id',$docente)->first();
+        if($horarios->cont_dia==0 && $horarios->cont_tarde==1){
+            Horario::destroy($horarios->id); 
+            return redirect()->route('eliminar_horario_tutoria_asignada_op1_1',['user'=>$user]);
+        }else{
+            if($horarios->cont_dia==1 && $horarios->cont_tarde==0){
+                Horario::destroy($horarios->id); 
+                return redirect()->route('eliminar_horario_tutoria_asignada_op1_1',['user'=>$user]);
+            }else{
+                if($horarios->cont_dia==2 && $horarios->cont_tarde==0){
+                    $dia=$request->input('dia1');
+                    if($dia==1){
+                        $id=$horarios->id;
+                        $var1=$horarios->dia1_op2;
+                        $var2=$horarios->hora_inicio_op2;
+                        $var3=$horarios->minutos_inicio_op2;
+                        $var4=$horarios->hora_fin_op2;
+                        $var5=$horarios->minutos_fin_op2;
+                        Horario::destroy($horarios->id);
+                        DB::table('horarios')->insert([
+                            'id'=>$id,
+                            'usuario_id'=>$docente,
+                            'dia1_op1'=>$var1,
+                            'hora_inicio_op1'=>$var2,
+                            'minutos_inicio_op1'=>$var3,
+                            'hora_fin_op1'=>$var4,
+                            'minutos_fin_op1'=>$var5,
+                            'cont_dia'=>1,
+                            'cont_tarde'=>0
+                        ]);
+                        return redirect()->route('eliminar_horario_tutoria_asignada_op1_1',['user'=>$user]);
+                    }else{
+                        if($dia==2){
+                            $id=$horarios->id;
+                            $var1=$horarios->dia1_op1;
+                            $var2=$horarios->hora_inicio_op1;
+                            $var3=$horarios->minutos_inicio_op1;
+                            $var4=$horarios->hora_fin_op1;
+                            $var5=$horarios->minutos_fin_op1;
+                            Horario::destroy($horarios->id);
+                            DB::table('horarios')->insert([
+                                'id'=>$id,
+                                'usuario_id'=>$docente,
+                                'dia1_op1'=>$var1,
+                                'hora_inicio_op1'=>$var2,
+                                'minutos_inicio_op1'=>$var3,
+                                'hora_fin_op1'=>$var4,
+                                'minutos_fin_op1'=>$var5,
+                                'cont_dia'=>1,
+                                'cont_tarde'=>0
+                            ]);
+                            return redirect()->route('eliminar_horario_tutoria_asignada_op1_1',['user'=>$user]);
+                        }
+                    }
+                }else{
+                    if($horarios->cont_dia==1 && $horarios->cont_tarde==1){
+                        $dia=$request->input('dia1');
+                        if($dia==1){
+                            $id=$horarios->id;
+                            $var1=$horarios->dia1_op3;
+                            $var2=$horarios->hora_inicio_op3;
+                            $var3=$horarios->minutos_inicio_op3;
+                            $var4=$horarios->hora_fin_op3;
+                            $var5=$horarios->minutos_fin_op3;
+                            Horario::destroy($horarios->id);
+                            DB::table('horarios')->insert([
+                                'id'=>$id,
+                                'usuario_id'=>$docente,
+                                'dia1_op3'=>$var1,
+                                'hora_inicio_op3'=>$var2,
+                                'minutos_inicio_op3'=>$var3,
+                                'hora_fin_op3'=>$var4,
+                                'minutos_fin_op3'=>$var5,
+                                'cont_dia'=>0,
+                                'cont_tarde'=>1
+                            ]);
+                            return redirect()->route('eliminar_horario_tutoria_asignada_op1_1',['user'=>$user]);
+                        }else{
+                            if($dia==3){
+                                $id=$horarios->id;
+                                $var1=$horarios->dia1_op1;
+                                $var2=$horarios->hora_inicio_op1;
+                                $var3=$horarios->minutos_inicio_op1;
+                                $var4=$horarios->hora_fin_op1;
+                                $var5=$horarios->minutos_fin_op1;
+                                Horario::destroy($horarios->id);
+                                DB::table('horarios')->insert([
+                                    'id'=>$id,
+                                    'usuario_id'=>$docente,
+                                    'dia1_op1'=>$var1,
+                                    'hora_inicio_op1'=>$var2,
+                                    'minutos_inicio_op1'=>$var3,
+                                    'hora_fin_op1'=>$var4,
+                                    'minutos_fin_op1'=>$var5,
+                                    'cont_dia'=>1,
+                                    'cont_tarde'=>0
+                                ]);
+                                return redirect()->route('eliminar_horario_tutoria_asignada_op1_1',['user'=>$user]);
+                            }
+                        }
+                    }else{
+                        if($horarios->cont_dia==2 && $horarios->cont_tarde==1){
+                            $dia=$request->input('dia1');
+                            if($dia==1){
+                                $id=$horarios->id;
+                                $var1=$horarios->dia1_op2;
+                                $var2=$horarios->hora_inicio_op2;
+                                $var3=$horarios->minutos_inicio_op2;
+                                $var4=$horarios->hora_fin_op2;
+                                $var5=$horarios->minutos_fin_op2;
+
+                                $var6=$horarios->dia1_op3;
+                                $var7=$horarios->hora_inicio_op3;
+                                $var8=$horarios->minutos_inicio_op3;
+                                $var9=$horarios->hora_fin_op3;
+                                $var10=$horarios->minutos_fin_op3;
+                                Horario::destroy($horarios->id);
+                                DB::table('horarios')->insert([
+                                    'id'=>$id,
+                                    'usuario_id'=>$docente,
+                                    'dia1_op1'=>$var1,
+                                    'hora_inicio_op1'=>$var2,
+                                    'minutos_inicio_op1'=>$var3,
+                                    'hora_fin_op1'=>$var4,
+                                    'minutos_fin_op1'=>$var5,
+
+                                    'dia1_op3'=>$var6,
+                                    'hora_inicio_op3'=>$var7,
+                                    'minutos_inicio_op3'=>$var8,
+                                    'hora_fin_op3'=>$var9,
+                                    'minutos_fin_op3'=>$var10,
+
+                                    'cont_dia'=>1,
+                                    'cont_tarde'=>1
+                                ]);
+                                return redirect()->route('eliminar_horario_tutoria_asignada_op1_1',['user'=>$user]);
+                            }else{
+                                if($dia==2){
+                                    $id=$horarios->id;
+                                    $var1=$horarios->dia1_op1;
+                                    $var2=$horarios->hora_inicio_op1;
+                                    $var3=$horarios->minutos_inicio_op1;
+                                    $var4=$horarios->hora_fin_op1;
+                                    $var5=$horarios->minutos_fin_op1;
+
+                                    $var6=$horarios->dia1_op3;
+                                    $var7=$horarios->hora_inicio_op3;
+                                    $var8=$horarios->minutos_inicio_op3;
+                                    $var9=$horarios->hora_fin_op3;
+                                    $var10=$horarios->minutos_fin_op3;
+                                    Horario::destroy($horarios->id);
+                                    DB::table('horarios')->insert([
+                                        'id'=>$id,
+                                        'usuario_id'=>$docente,
+                                        'dia1_op1'=>$var1,
+                                        'hora_inicio_op1'=>$var2,
+                                        'minutos_inicio_op1'=>$var3,
+                                        'hora_fin_op1'=>$var4,
+                                        'minutos_fin_op1'=>$var5,
+
+                                        'dia1_op3'=>$var6,
+                                        'hora_inicio_op3'=>$var7,
+                                        'minutos_inicio_op3'=>$var8,
+                                        'hora_fin_op3'=>$var9,
+                                        'minutos_fin_op3'=>$var10,
+
+                                        'cont_dia'=>1,
+                                        'cont_tarde'=>1
+                                    ]);
+                                    return redirect()->route('eliminar_horario_tutoria_asignada_op1_1',['user'=>$user]);
+                                }else{
+                                    if($dia==3){
+                                        $id=$horarios->id;
+                                        $var1=$horarios->dia1_op1;
+                                        $var2=$horarios->hora_inicio_op1;
+                                        $var3=$horarios->minutos_inicio_op1;
+                                        $var4=$horarios->hora_fin_op1;
+                                        $var5=$horarios->minutos_fin_op1;
+
+                                        $var6=$horarios->dia1_op2;
+                                        $var7=$horarios->hora_inicio_op2;
+                                        $var8=$horarios->minutos_inicio_op2;
+                                        $var9=$horarios->hora_fin_op2;
+                                        $var10=$horarios->minutos_fin_op2;
+                                        Horario::destroy($horarios->id);
+                                        DB::table('horarios')->insert([
+                                            'id'=>$id,
+                                            'usuario_id'=>$docente,
+                                            'dia1_op1'=>$var1,
+                                            'hora_inicio_op1'=>$var2,
+                                            'minutos_inicio_op1'=>$var3,
+                                            'hora_fin_op1'=>$var4,
+                                            'minutos_fin_op1'=>$var5,
+
+                                            'dia1_op2'=>$var6,
+                                            'hora_inicio_op2'=>$var7,
+                                            'minutos_inicio_op2'=>$var8,
+                                            'hora_fin_op2'=>$var9,
+                                            'minutos_fin_op2'=>$var10,
+
+                                            'cont_dia'=>2,
+                                            'cont_tarde'=>0
+                                        ]);
+                                        return redirect()->route('eliminar_horario_tutoria_asignada_op1_1',['user'=>$user]);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    public function eliminar_horario_tutoria_asignada_op2(User $user, Request $request){
+        $docente=$user->id;
+        $horarios=DB::table('horario2s')->where('usuario_id',$docente)->first();
+        if($horarios->cont_dia==0 && $horarios->cont_tarde==1){
+            Horario2::destroy($horarios->id); 
+            return redirect()->route('eliminar_horario_tutoria_asignada_op1_1',['user'=>$user]);
+        }else{
+            if($horarios->cont_dia==1 && $horarios->cont_tarde==0){
+                Horario2::destroy($horarios->id); 
+                return redirect()->route('eliminar_horario_tutoria_asignada_op1_1',['user'=>$user]);
+            }else{
+                if($horarios->cont_dia==2 && $horarios->cont_tarde==0){
+                    $dia=$request->input('dia');
+                    if($dia==1){
+                        $id=$horarios->id;
+                        $var1=$horarios->dia2_op2;
+                        $var2=$horarios->hora_inicio_op2;
+                        $var3=$horarios->minutos_inicio_op2;
+                        $var4=$horarios->hora_fin_op2;
+                        $var5=$horarios->minutos_fin_op2;
+                        Horario2::destroy($horarios->id);
+                        DB::table('horario2s')->insert([
+                            'id'=>$id,
+                            'usuario_id'=>$docente,
+                            'dia2_op1'=>$var1,
+                            'hora_inicio_op1'=>$var2,
+                            'minutos_inicio_op1'=>$var3,
+                            'hora_fin_op1'=>$var4,
+                            'minutos_fin_op1'=>$var5,
+                            'cont_dia'=>1,
+                            'cont_tarde'=>0
+                        ]);
+                        return redirect()->route('eliminar_horario_tutoria_asignada_op1_1',['user'=>$user]);
+                    }else{
+                        if($dia==2){
+                            $id=$horarios->id;
+                            $var1=$horarios->dia2_op1;
+                            $var2=$horarios->hora_inicio_op1;
+                            $var3=$horarios->minutos_inicio_op1;
+                            $var4=$horarios->hora_fin_op1;
+                            $var5=$horarios->minutos_fin_op1;
+                            Horario2::destroy($horarios->id);
+                            DB::table('horario2s')->insert([
+                                'id'=>$id,
+                                'usuario_id'=>$docente,
+                                'dia2_op1'=>$var1,
+                                'hora_inicio_op1'=>$var2,
+                                'minutos_inicio_op1'=>$var3,
+                                'hora_fin_op1'=>$var4,
+                                'minutos_fin_op1'=>$var5,
+                                'cont_dia'=>1,
+                                'cont_tarde'=>0
+                            ]);
+                            return redirect()->route('eliminar_horario_tutoria_asignada_op1_1',['user'=>$user]);
+                        }
+                    }
+                }else{
+                    if($horarios->cont_dia==1 && $horarios->cont_tarde==1){
+                        $dia=$request->input('dia');
+                        if($dia==1){
+                            $id=$horarios->id;
+                            $var1=$horarios->dia2_op3;
+                            $var2=$horarios->hora_inicio_op3;
+                            $var3=$horarios->minutos_inicio_op3;
+                            $var4=$horarios->hora_fin_op3;
+                            $var5=$horarios->minutos_fin_op3;
+                            Horario2::destroy($horarios->id);
+                            DB::table('horario2s')->insert([
+                                'id'=>$id,
+                                'usuario_id'=>$docente,
+                                'dia2_op3'=>$var1,
+                                'hora_inicio_op3'=>$var2,
+                                'minutos_inicio_op3'=>$var3,
+                                'hora_fin_op3'=>$var4,
+                                'minutos_fin_op3'=>$var5,
+                                'cont_dia'=>0,
+                                'cont_tarde'=>1
+                            ]);
+                            return redirect()->route('eliminar_horario_tutoria_asignada_op1_1',['user'=>$user]);
+                        }else{
+                            if($dia==3){
+                                $id=$horarios->id;
+                                $var1=$horarios->dia2_op1;
+                                $var2=$horarios->hora_inicio_op1;
+                                $var3=$horarios->minutos_inicio_op1;
+                                $var4=$horarios->hora_fin_op1;
+                                $var5=$horarios->minutos_fin_op1;
+                                Horario2::destroy($horarios->id);
+                                DB::table('horario2s')->insert([
+                                    'id'=>$id,
+                                    'usuario_id'=>$docente,
+                                    'dia2_op1'=>$var1,
+                                    'hora_inicio_op1'=>$var2,
+                                    'minutos_inicio_op1'=>$var3,
+                                    'hora_fin_op1'=>$var4,
+                                    'minutos_fin_op1'=>$var5,
+                                    'cont_dia'=>1,
+                                    'cont_tarde'=>0
+                                ]);
+                                return redirect()->route('eliminar_horario_tutoria_asignada_op1_1',['user'=>$user]);
+                            }
+                        }
+                    }else{
+                        if($horarios->cont_dia==2 && $horarios->cont_tarde==1){
+                            $dia=$request->input('dia');
+                            if($dia==1){
+                                $id=$horarios->id;
+                                $var1=$horarios->dia2_op2;
+                                $var2=$horarios->hora_inicio_op2;
+                                $var3=$horarios->minutos_inicio_op2;
+                                $var4=$horarios->hora_fin_op2;
+                                $var5=$horarios->minutos_fin_op2;
+
+                                $var6=$horarios->dia2_op3;
+                                $var7=$horarios->hora_inicio_op3;
+                                $var8=$horarios->minutos_inicio_op3;
+                                $var9=$horarios->hora_fin_op3;
+                                $var10=$horarios->minutos_fin_op3;
+                                Horario2::destroy($horarios->id);
+                                DB::table('horario2s')->insert([
+                                    'id'=>$id,
+                                    'usuario_id'=>$docente,
+                                    'dia2_op1'=>$var1,
+                                    'hora_inicio_op1'=>$var2,
+                                    'minutos_inicio_op1'=>$var3,
+                                    'hora_fin_op1'=>$var4,
+                                    'minutos_fin_op1'=>$var5,
+
+                                    'dia2_op3'=>$var6,
+                                    'hora_inicio_op3'=>$var7,
+                                    'minutos_inicio_op3'=>$var8,
+                                    'hora_fin_op3'=>$var9,
+                                    'minutos_fin_op3'=>$var10,
+
+                                    'cont_dia'=>1,
+                                    'cont_tarde'=>1
+                                ]);
+                                return redirect()->route('eliminar_horario_tutoria_asignada_op1_1',['user'=>$user]);
+                            }else{
+                                if($dia==2){
+                                    $id=$horarios->id;
+                                    $var1=$horarios->dia2_op1;
+                                    $var2=$horarios->hora_inicio_op1;
+                                    $var3=$horarios->minutos_inicio_op1;
+                                    $var4=$horarios->hora_fin_op1;
+                                    $var5=$horarios->minutos_fin_op1;
+
+                                    $var6=$horarios->dia2_op3;
+                                    $var7=$horarios->hora_inicio_op3;
+                                    $var8=$horarios->minutos_inicio_op3;
+                                    $var9=$horarios->hora_fin_op3;
+                                    $var10=$horarios->minutos_fin_op3;
+                                    Horario2::destroy($horarios->id);
+                                    DB::table('horario2s')->insert([
+                                        'id'=>$id,
+                                        'usuario_id'=>$docente,
+                                        'dia2_op1'=>$var1,
+                                        'hora_inicio_op1'=>$var2,
+                                        'minutos_inicio_op1'=>$var3,
+                                        'hora_fin_op1'=>$var4,
+                                        'minutos_fin_op1'=>$var5,
+
+                                        'dia2_op3'=>$var6,
+                                        'hora_inicio_op3'=>$var7,
+                                        'minutos_inicio_op3'=>$var8,
+                                        'hora_fin_op3'=>$var9,
+                                        'minutos_fin_op3'=>$var10,
+
+                                        'cont_dia'=>1,
+                                        'cont_tarde'=>1
+                                    ]);
+                                    return redirect()->route('eliminar_horario_tutoria_asignada_op1_1',['user'=>$user]);
+                                }else{
+                                    if($dia==3){
+                                        $id=$horarios->id;
+                                        $var1=$horarios->dia2_op1;
+                                        $var2=$horarios->hora_inicio_op1;
+                                        $var3=$horarios->minutos_inicio_op1;
+                                        $var4=$horarios->hora_fin_op1;
+                                        $var5=$horarios->minutos_fin_op1;
+
+                                        $var6=$horarios->dia2_op2;
+                                        $var7=$horarios->hora_inicio_op2;
+                                        $var8=$horarios->minutos_inicio_op2;
+                                        $var9=$horarios->hora_fin_op2;
+                                        $var10=$horarios->minutos_fin_op2;
+                                        Horario2::destroy($horarios->id);
+                                        DB::table('horario2s')->insert([
+                                            'id'=>$id,
+                                            'usuario_id'=>$docente,
+                                            'dia2_op1'=>$var1,
+                                            'hora_inicio_op1'=>$var2,
+                                            'minutos_inicio_op1'=>$var3,
+                                            'hora_fin_op1'=>$var4,
+                                            'minutos_fin_op1'=>$var5,
+
+                                            'dia2_op2'=>$var6,
+                                            'hora_inicio_op2'=>$var7,
+                                            'minutos_inicio_op2'=>$var8,
+                                            'hora_fin_op2'=>$var9,
+                                            'minutos_fin_op2'=>$var10,
+
+                                            'cont_dia'=>2,
+                                            'cont_tarde'=>0
+                                        ]);
+                                        return redirect()->route('eliminar_horario_tutoria_asignada_op1_1',['user'=>$user]);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    public function eliminar_horario_tutoria_asignada_op3(User $user, Request $request){
+        $docente=$user->id;
+        $horarios=DB::table('horario3s')->where('usuario_id',$docente)->first();
+        if($horarios->cont_dia==0 && $horarios->cont_tarde==1){
+            Horario3::destroy($horarios->id); 
+            return redirect()->route('eliminar_horario_tutoria_asignada_op1_1',['user'=>$user]);
+        }else{
+            if($horarios->cont_dia==1 && $horarios->cont_tarde==0){
+                Horario3::destroy($horarios->id); 
+                return redirect()->route('eliminar_horario_tutoria_asignada_op1_1',['user'=>$user]);
+            }else{
+                if($horarios->cont_dia==2 && $horarios->cont_tarde==0){
+                    $dia=$request->input('dia');
+                    if($dia==1){
+                        $id=$horarios->id;
+                        $var1=$horarios->dia3_op2;
+                        $var2=$horarios->hora_inicio_op2;
+                        $var3=$horarios->minutos_inicio_op2;
+                        $var4=$horarios->hora_fin_op2;
+                        $var5=$horarios->minutos_fin_op2;
+                        Horario3::destroy($horarios->id);
+                        DB::table('horario3s')->insert([
+                            'id'=>$id,
+                            'usuario_id'=>$docente,
+                            'dia3_op1'=>$var1,
+                            'hora_inicio_op1'=>$var2,
+                            'minutos_inicio_op1'=>$var3,
+                            'hora_fin_op1'=>$var4,
+                            'minutos_fin_op1'=>$var5,
+                            'cont_dia'=>1,
+                            'cont_tarde'=>0
+                        ]);
+                        return redirect()->route('eliminar_horario_tutoria_asignada_op1_1',['user'=>$user]);
+                    }else{
+                        if($dia==2){
+                            $id=$horarios->id;
+                            $var1=$horarios->dia3_op1;
+                            $var2=$horarios->hora_inicio_op1;
+                            $var3=$horarios->minutos_inicio_op1;
+                            $var4=$horarios->hora_fin_op1;
+                            $var5=$horarios->minutos_fin_op1;
+                            Horario3::destroy($horarios->id);
+                            DB::table('horario3s')->insert([
+                                'id'=>$id,
+                                'usuario_id'=>$docente,
+                                'dia3_op1'=>$var1,
+                                'hora_inicio_op1'=>$var2,
+                                'minutos_inicio_op1'=>$var3,
+                                'hora_fin_op1'=>$var4,
+                                'minutos_fin_op1'=>$var5,
+                                'cont_dia'=>1,
+                                'cont_tarde'=>0
+                            ]);
+                            return redirect()->route('eliminar_horario_tutoria_asignada_op1_1',['user'=>$user]);
+                        }
+                    }
+                }else{
+                    if($horarios->cont_dia==1 && $horarios->cont_tarde==1){
+                        $dia=$request->input('dia');
+                        if($dia==1){
+                            $id=$horarios->id;
+                            $var1=$horarios->dia3_op3;
+                            $var2=$horarios->hora_inicio_op3;
+                            $var3=$horarios->minutos_inicio_op3;
+                            $var4=$horarios->hora_fin_op3;
+                            $var5=$horarios->minutos_fin_op3;
+                            Horario3::destroy($horarios->id);
+                            DB::table('horario3s')->insert([
+                                'id'=>$id,
+                                'usuario_id'=>$docente,
+                                'dia3_op3'=>$var1,
+                                'hora_inicio_op3'=>$var2,
+                                'minutos_inicio_op3'=>$var3,
+                                'hora_fin_op3'=>$var4,
+                                'minutos_fin_op3'=>$var5,
+                                'cont_dia'=>0,
+                                'cont_tarde'=>1
+                            ]);
+                            return redirect()->route('eliminar_horario_tutoria_asignada_op1_1',['user'=>$user]);
+                        }else{
+                            if($dia==3){
+                                $id=$horarios->id;
+                                $var1=$horarios->dia3_op1;
+                                $var2=$horarios->hora_inicio_op1;
+                                $var3=$horarios->minutos_inicio_op1;
+                                $var4=$horarios->hora_fin_op1;
+                                $var5=$horarios->minutos_fin_op1;
+                                Horario3::destroy($horarios->id);
+                                DB::table('horario3s')->insert([
+                                    'id'=>$id,
+                                    'usuario_id'=>$docente,
+                                    'dia3_op1'=>$var1,
+                                    'hora_inicio_op1'=>$var2,
+                                    'minutos_inicio_op1'=>$var3,
+                                    'hora_fin_op1'=>$var4,
+                                    'minutos_fin_op1'=>$var5,
+                                    'cont_dia'=>1,
+                                    'cont_tarde'=>0
+                                ]);
+                                return redirect()->route('eliminar_horario_tutoria_asignada_op1_1',['user'=>$user]);
+                            }
+                        }
+                    }else{
+                        if($horarios->cont_dia==2 && $horarios->cont_tarde==1){
+                            $dia=$request->input('dia');
+                            if($dia==1){
+                                $id=$horarios->id;
+                                $var1=$horarios->dia3_op2;
+                                $var2=$horarios->hora_inicio_op2;
+                                $var3=$horarios->minutos_inicio_op2;
+                                $var4=$horarios->hora_fin_op2;
+                                $var5=$horarios->minutos_fin_op2;
+
+                                $var6=$horarios->dia3_op3;
+                                $var7=$horarios->hora_inicio_op3;
+                                $var8=$horarios->minutos_inicio_op3;
+                                $var9=$horarios->hora_fin_op3;
+                                $var10=$horarios->minutos_fin_op3;
+                                Horario3::destroy($horarios->id);
+                                DB::table('horario3s')->insert([
+                                    'id'=>$id,
+                                    'usuario_id'=>$docente,
+                                    'dia3_op1'=>$var1,
+                                    'hora_inicio_op1'=>$var2,
+                                    'minutos_inicio_op1'=>$var3,
+                                    'hora_fin_op1'=>$var4,
+                                    'minutos_fin_op1'=>$var5,
+
+                                    'dia3_op3'=>$var6,
+                                    'hora_inicio_op3'=>$var7,
+                                    'minutos_inicio_op3'=>$var8,
+                                    'hora_fin_op3'=>$var9,
+                                    'minutos_fin_op3'=>$var10,
+
+                                    'cont_dia'=>1,
+                                    'cont_tarde'=>1
+                                ]);
+                                return redirect()->route('eliminar_horario_tutoria_asignada_op1_1',['user'=>$user]);
+                            }else{
+                                if($dia==2){
+                                    $id=$horarios->id;
+                                    $var1=$horarios->dia3_op1;
+                                    $var2=$horarios->hora_inicio_op1;
+                                    $var3=$horarios->minutos_inicio_op1;
+                                    $var4=$horarios->hora_fin_op1;
+                                    $var5=$horarios->minutos_fin_op1;
+
+                                    $var6=$horarios->dia3_op3;
+                                    $var7=$horarios->hora_inicio_op3;
+                                    $var8=$horarios->minutos_inicio_op3;
+                                    $var9=$horarios->hora_fin_op3;
+                                    $var10=$horarios->minutos_fin_op3;
+                                    Horario3::destroy($horarios->id);
+                                    DB::table('horario3s')->insert([
+                                        'id'=>$id,
+                                        'usuario_id'=>$docente,
+                                        'dia3_op1'=>$var1,
+                                        'hora_inicio_op1'=>$var2,
+                                        'minutos_inicio_op1'=>$var3,
+                                        'hora_fin_op1'=>$var4,
+                                        'minutos_fin_op1'=>$var5,
+
+                                        'dia3_op3'=>$var6,
+                                        'hora_inicio_op3'=>$var7,
+                                        'minutos_inicio_op3'=>$var8,
+                                        'hora_fin_op3'=>$var9,
+                                        'minutos_fin_op3'=>$var10,
+
+                                        'cont_dia'=>1,
+                                        'cont_tarde'=>1
+                                    ]);
+                                    return redirect()->route('eliminar_horario_tutoria_asignada_op1_1',['user'=>$user]);
+                                }else{
+                                    if($dia==3){
+                                        $id=$horarios->id;
+                                        $var1=$horarios->dia3_op1;
+                                        $var2=$horarios->hora_inicio_op1;
+                                        $var3=$horarios->minutos_inicio_op1;
+                                        $var4=$horarios->hora_fin_op1;
+                                        $var5=$horarios->minutos_fin_op1;
+
+                                        $var6=$horarios->dia3_op2;
+                                        $var7=$horarios->hora_inicio_op2;
+                                        $var8=$horarios->minutos_inicio_op2;
+                                        $var9=$horarios->hora_fin_op2;
+                                        $var10=$horarios->minutos_fin_op2;
+                                        Horario3::destroy($horarios->id);
+                                        DB::table('horario3s')->insert([
+                                            'id'=>$id,
+                                            'usuario_id'=>$docente,
+                                            'dia3_op1'=>$var1,
+                                            'hora_inicio_op1'=>$var2,
+                                            'minutos_inicio_op1'=>$var3,
+                                            'hora_fin_op1'=>$var4,
+                                            'minutos_fin_op1'=>$var5,
+
+                                            'dia3_op2'=>$var6,
+                                            'hora_inicio_op2'=>$var7,
+                                            'minutos_inicio_op2'=>$var8,
+                                            'hora_fin_op2'=>$var9,
+                                            'minutos_fin_op2'=>$var10,
+
+                                            'cont_dia'=>2,
+                                            'cont_tarde'=>0
+                                        ]);
+                                        return redirect()->route('eliminar_horario_tutoria_asignada_op1_1',['user'=>$user]);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    public function eliminar_horario_tutoria_asignada_op4(User $user, Request $request){
+        $docente=$user->id;
+        $horarios=DB::table('horario4s')->where('usuario_id',$docente)->first();
+        if($horarios->cont_dia==0 && $horarios->cont_tarde==1){
+            Horario4::destroy($horarios->id); 
+            return redirect()->route('eliminar_horario_tutoria_asignada_op1_1',['user'=>$user]);
+        }else{
+            if($horarios->cont_dia==1 && $horarios->cont_tarde==0){
+                Horario4::destroy($horarios->id); 
+                return redirect()->route('eliminar_horario_tutoria_asignada_op1_1',['user'=>$user]);
+            }else{
+                if($horarios->cont_dia==2 && $horarios->cont_tarde==0){
+                    $dia=$request->input('dia');
+                    if($dia==1){
+                        $id=$horarios->id;
+                        $var1=$horarios->dia4_op2;
+                        $var2=$horarios->hora_inicio_op2;
+                        $var3=$horarios->minutos_inicio_op2;
+                        $var4=$horarios->hora_fin_op2;
+                        $var5=$horarios->minutos_fin_op2;
+                        Horario4::destroy($horarios->id);
+                        DB::table('horario4s')->insert([
+                            'id'=>$id,
+                            'usuario_id'=>$docente,
+                            'dia4_op1'=>$var1,
+                            'hora_inicio_op1'=>$var2,
+                            'minutos_inicio_op1'=>$var3,
+                            'hora_fin_op1'=>$var4,
+                            'minutos_fin_op1'=>$var5,
+                            'cont_dia'=>1,
+                            'cont_tarde'=>0
+                        ]);
+                        return redirect()->route('eliminar_horario_tutoria_asignada_op1_1',['user'=>$user]);
+                    }else{
+                        if($dia==2){
+                            $id=$horarios->id;
+                            $var1=$horarios->dia4_op1;
+                            $var2=$horarios->hora_inicio_op1;
+                            $var3=$horarios->minutos_inicio_op1;
+                            $var4=$horarios->hora_fin_op1;
+                            $var5=$horarios->minutos_fin_op1;
+                            Horario4::destroy($horarios->id);
+                            DB::table('horario4s')->insert([
+                                'id'=>$id,
+                                'usuario_id'=>$docente,
+                                'dia4_op1'=>$var1,
+                                'hora_inicio_op1'=>$var2,
+                                'minutos_inicio_op1'=>$var3,
+                                'hora_fin_op1'=>$var4,
+                                'minutos_fin_op1'=>$var5,
+                                'cont_dia'=>1,
+                                'cont_tarde'=>0
+                            ]);
+                            return redirect()->route('eliminar_horario_tutoria_asignada_op1_1',['user'=>$user]);
+                        }
+                    }
+                }else{
+                    if($horarios->cont_dia==1 && $horarios->cont_tarde==1){
+                        $dia=$request->input('dia');
+                        if($dia==1){
+                            $id=$horarios->id;
+                            $var1=$horarios->dia4_op3;
+                            $var2=$horarios->hora_inicio_op3;
+                            $var3=$horarios->minutos_inicio_op3;
+                            $var4=$horarios->hora_fin_op3;
+                            $var5=$horarios->minutos_fin_op3;
+                            Horario4::destroy($horarios->id);
+                            DB::table('horario4s')->insert([
+                                'id'=>$id,
+                                'usuario_id'=>$docente,
+                                'dia4_op3'=>$var1,
+                                'hora_inicio_op3'=>$var2,
+                                'minutos_inicio_op3'=>$var3,
+                                'hora_fin_op3'=>$var4,
+                                'minutos_fin_op3'=>$var5,
+                                'cont_dia'=>0,
+                                'cont_tarde'=>1
+                            ]);
+                            return redirect()->route('eliminar_horario_tutoria_asignada_op1_1',['user'=>$user]);
+                        }else{
+                            if($dia==3){
+                                $id=$horarios->id;
+                                $var1=$horarios->dia4_op1;
+                                $var2=$horarios->hora_inicio_op1;
+                                $var3=$horarios->minutos_inicio_op1;
+                                $var4=$horarios->hora_fin_op1;
+                                $var5=$horarios->minutos_fin_op1;
+                                Horario4::destroy($horarios->id);
+                                DB::table('horario4s')->insert([
+                                    'id'=>$id,
+                                    'usuario_id'=>$docente,
+                                    'dia4_op1'=>$var1,
+                                    'hora_inicio_op1'=>$var2,
+                                    'minutos_inicio_op1'=>$var3,
+                                    'hora_fin_op1'=>$var4,
+                                    'minutos_fin_op1'=>$var5,
+                                    'cont_dia'=>1,
+                                    'cont_tarde'=>0
+                                ]);
+                                return redirect()->route('eliminar_horario_tutoria_asignada_op1_1',['user'=>$user]);
+                            }
+                        }
+                    }else{
+                        if($horarios->cont_dia==2 && $horarios->cont_tarde==1){
+                            $dia=$request->input('dia');
+                            if($dia==1){
+                                $id=$horarios->id;
+                                $var1=$horarios->dia4_op2;
+                                $var2=$horarios->hora_inicio_op2;
+                                $var3=$horarios->minutos_inicio_op2;
+                                $var4=$horarios->hora_fin_op2;
+                                $var5=$horarios->minutos_fin_op2;
+
+                                $var6=$horarios->dia4_op3;
+                                $var7=$horarios->hora_inicio_op3;
+                                $var8=$horarios->minutos_inicio_op3;
+                                $var9=$horarios->hora_fin_op3;
+                                $var10=$horarios->minutos_fin_op3;
+                                Horario4::destroy($horarios->id);
+                                DB::table('horario4s')->insert([
+                                    'id'=>$id,
+                                    'usuario_id'=>$docente,
+                                    'dia4_op1'=>$var1,
+                                    'hora_inicio_op1'=>$var2,
+                                    'minutos_inicio_op1'=>$var3,
+                                    'hora_fin_op1'=>$var4,
+                                    'minutos_fin_op1'=>$var5,
+
+                                    'dia4_op3'=>$var6,
+                                    'hora_inicio_op3'=>$var7,
+                                    'minutos_inicio_op3'=>$var8,
+                                    'hora_fin_op3'=>$var9,
+                                    'minutos_fin_op3'=>$var10,
+
+                                    'cont_dia'=>1,
+                                    'cont_tarde'=>1
+                                ]);
+                                return redirect()->route('eliminar_horario_tutoria_asignada_op1_1',['user'=>$user]);
+                            }else{
+                                if($dia==2){
+                                    $id=$horarios->id;
+                                    $var1=$horarios->dia4_op1;
+                                    $var2=$horarios->hora_inicio_op1;
+                                    $var3=$horarios->minutos_inicio_op1;
+                                    $var4=$horarios->hora_fin_op1;
+                                    $var5=$horarios->minutos_fin_op1;
+
+                                    $var6=$horarios->dia4_op3;
+                                    $var7=$horarios->hora_inicio_op3;
+                                    $var8=$horarios->minutos_inicio_op3;
+                                    $var9=$horarios->hora_fin_op3;
+                                    $var10=$horarios->minutos_fin_op3;
+                                    Horario4::destroy($horarios->id);
+                                    DB::table('horario4s')->insert([
+                                        'id'=>$id,
+                                        'usuario_id'=>$docente,
+                                        'dia4_op1'=>$var1,
+                                        'hora_inicio_op1'=>$var2,
+                                        'minutos_inicio_op1'=>$var3,
+                                        'hora_fin_op1'=>$var4,
+                                        'minutos_fin_op1'=>$var5,
+
+                                        'dia4_op3'=>$var6,
+                                        'hora_inicio_op3'=>$var7,
+                                        'minutos_inicio_op3'=>$var8,
+                                        'hora_fin_op3'=>$var9,
+                                        'minutos_fin_op3'=>$var10,
+
+                                        'cont_dia'=>1,
+                                        'cont_tarde'=>1
+                                    ]);
+                                    return redirect()->route('eliminar_horario_tutoria_asignada_op1_1',['user'=>$user]);
+                                }else{
+                                    if($dia==3){
+                                        $id=$horarios->id;
+                                        $var1=$horarios->dia4_op1;
+                                        $var2=$horarios->hora_inicio_op1;
+                                        $var3=$horarios->minutos_inicio_op1;
+                                        $var4=$horarios->hora_fin_op1;
+                                        $var5=$horarios->minutos_fin_op1;
+
+                                        $var6=$horarios->dia4_op2;
+                                        $var7=$horarios->hora_inicio_op2;
+                                        $var8=$horarios->minutos_inicio_op2;
+                                        $var9=$horarios->hora_fin_op2;
+                                        $var10=$horarios->minutos_fin_op2;
+                                        Horario4::destroy($horarios->id);
+                                        DB::table('horario4s')->insert([
+                                            'id'=>$id,
+                                            'usuario_id'=>$docente,
+                                            'dia4_op1'=>$var1,
+                                            'hora_inicio_op1'=>$var2,
+                                            'minutos_inicio_op1'=>$var3,
+                                            'hora_fin_op1'=>$var4,
+                                            'minutos_fin_op1'=>$var5,
+
+                                            'dia4_op2'=>$var6,
+                                            'hora_inicio_op2'=>$var7,
+                                            'minutos_inicio_op2'=>$var8,
+                                            'hora_fin_op2'=>$var9,
+                                            'minutos_fin_op2'=>$var10,
+
+                                            'cont_dia'=>2,
+                                            'cont_tarde'=>0
+                                        ]);
+                                        return redirect()->route('eliminar_horario_tutoria_asignada_op1_1',['user'=>$user]);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    public function eliminar_horario_tutoria_asignada_op5(User $user, Request $request){
+        $docente=$user->id;
+        $horarios=DB::table('horario5s')->where('usuario_id',$docente)->first();
+        if($horarios->cont_dia==0 && $horarios->cont_tarde==1){
+            Horario5::destroy($horarios->id); 
+            return redirect()->route('eliminar_horario_tutoria_asignada_op1_1',['user'=>$user]);
+        }else{
+            if($horarios->cont_dia==1 && $horarios->cont_tarde==0){
+                Horario5::destroy($horarios->id); 
+                return redirect()->route('eliminar_horario_tutoria_asignada_op1_1',['user'=>$user]);
+            }else{
+                if($horarios->cont_dia==2 && $horarios->cont_tarde==0){
+                    $dia=$request->input('dia');
+                    if($dia==1){
+                        $id=$horarios->id;
+                        $var1=$horarios->dia5_op2;
+                        $var2=$horarios->hora_inicio_op2;
+                        $var3=$horarios->minutos_inicio_op2;
+                        $var4=$horarios->hora_fin_op2;
+                        $var5=$horarios->minutos_fin_op2;
+                        Horario5::destroy($horarios->id);
+                        DB::table('horario5s')->insert([
+                            'id'=>$id,
+                            'usuario_id'=>$docente,
+                            'dia5_op1'=>$var1,
+                            'hora_inicio_op1'=>$var2,
+                            'minutos_inicio_op1'=>$var3,
+                            'hora_fin_op1'=>$var4,
+                            'minutos_fin_op1'=>$var5,
+                            'cont_dia'=>1,
+                            'cont_tarde'=>0
+                        ]);
+                        return redirect()->route('eliminar_horario_tutoria_asignada_op1_1',['user'=>$user]);
+                    }else{
+                        if($dia==2){
+                            $id=$horarios->id;
+                            $var1=$horarios->dia5_op1;
+                            $var2=$horarios->hora_inicio_op1;
+                            $var3=$horarios->minutos_inicio_op1;
+                            $var4=$horarios->hora_fin_op1;
+                            $var5=$horarios->minutos_fin_op1;
+                            Horario5::destroy($horarios->id);
+                            DB::table('horario5s')->insert([
+                                'id'=>$id,
+                                'usuario_id'=>$docente,
+                                'dia5_op1'=>$var1,
+                                'hora_inicio_op1'=>$var2,
+                                'minutos_inicio_op1'=>$var3,
+                                'hora_fin_op1'=>$var4,
+                                'minutos_fin_op1'=>$var5,
+                                'cont_dia'=>1,
+                                'cont_tarde'=>0
+                            ]);
+                            return redirect()->route('eliminar_horario_tutoria_asignada_op1_1',['user'=>$user]);
+                        }
+                    }
+                }else{
+                    if($horarios->cont_dia==1 && $horarios->cont_tarde==1){
+                        $dia=$request->input('dia');
+                        if($dia==1){
+                            $id=$horarios->id;
+                            $var1=$horarios->dia5_op3;
+                            $var2=$horarios->hora_inicio_op3;
+                            $var3=$horarios->minutos_inicio_op3;
+                            $var4=$horarios->hora_fin_op3;
+                            $var5=$horarios->minutos_fin_op3;
+                            Horario5::destroy($horarios->id);
+                            DB::table('horario5s')->insert([
+                                'id'=>$id,
+                                'usuario_id'=>$docente,
+                                'dia5_op3'=>$var1,
+                                'hora_inicio_op3'=>$var2,
+                                'minutos_inicio_op3'=>$var3,
+                                'hora_fin_op3'=>$var4,
+                                'minutos_fin_op3'=>$var5,
+                                'cont_dia'=>0,
+                                'cont_tarde'=>1
+                            ]);
+                            return redirect()->route('eliminar_horario_tutoria_asignada_op1_1',['user'=>$user]);
+                        }else{
+                            if($dia==3){
+                                $id=$horarios->id;
+                                $var1=$horarios->dia5_op1;
+                                $var2=$horarios->hora_inicio_op1;
+                                $var3=$horarios->minutos_inicio_op1;
+                                $var4=$horarios->hora_fin_op1;
+                                $var5=$horarios->minutos_fin_op1;
+                                Horario5::destroy($horarios->id);
+                                DB::table('horario5s')->insert([
+                                    'id'=>$id,
+                                    'usuario_id'=>$docente,
+                                    'dia5_op1'=>$var1,
+                                    'hora_inicio_op1'=>$var2,
+                                    'minutos_inicio_op1'=>$var3,
+                                    'hora_fin_op1'=>$var4,
+                                    'minutos_fin_op1'=>$var5,
+                                    'cont_dia'=>1,
+                                    'cont_tarde'=>0
+                                ]);
+                                return redirect()->route('eliminar_horario_tutoria_asignada_op1_1',['user'=>$user]);
+                            }
+                        }
+                    }else{
+                        if($horarios->cont_dia==2 && $horarios->cont_tarde==1){
+                            $dia=$request->input('dia');
+                            if($dia==1){
+                                $id=$horarios->id;
+                                $var1=$horarios->dia5_op2;
+                                $var2=$horarios->hora_inicio_op2;
+                                $var3=$horarios->minutos_inicio_op2;
+                                $var4=$horarios->hora_fin_op2;
+                                $var5=$horarios->minutos_fin_op2;
+
+                                $var6=$horarios->dia5_op3;
+                                $var7=$horarios->hora_inicio_op3;
+                                $var8=$horarios->minutos_inicio_op3;
+                                $var9=$horarios->hora_fin_op3;
+                                $var10=$horarios->minutos_fin_op3;
+                                Horario5::destroy($horarios->id);
+                                DB::table('horario5s')->insert([
+                                    'id'=>$id,
+                                    'usuario_id'=>$docente,
+                                    'dia5_op1'=>$var1,
+                                    'hora_inicio_op1'=>$var2,
+                                    'minutos_inicio_op1'=>$var3,
+                                    'hora_fin_op1'=>$var4,
+                                    'minutos_fin_op1'=>$var5,
+
+                                    'dia5_op3'=>$var6,
+                                    'hora_inicio_op3'=>$var7,
+                                    'minutos_inicio_op3'=>$var8,
+                                    'hora_fin_op3'=>$var9,
+                                    'minutos_fin_op3'=>$var10,
+
+                                    'cont_dia'=>1,
+                                    'cont_tarde'=>1
+                                ]);
+                                return redirect()->route('eliminar_horario_tutoria_asignada_op1_1',['user'=>$user]);
+                            }else{
+                                if($dia==2){
+                                    $id=$horarios->id;
+                                    $var1=$horarios->dia5_op1;
+                                    $var2=$horarios->hora_inicio_op1;
+                                    $var3=$horarios->minutos_inicio_op1;
+                                    $var4=$horarios->hora_fin_op1;
+                                    $var5=$horarios->minutos_fin_op1;
+
+                                    $var6=$horarios->dia5_op3;
+                                    $var7=$horarios->hora_inicio_op3;
+                                    $var8=$horarios->minutos_inicio_op3;
+                                    $var9=$horarios->hora_fin_op3;
+                                    $var10=$horarios->minutos_fin_op3;
+                                    Horario5::destroy($horarios->id);
+                                    DB::table('horario5s')->insert([
+                                        'id'=>$id,
+                                        'usuario_id'=>$docente,
+                                        'dia5_op1'=>$var1,
+                                        'hora_inicio_op1'=>$var2,
+                                        'minutos_inicio_op1'=>$var3,
+                                        'hora_fin_op1'=>$var4,
+                                        'minutos_fin_op1'=>$var5,
+
+                                        'dia5_op3'=>$var6,
+                                        'hora_inicio_op3'=>$var7,
+                                        'minutos_inicio_op3'=>$var8,
+                                        'hora_fin_op3'=>$var9,
+                                        'minutos_fin_op3'=>$var10,
+
+                                        'cont_dia'=>1,
+                                        'cont_tarde'=>1
+                                    ]);
+                                    return redirect()->route('eliminar_horario_tutoria_asignada_op1_1',['user'=>$user]);
+                                }else{
+                                    if($dia==3){
+                                        $id=$horarios->id;
+                                        $var1=$horarios->dia5_op1;
+                                        $var2=$horarios->hora_inicio_op1;
+                                        $var3=$horarios->minutos_inicio_op1;
+                                        $var4=$horarios->hora_fin_op1;
+                                        $var5=$horarios->minutos_fin_op1;
+
+                                        $var6=$horarios->dia5_op2;
+                                        $var7=$horarios->hora_inicio_op2;
+                                        $var8=$horarios->minutos_inicio_op2;
+                                        $var9=$horarios->hora_fin_op2;
+                                        $var10=$horarios->minutos_fin_op2;
+                                        Horario5::destroy($horarios->id);
+                                        DB::table('horario5s')->insert([
+                                            'id'=>$id,
+                                            'usuario_id'=>$docente,
+                                            'dia5_op1'=>$var1,
+                                            'hora_inicio_op1'=>$var2,
+                                            'minutos_inicio_op1'=>$var3,
+                                            'hora_fin_op1'=>$var4,
+                                            'minutos_fin_op1'=>$var5,
+
+                                            'dia5_op2'=>$var6,
+                                            'hora_inicio_op2'=>$var7,
+                                            'minutos_inicio_op2'=>$var8,
+                                            'hora_fin_op2'=>$var9,
+                                            'minutos_fin_op2'=>$var10,
+
+                                            'cont_dia'=>2,
+                                            'cont_tarde'=>0
+                                        ]);
+                                        return redirect()->route('eliminar_horario_tutoria_asignada_op1_1',['user'=>$user]);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    public function eliminar_horario_tutoria_asignada_op1_1(User $user){
+        $docente=$user->id;
+        $horarios=DB::table('horarios')->where('usuario_id',$docente)->first();
+        $horario2s=DB::table('horario2s')->where('usuario_id',$docente)->first();
+        $horario3s=DB::table('horario3s')->where('usuario_id',$docente)->first();
+        $horario4s=DB::table('horario4s')->where('usuario_id',$docente)->first();
+        $horario5s=DB::table('horario5s')->where('usuario_id',$docente)->first();
+        Alert::success('¡Bien hecho! ')
+            ->details('Se ha eliminado correctamente el horario de tutoría');
+        return view('user_administrador.horario_tutoria_asignada',compact('user','horarios','horario2s','horario3s','horario4s','horario5s'));
     }
 }

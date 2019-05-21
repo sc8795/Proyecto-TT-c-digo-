@@ -87,6 +87,27 @@ Route::put('editando_materia/{materia}','AuthAdministradorController@editando_ma
 /* Rutas para eliminar una materia registrada */
 Route::delete('eliminar_materia/{materia}','AuthAdministradorController@eliminar_materia')->name('eliminar_materia');
 
+/* Rutas para asignar horario de tutoría al docente */
+Route::get('asignar_horario_tutoria','AuthAdministradorController@asignar_horario_tutoria')->name('asignar_horario_tutoria');
+Route::post('asignar_horario_docente/{user}','AuthAdministradorController@asignar_horario_docente')->name('asignar_horario_docente');
+Route::post('asignar_horario/{user}','AuthAdministradorController@asignar_horario')->name('asignar_horario');
+Route::post('asignar_horario_btn_docente/{user}','AuthAdministradorController@asignar_horario_btn_docente')->name('asignar_horario_btn_docente');
+
+/* Rutas para visualizar horario de tutorías asignadas */
+Route::get('horario_tutoria_asignada/{user}','AuthAdministradorController@horario_tutoria_asignada')->name('horario_tutoria_asignada');
+Route::get('horario_tutoria_asignada_op2/{user}','AuthAdministradorController@horario_tutoria_asignada_op2')->name('horario_tutoria_asignada_op2');
+
+/* Rutas para eliminar horario de tututoria asignada */
+Route::delete('eliminar_horario_tutoria_asignada_op1/{user}','AuthAdministradorController@eliminar_horario_tutoria_asignada_op1')->name('eliminar_horario_tutoria_asignada_op1');
+Route::delete('eliminar_horario_tutoria_asignada_op2/{user}','AuthAdministradorController@eliminar_horario_tutoria_asignada_op2')->name('eliminar_horario_tutoria_asignada_op2');
+Route::delete('eliminar_horario_tutoria_asignada_op3/{user}','AuthAdministradorController@eliminar_horario_tutoria_asignada_op3')->name('eliminar_horario_tutoria_asignada_op3');
+Route::delete('eliminar_horario_tutoria_asignada_op4/{user}','AuthAdministradorController@eliminar_horario_tutoria_asignada_op4')->name('eliminar_horario_tutoria_asignada_op4');
+Route::delete('eliminar_horario_tutoria_asignada_op5/{user}','AuthAdministradorController@eliminar_horario_tutoria_asignada_op5')->name('eliminar_horario_tutoria_asignada_op5');
+Route::get('eliminar_horario_tutoria_asignada_op1_1/{user}','AuthAdministradorController@eliminar_horario_tutoria_asignada_op1_1')->name('eliminar_horario_tutoria_asignada_op1_1');
+
+/* Rutas para editar horario de tutoría asignada */
+Route::get('vista_editar_horario_tutoria_asignada_op1/{user}','AuthAdministradorController@vista_editar_horario_tutoria_asignada_op1')->name('vista_editar_horario_tutoria_asignada_op1');
+
 /* 
 |--------------------------------------------------------------------------
 | Rutas del Estudiante

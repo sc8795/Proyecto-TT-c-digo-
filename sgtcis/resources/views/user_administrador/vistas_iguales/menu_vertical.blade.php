@@ -17,6 +17,9 @@
                 <li>
                     <a href="{{route('docentes_registrados')}}"><i class="icono izquierda fas fa-user-check"></i>Docentes registrados</a>
                 </li>
+                <li>
+                    <a href="{{route('asignar_horario_tutoria')}}"><i class="icono izquierda fas fa-clock"></i>Asignar horario tutoría</a>
+                </li>
             </ul>
         </li>
         <li>
