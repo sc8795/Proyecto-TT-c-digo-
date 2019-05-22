@@ -110,7 +110,10 @@
                                                 <form method="POST" action="{{url("eliminar_horario_tutoria_asignada_op1/{$user->id}")}}">
                                                     {{csrf_field()}}
                                                     {{method_field('DELETE')}}
-                                                    <a href="#" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
+                                                    @php
+                                                        $aux=1;
+                                                    @endphp
+                                                    <a href="{{url("vista_editar_horario_tutoria_asignada_op1/{$user->id}/{$aux}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
                                                     <button type="submit" class="btn btn-danger btn-sm" title="Eliminar horario de tutoría asignado">Eliminar <span class="oi oi-trash"></span></button>
                                                 </form>
                                             </th>
@@ -143,7 +146,10 @@
                                                     <form method="POST" action="{{url("eliminar_horario_tutoria_asignada_op1/{$user->id}")}}">
                                                         {{csrf_field()}}
                                                         {{method_field('DELETE')}}
-                                                        <a href="#" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
+                                                        @php
+                                                            $aux=1;
+                                                        @endphp
+                                                        <a href="{{url("vista_editar_horario_tutoria_asignada_op1/{$user->id}/{$aux}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
                                                         <button type="submit" class="btn btn-danger btn-sm" title="Eliminar horario de tutoría asignado" name="dia1" value="1">Eliminar <span class="oi oi-trash"></span></button>
                                                     </form>
                                                 </th>
@@ -157,7 +163,10 @@
                                                     <form method="POST" action="{{url("eliminar_horario_tutoria_asignada_op1/{$user->id}")}}">
                                                         {{csrf_field()}}
                                                         {{method_field('DELETE')}}
-                                                        <a href="#" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
+                                                        @php
+                                                            $aux=2;
+                                                        @endphp
+                                                        <a href="{{url("vista_editar_horario_tutoria_asignada_op1/{$user->id}/{$aux}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
                                                         <button type="submit" class="btn btn-danger btn-sm" title="Eliminar horario de tutoría asignado" name="dia1" value="2">Eliminar <span class="oi oi-trash"></span></button>
                                                     </form>
                                                 </th>
@@ -183,7 +192,10 @@
                                                         <form method="POST" action="{{url("eliminar_horario_tutoria_asignada_op1/{$user->id}")}}">
                                                             {{csrf_field()}}
                                                             {{method_field('DELETE')}}
-                                                            <a href="#" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
+                                                            @php
+                                                                $aux=1;
+                                                            @endphp
+                                                            <a href="{{url("vista_editar_horario_tutoria_asignada_op1/{$user->id}/{$aux}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
                                                             <button type="submit" class="btn btn-danger btn-sm" title="Eliminar horario de tutoría asignado" name="dia1" value="1">Eliminar <span class="oi oi-trash"></span></button>
                                                         </form>
                                                     </th>
@@ -204,7 +216,10 @@
                                                         <form method="POST" action="{{url("eliminar_horario_tutoria_asignada_op1/{$user->id}")}}">
                                                             {{csrf_field()}}
                                                             {{method_field('DELETE')}}
-                                                            <a href="#" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
+                                                            @php
+                                                                $aux=3;
+                                                            @endphp
+                                                            <a href="{{url("vista_editar_horario_tutoria_asignada_op1/{$user->id}/{$aux}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
                                                             <button type="submit" class="btn btn-danger btn-sm" title="Eliminar horario de tutoría asignado" name="dia1" value="3">Eliminar <span class="oi oi-trash"></span></button>
                                                         </form>
                                                     </th>
@@ -223,7 +238,10 @@
                                                             <form method="POST" action="{{url("eliminar_horario_tutoria_asignada_op1/{$user->id}")}}">
                                                                 {{csrf_field()}}
                                                                 {{method_field('DELETE')}}
-                                                                <a href="#" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
+                                                                @php
+                                                                    $aux=1;
+                                                                @endphp
+                                                                <a href="{{url("vista_editar_horario_tutoria_asignada_op1/{$user->id}/{$aux}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
                                                                 <button type="submit" class="btn btn-danger btn-sm" title="Eliminar horario de tutoría asignado" name="dia1" value="1">Eliminar <span class="oi oi-trash"></span></button>
                                                             </form>
                                                         </th>
@@ -237,7 +255,10 @@
                                                             <form method="POST" action="{{url("eliminar_horario_tutoria_asignada_op1/{$user->id}")}}">
                                                                 {{csrf_field()}}
                                                                 {{method_field('DELETE')}}
-                                                                <a href="#" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
+                                                                @php
+                                                                    $aux=2;
+                                                                @endphp
+                                                                <a href="{{url("vista_editar_horario_tutoria_asignada_op1/{$user->id}/{$aux}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
                                                                 <button type="submit" class="btn btn-danger btn-sm" title="Eliminar horario de tutoría asignado" name="dia1" value="2">Eliminar <span class="oi oi-trash"></span></button>
                                                             </form>
                                                         </th>
@@ -251,7 +272,10 @@
                                                             <form method="POST" action="{{url("eliminar_horario_tutoria_asignada_op1/{$user->id}")}}">
                                                                 {{csrf_field()}}
                                                                 {{method_field('DELETE')}}
-                                                                <a href="#" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
+                                                                @php
+                                                                    $aux=3;
+                                                                @endphp
+                                                                <a href="{{url("vista_editar_horario_tutoria_asignada_op1/{$user->id}/{$aux}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
                                                                 <button type="submit" class="btn btn-danger btn-sm" title="Eliminar horario de tutoría asignado" name="dia1" value="3">Eliminar <span class="oi oi-trash"></span></button>
                                                             </form>
                                                         </th>
@@ -308,7 +332,10 @@
                                             <form method="POST" action="{{url("eliminar_horario_tutoria_asignada_op2/{$user->id}")}}">
                                                 {{csrf_field()}}
                                                 {{method_field('DELETE')}}
-                                                <a href="#" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
+                                                @php
+                                                    $aux=3;
+                                                @endphp
+                                                <a href="{{url("vista_editar_horario_tutoria_asignada_op2/{$user->id}/{$aux}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
                                                 <button type="submit" class="btn btn-danger btn-sm" title="Eliminar horario de tutoría asignado">Eliminar <span class="oi oi-trash"></span></button>
                                             </form>
                                         </th>
@@ -327,7 +354,10 @@
                                                 <form method="POST" action="{{url("eliminar_horario_tutoria_asignada_op2/{$user->id}")}}">
                                                     {{csrf_field()}}
                                                     {{method_field('DELETE')}}
-                                                    <a href="#" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
+                                                    @php
+                                                        $aux=1;
+                                                    @endphp
+                                                    <a href="{{url("vista_editar_horario_tutoria_asignada_op2/{$user->id}/{$aux}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
                                                     <button type="submit" class="btn btn-danger btn-sm" title="Eliminar horario de tutoría asignado">Eliminar <span class="oi oi-trash"></span></button>
                                                 </form>
                                             </th>
@@ -360,7 +390,10 @@
                                                     <form method="POST" action="{{url("eliminar_horario_tutoria_asignada_op2/{$user->id}")}}">
                                                         {{csrf_field()}}
                                                         {{method_field('DELETE')}}
-                                                        <a href="#" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
+                                                        @php
+                                                            $aux=1;
+                                                        @endphp
+                                                        <a href="{{url("vista_editar_horario_tutoria_asignada_op2/{$user->id}/{$aux}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
                                                         <button type="submit" class="btn btn-danger btn-sm" title="Eliminar horario de tutoría asignado" name="dia" value="1">Eliminar <span class="oi oi-trash"></span></button>
                                                     </form>
                                                 </th>
@@ -374,7 +407,10 @@
                                                     <form method="POST" action="{{url("eliminar_horario_tutoria_asignada_op2/{$user->id}")}}">
                                                         {{csrf_field()}}
                                                         {{method_field('DELETE')}}
-                                                        <a href="#" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
+                                                        @php
+                                                            $aux=2;
+                                                        @endphp
+                                                        <a href="{{url("vista_editar_horario_tutoria_asignada_op2/{$user->id}/{$aux}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
                                                         <button type="submit" class="btn btn-danger btn-sm" title="Eliminar horario de tutoría asignado" name="dia" value="2">Eliminar <span class="oi oi-trash"></span></button>
                                                     </form>
                                                 </th>
@@ -400,7 +436,10 @@
                                                         <form method="POST" action="{{url("eliminar_horario_tutoria_asignada_op2/{$user->id}")}}">
                                                             {{csrf_field()}}
                                                             {{method_field('DELETE')}}
-                                                            <a href="#" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
+                                                            @php
+                                                                $aux=1;
+                                                            @endphp
+                                                            <a href="{{url("vista_editar_horario_tutoria_asignada_op2/{$user->id}/{$aux}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
                                                             <button type="submit" class="btn btn-danger btn-sm" title="Eliminar horario de tutoría asignado" name="dia" value="1">Eliminar <span class="oi oi-trash"></span></button>
                                                         </form>
                                                     </th>
@@ -421,7 +460,10 @@
                                                         <form method="POST" action="{{url("eliminar_horario_tutoria_asignada_op2/{$user->id}")}}">
                                                             {{csrf_field()}}
                                                             {{method_field('DELETE')}}
-                                                            <a href="#" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
+                                                            @php
+                                                                $aux=3;
+                                                            @endphp
+                                                            <a href="{{url("vista_editar_horario_tutoria_asignada_op2/{$user->id}/{$aux}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
                                                             <button type="submit" class="btn btn-danger btn-sm" title="Eliminar horario de tutoría asignado" name="dia" value="3">Eliminar <span class="oi oi-trash"></span></button>
                                                         </form>
                                                     </th>
@@ -440,7 +482,10 @@
                                                             <form method="POST" action="{{url("eliminar_horario_tutoria_asignada_op2/{$user->id}")}}">
                                                                 {{csrf_field()}}
                                                                 {{method_field('DELETE')}}
-                                                                <a href="#" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
+                                                                @php
+                                                                    $aux=1;
+                                                                @endphp
+                                                                <a href="{{url("vista_editar_horario_tutoria_asignada_op2/{$user->id}/{$aux}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
                                                                 <button type="submit" class="btn btn-danger btn-sm" title="Eliminar horario de tutoría asignado" name="dia" value="1">Eliminar <span class="oi oi-trash"></span></button>
                                                             </form>
                                                         </th>
@@ -454,7 +499,10 @@
                                                                 <form method="POST" action="{{url("eliminar_horario_tutoria_asignada_op2/{$user->id}")}}">
                                                                     {{csrf_field()}}
                                                                     {{method_field('DELETE')}}
-                                                                    <a href="#" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
+                                                                    @php
+                                                                        $aux=2;
+                                                                    @endphp
+                                                                    <a href="{{url("vista_editar_horario_tutoria_asignada_op2/{$user->id}/{$aux}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
                                                                     <button type="submit" class="btn btn-danger btn-sm" title="Eliminar horario de tutoría asignado" name="dia" value="2">Eliminar <span class="oi oi-trash"></span></button>
                                                                 </form>
                                                             </th>
@@ -468,7 +516,10 @@
                                                             <form method="POST" action="{{url("eliminar_horario_tutoria_asignada_op2/{$user->id}")}}">
                                                                 {{csrf_field()}}
                                                                 {{method_field('DELETE')}}
-                                                                <a href="#" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
+                                                                @php
+                                                                    $aux=3;
+                                                                @endphp
+                                                                <a href="{{url("vista_editar_horario_tutoria_asignada_op2/{$user->id}/{$aux}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
                                                                 <button type="submit" class="btn btn-danger btn-sm" title="Eliminar horario de tutoría asignado" name="dia" value="3">Eliminar <span class="oi oi-trash"></span></button>
                                                             </form>
                                                         </th>
@@ -525,7 +576,10 @@
                                             <form method="POST" action="{{url("eliminar_horario_tutoria_asignada_op3/{$user->id}")}}">
                                                 {{csrf_field()}}
                                                 {{method_field('DELETE')}}
-                                                <a href="#" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
+                                                @php
+                                                    $aux=3;
+                                                @endphp
+                                                <a href="{{url("vista_editar_horario_tutoria_asignada_op3/{$user->id}/{$aux}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
                                                 <button type="submit" class="btn btn-danger btn-sm" title="Eliminar horario de tutoría asignado">Eliminar <span class="oi oi-trash"></span></button>
                                             </form>
                                         </th>
@@ -544,7 +598,10 @@
                                                 <form method="POST" action="{{url("eliminar_horario_tutoria_asignada_op3/{$user->id}")}}">
                                                     {{csrf_field()}}
                                                     {{method_field('DELETE')}}
-                                                    <a href="#" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
+                                                    @php
+                                                        $aux=1;
+                                                    @endphp
+                                                    <a href="{{url("vista_editar_horario_tutoria_asignada_op3/{$user->id}/{$aux}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
                                                     <button type="submit" class="btn btn-danger btn-sm" title="Eliminar horario de tutoría asignado">Eliminar <span class="oi oi-trash"></span></button>
                                                 </form>
                                             </th>
@@ -577,7 +634,10 @@
                                                     <form method="POST" action="{{url("eliminar_horario_tutoria_asignada_op3/{$user->id}")}}">
                                                         {{csrf_field()}}
                                                         {{method_field('DELETE')}}
-                                                        <a href="#" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
+                                                        @php
+                                                            $aux=1;
+                                                        @endphp
+                                                        <a href="{{url("vista_editar_horario_tutoria_asignada_op3/{$user->id}/{$aux}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
                                                         <button type="submit" class="btn btn-danger btn-sm" title="Eliminar horario de tutoría asignado" name="dia" value="1">Eliminar <span class="oi oi-trash"></span></button>
                                                     </form>
                                                 </th>
@@ -591,7 +651,10 @@
                                                     <form method="POST" action="{{url("eliminar_horario_tutoria_asignada_op3/{$user->id}")}}">
                                                         {{csrf_field()}}
                                                         {{method_field('DELETE')}}
-                                                        <a href="#" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
+                                                        @php
+                                                            $aux=2;
+                                                        @endphp
+                                                        <a href="{{url("vista_editar_horario_tutoria_asignada_op3/{$user->id}/{$aux}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
                                                         <button type="submit" class="btn btn-danger btn-sm" title="Eliminar horario de tutoría asignado" name="dia" value="2">Eliminar <span class="oi oi-trash"></span></button>
                                                     </form>
                                                 </th>
@@ -617,7 +680,10 @@
                                                         <form method="POST" action="{{url("eliminar_horario_tutoria_asignada_op3/{$user->id}")}}">
                                                             {{csrf_field()}}
                                                             {{method_field('DELETE')}}
-                                                            <a href="#" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
+                                                            @php
+                                                                $aux=1;
+                                                            @endphp
+                                                            <a href="{{url("vista_editar_horario_tutoria_asignada_op3/{$user->id}/{$aux}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
                                                             <button type="submit" class="btn btn-danger btn-sm" title="Eliminar horario de tutoría asignado" name="dia" value="1">Eliminar <span class="oi oi-trash"></span></button>
                                                         </form>
                                                     </th>
@@ -638,7 +704,10 @@
                                                         <form method="POST" action="{{url("eliminar_horario_tutoria_asignada_op3/{$user->id}")}}">
                                                             {{csrf_field()}}
                                                             {{method_field('DELETE')}}
-                                                            <a href="#" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
+                                                            @php
+                                                                $aux=3;
+                                                            @endphp
+                                                            <a href="{{url("vista_editar_horario_tutoria_asignada_op3/{$user->id}/{$aux}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
                                                             <button type="submit" class="btn btn-danger btn-sm" title="Eliminar horario de tutoría asignado" name="dia" value="3">Eliminar <span class="oi oi-trash"></span></button>
                                                         </form>
                                                     </th>
@@ -657,7 +726,10 @@
                                                             <form method="POST" action="{{url("eliminar_horario_tutoria_asignada_op3/{$user->id}")}}">
                                                                 {{csrf_field()}}
                                                                 {{method_field('DELETE')}}
-                                                                <a href="#" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
+                                                                @php
+                                                                    $aux=1;
+                                                                @endphp
+                                                                <a href="{{url("vista_editar_horario_tutoria_asignada_op3/{$user->id}/{$aux}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
                                                                 <button type="submit" class="btn btn-danger btn-sm" title="Eliminar horario de tutoría asignado" name="dia" value="1">Eliminar <span class="oi oi-trash"></span></button>
                                                             </form>
                                                         </th>
@@ -671,7 +743,10 @@
                                                             <form method="POST" action="{{url("eliminar_horario_tutoria_asignada_op3/{$user->id}")}}">
                                                                 {{csrf_field()}}
                                                                 {{method_field('DELETE')}}
-                                                                <a href="#" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
+                                                                @php
+                                                                    $aux=2;
+                                                                @endphp
+                                                                <a href="{{url("vista_editar_horario_tutoria_asignada_op3/{$user->id}/{$aux}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
                                                                 <button type="submit" class="btn btn-danger btn-sm" title="Eliminar horario de tutoría asignado" name="dia" value="2">Eliminar <span class="oi oi-trash"></span></button>
                                                             </form>
                                                         </th>
@@ -685,7 +760,10 @@
                                                             <form method="POST" action="{{url("eliminar_horario_tutoria_asignada_op3/{$user->id}")}}">
                                                                 {{csrf_field()}}
                                                                 {{method_field('DELETE')}}
-                                                                <a href="#" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
+                                                                @php
+                                                                    $aux=3;
+                                                                @endphp
+                                                                <a href="{{url("vista_editar_horario_tutoria_asignada_op3/{$user->id}/{$aux}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
                                                                 <button type="submit" class="btn btn-danger btn-sm" title="Eliminar horario de tutoría asignado" name="dia" value="3">Eliminar <span class="oi oi-trash"></span></button>
                                                             </form>
                                                         </th>
@@ -742,7 +820,10 @@
                                             <form method="POST" action="{{url("eliminar_horario_tutoria_asignada_op4/{$user->id}")}}">
                                                 {{csrf_field()}}
                                                 {{method_field('DELETE')}}
-                                                <a href="#" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
+                                                @php
+                                                    $aux=3;
+                                                @endphp
+                                                <a href="{{url("vista_editar_horario_tutoria_asignada_op4/{$user->id}/{$aux}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
                                                 <button type="submit" class="btn btn-danger btn-sm" title="Eliminar horario de tutoría asignado">Eliminar <span class="oi oi-trash"></span></button>
                                             </form>
                                         </th>
@@ -761,7 +842,10 @@
                                                 <form method="POST" action="{{url("eliminar_horario_tutoria_asignada_op4/{$user->id}")}}">
                                                     {{csrf_field()}}
                                                     {{method_field('DELETE')}}
-                                                    <a href="#" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
+                                                    @php
+                                                        $aux=1;
+                                                    @endphp
+                                                    <a href="{{url("vista_editar_horario_tutoria_asignada_op4/{$user->id}/{$aux}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
                                                     <button type="submit" class="btn btn-danger btn-sm" title="Eliminar horario de tutoría asignado">Eliminar <span class="oi oi-trash"></span></button>
                                                 </form>
                                             </th>
@@ -794,7 +878,10 @@
                                                     <form method="POST" action="{{url("eliminar_horario_tutoria_asignada_op4/{$user->id}")}}">
                                                         {{csrf_field()}}
                                                         {{method_field('DELETE')}}
-                                                        <a href="#" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
+                                                        @php
+                                                            $aux=1;
+                                                        @endphp
+                                                        <a href="{{url("vista_editar_horario_tutoria_asignada_op4/{$user->id}/{$aux}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
                                                         <button type="submit" class="btn btn-danger btn-sm" title="Eliminar horario de tutoría asignado" name="dia" value="1">Eliminar <span class="oi oi-trash"></span></button>
                                                     </form>
                                                 </th>
@@ -808,7 +895,10 @@
                                                     <form method="POST" action="{{url("eliminar_horario_tutoria_asignada_op4/{$user->id}")}}">
                                                         {{csrf_field()}}
                                                         {{method_field('DELETE')}}
-                                                        <a href="#" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
+                                                        @php
+                                                            $aux=2;
+                                                        @endphp
+                                                        <a href="{{url("vista_editar_horario_tutoria_asignada_op4/{$user->id}/{$aux}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
                                                         <button type="submit" class="btn btn-danger btn-sm" title="Eliminar horario de tutoría asignado" name="dia" value="2">Eliminar <span class="oi oi-trash"></span></button>
                                                     </form>
                                                 </th>
@@ -834,7 +924,10 @@
                                                         <form method="POST" action="{{url("eliminar_horario_tutoria_asignada_op4/{$user->id}")}}">
                                                             {{csrf_field()}}
                                                             {{method_field('DELETE')}}
-                                                            <a href="#" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
+                                                            @php
+                                                                $aux=1;
+                                                            @endphp
+                                                            <a href="{{url("vista_editar_horario_tutoria_asignada_op4/{$user->id}/{$aux}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
                                                             <button type="submit" class="btn btn-danger btn-sm" title="Eliminar horario de tutoría asignado" name="dia" value="1">Eliminar <span class="oi oi-trash"></span></button>
                                                         </form>
                                                     </th>
@@ -855,7 +948,10 @@
                                                         <form method="POST" action="{{url("eliminar_horario_tutoria_asignada_op4/{$user->id}")}}">
                                                             {{csrf_field()}}
                                                             {{method_field('DELETE')}}
-                                                            <a href="#" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
+                                                            @php
+                                                                $aux=3;
+                                                            @endphp
+                                                            <a href="{{url("vista_editar_horario_tutoria_asignada_op4/{$user->id}/{$aux}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
                                                             <button type="submit" class="btn btn-danger btn-sm" title="Eliminar horario de tutoría asignado" name="dia" value="3">Eliminar <span class="oi oi-trash"></span></button>
                                                         </form>
                                                     </th>
@@ -874,7 +970,10 @@
                                                             <form method="POST" action="{{url("eliminar_horario_tutoria_asignada_op4/{$user->id}")}}">
                                                                 {{csrf_field()}}
                                                                 {{method_field('DELETE')}}
-                                                                <a href="#" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
+                                                                @php
+                                                                    $aux=1;
+                                                                @endphp
+                                                                <a href="{{url("vista_editar_horario_tutoria_asignada_op4/{$user->id}/{$aux}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
                                                                 <button type="submit" class="btn btn-danger btn-sm" title="Eliminar horario de tutoría asignado" name="dia" value="1">Eliminar <span class="oi oi-trash"></span></button>
                                                             </form>
                                                         </th>
@@ -888,7 +987,10 @@
                                                             <form method="POST" action="{{url("eliminar_horario_tutoria_asignada_op4/{$user->id}")}}">
                                                                 {{csrf_field()}}
                                                                 {{method_field('DELETE')}}
-                                                                <a href="#" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
+                                                                @php
+                                                                    $aux=2;
+                                                                @endphp
+                                                                <a href="{{url("vista_editar_horario_tutoria_asignada_op4/{$user->id}/{$aux}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
                                                                 <button type="submit" class="btn btn-danger btn-sm" title="Eliminar horario de tutoría asignado" name="dia" value="2">Eliminar <span class="oi oi-trash"></span></button>
                                                             </form>
                                                         </th>
@@ -902,7 +1004,10 @@
                                                             <form method="POST" action="{{url("eliminar_horario_tutoria_asignada_op4/{$user->id}")}}">
                                                                 {{csrf_field()}}
                                                                 {{method_field('DELETE')}}
-                                                                <a href="#" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
+                                                                @php
+                                                                    $aux=3;
+                                                                @endphp
+                                                                <a href="{{url("vista_editar_horario_tutoria_asignada_op4/{$user->id}/{$aux}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
                                                                 <button type="submit" class="btn btn-danger btn-sm" title="Eliminar horario de tutoría asignado" name="dia" value="2">Eliminar <span class="oi oi-trash"></span></button>
                                                             </form>
                                                         </th>
@@ -959,7 +1064,10 @@
                                             <form method="POST" action="{{url("eliminar_horario_tutoria_asignada_op5/{$user->id}")}}">
                                                 {{csrf_field()}}
                                                 {{method_field('DELETE')}}
-                                                <a href="#" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
+                                                @php
+                                                    $aux=3;
+                                                @endphp
+                                                <a href="{{url("vista_editar_horario_tutoria_asignada_op5/{$user->id}/{$aux}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
                                                 <button type="submit" class="btn btn-danger btn-sm" title="Eliminar horario de tutoría asignado">Eliminar <span class="oi oi-trash"></span></button>
                                             </form>
                                         </th>
@@ -978,7 +1086,10 @@
                                                 <form method="POST" action="{{url("eliminar_horario_tutoria_asignada_op5/{$user->id}")}}">
                                                     {{csrf_field()}}
                                                     {{method_field('DELETE')}}
-                                                    <a href="#" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
+                                                    @php
+                                                        $aux=1;
+                                                    @endphp
+                                                    <a href="{{url("vista_editar_horario_tutoria_asignada_op5/{$user->id}/{$aux}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
                                                     <button type="submit" class="btn btn-danger btn-sm" title="Eliminar horario de tutoría asignado">Eliminar <span class="oi oi-trash"></span></button>
                                                 </form>
                                             </th>
@@ -1011,7 +1122,10 @@
                                                     <form method="POST" action="{{url("eliminar_horario_tutoria_asignada_op5/{$user->id}")}}">
                                                         {{csrf_field()}}
                                                         {{method_field('DELETE')}}
-                                                        <a href="#" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
+                                                        @php
+                                                            $aux=1;
+                                                        @endphp
+                                                        <a href="{{url("vista_editar_horario_tutoria_asignada_op5/{$user->id}/{$aux}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
                                                         <button type="submit" class="btn btn-danger btn-sm" title="Eliminar horario de tutoría asignado" name="dia" value="1">Eliminar <span class="oi oi-trash"></span></button>
                                                     </form>
                                                 </th>
@@ -1025,7 +1139,10 @@
                                                     <form method="POST" action="{{url("eliminar_horario_tutoria_asignada_op5/{$user->id}")}}">
                                                         {{csrf_field()}}
                                                         {{method_field('DELETE')}}
-                                                        <a href="#" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
+                                                        @php
+                                                            $aux=2;
+                                                        @endphp
+                                                        <a href="{{url("vista_editar_horario_tutoria_asignada_op5/{$user->id}/{$aux}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
                                                         <button type="submit" class="btn btn-danger btn-sm" title="Eliminar horario de tutoría asignado" name="dia" value="2">Eliminar <span class="oi oi-trash"></span></button>
                                                     </form>
                                                 </th>
@@ -1051,7 +1168,10 @@
                                                         <form method="POST" action="{{url("eliminar_horario_tutoria_asignada_op5/{$user->id}")}}">
                                                             {{csrf_field()}}
                                                             {{method_field('DELETE')}}
-                                                            <a href="#" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
+                                                            @php
+                                                                $aux=1;
+                                                            @endphp
+                                                            <a href="{{url("vista_editar_horario_tutoria_asignada_op5/{$user->id}/{$aux}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
                                                             <button type="submit" class="btn btn-danger btn-sm" title="Eliminar horario de tutoría asignado" name="dia" value="1">Eliminar <span class="oi oi-trash"></span></button>
                                                         </form>
                                                     </th>
@@ -1072,7 +1192,10 @@
                                                         <form method="POST" action="{{url("eliminar_horario_tutoria_asignada_op5/{$user->id}")}}">
                                                             {{csrf_field()}}
                                                             {{method_field('DELETE')}}
-                                                            <a href="#" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
+                                                            @php
+                                                                $aux=3;
+                                                            @endphp
+                                                            <a href="{{url("vista_editar_horario_tutoria_asignada_op5/{$user->id}/{$aux}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
                                                             <button type="submit" class="btn btn-danger btn-sm" title="Eliminar horario de tutoría asignado" name="dia" value="3">Eliminar <span class="oi oi-trash"></span></button>
                                                         </form>
                                                     </th>
@@ -1091,7 +1214,10 @@
                                                             <form method="POST" action="{{url("eliminar_horario_tutoria_asignada_op5/{$user->id}")}}">
                                                                 {{csrf_field()}}
                                                                 {{method_field('DELETE')}}
-                                                                <a href="#" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
+                                                                @php
+                                                                    $aux=1;
+                                                                @endphp
+                                                                <a href="{{url("vista_editar_horario_tutoria_asignada_op5/{$user->id}/{$aux}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
                                                                 <button type="submit" class="btn btn-danger btn-sm" title="Eliminar horario de tutoría asignado" name="dia" value="1">Eliminar <span class="oi oi-trash"></span></button>
                                                             </form>
                                                         </th>
@@ -1105,7 +1231,10 @@
                                                                 <form method="POST" action="{{url("eliminar_horario_tutoria_asignada_op5/{$user->id}")}}">
                                                                     {{csrf_field()}}
                                                                     {{method_field('DELETE')}}
-                                                                    <a href="#" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
+                                                                    @php
+                                                                        $aux=2;
+                                                                    @endphp
+                                                                    <a href="{{url("vista_editar_horario_tutoria_asignada_op5/{$user->id}/{$aux}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
                                                                     <button type="submit" class="btn btn-danger btn-sm" title="Eliminar horario de tutoría asignado" name="dia" value="2">Eliminar <span class="oi oi-trash"></span></button>
                                                                 </form>
                                                             </th>
@@ -1119,7 +1248,10 @@
                                                             <form method="POST" action="{{url("eliminar_horario_tutoria_asignada_op5/{$user->id}")}}">
                                                                 {{csrf_field()}}
                                                                 {{method_field('DELETE')}}
-                                                                <a href="#" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
+                                                                @php
+                                                                    $aux=3;
+                                                                @endphp
+                                                                <a href="{{url("vista_editar_horario_tutoria_asignada_op5/{$user->id}/{$aux}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
                                                                 <button type="submit" class="btn btn-danger btn-sm" title="Eliminar horario de tutoría asignado" name="dia" value="3">Eliminar <span class="oi oi-trash"></span></button>
                                                             </form>
                                                         </th>

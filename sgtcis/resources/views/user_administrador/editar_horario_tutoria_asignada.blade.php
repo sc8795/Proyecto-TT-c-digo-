@@ -33,19 +33,76 @@
                     </h6>
                     <div class="row">
                         @if ($aux==1 || $aux==2)
-                            
+                        <div class="col-3">
+                            <h6 class="tit_general">Hora inicio 
+                                <select name="{{$var6}}">
+                                    <option value="{{$var2}}">{{$var2}}</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                    <option value="13">13</option>
+                                </select>
+                                <span class="tit_datos">:</span>
+                                <select name="{{$var7}}">
+                                    <option value="{{$var3}}">{{$var3}}</option>
+                                    <option value="5">5</option>
+                                    <option value="10">10</option>
+                                    <option value="15">15</option>
+                                    <option value="20">20</option>
+                                    <option value="25">25</option>
+                                    <option value="30">30</option>
+                                    <option value="35">35</option>
+                                    <option value="40">40</option>
+                                    <option value="45">45</option>
+                                    <option value="50">50</option>
+                                    <option value="55">55</option>
+                                </select>
+                            </h6>
+                        </div>
+                        <div class="col-3">
+                            <h6 class="tit_general">Hora fin
+                                <select name="{{$var8}}">
+                                    <option value="{{$var4}}">{{$var4}}</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                    <option value="13">13</option>
+                                </select>
+                                <span class="tit_datos">:</span>
+                                <select name="{{$var9}}">
+                                    <option value="{{$var5}}">{{$var5}}</option>
+                                    <option value="5">5</option>
+                                    <option value="10">10</option>
+                                    <option value="15">15</option>
+                                    <option value="20">20</option>
+                                    <option value="25">25</option>
+                                    <option value="30">30</option>
+                                    <option value="35">35</option>
+                                    <option value="40">40</option>
+                                    <option value="45">45</option>
+                                    <option value="50">50</option>
+                                    <option value="55">55</option>
+                                </select>
+                            </h6>
+                        </div>
                         @else
                             @if ($aux==3)
                                 <div class="col-3">
                                     <h6 class="tit_general">Hora inicio 
-                                        <select name="hora_inicio1">
+                                        <select name="{{$var6}}">
                                             <option value="{{$var2}}">{{$var2}}</option>
                                             <option value="15">15</option>
                                             <option value="16">16</option>
                                             <option value="17">17</option>
                                         </select>
                                         <span class="tit_datos">:</span>
-                                        <select name="minutos_inicio1">
+                                        <select name="{{$var7}}">
                                             <option value="{{$var3}}">{{$var3}}</option>
                                             <option value="5">5</option>
                                             <option value="10">10</option>
@@ -63,14 +120,14 @@
                                 </div>
                                 <div class="col-3">
                                     <h6 class="tit_general">Hora fin
-                                        <select name="hora_fin1">
+                                        <select name="{{$var8}}">
                                             <option value="{{$var4}}">{{$var4}}</option>
                                             <option value="15">15</option>
                                             <option value="16">16</option>
                                             <option value="17">17</option>
                                         </select>
                                         <span class="tit_datos">:</span>
-                                        <select name="minutos_fin1">
+                                        <select name="{{$var9}}">
                                             <option value="{{$var5}}">{{$var5}}</option>
                                             <option value="5">5</option>
                                             <option value="10">10</option>

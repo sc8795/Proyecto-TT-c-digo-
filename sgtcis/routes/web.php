@@ -107,7 +107,12 @@ Route::get('eliminar_horario_tutoria_asignada_op1_1/{user}','AuthAdministradorCo
 
 /* Rutas para editar horario de tutoría asignada */
 Route::get('vista_editar_horario_tutoria_asignada_op1/{user}/{aux}','AuthAdministradorController@vista_editar_horario_tutoria_asignada_op1')->name('vista_editar_horario_tutoria_asignada_op1');
+Route::get('vista_editar_horario_tutoria_asignada_op2/{user}/{aux}','AuthAdministradorController@vista_editar_horario_tutoria_asignada_op2')->name('vista_editar_horario_tutoria_asignada_op2');
+Route::get('vista_editar_horario_tutoria_asignada_op3/{user}/{aux}','AuthAdministradorController@vista_editar_horario_tutoria_asignada_op3')->name('vista_editar_horario_tutoria_asignada_op3');
+Route::get('vista_editar_horario_tutoria_asignada_op4/{user}/{aux}','AuthAdministradorController@vista_editar_horario_tutoria_asignada_op4')->name('vista_editar_horario_tutoria_asignada_op4');
+Route::get('vista_editar_horario_tutoria_asignada_op5/{user}/{aux}','AuthAdministradorController@vista_editar_horario_tutoria_asignada_op5')->name('vista_editar_horario_tutoria_asignada_op5');
 Route::put('editando_horario/{user}','AuthAdministradorController@editando_horario')->name('editando_horario');
+Route::get('mensaje_editar_horario/{user}','AuthAdministradorController@mensaje_editar_horario')->name('mensaje_editar_horario');
 /* 
 |--------------------------------------------------------------------------
 | Rutas del Estudiante

@@ -167,6 +167,7 @@ public function editar_admin(){
     public function editar_docente(User $user){
         $data=request()->validate([
             'name'=>'required',
+            'lastname'=>'required',
             'email'=>[
                 'required',
                 'email',
@@ -1835,14 +1836,35 @@ public function editar_admin(){
 | Funciones para editar horario de tutoria asignada
 |--------------------------------------------------------------------------
 */
+    /* LUNES */
     public function vista_editar_horario_tutoria_asignada_op1(User $user, $aux){
         $docente=$user->id;
         $horarios=DB::table('horarios')->where('usuario_id',$docente)->first();
         if($aux==1){
+            $var1=$horarios->dia1_op1;
+            $var2=$horarios->hora_inicio_op1;
+            $var3=$horarios->minutos_inicio_op1;
+            $var4=$horarios->hora_fin_op1;
+            $var5=$horarios->minutos_fin_op1;
 
+            $var6="hora_inicio_op1";
+            $var7="minutos_inicio_op1";
+            $var8="hora_fin_op1";
+            $var9="minutos_fin_op1";
+            return view('user_administrador.editar_horario_tutoria_asignada',compact('user','var1','var2','var3','var4','var5','var6','var7','var8','var9','aux'));
         }else{
             if($aux==2){
+                $var1=$horarios->dia1_op2;
+                $var2=$horarios->hora_inicio_op2;
+                $var3=$horarios->minutos_inicio_op2;
+                $var4=$horarios->hora_fin_op2;
+                $var5=$horarios->minutos_fin_op2;
 
+                $var6="hora_inicio_op2";
+                $var7="minutos_inicio_op2";
+                $var8="hora_fin_op2";
+                $var9="minutos_fin_op2";
+                return view('user_administrador.editar_horario_tutoria_asignada',compact('user','var1','var2','var3','var4','var5','var6','var7','var8','var9','aux'));
             }else{
                 if($aux==3){
                     $var1=$horarios->dia1_op3;
@@ -1850,18 +1872,805 @@ public function editar_admin(){
                     $var3=$horarios->minutos_inicio_op3;
                     $var4=$horarios->hora_fin_op3;
                     $var5=$horarios->minutos_fin_op3;
-                    return view('user_administrador.editar_horario_tutoria_asignada',compact('user','var1','var2','var3','var4','var5','aux'));
+
+                    $var6="hora_inicio_op3";
+                    $var7="minutos_inicio_op3";
+                    $var8="hora_fin_op3";
+                    $var9="minutos_fin_op3";
+                    return view('user_administrador.editar_horario_tutoria_asignada',compact('user','var1','var2','var3','var4','var5','var6','var7','var8','var9','aux'));
                 }
             }
         }
     }
-    public function editando_horario(User $user, Request $request){
-        $dia=$request->input('dia');
+    /* MARTES */
+    public function vista_editar_horario_tutoria_asignada_op2(User $user, $aux){
         $docente=$user->id;
-        $hora_inicio=$request->input('hora_inicio1');
-        $hora_fin=$request->input('hora_fin1');
-        $minutos_inicio=$request->input('minutos_inicio1');
-        $minutos_fin=$request->input('minutos_fin1');
+        $horarios=DB::table('horario2s')->where('usuario_id',$docente)->first();
+        if($aux==1){
+            $var1=$horarios->dia2_op1;
+            $var2=$horarios->hora_inicio_op1;
+            $var3=$horarios->minutos_inicio_op1;
+            $var4=$horarios->hora_fin_op1;
+            $var5=$horarios->minutos_fin_op1;
+
+            $var6="hora_inicio_op1";
+            $var7="minutos_inicio_op1";
+            $var8="hora_fin_op1";
+            $var9="minutos_fin_op1";
+            return view('user_administrador.editar_horario_tutoria_asignada',compact('user','var1','var2','var3','var4','var5','var6','var7','var8','var9','aux'));
+        }else{
+            if($aux==2){
+                $var1=$horarios->dia2_op2;
+                $var2=$horarios->hora_inicio_op2;
+                $var3=$horarios->minutos_inicio_op2;
+                $var4=$horarios->hora_fin_op2;
+                $var5=$horarios->minutos_fin_op2;
+
+                $var6="hora_inicio_op2";
+                $var7="minutos_inicio_op2";
+                $var8="hora_fin_op2";
+                $var9="minutos_fin_op2";
+                return view('user_administrador.editar_horario_tutoria_asignada',compact('user','var1','var2','var3','var4','var5','var6','var7','var8','var9','aux'));
+            }else{
+                if($aux==3){
+                    $var1=$horarios->dia2_op3;
+                    $var2=$horarios->hora_inicio_op3;
+                    $var3=$horarios->minutos_inicio_op3;
+                    $var4=$horarios->hora_fin_op3;
+                    $var5=$horarios->minutos_fin_op3;
+
+                    $var6="hora_inicio_op3";
+                    $var7="minutos_inicio_op3";
+                    $var8="hora_fin_op3";
+                    $var9="minutos_fin_op3";
+                    return view('user_administrador.editar_horario_tutoria_asignada',compact('user','var1','var2','var3','var4','var5','var6','var7','var8','var9','aux'));
+                }
+            }
+        }
+    }
+    /* MIERCOLES */
+    public function vista_editar_horario_tutoria_asignada_op3(User $user, $aux){
+        $docente=$user->id;
+        $horarios=DB::table('horario3s')->where('usuario_id',$docente)->first();
+        if($aux==1){
+            $var1=$horarios->dia3_op1;
+            $var2=$horarios->hora_inicio_op1;
+            $var3=$horarios->minutos_inicio_op1;
+            $var4=$horarios->hora_fin_op1;
+            $var5=$horarios->minutos_fin_op1;
+
+            $var6="hora_inicio_op1";
+            $var7="minutos_inicio_op1";
+            $var8="hora_fin_op1";
+            $var9="minutos_fin_op1";
+            return view('user_administrador.editar_horario_tutoria_asignada',compact('user','var1','var2','var3','var4','var5','var6','var7','var8','var9','aux'));
+        }else{
+            if($aux==2){
+                $var1=$horarios->dia3_op2;
+                $var2=$horarios->hora_inicio_op2;
+                $var3=$horarios->minutos_inicio_op2;
+                $var4=$horarios->hora_fin_op2;
+                $var5=$horarios->minutos_fin_op2;
+
+                $var6="hora_inicio_op2";
+                $var7="minutos_inicio_op2";
+                $var8="hora_fin_op2";
+                $var9="minutos_fin_op2";
+                return view('user_administrador.editar_horario_tutoria_asignada',compact('user','var1','var2','var3','var4','var5','var6','var7','var8','var9','aux'));
+            }else{
+                if($aux==3){
+                    $var1=$horarios->dia3_op3;
+                    $var2=$horarios->hora_inicio_op3;
+                    $var3=$horarios->minutos_inicio_op3;
+                    $var4=$horarios->hora_fin_op3;
+                    $var5=$horarios->minutos_fin_op3;
+
+                    $var6="hora_inicio_op3";
+                    $var7="minutos_inicio_op3";
+                    $var8="hora_fin_op3";
+                    $var9="minutos_fin_op3";
+                    return view('user_administrador.editar_horario_tutoria_asignada',compact('user','var1','var2','var3','var4','var5','var6','var7','var8','var9','aux'));
+                }
+            }
+        }
+    }
+    /* JUEVES */
+    public function vista_editar_horario_tutoria_asignada_op4(User $user, $aux){
+        $docente=$user->id;
+        $horarios=DB::table('horario4s')->where('usuario_id',$docente)->first();
+        if($aux==1){
+            $var1=$horarios->dia4_op1;
+            $var2=$horarios->hora_inicio_op1;
+            $var3=$horarios->minutos_inicio_op1;
+            $var4=$horarios->hora_fin_op1;
+            $var5=$horarios->minutos_fin_op1;
+
+            $var6="hora_inicio_op1";
+            $var7="minutos_inicio_op1";
+            $var8="hora_fin_op1";
+            $var9="minutos_fin_op1";
+            return view('user_administrador.editar_horario_tutoria_asignada',compact('user','var1','var2','var3','var4','var5','var6','var7','var8','var9','aux'));
+        }else{
+            if($aux==2){
+                $var1=$horarios->dia4_op2;
+                $var2=$horarios->hora_inicio_op2;
+                $var3=$horarios->minutos_inicio_op2;
+                $var4=$horarios->hora_fin_op2;
+                $var5=$horarios->minutos_fin_op2;
+
+                $var6="hora_inicio_op2";
+                $var7="minutos_inicio_op2";
+                $var8="hora_fin_op2";
+                $var9="minutos_fin_op2";
+                return view('user_administrador.editar_horario_tutoria_asignada',compact('user','var1','var2','var3','var4','var5','var6','var7','var8','var9','aux'));
+            }else{
+                if($aux==3){
+                    $var1=$horarios->dia4_op3;
+                    $var2=$horarios->hora_inicio_op3;
+                    $var3=$horarios->minutos_inicio_op3;
+                    $var4=$horarios->hora_fin_op3;
+                    $var5=$horarios->minutos_fin_op3;
+
+                    $var6="hora_inicio_op3";
+                    $var7="minutos_inicio_op3";
+                    $var8="hora_fin_op3";
+                    $var9="minutos_fin_op3";
+                    return view('user_administrador.editar_horario_tutoria_asignada',compact('user','var1','var2','var3','var4','var5','var6','var7','var8','var9','aux'));
+                }
+            }
+        }
+    }
+    /* VIERNES */
+    public function vista_editar_horario_tutoria_asignada_op5(User $user, $aux){
+        $docente=$user->id;
+        $horarios=DB::table('horario5s')->where('usuario_id',$docente)->first();
+        if($aux==1){
+            $var1=$horarios->dia5_op1;
+            $var2=$horarios->hora_inicio_op1;
+            $var3=$horarios->minutos_inicio_op1;
+            $var4=$horarios->hora_fin_op1;
+            $var5=$horarios->minutos_fin_op1;
+
+            $var6="hora_inicio_op1";
+            $var7="minutos_inicio_op1";
+            $var8="hora_fin_op1";
+            $var9="minutos_fin_op1";
+            return view('user_administrador.editar_horario_tutoria_asignada',compact('user','var1','var2','var3','var4','var5','var6','var7','var8','var9','aux'));
+        }else{
+            if($aux==2){
+                $var1=$horarios->dia5_op2;
+                $var2=$horarios->hora_inicio_op2;
+                $var3=$horarios->minutos_inicio_op2;
+                $var4=$horarios->hora_fin_op2;
+                $var5=$horarios->minutos_fin_op2;
+
+                $var6="hora_inicio_op2";
+                $var7="minutos_inicio_op2";
+                $var8="hora_fin_op2";
+                $var9="minutos_fin_op2";
+                return view('user_administrador.editar_horario_tutoria_asignada',compact('user','var1','var2','var3','var4','var5','var6','var7','var8','var9','aux'));
+            }else{
+                if($aux==3){
+                    $var1=$horarios->dia5_op3;
+                    $var2=$horarios->hora_inicio_op3;
+                    $var3=$horarios->minutos_inicio_op3;
+                    $var4=$horarios->hora_fin_op3;
+                    $var5=$horarios->minutos_fin_op3;
+
+                    $var6="hora_inicio_op3";
+                    $var7="minutos_inicio_op3";
+                    $var8="hora_fin_op3";
+                    $var9="minutos_fin_op3";
+                    return view('user_administrador.editar_horario_tutoria_asignada',compact('user','var1','var2','var3','var4','var5','var6','var7','var8','var9','aux'));
+                }
+            }
+        }
+    }
+    public function editando_horario(User $user,Request $request){
+        $docente=$user->id;
+        $aux_dia=$request->input('dia');
+        $valor=Str::startsWith($aux_dia,'Lunes');
+        if($valor==true){
+            $horarios=DB::table('horarios')->where('usuario_id',$docente)->first();
+            if($horarios->cont_dia==0 && $horarios->cont_tarde==1){
+                $horario = Horario::find($horarios->id);
+                $data=request()->validate([
+                    'hora_inicio_op3'=>'required',
+                    'minutos_inicio_op3'=>'required',
+                    'hora_fin_op3'=>'required',
+                    'minutos_fin_op3'=>'required'
+                ]);
+                $horario->update($data);
+                return redirect()->route('mensaje_editar_horario',['user'=>$user]);
+            }else{
+                if($horarios->cont_dia==1 && $horarios->cont_tarde==0){
+                    $horario = Horario::find($horarios->id);
+                    $data=request()->validate([
+                        'hora_inicio_op1'=>'required',
+                        'minutos_inicio_op1'=>'required',
+                        'hora_fin_op1'=>'required',
+                        'minutos_fin_op1'=>'required'
+                    ]);
+                    $horario->update($data);
+                    return redirect()->route('mensaje_editar_horario',['user'=>$user]);
+                }else{
+                    if($horarios->cont_dia==2 && $horarios->cont_tarde==0){
+                        $dia=$request->input('hora_inicio_op1');
+                        if($dia==null){/* significa que el administrador va a editar el horario de tutoria numero 2 */
+                            $horario = Horario::find($horarios->id);
+                            $data=request()->validate([
+                                'hora_inicio_op2'=>'required',
+                                'minutos_inicio_op2'=>'required',
+                                'hora_fin_op2'=>'required',
+                                'minutos_fin_op2'=>'required'
+                            ]);
+                            $horario->update($data);
+                            return redirect()->route('mensaje_editar_horario',['user'=>$user]);
+                        }else{/* el administrador va a editar el horario de tutoria numero 1 */
+                            $horario = Horario::find($horarios->id);
+                            $data=request()->validate([
+                                'hora_inicio_op1'=>'required',
+                                'minutos_inicio_op1'=>'required',
+                                'hora_fin_op1'=>'required',
+                                'minutos_fin_op1'=>'required'
+                            ]);
+                            $horario->update($data);
+                            return redirect()->route('mensaje_editar_horario',['user'=>$user]);
+                        }
+                    }else{
+                        if($horarios->cont_dia==1 && $horarios->cont_tarde==1){
+                            $dia=$request->input('dia');
+                            $valor=Str::endsWith($dia,'mañana');
+                            if($valor==true){/* el administrador va a editar el horario 1 */
+                                $horario = Horario::find($horarios->id);
+                                $data=request()->validate([
+                                    'hora_inicio_op1'=>'required',
+                                    'minutos_inicio_op1'=>'required',
+                                    'hora_fin_op1'=>'required',
+                                    'minutos_fin_op1'=>'required'
+                                ]);
+                                $horario->update($data);
+                                return redirect()->route('mensaje_editar_horario',['user'=>$user]);
+                            }else{/* el administrador va a editar el horario 3 */
+                                $horario = Horario::find($horarios->id);
+                                $data=request()->validate([
+                                    'hora_inicio_op3'=>'required',
+                                    'minutos_inicio_op3'=>'required',
+                                    'hora_fin_op3'=>'required',
+                                    'minutos_fin_op3'=>'required'
+                                ]);
+                                $horario->update($data);
+                                return redirect()->route('mensaje_editar_horario',['user'=>$user]);
+                            }
+                        }else{
+                            if($horarios->cont_dia==2 && $horarios->cont_tarde==1){
+                                $dia=$request->input('dia');
+                                $valor=Str::endsWith($dia,'mañana');
+                                if($valor==true){/* el administrador va a editar el horario 1 o el horario 2*/
+                                    $aux=$request->input('hora_inicio_op1');
+                                    if($aux==null){/* el administrador va a editar el horario de tutoria numero 2 */
+                                        $horario = Horario::find($horarios->id);
+                                        $data=request()->validate([
+                                            'hora_inicio_op2'=>'required',
+                                            'minutos_inicio_op2'=>'required',
+                                            'hora_fin_op2'=>'required',
+                                            'minutos_fin_op2'=>'required'
+                                        ]);
+                                        $horario->update($data);
+                                        return redirect()->route('mensaje_editar_horario',['user'=>$user]);
+                                    }else{/* el administrador va a editar el horario de tutoria numero 1 */
+                                        $horario = Horario::find($horarios->id);
+                                        $data=request()->validate([
+                                            'hora_inicio_op1'=>'required',
+                                            'minutos_inicio_op1'=>'required',
+                                            'hora_fin_op1'=>'required',
+                                            'minutos_fin_op1'=>'required'
+                                        ]);
+                                        $horario->update($data);
+                                        return redirect()->route('mensaje_editar_horario',['user'=>$user]);
+                                    }
+                                }else{/* el administrador va a editar el horario 3 */
+                                    $horario = Horario::find($horarios->id);
+                                    $data=request()->validate([
+                                        'hora_inicio_op3'=>'required',
+                                        'minutos_inicio_op3'=>'required',
+                                        'hora_fin_op3'=>'required',
+                                        'minutos_fin_op3'=>'required'
+                                    ]);
+                                    $horario->update($data);
+                                    return redirect()->route('mensaje_editar_horario',['user'=>$user]);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }else{
+            $valor=Str::startsWith($aux_dia,'Martes');
+            if($valor==true){
+                $horarios=DB::table('horario2s')->where('usuario_id',$docente)->first();
+                if($horarios->cont_dia==0 && $horarios->cont_tarde==1){
+                    $horario = Horario2::find($horarios->id);
+                    $data=request()->validate([
+                        'hora_inicio_op3'=>'required',
+                        'minutos_inicio_op3'=>'required',
+                        'hora_fin_op3'=>'required',
+                        'minutos_fin_op3'=>'required'
+                    ]);
+                    $horario->update($data);
+                    return redirect()->route('mensaje_editar_horario',['user'=>$user]);
+                }else{
+                    if($horarios->cont_dia==1 && $horarios->cont_tarde==0){
+                        $horario = Horario2::find($horarios->id);
+                        $data=request()->validate([
+                            'hora_inicio_op1'=>'required',
+                            'minutos_inicio_op1'=>'required',
+                            'hora_fin_op1'=>'required',
+                            'minutos_fin_op1'=>'required'
+                        ]);
+                        $horario->update($data);
+                        return redirect()->route('mensaje_editar_horario',['user'=>$user]);
+                    }else{
+                        if($horarios->cont_dia==2 && $horarios->cont_tarde==0){
+                            $dia=$request->input('hora_inicio_op1');
+                            if($dia==null){/* significa que el administrador va a editar el horario de tutoria numero 2 */
+                                $horario = Horario2::find($horarios->id);
+                                $data=request()->validate([
+                                    'hora_inicio_op2'=>'required',
+                                    'minutos_inicio_op2'=>'required',
+                                    'hora_fin_op2'=>'required',
+                                    'minutos_fin_op2'=>'required'
+                                ]);
+                                $horario->update($data);
+                                return redirect()->route('mensaje_editar_horario',['user'=>$user]);
+                            }else{/* el administrador va a editar el horario de tutoria numero 1 */
+                                $horario = Horario2::find($horarios->id);
+                                $data=request()->validate([
+                                    'hora_inicio_op1'=>'required',
+                                    'minutos_inicio_op1'=>'required',
+                                    'hora_fin_op1'=>'required',
+                                    'minutos_fin_op1'=>'required'
+                                ]);
+                                $horario->update($data);
+                                return redirect()->route('mensaje_editar_horario',['user'=>$user]);
+                            }
+                        }else{
+                            if($horarios->cont_dia==1 && $horarios->cont_tarde==1){
+                                $dia=$request->input('dia');
+                                $valor=Str::endsWith($dia,'mañana');
+                                if($valor==true){/* el administrador va a editar el horario 1 */
+                                    $horario = Horario2::find($horarios->id);
+                                    $data=request()->validate([
+                                        'hora_inicio_op1'=>'required',
+                                        'minutos_inicio_op1'=>'required',
+                                        'hora_fin_op1'=>'required',
+                                        'minutos_fin_op1'=>'required'
+                                    ]);
+                                    $horario->update($data);
+                                    return redirect()->route('mensaje_editar_horario',['user'=>$user]);
+                                }else{/* el administrador va a editar el horario 3 */
+                                    $horario = Horario2::find($horarios->id);
+                                    $data=request()->validate([
+                                        'hora_inicio_op3'=>'required',
+                                        'minutos_inicio_op3'=>'required',
+                                        'hora_fin_op3'=>'required',
+                                        'minutos_fin_op3'=>'required'
+                                    ]);
+                                    $horario->update($data);
+                                    return redirect()->route('mensaje_editar_horario',['user'=>$user]);
+                                }
+                            }else{
+                                if($horarios->cont_dia==2 && $horarios->cont_tarde==1){
+                                    $dia=$request->input('dia');
+                                    $valor=Str::endsWith($dia,'mañana');
+                                    if($valor==true){/* el administrador va a editar el horario 1 o el horario 2*/
+                                        $aux=$request->input('hora_inicio_op1');
+                                        if($aux==null){/* el administrador va a editar el horario de tutoria numero 2 */
+                                            $horario = Horario2::find($horarios->id);
+                                            $data=request()->validate([
+                                                'hora_inicio_op2'=>'required',
+                                                'minutos_inicio_op2'=>'required',
+                                                'hora_fin_op2'=>'required',
+                                                'minutos_fin_op2'=>'required'
+                                            ]);
+                                            $horario->update($data);
+                                            return redirect()->route('mensaje_editar_horario',['user'=>$user]);
+                                        }else{/* el administrador va a editar el horario de tutoria numero 1 */
+                                            $horario = Horario2::find($horarios->id);
+                                            $data=request()->validate([
+                                                'hora_inicio_op1'=>'required',
+                                                'minutos_inicio_op1'=>'required',
+                                                'hora_fin_op1'=>'required',
+                                                'minutos_fin_op1'=>'required'
+                                            ]);
+                                            $horario->update($data);
+                                            return redirect()->route('mensaje_editar_horario',['user'=>$user]);
+                                        }
+                                    }else{/* el administrador va a editar el horario 3 */
+                                        $horario = Horario2::find($horarios->id);
+                                        $data=request()->validate([
+                                            'hora_inicio_op3'=>'required',
+                                            'minutos_inicio_op3'=>'required',
+                                            'hora_fin_op3'=>'required',
+                                            'minutos_fin_op3'=>'required'
+                                        ]);
+                                        $horario->update($data);
+                                        return redirect()->route('mensaje_editar_horario',['user'=>$user]);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }else{
+                $valor=Str::startsWith($aux_dia,'Miércoles');
+                if($valor==true){
+                    $horarios=DB::table('horario3s')->where('usuario_id',$docente)->first();
+                    if($horarios->cont_dia==0 && $horarios->cont_tarde==1){
+                        $horario = Horario3::find($horarios->id);
+                        $data=request()->validate([
+                            'hora_inicio_op3'=>'required',
+                            'minutos_inicio_op3'=>'required',
+                            'hora_fin_op3'=>'required',
+                            'minutos_fin_op3'=>'required'
+                        ]);
+                        $horario->update($data);
+                        return redirect()->route('mensaje_editar_horario',['user'=>$user]);
+                    }else{
+                        if($horarios->cont_dia==1 && $horarios->cont_tarde==0){
+                            $horario = Horario3::find($horarios->id);
+                            $data=request()->validate([
+                                'hora_inicio_op1'=>'required',
+                                'minutos_inicio_op1'=>'required',
+                                'hora_fin_op1'=>'required',
+                                'minutos_fin_op1'=>'required'
+                            ]);
+                            $horario->update($data);
+                            return redirect()->route('mensaje_editar_horario',['user'=>$user]);
+                        }else{
+                            if($horarios->cont_dia==2 && $horarios->cont_tarde==0){
+                                $dia=$request->input('hora_inicio_op1');
+                                if($dia==null){/* significa que el administrador va a editar el horario de tutoria numero 2 */
+                                    $horario = Horario3::find($horarios->id);
+                                    $data=request()->validate([
+                                        'hora_inicio_op2'=>'required',
+                                        'minutos_inicio_op2'=>'required',
+                                        'hora_fin_op2'=>'required',
+                                        'minutos_fin_op2'=>'required'
+                                    ]);
+                                    $horario->update($data);
+                                    return redirect()->route('mensaje_editar_horario',['user'=>$user]);
+                                }else{/* el administrador va a editar el horario de tutoria numero 1 */
+                                    $horario = Horario3::find($horarios->id);
+                                    $data=request()->validate([
+                                        'hora_inicio_op1'=>'required',
+                                        'minutos_inicio_op1'=>'required',
+                                        'hora_fin_op1'=>'required',
+                                        'minutos_fin_op1'=>'required'
+                                    ]);
+                                    $horario->update($data);
+                                    return redirect()->route('mensaje_editar_horario',['user'=>$user]);
+                                }
+                            }else{
+                                if($horarios->cont_dia==1 && $horarios->cont_tarde==1){
+                                    $dia=$request->input('dia');
+                                    $valor=Str::endsWith($dia,'mañana');
+                                    if($valor==true){/* el administrador va a editar el horario 1 */
+                                        $horario = Horario3::find($horarios->id);
+                                        $data=request()->validate([
+                                            'hora_inicio_op1'=>'required',
+                                            'minutos_inicio_op1'=>'required',
+                                            'hora_fin_op1'=>'required',
+                                            'minutos_fin_op1'=>'required'
+                                        ]);
+                                        $horario->update($data);
+                                        return redirect()->route('mensaje_editar_horario',['user'=>$user]);
+                                    }else{/* el administrador va a editar el horario 3 */
+                                        $horario = Horario3::find($horarios->id);
+                                        $data=request()->validate([
+                                            'hora_inicio_op3'=>'required',
+                                            'minutos_inicio_op3'=>'required',
+                                            'hora_fin_op3'=>'required',
+                                            'minutos_fin_op3'=>'required'
+                                        ]);
+                                        $horario->update($data);
+                                        return redirect()->route('mensaje_editar_horario',['user'=>$user]);
+                                    }
+                                }else{
+                                    if($horarios->cont_dia==2 && $horarios->cont_tarde==1){
+                                        $dia=$request->input('dia');
+                                        $valor=Str::endsWith($dia,'mañana');
+                                        if($valor==true){/* el administrador va a editar el horario 1 o el horario 2*/
+                                            $aux=$request->input('hora_inicio_op1');
+                                            if($aux==null){/* el administrador va a editar el horario de tutoria numero 2 */
+                                                $horario = Horario3::find($horarios->id);
+                                                $data=request()->validate([
+                                                    'hora_inicio_op2'=>'required',
+                                                    'minutos_inicio_op2'=>'required',
+                                                    'hora_fin_op2'=>'required',
+                                                    'minutos_fin_op2'=>'required'
+                                                ]);
+                                                $horario->update($data);
+                                                return redirect()->route('mensaje_editar_horario',['user'=>$user]);
+                                            }else{/* el administrador va a editar el horario de tutoria numero 1 */
+                                                $horario = Horario3::find($horarios->id);
+                                                $data=request()->validate([
+                                                    'hora_inicio_op1'=>'required',
+                                                    'minutos_inicio_op1'=>'required',
+                                                    'hora_fin_op1'=>'required',
+                                                    'minutos_fin_op1'=>'required'
+                                                ]);
+                                                $horario->update($data);
+                                                return redirect()->route('mensaje_editar_horario',['user'=>$user]);
+                                            }
+                                        }else{/* el administrador va a editar el horario 3 */
+                                            $horario = Horario3::find($horarios->id);
+                                            $data=request()->validate([
+                                                'hora_inicio_op3'=>'required',
+                                                'minutos_inicio_op3'=>'required',
+                                                'hora_fin_op3'=>'required',
+                                                'minutos_fin_op3'=>'required'
+                                            ]);
+                                            $horario->update($data);
+                                            return redirect()->route('mensaje_editar_horario',['user'=>$user]);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }else{
+                    $valor=Str::startsWith($aux_dia,'Jueves');
+                    if($valor==true){
+                        $horarios=DB::table('horario4s')->where('usuario_id',$docente)->first();
+                        if($horarios->cont_dia==0 && $horarios->cont_tarde==1){
+                            $horario = Horario4::find($horarios->id);
+                            $data=request()->validate([
+                                'hora_inicio_op3'=>'required',
+                                'minutos_inicio_op3'=>'required',
+                                'hora_fin_op3'=>'required',
+                                'minutos_fin_op3'=>'required'
+                            ]);
+                            $horario->update($data);
+                            return redirect()->route('mensaje_editar_horario',['user'=>$user]);
+                        }else{
+                            if($horarios->cont_dia==1 && $horarios->cont_tarde==0){
+                                $horario = Horario4::find($horarios->id);
+                                $data=request()->validate([
+                                    'hora_inicio_op1'=>'required',
+                                    'minutos_inicio_op1'=>'required',
+                                    'hora_fin_op1'=>'required',
+                                    'minutos_fin_op1'=>'required'
+                                ]);
+                                $horario->update($data);
+                                return redirect()->route('mensaje_editar_horario',['user'=>$user]);
+                            }else{
+                                if($horarios->cont_dia==2 && $horarios->cont_tarde==0){
+                                    $dia=$request->input('hora_inicio_op1');
+                                    if($dia==null){/* significa que el administrador va a editar el horario de tutoria numero 2 */
+                                        $horario = Horario4::find($horarios->id);
+                                        $data=request()->validate([
+                                            'hora_inicio_op2'=>'required',
+                                            'minutos_inicio_op2'=>'required',
+                                            'hora_fin_op2'=>'required',
+                                            'minutos_fin_op2'=>'required'
+                                        ]);
+                                        $horario->update($data);
+                                        return redirect()->route('mensaje_editar_horario',['user'=>$user]);
+                                    }else{/* el administrador va a editar el horario de tutoria numero 1 */
+                                        $horario = Horario4::find($horarios->id);
+                                        $data=request()->validate([
+                                            'hora_inicio_op1'=>'required',
+                                            'minutos_inicio_op1'=>'required',
+                                            'hora_fin_op1'=>'required',
+                                            'minutos_fin_op1'=>'required'
+                                        ]);
+                                        $horario->update($data);
+                                        return redirect()->route('mensaje_editar_horario',['user'=>$user]);
+                                    }
+                                }else{
+                                    if($horarios->cont_dia==1 && $horarios->cont_tarde==1){
+                                        $dia=$request->input('dia');
+                                        $valor=Str::endsWith($dia,'mañana');
+                                        if($valor==true){/* el administrador va a editar el horario 1 */
+                                            $horario = Horario4::find($horarios->id);
+                                            $data=request()->validate([
+                                                'hora_inicio_op1'=>'required',
+                                                'minutos_inicio_op1'=>'required',
+                                                'hora_fin_op1'=>'required',
+                                                'minutos_fin_op1'=>'required'
+                                            ]);
+                                            $horario->update($data);
+                                            return redirect()->route('mensaje_editar_horario',['user'=>$user]);
+                                        }else{/* el administrador va a editar el horario 3 */
+                                            $horario = Horario4::find($horarios->id);
+                                            $data=request()->validate([
+                                                'hora_inicio_op3'=>'required',
+                                                'minutos_inicio_op3'=>'required',
+                                                'hora_fin_op3'=>'required',
+                                                'minutos_fin_op3'=>'required'
+                                            ]);
+                                            $horario->update($data);
+                                            return redirect()->route('mensaje_editar_horario',['user'=>$user]);
+                                        }
+                                    }else{
+                                        if($horarios->cont_dia==2 && $horarios->cont_tarde==1){
+                                            $dia=$request->input('dia');
+                                            $valor=Str::endsWith($dia,'mañana');
+                                            if($valor==true){/* el administrador va a editar el horario 1 o el horario 2*/
+                                                $aux=$request->input('hora_inicio_op1');
+                                                if($aux==null){/* el administrador va a editar el horario de tutoria numero 2 */
+                                                    $horario = Horario4::find($horarios->id);
+                                                    $data=request()->validate([
+                                                        'hora_inicio_op2'=>'required',
+                                                        'minutos_inicio_op2'=>'required',
+                                                        'hora_fin_op2'=>'required',
+                                                        'minutos_fin_op2'=>'required'
+                                                    ]);
+                                                    $horario->update($data);
+                                                    return redirect()->route('mensaje_editar_horario',['user'=>$user]);
+                                                }else{/* el administrador va a editar el horario de tutoria numero 1 */
+                                                    $horario = Horario4::find($horarios->id);
+                                                    $data=request()->validate([
+                                                        'hora_inicio_op1'=>'required',
+                                                        'minutos_inicio_op1'=>'required',
+                                                        'hora_fin_op1'=>'required',
+                                                        'minutos_fin_op1'=>'required'
+                                                    ]);
+                                                    $horario->update($data);
+                                                    return redirect()->route('mensaje_editar_horario',['user'=>$user]);
+                                                }
+                                            }else{/* el administrador va a editar el horario 3 */
+                                                $horario = Horario4::find($horarios->id);
+                                                $data=request()->validate([
+                                                    'hora_inicio_op3'=>'required',
+                                                    'minutos_inicio_op3'=>'required',
+                                                    'hora_fin_op3'=>'required',
+                                                    'minutos_fin_op3'=>'required'
+                                                ]);
+                                                $horario->update($data);
+                                                return redirect()->route('mensaje_editar_horario',['user'=>$user]);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }else{
+                        $valor=Str::startsWith($aux_dia,'Viernes');
+                        if($valor==true){
+                            $horarios=DB::table('horario5s')->where('usuario_id',$docente)->first();
+                            if($horarios->cont_dia==0 && $horarios->cont_tarde==1){
+                                $horario = Horario5::find($horarios->id);
+                                $data=request()->validate([
+                                    'hora_inicio_op3'=>'required',
+                                    'minutos_inicio_op3'=>'required',
+                                    'hora_fin_op3'=>'required',
+                                    'minutos_fin_op3'=>'required'
+                                ]);
+                                $horario->update($data);
+                                return redirect()->route('mensaje_editar_horario',['user'=>$user]);
+                            }else{
+                                if($horarios->cont_dia==1 && $horarios->cont_tarde==0){
+                                    $horario = Horario5::find($horarios->id);
+                                    $data=request()->validate([
+                                        'hora_inicio_op1'=>'required',
+                                        'minutos_inicio_op1'=>'required',
+                                        'hora_fin_op1'=>'required',
+                                        'minutos_fin_op1'=>'required'
+                                    ]);
+                                    $horario->update($data);
+                                    return redirect()->route('mensaje_editar_horario',['user'=>$user]);
+                                }else{
+                                    if($horarios->cont_dia==2 && $horarios->cont_tarde==0){
+                                        $dia=$request->input('hora_inicio_op1');
+                                        if($dia==null){/* significa que el administrador va a editar el horario de tutoria numero 2 */
+                                            $horario = Horario5::find($horarios->id);
+                                            $data=request()->validate([
+                                                'hora_inicio_op2'=>'required',
+                                                'minutos_inicio_op2'=>'required',
+                                                'hora_fin_op2'=>'required',
+                                                'minutos_fin_op2'=>'required'
+                                            ]);
+                                            $horario->update($data);
+                                            return redirect()->route('mensaje_editar_horario',['user'=>$user]);
+                                        }else{/* el administrador va a editar el horario de tutoria numero 1 */
+                                            $horario = Horario5::find($horarios->id);
+                                            $data=request()->validate([
+                                                'hora_inicio_op1'=>'required',
+                                                'minutos_inicio_op1'=>'required',
+                                                'hora_fin_op1'=>'required',
+                                                'minutos_fin_op1'=>'required'
+                                            ]);
+                                            $horario->update($data);
+                                            return redirect()->route('mensaje_editar_horario',['user'=>$user]);
+                                        }
+                                    }else{
+                                        if($horarios->cont_dia==1 && $horarios->cont_tarde==1){
+                                            $dia=$request->input('dia');
+                                            $valor=Str::endsWith($dia,'mañana');
+                                            if($valor==true){/* el administrador va a editar el horario 1 */
+                                                $horario = Horario5::find($horarios->id);
+                                                $data=request()->validate([
+                                                    'hora_inicio_op1'=>'required',
+                                                    'minutos_inicio_op1'=>'required',
+                                                    'hora_fin_op1'=>'required',
+                                                    'minutos_fin_op1'=>'required'
+                                                ]);
+                                                $horario->update($data);
+                                                return redirect()->route('mensaje_editar_horario',['user'=>$user]);
+                                            }else{/* el administrador va a editar el horario 3 */
+                                                $horario = Horario5::find($horarios->id);
+                                                $data=request()->validate([
+                                                    'hora_inicio_op3'=>'required',
+                                                    'minutos_inicio_op3'=>'required',
+                                                    'hora_fin_op3'=>'required',
+                                                    'minutos_fin_op3'=>'required'
+                                                ]);
+                                                $horario->update($data);
+                                                return redirect()->route('mensaje_editar_horario',['user'=>$user]);
+                                            }
+                                        }else{
+                                            if($horarios->cont_dia==2 && $horarios->cont_tarde==1){
+                                                $dia=$request->input('dia');
+                                                $valor=Str::endsWith($dia,'mañana');
+                                                if($valor==true){/* el administrador va a editar el horario 1 o el horario 2*/
+                                                    $aux=$request->input('hora_inicio_op1');
+                                                    if($aux==null){/* el administrador va a editar el horario de tutoria numero 2 */
+                                                        $horario = Horario5::find($horarios->id);
+                                                        $data=request()->validate([
+                                                            'hora_inicio_op2'=>'required',
+                                                            'minutos_inicio_op2'=>'required',
+                                                            'hora_fin_op2'=>'required',
+                                                            'minutos_fin_op2'=>'required'
+                                                        ]);
+                                                        $horario->update($data);
+                                                        return redirect()->route('mensaje_editar_horario',['user'=>$user]);
+                                                    }else{/* el administrador va a editar el horario de tutoria numero 1 */
+                                                        $horario = Horario5::find($horarios->id);
+                                                        $data=request()->validate([
+                                                            'hora_inicio_op1'=>'required',
+                                                            'minutos_inicio_op1'=>'required',
+                                                            'hora_fin_op1'=>'required',
+                                                            'minutos_fin_op1'=>'required'
+                                                        ]);
+                                                        $horario->update($data);
+                                                        return redirect()->route('mensaje_editar_horario',['user'=>$user]);
+                                                    }
+                                                }else{/* el administrador va a editar el horario 3 */
+                                                    $horario = Horario5::find($horarios->id);
+                                                    $data=request()->validate([
+                                                        'hora_inicio_op3'=>'required',
+                                                        'minutos_inicio_op3'=>'required',
+                                                        'hora_fin_op3'=>'required',
+                                                        'minutos_fin_op3'=>'required'
+                                                    ]);
+                                                    $horario->update($data);
+                                                    return redirect()->route('mensaje_editar_horario',['user'=>$user]);
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+    }
+    /* MENSAJE */
+    public function mensaje_editar_horario(User $user){
+        $docente=$user->id;
+        $horarios=DB::table('horarios')->where('usuario_id',$docente)->first();
+        $horario2s=DB::table('horario2s')->where('usuario_id',$docente)->first();
+        $horario3s=DB::table('horario3s')->where('usuario_id',$docente)->first();
+        $horario4s=DB::table('horario4s')->where('usuario_id',$docente)->first();
+        $horario5s=DB::table('horario5s')->where('usuario_id',$docente)->first();
+        Alert::success('¡Bien hecho! ')
+            ->details('Se ha editado correctamente el horario de tutoría');
+        return view('user_administrador.horario_tutoria_asignada',compact('user','horarios','horario2s','horario3s','horario4s','horario5s'));
     }
 /* 
 |--------------------------------------------------------------------------
@@ -2950,7 +3759,7 @@ public function editar_admin(){
         $horario3s=DB::table('horario3s')->where('usuario_id',$docente)->first();
         $horario4s=DB::table('horario4s')->where('usuario_id',$docente)->first();
         $horario5s=DB::table('horario5s')->where('usuario_id',$docente)->first();
-        Alert::success('¡Bien hecho! ')
+        Alert::danger('¡Bien hecho! ')
             ->details('Se ha eliminado correctamente el horario de tutoría');
         return view('user_administrador.horario_tutoria_asignada',compact('user','horarios','horario2s','horario3s','horario4s','horario5s'));
     }
