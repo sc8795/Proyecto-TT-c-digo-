@@ -1835,11 +1835,33 @@ public function editar_admin(){
 | Funciones para editar horario de tutoria asignada
 |--------------------------------------------------------------------------
 */
-    public function vista_editar_horario_tutoria_asignada_op1(User $user, Request $request){
+    public function vista_editar_horario_tutoria_asignada_op1(User $user, $aux){
         $docente=$user->id;
         $horarios=DB::table('horarios')->where('usuario_id',$docente)->first();
-        $aux=1;
-        return view('user_administrador.editar_horario_tutoria_asignada',compact('user','horarios','aux'));
+        if($aux==1){
+
+        }else{
+            if($aux==2){
+
+            }else{
+                if($aux==3){
+                    $var1=$horarios->dia1_op3;
+                    $var2=$horarios->hora_inicio_op3;
+                    $var3=$horarios->minutos_inicio_op3;
+                    $var4=$horarios->hora_fin_op3;
+                    $var5=$horarios->minutos_fin_op3;
+                    return view('user_administrador.editar_horario_tutoria_asignada',compact('user','var1','var2','var3','var4','var5','aux'));
+                }
+            }
+        }
+    }
+    public function editando_horario(User $user, Request $request){
+        $dia=$request->input('dia');
+        $docente=$user->id;
+        $hora_inicio=$request->input('hora_inicio1');
+        $hora_fin=$request->input('hora_fin1');
+        $minutos_inicio=$request->input('minutos_inicio1');
+        $minutos_fin=$request->input('minutos_fin1');
     }
 /* 
 |--------------------------------------------------------------------------

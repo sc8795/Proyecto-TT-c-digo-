@@ -106,8 +106,8 @@ Route::delete('eliminar_horario_tutoria_asignada_op5/{user}','AuthAdministradorC
 Route::get('eliminar_horario_tutoria_asignada_op1_1/{user}','AuthAdministradorController@eliminar_horario_tutoria_asignada_op1_1')->name('eliminar_horario_tutoria_asignada_op1_1');
 
 /* Rutas para editar horario de tutoría asignada */
-Route::get('vista_editar_horario_tutoria_asignada_op1/{user}','AuthAdministradorController@vista_editar_horario_tutoria_asignada_op1')->name('vista_editar_horario_tutoria_asignada_op1');
-
+Route::get('vista_editar_horario_tutoria_asignada_op1/{user}/{aux}','AuthAdministradorController@vista_editar_horario_tutoria_asignada_op1')->name('vista_editar_horario_tutoria_asignada_op1');
+Route::put('editando_horario/{user}','AuthAdministradorController@editando_horario')->name('editando_horario');
 /* 
 |--------------------------------------------------------------------------
 | Rutas del Estudiante

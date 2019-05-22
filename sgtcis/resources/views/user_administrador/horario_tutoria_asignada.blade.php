@@ -84,11 +84,14 @@
                                             </h6>
                                             <h6 class="tit_datos">Hora fin:
                                                 <span class="tit_datos_op2">{{$horarios->hora_fin_op3}} : {{$horarios->minutos_fin_op3}}</span>
-                                            </h6><br>
+                                            </h6>
                                             <form method="POST" action="{{url("eliminar_horario_tutoria_asignada_op1/{$user->id}")}}">
                                                 {{csrf_field()}}
                                                 {{method_field('DELETE')}}
-                                                <a href="{{url("vista_editar_horario_tutoria_asignada_op1/{$user->id}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
+                                                @php
+                                                    $aux=3;
+                                                @endphp
+                                                <a href="{{url("vista_editar_horario_tutoria_asignada_op1/{$user->id}/{$aux}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Editar <span class="oi oi-pencil"></span></a>
                                                 <button type="submit" class="btn btn-danger btn-sm" title="Eliminar horario de tutoría asignado">Eliminar <span class="oi oi-trash"></span></button>
                                             </form>
                                         </th>

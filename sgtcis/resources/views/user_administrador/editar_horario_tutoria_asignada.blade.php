@@ -23,19 +23,73 @@
                 <h6 class="tit_general">Docente: 
                     <span class="tit_datos"> {{$user->name}} {{$user->lastname}}</span>
                 </h6>
-                <form action="#" method="POST">
+                <form action="{{url("editando_horario/{$user->id}")}}" method="POST">
                     {{method_field("PUT")}}
                     {{ csrf_field() }}
                     <h6 class="tit_general">Día: 
                         <span class="tit_datos">
-                            @if ($aux==1)
-                                <input type="hidden" name="dia" value="{{$horarios->dia1_op3}}">{{$horarios->dia1_op3}}
-                            @else
-                                
-                            @endif
+                            <input type="hidden" name="dia" value="{{$var1}}">{{$var1}}
                         </span>
                     </h6>
-                    
+                    <div class="row">
+                        @if ($aux==1 || $aux==2)
+                            
+                        @else
+                            @if ($aux==3)
+                                <div class="col-3">
+                                    <h6 class="tit_general">Hora inicio 
+                                        <select name="hora_inicio1">
+                                            <option value="{{$var2}}">{{$var2}}</option>
+                                            <option value="15">15</option>
+                                            <option value="16">16</option>
+                                            <option value="17">17</option>
+                                        </select>
+                                        <span class="tit_datos">:</span>
+                                        <select name="minutos_inicio1">
+                                            <option value="{{$var3}}">{{$var3}}</option>
+                                            <option value="5">5</option>
+                                            <option value="10">10</option>
+                                            <option value="15">15</option>
+                                            <option value="20">20</option>
+                                            <option value="25">25</option>
+                                            <option value="30">30</option>
+                                            <option value="35">35</option>
+                                            <option value="40">40</option>
+                                            <option value="45">45</option>
+                                            <option value="50">50</option>
+                                            <option value="55">55</option>
+                                        </select>
+                                    </h6>
+                                </div>
+                                <div class="col-3">
+                                    <h6 class="tit_general">Hora fin
+                                        <select name="hora_fin1">
+                                            <option value="{{$var4}}">{{$var4}}</option>
+                                            <option value="15">15</option>
+                                            <option value="16">16</option>
+                                            <option value="17">17</option>
+                                        </select>
+                                        <span class="tit_datos">:</span>
+                                        <select name="minutos_fin1">
+                                            <option value="{{$var5}}">{{$var5}}</option>
+                                            <option value="5">5</option>
+                                            <option value="10">10</option>
+                                            <option value="15">15</option>
+                                            <option value="20">20</option>
+                                            <option value="25">25</option>
+                                            <option value="30">30</option>
+                                            <option value="35">35</option>
+                                            <option value="40">40</option>
+                                            <option value="45">45</option>
+                                            <option value="50">50</option>
+                                            <option value="55">55</option>
+                                        </select>
+                                    </h6>
+                                </div>
+                            @endif
+                        @endif
+                    </div>
+                    <button type="submit" class="btn btn-success btn-sm" title="Editar horario de tutoría">Editar <span class="oi oi-pencil"></span></button>
                 </form>
             </div>
         </div>
