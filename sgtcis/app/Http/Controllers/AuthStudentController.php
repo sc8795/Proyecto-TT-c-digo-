@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\User;
+use App\Materia;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
 
@@ -74,5 +75,23 @@ class AuthStudentController extends Controller
         $users=DB::table('users')->where('is_estudiante',true)->get();
         $users_docentes=DB::table('users')->where('is_docente',true)->get();
         return view('user_student.solicitar_tutoria',compact('materias','users','users_docentes'));
+    }
+    public function vista_solicitar_tutoria(User $user, User $user_docente, Materia $materia){
+        $docente=$user_docente->id;
+        $verifica_horarios=DB::table('horarios')->where('usuario_id',$docente)->exists();
+        if($verifica_horarios==true){
+            $horarios=DB::table('horarios')->where('usuario_id',$docente)->first();
+        }else{
+            $verifica_horarios=DB::table('horario2s')->where('usuario_id',$docente)->exists();
+            if($verifica_horarios==true){
+
+            }else{
+                $verifica_horarios=DB::table('horario3s')->where('usuario_id',$docente)->exists();
+                if($verifica_horarios==true){
+                    
+                }
+            }
+        }
+        //return view('user_student.vista_solicitar_tutoria',compact('user','user_docente','materia','horarios'));
     }
 }

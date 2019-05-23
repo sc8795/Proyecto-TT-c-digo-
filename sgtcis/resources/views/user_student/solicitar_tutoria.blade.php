@@ -8,7 +8,7 @@
     <div class="row">
         @include('user_student.vistas_iguales.imagen_texto')
         <div class="col-9" id="titulo_general">
-            <h3>Solicitar Tutoría</h3>
+            <h3>Seleccione la materia a solicitar tutoría</h3>
         </div>
     </div>
 @endsection
@@ -45,7 +45,13 @@
                                             @endforeach
                                         </h6>
                                     </td>
-                                    <td><h6 class="tit_general"><a href="#">Solicitar tutoría</a></h6></td>
+                                    <td>
+                                        @foreach ($users_docentes as $user_docente)
+                                            @if ($materia->usuario_id==$user_docente->id)
+                                                <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
+                                            @endif
+                                        @endforeach
+                                    </td>
                                 @endif
                             </tr>
                             @endforeach   

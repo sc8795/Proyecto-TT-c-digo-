@@ -99,3 +99,17 @@ h4{
 .formulario_general{
     width: 50%;
 }
+.tit_datos_op2{
+    color: #83e6b4;
+}
+
+/*estilos solicitar tutoria*/
+#contenedor_2{
+    background-color:  #0b5345 ;
+}
+#contenedor_general_op2{
+    background-color: gray;
+}
+.negrita{
+    font-weight: bold;
+}

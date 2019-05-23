@@ -127,6 +127,7 @@ Route::put('editar_student','AuthStudentController@editar_student')->name('edita
 
 /* Rutas para solicitar tutoria*/
 Route::get('solicitar_tutoria','AuthStudentController@solicitar_tutoria')->name('solicitar_tutoria');
+Route::get('vista_solicitar_tutoria/{user}/{user_docente}/{materia}','AuthStudentController@vista_solicitar_tutoria')->name('vista_solicitar_tutoria');
 
 /* 
 |--------------------------------------------------------------------------
