@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use App\User;
 use App\Materia;
+use Alert;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
 
@@ -79,19 +80,23 @@ class AuthStudentController extends Controller
     public function vista_solicitar_tutoria(User $user, User $user_docente, Materia $materia){
         $docente=$user_docente->id;
         $verifica_horarios=DB::table('horarios')->where('usuario_id',$docente)->exists();
-        if($verifica_horarios==true){
+        $verifica_horarios2=DB::table('horario2s')->where('usuario_id',$docente)->exists();
+        $verifica_horarios3=DB::table('horario3s')->where('usuario_id',$docente)->exists();
+        $verifica_horarios4=DB::table('horario4s')->where('usuario_id',$docente)->exists();
+        $verifica_horarios5=DB::table('horario5s')->where('usuario_id',$docente)->exists();
+        if($verifica_horarios==true || $verifica_horarios2==true || $verifica_horarios3==true || $verifica_horarios4==true || $verifica_horarios5==true){
+            $estado=0;
             $horarios=DB::table('horarios')->where('usuario_id',$docente)->first();
+            $horarios2=DB::table('horario2s')->where('usuario_id',$docente)->first();
+            $horarios3=DB::table('horario3s')->where('usuario_id',$docente)->first();
+            $horarios4=DB::table('horario4s')->where('usuario_id',$docente)->first();
+            $horarios5=DB::table('horario5s')->where('usuario_id',$docente)->first();
+            return view('user_student.vista_solicitar_tutoria',compact('user','user_docente','materia','estado','horarios','horarios2','horarios3','horarios4','horarios5'));
         }else{
-            $verifica_horarios=DB::table('horario2s')->where('usuario_id',$docente)->exists();
-            if($verifica_horarios==true){
-
-            }else{
-                $verifica_horarios=DB::table('horario3s')->where('usuario_id',$docente)->exists();
-                if($verifica_horarios==true){
-                    
-                }
-            }
+            $estado=1;
+            Alert::info('¡Aviso! ')
+                ->details("El docente $user_docente->name $user_docente->lastname no tiene asignado horario de tutoría.");
+            return view('user_student.vista_solicitar_tutoria',compact('estado'));
         }
-        //return view('user_student.vista_solicitar_tutoria',compact('user','user_docente','materia','horarios'));
     }
 }
