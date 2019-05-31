@@ -50,7 +50,7 @@
                                                         De {{$horarios->hora_inicio_op1}}:{{$horarios->minutos_inicio_op1}} a {{$horarios->hora_fin_op1}}:{{$horarios->minutos_fin_op1}}
                                                     </span>
                                                     <h6>
-                                                        <input type="radio" name="dia" value=""> Seleccionar
+                                                        <input type="radio" name="dia" value="dia1_op1"> Seleccionar
                                                     </h6>
                                                 </div>
                                                 <div class="col-3" id="fondo_solicitud">
@@ -58,7 +58,7 @@
                                                         De {{$horarios->hora_inicio_op2}}:{{$horarios->minutos_inicio_op2}} a {{$horarios->hora_fin_op2}}:{{$horarios->minutos_fin_op2}}
                                                     </span>
                                                     <h6>
-                                                        <input type="radio" name="dia" value=""> Seleccionar
+                                                        <input type="radio" name="dia" value="dia1_op2"> Seleccionar
                                                     </h6>
                                                 </div>
                                                 <div class="col-3" id="fondo_solicitud">
@@ -66,7 +66,7 @@
                                                         De {{$horarios->hora_inicio_op3}}:{{$horarios->minutos_inicio_op3}} a {{$horarios->hora_fin_op3}}:{{$horarios->minutos_fin_op3}}
                                                     </span>
                                                     <h6>
-                                                        <input type="radio" name="dia" value=""> Seleccionar
+                                                        <input type="radio" name="dia" value="dia1_op3"> Seleccionar
                                                     </h6>
                                                 </div>
                                                 @php
@@ -1944,7 +1944,7 @@
                                                                     </div>
                                                                     <div class="col-3" id="fondo_solicitud">
                                                                         <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
-                                                                            De {{$horarios->hora_inicio_op3}}:{{$horarios->minutos_inicio_op3}} a {{$horarios->hora_fin_op3}}:{{$horarios->minutos_fin_op3}}
+                                                                            De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                         </span>
                                                                     </div>
                                                                     @php
@@ -1957,40 +1957,1005 @@
                                                 @endif
                                             @else
                                                 @if ($cont==1)
-                                                    
+                                                    @if ($horarios5->cont_dia==2 && $horarios5->cont_tarde==1)
+                                                        <div class="col-3" id="fondo_solicitud">
+                                                            <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
+                                                                De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
+                                                            </span>
+                                                        </div>
+                                                        <div class="col-3" id="fondo_solicitud">
+                                                            <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
+                                                                De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
+                                                            </span>
+                                                        </div>
+                                                        <div class="col-3" id="fondo_solicitud">
+                                                            <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
+                                                                De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
+                                                            </span>
+                                                        </div>
+                                                        @php
+                                                            $cont=4;
+                                                        @endphp
+                                                    @else
+                                                        @if ($horarios5->cont_dia==0 && $horarios5->cont_tarde==1)
+                                                            <div class="col-3" id="fondo_solicitud">
+                                                                <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
+                                                                    De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
+                                                                </span>
+                                                            </div>
+                                                            @php
+                                                                $cont=2;
+                                                            @endphp
+                                                        @else
+                                                            @if ($horarios5->cont_dia==1 && $horarios5->cont_tarde==0)
+                                                                <div class="col-3" id="fondo_solicitud">
+                                                                    <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
+                                                                        De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
+                                                                    </span>
+                                                                </div>
+                                                                @php
+                                                                    $cont=2;
+                                                                @endphp
+                                                            @else
+                                                                @if ($horarios5->cont_dia==2 && $horarios5->cont_tarde==0)
+                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                        <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
+                                                                            De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
+                                                                        </span>
+                                                                    </div>
+                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                        <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
+                                                                            De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
+                                                                        </span>
+                                                                    </div>
+                                                                    @php
+                                                                        $cont=3;
+                                                                    @endphp
+                                                                @else
+                                                                    @if ($horarios5->cont_dia==1 && $horarios5->cont_tarde==1)
+                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                            <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
+                                                                                De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
+                                                                            </span>
+                                                                        </div>
+                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                            <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
+                                                                                De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
+                                                                            </span>
+                                                                        </div>
+                                                                        @php
+                                                                            $cont=3;
+                                                                        @endphp
+                                                                    @endif
+                                                                @endif
+                                                            @endif
+                                                        @endif
+                                                    @endif
                                                 @else
                                                     @if ($cont==2)
-                                                        
+                                                        @if ($horarios5->cont_dia==2 && $horarios5->cont_tarde==1)
+                                                            <div class="col-3" id="fondo_solicitud">
+                                                                <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
+                                                                    De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
+                                                                </span>
+                                                            </div>
+                                                            <div class="col-3" id="fondo_solicitud">
+                                                                <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
+                                                                    De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
+                                                                </span>
+                                                            </div>
+                                                            <!-- Creo el segundo contenedor><-->
+                                                            <div class="container">
+                                                                <br>
+                                                                <div class="row">
+                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                        <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
+                                                                            De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            @php
+                                                                $cont=5;
+                                                            @endphp
+                                                        @else
+                                                            @if ($horarios5->cont_dia==0 && $horarios5->cont_tarde==1)
+                                                                <div class="col-3" id="fondo_solicitud">
+                                                                    <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
+                                                                        De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
+                                                                    </span>
+                                                                </div>
+                                                                @php
+                                                                    $cont=3;
+                                                                @endphp
+                                                            @else
+                                                                @if ($horarios5->cont_dia==1 && $horarios5->cont_tarde==0)
+                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                        <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
+                                                                            De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
+                                                                        </span>
+                                                                    </div>
+                                                                    @php
+                                                                        $cont=3;
+                                                                    @endphp
+                                                                @else
+                                                                    @if ($horarios5->cont_dia==2 && $horarios5->cont_tarde==0)
+                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                            <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
+                                                                                De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
+                                                                            </span>
+                                                                        </div>
+                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                            <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
+                                                                                De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
+                                                                            </span>
+                                                                        </div>
+                                                                        @php
+                                                                            $cont=4;
+                                                                        @endphp
+                                                                    @else
+                                                                        @if ($horarios5->cont_dia==1 && $horarios5->cont_tarde==1)
+                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                                <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
+                                                                                    De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
+                                                                                </span>
+                                                                            </div>
+                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                                <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
+                                                                                    De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
+                                                                                </span>
+                                                                            </div>
+                                                                            @php
+                                                                                $cont=4;
+                                                                            @endphp
+                                                                        @endif
+                                                                    @endif
+                                                                @endif
+                                                            @endif
+                                                        @endif
                                                     @else
                                                         @if ($cont==3)
-                                                            
+                                                            @if ($horarios5->cont_dia==2 && $horarios5->cont_tarde==1)
+                                                                <div class="col-3" id="fondo_solicitud">
+                                                                    <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
+                                                                        De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
+                                                                    </span>
+                                                                </div>
+                                                                <!-- Creo el segundo contenedor><-->
+                                                                <div class="container">
+                                                                    <br>
+                                                                    <div class="row">
+                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                            <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
+                                                                                De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
+                                                                            </span>
+                                                                        </div>
+                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                            <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
+                                                                                De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
+                                                                            </span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                @php
+                                                                    $cont=6;
+                                                                @endphp
+                                                            @else
+                                                                @if ($horarios5->cont_dia==0 && $horarios5->cont_tarde==1)
+                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                        <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
+                                                                            De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
+                                                                        </span>
+                                                                    </div>
+                                                                    @php
+                                                                        $cont=4;
+                                                                    @endphp
+                                                                @else
+                                                                    @if ($horarios5->cont_dia==1 && $horarios5->cont_tarde==0)
+                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                            <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
+                                                                                De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
+                                                                            </span>
+                                                                        </div>
+                                                                        @php
+                                                                            $cont=4;
+                                                                        @endphp
+                                                                    @else
+                                                                        @if ($horarios5->cont_dia==2 && $horarios5->cont_tarde==0)
+                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                                <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
+                                                                                    De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
+                                                                                </span>
+                                                                            </div>
+                                                                            <!--Creo el segundo contenedor><-->
+                                                                            <div class="container">
+                                                                                <br>
+                                                                                <div class="row">
+                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                        <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
+                                                                                            De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
+                                                                                        </span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            @php
+                                                                                $cont=5;
+                                                                            @endphp
+                                                                        @else
+                                                                            @if ($horarios5->cont_dia==1 && $horarios5->cont_tarde==1)
+                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                    <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
+                                                                                        De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
+                                                                                    </span>
+                                                                                </div>
+                                                                                <!--Creo el segundo contenedor><-->
+                                                                                <div class="container">
+                                                                                    <br>
+                                                                                    <div class="row">
+                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                            <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
+                                                                                                De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
+                                                                                            </span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                @php
+                                                                                    $cont=5;
+                                                                                @endphp
+                                                                            @endif
+                                                                        @endif
+                                                                    @endif
+                                                                @endif
+                                                            @endif
                                                         @else
                                                             @if ($cont==4)
-                                                                
+                                                                <!--Creo el segundo contenedor><-->
+                                                                <div class="container">
+                                                                    <div class="row">
+                                                                        @if ($horarios5->cont_dia==2 && $horarios5->cont_tarde==1)
+                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                                <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
+                                                                                    De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
+                                                                                </span>
+                                                                            </div>
+                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                                <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
+                                                                                    De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
+                                                                                </span>
+                                                                            </div>
+                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                                <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
+                                                                                    De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
+                                                                                </span>
+                                                                            </div>
+                                                                            @php
+                                                                                $cont=7;
+                                                                            @endphp
+                                                                        @else
+                                                                            @if ($horarios5->cont_dia==0 && $horarios5->cont_tarde==1)
+                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                    <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
+                                                                                        De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
+                                                                                    </span>
+                                                                                </div>
+                                                                                @php
+                                                                                    $cont=5;
+                                                                                @endphp
+                                                                            @else
+                                                                                @if ($horarios5->cont_dia==1 && $horarios5->cont_tarde==0)
+                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                        <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
+                                                                                            De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
+                                                                                        </span>
+                                                                                    </div>
+                                                                                    @php
+                                                                                        $cont=5;
+                                                                                    @endphp
+                                                                                @else
+                                                                                    @if ($horarios5->cont_dia==2 && $horarios5->cont_tarde==0)
+                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                            <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
+                                                                                                De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
+                                                                                            </span>
+                                                                                        </div>
+                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                            <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
+                                                                                                De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
+                                                                                            </span>
+                                                                                        </div>
+                                                                                        @php
+                                                                                            $cont=6;
+                                                                                        @endphp
+                                                                                    @else
+                                                                                        @if ($horarios5->cont_dia==1 && $horarios5->cont_tarde==1)
+                                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                                                <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
+                                                                                                    De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
+                                                                                                </span>
+                                                                                            </div>
+                                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                                                <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
+                                                                                                    De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
+                                                                                                </span>
+                                                                                            </div>
+                                                                                            @php
+                                                                                                $cont=6;
+                                                                                            @endphp
+                                                                                        @endif
+                                                                                    @endif
+                                                                                @endif
+                                                                            @endif
+                                                                        @endif
+                                                                    </div>
+                                                                </div>
                                                             @else
                                                                 @if ($cont==5)
-                                                                    
+                                                                    @if ($horarios5->cont_dia==2 && $horarios5->cont_tarde==1)
+                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                            <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
+                                                                                De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
+                                                                            </span>
+                                                                        </div>
+                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                            <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
+                                                                                De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
+                                                                            </span>
+                                                                        </div>
+                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                            <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
+                                                                                De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
+                                                                            </span>
+                                                                        </div>
+                                                                        @php
+                                                                            $cont=8;
+                                                                        @endphp
+                                                                    @else
+                                                                        @if ($horarios5->cont_dia==0 && $horarios5->cont_tarde==1)
+                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                                <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
+                                                                                    De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
+                                                                                </span>
+                                                                            </div>
+                                                                            @php
+                                                                                $cont=6;
+                                                                            @endphp
+                                                                        @else
+                                                                            @if ($horarios5->cont_dia==1 && $horarios5->cont_tarde==0)
+                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                    <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
+                                                                                        De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
+                                                                                    </span>
+                                                                                </div>
+                                                                                @php
+                                                                                    $cont=6;
+                                                                                @endphp
+                                                                            @else
+                                                                                @if ($horarios5->cont_dia==2 && $horarios5->cont_tarde==0)
+                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                        <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
+                                                                                            De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
+                                                                                        </span>
+                                                                                    </div>
+                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                        <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
+                                                                                            De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
+                                                                                        </span>
+                                                                                    </div>
+                                                                                    @php
+                                                                                        $cont=7;
+                                                                                    @endphp
+                                                                                @else
+                                                                                    @if ($horarios5->cont_dia==1 && $horarios5->cont_tarde==1)
+                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                            <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
+                                                                                                De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
+                                                                                            </span>
+                                                                                        </div>
+                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                            <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
+                                                                                                De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
+                                                                                            </span>
+                                                                                        </div>
+                                                                                        @php
+                                                                                            $cont=7;
+                                                                                        @endphp
+                                                                                    @endif
+                                                                                @endif
+                                                                            @endif
+                                                                        @endif
+                                                                    @endif
                                                                 @else
                                                                     @if ($cont==6)
-                                                                        
+                                                                        @if ($horarios5->cont_dia==2 && $horarios5->cont_tarde==1)
+                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                                <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
+                                                                                    De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
+                                                                                </span>
+                                                                            </div>
+                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                                <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
+                                                                                    De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
+                                                                                </span>
+                                                                            </div>
+                                                                            <!--Creo el tercer contenedor><-->
+                                                                            <div class="container">
+                                                                                <br>
+                                                                                <div class="row">
+                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                        <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
+                                                                                            De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
+                                                                                        </span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            @php
+                                                                                $cont=9;
+                                                                            @endphp
+                                                                        @else
+                                                                            @if ($horarios5->cont_dia==0 && $horarios5->cont_tarde==1)
+                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                    <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
+                                                                                        De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
+                                                                                    </span>
+                                                                                </div>
+                                                                                @php
+                                                                                    $cont=7;
+                                                                                @endphp
+                                                                            @else
+                                                                                @if ($horarios5->cont_dia==1 && $horarios5->cont_tarde==0)
+                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                        <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
+                                                                                            De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
+                                                                                        </span>
+                                                                                    </div>
+                                                                                    @php
+                                                                                        $cont=7;
+                                                                                    @endphp
+                                                                                @else
+                                                                                    @if ($horarios5->cont_dia==2 && $horarios5->cont_tarde==0)
+                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                            <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
+                                                                                                De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
+                                                                                            </span>
+                                                                                        </div>
+                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                            <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
+                                                                                                De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
+                                                                                            </span>
+                                                                                        </div>
+                                                                                        @php
+                                                                                            $cont=8;
+                                                                                        @endphp
+                                                                                    @else
+                                                                                        @if ($horarios5->cont_dia==1 && $horarios5->cont_tarde==1)
+                                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                                                <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
+                                                                                                    De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
+                                                                                                </span>
+                                                                                            </div>
+                                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                                                <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
+                                                                                                    De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
+                                                                                                </span>
+                                                                                            </div>
+                                                                                            @php
+                                                                                                $cont=8;
+                                                                                            @endphp
+                                                                                        @endif
+                                                                                    @endif
+                                                                                @endif
+                                                                            @endif
+                                                                        @endif
                                                                     @else
                                                                         @if ($cont==7)
-                                                                            
+                                                                            @if ($horarios5->cont_dia==2 && $horarios5->cont_tarde==1)
+                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                    <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
+                                                                                        De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
+                                                                                    </span>
+                                                                                </div>
+                                                                                <!--Creo el tercer contenedor><-->
+                                                                                <div class="container">
+                                                                                    <br>
+                                                                                    <div class="row">
+                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                            <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
+                                                                                                De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
+                                                                                            </span>
+                                                                                        </div>
+                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                            <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
+                                                                                                De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
+                                                                                            </span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                @php
+                                                                                    $cont=10;
+                                                                                @endphp
+                                                                            @else
+                                                                                @if ($horarios5->cont_dia==0 && $horarios5->cont_tarde==1)
+                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                        <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
+                                                                                            De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
+                                                                                        </span>
+                                                                                    </div>
+                                                                                    @php
+                                                                                        $cont=8;
+                                                                                    @endphp
+                                                                                @else
+                                                                                    @if ($horarios5->cont_dia==1 && $horarios5->cont_tarde==0)
+                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                            <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
+                                                                                                De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
+                                                                                            </span>
+                                                                                        </div>
+                                                                                        @php
+                                                                                            $cont=8;
+                                                                                        @endphp
+                                                                                    @else
+                                                                                        @if ($horarios5->cont_dia==2 && $horarios5->cont_tarde==0)
+                                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                                                <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
+                                                                                                    De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
+                                                                                                </span>
+                                                                                            </div>
+                                                                                            <!--Creo el tercer contenedor><-->
+                                                                                            <div class="container">
+                                                                                                <br>
+                                                                                                <div class="row">
+                                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                                        <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
+                                                                                                            De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
+                                                                                                        </span>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            @php
+                                                                                                $cont=9;
+                                                                                            @endphp
+                                                                                        @else
+                                                                                            @if ($horarios5->cont_dia==1 && $horarios5->cont_tarde==1)
+                                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                                    <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
+                                                                                                        De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
+                                                                                                    </span>
+                                                                                                </div>
+                                                                                                <!--Creo el tercer contenedor><-->
+                                                                                                <div class="container">
+                                                                                                    <br>
+                                                                                                    <div class="row">
+                                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                                            <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
+                                                                                                                De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
+                                                                                                            </span>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                @php
+                                                                                                    $cont=9;
+                                                                                                @endphp
+                                                                                            @endif
+                                                                                        @endif
+                                                                                    @endif
+                                                                                @endif
+                                                                            @endif
                                                                         @else
                                                                             @if ($cont==8)
-                                                                                
+                                                                                <!--Creo el tercer contenedor><-->
+                                                                                <div class="container">
+                                                                                    <br>
+                                                                                    <div class="row">
+                                                                                        @if ($horarios5->cont_dia==2 && $horarios5->cont_tarde==1)
+                                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                                                <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
+                                                                                                    De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
+                                                                                                </span>
+                                                                                            </div>
+                                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                                                <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
+                                                                                                    De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
+                                                                                                </span>
+                                                                                            </div>
+                                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                                                <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
+                                                                                                    De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
+                                                                                                </span>
+                                                                                            </div>
+                                                                                            @php
+                                                                                                $cont=11;
+                                                                                            @endphp
+                                                                                        @else
+                                                                                            @if ($horarios5->cont_dia==0 && $horarios5->cont_tarde==1)
+                                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                                    <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
+                                                                                                        De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
+                                                                                                    </span>
+                                                                                                </div>
+                                                                                                @php
+                                                                                                    $cont=9;
+                                                                                                @endphp
+                                                                                            @else
+                                                                                                @if ($horarios5->cont_dia==1 && $horarios5->cont_tarde==0)
+                                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                                        <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
+                                                                                                            De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
+                                                                                                        </span>
+                                                                                                    </div>
+                                                                                                    @php
+                                                                                                        $cont=9;
+                                                                                                    @endphp
+                                                                                                @else
+                                                                                                    @if ($horarios5->cont_dia==2 && $horarios5->cont_tarde==0)
+                                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                                            <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
+                                                                                                                De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
+                                                                                                            </span>
+                                                                                                        </div>
+                                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                                            <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
+                                                                                                                De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
+                                                                                                            </span>
+                                                                                                        </div>
+                                                                                                        @php
+                                                                                                            $cont=10;
+                                                                                                        @endphp
+                                                                                                    @else
+                                                                                                        @if ($horarios5->cont_dia==1 && $horarios5->cont_tarde==1)
+                                                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                                                                <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
+                                                                                                                    De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
+                                                                                                                </span>
+                                                                                                            </div>
+                                                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                                                                <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
+                                                                                                                    De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
+                                                                                                                </span>
+                                                                                                            </div>
+                                                                                                            @php
+                                                                                                                $cont=10;
+                                                                                                            @endphp
+                                                                                                        @endif
+                                                                                                    @endif
+                                                                                                @endif
+                                                                                            @endif
+                                                                                        @endif
+                                                                                    </div>
+                                                                                </div>
                                                                             @else
                                                                                 @if ($cont==9)
-                                                                                    
+                                                                                    @if ($horarios5->cont_dia==2 && $horarios5->cont_tarde==1)
+                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                            <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
+                                                                                                De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
+                                                                                            </span>
+                                                                                        </div>
+                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                            <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
+                                                                                                De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
+                                                                                            </span>
+                                                                                        </div>
+                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                            <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
+                                                                                                De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
+                                                                                            </span>
+                                                                                        </div>
+                                                                                        @php
+                                                                                            $cont=12;
+                                                                                        @endphp
+                                                                                    @else
+                                                                                        @if ($horarios5->cont_dia==0 && $horarios5->cont_tarde==1)
+                                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                                                <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
+                                                                                                    De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
+                                                                                                </span>
+                                                                                            </div>
+                                                                                            @php
+                                                                                                $cont=10;
+                                                                                            @endphp
+                                                                                        @else
+                                                                                            @if ($horarios5->cont_dia==1 && $horarios5->cont_tarde==0)
+                                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                                    <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
+                                                                                                        De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
+                                                                                                    </span>
+                                                                                                </div>
+                                                                                                @php
+                                                                                                    $cont=10;
+                                                                                                @endphp
+                                                                                            @else
+                                                                                                @if ($horarios5->cont_dia==2 && $horarios5->cont_tarde==0)
+                                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                                        <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
+                                                                                                            De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
+                                                                                                        </span>
+                                                                                                    </div>
+                                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                                        <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
+                                                                                                            De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
+                                                                                                        </span>
+                                                                                                    </div>
+                                                                                                    @php
+                                                                                                        $cont=11;
+                                                                                                    @endphp
+                                                                                                @else
+                                                                                                    @if ($horarios5->cont_dia==1 && $horarios5->cont_tarde==1)
+                                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                                            <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
+                                                                                                                De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
+                                                                                                            </span>
+                                                                                                        </div>
+                                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                                            <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
+                                                                                                                De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
+                                                                                                            </span>
+                                                                                                        </div>
+                                                                                                        @php
+                                                                                                            $cont=11;
+                                                                                                        @endphp
+                                                                                                    @endif
+                                                                                                @endif
+                                                                                            @endif
+                                                                                        @endif
+                                                                                    @endif
                                                                                 @else
                                                                                     @if ($cont==10)
-                                                                                        
+                                                                                        @if ($horarios5->cont_dia==2 && $horarios5->cont_tarde==1)
+                                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                                                <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
+                                                                                                    De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
+                                                                                                </span>
+                                                                                            </div>
+                                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                                                <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
+                                                                                                    De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
+                                                                                                </span>
+                                                                                            </div>
+                                                                                            <!-- Creo el cuarto contenedor><-->
+                                                                                            <div class="container">
+                                                                                                <br>
+                                                                                                <div class="row">
+                                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                                        <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
+                                                                                                            De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
+                                                                                                        </span>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            @php
+                                                                                                $cont=13;
+                                                                                            @endphp
+                                                                                        @else
+                                                                                            @if ($horarios5->cont_dia==0 && $horarios5->cont_tarde==1)
+                                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                                    <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
+                                                                                                        De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
+                                                                                                    </span>
+                                                                                                </div>
+                                                                                                @php
+                                                                                                    $cont=11;
+                                                                                                @endphp
+                                                                                            @else
+                                                                                                @if ($horarios5->cont_dia==1 && $horarios5->cont_tarde==0)
+                                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                                        <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
+                                                                                                            De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
+                                                                                                        </span>
+                                                                                                    </div>
+                                                                                                    @php
+                                                                                                        $cont=11;
+                                                                                                    @endphp
+                                                                                                @else
+                                                                                                    @if ($horarios5->cont_dia==2 && $horarios5->cont_tarde==0)
+                                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                                            <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
+                                                                                                                De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
+                                                                                                            </span>
+                                                                                                        </div>
+                                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                                            <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
+                                                                                                                De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
+                                                                                                            </span>
+                                                                                                        </div>
+                                                                                                        @php
+                                                                                                            $cont=12;
+                                                                                                        @endphp
+                                                                                                    @else
+                                                                                                        @if ($horarios5->cont_dia==1 && $horarios5->cont_tarde==1)
+                                                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                                                                <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
+                                                                                                                    De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
+                                                                                                                </span>
+                                                                                                            </div>
+                                                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                                                                <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
+                                                                                                                    De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
+                                                                                                                </span>
+                                                                                                            </div>
+                                                                                                            @php
+                                                                                                                $cont=12;
+                                                                                                            @endphp
+                                                                                                        @endif
+                                                                                                    @endif
+                                                                                                @endif
+                                                                                            @endif
+                                                                                        @endif
                                                                                     @else
                                                                                         @if ($cont==11)
-                                                                                            
+                                                                                            @if ($horarios5->cont_dia==2 && $horarios5->cont_tarde==1)
+                                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                                    <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
+                                                                                                        De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
+                                                                                                    </span>
+                                                                                                </div>
+                                                                                                <!-- Creo el cuarto contenedor><-->
+                                                                                                <div class="container">
+                                                                                                    <br>
+                                                                                                    <div class="row">
+                                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                                            <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
+                                                                                                                De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
+                                                                                                            </span>
+                                                                                                        </div>
+                                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                                            <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
+                                                                                                                De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
+                                                                                                            </span>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                @php
+                                                                                                    $cont=14;
+                                                                                                @endphp
+                                                                                            @else
+                                                                                                @if ($horarios5->cont_dia==0 && $horarios5->cont_tarde==1)
+                                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                                        <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
+                                                                                                            De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
+                                                                                                        </span>
+                                                                                                    </div>
+                                                                                                    @php
+                                                                                                        $cont=12;
+                                                                                                    @endphp
+                                                                                                @else
+                                                                                                    @if ($horarios5->cont_dia==1 && $horarios5->cont_tarde==0)
+                                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                                            <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
+                                                                                                                De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
+                                                                                                            </span>
+                                                                                                        </div>
+                                                                                                        @php
+                                                                                                            $cont=12;
+                                                                                                        @endphp
+                                                                                                    @else
+                                                                                                        @if ($horarios5->cont_dia==2 && $horarios5->cont_tarde==0)
+                                                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                                                                <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
+                                                                                                                    De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
+                                                                                                                </span>
+                                                                                                            </div>
+                                                                                                            <!--Creo el cuarto contenedor><-->
+                                                                                                            <div class="container">
+                                                                                                                <br>
+                                                                                                                <div class="row">
+                                                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                                                        <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
+                                                                                                                            De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
+                                                                                                                        </span>
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                            @php
+                                                                                                                $cont=13;
+                                                                                                            @endphp
+                                                                                                        @else
+                                                                                                            @if ($horarios5->cont_dia==1 && $horarios5->cont_tarde==1)
+                                                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                                                    <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
+                                                                                                                        De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
+                                                                                                                    </span>
+                                                                                                                </div>
+                                                                                                                <!--Creo el segundo contenedor><-->
+                                                                                                                <div class="container">
+                                                                                                                    <br>
+                                                                                                                    <div class="row">
+                                                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                                                            <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
+                                                                                                                                De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
+                                                                                                                            </span>
+                                                                                                                        </div>
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                                @php
+                                                                                                                    $cont=13;
+                                                                                                                @endphp
+                                                                                                            @endif
+                                                                                                        @endif
+                                                                                                    @endif
+                                                                                                @endif
+                                                                                            @endif
                                                                                         @else
                                                                                             @if ($cont==12)
-                                                                                                
+                                                                                                <!--Creo el cuarto contenedor><-->
+                                                                                                <div class="container">
+                                                                                                    <br>
+                                                                                                    <div class="row">
+                                                                                                        @if ($horarios5->cont_dia==2 && $horarios5->cont_tarde==1)
+                                                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                                                                <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
+                                                                                                                    De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
+                                                                                                                </span>
+                                                                                                            </div>
+                                                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                                                                <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
+                                                                                                                    De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
+                                                                                                                </span>
+                                                                                                            </div>
+                                                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                                                                <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
+                                                                                                                    De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
+                                                                                                                </span>
+                                                                                                            </div>
+                                                                                                            @php
+                                                                                                                $cont=15;
+                                                                                                            @endphp
+                                                                                                        @else
+                                                                                                            @if ($horarios5->cont_dia==0 && $horarios5->cont_tarde==1)
+                                                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                                                    <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
+                                                                                                                        De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
+                                                                                                                    </span>
+                                                                                                                </div>
+                                                                                                                @php
+                                                                                                                    $cont=13;
+                                                                                                                @endphp
+                                                                                                            @else
+                                                                                                                @if ($horarios5->cont_dia==1 && $horarios5->cont_tarde==0)
+                                                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                                                        <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
+                                                                                                                            De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
+                                                                                                                        </span>
+                                                                                                                    </div>
+                                                                                                                    @php
+                                                                                                                        $cont=13;
+                                                                                                                    @endphp
+                                                                                                                @else
+                                                                                                                    @if ($horarios5->cont_dia==2 && $horarios5->cont_tarde==0)
+                                                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                                                            <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
+                                                                                                                                De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
+                                                                                                                            </span>
+                                                                                                                        </div>
+                                                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                                                            <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
+                                                                                                                                De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
+                                                                                                                            </span>
+                                                                                                                        </div>
+                                                                                                                        @php
+                                                                                                                            $cont=14;
+                                                                                                                        @endphp
+                                                                                                                    @else
+                                                                                                                        @if ($horarios5->cont_dia==1 && $horarios5->cont_tarde==1)
+                                                                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                                                                                <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
+                                                                                                                                    De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
+                                                                                                                                </span>
+                                                                                                                            </div>
+                                                                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                                                                                <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
+                                                                                                                                    De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
+                                                                                                                                </span>
+                                                                                                                            </div>
+                                                                                                                            @php
+                                                                                                                                $cont=14;
+                                                                                                                            @endphp
+                                                                                                                        @endif
+                                                                                                                    @endif
+                                                                                                                @endif
+                                                                                                            @endif
+                                                                                                        @endif
+                                                                                                    </div>
+                                                                                                </div>
                                                                                             @endif
                                                                                         @endif
                                                                                     @endif
@@ -2017,10 +2982,22 @@
                         </div>
                         <div class="container" id="contenedor_general_op2">
                             <br>
-                            <h6>
-                                <span class="negrita"> ¡Motivo!</span>
-                            </h6>
+                            <input type="radio" name="motivo" value="" onclick="mostrar_otro_motivo();"> Dudas sobre algún "deber, investigación, consulta, ensayo" enviado <br>
+                            <input type="radio" name="motivo" value="" onclick="mostrar_otro_motivo();"> Dudas sobre la clase recibida <br>
+                            <input type="radio" name="motivo" value="" onclick="mostrar_otro_motivo();"> Otro <br>
                             <br>
+                            
+                            <div class="input-group mb-3" id="otro" style="display:none;">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">@</span>
+                                    <input type="text" class="form-control" placeholder="Escriba el motivo de tutoría" aria-label="Username" aria-describedby="basic-addon1">
+                                </div>
+                                
+                            </div>
+                            <!--div class="input-group">
+                                <span class="input-group-addon">Text</span>
+                                <input type="text" class="form-control" name="motivo" placeholder="Additional Info">
+                            </div-->
                         </div>
                     </form>
                 @else
