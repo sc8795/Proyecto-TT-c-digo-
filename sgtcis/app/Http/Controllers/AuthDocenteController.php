@@ -26,4 +26,9 @@ class AuthDocenteController extends Controller
     public function vista_general_docente(){
         return view('user_docente.vista_general_cuenta');
     }
+/* 
+|--------------------------------------------------------------------------
+| Funciones para recibo de notificaciones
+|--------------------------------------------------------------------------
+*/
 }
