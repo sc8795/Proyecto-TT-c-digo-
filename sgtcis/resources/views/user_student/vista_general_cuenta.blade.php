@@ -9,6 +9,7 @@
         @include('user_student.vistas_iguales.imagen_texto')
         <div class="col-9" id="titulo_general">
             <h3>Vista general de la cuenta Estudiante</h3>
+            {!! Alert::render() !!}
         </div>
     </div>
 @endsection

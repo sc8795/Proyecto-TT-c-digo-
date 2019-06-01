@@ -21,7 +21,8 @@
         <div class="col-9">
             <div class="container" id="contenedor_general">
                 @if ($estado==0)
-                    <form action="#">
+                    <form action="{{url("solicitar_tutoria_student/{$user->id}/{$user_docente->id}/{$materia->id}/{$estado}")}}" method="POST">
+                        {{ csrf_field() }}
                         <h6 class="tit_general">Acción: 
                             <span class="tit_datos">Solicitar tutoría para la materia {{$materia->name}} con el docente {{$user_docente->name}} {{$user_docente->lastname}}.</span>
                         </h6><br>
@@ -32,6 +33,9 @@
                         <div class="container" id="contenedor_general_op2">
                             <br>
                             <h6>
+                                @if ($mensaje==1)
+                                    {!! Alert::render() !!}
+                                @endif
                                 <span class="negrita"> ¡Seleccione el día que desea la tutoría!</span>
                                 El docente {{$user_docente->name}} {{$user_docente->lastname}} tiene asignado los siguientes horarios de tutoría:
                             </h6>
@@ -2976,29 +2980,32 @@
                             </div>
                             <br>
                         </div>
-        
                         <div class="d-flex p-2 bd-highlight" id="contenedor_2">
                             <span class="tit_datos">Motivo de tutoría</span>
                         </div>
                         <div class="container" id="contenedor_general_op2">
                             <br>
-                            <input type="radio" name="motivo" value="" onclick="mostrar_otro_motivo();"> Dudas sobre algún "deber, investigación, consulta, ensayo" enviado <br>
-                            <input type="radio" name="motivo" value="" onclick="mostrar_otro_motivo();"> Dudas sobre la clase recibida <br>
-                            <input type="radio" name="motivo" value="" onclick="mostrar_otro_motivo();"> Otro <br>
-                            <br>
-                            
+                            @if ($mensaje==2)
+                                {!! Alert::render() !!}
+                            @endif
+                            <h6>
+                                <input type="radio" name="motivo" value="Dudas sobre algún (deber, investigación, consulta, ensayo) enviado" onclick="mostrar_otro_motivo();"> Dudas sobre algún (deber, investigación, consulta, ensayo) enviado
+                            </h6>
+                            <h6>
+                                <input type="radio" name="motivo" value="Dudas sobre la clase recibida" onclick="mostrar_otro_motivo();"> Dudas sobre la clase recibida 
+                            </h6>
+                            <h6>
+                                <input type="radio" name="motivo" value="Otro" onclick="mostrar_otro_motivo();"> Otro
+                            </h6>
                             <div class="input-group mb-3" id="otro" style="display:none;">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon1">@</span>
-                                    <input type="text" class="form-control" placeholder="Escriba el motivo de tutoría" aria-label="Username" aria-describedby="basic-addon1">
+                                    <span class="input-group-text" id="basic-addon1"><i class="fas fa-keyboard"></i></span>
+                                    <input type="text" name="otro_motivo" placeholder="Escriba el motivo de tutoría" class="form-control">
                                 </div>
-                                
                             </div>
-                            <!--div class="input-group">
-                                <span class="input-group-addon">Text</span>
-                                <input type="text" class="form-control" name="motivo" placeholder="Additional Info">
-                            </div-->
+                            <br>
                         </div>
+                        <button type="submit" class="btn btn-info btn-sm btn-block" title="Solicitar tutoría con el docente {{$user_docente->name}} {{$user_docente->name}}">Solicitar tutoría</button>
                     </form>
                 @else
                     {!! Alert::render() !!}
