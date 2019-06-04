@@ -10,18 +10,15 @@ use Illuminate\Notifications\Messages\MailMessage;
 class NotificacionDocente extends Notification
 {
     use Queueable;
+    protected $noti_docente;
 
-    public function via($notifiable)
-    {
-        return ['database'];
-    }
-
-    public function toDatabase(){
-        return[
-            'id'=>'1',
-            'title'=>'Hola lili',
-            'data'=>'1/07/1998'
-        ];
+    /**
+     * Get the array representation of the notification.
+     *
+     * @return void
+     */
+    public function __construct($noti_docente){
+        $this->noti_docente=$noti_docente;
     }
 
     /**
@@ -30,10 +27,15 @@ class NotificacionDocente extends Notification
      * @param  mixed  $notifiable
      * @return array
      */
-    public function toArray($notifiable)
+
+    public function via($notifiable)
     {
-        return [
-            //
+        return ['database'];
+    }
+
+    public function toDatabase(){
+        return[
+            'noti_docente'=>$this->noti_docente,
         ];
     }
 }

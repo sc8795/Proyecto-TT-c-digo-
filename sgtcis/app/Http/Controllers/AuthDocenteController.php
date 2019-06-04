@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Notifications\NotificacionDocente;
+use App\Notidocente;
+use App\User;
 
 class AuthDocenteController extends Controller
 {
@@ -31,4 +34,16 @@ class AuthDocenteController extends Controller
 | Funciones para recibo de notificaciones
 |--------------------------------------------------------------------------
 */
+    public function notificacion_docente(){
+        $noti_docente=new Notidocente;
+        $noti_docente->user_id=auth()->user()->id;
+        $noti_docente->title='Notificación de LILI';
+        $noti_docente->descripcion='Lili esta pidiendo solitud de tutoria';
+        $noti_docente->save();
+
+        $user=User::where('id','!=',auth()->user()->id)->get();
+        if(\Notification::send($user,new NotificacionDocente(Notidocente::latest('id')->first()))){
+            return back();
+        }
+    }
 }
