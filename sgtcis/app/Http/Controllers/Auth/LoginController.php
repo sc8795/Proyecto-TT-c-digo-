@@ -24,11 +24,7 @@ class LoginController extends Controller
     */
     /*Metodo para devolver el formulario de inicio de sesion del administrador*/
     public function show_login_form(){
-        if(Auth::check()){
-            return redirect()->route('auth_admin');
-        }else{
-            return view('user_administrador.login_administrador');
-        }
+        return view('user_administrador.login_administrador');
     }
     public function login_administrador(Request $request){
         /*Establecemos las reglas de validacion para el formulario de login admistrador, en donde los campos email y password seran requeridos y de tipo string, estas reglas las guardamos en la variable $credenciales*/
@@ -43,10 +39,12 @@ class LoginController extends Controller
                 $emailform = $request->input("email");
                 $users = DB::table('users')->where('email',$emailform)->first();
                 if($users->is_admin==true){
+                    //dd("Hola lili");
                     if (Auth::check()){
                         return redirect()->route('auth_admin');
                     }
                 }else{
+                    //dd("Hola guisella");
                     return redirect()->route('show_login_form')->withErrors([$this->username()=>'Usted no es administrador'])->withInput(request([$this->username()]));
                 }
             }
@@ -66,11 +64,7 @@ class LoginController extends Controller
     */
     /*Metodo para devolver el formulario de inicio de sesion del administrador*/
     public function show_login_form_student(){
-        if(Auth::check()){
-            return redirect()->route('auth_student');
-        }else{
-            return view('user_student.login_student');
-        }
+        return view('user_student.login_student');
     }
     public function login_student(Request $request){
         /*Establecemos las reglas de validacion para el formulario de login admistrador, en donde los campos email y password seran requeridos y de tipo string, estas reglas las guardamos en la variable $credenciales*/
@@ -110,11 +104,7 @@ class LoginController extends Controller
     */
     /*Metodo para devolver el formulario de inicio de sesion del administrador*/
     public function show_login_form_docente(){
-        if(Auth::check()){
-            return redirect()->route('auth_docente');
-        }else{
-            return view('user_docente.login_docente');
-        }
+        return view('user_docente.login_docente');
     }
     public function login_docente(Request $request){
         /*Establecemos las reglas de validacion para el formulario de login admistrador, en donde los campos email y password seran requeridos y de tipo string, estas reglas las guardamos en la variable $credenciales*/

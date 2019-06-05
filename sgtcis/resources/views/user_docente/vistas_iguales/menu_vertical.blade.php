@@ -11,24 +11,28 @@
             </li>
             <li>
                 @if (Auth::check())
-                    <li class="nav-item dropdown">
+                    <!--li class="nav-item dropdown"-->
                         <a href="#" id="navbarDropdown" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fa fa-globe"></i> Notificación
+                            <i class="fa fa-bell"></i> Notificaciones
                             <span class="badge badge-danger" id="count-notification">{{auth()->user()->unreadNotifications->count()}}</span>
                             <span class="caret"></span>
                         </a>
-                        <div class="droptdown-menu" aria-labelledby="navbarDropdown">
-                            @if (auth()->user()->unreadNotifications->count())
-                                @foreach (auth()->user()->unreadNotifications as $notifications)
-                                    <a href="#" class="droptdown-item">
-                                        {{$notifications->data['noti_docente']['title']}}
-                                    </a>
-                                @endforeach    
-                            @else 
-                                <a href="#" class="droptdown-item"> No notificación</a>
-                            @endif
-                        </div>
-                    </li>
+                        <ul class="submenu_vertical">
+                            <li>
+                            <!--div class="droptdown-menu" aria-labelledby="navbarDropdown"-->
+                                @if (auth()->user()->unreadNotifications->count())
+                                    @foreach (auth()->user()->unreadNotifications as $notifications)
+                                        <a href="{{url("ver_tutoria_solitada")}}" class="droptdown-item">
+                                            {{$notifications->data['noti_docente']['descripcion']}}
+                                        </a>
+                                    @endforeach    
+                                @else 
+                                    <a href="#" class="droptdown-item"> No tiene notificaciones </a>
+                                @endif
+                            <!--/div-->
+                            </li>
+                        </ul>
+                    <!--/li-->
                 @endif
             </li>
         </ul>

@@ -137,5 +137,5 @@ Route::post('solicitar_tutoria_student/{user}/{user_docente}/{materia}/{estado}'
 /* Rutas para la vista general de la cuenta*/
 Route::get('vista_general_docente','AuthDocenteController@vista_general_docente')->name('vista_general_docente');
 
-/* Rutas para las notificaciones*/
-Route::get('notificacion_docente','AuthDocenteController@notificacion_docente')->name('notificacion_docente');
+/* Rutas para ver la tutoria solicitada por parte del estudiante*/
+Route::get('ver_tutoria_solitada','AuthDocenteController@ver_tutoria_solitada')->name('ver_tutoria_solitada');

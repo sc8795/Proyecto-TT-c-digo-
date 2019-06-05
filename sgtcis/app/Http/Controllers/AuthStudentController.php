@@ -7,6 +7,8 @@ use Auth;
 use App\User;
 use App\Materia;
 use App\Solitutoria;
+use App\Notifications\NotificacionDocente;
+use App\Notidocente;
 use Alert;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
@@ -111,6 +113,20 @@ class AuthStudentController extends Controller
         $horarios3=DB::table('horario3s')->where('usuario_id',$docente)->first();
         $horarios4=DB::table('horario4s')->where('usuario_id',$docente)->first();
         $horarios5=DB::table('horario5s')->where('usuario_id',$docente)->first();
+
+        $noti_docente=new Notidocente;
+        $noti_docente->user_id=auth()->user()->id;
+        $noti_docente->user_docente_id=$docente;
+        $user=DB::table('users')->where('id',$noti_docente->user_id)->first();
+        $noti_docente->title="Solicitud de tutoría ";
+        $noti_docente->descripcion="$user->name $user->lastname esta pidiendo solitud de tutoria";
+        $noti_docente->save();
+
+        $user_notificado=User::where('id','=',$docente)->get();
+        if(\Notification::send($user_notificado,new NotificacionDocente(Notidocente::latest('id')->first()))){
+            return back();
+        }
+
         if($dia==null){
             $mensaje=1;
             Alert::danger('¡Advertencia! ')

@@ -11,7 +11,7 @@
     
                 </div>
                 <div class="col-2">
-                    <form method="POST" action="{{route('logout_administrador')}}" class="boton_logout">
+                    <form method="POST" action="{{route('logout_docente')}}" class="boton_logout">
                         {{ csrf_field() }}
                         <button class="btn btn-danger btn-block">Cerrar Sesion</button>
                     </form>

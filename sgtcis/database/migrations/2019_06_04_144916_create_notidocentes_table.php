@@ -16,6 +16,7 @@ class CreateNotidocentesTable extends Migration
         Schema::create('notidocentes', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
+            $table->integer('user_docente_id');
             $table->string('title');
             $table->text('descripcion');
             $table->timestamps();
