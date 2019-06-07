@@ -88,3 +88,32 @@ h4{
 .tit_datos{
     color: white;
 }
+
+/* ---------- ESTILOS USADOS POR TODAS LAS VISTAS ---------- */ 
+#contenedor_general{
+    background-color:  #1b1b1b;
+    padding: 20px;
+}
+.formulario_general{
+    width: 50%;
+}
+.tit_datos_op2{
+    color: #83e6b4;
+}
+
+/*estilos contenedores vista*/
+#contenedor_2{
+    background-color:  #0b5345 ;
+}
+#contenedor_general_op2{
+    background-color: gray;
+}
+.negrita{
+    font-weight: bold;
+}
+.quita_negrita{
+    font-weight: normal;
+}
+#fondo_solicitud{
+    background-color: #0b5345;
+}

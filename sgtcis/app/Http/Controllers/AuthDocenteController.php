@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Notifications\NotificacionDocente;
+use Illuminate\Support\Facades\DB;
 use App\Notidocente;
 use App\User;
 
@@ -31,10 +32,14 @@ class AuthDocenteController extends Controller
     }
 /* 
 |--------------------------------------------------------------------------
-| Funciones para la vista general del docente
+| Funciones para vista de tutoria solicitada por parte del estudiante
 |--------------------------------------------------------------------------
 */
-    public function ver_tutoria_solitada(){
-        return view('user_docente.vista_tutoria_solicitada');
+    public function ver_tutoria_solitada($user_student_id,$user_docente_id){
+        $estudiante=DB::table('users')->where('id',$user_student_id)->first();
+        $docente=DB::table('users')->where('id',$user_docente_id)->first();
+        $materia=DB::table('materias')->where('usuario_id',$docente->id)->first();
+        $datos_tut=DB::table('solitutorias')->where('estudiante_id',$estudiante->id)->where('docente_id',$docente->id)->where('materia_id',$materia->id)->first();
+        return view('user_docente.vista_tutoria_solicitada',compact('estudiante','docente','materia','datos_tut'));
     }
 }

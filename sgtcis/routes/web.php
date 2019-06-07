@@ -138,4 +138,4 @@ Route::post('solicitar_tutoria_student/{user}/{user_docente}/{materia}/{estado}'
 Route::get('vista_general_docente','AuthDocenteController@vista_general_docente')->name('vista_general_docente');
 
 /* Rutas para ver la tutoria solicitada por parte del estudiante*/
-Route::get('ver_tutoria_solitada','AuthDocenteController@ver_tutoria_solitada')->name('ver_tutoria_solitada');
+Route::get('ver_tutoria_solitada/{user_student_id}/{user_docente_id}','AuthDocenteController@ver_tutoria_solitada')->name('ver_tutoria_solitada');

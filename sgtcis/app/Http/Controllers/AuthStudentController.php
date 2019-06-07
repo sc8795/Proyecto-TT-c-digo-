@@ -105,6 +105,9 @@ class AuthStudentController extends Controller
     }
     public function solicitar_tutoria_student(Request $request,User $user, User $user_docente, Materia $materia,$estado){
         $motivo=$request->input('motivo');
+        if($motivo=='Otro'){
+            $motivo=$request->input('otro_motivo');
+        }
         $dia=$request->input('dia');
 
         $docente=$user_docente->id;
@@ -155,6 +158,7 @@ class AuthStudentController extends Controller
                 'materia_id'=>$materia->id,
                 'docente_id'=>$user_docente->id,
                 'estudiante_id'=>$user->id,
+                'motivo'=>$motivo
             ]);
             Alert::success('¡Aviso! ')
                 ->details("Usted ha solicitado tutoría al docente $user_docente->name $user_docente->lastname, espere su confirmación por parte del docente.");
@@ -232,12 +236,5 @@ class AuthStudentController extends Controller
             }
             
         }
-        
-        if($motivo=='Otro'){
-            $motivo=$request->input('otro_motivo');
-        }else{
-
-        }
-        dd($motivo);
     }
 }

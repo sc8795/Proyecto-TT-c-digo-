@@ -5,7 +5,10 @@
                 <a href="{{route('vista_general_admin')}}">Vista general de la cuenta</a>
                 <ul class="submenu_vertical">
                     <li>
-                        <a href="{{route('editar_perfil_admin')}}">Editar perfil</a>
+                        @php
+                            $user=auth()->user()->id;
+                        @endphp
+                        <a href="{{url("editar_perfil_docente/{$user}")}}">Editar perfil</a>
                     </li>
                 </ul>
             </li>
@@ -22,7 +25,7 @@
                             <!--div class="droptdown-menu" aria-labelledby="navbarDropdown"-->
                                 @if (auth()->user()->unreadNotifications->count())
                                     @foreach (auth()->user()->unreadNotifications as $notifications)
-                                        <a href="{{url("ver_tutoria_solitada")}}" class="droptdown-item">
+                                        <a href="{{url("ver_tutoria_solitada/{$notifications->data['noti_docente']['user_id']}/{$notifications->data['noti_docente']['user_docente_id']}")}}" class="droptdown-item">
                                             {{$notifications->data['noti_docente']['descripcion']}}
                                         </a>
                                     @endforeach    
