@@ -20,7 +20,8 @@
         </div>
         <div class="col-9">
             <div class="container" id="contenedor_general">
-                <form action="">
+                <form action="{{url("confirmar_tutoria/{$datos_tut->id}/{$estudiante->id}/{$docente->id}/{$materia->id}")}}" method="POST">
+                    {{ csrf_field() }}
                     <h6 class="tit_general">Asunto: 
                         <span class="tit_datos_op2">el Sr. {{$estudiante->name}} {{$estudiante->lastname}} alumno del {{$estudiante->ciclo}} ciclo, paralelo
                             @if ($estudiante->paralelo_a!="NA")

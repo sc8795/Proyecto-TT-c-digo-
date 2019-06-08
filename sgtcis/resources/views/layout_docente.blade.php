@@ -30,6 +30,6 @@
 	</div>
 
 <script src="{{asset('js/jquery.js')}}"></script>
-<script src="{{asset('js/jquery_administrador.js')}}"></script>
+<script src="{{asset('js/jquery_docente.js')}}"></script>
 </body>
 </html>

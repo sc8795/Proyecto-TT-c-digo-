@@ -1,43 +1,33 @@
-<div class="col-3">
-    <div class="vertical-menu">
-        <ul class="menu_vertical">
-            <li>
-                <a href="{{route('vista_general_admin')}}">Vista general de la cuenta</a>
-                <ul class="submenu_vertical">
-                    <li>
-                        @php
-                            $user=auth()->user()->id;
-                        @endphp
-                        <a href="{{url("editar_perfil_docente/{$user}")}}">Editar perfil</a>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                @if (Auth::check())
-                    <!--li class="nav-item dropdown"-->
-                        <a href="#" id="navbarDropdown" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fa fa-bell"></i> Notificaciones
-                            <span class="badge badge-danger" id="count-notification">{{auth()->user()->unreadNotifications->count()}}</span>
-                            <span class="caret"></span>
-                        </a>
-                        <ul class="submenu_vertical">
-                            <li>
-                            <!--div class="droptdown-menu" aria-labelledby="navbarDropdown"-->
-                                @if (auth()->user()->unreadNotifications->count())
-                                    @foreach (auth()->user()->unreadNotifications as $notifications)
-                                        <a href="{{url("ver_tutoria_solitada/{$notifications->data['noti_docente']['user_id']}/{$notifications->data['noti_docente']['user_docente_id']}")}}" class="droptdown-item">
-                                            {{$notifications->data['noti_docente']['descripcion']}}
-                                        </a>
-                                    @endforeach    
-                                @else 
-                                    <a href="#" class="droptdown-item"> No tiene notificaciones </a>
-                                @endif
-                            <!--/div-->
-                            </li>
-                        </ul>
-                    <!--/li-->
-                @endif
-            </li>
-        </ul>
-    </div>
+<div class="vertical-menu">
+    <ul class="menu_vertical">
+        <li>
+            <a href="{{route('vista_general_docente')}}"><i class="icono izquierda far fa-eye"></i>Vista general de la cuenta</a>
+        </li>
+        <li>
+            @if (Auth::check())
+                <!--li class="nav-item dropdown"-->
+                    <a href="#" id="navbarDropdown" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-bell"></i> Notificaciones
+                        <span class="badge badge-danger" id="count-notification">{{auth()->user()->unreadNotifications->count()}}</span>
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="submenu_vertical">
+                        <li>
+                        <!--div class="droptdown-menu" aria-labelledby="navbarDropdown"-->
+                            @if (auth()->user()->unreadNotifications->count())
+                                @foreach (auth()->user()->unreadNotifications as $notifications)
+                                    <a href="{{url("ver_tutoria_solitada/{$notifications->data['noti_docente']['user_id']}/{$notifications->data['noti_docente']['user_docente_id']}")}}" class="droptdown-item">
+                                        {{$notifications->data['noti_docente']['descripcion']}}
+                                    </a>
+                                @endforeach    
+                            @else 
+                                <a href="#" class="droptdown-item"> No tiene notificaciones </a>
+                            @endif
+                        <!--/div-->
+                        </li>
+                    </ul>
+                <!--/li-->
+            @endif
+        </li>
+    </ul>
 </div>
