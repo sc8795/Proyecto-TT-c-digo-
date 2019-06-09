@@ -12,6 +12,8 @@
 	<link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/estilos_docente.css')}}">
 	<link rel="stylesheet" href="{{asset('css/estilos_pag_inicio.css')}}">
+
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	
 	<title>@yield('title')Docente - SGTCIS</title>
 </head>
@@ -31,5 +33,8 @@
 
 <script src="{{asset('js/jquery.js')}}"></script>
 <script src="{{asset('js/jquery_docente.js')}}"></script>
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </body>
 </html>

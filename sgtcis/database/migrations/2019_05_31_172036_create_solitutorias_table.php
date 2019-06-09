@@ -24,6 +24,8 @@ class CreateSolitutoriasTable extends Migration
             $table->integer('docente_id');
             $table->integer('estudiante_id');
             $table->text('motivo');
+            $table->datetime('fecha_solicita');
+            $table->datetime('fecha_tutoria');
             $table->timestamps();
         });
     }

@@ -149,6 +149,7 @@ class AuthStudentController extends Controller
             $minutos_inicio=$horarios->minutos_inicio_op1;
             $hora_fin=$horarios->hora_fin_op1;
             $minutos_fin=$horarios->minutos_fin_op1;
+            $fecha=null;
             DB::table('solitutorias')->insert([
                 'dia'=>$dia,
                 'hora_inicio'=>$hora_inicio,
@@ -158,7 +159,9 @@ class AuthStudentController extends Controller
                 'materia_id'=>$materia->id,
                 'docente_id'=>$user_docente->id,
                 'estudiante_id'=>$user->id,
-                'motivo'=>$motivo
+                'motivo'=>$motivo,
+                'fecha_solicita'=>now(),
+                'fecha_tutoria'=>now()
             ]);
             Alert::success('¡Aviso! ')
                 ->details("Usted ha solicitado tutoría al docente $user_docente->name $user_docente->lastname, espere su confirmación por parte del docente.");

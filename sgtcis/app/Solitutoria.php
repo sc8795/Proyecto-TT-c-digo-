@@ -14,6 +14,10 @@ class Solitutoria extends Model
      * @var array
      */
     protected $fillable = [
-        'dia','hora_inicio','minutos_inicio','hora_fin','minutos_fin','materia_id','docente_id','estudiante_id'
+        'dia','hora_inicio','minutos_inicio','hora_fin','minutos_fin','materia_id','docente_id','estudiante_id','fecha'
+    ];
+
+    protected $dates = [
+        'fecha',
     ];
 }

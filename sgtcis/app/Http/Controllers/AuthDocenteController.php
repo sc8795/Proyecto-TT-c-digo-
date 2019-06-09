@@ -10,6 +10,7 @@ use App\Materia;
 use App\Notiestudiante;
 use App\User;
 use Alert;
+use Illuminate\Support\Str;
 
 class AuthDocenteController extends Controller
 {
@@ -100,5 +101,24 @@ class AuthDocenteController extends Controller
         Alert::info('¡Aviso! ')
              ->details("Ha confirmado la tutoría solicitada por el estudiante $estudiante->name $estudiante->lastname, para el día $datos_tut->dia en el horario de $datos_tut->hora_inicio:$datos_tut->minutos_inicio a $datos_tut->hora_fin:$datos_tut->minutos_fin. Ahora podrá evaluar la actuación del estudiante sobre la tutoría impartida, en la opción disponible en el menú EVALUACIÓN AL ESTUDIANTE.");
         return view('user_docente.vista_general_cuenta');
+    }
+/* 
+|--------------------------------------------------------------------------
+| Funciones para editar datos de tutoria solicitada
+|--------------------------------------------------------------------------
+*/
+    public function vista_editar_datos_tutoria(Solitutoria $datos_tut,User $estudiante,User $docente,Materia $materia){
+        $valor=Str::endsWith($datos_tut->dia,'mañana');
+        if($valor==true){
+            $aux=1;
+            return view('user_docente.editar_datos_tutoria',compact('datos_tut','aux'));
+        }else{
+            $aux=2;
+            return view('user_docente.editar_datos_tutoria',compact('datos_tut','aux'));
+        }
+    }
+    public function editar_datos_tutoria(Request $request){
+        $fecha=$request->input('fecha');
+        dd($fecha);
     }
 }
