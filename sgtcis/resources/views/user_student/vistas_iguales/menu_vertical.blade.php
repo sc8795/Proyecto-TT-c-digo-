@@ -32,5 +32,8 @@
                 <!--/li-->
             @endif
         </li>
+        <li>
+            <a href="#"><i class="icono izquierda fas fa-star"></i>Evaluación al docente</a>
+        </li>
     </ul>
 </div>

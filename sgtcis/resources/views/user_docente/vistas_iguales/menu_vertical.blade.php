@@ -29,5 +29,8 @@
                 <!--/li-->
             @endif
         </li>
+        <li>
+            <a href="#"><i class="icono izquierda fas fa-star"></i>Evaluación al estudiante</a>
+        </li>
     </ul>
 </div>

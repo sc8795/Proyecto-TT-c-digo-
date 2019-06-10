@@ -20,7 +20,7 @@
         </div>
         <div class="col-9">
             <div class="container" id="contenedor_general">
-                <form action="{{url("editar_datos_tutoria/{$datos_tut->id}")}}" method="POST">
+                <form action="{{url("editar_datos_tutoria/{$datos_tut->id}/{$estudiante->id}/{$docente->id}/{$materia->id}")}}" method="POST">
                     {{method_field("PUT")}}
                     {{ csrf_field() }}
                     <br>
@@ -104,8 +104,8 @@
                                                 <option value="16">16</option>
                                                 <option value="17">17</option>
                                             </select>
-                                            <span class="minutos_inicio">:</span>
-                                            <select name="{{$var7}}">
+                                            <span class="tit_datos">:</span>
+                                            <select name="minutos_inicio">
                                                 <option value="{{$datos_tut->minutos_inicio}}">{{$datos_tut->minutos_inicio}}</option>
                                                 <option value="5">5</option>
                                                 <option value="10">10</option>
@@ -129,8 +129,8 @@
                                                 <option value="16">16</option>
                                                 <option value="17">17</option>
                                             </select>
-                                            <span class="minutos_fin">:</span>
-                                            <select name="{{$var9}}">
+                                            <span class="tit_datos">:</span>
+                                            <select name="minutos_fin">
                                                 <option value="{{$datos_tut->minutos_fin}}">{{$datos_tut->minutos_fin}}</option>
                                                 <option value="5">5</option>
                                                 <option value="10">10</option>
@@ -158,11 +158,11 @@
                         <br>
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1"><i class="fas fa-calendar-week"></i></span>
-                            <input type="text" id="fecha" placeholder="Haga clic y seleccione la fecha de tutorìa" class="form-control" name="fecha">
+                            <input type="text" id="fecha" placeholder="Haga clic y seleccione la fecha de tutoría." class="form-control" name="fecha_tutoria">
                         </div>
                         <br>
                     </div>
-                    <button type="submit" class="btn btn-info btn-sm" title="Editar tutoría">Editar <span class="fas fa-check-double"></span></button>
+                    <button type="submit" class="btn btn-info btn-sm" title="Editar y confirmar tutoría">Editar y confirmar tutoría <span class="fas fa-check-double"></span></button>
                 </form>
             </div>
         </div>

@@ -111,14 +111,37 @@ class AuthDocenteController extends Controller
         $valor=Str::endsWith($datos_tut->dia,'mañana');
         if($valor==true){
             $aux=1;
-            return view('user_docente.editar_datos_tutoria',compact('datos_tut','aux'));
+            return view('user_docente.editar_datos_tutoria',compact('datos_tut','estudiante','docente','materia','aux'));
         }else{
             $aux=2;
-            return view('user_docente.editar_datos_tutoria',compact('datos_tut','aux'));
+            return view('user_docente.editar_datos_tutoria',compact('datos_tut','estudiante','docente','materia','aux'));
         }
     }
-    public function editar_datos_tutoria(Request $request){
-        $fecha=$request->input('fecha');
-        dd($fecha);
+    public function editar_datos_tutoria(Request $request, Solitutoria $datos_tut,User $estudiante,User $docente,Materia $materia){
+        $data=request()->validate([
+            'hora_inicio'=>'required',
+            'minutos_inicio'=>'required',
+            'hora_fin'=>'required',
+            'minutos_fin'=>'required',
+            'fecha_tutoria'=>'required',
+        ]);
+        $datos_tut->update($data);
+
+        $noti_estudiante=new Notiestudiante;
+        $noti_estudiante->user_id=auth()->user()->id;
+        $noti_estudiante->user_estudiante_id=$estudiante->id;
+        $user=DB::table('users')->where('id',$noti_estudiante->user_id)->first();
+        $noti_estudiante->title="Tutoría confirmada";
+        $noti_estudiante->descripcion="El docente $user->name $user->lastname le ha confirmado la tutoría solicitada";
+        $noti_estudiante->save();
+
+        $user_notificado=User::where('id','=',$estudiante->id)->get();
+        if(\Notification::send($user_notificado,new NotificacionEstudiante(Notiestudiante::latest('id')->first()))){
+            return back();
+        }
+        
+        Alert::info('¡Aviso! ')
+             ->details("Se ha editado los datos de tutoría y se ha confirmado la tutoría solicitada por el estudiante $estudiante->name $estudiante->lastname, para el día $datos_tut->dia en el horario de $datos_tut->hora_inicio:$datos_tut->minutos_inicio a $datos_tut->hora_fin:$datos_tut->minutos_fin. Ahora podrá evaluar la actuación del estudiante sobre la tutoría impartida, en la opción disponible en el menú EVALUACIÓN AL ESTUDIANTE.");
+        return view('user_docente.vista_general_cuenta');
     }
 }
