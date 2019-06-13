@@ -113,6 +113,9 @@ h4{
 .negrita{
     font-weight: bold;
 }
+.quita_negrita{
+    font-weight: normal;
+}
 #fondo_solicitud{
     background-color: #0b5345;
 }

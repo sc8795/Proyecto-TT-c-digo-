@@ -82,6 +82,9 @@
                                                         <span class="tit_datos_op2">{{$horarios->dia1_op3}} <br>
                                                             De {{$horarios->hora_inicio_op3}}:{{$horarios->minutos_inicio_op3}} a {{$horarios->hora_fin_op3}}:{{$horarios->minutos_fin_op3}}
                                                         </span>
+                                                        <h6>
+                                                            <input type="radio" name="dia" value="dia1_op3"> Seleccionar
+                                                        </h6>
                                                     </div>
                                                     @php
                                                         $cont=1;
@@ -92,6 +95,9 @@
                                                             <span class="tit_datos_op2">{{$horarios->dia1_op1}} <br>
                                                                 De {{$horarios->hora_inicio_op1}}:{{$horarios->minutos_inicio_op1}} a {{$horarios->hora_fin_op1}}:{{$horarios->minutos_fin_op1}}
                                                             </span>
+                                                            <h6>
+                                                                <input type="radio" name="dia" value="dia1_op1"> Seleccionar
+                                                            </h6>
                                                         </div>
                                                         @php
                                                             $cont=1;
@@ -102,11 +108,17 @@
                                                                 <span class="tit_datos_op2">{{$horarios->dia1_op1}} <br>
                                                                     De {{$horarios->hora_inicio_op1}}:{{$horarios->minutos_inicio_op1}} a {{$horarios->hora_fin_op1}}:{{$horarios->minutos_fin_op1}}
                                                                 </span>
+                                                                <h6>
+                                                                    <input type="radio" name="dia" value="dia1_op1"> Seleccionar
+                                                                </h6>
                                                             </div>
                                                             <div class="col-3" id="fondo_solicitud">
                                                                 <span class="tit_datos_op2">{{$horarios->dia1_op2}} <br>
                                                                     De {{$horarios->hora_inicio_op2}}:{{$horarios->minutos_inicio_op2}} a {{$horarios->hora_fin_op2}}:{{$horarios->minutos_fin_op2}}
                                                                 </span>
+                                                                <h6>
+                                                                    <input type="radio" name="dia" value="dia1_op2"> Seleccionar
+                                                                </h6>
                                                             </div>
                                                             @php
                                                                 $cont=2;
@@ -117,11 +129,17 @@
                                                                     <span class="tit_datos_op2">{{$horarios->dia1_op1}} <br>
                                                                         De {{$horarios->hora_inicio_op1}}:{{$horarios->minutos_inicio_op1}} a {{$horarios->hora_fin_op1}}:{{$horarios->minutos_fin_op1}}
                                                                     </span>
+                                                                    <h6>
+                                                                        <input type="radio" name="dia" value="dia1_op1"> Seleccionar
+                                                                    </h6>
                                                                 </div>
                                                                 <div class="col-3" id="fondo_solicitud">
                                                                     <span class="tit_datos_op2">{{$horarios->dia1_op3}} <br>
                                                                         De {{$horarios->hora_inicio_op3}}:{{$horarios->minutos_inicio_op3}} a {{$horarios->hora_fin_op3}}:{{$horarios->minutos_fin_op3}}
                                                                     </span>
+                                                                    <h6>
+                                                                        <input type="radio" name="dia" value="dia1_op3"> Seleccionar
+                                                                    </h6>
                                                                 </div>
                                                                 @php
                                                                     $cont=2;
@@ -140,16 +158,25 @@
                                                         <span class="tit_datos_op2">{{$horarios2->dia2_op1}} <br>
                                                             De {{$horarios2->hora_inicio_op1}}:{{$horarios2->minutos_inicio_op1}} a {{$horarios2->hora_fin_op1}}:{{$horarios2->minutos_fin_op1}}
                                                         </span>
+                                                        <h6>
+                                                            <input type="radio" name="dia" value="dia2_op1"> Seleccionar
+                                                        </h6>
                                                     </div>
                                                     <div class="col-3" id="fondo_solicitud">
                                                         <span class="tit_datos_op2">{{$horarios2->dia2_op2}} <br>
                                                             De {{$horarios2->hora_inicio_op2}}:{{$horarios2->minutos_inicio_op2}} a {{$horarios2->hora_fin_op2}}:{{$horarios2->minutos_fin_op2}}
                                                         </span>
+                                                        <h6>
+                                                            <input type="radio" name="dia" value="dia2_op2"> Seleccionar
+                                                        </h6>
                                                     </div>
                                                     <div class="col-3" id="fondo_solicitud">
                                                         <span class="tit_datos_op2">{{$horarios2->dia2_op3}} <br>
                                                             De {{$horarios2->hora_inicio_op3}}:{{$horarios2->minutos_inicio_op3}} a {{$horarios2->hora_fin_op3}}:{{$horarios2->minutos_fin_op3}}
                                                         </span>
+                                                        <h6>
+                                                            <input type="radio" name="dia" value="dia2_op3"> Seleccionar
+                                                        </h6>
                                                     </div>
                                                     @php
                                                         $cont=4;
@@ -160,6 +187,9 @@
                                                             <span class="tit_datos_op2">{{$horarios2->dia2_op3}} <br>
                                                                 De {{$horarios2->hora_inicio_op3}}:{{$horarios2->minutos_inicio_op3}} a {{$horarios2->hora_fin_op3}}:{{$horarios2->minutos_fin_op3}}
                                                             </span>
+                                                            <h6>
+                                                                <input type="radio" name="dia" value="dia2_op3"> Seleccionar
+                                                            </h6>
                                                         </div>
                                                         @php
                                                             $cont=2;
@@ -170,6 +200,9 @@
                                                                 <span class="tit_datos_op2">{{$horarios2->dia2_op1}} <br>
                                                                     De {{$horarios2->hora_inicio_op1}}:{{$horarios2->minutos_inicio_op1}} a {{$horarios2->hora_fin_op1}}:{{$horarios2->minutos_fin_op1}}
                                                                 </span>
+                                                                <h6>
+                                                                    <input type="radio" name="dia" value="dia2_op1"> Seleccionar
+                                                                </h6>
                                                             </div>
                                                             @php
                                                                 $cont=2;
@@ -180,11 +213,17 @@
                                                                     <span class="tit_datos_op2">{{$horarios2->dia2_op1}} <br>
                                                                         De {{$horarios2->hora_inicio_op1}}:{{$horarios2->minutos_inicio_op1}} a {{$horarios2->hora_fin_op1}}:{{$horarios2->minutos_fin_op1}}
                                                                     </span>
+                                                                    <h6>
+                                                                        <input type="radio" name="dia" value="dia2_op1"> Seleccionar
+                                                                    </h6>
                                                                 </div>
                                                                 <div class="col-3" id="fondo_solicitud">
                                                                     <span class="tit_datos_op2">{{$horarios2->dia2_op2}} <br>
                                                                         De {{$horarios2->hora_inicio_op2}}:{{$horarios2->minutos_inicio_op2}} a {{$horarios2->hora_fin_op2}}:{{$horarios2->minutos_fin_op2}}
                                                                     </span>
+                                                                    <h6>
+                                                                        <input type="radio" name="dia" value="dia2_op2"> Seleccionar
+                                                                    </h6>
                                                                 </div>
                                                                 @php
                                                                     $cont=3;
@@ -195,11 +234,17 @@
                                                                         <span class="tit_datos_op2">{{$horarios2->dia2_op1}} <br>
                                                                             De {{$horarios2->hora_inicio_op1}}:{{$horarios2->minutos_inicio_op1}} a {{$horarios2->hora_fin_op1}}:{{$horarios2->minutos_fin_op1}}
                                                                         </span>
+                                                                        <h6>
+                                                                            <input type="radio" name="dia" value="dia2_op1"> Seleccionar
+                                                                        </h6>
                                                                     </div>
                                                                     <div class="col-3" id="fondo_solicitud">
                                                                         <span class="tit_datos_op2">{{$horarios2->dia2_op3}} <br>
                                                                             De {{$horarios2->hora_inicio_op3}}:{{$horarios2->minutos_inicio_op3}} a {{$horarios2->hora_fin_op3}}:{{$horarios2->minutos_fin_op3}}
                                                                         </span>
+                                                                        <h6>
+                                                                            <input type="radio" name="dia" value="dia2_op3"> Seleccionar
+                                                                        </h6>
                                                                     </div>
                                                                     @php
                                                                         $cont=3;
@@ -216,11 +261,17 @@
                                                             <span class="tit_datos_op2">{{$horarios2->dia2_op1}} <br>
                                                                 De {{$horarios2->hora_inicio_op1}}:{{$horarios2->minutos_inicio_op1}} a {{$horarios2->hora_fin_op1}}:{{$horarios2->minutos_fin_op1}}
                                                             </span>
+                                                            <h6>
+                                                                <input type="radio" name="dia" value="dia2_op1"> Seleccionar
+                                                            </h6>
                                                         </div>
                                                         <div class="col-3" id="fondo_solicitud">
                                                             <span class="tit_datos_op2">{{$horarios2->dia2_op2}} <br>
                                                                 De {{$horarios2->hora_inicio_op2}}:{{$horarios2->minutos_inicio_op2}} a {{$horarios2->hora_fin_op2}}:{{$horarios2->minutos_fin_op2}}
                                                             </span>
+                                                            <h6>
+                                                                <input type="radio" name="dia" value="dia2_op2"> Seleccionar
+                                                            </h6>
                                                         </div>
                                                     <!-- Aqui empieza el segundo contenedor creado><-->
                                                         <div class="container">
@@ -230,6 +281,9 @@
                                                                     <span class="tit_datos_op2">{{$horarios2->dia2_op3}} <br>
                                                                         De {{$horarios2->hora_inicio_op3}}:{{$horarios2->minutos_inicio_op3}} a {{$horarios2->hora_fin_op3}}:{{$horarios2->minutos_fin_op3}}
                                                                     </span>
+                                                                    <h6>
+                                                                        <input type="radio" name="dia" value="dia2_op3"> Seleccionar
+                                                                    </h6>
                                                                 </div>
                                                             <!-- Aqui finaliza la segunda fila creada><-->
                                                                 @php
@@ -243,6 +297,9 @@
                                                                 <span class="tit_datos_op2">{{$horarios2->dia2_op3}} <br>
                                                                     De {{$horarios2->hora_inicio_op3}}:{{$horarios2->minutos_inicio_op3}} a {{$horarios2->hora_fin_op3}}:{{$horarios2->minutos_fin_op3}}
                                                                 </span>
+                                                                <h6>
+                                                                    <input type="radio" name="dia" value="dia2_op3"> Seleccionar
+                                                                </h6>
                                                             </div>
                                                             @php
                                                                 $cont=3;
@@ -253,6 +310,9 @@
                                                                     <span class="tit_datos_op2">{{$horarios2->dia2_op1}} <br>
                                                                         De {{$horarios2->hora_inicio_op1}}:{{$horarios2->minutos_inicio_op1}} a {{$horarios2->hora_fin_op1}}:{{$horarios2->minutos_fin_op1}}
                                                                     </span>
+                                                                    <h6>
+                                                                        <input type="radio" name="dia" value="dia2_op1"> Seleccionar
+                                                                    </h6>
                                                                 </div>
                                                                 @php
                                                                     $cont=3;
@@ -263,11 +323,17 @@
                                                                         <span class="tit_datos_op2">{{$horarios2->dia2_op1}} <br>
                                                                             De {{$horarios2->hora_inicio_op1}}:{{$horarios2->minutos_inicio_op1}} a {{$horarios2->hora_fin_op1}}:{{$horarios2->minutos_fin_op1}}
                                                                         </span>
+                                                                        <h6>
+                                                                            <input type="radio" name="dia" value="dia2_op1"> Seleccionar
+                                                                        </h6>
                                                                     </div>
                                                                     <div class="col-3" id="fondo_solicitud">
                                                                         <span class="tit_datos_op2">{{$horarios2->dia2_op2}} <br>
                                                                             De {{$horarios2->hora_inicio_op2}}:{{$horarios2->minutos_inicio_op2}} a {{$horarios2->hora_fin_op2}}:{{$horarios2->minutos_fin_op2}}
                                                                         </span>
+                                                                        <h6>
+                                                                            <input type="radio" name="dia" value="dia2_op2"> Seleccionar
+                                                                        </h6>
                                                                     </div>
                                                                     @php
                                                                         $cont=4;
@@ -278,11 +344,17 @@
                                                                             <span class="tit_datos_op2">{{$horarios2->dia2_op1}} <br>
                                                                                 De {{$horarios2->hora_inicio_op1}}:{{$horarios2->minutos_inicio_op1}} a {{$horarios2->hora_fin_op1}}:{{$horarios2->minutos_fin_op1}}
                                                                             </span>
+                                                                            <h6>
+                                                                                <input type="radio" name="dia" value="dia2_op1"> Seleccionar
+                                                                            </h6>
                                                                         </div>
                                                                         <div class="col-3" id="fondo_solicitud">
                                                                             <span class="tit_datos_op2">{{$horarios2->dia2_op3}} <br>
                                                                                 De {{$horarios2->hora_inicio_op3}}:{{$horarios2->minutos_inicio_op3}} a {{$horarios2->hora_fin_op3}}:{{$horarios2->minutos_fin_op3}}
                                                                             </span>
+                                                                            <h6>
+                                                                                <input type="radio" name="dia" value="dia2_op3"> Seleccionar
+                                                                            </h6>
                                                                         </div>
                                                                         @php
                                                                             $cont=4;
@@ -299,6 +371,9 @@
                                                                 <span class="tit_datos_op2">{{$horarios2->dia2_op1}} <br>
                                                                     De {{$horarios2->hora_inicio_op1}}:{{$horarios2->minutos_inicio_op1}} a {{$horarios2->hora_fin_op1}}:{{$horarios2->minutos_fin_op1}}
                                                                 </span>
+                                                                <h6>
+                                                                    <input type="radio" name="dia" value="dia2_op1"> Seleccionar
+                                                                </h6>
                                                             </div>    
                                                         <!-- Aqui empieza el segundo contenedor creado><-->
                                                             <div class="container">
@@ -308,11 +383,17 @@
                                                                         <span class="tit_datos_op2">{{$horarios2->dia2_op2}} <br>
                                                                             De {{$horarios2->hora_inicio_op2}}:{{$horarios2->minutos_inicio_op2}} a {{$horarios2->hora_fin_op2}}:{{$horarios2->minutos_fin_op2}}
                                                                         </span>
+                                                                        <h6>
+                                                                            <input type="radio" name="dia" value="dia2_op2"> Seleccionar
+                                                                        </h6>
                                                                     </div>
                                                                     <div class="col-3" id="fondo_solicitud">
                                                                         <span class="tit_datos_op2">{{$horarios2->dia2_op3}} <br>
                                                                             De {{$horarios2->hora_inicio_op3}}:{{$horarios2->minutos_inicio_op3}} a {{$horarios2->hora_fin_op3}}:{{$horarios2->minutos_fin_op3}}
                                                                         </span>
+                                                                        <h6>
+                                                                            <input type="radio" name="dia" value="dia2_op3"> Seleccionar
+                                                                        </h6>
                                                                     </div>
                                                                     @php
                                                                         $cont=6;
@@ -325,6 +406,9 @@
                                                                     <span class="tit_datos_op2">{{$horarios2->dia2_op3}} <br>
                                                                         De {{$horarios2->hora_inicio_op3}}:{{$horarios2->minutos_inicio_op3}} a {{$horarios2->hora_fin_op3}}:{{$horarios2->minutos_fin_op3}}
                                                                     </span>
+                                                                    <h6>
+                                                                        <input type="radio" name="dia" value="dia2_op3"> Seleccionar
+                                                                    </h6>
                                                                 </div>
                                                                 @php
                                                                     $cont=4;
@@ -335,6 +419,9 @@
                                                                         <span class="tit_datos_op2">{{$horarios2->dia2_op1}} <br>
                                                                             De {{$horarios2->hora_inicio_op1}}:{{$horarios2->minutos_inicio_op1}} a {{$horarios2->hora_fin_op1}}:{{$horarios2->minutos_fin_op1}}
                                                                         </span>
+                                                                        <h6>
+                                                                            <input type="radio" name="dia" value="dia2_op1"> Seleccionar
+                                                                        </h6>
                                                                     </div>
                                                                     @php
                                                                         $cont=4;
@@ -345,6 +432,9 @@
                                                                             <span class="tit_datos_op2">{{$horarios2->dia2_op1}} <br>
                                                                                 De {{$horarios2->hora_inicio_op1}}:{{$horarios2->minutos_inicio_op1}} a {{$horarios2->hora_fin_op1}}:{{$horarios2->minutos_fin_op1}}
                                                                             </span>
+                                                                            <h6>
+                                                                                <input type="radio" name="dia" value="dia2_op1"> Seleccionar
+                                                                            </h6>
                                                                         </div>
                                                                         <!-- Aqui empieza el segundo contenedor creado><-->
                                                                         <div class="container">
@@ -354,6 +444,9 @@
                                                                                     <span class="tit_datos_op2">{{$horarios2->dia2_op2}} <br>
                                                                                         De {{$horarios2->hora_inicio_op2}}:{{$horarios2->minutos_inicio_op2}} a {{$horarios2->hora_fin_op2}}:{{$horarios2->minutos_fin_op2}}
                                                                                     </span>
+                                                                                    <h6>
+                                                                                        <input type="radio" name="dia" value="dia2_op2"> Seleccionar
+                                                                                    </h6>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -366,6 +459,9 @@
                                                                                 <span class="tit_datos_op2">{{$horarios2->dia2_op1}} <br>
                                                                                     De {{$horarios2->hora_inicio_op1}}:{{$horarios2->minutos_inicio_op1}} a {{$horarios2->hora_fin_op1}}:{{$horarios2->minutos_fin_op1}}
                                                                                 </span>
+                                                                                <h6>
+                                                                                    <input type="radio" name="dia" value="dia2_op1"> Seleccionar
+                                                                                </h6>
                                                                             </div>
                                                                             <!-- Aqui empieza el segundo contenedor creado><-->
                                                                             <div class="container">
@@ -375,6 +471,9 @@
                                                                                         <span class="tit_datos_op2">{{$horarios2->dia2_op3}} <br>
                                                                                             De {{$horarios2->hora_inicio_op3}}:{{$horarios2->minutos_inicio_op3}} a {{$horarios2->hora_fin_op3}}:{{$horarios2->minutos_fin_op3}}
                                                                                         </span>
+                                                                                        <h6>
+                                                                                            <input type="radio" name="dia" value="dia2_op3"> Seleccionar
+                                                                                        </h6>
                                                                                     </div>
                                                                                 <!--/div>
                                                                             </div-->
@@ -393,16 +492,25 @@
                                                                     <span class="tit_datos_op2">{{$horarios2->dia2_op1}} <br>
                                                                         De {{$horarios2->hora_inicio_op1}}:{{$horarios2->minutos_inicio_op1}} a {{$horarios2->hora_fin_op1}}:{{$horarios2->minutos_fin_op1}}
                                                                     </span>
+                                                                    <h6>
+                                                                        <input type="radio" name="dia" value="dia2_op1"> Seleccionar
+                                                                    </h6>
                                                                 </div>
                                                                 <div class="col-3" id="fondo_solicitud">
                                                                     <span class="tit_datos_op2">{{$horarios2->dia2_op2}} <br>
                                                                         De {{$horarios2->hora_inicio_op2}}:{{$horarios2->minutos_inicio_op2}} a {{$horarios2->hora_fin_op2}}:{{$horarios2->minutos_fin_op2}}
                                                                     </span>
+                                                                    <h6>
+                                                                        <input type="radio" name="dia" value="dia2_op2"> Seleccionar
+                                                                    </h6>
                                                                 </div>
                                                                 <div class="col-3" id="fondo_solicitud">
                                                                     <span class="tit_datos_op2">{{$horarios2->dia2_op3}} <br>
                                                                         De {{$horarios2->hora_inicio_op3}}:{{$horarios2->minutos_inicio_op3}} a {{$horarios2->hora_fin_op3}}:{{$horarios2->minutos_fin_op3}}
                                                                     </span>
+                                                                    <h6>
+                                                                        <input type="radio" name="dia" value="dia2_op3"> Seleccionar
+                                                                    </h6>
                                                                 </div>
                                                                 @php
                                                                     $cont=3;
@@ -413,6 +521,9 @@
                                                                         <span class="tit_datos_op2">{{$horarios2->dia2_op3}} <br>
                                                                             De {{$horarios2->hora_inicio_op3}}:{{$horarios2->minutos_inicio_op3}} a {{$horarios2->hora_fin_op3}}:{{$horarios2->minutos_fin_op3}}
                                                                         </span>
+                                                                        <h6>
+                                                                            <input type="radio" name="dia" value="dia2_op3"> Seleccionar
+                                                                        </h6>
                                                                     </div>
                                                                     @php
                                                                         $cont=1;
@@ -423,6 +534,9 @@
                                                                             <span class="tit_datos_op2">{{$horarios2->dia2_op1}} <br>
                                                                                 De {{$horarios2->hora_inicio_op1}}:{{$horarios2->minutos_inicio_op1}} a {{$horarios2->hora_fin_op1}}:{{$horarios2->minutos_fin_op1}}
                                                                             </span>
+                                                                            <h6>
+                                                                                <input type="radio" name="dia" value="dia2_op1"> Seleccionar
+                                                                            </h6>
                                                                         </div>
                                                                         @php
                                                                             $cont=1;
@@ -433,11 +547,17 @@
                                                                                 <span class="tit_datos_op2">{{$horarios2->dia2_op1}} <br>
                                                                                     De {{$horarios2->hora_inicio_op1}}:{{$horarios2->minutos_inicio_op1}} a {{$horarios2->hora_fin_op1}}:{{$horarios2->minutos_fin_op1}}
                                                                                 </span>
+                                                                                <h6>
+                                                                                    <input type="radio" name="dia" value="dia2_op1"> Seleccionar
+                                                                                </h6>
                                                                             </div>
                                                                             <div class="col-3" id="fondo_solicitud">
                                                                                 <span class="tit_datos_op2">{{$horarios2->dia2_op2}} <br>
                                                                                     De {{$horarios2->hora_inicio_op2}}:{{$horarios2->minutos_inicio_op2}} a {{$horarios2->hora_fin_op2}}:{{$horarios2->minutos_fin_op2}}
                                                                                 </span>
+                                                                                <h6>
+                                                                                    <input type="radio" name="dia" value="dia2_op2"> Seleccionar
+                                                                                </h6>
                                                                             </div>
                                                                             @php
                                                                                 $cont=2;
@@ -448,11 +568,17 @@
                                                                                     <span class="tit_datos_op2">{{$horarios2->dia2_op1}} <br>
                                                                                         De {{$horarios2->hora_inicio_op1}}:{{$horarios2->minutos_inicio_op1}} a {{$horarios2->hora_fin_op1}}:{{$horarios2->minutos_fin_op1}}
                                                                                     </span>
+                                                                                    <h6>
+                                                                                        <input type="radio" name="dia" value="dia2_op1"> Seleccionar
+                                                                                    </h6>
                                                                                 </div>
                                                                                 <div class="col-3" id="fondo_solicitud">
                                                                                     <span class="tit_datos_op2">{{$horarios2->dia2_op3}} <br>
                                                                                         De {{$horarios2->hora_inicio_op3}}:{{$horarios2->minutos_inicio_op3}} a {{$horarios2->hora_fin_op3}}:{{$horarios2->minutos_fin_op3}}
                                                                                     </span>
+                                                                                    <h6>
+                                                                                        <input type="radio" name="dia" value="dia2_op3"> Seleccionar
+                                                                                    </h6>
                                                                                 </div>
                                                                                 @php
                                                                                     $cont=2;
@@ -475,16 +601,25 @@
                                                         <span class="tit_datos_op2">{{$horarios3->dia3_op1}} <br>
                                                             De {{$horarios3->hora_inicio_op1}}:{{$horarios3->minutos_inicio_op1}} a {{$horarios3->hora_fin_op1}}:{{$horarios3->minutos_fin_op1}}
                                                         </span>
+                                                        <h6>
+                                                            <input type="radio" name="dia" value="dia3_op1"> Seleccionar
+                                                        </h6>
                                                     </div>
                                                     <div class="col-3" id="fondo_solicitud">
                                                         <span class="tit_datos_op2">{{$horarios3->dia3_op2}} <br>
                                                             De {{$horarios3->hora_inicio_op2}}:{{$horarios3->minutos_inicio_op2}} a {{$horarios3->hora_fin_op2}}:{{$horarios3->minutos_fin_op2}}
                                                         </span>
+                                                        <h6>
+                                                            <input type="radio" name="dia" value="dia3_op2"> Seleccionar
+                                                        </h6>
                                                     </div>
                                                     <div class="col-3" id="fondo_solicitud">
                                                         <span class="tit_datos_op2">{{$horarios3->dia3_op3}} <br>
                                                             De {{$horarios3->hora_inicio_op3}}:{{$horarios3->minutos_inicio_op3}} a {{$horarios3->hora_fin_op3}}:{{$horarios3->minutos_fin_op3}}
                                                         </span>
+                                                        <h6>
+                                                            <input type="radio" name="dia" value="dia3_op3"> Seleccionar
+                                                        </h6>
                                                     </div>
                                                     @php
                                                         $cont=3;
@@ -495,6 +630,9 @@
                                                             <span class="tit_datos_op2">{{$horarios3->dia3_op3}} <br>
                                                                 De {{$horarios3->hora_inicio_op3}}:{{$horarios3->minutos_inicio_op3}} a {{$horarios3->hora_fin_op3}}:{{$horarios3->minutos_fin_op3}}
                                                             </span>
+                                                            <h6>
+                                                                <input type="radio" name="dia" value="dia3_op3"> Seleccionar
+                                                            </h6>
                                                         </div>
                                                         @php
                                                             $cont=1;
@@ -505,6 +643,9 @@
                                                                 <span class="tit_datos_op2">{{$horarios3->dia3_op1}} <br>
                                                                     De {{$horarios3->hora_inicio_op1}}:{{$horarios3->minutos_inicio_op1}} a {{$horarios3->hora_fin_op1}}:{{$horarios3->minutos_fin_op1}}
                                                                 </span>
+                                                                <h6>
+                                                                    <input type="radio" name="dia" value="dia3_op1"> Seleccionar
+                                                                </h6>
                                                             </div>
                                                             @php
                                                                 $cont=1;
@@ -515,11 +656,17 @@
                                                                     <span class="tit_datos_op2">{{$horarios3->dia3_op1}} <br>
                                                                         De {{$horarios3->hora_inicio_op1}}:{{$horarios3->minutos_inicio_op1}} a {{$horarios3->hora_fin_op1}}:{{$horarios3->minutos_fin_op1}}
                                                                     </span>
+                                                                    <h6>
+                                                                        <input type="radio" name="dia" value="dia3_op1"> Seleccionar
+                                                                    </h6>
                                                                 </div>
                                                                 <div class="col-3" id="fondo_solicitud">
                                                                     <span class="tit_datos_op2">{{$horarios3->dia3_op2}} <br>
                                                                         De {{$horarios3->hora_inicio_op2}}:{{$horarios3->minutos_inicio_op2}} a {{$horarios3->hora_fin_op2}}:{{$horarios3->minutos_fin_op2}}
                                                                     </span>
+                                                                    <h6>
+                                                                        <input type="radio" name="dia" value="dia3_op2"> Seleccionar
+                                                                    </h6>
                                                                 </div>
                                                                 @php
                                                                     $cont=2;
@@ -530,11 +677,17 @@
                                                                         <span class="tit_datos_op2">{{$horarios3->dia3_op1}} <br>
                                                                             De {{$horarios3->hora_inicio_op1}}:{{$horarios3->minutos_inicio_op1}} a {{$horarios3->hora_fin_op1}}:{{$horarios3->minutos_fin_op1}}
                                                                         </span>
+                                                                        <h6>
+                                                                            <input type="radio" name="dia" value="dia3_op1"> Seleccionar
+                                                                        </h6>
                                                                     </div>
                                                                     <div class="col-3" id="fondo_solicitud">
                                                                         <span class="tit_datos_op2">{{$horarios3->dia3_op3}} <br>
                                                                             De {{$horarios3->hora_inicio_op3}}:{{$horarios3->minutos_inicio_op3}} a {{$horarios3->hora_fin_op3}}:{{$horarios3->minutos_fin_op3}}
                                                                         </span>
+                                                                        <h6>
+                                                                            <input type="radio" name="dia" value="dia3_op2"> Seleccionar
+                                                                        </h6>
                                                                     </div>
                                                                     @php
                                                                         $cont=2;
@@ -551,16 +704,25 @@
                                                             <span class="tit_datos_op2">{{$horarios3->dia3_op1}} <br>
                                                                 De {{$horarios3->hora_inicio_op1}}:{{$horarios3->minutos_inicio_op1}} a {{$horarios3->hora_fin_op1}}:{{$horarios3->minutos_fin_op1}}
                                                             </span>
+                                                            <h6>
+                                                                <input type="radio" name="dia" value="dia3_op1"> Seleccionar
+                                                            </h6>
                                                         </div>
                                                         <div class="col-3" id="fondo_solicitud">
                                                             <span class="tit_datos_op2">{{$horarios3->dia3_op2}} <br>
                                                                 De {{$horarios3->hora_inicio_op2}}:{{$horarios3->minutos_inicio_op2}} a {{$horarios3->hora_fin_op2}}:{{$horarios3->minutos_fin_op2}}
                                                             </span>
+                                                            <h6>
+                                                                <input type="radio" name="dia" value="dia3_op2"> Seleccionar
+                                                            </h6>
                                                         </div>
                                                         <div class="col-3" id="fondo_solicitud">
                                                             <span class="tit_datos_op2">{{$horarios3->dia3_op3}} <br>
                                                                 De {{$horarios3->hora_inicio_op3}}:{{$horarios3->minutos_inicio_op3}} a {{$horarios3->hora_fin_op3}}:{{$horarios3->minutos_fin_op3}}
                                                             </span>
+                                                            <h6>
+                                                                <input type="radio" name="dia" value="dia3_op3"> Seleccionar
+                                                            </h6>
                                                         </div>
                                                         @php
                                                             $cont=4;
@@ -571,6 +733,9 @@
                                                                 <span class="tit_datos_op2">{{$horarios3->dia3_op3}} <br>
                                                                     De {{$horarios3->hora_inicio_op3}}:{{$horarios3->minutos_inicio_op3}} a {{$horarios3->hora_fin_op3}}:{{$horarios3->minutos_fin_op3}}
                                                                 </span>
+                                                                <h6>
+                                                                    <input type="radio" name="dia" value="dia3_op3"> Seleccionar
+                                                                </h6>
                                                             </div>
                                                             @php
                                                                 $cont=2;
@@ -581,6 +746,9 @@
                                                                     <span class="tit_datos_op2">{{$horarios3->dia3_op1}} <br>
                                                                         De {{$horarios3->hora_inicio_op1}}:{{$horarios3->minutos_inicio_op1}} a {{$horarios3->hora_fin_op1}}:{{$horarios3->minutos_fin_op1}}
                                                                     </span>
+                                                                    <h6>
+                                                                        <input type="radio" name="dia" value="dia3_op1"> Seleccionar
+                                                                    </h6>
                                                                 </div>
                                                                 @php
                                                                     $cont=2;
@@ -591,11 +759,17 @@
                                                                         <span class="tit_datos_op2">{{$horarios3->dia3_op1}} <br>
                                                                             De {{$horarios3->hora_inicio_op1}}:{{$horarios3->minutos_inicio_op1}} a {{$horarios3->hora_fin_op1}}:{{$horarios3->minutos_fin_op1}}
                                                                         </span>
+                                                                        <h6>
+                                                                            <input type="radio" name="dia" value="dia3_op1"> Seleccionar
+                                                                        </h6>
                                                                     </div>
                                                                     <div class="col-3" id="fondo_solicitud">
                                                                         <span class="tit_datos_op2">{{$horarios3->dia3_op2}} <br>
                                                                             De {{$horarios3->hora_inicio_op2}}:{{$horarios3->minutos_inicio_op2}} a {{$horarios3->hora_fin_op2}}:{{$horarios3->minutos_fin_op2}}
                                                                         </span>
+                                                                        <h6>
+                                                                            <input type="radio" name="dia" value="dia3_op2"> Seleccionar
+                                                                        </h6>
                                                                     </div>
                                                                     @php
                                                                         $cont=3;
@@ -606,11 +780,17 @@
                                                                             <span class="tit_datos_op2">{{$horarios3->dia3_op1}} <br>
                                                                                 De {{$horarios3->hora_inicio_op1}}:{{$horarios3->minutos_inicio_op1}} a {{$horarios3->hora_fin_op1}}:{{$horarios3->minutos_fin_op1}}
                                                                             </span>
+                                                                            <h6>
+                                                                                <input type="radio" name="dia" value="dia3_op1"> Seleccionar
+                                                                            </h6>
                                                                         </div>
                                                                         <div class="col-3" id="fondo_solicitud">
                                                                             <span class="tit_datos_op2">{{$horarios3->dia3_op3}} <br>
                                                                                 De {{$horarios3->hora_inicio_op3}}:{{$horarios3->minutos_inicio_op3}} a {{$horarios3->hora_fin_op3}}:{{$horarios3->minutos_fin_op3}}
                                                                             </span>
+                                                                            <h6>
+                                                                                <input type="radio" name="dia" value="dia3_op3"> Seleccionar
+                                                                            </h6>
                                                                         </div>
                                                                         @php
                                                                             $cont=3;
@@ -627,11 +807,17 @@
                                                                 <span class="tit_datos_op2">{{$horarios3->dia3_op1}} <br>
                                                                     De {{$horarios3->hora_inicio_op1}}:{{$horarios3->minutos_inicio_op1}} a {{$horarios3->hora_fin_op1}}:{{$horarios3->minutos_fin_op1}}
                                                                 </span>
+                                                                <h6>
+                                                                    <input type="radio" name="dia" value="dia3_op1"> Seleccionar
+                                                                </h6>
                                                             </div>
                                                             <div class="col-3" id="fondo_solicitud">
                                                                 <span class="tit_datos_op2">{{$horarios3->dia3_op2}} <br>
                                                                     De {{$horarios3->hora_inicio_op2}}:{{$horarios3->minutos_inicio_op2}} a {{$horarios3->hora_fin_op2}}:{{$horarios3->minutos_fin_op2}}
                                                                 </span>
+                                                                <h6>
+                                                                    <input type="radio" name="dia" value="dia3_op2"> Seleccionar
+                                                                </h6>
                                                             </div>
                                                             <!-- Creo el segundo contenedor><-->
                                                             <div class="container">
@@ -641,6 +827,9 @@
                                                                         <span class="tit_datos_op2">{{$horarios3->dia3_op3}} <br>
                                                                             De {{$horarios3->hora_inicio_op3}}:{{$horarios3->minutos_inicio_op3}} a {{$horarios3->hora_fin_op3}}:{{$horarios3->minutos_fin_op3}}
                                                                         </span>
+                                                                        <h6>
+                                                                            <input type="radio" name="dia" value="dia3_op3"> Seleccionar
+                                                                        </h6>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -653,6 +842,9 @@
                                                                     <span class="tit_datos_op2">{{$horarios3->dia3_op3}} <br>
                                                                         De {{$horarios3->hora_inicio_op3}}:{{$horarios3->minutos_inicio_op3}} a {{$horarios3->hora_fin_op3}}:{{$horarios3->minutos_fin_op3}}
                                                                     </span>
+                                                                    <h6>
+                                                                        <input type="radio" name="dia" value="dia3_op3"> Seleccionar
+                                                                    </h6>
                                                                 </div>
                                                                 @php
                                                                     $cont=3;
@@ -663,6 +855,9 @@
                                                                         <span class="tit_datos_op2">{{$horarios3->dia3_op1}} <br>
                                                                             De {{$horarios3->hora_inicio_op1}}:{{$horarios3->minutos_inicio_op1}} a {{$horarios3->hora_fin_op1}}:{{$horarios3->minutos_fin_op1}}
                                                                         </span>
+                                                                        <h6>
+                                                                            <input type="radio" name="dia" value="dia3_op1"> Seleccionar
+                                                                        </h6>
                                                                     </div>
                                                                     @php
                                                                         $cont=3;
@@ -673,11 +868,17 @@
                                                                             <span class="tit_datos_op2">{{$horarios3->dia3_op1}} <br>
                                                                                 De {{$horarios3->hora_inicio_op1}}:{{$horarios3->minutos_inicio_op1}} a {{$horarios3->hora_fin_op1}}:{{$horarios3->minutos_fin_op1}}
                                                                             </span>
+                                                                            <h6>
+                                                                                <input type="radio" name="dia" value="dia3_op1"> Seleccionar
+                                                                            </h6>
                                                                         </div>
                                                                         <div class="col-3" id="fondo_solicitud">
                                                                             <span class="tit_datos_op2">{{$horarios3->dia3_op2}} <br>
                                                                                 De {{$horarios3->hora_inicio_op2}}:{{$horarios3->minutos_inicio_op2}} a {{$horarios3->hora_fin_op2}}:{{$horarios3->minutos_fin_op2}}
                                                                             </span>
+                                                                            <h6>
+                                                                                <input type="radio" name="dia" value="dia3_op2"> Seleccionar
+                                                                            </h6>
                                                                         </div>
                                                                         @php
                                                                             $cont=4;
@@ -688,11 +889,17 @@
                                                                                 <span class="tit_datos_op2">{{$horarios3->dia3_op1}} <br>
                                                                                     De {{$horarios3->hora_inicio_op1}}:{{$horarios3->minutos_inicio_op1}} a {{$horarios3->hora_fin_op1}}:{{$horarios3->minutos_fin_op1}}
                                                                                 </span>
+                                                                                <h6>
+                                                                                    <input type="radio" name="dia" value="dia3_op1"> Seleccionar
+                                                                                </h6>
                                                                             </div>
                                                                             <div class="col-3" id="fondo_solicitud">
                                                                                 <span class="tit_datos_op2">{{$horarios3->dia3_op3}} <br>
                                                                                     De {{$horarios3->hora_inicio_op3}}:{{$horarios3->minutos_inicio_op3}} a {{$horarios3->hora_fin_op3}}:{{$horarios3->minutos_fin_op3}}
                                                                                 </span>
+                                                                                <h6>
+                                                                                    <input type="radio" name="dia" value="dia3_op3"> Seleccionar
+                                                                                </h6>
                                                                             </div>
                                                                             @php
                                                                                 $cont=4;
@@ -709,6 +916,9 @@
                                                                     <span class="tit_datos_op2">{{$horarios3->dia3_op1}} <br>
                                                                         De {{$horarios3->hora_inicio_op1}}:{{$horarios3->minutos_inicio_op1}} a {{$horarios3->hora_fin_op1}}:{{$horarios3->minutos_fin_op1}}
                                                                     </span>
+                                                                    <h6>
+                                                                        <input type="radio" name="dia" value="dia3_op1"> Seleccionar
+                                                                    </h6>
                                                                 </div>
                                                                 <!-- Creo el segundo contenedor><-->
                                                                 <div class="container">
@@ -717,12 +927,18 @@
                                                                         <span class="tit_datos_op2">{{$horarios3->dia3_op2}} <br>
                                                                             De {{$horarios3->hora_inicio_op2}}:{{$horarios3->minutos_inicio_op2}} a {{$horarios3->hora_fin_op2}}:{{$horarios3->minutos_fin_op2}}
                                                                         </span>
+                                                                        <h6>
+                                                                            <input type="radio" name="dia" value="dia3_op2"> Seleccionar
+                                                                        </h6>
                                                                     </div>
                                                                     <div class="row">
                                                                         <div class="col-3" id="fondo_solicitud">
                                                                             <span class="tit_datos_op2">{{$horarios3->dia3_op3}} <br>
                                                                                 De {{$horarios3->hora_inicio_op3}}:{{$horarios3->minutos_inicio_op3}} a {{$horarios3->hora_fin_op3}}:{{$horarios3->minutos_fin_op3}}
                                                                             </span>
+                                                                            <h6>
+                                                                                <input type="radio" name="dia" value="dia3_op3"> Seleccionar
+                                                                            </h6>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -735,6 +951,9 @@
                                                                         <span class="tit_datos_op2">{{$horarios3->dia3_op3}} <br>
                                                                             De {{$horarios3->hora_inicio_op3}}:{{$horarios3->minutos_inicio_op3}} a {{$horarios3->hora_fin_op3}}:{{$horarios3->minutos_fin_op3}}
                                                                         </span>
+                                                                        <h6>
+                                                                            <input type="radio" name="dia" value="dia3_op3"> Seleccionar
+                                                                        </h6>
                                                                     </div>
                                                                     @php
                                                                         $cont=4;
@@ -745,6 +964,9 @@
                                                                             <span class="tit_datos_op2">{{$horarios3->dia3_op1}} <br>
                                                                                 De {{$horarios3->hora_inicio_op1}}:{{$horarios3->minutos_inicio_op1}} a {{$horarios3->hora_fin_op1}}:{{$horarios3->minutos_fin_op1}}
                                                                             </span>
+                                                                            <h6>
+                                                                                <input type="radio" name="dia" value="dia3_op1"> Seleccionar
+                                                                            </h6>
                                                                         </div>
                                                                         @php
                                                                             $cont=4;
@@ -755,6 +977,9 @@
                                                                                 <span class="tit_datos_op2">{{$horarios3->dia3_op1}} <br>
                                                                                     De {{$horarios3->hora_inicio_op1}}:{{$horarios3->minutos_inicio_op1}} a {{$horarios3->hora_fin_op1}}:{{$horarios3->minutos_fin_op1}}
                                                                                 </span>
+                                                                                <h6>
+                                                                                    <input type="radio" name="dia" value="dia3_op1"> Seleccionar
+                                                                                </h6>
                                                                             </div>
                                                                             <!-- Creo el segundo contenedor><-->
                                                                             <div class="container">
@@ -764,6 +989,9 @@
                                                                                         <span class="tit_datos_op2">{{$horarios3->dia3_op2}} <br>
                                                                                             De {{$horarios3->hora_inicio_op2}}:{{$horarios3->minutos_inicio_op2}} a {{$horarios3->hora_fin_op2}}:{{$horarios3->minutos_fin_op2}}
                                                                                         </span>
+                                                                                        <h6>
+                                                                                            <input type="radio" name="dia" value="dia3_op2"> Seleccionar
+                                                                                        </h6>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -776,6 +1004,9 @@
                                                                                     <span class="tit_datos_op2">{{$horarios3->dia3_op1}} <br>
                                                                                         De {{$horarios3->hora_inicio_op1}}:{{$horarios3->minutos_inicio_op1}} a {{$horarios3->hora_fin_op1}}:{{$horarios3->minutos_fin_op1}}
                                                                                     </span>
+                                                                                    <h6>
+                                                                                        <input type="radio" name="dia" value="dia3_op1"> Seleccionar
+                                                                                    </h6>
                                                                                 </div>
                                                                                 <!-- Creo el segundo contenedor><-->
                                                                                 <div class="container">
@@ -785,6 +1016,9 @@
                                                                                             <span class="tit_datos_op2">{{$horarios3->dia3_op3}} <br>
                                                                                                 De {{$horarios3->hora_inicio_op3}}:{{$horarios3->minutos_inicio_op3}} a {{$horarios3->hora_fin_op3}}:{{$horarios3->minutos_fin_op3}}
                                                                                             </span>
+                                                                                            <h6>
+                                                                                                <input type="radio" name="dia" value="dia3_op3"> Seleccionar
+                                                                                            </h6>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -807,16 +1041,25 @@
                                                                                 <span class="tit_datos_op2">{{$horarios3->dia3_op1}} <br>
                                                                                     De {{$horarios3->hora_inicio_op1}}:{{$horarios3->minutos_inicio_op1}} a {{$horarios3->hora_fin_op1}}:{{$horarios3->minutos_fin_op1}}
                                                                                 </span>
+                                                                                <h6>
+                                                                                    <input type="radio" name="dia" value="dia3_op1"> Seleccionar
+                                                                                </h6>
                                                                             </div>
                                                                             <div class="col-3" id="fondo_solicitud">
                                                                                 <span class="tit_datos_op2">{{$horarios3->dia3_op2}} <br>
                                                                                     De {{$horarios3->hora_inicio_op2}}:{{$horarios3->minutos_inicio_op2}} a {{$horarios3->hora_fin_op2}}:{{$horarios3->minutos_fin_op2}}
                                                                                 </span>
+                                                                                <h6>
+                                                                                    <input type="radio" name="dia" value="dia3_op2"> Seleccionar
+                                                                                </h6>
                                                                             </div>
                                                                             <div class="col-3" id="fondo_solicitud">
                                                                                 <span class="tit_datos_op2">{{$horarios3->dia3_op3}} <br>
                                                                                     De {{$horarios3->hora_inicio_op3}}:{{$horarios3->minutos_inicio_op3}} a {{$horarios3->hora_fin_op3}}:{{$horarios3->minutos_fin_op3}}
                                                                                 </span>
+                                                                                <h6>
+                                                                                    <input type="radio" name="dia" value="dia3_op3"> Seleccionar
+                                                                                </h6>
                                                                             </div>
                                                                             @php
                                                                                 $cont=7;
@@ -827,6 +1070,9 @@
                                                                                     <span class="tit_datos_op2">{{$horarios3->dia3_op3}} <br>
                                                                                         De {{$horarios3->hora_inicio_op3}}:{{$horarios3->minutos_inicio_op3}} a {{$horarios3->hora_fin_op3}}:{{$horarios3->minutos_fin_op3}}
                                                                                     </span>
+                                                                                    <h6>
+                                                                                        <input type="radio" name="dia" value="dia3_op3"> Seleccionar
+                                                                                    </h6>
                                                                                 </div>
                                                                                 @php
                                                                                     $cont=5;
@@ -837,6 +1083,9 @@
                                                                                         <span class="tit_datos_op2">{{$horarios3->dia3_op1}} <br>
                                                                                             De {{$horarios3->hora_inicio_op1}}:{{$horarios3->minutos_inicio_op1}} a {{$horarios3->hora_fin_op1}}:{{$horarios3->minutos_fin_op1}}
                                                                                         </span>
+                                                                                        <h6>
+                                                                                            <input type="radio" name="dia" value="dia3_op1"> Seleccionar
+                                                                                        </h6>
                                                                                     </div>
                                                                                     @php
                                                                                         $cont=5;
@@ -847,11 +1096,17 @@
                                                                                             <span class="tit_datos_op2">{{$horarios3->dia3_op1}} <br>
                                                                                                 De {{$horarios3->hora_inicio_op1}}:{{$horarios3->minutos_inicio_op1}} a {{$horarios3->hora_fin_op1}}:{{$horarios3->minutos_fin_op1}}
                                                                                             </span>
+                                                                                            <h6>
+                                                                                                <input type="radio" name="dia" value="dia3_op1"> Seleccionar
+                                                                                            </h6>
                                                                                         </div>
                                                                                         <div class="col-3" id="fondo_solicitud">
                                                                                             <span class="tit_datos_op2">{{$horarios3->dia3_op2}} <br>
                                                                                                 De {{$horarios3->hora_inicio_op2}}:{{$horarios3->minutos_inicio_op2}} a {{$horarios3->hora_fin_op2}}:{{$horarios3->minutos_fin_op2}}
                                                                                             </span>
+                                                                                            <h6>
+                                                                                                <input type="radio" name="dia" value="dia3_op2"> Seleccionar
+                                                                                            </h6>
                                                                                         </div>
                                                                                         @php
                                                                                             $cont=6;
@@ -862,11 +1117,17 @@
                                                                                                 <span class="tit_datos_op2">{{$horarios3->dia3_op1}} <br>
                                                                                                     De {{$horarios3->hora_inicio_op1}}:{{$horarios3->minutos_inicio_op1}} a {{$horarios3->hora_fin_op1}}:{{$horarios3->minutos_fin_op1}}
                                                                                                 </span>
+                                                                                                <h6>
+                                                                                                    <input type="radio" name="dia" value="dia3_op1"> Seleccionar
+                                                                                                </h6>
                                                                                             </div>
                                                                                             <div class="col-3" id="fondo_solicitud">
                                                                                                 <span class="tit_datos_op2">{{$horarios3->dia3_op3}} <br>
                                                                                                     De {{$horarios3->hora_inicio_op3}}:{{$horarios3->minutos_inicio_op3}} a {{$horarios3->hora_fin_op3}}:{{$horarios3->minutos_fin_op3}}
                                                                                                 </span>
+                                                                                                <h6>
+                                                                                                    <input type="radio" name="dia" value="dia3_op3"> Seleccionar
+                                                                                                </h6>
                                                                                             </div>
                                                                                             @php
                                                                                                 $cont=6;
@@ -885,16 +1146,25 @@
                                                                             <span class="tit_datos_op2">{{$horarios3->dia3_op1}} <br>
                                                                                 De {{$horarios3->hora_inicio_op1}}:{{$horarios3->minutos_inicio_op1}} a {{$horarios3->hora_fin_op1}}:{{$horarios3->minutos_fin_op1}}
                                                                             </span>
+                                                                            <h6>
+                                                                                <input type="radio" name="dia" value="dia3_op1"> Seleccionar
+                                                                            </h6>
                                                                         </div>
                                                                         <div class="col-3" id="fondo_solicitud">
                                                                             <span class="tit_datos_op2">{{$horarios3->dia3_op2}} <br>
                                                                                 De {{$horarios3->hora_inicio_op2}}:{{$horarios3->minutos_inicio_op2}} a {{$horarios3->hora_fin_op2}}:{{$horarios3->minutos_fin_op2}}
                                                                             </span>
+                                                                            <h6>
+                                                                                <input type="radio" name="dia" value="dia3_op2"> Seleccionar
+                                                                            </h6>
                                                                         </div>
                                                                         <div class="col-3" id="fondo_solicitud">
                                                                             <span class="tit_datos_op2">{{$horarios3->dia3_op3}} <br>
                                                                                 De {{$horarios3->hora_inicio_op3}}:{{$horarios3->minutos_inicio_op3}} a {{$horarios3->hora_fin_op3}}:{{$horarios3->minutos_fin_op3}}
                                                                             </span>
+                                                                            <h6>
+                                                                                <input type="radio" name="dia" value="dia3_op3"> Seleccionar
+                                                                            </h6>
                                                                         </div>
                                                                         @php
                                                                             $cont=8;
@@ -905,6 +1175,9 @@
                                                                                 <span class="tit_datos_op2">{{$horarios3->dia3_op3}} <br>
                                                                                     De {{$horarios3->hora_inicio_op3}}:{{$horarios3->minutos_inicio_op3}} a {{$horarios3->hora_fin_op3}}:{{$horarios3->minutos_fin_op3}}
                                                                                 </span>
+                                                                                <h6>
+                                                                                    <input type="radio" name="dia" value="dia3_op3"> Seleccionar
+                                                                                </h6>
                                                                             </div>
                                                                             @php
                                                                                 $cont=6;
@@ -915,6 +1188,9 @@
                                                                                     <span class="tit_datos_op2">{{$horarios3->dia3_op1}} <br>
                                                                                         De {{$horarios3->hora_inicio_op1}}:{{$horarios3->minutos_inicio_op1}} a {{$horarios3->hora_fin_op1}}:{{$horarios3->minutos_fin_op1}}
                                                                                     </span>
+                                                                                    <h6>
+                                                                                        <input type="radio" name="dia" value="dia3_op1"> Seleccionar
+                                                                                    </h6>
                                                                                 </div>
                                                                                 @php
                                                                                     $cont=6;
@@ -925,11 +1201,17 @@
                                                                                         <span class="tit_datos_op2">{{$horarios3->dia3_op1}} <br>
                                                                                             De {{$horarios3->hora_inicio_op1}}:{{$horarios3->minutos_inicio_op1}} a {{$horarios3->hora_fin_op1}}:{{$horarios3->minutos_fin_op1}}
                                                                                         </span>
+                                                                                        <h6>
+                                                                                            <input type="radio" name="dia" value="dia3_op1"> Seleccionar
+                                                                                        </h6>
                                                                                     </div>
                                                                                     <div class="col-3" id="fondo_solicitud">
                                                                                         <span class="tit_datos_op2">{{$horarios3->dia3_op2}} <br>
                                                                                             De {{$horarios3->hora_inicio_op2}}:{{$horarios3->minutos_inicio_op2}} a {{$horarios3->hora_fin_op2}}:{{$horarios3->minutos_fin_op2}}
                                                                                         </span>
+                                                                                        <h6>
+                                                                                            <input type="radio" name="dia" value="dia3_op2"> Seleccionar
+                                                                                        </h6>
                                                                                     </div>
                                                                                     @php
                                                                                         $cont=7;
@@ -940,11 +1222,17 @@
                                                                                             <span class="tit_datos_op2">{{$horarios3->dia3_op1}} <br>
                                                                                                 De {{$horarios3->hora_inicio_op1}}:{{$horarios3->minutos_inicio_op1}} a {{$horarios3->hora_fin_op1}}:{{$horarios3->minutos_fin_op1}}
                                                                                             </span>
+                                                                                            <h6>
+                                                                                                <input type="radio" name="dia" value="dia3_op1"> Seleccionar
+                                                                                            </h6>
                                                                                         </div>
                                                                                         <div class="col-3" id="fondo_solicitud">
                                                                                             <span class="tit_datos_op2">{{$horarios3->dia3_op3}} <br>
                                                                                                 De {{$horarios3->hora_inicio_op3}}:{{$horarios3->minutos_inicio_op3}} a {{$horarios3->hora_fin_op3}}:{{$horarios3->minutos_fin_op3}}
                                                                                             </span>
+                                                                                            <h6>
+                                                                                                <input type="radio" name="dia" value="dia3_op3"> Seleccionar
+                                                                                            </h6>
                                                                                         </div>
                                                                                         @php
                                                                                             $cont=7;
@@ -964,11 +1252,17 @@
                                                                                 <span class="tit_datos_op2">{{$horarios3->dia3_op1}} <br>
                                                                                     De {{$horarios3->hora_inicio_op1}}:{{$horarios3->minutos_inicio_op1}} a {{$horarios3->hora_fin_op1}}:{{$horarios3->minutos_fin_op1}}
                                                                                 </span>
+                                                                                <h6>
+                                                                                    <input type="radio" name="dia" value="dia3_op1"> Seleccionar
+                                                                                </h6>
                                                                             </div>
                                                                             <div class="col-3" id="fondo_solicitud">
                                                                                 <span class="tit_datos_op2">{{$horarios3->dia3_op2}} <br>
                                                                                     De {{$horarios3->hora_inicio_op2}}:{{$horarios3->minutos_inicio_op2}} a {{$horarios3->hora_fin_op2}}:{{$horarios3->minutos_fin_op2}}
                                                                                 </span>
+                                                                                <h6>
+                                                                                    <input type="radio" name="dia" value="dia3_op2"> Seleccionar
+                                                                                </h6>
                                                                             </div>
                                                                             <!-- Creo el tercer contenedor><-->
                                                                             <div class="container">
@@ -978,6 +1272,9 @@
                                                                                         <span class="tit_datos_op2">{{$horarios3->dia3_op3}} <br>
                                                                                             De {{$horarios3->hora_inicio_op3}}:{{$horarios3->minutos_inicio_op3}} a {{$horarios3->hora_fin_op3}}:{{$horarios3->minutos_fin_op3}}
                                                                                         </span>
+                                                                                        <h6>
+                                                                                            <input type="radio" name="dia" value="dia3_op3"> Seleccionar
+                                                                                        </h6>
                                                                                     </div>
                                                                                 </div>
                                                                             </div> 
@@ -990,6 +1287,9 @@
                                                                                     <span class="tit_datos_op2">{{$horarios3->dia3_op3}} <br>
                                                                                         De {{$horarios3->hora_inicio_op3}}:{{$horarios3->minutos_inicio_op3}} a {{$horarios3->hora_fin_op3}}:{{$horarios3->minutos_fin_op3}}
                                                                                     </span>
+                                                                                    <h6>
+                                                                                        <input type="radio" name="dia" value="dia3_op3"> Seleccionar
+                                                                                    </h6>
                                                                                 </div>
                                                                                 @php
                                                                                     $cont=7;
@@ -1000,6 +1300,9 @@
                                                                                         <span class="tit_datos_op2">{{$horarios3->dia3_op1}} <br>
                                                                                             De {{$horarios3->hora_inicio_op1}}:{{$horarios3->minutos_inicio_op1}} a {{$horarios3->hora_fin_op1}}:{{$horarios3->minutos_fin_op1}}
                                                                                         </span>
+                                                                                        <h6>
+                                                                                            <input type="radio" name="dia" value="dia3_op1"> Seleccionar
+                                                                                        </h6>
                                                                                     </div>
                                                                                     @php
                                                                                         $cont=7;
@@ -1010,11 +1313,17 @@
                                                                                             <span class="tit_datos_op2">{{$horarios3->dia3_op1}} <br>
                                                                                                 De {{$horarios3->hora_inicio_op1}}:{{$horarios3->minutos_inicio_op1}} a {{$horarios3->hora_fin_op1}}:{{$horarios3->minutos_fin_op1}}
                                                                                             </span>
+                                                                                            <h6>
+                                                                                                <input type="radio" name="dia" value="dia3_op1"> Seleccionar
+                                                                                            </h6>
                                                                                         </div>
                                                                                         <div class="col-3" id="fondo_solicitud">
                                                                                             <span class="tit_datos_op2">{{$horarios3->dia3_op2}} <br>
                                                                                                 De {{$horarios3->hora_inicio_op2}}:{{$horarios3->minutos_inicio_op2}} a {{$horarios3->hora_fin_op2}}:{{$horarios3->minutos_fin_op2}}
                                                                                             </span>
+                                                                                            <h6>
+                                                                                                <input type="radio" name="dia" value="dia3_op2"> Seleccionar
+                                                                                            </h6>
                                                                                         </div>
                                                                                         @php
                                                                                             $cont=8;
@@ -1025,11 +1334,17 @@
                                                                                                 <span class="tit_datos_op2">{{$horarios3->dia3_op1}} <br>
                                                                                                     De {{$horarios3->hora_inicio_op1}}:{{$horarios3->minutos_inicio_op1}} a {{$horarios3->hora_fin_op1}}:{{$horarios3->minutos_fin_op1}}
                                                                                                 </span>
+                                                                                                <h6>
+                                                                                                    <input type="radio" name="dia" value="dia3_op1"> Seleccionar
+                                                                                                </h6>
                                                                                             </div>
                                                                                             <div class="col-3" id="fondo_solicitud">
                                                                                                 <span class="tit_datos_op2">{{$horarios3->dia3_op3}} <br>
                                                                                                     De {{$horarios3->hora_inicio_op3}}:{{$horarios3->minutos_inicio_op3}} a {{$horarios3->hora_fin_op3}}:{{$horarios3->minutos_fin_op3}}
                                                                                                 </span>
+                                                                                                <h6>
+                                                                                                    <input type="radio" name="dia" value="dia3_op3"> Seleccionar
+                                                                                                </h6>
                                                                                             </div>
                                                                                             @php
                                                                                                 $cont=8;
@@ -1058,16 +1373,25 @@
                                                         <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                             De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                         </span>
+                                                        <h6>
+                                                            <input type="radio" name="dia" value="dia4_op1"> Seleccionar
+                                                        </h6>
                                                     </div>
                                                     <div class="col-3" id="fondo_solicitud">
                                                         <span class="tit_datos_op2">{{$horarios4->dia4_op2}} <br>
                                                             De {{$horarios4->hora_inicio_op2}}:{{$horarios4->minutos_inicio_op2}} a {{$horarios4->hora_fin_op2}}:{{$horarios4->minutos_fin_op2}}
                                                         </span>
+                                                        <h6>
+                                                            <input type="radio" name="dia" value="dia4_op2"> Seleccionar
+                                                        </h6>
                                                     </div>
                                                     <div class="col-3" id="fondo_solicitud">
                                                         <span class="tit_datos_op2">{{$horarios4->dia4_op3}} <br>
                                                             De {{$horarios4->hora_inicio_op3}}:{{$horarios4->minutos_inicio_op3}} a {{$horarios4->hora_fin_op3}}:{{$horarios4->minutos_fin_op3}}
                                                         </span>
+                                                        <h6>
+                                                            <input type="radio" name="dia" value="dia4_op3"> Seleccionar
+                                                        </h6>
                                                     </div>
                                                     @php
                                                         $cont=3;
@@ -1078,6 +1402,9 @@
                                                             <span class="tit_datos_op2">{{$horarios4->dia4_op3}} <br>
                                                                 De {{$horarios4->hora_inicio_op3}}:{{$horarios4->minutos_inicio_op3}} a {{$horarios4->hora_fin_op3}}:{{$horarios4->minutos_fin_op3}}
                                                             </span>
+                                                            <h6>
+                                                                <input type="radio" name="dia" value="dia4_op3"> Seleccionar
+                                                            </h6>
                                                         </div>
                                                         @php
                                                             $cont=1;
@@ -1088,6 +1415,9 @@
                                                                 <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                     De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                 </span>
+                                                                <h6>
+                                                                    <input type="radio" name="dia" value="dia4_op1"> Seleccionar
+                                                                </h6>
                                                             </div>
                                                             @php
                                                                 $cont=1;
@@ -1098,11 +1428,17 @@
                                                                     <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                         De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                     </span>
+                                                                    <h6>
+                                                                        <input type="radio" name="dia" value="dia4_op1"> Seleccionar
+                                                                    </h6>
                                                                 </div>
                                                                 <div class="col-3" id="fondo_solicitud">
                                                                     <span class="tit_datos_op2">{{$horarios4->dia4_op2}} <br>
                                                                         De {{$horarios4->hora_inicio_op2}}:{{$horarios4->minutos_inicio_op2}} a {{$horarios4->hora_fin_op2}}:{{$horarios4->minutos_fin_op2}}
                                                                     </span>
+                                                                    <h6>
+                                                                        <input type="radio" name="dia" value="dia4_op2"> Seleccionar
+                                                                    </h6>
                                                                 </div>
                                                                 @php
                                                                     $cont=2;
@@ -1113,11 +1449,17 @@
                                                                         <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                             De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                         </span>
+                                                                        <h6>
+                                                                            <input type="radio" name="dia" value="dia4_op1"> Seleccionar
+                                                                        </h6>
                                                                     </div>
                                                                     <div class="col-3" id="fondo_solicitud">
                                                                         <span class="tit_datos_op2">{{$horarios4->dia4_op3}} <br>
                                                                             De {{$horarios4->hora_inicio_op3}}:{{$horarios4->minutos_inicio_op3}} a {{$horarios4->hora_fin_op3}}:{{$horarios4->minutos_fin_op3}}
                                                                         </span>
+                                                                        <h6>
+                                                                            <input type="radio" name="dia" value="dia4_op3"> Seleccionar
+                                                                        </h6>
                                                                     </div>
                                                                     @php
                                                                         $cont=2;
@@ -1134,16 +1476,25 @@
                                                             <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                 De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                             </span>
+                                                            <h6>
+                                                                <input type="radio" name="dia" value="dia4_op1"> Seleccionar
+                                                            </h6>
                                                         </div>
                                                         <div class="col-3" id="fondo_solicitud">
                                                             <span class="tit_datos_op2">{{$horarios4->dia4_op2}} <br>
                                                                 De {{$horarios4->hora_inicio_op2}}:{{$horarios4->minutos_inicio_op2}} a {{$horarios4->hora_fin_op2}}:{{$horarios4->minutos_fin_op2}}
                                                             </span>
+                                                            <h6>
+                                                                <input type="radio" name="dia" value="dia4_op2"> Seleccionar
+                                                            </h6>
                                                         </div>
                                                         <div class="col-3" id="fondo_solicitud">
                                                             <span class="tit_datos_op2">{{$horarios4->dia4_op3}} <br>
                                                                 De {{$horarios4->hora_inicio_op3}}:{{$horarios4->minutos_inicio_op3}} a {{$horarios4->hora_fin_op3}}:{{$horarios4->minutos_fin_op3}}
                                                             </span>
+                                                            <h6>
+                                                                <input type="radio" name="dia" value="dia4_op3"> Seleccionar
+                                                            </h6>
                                                         </div>
                                                         @php
                                                             $cont=4;
@@ -1154,6 +1505,9 @@
                                                                 <span class="tit_datos_op2">{{$horarios4->dia4_op3}} <br>
                                                                     De {{$horarios4->hora_inicio_op3}}:{{$horarios4->minutos_inicio_op3}} a {{$horarios4->hora_fin_op3}}:{{$horarios4->minutos_fin_op3}}
                                                                 </span>
+                                                                <h6>
+                                                                    <input type="radio" name="dia" value="dia4_op3"> Seleccionar
+                                                                </h6>
                                                             </div>
                                                             @php
                                                                 $cont=2;
@@ -1164,6 +1518,9 @@
                                                                     <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                         De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                     </span>
+                                                                    <h6>
+                                                                        <input type="radio" name="dia" value="dia4_op1"> Seleccionar
+                                                                    </h6>
                                                                 </div>
                                                                 @php
                                                                     $cont=2;
@@ -1174,11 +1531,17 @@
                                                                         <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                             De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                         </span>
+                                                                        <h6>
+                                                                            <input type="radio" name="dia" value="dia4_op1"> Seleccionar
+                                                                        </h6>
                                                                     </div>
                                                                     <div class="col-3" id="fondo_solicitud">
                                                                         <span class="tit_datos_op2">{{$horarios4->dia4_op2}} <br>
                                                                             De {{$horarios4->hora_inicio_op2}}:{{$horarios4->minutos_inicio_op2}} a {{$horarios4->hora_fin_op2}}:{{$horarios4->minutos_fin_op2}}
                                                                         </span>
+                                                                        <h6>
+                                                                            <input type="radio" name="dia" value="dia4_op2"> Seleccionar
+                                                                        </h6>
                                                                     </div>
                                                                     @php
                                                                         $cont=3;
@@ -1189,11 +1552,17 @@
                                                                             <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                                 De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                             </span>
+                                                                            <h6>
+                                                                                <input type="radio" name="dia" value="dia4_op1"> Seleccionar
+                                                                            </h6>
                                                                         </div>
                                                                         <div class="col-3" id="fondo_solicitud">
                                                                             <span class="tit_datos_op2">{{$horarios4->dia4_op3}} <br>
                                                                                 De {{$horarios4->hora_inicio_op3}}:{{$horarios4->minutos_inicio_op3}} a {{$horarios4->hora_fin_op3}}:{{$horarios4->minutos_fin_op3}}
                                                                             </span>
+                                                                            <h6>
+                                                                                <input type="radio" name="dia" value="dia4_op3"> Seleccionar
+                                                                            </h6>
                                                                         </div>
                                                                         @php
                                                                             $cont=3;
@@ -1210,11 +1579,17 @@
                                                                 <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                     De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                 </span>
+                                                                <h6>
+                                                                    <input type="radio" name="dia" value="dia4_op1"> Seleccionar
+                                                                </h6>
                                                             </div>
                                                             <div class="col-3" id="fondo_solicitud">
                                                                 <span class="tit_datos_op2">{{$horarios4->dia4_op2}} <br>
                                                                     De {{$horarios4->hora_inicio_op2}}:{{$horarios4->minutos_inicio_op2}} a {{$horarios4->hora_fin_op2}}:{{$horarios4->minutos_fin_op2}}
                                                                 </span>
+                                                                <h6>
+                                                                    <input type="radio" name="dia" value="dia4_op2"> Seleccionar
+                                                                </h6>
                                                             </div>
                                                             <!-- Creo el segundo contenedor><-->
                                                             <div class="container">
@@ -1224,6 +1599,9 @@
                                                                         <span class="tit_datos_op2">{{$horarios4->dia4_op3}} <br>
                                                                             De {{$horarios4->hora_inicio_op3}}:{{$horarios4->minutos_inicio_op3}} a {{$horarios4->hora_fin_op3}}:{{$horarios4->minutos_fin_op3}}
                                                                         </span>
+                                                                        <h6>
+                                                                            <input type="radio" name="dia" value="dia4_op3"> Seleccionar
+                                                                        </h6>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -1236,6 +1614,9 @@
                                                                     <span class="tit_datos_op2">{{$horarios4->dia4_op3}} <br>
                                                                         De {{$horarios4->hora_inicio_op3}}:{{$horarios4->minutos_inicio_op3}} a {{$horarios4->hora_fin_op3}}:{{$horarios4->minutos_fin_op3}}
                                                                     </span>
+                                                                    <h6>
+                                                                        <input type="radio" name="dia" value="dia4_op3"> Seleccionar
+                                                                    </h6>
                                                                 </div>
                                                                 @php
                                                                     $cont=3;
@@ -1246,6 +1627,9 @@
                                                                         <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                             De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                         </span>
+                                                                        <h6>
+                                                                            <input type="radio" name="dia" value="dia4_op1"> Seleccionar
+                                                                        </h6>
                                                                     </div>
                                                                     @php
                                                                         $cont=3;
@@ -1256,11 +1640,17 @@
                                                                             <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                                 De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                             </span>
+                                                                            <h6>
+                                                                                <input type="radio" name="dia" value="dia4_op1"> Seleccionar
+                                                                            </h6>
                                                                         </div>
                                                                         <div class="col-3" id="fondo_solicitud">
                                                                             <span class="tit_datos_op2">{{$horarios4->dia4_op2}} <br>
                                                                                 De {{$horarios4->hora_inicio_op2}}:{{$horarios4->minutos_inicio_op2}} a {{$horarios4->hora_fin_op2}}:{{$horarios4->minutos_fin_op2}}
                                                                             </span>
+                                                                            <h6>
+                                                                                <input type="radio" name="dia" value="dia4_op2"> Seleccionar
+                                                                            </h6>
                                                                         </div>
                                                                         @php
                                                                             $cont=4;
@@ -1271,11 +1661,17 @@
                                                                                 <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                                     De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                                 </span>
+                                                                                <h6>
+                                                                                    <input type="radio" name="dia" value="dia4_op1"> Seleccionar
+                                                                                </h6>
                                                                             </div>
                                                                             <div class="col-3" id="fondo_solicitud">
                                                                                 <span class="tit_datos_op2">{{$horarios4->dia4_op3}} <br>
                                                                                     De {{$horarios4->hora_inicio_op3}}:{{$horarios4->minutos_inicio_op3}} a {{$horarios4->hora_fin_op3}}:{{$horarios4->minutos_fin_op3}}
                                                                                 </span>
+                                                                                <h6>
+                                                                                    <input type="radio" name="dia" value="dia4_op3"> Seleccionar
+                                                                                </h6>
                                                                             </div>
                                                                             @php
                                                                                 $cont=4;
@@ -1292,6 +1688,9 @@
                                                                     <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                         De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                     </span>
+                                                                    <h6>
+                                                                        <input type="radio" name="dia" value="dia4_op1"> Seleccionar
+                                                                    </h6>
                                                                 </div>
                                                                 <!-- Creo el segundo contenedor><-->
                                                                 <div class="container">
@@ -1301,11 +1700,17 @@
                                                                             <span class="tit_datos_op2">{{$horarios4->dia4_op2}} <br>
                                                                                 De {{$horarios4->hora_inicio_op2}}:{{$horarios4->minutos_inicio_op2}} a {{$horarios4->hora_fin_op2}}:{{$horarios4->minutos_fin_op2}}
                                                                             </span>
+                                                                            <h6>
+                                                                                <input type="radio" name="dia" value="dia4_op2"> Seleccionar
+                                                                            </h6>
                                                                         </div>
                                                                         <div class="col-3" id="fondo_solicitud">
                                                                             <span class="tit_datos_op2">{{$horarios4->dia4_op3}} <br>
                                                                                 De {{$horarios4->hora_inicio_op3}}:{{$horarios4->minutos_inicio_op3}} a {{$horarios4->hora_fin_op3}}:{{$horarios4->minutos_fin_op3}}
                                                                             </span>
+                                                                            <h6>
+                                                                                <input type="radio" name="dia" value="dia4_op3"> Seleccionar
+                                                                            </h6>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -1318,6 +1723,9 @@
                                                                         <span class="tit_datos_op2">{{$horarios4->dia4_op3}} <br>
                                                                             De {{$horarios4->hora_inicio_op3}}:{{$horarios4->minutos_inicio_op3}} a {{$horarios4->hora_fin_op3}}:{{$horarios4->minutos_fin_op3}}
                                                                         </span>
+                                                                        <h6>
+                                                                            <input type="radio" name="dia" value="dia4_op3"> Seleccionar
+                                                                        </h6>
                                                                     </div>
                                                                     @php
                                                                         $cont=4;
@@ -1328,6 +1736,9 @@
                                                                             <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                                 De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                             </span>
+                                                                            <h6>
+                                                                                <input type="radio" name="dia" value="dia4_op1"> Seleccionar
+                                                                            </h6>
                                                                         </div>
                                                                         @php
                                                                             $cont=4;
@@ -1338,6 +1749,9 @@
                                                                                 <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                                     De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                                 </span>
+                                                                                <h6>
+                                                                                    <input type="radio" name="dia" value="dia4_op1"> Seleccionar
+                                                                                </h6>
                                                                             </div>
                                                                             <!-- Creo el segundo contenedor><-->
                                                                             <div class="container">
@@ -1347,6 +1761,9 @@
                                                                                         <span class="tit_datos_op2">{{$horarios4->dia4_op2}} <br>
                                                                                             De {{$horarios4->hora_inicio_op2}}:{{$horarios4->minutos_inicio_op2}} a {{$horarios4->hora_fin_op2}}:{{$horarios4->minutos_fin_op2}}
                                                                                         </span>
+                                                                                        <h6>
+                                                                                            <input type="radio" name="dia" value="dia4_op2"> Seleccionar
+                                                                                        </h6>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -1359,6 +1776,9 @@
                                                                                     <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                                         De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                                     </span>
+                                                                                    <h6>
+                                                                                        <input type="radio" name="dia" value="dia4_op1"> Seleccionar
+                                                                                    </h6>
                                                                                 </div>
                                                                                 <!-- Creo el segundo contenedor><-->
                                                                                 <div class="container">
@@ -1368,6 +1788,9 @@
                                                                                             <span class="tit_datos_op2">{{$horarios4->dia4_op3}} <br>
                                                                                                 De {{$horarios4->hora_inicio_op3}}:{{$horarios4->minutos_inicio_op3}} a {{$horarios4->hora_fin_op3}}:{{$horarios4->minutos_fin_op3}}
                                                                                             </span>
+                                                                                            <h6>
+                                                                                                <input type="radio" name="dia" value="dia4_op3"> Seleccionar
+                                                                                            </h6>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -1390,16 +1813,25 @@
                                                                                 <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                                     De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                                 </span>
+                                                                                <h6>
+                                                                                    <input type="radio" name="dia" value="dia4_op1"> Seleccionar
+                                                                                </h6>
                                                                             </div>
                                                                             <div class="col-3" id="fondo_solicitud">
                                                                                 <span class="tit_datos_op2">{{$horarios4->dia4_op2}} <br>
                                                                                     De {{$horarios4->hora_inicio_op2}}:{{$horarios4->minutos_inicio_op2}} a {{$horarios4->hora_fin_op2}}:{{$horarios4->minutos_fin_op2}}
                                                                                 </span>
+                                                                                <h6>
+                                                                                    <input type="radio" name="dia" value="dia4_op2"> Seleccionar
+                                                                                </h6>
                                                                             </div>
                                                                             <div class="col-3" id="fondo_solicitud">
                                                                                 <span class="tit_datos_op2">{{$horarios4->dia4_op3}} <br>
                                                                                     De {{$horarios4->hora_inicio_op3}}:{{$horarios4->minutos_inicio_op3}} a {{$horarios4->hora_fin_op3}}:{{$horarios4->minutos_fin_op3}}
                                                                                 </span>
+                                                                                <h6>
+                                                                                    <input type="radio" name="dia" value="dia4_op3"> Seleccionar
+                                                                                </h6>
                                                                             </div>
                                                                             @php
                                                                                 $cont=7;
@@ -1410,6 +1842,9 @@
                                                                                     <span class="tit_datos_op2">{{$horarios4->dia4_op3}} <br>
                                                                                         De {{$horarios4->hora_inicio_op3}}:{{$horarios4->minutos_inicio_op3}} a {{$horarios4->hora_fin_op3}}:{{$horarios4->minutos_fin_op3}}
                                                                                     </span>
+                                                                                    <h6>
+                                                                                        <input type="radio" name="dia" value="dia4_op3"> Seleccionar
+                                                                                    </h6>
                                                                                 </div>
                                                                                 @php
                                                                                     $cont=5;
@@ -1420,6 +1855,9 @@
                                                                                         <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                                             De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                                         </span>
+                                                                                        <h6>
+                                                                                            <input type="radio" name="dia" value="dia4_op1"> Seleccionar
+                                                                                        </h6>
                                                                                     </div>
                                                                                     @php
                                                                                         $cont=5;
@@ -1430,11 +1868,17 @@
                                                                                             <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                                                 De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                                             </span>
+                                                                                            <h6>
+                                                                                                <input type="radio" name="dia" value="dia4_op1"> Seleccionar
+                                                                                            </h6>
                                                                                         </div>
                                                                                         <div class="col-3" id="fondo_solicitud">
                                                                                             <span class="tit_datos_op2">{{$horarios4->dia4_op2}} <br>
                                                                                                 De {{$horarios4->hora_inicio_op2}}:{{$horarios4->minutos_inicio_op2}} a {{$horarios4->hora_fin_op2}}:{{$horarios4->minutos_fin_op2}}
                                                                                             </span>
+                                                                                            <h6>
+                                                                                                <input type="radio" name="dia" value="dia4_op2"> Seleccionar
+                                                                                            </h6>
                                                                                         </div>
                                                                                         @php
                                                                                             $cont=6;
@@ -1445,11 +1889,17 @@
                                                                                                 <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                                                     De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                                                 </span>
+                                                                                                <h6>
+                                                                                                    <input type="radio" name="dia" value="dia4_op1"> Seleccionar
+                                                                                                </h6>
                                                                                             </div>
                                                                                             <div class="col-3" id="fondo_solicitud">
                                                                                                 <span class="tit_datos_op2">{{$horarios4->dia4_op3}} <br>
                                                                                                     De {{$horarios4->hora_inicio_op3}}:{{$horarios4->minutos_inicio_op3}} a {{$horarios4->hora_fin_op3}}:{{$horarios4->minutos_fin_op3}}
                                                                                                 </span>
+                                                                                                <h6>
+                                                                                                    <input type="radio" name="dia" value="dia4_op3"> Seleccionar
+                                                                                                </h6>
                                                                                             </div>
                                                                                             @php
                                                                                                 $cont=6;
@@ -1468,16 +1918,25 @@
                                                                             <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                                 De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                             </span>
+                                                                            <h6>
+                                                                                <input type="radio" name="dia" value="dia4_op1"> Seleccionar
+                                                                            </h6>
                                                                         </div>
                                                                         <div class="col-3" id="fondo_solicitud">
                                                                             <span class="tit_datos_op2">{{$horarios4->dia4_op2}} <br>
                                                                                 De {{$horarios4->hora_inicio_op2}}:{{$horarios4->minutos_inicio_op2}} a {{$horarios4->hora_fin_op2}}:{{$horarios4->minutos_fin_op2}}
                                                                             </span>
+                                                                            <h6>
+                                                                                <input type="radio" name="dia" value="dia4_op2"> Seleccionar
+                                                                            </h6>
                                                                         </div>
                                                                         <div class="col-3" id="fondo_solicitud">
                                                                             <span class="tit_datos_op2">{{$horarios4->dia4_op3}} <br>
                                                                                 De {{$horarios4->hora_inicio_op3}}:{{$horarios4->minutos_inicio_op3}} a {{$horarios4->hora_fin_op3}}:{{$horarios4->minutos_fin_op3}}
                                                                             </span>
+                                                                            <h6>
+                                                                                <input type="radio" name="dia" value="dia4_op3"> Seleccionar
+                                                                            </h6>
                                                                         </div>
                                                                         @php
                                                                             $cont=8;
@@ -1488,6 +1947,9 @@
                                                                                 <span class="tit_datos_op2">{{$horarios4->dia4_op3}} <br>
                                                                                     De {{$horarios4->hora_inicio_op3}}:{{$horarios4->minutos_inicio_op3}} a {{$horarios4->hora_fin_op3}}:{{$horarios4->minutos_fin_op3}}
                                                                                 </span>
+                                                                                <h6>
+                                                                                    <input type="radio" name="dia" value="dia4_op3"> Seleccionar
+                                                                                </h6>
                                                                             </div>
                                                                             @php
                                                                                 $cont=6;
@@ -1498,6 +1960,9 @@
                                                                                     <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                                         De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                                     </span>
+                                                                                    <h6>
+                                                                                        <input type="radio" name="dia" value="dia4_op1"> Seleccionar
+                                                                                    </h6>
                                                                                 </div>
                                                                                 @php
                                                                                     $cont=6;
@@ -1508,11 +1973,17 @@
                                                                                         <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                                             De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                                         </span>
+                                                                                        <h6>
+                                                                                            <input type="radio" name="dia" value="dia4_op1"> Seleccionar
+                                                                                        </h6>
                                                                                     </div>
                                                                                     <div class="col-3" id="fondo_solicitud">
                                                                                         <span class="tit_datos_op2">{{$horarios4->dia4_op2}} <br>
                                                                                             De {{$horarios4->hora_inicio_op2}}:{{$horarios4->minutos_inicio_op2}} a {{$horarios4->hora_fin_op2}}:{{$horarios4->minutos_fin_op2}}
                                                                                         </span>
+                                                                                        <h6>
+                                                                                            <input type="radio" name="dia" value="dia4_op2"> Seleccionar
+                                                                                        </h6>
                                                                                     </div>
                                                                                     @php
                                                                                         $cont=7;
@@ -1523,11 +1994,17 @@
                                                                                             <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                                                 De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                                             </span>
+                                                                                            <h6>
+                                                                                                <input type="radio" name="dia" value="dia4_op1"> Seleccionar
+                                                                                            </h6>
                                                                                         </div>
                                                                                         <div class="col-3" id="fondo_solicitud">
                                                                                             <span class="tit_datos_op2">{{$horarios4->dia4_op3}} <br>
                                                                                                 De {{$horarios4->hora_inicio_op3}}:{{$horarios4->minutos_inicio_op3}} a {{$horarios4->hora_fin_op3}}:{{$horarios4->minutos_fin_op3}}
                                                                                             </span>
+                                                                                            <h6>
+                                                                                                <input type="radio" name="dia" value="dia4_op3"> Seleccionar
+                                                                                            </h6>
                                                                                         </div>
                                                                                         @php
                                                                                             $cont=7;
@@ -1544,11 +2021,17 @@
                                                                                 <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                                     De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                                 </span>
+                                                                                <h6>
+                                                                                    <input type="radio" name="dia" value="dia4_op1"> Seleccionar
+                                                                                </h6>
                                                                             </div>
                                                                             <div class="col-3" id="fondo_solicitud">
                                                                                 <span class="tit_datos_op2">{{$horarios4->dia4_op2}} <br>
                                                                                     De {{$horarios4->hora_inicio_op2}}:{{$horarios4->minutos_inicio_op2}} a {{$horarios4->hora_fin_op2}}:{{$horarios4->minutos_fin_op2}}
                                                                                 </span>
+                                                                                <h6>
+                                                                                    <input type="radio" name="dia" value="dia4_op2"> Seleccionar
+                                                                                </h6>
                                                                             </div>
                                                                             <!-- Creo el tercer contenedor><-->
                                                                             <div class="container">
@@ -1558,6 +2041,9 @@
                                                                                         <span class="tit_datos_op2">{{$horarios4->dia4_op3}} <br>
                                                                                             De {{$horarios4->hora_inicio_op3}}:{{$horarios4->minutos_inicio_op3}} a {{$horarios4->hora_fin_op3}}:{{$horarios4->minutos_fin_op3}}
                                                                                         </span>
+                                                                                        <h6>
+                                                                                            <input type="radio" name="dia" value="dia4_op3"> Seleccionar
+                                                                                        </h6>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -1570,6 +2056,9 @@
                                                                                     <span class="tit_datos_op2">{{$horarios4->dia4_op3}} <br>
                                                                                         De {{$horarios4->hora_inicio_op3}}:{{$horarios4->minutos_inicio_op3}} a {{$horarios4->hora_fin_op3}}:{{$horarios4->minutos_fin_op3}}
                                                                                     </span>
+                                                                                    <h6>
+                                                                                        <input type="radio" name="dia" value="dia4_op3"> Seleccionar
+                                                                                    </h6>
                                                                                 </div>
                                                                                 @php
                                                                                     $cont=7;
@@ -1580,6 +2069,9 @@
                                                                                         <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                                             De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                                         </span>
+                                                                                        <h6>
+                                                                                            <input type="radio" name="dia" value="dia4_op1"> Seleccionar
+                                                                                        </h6>
                                                                                     </div>
                                                                                     @php
                                                                                         $cont=7;
@@ -1590,11 +2082,17 @@
                                                                                             <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                                                 De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                                             </span>
+                                                                                            <h6>
+                                                                                                <input type="radio" name="dia" value="dia4_op1"> Seleccionar
+                                                                                            </h6>
                                                                                         </div>
                                                                                         <div class="col-3" id="fondo_solicitud">
                                                                                             <span class="tit_datos_op2">{{$horarios4->dia4_op2}} <br>
                                                                                                 De {{$horarios4->hora_inicio_op2}}:{{$horarios4->minutos_inicio_op2}} a {{$horarios4->hora_fin_op2}}:{{$horarios4->minutos_fin_op2}}
                                                                                             </span>
+                                                                                            <h6>
+                                                                                                <input type="radio" name="dia" value="dia4_op2"> Seleccionar
+                                                                                            </h6>
                                                                                         </div>
                                                                                         @php
                                                                                             $cont=8;
@@ -1605,11 +2103,17 @@
                                                                                                 <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                                                     De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                                                 </span>
+                                                                                                <h6>
+                                                                                                    <input type="radio" name="dia" value="dia4_op1"> Seleccionar
+                                                                                                </h6>
                                                                                             </div>
                                                                                             <div class="col-3" id="fondo_solicitud">
                                                                                                 <span class="tit_datos_op2">{{$horarios4->dia4_op3}} <br>
                                                                                                     De {{$horarios4->hora_inicio_op3}}:{{$horarios4->minutos_inicio_op3}} a {{$horarios4->hora_fin_op3}}:{{$horarios4->minutos_fin_op3}}
                                                                                                 </span>
+                                                                                                <h6>
+                                                                                                    <input type="radio" name="dia" value="dia4_op3"> Seleccionar
+                                                                                                </h6>
                                                                                             </div>
                                                                                             @php
                                                                                                 $cont=8;
@@ -1626,6 +2130,9 @@
                                                                                     <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                                         De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                                     </span>
+                                                                                    <h6>
+                                                                                        <input type="radio" name="dia" value="dia4_op1"> Seleccionar
+                                                                                    </h6>
                                                                                 </div>
                                                                                 <!-- Creo el tercer contenedor><-->
                                                                                 <div class="container">
@@ -1634,12 +2141,18 @@
                                                                                         <span class="tit_datos_op2">{{$horarios4->dia4_op2}} <br>
                                                                                             De {{$horarios4->hora_inicio_op2}}:{{$horarios4->minutos_inicio_op2}} a {{$horarios4->hora_fin_op2}}:{{$horarios4->minutos_fin_op2}}
                                                                                         </span>
+                                                                                        <h6>
+                                                                                            <input type="radio" name="dia" value="dia4_op2"> Seleccionar
+                                                                                        </h6>
                                                                                     </div>
                                                                                     <div class="row">
                                                                                         <div class="col-3" id="fondo_solicitud">
                                                                                             <span class="tit_datos_op2">{{$horarios4->dia4_op3}} <br>
                                                                                                 De {{$horarios4->hora_inicio_op3}}:{{$horarios4->minutos_inicio_op3}} a {{$horarios4->hora_fin_op3}}:{{$horarios4->minutos_fin_op3}}
                                                                                             </span>
+                                                                                            <h6>
+                                                                                                <input type="radio" name="dia" value="dia4_op3"> Seleccionar
+                                                                                            </h6>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -1652,6 +2165,9 @@
                                                                                         <span class="tit_datos_op2">{{$horarios4->dia4_op3}} <br>
                                                                                             De {{$horarios4->hora_inicio_op3}}:{{$horarios4->minutos_inicio_op3}} a {{$horarios4->hora_fin_op3}}:{{$horarios4->minutos_fin_op3}}
                                                                                         </span>
+                                                                                        <h6>
+                                                                                            <input type="radio" name="dia" value="dia4_op3"> Seleccionar
+                                                                                        </h6>
                                                                                     </div>
                                                                                     @php
                                                                                         $cont=8;
@@ -1662,6 +2178,9 @@
                                                                                             <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                                                 De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                                             </span>
+                                                                                            <h6>
+                                                                                                <input type="radio" name="dia" value="dia4_op1"> Seleccionar
+                                                                                            </h6>
                                                                                         </div>
                                                                                         @php
                                                                                             $cont=8;
@@ -1672,6 +2191,9 @@
                                                                                                 <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                                                     De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                                                 </span>
+                                                                                                <h6>
+                                                                                                    <input type="radio" name="dia" value="dia4_op1"> Seleccionar
+                                                                                                </h6>
                                                                                             </div>
                                                                                             <!-- Creo el tercer contenedor><-->
                                                                                             <div class="container">
@@ -1681,6 +2203,9 @@
                                                                                                         <span class="tit_datos_op2">{{$horarios4->dia4_op2}} <br>
                                                                                                             De {{$horarios4->hora_inicio_op2}}:{{$horarios4->minutos_inicio_op2}} a {{$horarios4->hora_fin_op2}}:{{$horarios4->minutos_fin_op2}}
                                                                                                         </span>
+                                                                                                        <h6>
+                                                                                                            <input type="radio" name="dia" value="dia4_op2"> Seleccionar
+                                                                                                        </h6>
                                                                                                     </div>
                                                                                                 </div>
                                                                                             </div>
@@ -1693,6 +2218,9 @@
                                                                                                     <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                                                         De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                                                     </span>
+                                                                                                    <h6>
+                                                                                                        <input type="radio" name="dia" value="dia4_op1"> Seleccionar
+                                                                                                    </h6>
                                                                                                 </div>
                                                                                                 <!--Creo el tercer contenedor><-->
                                                                                                 <div class="container">
@@ -1702,6 +2230,9 @@
                                                                                                             <span class="tit_datos_op2">{{$horarios4->dia4_op3}} <br>
                                                                                                                 De {{$horarios4->hora_inicio_op3}}:{{$horarios4->minutos_inicio_op3}} a {{$horarios4->hora_fin_op3}}:{{$horarios4->minutos_fin_op3}}
                                                                                                             </span>
+                                                                                                            <h6>
+                                                                                                                <input type="radio" name="dia" value="dia4_op3"> Seleccionar
+                                                                                                            </h6>
                                                                                                         </div>
                                                                                                     </div>
                                                                                                 </div>
@@ -1724,16 +2255,25 @@
                                                                                                 <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                                                     De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                                                 </span>
+                                                                                                <h6>
+                                                                                                    <input type="radio" name="dia" value="dia4_op1"> Seleccionar
+                                                                                                </h6>
                                                                                             </div>
                                                                                             <div class="col-3" id="fondo_solicitud">
                                                                                                 <span class="tit_datos_op2">{{$horarios4->dia4_op2}} <br>
                                                                                                     De {{$horarios4->hora_inicio_op2}}:{{$horarios4->minutos_inicio_op2}} a {{$horarios4->hora_fin_op2}}:{{$horarios4->minutos_fin_op2}}
                                                                                                 </span>
+                                                                                                <h6>
+                                                                                                    <input type="radio" name="dia" value="dia4_op2"> Seleccionar
+                                                                                                </h6>
                                                                                             </div>
                                                                                             <div class="col-3" id="fondo_solicitud">
                                                                                                 <span class="tit_datos_op2">{{$horarios4->dia4_op3}} <br>
                                                                                                     De {{$horarios4->hora_inicio_op3}}:{{$horarios4->minutos_inicio_op3}} a {{$horarios4->hora_fin_op3}}:{{$horarios4->minutos_fin_op3}}
                                                                                                 </span>
+                                                                                                <h6>
+                                                                                                    <input type="radio" name="dia" value="dia4_op3"> Seleccionar
+                                                                                                </h6>
                                                                                             </div>
                                                                                             @php
                                                                                                 $cont=11;
@@ -1744,6 +2284,9 @@
                                                                                                     <span class="tit_datos_op2">{{$horarios4->dia4_op3}} <br>
                                                                                                         De {{$horarios4->hora_inicio_op3}}:{{$horarios4->minutos_inicio_op3}} a {{$horarios4->hora_fin_op3}}:{{$horarios4->minutos_fin_op3}}
                                                                                                     </span>
+                                                                                                    <h6>
+                                                                                                        <input type="radio" name="dia" value="dia4_op3"> Seleccionar
+                                                                                                    </h6>
                                                                                                 </div>
                                                                                                 @php
                                                                                                     $cont=9;
@@ -1754,6 +2297,9 @@
                                                                                                         <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                                                             De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                                                         </span>
+                                                                                                        <h6>
+                                                                                                            <input type="radio" name="dia" value="dia4_op1"> Seleccionar
+                                                                                                        </h6>
                                                                                                     </div>
                                                                                                     @php
                                                                                                         $cont=9;
@@ -1764,11 +2310,17 @@
                                                                                                             <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                                                                 De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                                                             </span>
+                                                                                                            <h6>
+                                                                                                                <input type="radio" name="dia" value="dia4_op1"> Seleccionar
+                                                                                                            </h6>
                                                                                                         </div>
                                                                                                         <div class="col-3" id="fondo_solicitud">
                                                                                                             <span class="tit_datos_op2">{{$horarios4->dia4_op2}} <br>
                                                                                                                 De {{$horarios4->hora_inicio_op2}}:{{$horarios4->minutos_inicio_op2}} a {{$horarios4->hora_fin_op2}}:{{$horarios4->minutos_fin_op2}}
                                                                                                             </span>
+                                                                                                            <h6>
+                                                                                                                <input type="radio" name="dia" value="dia4_op2"> Seleccionar
+                                                                                                            </h6>
                                                                                                         </div>
                                                                                                         @php
                                                                                                             $cont=10;
@@ -1779,11 +2331,17 @@
                                                                                                                 <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                                                                     De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                                                                 </span>
+                                                                                                                <h6>
+                                                                                                                    <input type="radio" name="dia" value="dia4_op1"> Seleccionar
+                                                                                                                </h6>
                                                                                                             </div>
                                                                                                             <div class="col-3" id="fondo_solicitud">
                                                                                                                 <span class="tit_datos_op2">{{$horarios4->dia4_op3}} <br>
                                                                                                                     De {{$horarios4->hora_inicio_op3}}:{{$horarios4->minutos_inicio_op3}} a {{$horarios4->hora_fin_op3}}:{{$horarios4->minutos_fin_op3}}
                                                                                                                 </span>
+                                                                                                                <h6>
+                                                                                                                    <input type="radio" name="dia" value="dia4_op3"> Seleccionar
+                                                                                                                </h6>
                                                                                                             </div>
                                                                                                             @php
                                                                                                                 $cont=10;
@@ -1802,16 +2360,25 @@
                                                                                             <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                                                 De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                                             </span>
+                                                                                            <h6>
+                                                                                                <input type="radio" name="dia" value="dia4_op1"> Seleccionar
+                                                                                            </h6>
                                                                                         </div>
                                                                                         <div class="col-3" id="fondo_solicitud">
                                                                                             <span class="tit_datos_op2">{{$horarios4->dia4_op2}} <br>
                                                                                                 De {{$horarios4->hora_inicio_op2}}:{{$horarios4->minutos_inicio_op2}} a {{$horarios4->hora_fin_op2}}:{{$horarios4->minutos_fin_op2}}
                                                                                             </span>
+                                                                                            <h6>
+                                                                                                <input type="radio" name="dia" value="dia4_op2"> Seleccionar
+                                                                                            </h6>
                                                                                         </div>
                                                                                         <div class="col-3" id="fondo_solicitud">
                                                                                             <span class="tit_datos_op2">{{$horarios4->dia4_op3}} <br>
                                                                                                 De {{$horarios4->hora_inicio_op3}}:{{$horarios4->minutos_inicio_op3}} a {{$horarios4->hora_fin_op3}}:{{$horarios4->minutos_fin_op3}}
                                                                                             </span>
+                                                                                            <h6>
+                                                                                                <input type="radio" name="dia" value="dia4_op3"> Seleccionar
+                                                                                            </h6>
                                                                                         </div>
                                                                                         @php
                                                                                             $cont=12;
@@ -1822,6 +2389,9 @@
                                                                                                 <span class="tit_datos_op2">{{$horarios4->dia4_op3}} <br>
                                                                                                     De {{$horarios4->hora_inicio_op3}}:{{$horarios4->minutos_inicio_op3}} a {{$horarios4->hora_fin_op3}}:{{$horarios4->minutos_fin_op3}}
                                                                                                 </span>
+                                                                                                <h6>
+                                                                                                    <input type="radio" name="dia" value="dia4_op3"> Seleccionar
+                                                                                                </h6>
                                                                                             </div>
                                                                                             @php
                                                                                                 $cont=10;
@@ -1832,6 +2402,9 @@
                                                                                                     <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                                                         De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                                                     </span>
+                                                                                                    <h6>
+                                                                                                        <input type="radio" name="dia" value="dia4_op1"> Seleccionar
+                                                                                                    </h6>
                                                                                                 </div>
                                                                                                 @php
                                                                                                     $cont=10;
@@ -1842,11 +2415,17 @@
                                                                                                         <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                                                             De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                                                         </span>
+                                                                                                        <h6>
+                                                                                                            <input type="radio" name="dia" value="dia4_op1"> Seleccionar
+                                                                                                        </h6>
                                                                                                     </div>
                                                                                                     <div class="col-3" id="fondo_solicitud">
                                                                                                         <span class="tit_datos_op2">{{$horarios4->dia4_op2}} <br>
                                                                                                             De {{$horarios4->hora_inicio_op2}}:{{$horarios4->minutos_inicio_op2}} a {{$horarios4->hora_fin_op2}}:{{$horarios4->minutos_fin_op2}}
                                                                                                         </span>
+                                                                                                        <h6>
+                                                                                                            <input type="radio" name="dia" value="dia4_op2"> Seleccionar
+                                                                                                        </h6>
                                                                                                     </div>
                                                                                                     @php
                                                                                                         $cont=11;
@@ -1857,11 +2436,17 @@
                                                                                                             <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                                                                 De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                                                             </span>
+                                                                                                            <h6>
+                                                                                                                <input type="radio" name="dia" value="dia4_op1"> Seleccionar
+                                                                                                            </h6>
                                                                                                         </div>
                                                                                                         <div class="col-3" id="fondo_solicitud">
                                                                                                             <span class="tit_datos_op2">{{$horarios4->dia4_op3}} <br>
                                                                                                                 De {{$horarios4->hora_inicio_op3}}:{{$horarios4->minutos_inicio_op3}} a {{$horarios4->hora_fin_op3}}:{{$horarios4->minutos_fin_op3}}
                                                                                                             </span>
+                                                                                                            <h6>
+                                                                                                                <input type="radio" name="dia" value="dia4_op3"> Seleccionar
+                                                                                                            </h6>
                                                                                                         </div>
                                                                                                         @php
                                                                                                             $cont=11;
@@ -1890,16 +2475,25 @@
                                                         <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                             De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                         </span>
+                                                        <h6>
+                                                            <input type="radio" name="dia" value="dia5_op1"> Seleccionar
+                                                        </h6>
                                                     </div>
                                                     <div class="col-3" id="fondo_solicitud">
                                                         <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
                                                             De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
                                                         </span>
+                                                        <h6>
+                                                            <input type="radio" name="dia" value="dia5_op2"> Seleccionar
+                                                        </h6>
                                                     </div>
                                                     <div class="col-3" id="fondo_solicitud">
                                                         <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                             De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                         </span>
+                                                        <h6>
+                                                            <input type="radio" name="dia" value="dia5_op3"> Seleccionar
+                                                        </h6>
                                                     </div>
                                                     @php
                                                         $cont=3;
@@ -1910,6 +2504,9 @@
                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                 De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                             </span>
+                                                            <h6>
+                                                                <input type="radio" name="dia" value="dia5_op3"> Seleccionar
+                                                            </h6>
                                                         </div>
                                                         @php
                                                             $cont=1;
@@ -1920,6 +2517,9 @@
                                                                 <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                     De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                 </span>
+                                                                <h6>
+                                                                    <input type="radio" name="dia" value="dia5_op1"> Seleccionar
+                                                                </h6>
                                                             </div>
                                                             @php
                                                                 $cont=1;
@@ -1930,11 +2530,17 @@
                                                                     <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                         De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                     </span>
+                                                                    <h6>
+                                                                        <input type="radio" name="dia" value="dia5_op1"> Seleccionar
+                                                                    </h6>
                                                                 </div>
                                                                 <div class="col-3" id="fondo_solicitud">
                                                                     <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
                                                                         De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
                                                                     </span>
+                                                                    <h6>
+                                                                        <input type="radio" name="dia" value="dia5_op2"> Seleccionar
+                                                                    </h6>
                                                                 </div>
                                                                 @php
                                                                     $cont=2;
@@ -1945,11 +2551,17 @@
                                                                         <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                             De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                         </span>
+                                                                        <h6>
+                                                                            <input type="radio" name="dia" value="dia5_op1"> Seleccionar
+                                                                        </h6>
                                                                     </div>
                                                                     <div class="col-3" id="fondo_solicitud">
                                                                         <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                             De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                         </span>
+                                                                        <h6>
+                                                                            <input type="radio" name="dia" value="dia5_op3"> Seleccionar
+                                                                        </h6>
                                                                     </div>
                                                                     @php
                                                                         $cont=2;
@@ -1966,16 +2578,25 @@
                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                 De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                             </span>
+                                                            <h6>
+                                                                <input type="radio" name="dia" value="dia5_op1"> Seleccionar
+                                                            </h6>
                                                         </div>
                                                         <div class="col-3" id="fondo_solicitud">
                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
                                                                 De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
                                                             </span>
+                                                            <h6>
+                                                                <input type="radio" name="dia" value="dia5_op2"> Seleccionar
+                                                            </h6>
                                                         </div>
                                                         <div class="col-3" id="fondo_solicitud">
                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                 De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                             </span>
+                                                            <h6>
+                                                                <input type="radio" name="dia" value="dia5_op3"> Seleccionar
+                                                            </h6>
                                                         </div>
                                                         @php
                                                             $cont=4;
@@ -1986,6 +2607,9 @@
                                                                 <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                     De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                 </span>
+                                                                <h6>
+                                                                    <input type="radio" name="dia" value="dia5_op3"> Seleccionar
+                                                                </h6>
                                                             </div>
                                                             @php
                                                                 $cont=2;
@@ -1996,6 +2620,9 @@
                                                                     <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                         De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                     </span>
+                                                                    <h6>
+                                                                        <input type="radio" name="dia" value="dia5_op1"> Seleccionar
+                                                                    </h6>
                                                                 </div>
                                                                 @php
                                                                     $cont=2;
@@ -2006,11 +2633,17 @@
                                                                         <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                             De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                         </span>
+                                                                        <h6>
+                                                                            <input type="radio" name="dia" value="dia5_op1"> Seleccionar
+                                                                        </h6>
                                                                     </div>
                                                                     <div class="col-3" id="fondo_solicitud">
                                                                         <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
                                                                             De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
                                                                         </span>
+                                                                        <h6>
+                                                                            <input type="radio" name="dia" value="dia5_op2"> Seleccionar
+                                                                        </h6>
                                                                     </div>
                                                                     @php
                                                                         $cont=3;
@@ -2021,11 +2654,17 @@
                                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                 De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                             </span>
+                                                                            <h6>
+                                                                                <input type="radio" name="dia" value="dia5_op1"> Seleccionar
+                                                                            </h6>
                                                                         </div>
                                                                         <div class="col-3" id="fondo_solicitud">
                                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                                 De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                             </span>
+                                                                            <h6>
+                                                                                <input type="radio" name="dia" value="dia5_op3"> Seleccionar
+                                                                            </h6>
                                                                         </div>
                                                                         @php
                                                                             $cont=3;
@@ -2042,11 +2681,17 @@
                                                                 <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                     De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                 </span>
+                                                                <h6>
+                                                                    <input type="radio" name="dia" value="dia5_op1"> Seleccionar
+                                                                </h6>
                                                             </div>
                                                             <div class="col-3" id="fondo_solicitud">
                                                                 <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
                                                                     De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
                                                                 </span>
+                                                                <h6>
+                                                                    <input type="radio" name="dia" value="dia5_op2"> Seleccionar
+                                                                </h6>
                                                             </div>
                                                             <!-- Creo el segundo contenedor><-->
                                                             <div class="container">
@@ -2056,6 +2701,9 @@
                                                                         <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                             De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                         </span>
+                                                                        <h6>
+                                                                            <input type="radio" name="dia" value="dia5_op3"> Seleccionar
+                                                                        </h6>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -2068,6 +2716,9 @@
                                                                     <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                         De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                     </span>
+                                                                    <h6>
+                                                                        <input type="radio" name="dia" value="dia5_op3"> Seleccionar
+                                                                    </h6>
                                                                 </div>
                                                                 @php
                                                                     $cont=3;
@@ -2078,6 +2729,9 @@
                                                                         <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                             De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                         </span>
+                                                                        <h6>
+                                                                            <input type="radio" name="dia" value="dia5_op1"> Seleccionar
+                                                                        </h6>
                                                                     </div>
                                                                     @php
                                                                         $cont=3;
@@ -2088,11 +2742,17 @@
                                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                 De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                             </span>
+                                                                            <h6>
+                                                                                <input type="radio" name="dia" value="dia5_op1"> Seleccionar
+                                                                            </h6>
                                                                         </div>
                                                                         <div class="col-3" id="fondo_solicitud">
                                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
                                                                                 De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
                                                                             </span>
+                                                                            <h6>
+                                                                                <input type="radio" name="dia" value="dia5_op2"> Seleccionar
+                                                                            </h6>
                                                                         </div>
                                                                         @php
                                                                             $cont=4;
@@ -2103,11 +2763,17 @@
                                                                                 <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                     De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                 </span>
+                                                                                <h6>
+                                                                                    <input type="radio" name="dia" value="dia5_op1"> Seleccionar
+                                                                                </h6>
                                                                             </div>
                                                                             <div class="col-3" id="fondo_solicitud">
                                                                                 <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                                     De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                                 </span>
+                                                                                <h6>
+                                                                                    <input type="radio" name="dia" value="dia5_op3"> Seleccionar
+                                                                                </h6>
                                                                             </div>
                                                                             @php
                                                                                 $cont=4;
@@ -2124,6 +2790,9 @@
                                                                     <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                         De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                     </span>
+                                                                    <h6>
+                                                                        <input type="radio" name="dia" value="dia5_op1"> Seleccionar
+                                                                    </h6>
                                                                 </div>
                                                                 <!-- Creo el segundo contenedor><-->
                                                                 <div class="container">
@@ -2133,11 +2802,17 @@
                                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
                                                                                 De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
                                                                             </span>
+                                                                            <h6>
+                                                                                <input type="radio" name="dia" value="dia5_op2"> Seleccionar
+                                                                            </h6>
                                                                         </div>
                                                                         <div class="col-3" id="fondo_solicitud">
                                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                                 De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                             </span>
+                                                                            <h6>
+                                                                                <input type="radio" name="dia" value="dia5_op3"> Seleccionar
+                                                                            </h6>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -2150,6 +2825,9 @@
                                                                         <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                             De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                         </span>
+                                                                        <h6>
+                                                                            <input type="radio" name="dia" value="dia5_op3"> Seleccionar
+                                                                        </h6>
                                                                     </div>
                                                                     @php
                                                                         $cont=4;
@@ -2160,6 +2838,9 @@
                                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                 De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                             </span>
+                                                                            <h6>
+                                                                                <input type="radio" name="dia" value="dia5_op1"> Seleccionar
+                                                                            </h6>
                                                                         </div>
                                                                         @php
                                                                             $cont=4;
@@ -2170,6 +2851,9 @@
                                                                                 <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                     De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                 </span>
+                                                                                <h6>
+                                                                                    <input type="radio" name="dia" value="dia5_op1"> Seleccionar
+                                                                                </h6>
                                                                             </div>
                                                                             <!--Creo el segundo contenedor><-->
                                                                             <div class="container">
@@ -2179,6 +2863,9 @@
                                                                                         <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
                                                                                             De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
                                                                                         </span>
+                                                                                        <h6>
+                                                                                            <input type="radio" name="dia" value="dia5_op2"> Seleccionar
+                                                                                        </h6>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -2191,6 +2878,9 @@
                                                                                     <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                         De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                     </span>
+                                                                                    <h6>
+                                                                                        <input type="radio" name="dia" value="dia5_op1"> Seleccionar
+                                                                                    </h6>
                                                                                 </div>
                                                                                 <!--Creo el segundo contenedor><-->
                                                                                 <div class="container">
@@ -2200,6 +2890,9 @@
                                                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                                                 De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                                             </span>
+                                                                                            <h6>
+                                                                                                <input type="radio" name="dia" value="dia5_op3"> Seleccionar
+                                                                                            </h6>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -2221,16 +2914,25 @@
                                                                                 <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                     De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                 </span>
+                                                                                <h6>
+                                                                                    <input type="radio" name="dia" value="dia5_op1"> Seleccionar
+                                                                                </h6>
                                                                             </div>
                                                                             <div class="col-3" id="fondo_solicitud">
                                                                                 <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
                                                                                     De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
                                                                                 </span>
+                                                                                <h6>
+                                                                                    <input type="radio" name="dia" value="dia5_op2"> Seleccionar
+                                                                                </h6>
                                                                             </div>
                                                                             <div class="col-3" id="fondo_solicitud">
                                                                                 <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                                     De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                                 </span>
+                                                                                <h6>
+                                                                                    <input type="radio" name="dia" value="dia5_op3"> Seleccionar
+                                                                                </h6>
                                                                             </div>
                                                                             @php
                                                                                 $cont=7;
@@ -2241,6 +2943,9 @@
                                                                                     <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                                         De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                                     </span>
+                                                                                    <h6>
+                                                                                        <input type="radio" name="dia" value="dia5_op3"> Seleccionar
+                                                                                    </h6>
                                                                                 </div>
                                                                                 @php
                                                                                     $cont=5;
@@ -2251,6 +2956,9 @@
                                                                                         <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                             De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                         </span>
+                                                                                        <h6>
+                                                                                            <input type="radio" name="dia" value="dia5_op1"> Seleccionar
+                                                                                        </h6>
                                                                                     </div>
                                                                                     @php
                                                                                         $cont=5;
@@ -2261,11 +2969,17 @@
                                                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                                 De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                             </span>
+                                                                                            <h6>
+                                                                                                <input type="radio" name="dia" value="dia5_op1"> Seleccionar
+                                                                                            </h6>
                                                                                         </div>
                                                                                         <div class="col-3" id="fondo_solicitud">
                                                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
                                                                                                 De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
                                                                                             </span>
+                                                                                            <h6>
+                                                                                                <input type="radio" name="dia" value="dia5_op2"> Seleccionar
+                                                                                            </h6>
                                                                                         </div>
                                                                                         @php
                                                                                             $cont=6;
@@ -2276,11 +2990,17 @@
                                                                                                 <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                                     De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                                 </span>
+                                                                                                <h6>
+                                                                                                    <input type="radio" name="dia" value="dia5_op1"> Seleccionar
+                                                                                                </h6>
                                                                                             </div>
                                                                                             <div class="col-3" id="fondo_solicitud">
                                                                                                 <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                                                     De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                                                 </span>
+                                                                                                <h6>
+                                                                                                    <input type="radio" name="dia" value="dia5_op3"> Seleccionar
+                                                                                                </h6>
                                                                                             </div>
                                                                                             @php
                                                                                                 $cont=6;
@@ -2299,16 +3019,25 @@
                                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                 De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                             </span>
+                                                                            <h6>
+                                                                                <input type="radio" name="dia" value="dia5_op1"> Seleccionar
+                                                                            </h6>
                                                                         </div>
                                                                         <div class="col-3" id="fondo_solicitud">
                                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
                                                                                 De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
                                                                             </span>
+                                                                            <h6>
+                                                                                <input type="radio" name="dia" value="dia5_op2"> Seleccionar
+                                                                            </h6>
                                                                         </div>
                                                                         <div class="col-3" id="fondo_solicitud">
                                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                                 De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                             </span>
+                                                                            <h6>
+                                                                                <input type="radio" name="dia" value="dia5_op3"> Seleccionar
+                                                                            </h6>
                                                                         </div>
                                                                         @php
                                                                             $cont=8;
@@ -2319,6 +3048,9 @@
                                                                                 <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                                     De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                                 </span>
+                                                                                <h6>
+                                                                                    <input type="radio" name="dia" value="dia5_op3"> Seleccionar
+                                                                                </h6>
                                                                             </div>
                                                                             @php
                                                                                 $cont=6;
@@ -2329,6 +3061,9 @@
                                                                                     <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                         De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                     </span>
+                                                                                    <h6>
+                                                                                        <input type="radio" name="dia" value="dia5_op1"> Seleccionar
+                                                                                    </h6>
                                                                                 </div>
                                                                                 @php
                                                                                     $cont=6;
@@ -2339,11 +3074,17 @@
                                                                                         <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                             De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                         </span>
+                                                                                        <h6>
+                                                                                            <input type="radio" name="dia" value="dia5_op1"> Seleccionar
+                                                                                        </h6>
                                                                                     </div>
                                                                                     <div class="col-3" id="fondo_solicitud">
                                                                                         <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
                                                                                             De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
                                                                                         </span>
+                                                                                        <h6>
+                                                                                            <input type="radio" name="dia" value="dia5_op2"> Seleccionar
+                                                                                        </h6>
                                                                                     </div>
                                                                                     @php
                                                                                         $cont=7;
@@ -2354,11 +3095,17 @@
                                                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                                 De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                             </span>
+                                                                                            <h6>
+                                                                                                <input type="radio" name="dia" value="dia5_op1"> Seleccionar
+                                                                                            </h6>
                                                                                         </div>
                                                                                         <div class="col-3" id="fondo_solicitud">
                                                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                                                 De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                                             </span>
+                                                                                            <h6>
+                                                                                                <input type="radio" name="dia" value="dia5_op3"> Seleccionar
+                                                                                            </h6>
                                                                                         </div>
                                                                                         @php
                                                                                             $cont=7;
@@ -2375,11 +3122,17 @@
                                                                                 <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                     De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                 </span>
+                                                                                <h6>
+                                                                                    <input type="radio" name="dia" value="dia5_op1"> Seleccionar
+                                                                                </h6>
                                                                             </div>
                                                                             <div class="col-3" id="fondo_solicitud">
                                                                                 <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
                                                                                     De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
                                                                                 </span>
+                                                                                <h6>
+                                                                                    <input type="radio" name="dia" value="dia5_op2"> Seleccionar
+                                                                                </h6>
                                                                             </div>
                                                                             <!--Creo el tercer contenedor><-->
                                                                             <div class="container">
@@ -2389,6 +3142,9 @@
                                                                                         <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                                             De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                                         </span>
+                                                                                        <h6>
+                                                                                            <input type="radio" name="dia" value="dia5_op3"> Seleccionar
+                                                                                        </h6>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -2401,6 +3157,9 @@
                                                                                     <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                                         De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                                     </span>
+                                                                                    <h6>
+                                                                                        <input type="radio" name="dia" value="dia5_op3"> Seleccionar
+                                                                                    </h6>
                                                                                 </div>
                                                                                 @php
                                                                                     $cont=7;
@@ -2411,6 +3170,9 @@
                                                                                         <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                             De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                         </span>
+                                                                                        <h6>
+                                                                                            <input type="radio" name="dia" value="dia5_op1"> Seleccionar
+                                                                                        </h6>
                                                                                     </div>
                                                                                     @php
                                                                                         $cont=7;
@@ -2421,11 +3183,17 @@
                                                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                                 De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                             </span>
+                                                                                            <h6>
+                                                                                                <input type="radio" name="dia" value="dia5_op1"> Seleccionar
+                                                                                            </h6>
                                                                                         </div>
                                                                                         <div class="col-3" id="fondo_solicitud">
                                                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
                                                                                                 De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
                                                                                             </span>
+                                                                                            <h6>
+                                                                                                <input type="radio" name="dia" value="dia5_op2"> Seleccionar
+                                                                                            </h6>
                                                                                         </div>
                                                                                         @php
                                                                                             $cont=8;
@@ -2436,11 +3204,17 @@
                                                                                                 <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                                     De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                                 </span>
+                                                                                                <h6>
+                                                                                                    <input type="radio" name="dia" value="dia5_op1"> Seleccionar
+                                                                                                </h6>
                                                                                             </div>
                                                                                             <div class="col-3" id="fondo_solicitud">
                                                                                                 <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                                                     De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                                                 </span>
+                                                                                                <h6>
+                                                                                                    <input type="radio" name="dia" value="dia5_op3"> Seleccionar
+                                                                                                </h6>
                                                                                             </div>
                                                                                             @php
                                                                                                 $cont=8;
@@ -2457,6 +3231,9 @@
                                                                                     <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                         De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                     </span>
+                                                                                    <h6>
+                                                                                        <input type="radio" name="dia" value="dia5_op1"> Seleccionar
+                                                                                    </h6>
                                                                                 </div>
                                                                                 <!--Creo el tercer contenedor><-->
                                                                                 <div class="container">
@@ -2466,11 +3243,17 @@
                                                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
                                                                                                 De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
                                                                                             </span>
+                                                                                            <h6>
+                                                                                                <input type="radio" name="dia" value="dia5_op2"> Seleccionar
+                                                                                            </h6>
                                                                                         </div>
                                                                                         <div class="col-3" id="fondo_solicitud">
                                                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                                                 De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                                             </span>
+                                                                                            <h6>
+                                                                                                <input type="radio" name="dia" value="dia5_op3"> Seleccionar
+                                                                                            </h6>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -2483,6 +3266,9 @@
                                                                                         <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                                             De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                                         </span>
+                                                                                        <h6>
+                                                                                            <input type="radio" name="dia" value="dia5_op3"> Seleccionar
+                                                                                        </h6>
                                                                                     </div>
                                                                                     @php
                                                                                         $cont=8;
@@ -2493,6 +3279,9 @@
                                                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                                 De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                             </span>
+                                                                                            <h6>
+                                                                                                <input type="radio" name="dia" value="dia5_op1"> Seleccionar
+                                                                                            </h6>
                                                                                         </div>
                                                                                         @php
                                                                                             $cont=8;
@@ -2503,6 +3292,9 @@
                                                                                                 <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                                     De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                                 </span>
+                                                                                                <h6>
+                                                                                                    <input type="radio" name="dia" value="dia5_op1"> Seleccionar
+                                                                                                </h6>
                                                                                             </div>
                                                                                             <!--Creo el tercer contenedor><-->
                                                                                             <div class="container">
@@ -2512,6 +3304,9 @@
                                                                                                         <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
                                                                                                             De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
                                                                                                         </span>
+                                                                                                        <h6>
+                                                                                                            <input type="radio" name="dia" value="dia5_op2"> Seleccionar
+                                                                                                        </h6>
                                                                                                     </div>
                                                                                                 </div>
                                                                                             </div>
@@ -2524,6 +3319,9 @@
                                                                                                     <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                                         De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                                     </span>
+                                                                                                    <h6>
+                                                                                                        <input type="radio" name="dia" value="dia5_op1"> Seleccionar
+                                                                                                    </h6>
                                                                                                 </div>
                                                                                                 <!--Creo el tercer contenedor><-->
                                                                                                 <div class="container">
@@ -2533,6 +3331,9 @@
                                                                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                                                                 De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                                                             </span>
+                                                                                                            <h6>
+                                                                                                                <input type="radio" name="dia" value="dia5_op3"> Seleccionar
+                                                                                                            </h6>
                                                                                                         </div>
                                                                                                     </div>
                                                                                                 </div>
@@ -2555,16 +3356,25 @@
                                                                                                 <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                                     De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                                 </span>
+                                                                                                <h6>
+                                                                                                    <input type="radio" name="dia" value="dia5_op1"> Seleccionar
+                                                                                                </h6>
                                                                                             </div>
                                                                                             <div class="col-3" id="fondo_solicitud">
                                                                                                 <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
                                                                                                     De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
                                                                                                 </span>
+                                                                                                <h6>
+                                                                                                    <input type="radio" name="dia" value="dia5_op2"> Seleccionar
+                                                                                                </h6>
                                                                                             </div>
                                                                                             <div class="col-3" id="fondo_solicitud">
                                                                                                 <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                                                     De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                                                 </span>
+                                                                                                <h6>
+                                                                                                    <input type="radio" name="dia" value="dia5_op3"> Seleccionar
+                                                                                                </h6>
                                                                                             </div>
                                                                                             @php
                                                                                                 $cont=11;
@@ -2575,6 +3385,9 @@
                                                                                                     <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                                                         De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                                                     </span>
+                                                                                                    <h6>
+                                                                                                        <input type="radio" name="dia" value="dia5_op3"> Seleccionar
+                                                                                                    </h6>
                                                                                                 </div>
                                                                                                 @php
                                                                                                     $cont=9;
@@ -2585,6 +3398,9 @@
                                                                                                         <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                                             De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                                         </span>
+                                                                                                        <h6>
+                                                                                                            <input type="radio" name="dia" value="dia5_op1"> Seleccionar
+                                                                                                        </h6>
                                                                                                     </div>
                                                                                                     @php
                                                                                                         $cont=9;
@@ -2595,11 +3411,17 @@
                                                                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                                                 De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                                             </span>
+                                                                                                            <h6>
+                                                                                                                <input type="radio" name="dia" value="dia5_op1"> Seleccionar
+                                                                                                            </h6>
                                                                                                         </div>
                                                                                                         <div class="col-3" id="fondo_solicitud">
                                                                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
                                                                                                                 De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
                                                                                                             </span>
+                                                                                                            <h6>
+                                                                                                                <input type="radio" name="dia" value="dia5_op2"> Seleccionar
+                                                                                                            </h6>
                                                                                                         </div>
                                                                                                         @php
                                                                                                             $cont=10;
@@ -2610,11 +3432,17 @@
                                                                                                                 <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                                                     De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                                                 </span>
+                                                                                                                <h6>
+                                                                                                                    <input type="radio" name="dia" value="dia5_op1"> Seleccionar
+                                                                                                                </h6>
                                                                                                             </div>
                                                                                                             <div class="col-3" id="fondo_solicitud">
                                                                                                                 <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                                                                     De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                                                                 </span>
+                                                                                                                <h6>
+                                                                                                                    <input type="radio" name="dia" value="dia5_op3"> Seleccionar
+                                                                                                                </h6>
                                                                                                             </div>
                                                                                                             @php
                                                                                                                 $cont=10;
@@ -2633,16 +3461,25 @@
                                                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                                 De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                             </span>
+                                                                                            <h6>
+                                                                                                <input type="radio" name="dia" value="dia5_op1"> Seleccionar
+                                                                                            </h6>
                                                                                         </div>
                                                                                         <div class="col-3" id="fondo_solicitud">
                                                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
                                                                                                 De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
                                                                                             </span>
+                                                                                            <h6>
+                                                                                                <input type="radio" name="dia" value="dia5_op2"> Seleccionar
+                                                                                            </h6>
                                                                                         </div>
                                                                                         <div class="col-3" id="fondo_solicitud">
                                                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                                                 De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                                             </span>
+                                                                                            <h6>
+                                                                                                <input type="radio" name="dia" value="dia5_op3"> Seleccionar
+                                                                                            </h6>
                                                                                         </div>
                                                                                         @php
                                                                                             $cont=12;
@@ -2653,6 +3490,9 @@
                                                                                                 <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                                                     De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                                                 </span>
+                                                                                                <h6>
+                                                                                                    <input type="radio" name="dia" value="dia5_op3"> Seleccionar
+                                                                                                </h6>
                                                                                             </div>
                                                                                             @php
                                                                                                 $cont=10;
@@ -2663,6 +3503,9 @@
                                                                                                     <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                                         De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                                     </span>
+                                                                                                    <h6>
+                                                                                                        <input type="radio" name="dia" value="dia5_op1"> Seleccionar
+                                                                                                    </h6>
                                                                                                 </div>
                                                                                                 @php
                                                                                                     $cont=10;
@@ -2673,11 +3516,17 @@
                                                                                                         <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                                             De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                                         </span>
+                                                                                                        <h6>
+                                                                                                            <input type="radio" name="dia" value="dia5_op1"> Seleccionar
+                                                                                                        </h6>
                                                                                                     </div>
                                                                                                     <div class="col-3" id="fondo_solicitud">
                                                                                                         <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
                                                                                                             De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
                                                                                                         </span>
+                                                                                                        <h6>
+                                                                                                            <input type="radio" name="dia" value="dia5_op2"> Seleccionar
+                                                                                                        </h6>
                                                                                                     </div>
                                                                                                     @php
                                                                                                         $cont=11;
@@ -2688,11 +3537,17 @@
                                                                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                                                 De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                                             </span>
+                                                                                                            <h6>
+                                                                                                                <input type="radio" name="dia" value="dia5_op1"> Seleccionar
+                                                                                                            </h6>
                                                                                                         </div>
                                                                                                         <div class="col-3" id="fondo_solicitud">
                                                                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                                                                 De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                                                             </span>
+                                                                                                            <h6>
+                                                                                                                <input type="radio" name="dia" value="dia5_op3"> Seleccionar
+                                                                                                            </h6>
                                                                                                         </div>
                                                                                                         @php
                                                                                                             $cont=11;
@@ -2709,11 +3564,17 @@
                                                                                                 <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                                     De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                                 </span>
+                                                                                                <h6>
+                                                                                                    <input type="radio" name="dia" value="dia5_op1"> Seleccionar
+                                                                                                </h6>
                                                                                             </div>
                                                                                             <div class="col-3" id="fondo_solicitud">
                                                                                                 <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
                                                                                                     De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
                                                                                                 </span>
+                                                                                                <h6>
+                                                                                                    <input type="radio" name="dia" value="dia5_op2"> Seleccionar
+                                                                                                </h6>
                                                                                             </div>
                                                                                             <!-- Creo el cuarto contenedor><-->
                                                                                             <div class="container">
@@ -2723,6 +3584,9 @@
                                                                                                         <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                                                             De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                                                         </span>
+                                                                                                        <h6>
+                                                                                                            <input type="radio" name="dia" value="dia5_op3"> Seleccionar
+                                                                                                        </h6>
                                                                                                     </div>
                                                                                                 </div>
                                                                                             </div>
@@ -2735,6 +3599,9 @@
                                                                                                     <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                                                         De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                                                     </span>
+                                                                                                    <h6>
+                                                                                                        <input type="radio" name="dia" value="dia5_op3"> Seleccionar
+                                                                                                    </h6>
                                                                                                 </div>
                                                                                                 @php
                                                                                                     $cont=11;
@@ -2745,6 +3612,9 @@
                                                                                                         <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                                             De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                                         </span>
+                                                                                                        <h6>
+                                                                                                            <input type="radio" name="dia" value="dia5_op1"> Seleccionar
+                                                                                                        </h6>
                                                                                                     </div>
                                                                                                     @php
                                                                                                         $cont=11;
@@ -2755,11 +3625,17 @@
                                                                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                                                 De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                                             </span>
+                                                                                                            <h6>
+                                                                                                                <input type="radio" name="dia" value="dia5_op1"> Seleccionar
+                                                                                                            </h6>
                                                                                                         </div>
                                                                                                         <div class="col-3" id="fondo_solicitud">
                                                                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
                                                                                                                 De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
                                                                                                             </span>
+                                                                                                            <h6>
+                                                                                                                <input type="radio" name="dia" value="dia5_op2"> Seleccionar
+                                                                                                            </h6>
                                                                                                         </div>
                                                                                                         @php
                                                                                                             $cont=12;
@@ -2770,11 +3646,17 @@
                                                                                                                 <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                                                     De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                                                 </span>
+                                                                                                                <h6>
+                                                                                                                    <input type="radio" name="dia" value="dia5_op1"> Seleccionar
+                                                                                                                </h6>
                                                                                                             </div>
                                                                                                             <div class="col-3" id="fondo_solicitud">
                                                                                                                 <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                                                                     De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                                                                 </span>
+                                                                                                                <h6>
+                                                                                                                    <input type="radio" name="dia" value="dia5_op3"> Seleccionar
+                                                                                                                </h6>
                                                                                                             </div>
                                                                                                             @php
                                                                                                                 $cont=12;
@@ -2791,6 +3673,9 @@
                                                                                                     <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                                         De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                                     </span>
+                                                                                                    <h6>
+                                                                                                        <input type="radio" name="dia" value="dia5_op1"> Seleccionar
+                                                                                                    </h6>
                                                                                                 </div>
                                                                                                 <!-- Creo el cuarto contenedor><-->
                                                                                                 <div class="container">
@@ -2800,11 +3685,17 @@
                                                                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
                                                                                                                 De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
                                                                                                             </span>
+                                                                                                            <h6>
+                                                                                                                <input type="radio" name="dia" value="dia5_op2"> Seleccionar
+                                                                                                            </h6>
                                                                                                         </div>
                                                                                                         <div class="col-3" id="fondo_solicitud">
                                                                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                                                                 De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                                                             </span>
+                                                                                                            <h6>
+                                                                                                                <input type="radio" name="dia" value="dia5_op3"> Seleccionar
+                                                                                                            </h6>
                                                                                                         </div>
                                                                                                     </div>
                                                                                                 </div>
@@ -2817,6 +3708,9 @@
                                                                                                         <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                                                             De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                                                         </span>
+                                                                                                        <h6>
+                                                                                                            <input type="radio" name="dia" value="dia5_op3"> Seleccionar
+                                                                                                        </h6>
                                                                                                     </div>
                                                                                                     @php
                                                                                                         $cont=12;
@@ -2827,6 +3721,9 @@
                                                                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                                                 De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                                             </span>
+                                                                                                            <h6>
+                                                                                                                <input type="radio" name="dia" value="dia5_op1"> Seleccionar
+                                                                                                            </h6>
                                                                                                         </div>
                                                                                                         @php
                                                                                                             $cont=12;
@@ -2837,6 +3734,9 @@
                                                                                                                 <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                                                     De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                                                 </span>
+                                                                                                                <h6>
+                                                                                                                    <input type="radio" name="dia" value="dia5_op1"> Seleccionar
+                                                                                                                </h6>
                                                                                                             </div>
                                                                                                             <!--Creo el cuarto contenedor><-->
                                                                                                             <div class="container">
@@ -2846,6 +3746,9 @@
                                                                                                                         <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
                                                                                                                             De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
                                                                                                                         </span>
+                                                                                                                        <h6>
+                                                                                                                            <input type="radio" name="dia" value="dia5_op2"> Seleccionar
+                                                                                                                        </h6>
                                                                                                                     </div>
                                                                                                                 </div>
                                                                                                             </div>
@@ -2858,6 +3761,9 @@
                                                                                                                     <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                                                         De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                                                     </span>
+                                                                                                                    <h6>
+                                                                                                                        <input type="radio" name="dia" value="dia5_op1"> Seleccionar
+                                                                                                                    </h6>
                                                                                                                 </div>
                                                                                                                 <!--Creo el segundo contenedor><-->
                                                                                                                 <div class="container">
@@ -2867,6 +3773,9 @@
                                                                                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                                                                                 De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                                                                             </span>
+                                                                                                                            <h6>
+                                                                                                                                <input type="radio" name="dia" value="dia5_op3"> Seleccionar
+                                                                                                                            </h6>
                                                                                                                         </div>
                                                                                                                     </div>
                                                                                                                 </div>
@@ -2889,16 +3798,25 @@
                                                                                                                 <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                                                     De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                                                 </span>
+                                                                                                                <h6>
+                                                                                                                    <input type="radio" name="dia" value="dia5_op1"> Seleccionar
+                                                                                                                </h6>
                                                                                                             </div>
                                                                                                             <div class="col-3" id="fondo_solicitud">
                                                                                                                 <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
                                                                                                                     De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
                                                                                                                 </span>
+                                                                                                                <h6>
+                                                                                                                    <input type="radio" name="dia" value="dia5_op2"> Seleccionar
+                                                                                                                </h6>
                                                                                                             </div>
                                                                                                             <div class="col-3" id="fondo_solicitud">
                                                                                                                 <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                                                                     De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                                                                 </span>
+                                                                                                                <h6>
+                                                                                                                    <input type="radio" name="dia" value="dia5_op3"> Seleccionar
+                                                                                                                </h6>
                                                                                                             </div>
                                                                                                             @php
                                                                                                                 $cont=15;
@@ -2909,6 +3827,9 @@
                                                                                                                     <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                                                                         De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                                                                     </span>
+                                                                                                                    <h6>
+                                                                                                                        <input type="radio" name="dia" value="dia5_op3"> Seleccionar
+                                                                                                                    </h6>
                                                                                                                 </div>
                                                                                                                 @php
                                                                                                                     $cont=13;
@@ -2919,6 +3840,9 @@
                                                                                                                         <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                                                             De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                                                         </span>
+                                                                                                                        <h6>
+                                                                                                                            <input type="radio" name="dia" value="dia5_op1"> Seleccionar
+                                                                                                                        </h6>
                                                                                                                     </div>
                                                                                                                     @php
                                                                                                                         $cont=13;
@@ -2929,11 +3853,17 @@
                                                                                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                                                                 De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                                                             </span>
+                                                                                                                            <h6>
+                                                                                                                                <input type="radio" name="dia" value="dia5_op1"> Seleccionar
+                                                                                                                            </h6>
                                                                                                                         </div>
                                                                                                                         <div class="col-3" id="fondo_solicitud">
                                                                                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
                                                                                                                                 De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
                                                                                                                             </span>
+                                                                                                                            <h6>
+                                                                                                                                <input type="radio" name="dia" value="dia5_op2"> Seleccionar
+                                                                                                                            </h6>
                                                                                                                         </div>
                                                                                                                         @php
                                                                                                                             $cont=14;
@@ -2944,11 +3874,17 @@
                                                                                                                                 <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                                                                     De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                                                                 </span>
+                                                                                                                                <h6>
+                                                                                                                                    <input type="radio" name="dia" value="dia5_op1"> Seleccionar
+                                                                                                                                </h6>
                                                                                                                             </div>
                                                                                                                             <div class="col-3" id="fondo_solicitud">
                                                                                                                                 <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                                                                                     De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                                                                                 </span>
+                                                                                                                                <h6>
+                                                                                                                                    <input type="radio" name="dia" value="dia5_op3"> Seleccionar
+                                                                                                                                </h6>
                                                                                                                             </div>
                                                                                                                             @php
                                                                                                                                 $cont=14;

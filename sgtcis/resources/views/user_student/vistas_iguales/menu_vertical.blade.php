@@ -19,7 +19,7 @@
                         <!--div class="droptdown-menu" aria-labelledby="navbarDropdown"-->
                             @if (auth()->user()->unreadNotifications->count())
                                 @foreach (auth()->user()->unreadNotifications as $notifications)
-                                    <a href="#" class="droptdown-item">
+                                    <a href="{{url("ver_tutoria_confirmada/{$notifications->data['noti_estudiante']['user_id']}/{$notifications->data['noti_estudiante']['user_estudiante_id']}")}}" class="droptdown-item">
                                         {{$notifications->data['noti_estudiante']['descripcion']}}
                                     </a>
                                 @endforeach    
