@@ -92,17 +92,23 @@
                         </div>
                         <hr>
                         <div class="form-group">
-                                <label><h6 class="tit_ciclo_form">Paralelo</h6></label>
-                                <br>
-                                <select name="paralelo" id="paralelo">
-                                    <option value="A">A</option>
-                                    <option value="B">B</option>
-                                    <option value="C">C</option>
-                                    <option value="D">D</option>
-                                </select>
-                            </div>
-                            <hr>
+                            <label><h6 class="tit_ciclo_form">Paralelo</h6></label>
+                            <br>
+                            <select name="paralelo" id="paralelo">
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                            </select>
+                        </div>
+                        <hr>
                         <input type="submit" name="registrarse" class="btn btn-primary btn-block" value="Registrarse">
+                        <br>
+                        <div class="form-group">
+                            <!--div class="col-md-7 col-md-offset-4"-->
+                              <a href="{{ url('student/auth/google') }}" class="btn btn-google btn-danger btn-block"><i class="fab fa-google"></i> Registrarse con Google</a>
+                            <!--/div-->
+                         </div>
                     </form>
                 </div>
             </div>

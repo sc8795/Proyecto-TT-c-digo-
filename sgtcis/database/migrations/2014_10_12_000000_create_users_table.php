@@ -28,6 +28,10 @@ class CreateUsersTable extends Migration
             $table->string('paralelo_c');
             $table->string('paralelo_d');
             $table->string('ciclo');
+
+            $table->string('provider')->nullable();
+            $table->string('provider_id')->unique()->nullable();
+
             $table->rememberToken();
             $table->timestamps();
         });

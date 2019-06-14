@@ -19,7 +19,14 @@
               <!--obtenemos el primer error del campo password y si existe alguno que lo imprima dentro de un span con el mensaje-->
               {!! $errors->first('password','<span class="help-block">:message</span>') !!}
           </div>
+           
           <button type="submit" class="btn btn-primary btn-block">Iniciar Sesión</button>
+          <br>
+          <div class="form-group">
+            <!--div class="col-md-7 col-md-offset-4"-->
+              <a href="{{ url('student/auth/google') }}" class="btn btn-google btn-danger btn-block"><i class="fab fa-google"></i> Iniciar Sesión con Google</a>
+            <!--/div-->
+         </div>
       </form>
       <hr>
       <h6 class="texto_volver"><a href="{{url('/')}}"><i class="fas fa-arrow-left"></i> Volver a inicio</a></h6>

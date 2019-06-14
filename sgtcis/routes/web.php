@@ -4,6 +4,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('student/auth/{provider}', 'Auth\LoginController@redirectToProvider');
+Route::get('student/auth/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
+
 /* 
 |--------------------------------------------------------------------------
 | Rutas para el inicio de sesion de administrador

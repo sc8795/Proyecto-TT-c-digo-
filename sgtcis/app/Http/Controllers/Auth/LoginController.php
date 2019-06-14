@@ -9,14 +9,54 @@ use Illuminate\Http\Request;
 use App\User;
 use Auth;
 
+use Socialite;
+
 class LoginController extends Controller
 {
+
+    public function redirectToProvider($provider)
+    {
+        return Socialite::driver($provider)->redirect();
+    }
+
+    public function handleProviderCallback($provider)
+    {
+        $user = Socialite::driver($provider)->stateless()->user();
+        $authUser=$this->findOrCreateUser($user,$provider);
+        Auth::login($authUser,true);
+        return redirect()->route("auth_student");
+    }
+
+    public function findOrCreateUser($user,$provider){
+        $authUser=User::where('provider_id',$user->id)->first();
+        if($authUser){
+            return $authUser;
+        }
+        return User::create([
+            'name'=>$user->name,
+            'lastname'=>'',
+            'password'=>'',
+            'is_admin'=>false,
+            'is_docente'=>false,
+            'is_estudiante'=>true,
+            'paralelo_a'=>'NA',
+            'paralelo_b'=>'NA',
+            'paralelo_c'=>'NA',
+            'paralelo_d'=>'NA',
+            'ciclo'=>'NA',
+            'email'=>$user->email,
+            'provider'=>strtoupper($provider),
+            'provider_id'=>$user->id,
+        ]);
+    }
+
     /*se utiliza un middleware para que verifique si el usuario esta autenticado y lo redireccione a donde queramos, al usar el middleware guest a esta ruta solo van a pasar los invitados no autenticados*/
     public function __construct(){
         $this->middleware('guest',['only'=>'show_login_form']);
         //$this->middleware('guest',['only'=>'show_login_form_student'],['except' => ['logout']]);
         //$this->middleware('guest',['only'=>'show_login_form_docente'],['except' => ['logout']]);
     }
+    
     /* 
     |--------------------------------------------------------------------------
     | Login y Logout del Administrador
@@ -81,8 +121,7 @@ class LoginController extends Controller
                 $emailform = $request->input("email");
                 $users = DB::table('users')->where('email',$emailform)->first();
                 if($users->is_estudiante==true){
-                    return redirect()->route('auth_student');
-                    
+                    return redirect()->route("auth_student");
                 }else{
                     return redirect()->route('show_login_form_student')->withErrors([$this->username()=>'Usted no es estudiante'])->withInput(request([$this->username()]));
                 }
