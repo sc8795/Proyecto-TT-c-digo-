@@ -105,9 +105,7 @@
                         <input type="submit" name="registrarse" class="btn btn-primary btn-block" value="Registrarse">
                         <br>
                         <div class="form-group">
-                            <!--div class="col-md-7 col-md-offset-4"-->
-                              <a href="{{ url('student/auth/google') }}" class="btn btn-google btn-danger btn-block"><i class="fab fa-google"></i> Registrarse con Google</a>
-                            <!--/div-->
+                            <a href="{{ url('student/auth/google') }}" class="btn btn-google btn-danger btn-block"><i class="fab fa-google"></i> Registrarse con Google</a>
                          </div>
                     </form>
                 </div>

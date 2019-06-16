@@ -35,6 +35,8 @@ Route::post('login_student','Auth\LoginController@login_student')->name('login_s
 
 Route::post('logout_student','Auth\LoginController@logout_student')->name('logout_student');
 
+Route::get('verifica_cuenta_google','Auth\LoginController@verifica_cuenta_google')->name('verifica_cuenta_google');
+
 /* 
 |--------------------------------------------------------------------------
 | Rutas para el inicio de sesion del docente
@@ -123,6 +125,8 @@ Route::get('mensaje_editar_horario/{user}','AuthAdministradorController@mensaje_
 */
 /* Ruta para la vista general */
 Route::get('vista_general_student','AuthStudentController@vista_general_student')->name('vista_general_student');
+
+Route::get('vista_student_google/{user_id}','AuthStudentController@vista_student_google')->name('vista_student_google');
 
 /* Rutas para editar perfil */
 Route::get('editar_perfil_student','AuthStudentController@editar_perfil_student')->name('editar_perfil_student');

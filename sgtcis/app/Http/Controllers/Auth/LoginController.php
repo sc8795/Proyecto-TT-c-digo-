@@ -8,12 +8,12 @@ use Illuminate\Support\Collection;
 use Illuminate\Http\Request;
 use App\User;
 use Auth;
+use Redirect;
 
 use Socialite;
 
 class LoginController extends Controller
 {
-
     public function redirectToProvider($provider)
     {
         return Socialite::driver($provider)->redirect();
@@ -24,7 +24,8 @@ class LoginController extends Controller
         $user = Socialite::driver($provider)->stateless()->user();
         $authUser=$this->findOrCreateUser($user,$provider);
         Auth::login($authUser,true);
-        return redirect()->route("auth_student");
+        return redirect()->action('AuthStudentController@vista_student_google', [$user->id]);
+        //return redirect()->action('vista_student_google',[$user]);   
     }
 
     public function findOrCreateUser($user,$provider){
@@ -47,7 +48,7 @@ class LoginController extends Controller
             'email'=>$user->email,
             'provider'=>strtoupper($provider),
             'provider_id'=>$user->id,
-        ]);
+        ]);   
     }
 
     /*se utiliza un middleware para que verifique si el usuario esta autenticado y lo redireccione a donde queramos, al usar el middleware guest a esta ruta solo van a pasar los invitados no autenticados*/
@@ -104,11 +105,14 @@ class LoginController extends Controller
     */
     /*Metodo para devolver el formulario de inicio de sesion del administrador*/
     public function show_login_form_student(){
-        return view('user_student.login_student');
+        if (Auth::check()){
+            return redirect()->route('auth_student');
+        }else{
+            return view('user_student.login_student');
+        }
     }
     public function login_student(Request $request){
         /*Establecemos las reglas de validacion para el formulario de login admistrador, en donde los campos email y password seran requeridos y de tipo string, estas reglas las guardamos en la variable $credenciales*/
-
         $credenciales=$this->validate(request(),[
             $this->username()=>'required|string',
             'password'=>'required|string'

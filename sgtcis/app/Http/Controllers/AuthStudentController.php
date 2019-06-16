@@ -12,6 +12,7 @@ use App\Notidocente;
 use Alert;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
+use Redirect;
 
 class AuthStudentController extends Controller
 {
@@ -34,6 +35,17 @@ class AuthStudentController extends Controller
 */
     public function vista_general_student(){
         return view('user_student.vista_general_cuenta');
+    }
+/* 
+|--------------------------------------------------------------------------
+| Funciones para la vista general del estudiante con cuenta de google
+|--------------------------------------------------------------------------
+*/
+    public function vista_student_google($user_id){
+        $user_student=DB::table('users')->where('provider_id',$user_id)->first();
+        Alert::success('¡Bienvenido(a)! ')
+            ->details("$user_student->name $user_student->lastname.");
+        return view('user_student.completar_registro');
     }
 /* 
 |--------------------------------------------------------------------------
@@ -66,7 +78,7 @@ class AuthStudentController extends Controller
             }
             
             $user->update($data);
-            return redirect()->route('vista_general_student');
+            return redirect()->action('AuthStudentController@vista_general_student', [1]);
         }
     }
 /* 

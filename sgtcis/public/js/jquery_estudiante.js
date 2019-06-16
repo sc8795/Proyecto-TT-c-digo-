@@ -25,3 +25,10 @@ function mostrar_otro_motivo(){
         document.getElementById('otro').style.display='none';
     }
 }
+
+//función para hacer aparecer caja de texto al escojer completar registro mediante la etiqueta a
+$(document).ready(function(){ 
+    $('#completar').on('click',function(){
+       $('#contenedor_general').toggle('slow');
+    });
+ });
