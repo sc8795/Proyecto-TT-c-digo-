@@ -26,7 +26,14 @@ class AuthStudentController extends Controller
     }
 
     public function auth_student(){
-        return view('user_student.auth_student');    
+        if (Auth::check()) {
+            $user = Auth::user();
+            if($user->is_estudiante==true){
+                return view('user_student.auth_student');  
+            }else{
+                return redirect()->route('show_login_form_student');
+            }
+        } 
     }
 /* 
 |--------------------------------------------------------------------------

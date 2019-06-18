@@ -89,6 +89,7 @@
                     </div>
                 </div>
                 <div class="col-6">
+                    <a href="#" class="btn btn-secondary btn-sm" title="Descargar plantilla para registro de materias por medio de documento excel">Descargar plantilla <span class="fas fa-file-export"></span></a>
                     <h4>Registro de materia por medio de documento excel</h4>
                     <form method="POST" action="{{route('registrar_materia_excel')}}" enctype="multipart/form-data">
                         {{ csrf_field() }}

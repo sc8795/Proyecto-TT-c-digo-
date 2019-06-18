@@ -10,6 +10,7 @@ use App\Materia;
 use App\Notiestudiante;
 use App\User;
 use Alert;
+use Auth;
 use Illuminate\Support\Str;
 
 class AuthDocenteController extends Controller
@@ -24,7 +25,14 @@ class AuthDocenteController extends Controller
     }
 
     public function auth_docente(){
-        return view('user_docente.auth_docente');
+        if (Auth::check()) {
+            $user = Auth::user();
+            if($user->is_docente==true){
+                return view('user_docente.auth_docente');  
+            }else{
+                return redirect()->route('show_login_form_docente');
+            }
+        }
     }
 /* 
 |--------------------------------------------------------------------------

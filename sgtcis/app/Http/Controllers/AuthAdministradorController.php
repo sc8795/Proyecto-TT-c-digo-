@@ -31,7 +31,14 @@ class AuthAdministradorController extends Controller
     }
 
     public function auth_admin(){
-        return view('user_administrador.auth_admin');
+        if (Auth::check()) {
+            $user = Auth::user();
+            if($user->is_admin==true){
+                return view('user_administrador.auth_admin');  
+            }else{
+                return redirect()->route('show_login_form');
+            }
+        } 
     }
 /* 
 |--------------------------------------------------------------------------
