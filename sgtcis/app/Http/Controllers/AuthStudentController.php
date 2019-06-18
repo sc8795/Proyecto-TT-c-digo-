@@ -45,7 +45,61 @@ class AuthStudentController extends Controller
         $user_student=DB::table('users')->where('provider_id',$user_id)->first();
         Alert::success('¡Bienvenido(a)! ')
             ->details("$user_student->name $user_student->lastname.");
-        return view('user_student.completar_registro');
+        return view('user_student.completar_registro',compact('user_student'));
+    }
+/* 
+|--------------------------------------------------------------------------
+| Funciones para completar el registro del estudiante logueado o registrado con cuenta de google
+|--------------------------------------------------------------------------
+*/
+    public function save_completar_registro(){
+        if (Auth::check()) {
+            $user = Auth::user();
+
+            $data=request()->validate([
+                'ciclo'=>'required',
+                'paralelo'=>'required',
+                'password'=>'required'
+            ]);
+            if($data["paralelo"]=="A"){
+                $data["paralelo_a"]=$data["paralelo"];
+            }else{
+                if($data["paralelo"]=="B"){
+                    $data["paralelo_b"]=$data["paralelo"];
+                }else{
+                    if($data["paralelo"]=="C"){
+                        $data["paralelo_c"]=$data["paralelo"];
+                    }else{
+                        if($data["paralelo"]=="D"){
+                            $data["paralelo_d"]=$data["paralelo"];
+                        }
+                    }
+                }    
+            }
+
+            if ($data["password"]!=null) {
+                $data["password"]=bcrypt($data['password']);
+            }else{
+                unset($data["password"]);
+            }
+            $user->update($data);
+            return redirect()->route('auth_student');
+        }
+    }
+/* 
+|--------------------------------------------------------------------------
+| Funciones para botón omitir cuando el estudiante está logueado o registrado con cuenta de google
+|--------------------------------------------------------------------------
+*/
+    public function omitir_completar_registro(){
+        if (Auth::check()) {
+            $user_student = Auth::user();
+            if($user_student->ciclo!="NA"){
+                return redirect()->route('auth_student');
+            }else{
+                return view('user_student.completar_registro',compact('user_student'));
+            }
+        }
     }
 /* 
 |--------------------------------------------------------------------------

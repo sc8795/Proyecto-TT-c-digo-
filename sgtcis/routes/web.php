@@ -126,6 +126,7 @@ Route::get('mensaje_editar_horario/{user}','AuthAdministradorController@mensaje_
 /* Ruta para la vista general */
 Route::get('vista_general_student','AuthStudentController@vista_general_student')->name('vista_general_student');
 
+/* Ruta para la vista general del estudiante logueado o registrado con cuenta de google */
 Route::get('vista_student_google/{user_id}','AuthStudentController@vista_student_google')->name('vista_student_google');
 
 /* Rutas para editar perfil */
@@ -139,6 +140,12 @@ Route::post('solicitar_tutoria_student/{user}/{user_docente}/{materia}/{estado}'
 
 /* Rutas para ver la tutoria confirmada por parte del docente*/
 Route::get('ver_tutoria_confirmada/{user_docente_id}/{user_student_id}','AuthStudentController@ver_tutoria_confirmada')->name('ver_tutoria_confirmada');
+
+/* Ruta para completar el registro del estudiante logueado o registrado con cuenta de google */
+Route::put('save_completar_registro','AuthStudentController@save_completar_registro')->name('save_completar_registro');
+
+/* Rutas para botón omitir cuando el estudiante está logueado o registrado con cuenta de google */
+Route::get('omitir_completar_registro','AuthStudentController@omitir_completar_registro')->name('omitir_completar_registro');
 
 /* 
 |--------------------------------------------------------------------------

@@ -183,7 +183,7 @@ public function editar_admin(){
         }
         
         $user->update($data);
-        return redirect()->route('docentes_registrados',['user'=>$user]);
+        return redirect()->route('docentes_registrados');
     }
 
 /* 
