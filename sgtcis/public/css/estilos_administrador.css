@@ -135,3 +135,12 @@ h4{
 #menu_no_disponible{
     background-color:  #1b1b1b;
 }
+
+/* Estilos para validar formularios de registro */
+.error{
+    background-color: #f78181;
+    border: 0;
+}
+.error::placeholder{
+    color: #6c757d;
+}

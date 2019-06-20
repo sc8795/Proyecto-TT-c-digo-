@@ -22,7 +22,7 @@
             <ul class="submenu_vertical">
                 <li>
                     <a href="{{route('registrar_materia')}}">Registrar materia</a>
-                    <a href="{{route('materias_registradas')}}">Visualizar materia</a>
+                    <a href="{{route('materias_registradas')}}">Materias registradas</a>
                 </li>
             </ul>
         </li>
