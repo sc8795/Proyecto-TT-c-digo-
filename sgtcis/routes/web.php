@@ -3,7 +3,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
-
+/* Rutas para registro e inicio de sesión con cuenta de Google */
 Route::get('student/auth/{provider}', 'Auth\LoginController@redirectToProvider');
 Route::get('student/auth/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
 
@@ -81,6 +81,9 @@ Route::delete('eliminar_docente/{user}','AuthAdministradorController@eliminar_do
 Route::get('registrar_materia','AuthAdministradorController@registrar_materia')->name('registrar_materia');
 Route::post('crear_materia','AuthAdministradorController@crear_materia')->name('crear_materia');
 Route::post('registrar_materia_excel','AuthAdministradorController@registrar_materia_excel')->name('registrar_materia_excel');
+
+/* Rutas para descargar plantillas excel (para registrar materia y docentes) */
+Route::get('descargar_plantilla/{aux}','AuthAdministradorController@descargar_plantilla')->name('descargar_plantilla');
 
 /* Rutas para visualizar las materias registradas */
 Route::get('materias_registradas','AuthAdministradorController@materias_registradas')->name('materias_registradas');

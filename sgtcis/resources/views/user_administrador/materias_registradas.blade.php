@@ -74,6 +74,7 @@
                         @endforeach
                       </tbody>
                     </table>
+                    {{$materias->render()}}
                 @else
                     <h6 class="tit_general">No hay materias registradas</h6>
                 @endif

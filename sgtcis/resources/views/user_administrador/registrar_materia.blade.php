@@ -89,13 +89,66 @@
                     </div>
                 </div>
                 <div class="col-6">
-                    <a href="#" class="btn btn-secondary btn-sm" title="Descargar plantilla para registro de materias por medio de documento excel">Descargar plantilla <span class="fas fa-file-export"></span></a>
+                    @php
+                        $aux=1;
+                    @endphp
                     <h4>Registro de materia por medio de documento excel</h4>
-                    <form method="POST" action="{{route('registrar_materia_excel')}}" enctype="multipart/form-data">
-                        {{ csrf_field() }}
-                        <h6 class="excel"><input type="file" name="archivo" /></h6><br />
-                        <input type="submit" value="Enviar" />
-                    </form>
+                    <div class="d-flex p-2 bd-highlight" id="contenedor_2">
+                        <span class="tit_datos">Descargar plantilla excel</span>
+                    </div>
+                    <div class="container" id="contenedor_general_op2">
+                        <br>
+                        <!-- >Ventana modal<-->
+                        <main class="container">
+                            <div class="modal fade" id="ventanaModal" tabindex="-1" role="dialog" aria-labelledby="tituloVentana" aria-hidden="true">  
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 id="tituloVentana">Aviso !!!</h5>
+                                            <button class="close" data-dismiss="modal" aria-label="Cerrar">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <h6>Al descargar la plantilla, el documento excel tendrá los siguientes campos:</h6>
+                                            <h6 class="negrita">nombre:
+                                                <span class="quita_negrita">Nombre de la materia que desea registrar.</span>
+                                            </h6>
+                                            <h6 class="negrita">ciclo:
+                                                <span class="quita_negrita">Ciclo en que se imparte la materia.</span>
+                                            </h6>
+                                            <h6 class="negrita">id_docente:
+                                                <span class="quita_negrita">Id del docente que imparte la materia (lo puede consultar en el menú configuración docente, docentes registrados).</span>
+                                            </h6>
+                                            <h6 class="negrita">paralelo_a (b,c,d):
+                                                <span class="quita_negrita">Corresponden al paralelo en el cual el docente imparte la materia. Por ejemplo si el docente imparte la materia en los paralelos A y C, deberá poner en el campo paralelo_a "A" y en paralelo_c "C"; en el caso de los paralelos que no imparte (B y D en el ejemplo), en los campos correspondientes deberá escribir "NA" lo que significa No Asignado.</span>
+                                            </h6>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-warning" data-dismiss="modal">Cerar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </main>
+                        <!-- >Hasta aquí ventana modal<-->
+                        <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#ventanaModal">Ver ...</button>
+                        <a href="{{url("descargar_plantilla/{$aux}")}}" class="btn btn-secondary btn-sm" title="Descargar plantilla para registro de materias por medio de documento excel">Descargar <span class="fas fa-file-export"></span></a>
+                        <br>
+                        <br>
+                    </div>
+                    <div class="d-flex p-2 bd-highlight" id="contenedor_2">
+                        <span class="tit_datos">Cargar documento excel</span>
+                    </div>
+                    <div class="container" id="contenedor_general_op2"> 
+                        <br>
+                        <form method="POST" action="{{route('registrar_materia_excel')}}" enctype="multipart/form-data">
+                            {{ csrf_field() }}
+                            <h6 class="excel"><input type="file" name="archivo" /></h6><br />
+                            <input type="submit" class="btn btn-primary btn-block" value="Registrar materia">
+                        </form>
+                        <br>
+                    </div>
                 </div>
             </div>
         </div>

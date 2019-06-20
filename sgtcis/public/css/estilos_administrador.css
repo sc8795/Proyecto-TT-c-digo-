@@ -114,3 +114,24 @@ h4{
 .tit_datos_op2{
     color: #83e6b4;
 }
+
+/*estilos aparte*/
+#contenedor_2{
+    background-color:  #0b5345 ;
+}
+#contenedor_general_op2{
+    background-color: gray;
+}
+.negrita{
+    font-weight: bold;
+}
+.quita_negrita{
+    font-weight: normal;
+}
+#fondo_solicitud{
+    background-color: #0b5345;
+}
+
+#menu_no_disponible{
+    background-color:  #1b1b1b;
+}

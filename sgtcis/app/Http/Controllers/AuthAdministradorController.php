@@ -283,8 +283,13 @@ public function editar_admin(){
 |--------------------------------------------------------------------------
 */
     public function materias_registradas(){
-        $materias = DB::table('materias')->get();
-        $users=DB::table('users')->where('is_docente',true)->get();
+        //$materias = DB::table('materias')->paginate(5)->get();
+        $materias=Materia::orderBy('id','DESC')
+            ->paginate(5);
+       $users=DB::table('users')->where('is_docente',true)->get();
+       /*$users=User::where('is_docente',true)
+            ->orderBy('id','DESC')
+            ->paginate(5);*/
         return view('user_administrador.materias_registradas',compact('materias','users'));
     }
 /* 
@@ -319,6 +324,35 @@ public function editar_admin(){
     public function eliminar_materia(Materia $materia){
         $materia->delete();
         return redirect()->route('materias_registradas');
+    }
+/* 
+|--------------------------------------------------------------------------
+| Funciones para descargar plantillas excel (para registrar materia y docentes)
+|--------------------------------------------------------------------------
+*/
+    public function descargar_plantilla($aux){
+        if($aux==1){
+            if(!$this->downloadFile(app_path()."/Files/plantilla_materias.xlsx")){
+                return redirect()->back();
+            }
+        }
+    }   
+    public function downloadFile($archivo){
+        if(is_file($archivo)){
+            $finfo=finfo_open(FILEINFO_MIME_TYPE);
+            $content_type=finfo_file($finfo,$archivo);
+            finfo_close($finfo);
+            $file_name=basename($archivo).PHP_EOL;
+            $size=filesize($archivo);
+            header("Content-Type:$content_type");
+            header("Content-Disposition:attachment;filename=$file_name");
+            header("Content-Transfer-Encoding:binary");
+            header("Content-Length:$size");
+            readfile($archivo);
+            return true;
+        }else{
+            return false;
+        }
     }
 /* 
 |--------------------------------------------------------------------------

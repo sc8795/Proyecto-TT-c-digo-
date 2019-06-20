@@ -72,6 +72,8 @@ class LoginController extends Controller
             }else{
                 return view('user_administrador.login_administrador');
             }
+        }else{
+            return view('user_administrador.login_administrador');
         }
     }
     public function login_administrador(Request $request){
@@ -119,6 +121,8 @@ class LoginController extends Controller
             }else{
                 return view('user_student.login_student');
             }
+        }else{
+            return view('user_student.login_student');
         }
     }
     public function login_student(Request $request){
@@ -164,6 +168,8 @@ class LoginController extends Controller
             }else{
                 return view('user_docente.login_docente');
             }   
+        }else{
+            return view('user_docente.login_docente');
         }
     }
     public function login_docente(Request $request){
