@@ -88,6 +88,9 @@ Route::get('descargar_plantilla/{aux}','AuthAdministradorController@descargar_pl
 /* Rutas para visualizar las materias registradas */
 Route::get('materias_registradas','AuthAdministradorController@materias_registradas')->name('materias_registradas');
 
+/* Rutas para buscar una materia registrada por nombre, ciclo o paralelo */
+Route::get('buscar_materia','AuthAdministradorController@buscar_materia')->name('buscar_materia');
+
 /* Rutas para editar una materia registrada */
 Route::get('editar_materia/{materia}','AuthAdministradorController@editar_materia')->name('editar_materia');
 Route::put('editando_materia/{materia}','AuthAdministradorController@editando_materia')->name('editando_materia');

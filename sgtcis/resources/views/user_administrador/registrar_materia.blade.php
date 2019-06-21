@@ -70,18 +70,17 @@
                                 <br>
                                 <div class="row">
                                     <div class="col-3">
-                                        <h6 class="radios"><input type="checkbox" name="paralelo_a" id="paralelo" value="A"> A</h6>
+                                        <h6 class="radios"><input type="checkbox" name="paralelo_a" id="paralelo_a" value="A"> A</h6>
                                     </div> 
                                     <div class="col-3">
-                                        <h6 class="radios"><input type="checkbox" name="paralelo_b" id="paralelo" value="B"> B</h6>
+                                        <h6 class="radios"><input type="checkbox" name="paralelo_b" id="paralelo_b" value="B"> B</h6>
                                     </div>
                                     <div class="col-3">
-                                        <h6 class="radios"><input type="checkbox" name="paralelo_c" id="paralelo" value="C"> C</h6>
+                                        <h6 class="radios"><input type="checkbox" name="paralelo_c" id="paralelo_c" value="C"> C</h6>
                                     </div>
                                     <div class="col-3">
-                                        <h6 class="radios"><input type="checkbox" name="paralelo_d" id="paralelo" value="D"> D</h6>
+                                        <h6 class="radios"><input type="checkbox" name="paralelo_d" id="paralelo_d" value="D"> D</h6>
                                     </div>
-                                    <input type="hidden" id="paralelo" value="">
                                 </div>
                             </div>
                             <hr>

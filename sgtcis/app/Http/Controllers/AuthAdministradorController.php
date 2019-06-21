@@ -283,14 +283,32 @@ public function editar_admin(){
 |--------------------------------------------------------------------------
 */
     public function materias_registradas(){
-        //$materias = DB::table('materias')->paginate(5)->get();
+        $aux=0;
         $materias=Materia::orderBy('id','DESC')
             ->paginate(5);
-       $users=DB::table('users')->where('is_docente',true)->get();
-       /*$users=User::where('is_docente',true)
-            ->orderBy('id','DESC')
-            ->paginate(5);*/
-        return view('user_administrador.materias_registradas',compact('materias','users'));
+        $users=DB::table('users')->where('is_docente',true)->get();
+        return view('user_administrador.materias_registradas',compact('materias','users','aux'));
+    }
+/* 
+|--------------------------------------------------------------------------
+| Funciones para buscar una materia registrada por nombre, ciclo o paralelo
+|--------------------------------------------------------------------------
+*/
+    public function buscar_materia(Request $request){
+        $aux=1;
+        $name = $request->get('name');
+        $ciclo = $request->get('ciclo');
+        $paralelo = $request->get('paralelo');
+        $materias=Materia::orderBy('id','DESC')
+            ->name($name)
+            ->ciclo($ciclo)
+            ->paralelo_a($paralelo)
+            ->paralelo_b($paralelo)
+            ->paralelo_c($paralelo)
+            ->paralelo_d($paralelo)
+            ->paginate(10);
+        $users=DB::table('users')->where('is_docente',true)->get();
+        return view('user_administrador.materias_registradas',compact('users','materias','aux'));
     }
 /* 
 |--------------------------------------------------------------------------

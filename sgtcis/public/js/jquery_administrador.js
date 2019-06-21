@@ -24,8 +24,6 @@ function revisar(elemento){
         elemento.className='form-control';
     }
 }
-
-
 function validar(){
     var datosCorrectos=true;
     var error="";
@@ -41,7 +39,11 @@ function validar(){
         datosCorrectos=false;
         error=" El campo docente es obligatorio.";
     }
-    if(!paralelo.checked ){
+    var c1 = document.getElementById('paralelo_a').checked;
+    var c2 = document.getElementById('paralelo_b').checked;
+    var c3 = document.getElementById('paralelo_c').checked;
+    var c4 = document.getElementById('paralelo_d').checked;
+    if(c1==false && c2==false && c3==false && c4==false){
         datosCorrectos=false;
         error=" El campo paralelo es obligatorio.";
     }
