@@ -40,7 +40,7 @@
                     <hr>
                     <div class="form-group">
                         <label><h6 class="tit_general">Contraseña</h6></label>
-                        <input type="password" class="form-control" name="password" id="password">
+                        <input type="password" class="form-control" name="password" id="password" placeholder="Escriba nueva contraseña">
                     </div>
                     <hr>
                     <button type="submit" class="btn btn-primary btn-block">Guardar cambios</button>

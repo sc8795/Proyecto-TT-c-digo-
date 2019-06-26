@@ -18,6 +18,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Storage;
 use Alert;
 use Illuminate\Support\Str;
+use Laracasts\Flash\Flash;
 
 class AuthAdministradorController extends Controller
 {
@@ -71,7 +72,6 @@ public function editar_admin(){
             ],
             'password'=>''
         ]);
-
         if ($data["password"]!=null) {
             $data["password"]=bcrypt($data['password']);
         }else{
@@ -217,31 +217,13 @@ public function editar_admin(){
         $name=$request->input('name');
         $ciclo=$request->input('gender');
         $docente=$request->input('docente');
-        $paralelo_a=$request->input('paralelo_a');
-        $paralelo_b=$request->input('paralelo_b');
-        $paralelo_c=$request->input('paralelo_c');
-        $paralelo_d=$request->input('paralelo_d');
-        
-        if($paralelo_a==null){
-            $paralelo_a="NA";
-        }
-        if($paralelo_b==null){
-            $paralelo_b="NA";
-        }
-        if($paralelo_c==null){
-            $paralelo_c="NA";
-        }
-        if($paralelo_d==null){
-            $paralelo_d="NA";
-        }
+        $paralelo=$request->input('paralelo');
+        $paralelo = implode(',', $paralelo);
         DB::table('materias')->insert([
             'name'=>$name,
             'ciclo'=>$ciclo,
             'usuario_id'=>$docente,
-            'paralelo_a'=>$paralelo_a,            
-            'paralelo_b'=>$paralelo_b,
-            'paralelo_c'=>$paralelo_c,
-            'paralelo_d'=>$paralelo_d,
+            'paralelo'=>$paralelo,            
         ]);
        
         return redirect()->route('materias_registradas');
@@ -267,13 +249,14 @@ public function editar_admin(){
                         'name'=>$archivo->nombre,
                         'ciclo'=>$archivo->ciclo,
                         'usuario_id'=>$archivo->id_docente,
-                        'paralelo_a'=>$archivo->paralelo_a,
-                        'paralelo_b'=>$archivo->paralelo_b,
+                        'paralelo'=>$archivo->paralelo,
+                        /*'paralelo_b'=>$archivo->paralelo_b,
                         'paralelo_c'=>$archivo->paralelo_c,
-                        'paralelo_d'=>$archivo->paralelo_d,
+                        'paralelo_d'=>$archivo->paralelo_d,*/
                     ]);
                 }
             });
+            flash('Materias registradas desde documento excel correctamente')->success()->important();
             return redirect()->route('materias_registradas');
         }
     }
@@ -298,14 +281,9 @@ public function editar_admin(){
         $aux=1;
         $name = $request->get('name');
         $ciclo = $request->get('ciclo');
-        $paralelo = $request->get('paralelo');
         $materias=Materia::orderBy('id','DESC')
             ->name($name)
             ->ciclo($ciclo)
-            ->paralelo_a($paralelo)
-            ->paralelo_b($paralelo)
-            ->paralelo_c($paralelo)
-            ->paralelo_d($paralelo)
             ->paginate(10);
         $users=DB::table('users')->where('is_docente',true)->get();
         return view('user_administrador.materias_registradas',compact('users','materias','aux'));
@@ -317,21 +295,20 @@ public function editar_admin(){
 */
     public function editar_materia(Materia $materia){
         $users=DB::table('users')->where('is_docente',true)->get();
-        return view('user_administrador.editar_materia',['materia'=>$materia],compact('users'));
+        $paralelo=explode(',', $materia->paralelo);
+        return view('user_administrador.editar_materia',compact('users','materia','paralelo'));
     }
     public function editando_materia(Materia $materia, Request $request){
         $data=request()->validate([
-            'name'=>'required',
+            'name'=>['required','regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/'],
             'ciclo'=>'required',
             'usuario_id'=>'required',
-            'paralelo_a'=>'required',
-            'paralelo_b'=>'',
-            'paralelo_c'=>'',
-            'paralelo_d'=>'',
+            'paralelo'=>'required',
         ]);
-        
-        //dd($data["paralelo_b"]);
+        $paralelo = implode(',', $data["paralelo"]);
+        $data["paralelo"]=$paralelo;
         $materia->update($data);
+        flash('Materia editada correctamente')->success()->important();
         return redirect()->route('materias_registradas',['materia'=>$materia]);
     }
 /* 

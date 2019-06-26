@@ -20,29 +20,25 @@
         </div>
         <div class="col-9">
             <div class="container" id="contenedor_general">
+              <div id="mensaje">
+                @include('flash::message')
+              </div>
                 <div class="row">
-                    <div class="col-3">
-                        <h6 class="tit_general">Buscar materia por: </h6>
-                    </div>
+                    <div class="col-3"></div>
                     <div class="col-9">
                         <form class="card" method="GET" action="{{url("buscar_materia")}}">
                             <div class="row no-gutters align-items-center">
-                                <div class="col-auto">
-                                    <i class="fas fa-search">&nbsp;</i>
-                                </div>
                                 <!--end of col-->
                                 <div class="col">
-                                    <input class="form-control form-control-borderless form-control-sm" name="name" type="search" placeholder="Nombre">
+                                    <input class="form-control form-control-borderless form-control-sm" name="name" type="search" placeholder="Nombre" title="Escriba el nombre de la materia">
                                 </div>
                                 <div class="col">
-                                    <input class="form-control form-control-borderless form-control-sm" name="ciclo" type="search" placeholder="Ciclo">
+                                    <input class="form-control form-control-borderless form-control-sm" name="ciclo" type="search" placeholder="Ciclo" title="Escriba el ciclo en que se imparte la materia (p. ej. Primero)">
                                 </div>
-                                <div class="col">
-                                    <input class="form-control form-control-borderless form-control-sm" name="paralelo" type="search" placeholder="Paralelo">
-                                </div>
+                                
                                 <!--end of col-->
                                 <div class="col-auto">
-                                    <button class="btn btn-success btn-sm" type="submit">Buscar</button>
+                                    <button class="btn btn-success btn-sm" type="submit" title="Buscar materia por nombre o ciclo">Buscar <span class="fas fa-search"></span></button>
                                 </div>
                                 <!--end of col-->
                             </div>
@@ -77,25 +73,14 @@
                             </td>
                             <td>
                               <h6 class="tit_general">
-                                @if ($materia->paralelo_a!='NA')
-                                  "{{$materia->paralelo_a}}"
-                                @endif
-                                @if ($materia->paralelo_b!='NA')
-                                  "{{$materia->paralelo_b}}"
-                                @endif
-                                @if ($materia->paralelo_c!='NA')
-                                  "{{$materia->paralelo_c}}"
-                                @endif
-                                @if ($materia->paralelo_d!='NA')
-                                  "{{$materia->paralelo_d}}"
-                                @endif
+                                {{$materia->paralelo}} 
                               </h6>
                             </td>
                             <td>
                                 <form method="POST" action="{{url("eliminar_materia/{$materia->id}")}}">
                                     {{csrf_field()}}
                                     {{method_field('DELETE')}}
-                                    <a href="{{url("editar_materia/{$materia->id}")}}" class="btn btn-link"><span class="oi oi-pencil"></span></a>
+                                    <a href="{{url("editar_materia/{$materia->id}")}}" class="btn btn-link" title="Editar materia"><span class="oi oi-pencil"></span></a>
                                     <a href="{{url("registrar_materia")}}" class="btn btn-link"><span class="fas fa-plus"></span></a>
                                     <button type="submit" class="btn btn-link"><span class="oi oi-trash"></span></button>
                                 </form>

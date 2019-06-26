@@ -17,13 +17,6 @@ $(document).ready(function(){
 });
 
 /* Funciones para validar formulario de registro de materia */
-function revisar(elemento){
-    if(elemento.value==''){
-        elemento.className='form-control error';
-    }else{
-        elemento.className='form-control';
-    }
-}
 function validar(){
     var datosCorrectos=true;
     var error="";
@@ -39,11 +32,9 @@ function validar(){
         datosCorrectos=false;
         error=" El campo docente es obligatorio.";
     }
-    var c1 = document.getElementById('paralelo_a').checked;
-    var c2 = document.getElementById('paralelo_b').checked;
-    var c3 = document.getElementById('paralelo_c').checked;
-    var c4 = document.getElementById('paralelo_d').checked;
-    if(c1==false && c2==false && c3==false && c4==false){
+    var c1 = document.getElementById('paralelo[]').checked;
+
+    if(c1==false){
         datosCorrectos=false;
         error=" El campo paralelo es obligatorio.";
     }
@@ -52,3 +43,5 @@ function validar(){
     }
     return datosCorrectos;
 }
+
+$('div#mensaje').delay(4000).slideUp(1500);

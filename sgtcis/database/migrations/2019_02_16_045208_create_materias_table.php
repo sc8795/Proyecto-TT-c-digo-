@@ -20,10 +20,10 @@ class CreateMateriasTable extends Migration
 
             $table->string('name');
             $table->string('ciclo');
-            $table->string('paralelo_a');
-            $table->string('paralelo_b');
+            $table->string('paralelo');
+            /*$table->string('paralelo_b');
             $table->string('paralelo_c');
-            $table->string('paralelo_d');
+            $table->string('paralelo_d');*/
             $table->timestamps();
         });
     }
