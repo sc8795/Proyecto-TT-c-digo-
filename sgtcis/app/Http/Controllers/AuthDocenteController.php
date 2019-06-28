@@ -97,6 +97,8 @@ class AuthDocenteController extends Controller
             'fecha_tutoria'=>'required',
         ]);
         $datos_tut->update($data);
+        $elimina_tutoria_solicitada = DB::table('notifications')->where('created_at','=',$datos_tut->fecha_solicita);
+        $elimina_tutoria_solicitada->delete();
         
         $noti_estudiante=new Notiestudiante;
         $noti_estudiante->user_id=auth()->user()->id;
@@ -139,6 +141,8 @@ class AuthDocenteController extends Controller
             'fecha_tutoria'=>'required',
         ]);
         $datos_tut->update($data);
+        $elimina_tutoria_solicitada = DB::table('notifications')->where('created_at','=',$datos_tut->fecha_solicita);
+        $elimina_tutoria_solicitada->delete();
 
         $noti_estudiante=new Notiestudiante;
         $noti_estudiante->user_id=auth()->user()->id;

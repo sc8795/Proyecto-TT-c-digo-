@@ -137,7 +137,6 @@ class AuthStudentController extends Controller
         if (Auth::check()) {
             $user = Auth::user();
         }
-        //$users=DB::table('users')->where('is_estudiante',true)->get();
         $users_docentes=DB::table('users')->where('is_docente',true)->get();
         return view('user_student.solicitar_tutoria',compact('materias','user','users_docentes'));
     }
@@ -308,6 +307,7 @@ class AuthStudentController extends Controller
                     $hora_fin=$horarios5->hora_fin_op3;
                     $minutos_fin=$horarios5->minutos_fin_op3;
                 }
+
                 DB::table('solitutorias')->insert([
                     'dia'=>$dia,
                     'hora_inicio'=>$hora_inicio,
