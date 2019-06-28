@@ -169,7 +169,7 @@ Route::put('editar_docente','AuthDocenteController@editar_docente')->name('edita
 Route::get('ver_tutoria_solitada/{user_student_id}/{user_docente_id}','AuthDocenteController@ver_tutoria_solitada')->name('ver_tutoria_solitada');
 
 /* Rutas para confirmar tutoria */
-Route::post('confirmar_tutoria/{datos_tut}/{estudiante}/{docente}/{materia}','AuthDocenteController@confirmar_tutoria')->name('confirmar_tutoria');
+Route::put('confirmar_tutoria/{datos_tut}/{estudiante}/{docente}/{materia}','AuthDocenteController@confirmar_tutoria')->name('confirmar_tutoria');
 
 /* Rutas para editar datos de tutoría solicitada */
 Route::get('vista_editar_datos_tutoria/{datos_tut}/{estudiante}/{docente}/{materia}','AuthDocenteController@vista_editar_datos_tutoria')->name('vista_editar_datos_tutoria');

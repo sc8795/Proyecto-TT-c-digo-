@@ -20,10 +20,7 @@ class UserSeeder extends Seeder
             'is_admin'=>true,
             'is_docente'=>false,
             'is_estudiante'=>false,
-            'paralelo_a'=>'NA',
-            'paralelo_b'=>'NA',
-            'paralelo_c'=>'NA',
-            'paralelo_d'=>'NA',
+            'paralelo'=>'NA',
             'ciclo'=>'NA',
         ]);
         factory(User::class)->create([
@@ -34,10 +31,7 @@ class UserSeeder extends Seeder
             'is_admin'=>false,
             'is_docente'=>false,
             'is_estudiante'=>true,
-            'paralelo_a'=>'A',
-            'paralelo_b'=>'NA',
-            'paralelo_c'=>'NA',
-            'paralelo_d'=>'NA',
+            'paralelo'=>'A',
             'ciclo'=>'Décimo',
         ]);
 
@@ -49,10 +43,7 @@ class UserSeeder extends Seeder
             'is_admin'=>false,
             'is_docente'=>false,
             'is_estudiante'=>true,
-            'paralelo_a'=>'NA',
-            'paralelo_b'=>'B',
-            'paralelo_c'=>'NA',
-            'paralelo_d'=>'NA',
+            'paralelo'=>'B',
             'ciclo'=>'Décimo',
         ]);
         factory(User::class)->create([
@@ -63,10 +54,7 @@ class UserSeeder extends Seeder
             'is_admin'=>false,
             'is_docente'=>false,
             'is_estudiante'=>true,
-            'paralelo_a'=>'A',
-            'paralelo_b'=>'NA',
-            'paralelo_c'=>'NA',
-            'paralelo_d'=>'NA',
+            'paralelo'=>'A',
             'ciclo'=>'Noveno',
         ]);
         factory(User::class)->create([
@@ -77,10 +65,7 @@ class UserSeeder extends Seeder
             'is_admin'=>false,
             'is_docente'=>false,
             'is_estudiante'=>true,
-            'paralelo_a'=>'NA',
-            'paralelo_b'=>'B',
-            'paralelo_c'=>'NA',
-            'paralelo_d'=>'NA',
+            'paralelo'=>'B',
             'ciclo'=>'Noveno',
         ]);
         factory(User::class)->create([
@@ -91,10 +76,7 @@ class UserSeeder extends Seeder
             'is_admin'=>false,
             'is_docente'=>false,
             'is_estudiante'=>true,
-            'paralelo_a'=>'A',
-            'paralelo_b'=>'NA',
-            'paralelo_c'=>'NA',
-            'paralelo_d'=>'NA',
+            'paralelo'=>'A',
             'ciclo'=>'Octavo',
         ]);
         factory(User::class)->create([
@@ -105,10 +87,7 @@ class UserSeeder extends Seeder
             'is_admin'=>false,
             'is_docente'=>false,
             'is_estudiante'=>true,
-            'paralelo_a'=>'NA',
-            'paralelo_b'=>'B',
-            'paralelo_c'=>'NA',
-            'paralelo_d'=>'NA',
+            'paralelo'=>'B',
             'ciclo'=>'Octavo',
         ]);
         factory(User::class)->create([
@@ -119,10 +98,7 @@ class UserSeeder extends Seeder
             'is_admin'=>false,
             'is_docente'=>false,
             'is_estudiante'=>true,
-            'paralelo_a'=>'A',
-            'paralelo_b'=>'NA',
-            'paralelo_c'=>'NA',
-            'paralelo_d'=>'NA',
+            'paralelo'=>'A',
             'ciclo'=>'Séptimo',
         ]);
         factory(User::class)->create([
@@ -133,10 +109,7 @@ class UserSeeder extends Seeder
             'is_admin'=>false,
             'is_docente'=>false,
             'is_estudiante'=>true,
-            'paralelo_a'=>'NA',
-            'paralelo_b'=>'B',
-            'paralelo_c'=>'NA',
-            'paralelo_d'=>'NA',
+            'paralelo'=>'B',
             'ciclo'=>'Séptimo',
         ]);
         factory(User::class)->create([
@@ -147,10 +120,7 @@ class UserSeeder extends Seeder
             'is_admin'=>false,
             'is_docente'=>false,
             'is_estudiante'=>true,
-            'paralelo_a'=>'A',
-            'paralelo_b'=>'NA',
-            'paralelo_c'=>'NA',
-            'paralelo_d'=>'NA',
+            'paralelo'=>'A',
             'ciclo'=>'Sexto',
         ]);
         factory(User::class)->create([
@@ -161,10 +131,7 @@ class UserSeeder extends Seeder
             'is_admin'=>false,
             'is_docente'=>false,
             'is_estudiante'=>true,
-            'paralelo_a'=>'NA',
-            'paralelo_b'=>'B',
-            'paralelo_c'=>'NA',
-            'paralelo_d'=>'NA',
+            'paralelo'=>'B',
             'ciclo'=>'Sexto',
         ]);
         factory(User::class)->create([
@@ -175,10 +142,7 @@ class UserSeeder extends Seeder
             'is_admin'=>false,
             'is_docente'=>false,
             'is_estudiante'=>true,
-            'paralelo_a'=>'A',
-            'paralelo_b'=>'NA',
-            'paralelo_c'=>'NA',
-            'paralelo_d'=>'NA',
+            'paralelo'=>'A',
             'ciclo'=>'Quinto',
         ]);
         factory(User::class)->create([
@@ -189,10 +153,7 @@ class UserSeeder extends Seeder
             'is_admin'=>false,
             'is_docente'=>false,
             'is_estudiante'=>true,
-            'paralelo_a'=>'NA',
-            'paralelo_b'=>'B',
-            'paralelo_c'=>'NA',
-            'paralelo_d'=>'NA',
+            'paralelo'=>'B',
             'ciclo'=>'Quinto',
         ]);
         factory(User::class)->create([
@@ -203,10 +164,7 @@ class UserSeeder extends Seeder
             'is_admin'=>false,
             'is_docente'=>false,
             'is_estudiante'=>true,
-            'paralelo_a'=>'A',
-            'paralelo_b'=>'NA',
-            'paralelo_c'=>'NA',
-            'paralelo_d'=>'NA',
+            'paralelo'=>'A',
             'ciclo'=>'Cuarto',
         ]);
         factory(User::class)->create([
@@ -217,10 +175,7 @@ class UserSeeder extends Seeder
             'is_admin'=>false,
             'is_docente'=>false,
             'is_estudiante'=>true,
-            'paralelo_a'=>'NA',
-            'paralelo_b'=>'B',
-            'paralelo_c'=>'NA',
-            'paralelo_d'=>'NA',
+            'paralelo'=>'B',
             'ciclo'=>'Cuarto',
         ]);
         factory(User::class)->create([
@@ -231,10 +186,7 @@ class UserSeeder extends Seeder
             'is_admin'=>false,
             'is_docente'=>false,
             'is_estudiante'=>true,
-            'paralelo_a'=>'A',
-            'paralelo_b'=>'NA',
-            'paralelo_c'=>'NA',
-            'paralelo_d'=>'NA',
+            'paralelo'=>'A',
             'ciclo'=>'Tercero',
         ]);
         factory(User::class)->create([
@@ -245,10 +197,7 @@ class UserSeeder extends Seeder
             'is_admin'=>false,
             'is_docente'=>false,
             'is_estudiante'=>true,
-            'paralelo_a'=>'NA',
-            'paralelo_b'=>'B',
-            'paralelo_c'=>'NA',
-            'paralelo_d'=>'NA',
+            'paralelo'=>'B',
             'ciclo'=>'Tercero',
         ]);
         factory(User::class)->create([
@@ -259,10 +208,7 @@ class UserSeeder extends Seeder
             'is_admin'=>false,
             'is_docente'=>false,
             'is_estudiante'=>true,
-            'paralelo_a'=>'A',
-            'paralelo_b'=>'NA',
-            'paralelo_c'=>'NA',
-            'paralelo_d'=>'NA',
+            'paralelo'=>'A',
             'ciclo'=>'Segundo',
         ]);
         factory(User::class)->create([
@@ -273,10 +219,7 @@ class UserSeeder extends Seeder
             'is_admin'=>false,
             'is_docente'=>false,
             'is_estudiante'=>true,
-            'paralelo_a'=>'NA',
-            'paralelo_b'=>'B',
-            'paralelo_c'=>'NA',
-            'paralelo_d'=>'NA',
+            'paralelo'=>'A',
             'ciclo'=>'Segundo',
         ]);
         factory(User::class)->create([
@@ -287,10 +230,7 @@ class UserSeeder extends Seeder
             'is_admin'=>false,
             'is_docente'=>false,
             'is_estudiante'=>true,
-            'paralelo_a'=>'A',
-            'paralelo_b'=>'NA',
-            'paralelo_c'=>'NA',
-            'paralelo_d'=>'NA',
+            'paralelo'=>'A',
             'ciclo'=>'Primero',
         ]);
         factory(User::class)->create([
@@ -301,10 +241,7 @@ class UserSeeder extends Seeder
             'is_admin'=>false,
             'is_docente'=>false,
             'is_estudiante'=>true,
-            'paralelo_a'=>'NA',
-            'paralelo_b'=>'B',
-            'paralelo_c'=>'NA',
-            'paralelo_d'=>'NA',
+            'paralelo'=>'B',
             'ciclo'=>'Primero',
         ]);
     }

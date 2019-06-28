@@ -80,9 +80,9 @@
                                 <form method="POST" action="{{url("eliminar_materia/{$materia->id}")}}">
                                     {{csrf_field()}}
                                     {{method_field('DELETE')}}
-                                    <a href="{{url("editar_materia/{$materia->id}")}}" class="btn btn-link" title="Editar materia"><span class="oi oi-pencil"></span></a>
-                                    <a href="{{url("registrar_materia")}}" class="btn btn-link"><span class="fas fa-plus"></span></a>
-                                    <button type="submit" class="btn btn-link"><span class="oi oi-trash"></span></button>
+                                    <a href="{{url("editar_materia/{$materia->id}")}}" class="btn btn-success btn-sm" title="Editar materia"><span class="oi oi-pencil"></span></a>
+                                    <a href="{{url("registrar_materia")}}" class="btn btn-info btn-sm" title="Registrar nueva materia"><span class="fas fa-plus-circle"></span></a>
+                                    <button type="submit" class="btn btn-danger btn-sm" title="Eliminar materia"><span class="oi oi-trash"></span></button>
                                 </form>
                               </td>
                           </tr>
@@ -92,7 +92,8 @@
                   {{$materias->render()}}
                 @else
                   @if ($aux==0)
-                    <h6 class="tit_general">No hay materias registradas</h6>  
+                    <h6 class="tit_general">No hay materias registradas</h6>
+                    <a href="{{url("registrar_materia")}}" class="btn btn-info btn-sm" title="Registrar materia"><span class="fas fa-plus-circle"></span> Registrar</a>
                   @else
                     <h6 class="tit_general">No existen materias, con los datos ingresados</h6>  
                   @endif

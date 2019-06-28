@@ -58,3 +58,5 @@ $(document).on('click', '#boton_omitir', function(){
         return false;
     }
 });
+
+$('div#mensaje').delay(4000).slideUp(1500);

@@ -125,34 +125,36 @@ public function editar_admin(){
             User::destroy($user->id);
         }
         $archivo=$request->file('archivo');
-        $nombre_original=$archivo->getClientOriginalName();
-        $extension=$archivo->getClientOriginalExtension();
-        $r1=Storage::disk('archivos')->put($nombre_original,\File::get($archivo));
-        $ruta=storage_path('archivos')."/".$nombre_original;
+        if($archivo==null){
+            flash('Error al cargar el documento excel. Intente nuevamente.')->error()->important();
+            return redirect()->route('materias_registradas');
+        }else{
+            $nombre_original=$archivo->getClientOriginalName();
+            $extension=$archivo->getClientOriginalExtension();
+            $r1=Storage::disk('archivos')->put($nombre_original,\File::get($archivo));
+            $ruta=storage_path('archivos')."/".$nombre_original;
 
-        if($r1){
-            Excel::load($ruta,function($reader){
+            if($r1){
+                Excel::load($ruta,function($reader){
 
-                foreach ($reader->get() as $archivo) {
-                    User::create([
-                        'name'=>$archivo->nombres,
-                        'lastname'=>$archivo->apellidos,
-                        'email'=>$archivo->correo,
-                        'password'=>bcrypt($archivo->password),
-                        'is_admin'=>$archivo->is_admin,
-                        'is_docente'=>$archivo->is_docente,
-                        'is_estudiante'=>$archivo->is_estudiante,
-                        'paralelo_a'=>$archivo->paralelo_a,
-                        'paralelo_b'=>$archivo->paralelo_b,
-                        'paralelo_c'=>$archivo->paralelo_c,
-                        'paralelo_d'=>$archivo->paralelo_d,
-                        'ciclo'=>$archivo->ciclo
-                    ]);
-                }
-            });
-            return redirect()->route('docentes_registrados');
+                    foreach ($reader->get() as $archivo) {
+                        User::create([
+                            'name'=>$archivo->nombres,
+                            'lastname'=>$archivo->apellidos,
+                            'email'=>$archivo->correo,
+                            'password'=>bcrypt($archivo->password),
+                            'is_admin'=>$archivo->is_admin,
+                            'is_docente'=>$archivo->is_docente,
+                            'is_estudiante'=>$archivo->is_estudiante,
+                            'paralelo'=>$archivo->paralelo,
+                            'ciclo'=>$archivo->ciclo
+                        ]);
+                    }
+                });
+                flash('Docentes registrados desde documento excel correctamente')->success()->important();
+                return redirect()->route('docentes_registrados');
+            }
         }
-        
     }
 /* 
 |--------------------------------------------------------------------------
@@ -236,28 +238,29 @@ public function editar_admin(){
             Materia::destroy($user->id);
         }
         $archivo=$request->file('archivo');
-        $nombre_original=$archivo->getClientOriginalName();
-        $extension=$archivo->getClientOriginalExtension();
-        $r1=Storage::disk('archivos')->put($nombre_original,\File::get($archivo));
-        $ruta=storage_path('archivos')."/".$nombre_original;
-
-        if($r1){
-            Excel::load($ruta,function($reader){
-
-                foreach ($reader->get() as $archivo) {
-                    DB::table('materias')->insert([
-                        'name'=>$archivo->nombre,
-                        'ciclo'=>$archivo->ciclo,
-                        'usuario_id'=>$archivo->id_docente,
-                        'paralelo'=>$archivo->paralelo,
-                        /*'paralelo_b'=>$archivo->paralelo_b,
-                        'paralelo_c'=>$archivo->paralelo_c,
-                        'paralelo_d'=>$archivo->paralelo_d,*/
-                    ]);
-                }
-            });
-            flash('Materias registradas desde documento excel correctamente')->success()->important();
+        if($archivo==null){
+            flash('Error al cargar el documento excel. Intente nuevamente.')->error()->important();
             return redirect()->route('materias_registradas');
+        }else{
+            $nombre_original=$archivo->getClientOriginalName();
+            $extension=$archivo->getClientOriginalExtension();
+            $r1=Storage::disk('archivos')->put($nombre_original,\File::get($archivo));
+            $ruta=storage_path('archivos')."/".$nombre_original;
+
+            if($r1){
+                Excel::load($ruta,function($reader){
+                    foreach ($reader->get() as $archivo) {
+                        DB::table('materias')->insert([
+                            'name'=>$archivo->nombre,
+                            'ciclo'=>$archivo->ciclo,
+                            'usuario_id'=>$archivo->id_docente,
+                            'paralelo'=>$archivo->paralelo,
+                        ]);
+                    }
+                });
+                flash('Materias registradas desde documento excel correctamente')->success()->important();
+                return redirect()->route('materias_registradas');
+            }
         }
     }
 /* 

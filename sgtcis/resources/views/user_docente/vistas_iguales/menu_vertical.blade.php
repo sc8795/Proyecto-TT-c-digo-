@@ -17,7 +17,9 @@
                             @if (auth()->user()->unreadNotifications->count())
                                 @foreach (auth()->user()->unreadNotifications as $notifications)
                                     <a href="{{url("ver_tutoria_solitada/{$notifications->data['noti_docente']['user_id']}/{$notifications->data['noti_docente']['user_docente_id']}")}}" class="droptdown-item">
-                                        {{$notifications->data['noti_docente']['descripcion']}}
+                                        <i class="fas fa-chalkboard-teacher"></i>
+                                        {{$notifications->data['noti_docente']['descripcion']}} <br>
+                                        <span class="titulo_fecha_tutoria">{{$notifications->data['noti_docente']['created_at']}}</span>
                                     </a>
                                 @endforeach    
                             @else 

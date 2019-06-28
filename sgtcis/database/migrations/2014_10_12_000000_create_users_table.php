@@ -23,10 +23,7 @@ class CreateUsersTable extends Migration
             $table->boolean('is_admin');
             $table->boolean('is_docente');
             $table->boolean('is_estudiante');
-            $table->string('paralelo_a');
-            $table->string('paralelo_b');
-            $table->string('paralelo_c');
-            $table->string('paralelo_d');
+            $table->string('paralelo');
             $table->string('ciclo');
 
             $table->string('provider')->nullable();

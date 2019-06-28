@@ -1,10 +1,7 @@
 <div class="vertical-menu">
     <ul class="menu_vertical">
         <li>
-            @php
-                $aux=1;
-            @endphp
-            <a href="{{url("vista_general_student/{$aux}")}}"><i class="icono izquierda far fa-eye"></i>Vista general de la cuenta</a>
+            <a href="{{url("vista_general_student")}}"><i class="icono izquierda far fa-eye"></i>Vista general de la cuenta</a>
         </li>
         <li>
             <a href="{{route('solicitar_tutoria')}}"><i class="icono izquierda fas fa-chalkboard-teacher"></i>Solicitar tutoría</a>

@@ -9,7 +9,6 @@
         @include('user_student.vistas_iguales.imagen_texto')
         <div class="col-9" id="titulo_general">
             <h3>Vista general de la cuenta Estudiante</h3>
-            {!! Alert::render() !!}
         </div>
     </div>
 @endsection
@@ -20,6 +19,9 @@
             @include('user_student.vistas_iguales.menu_vertical')
         </div>
         <div class="col-9">
+            <div id="mensaje">
+                @include('flash::message')
+            </div>
             <div class="container" id="contenedor_general">
                 <form action="{{route('editar_perfil_student')}}">
                     <h5 class="tit_general">Usuario:</h5>

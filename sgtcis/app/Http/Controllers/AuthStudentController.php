@@ -68,21 +68,6 @@ class AuthStudentController extends Controller
                 'paralelo'=>'required',
                 'password'=>'required'
             ]);
-            if($data["paralelo"]=="A"){
-                $data["paralelo_a"]=$data["paralelo"];
-            }else{
-                if($data["paralelo"]=="B"){
-                    $data["paralelo_b"]=$data["paralelo"];
-                }else{
-                    if($data["paralelo"]=="C"){
-                        $data["paralelo_c"]=$data["paralelo"];
-                    }else{
-                        if($data["paralelo"]=="D"){
-                            $data["paralelo_d"]=$data["paralelo"];
-                        }
-                    }
-                }    
-            }
 
             if ($data["password"]!=null) {
                 $data["password"]=bcrypt($data['password']);
@@ -149,9 +134,12 @@ class AuthStudentController extends Controller
 */
     public function solicitar_tutoria(){
         $materias = DB::table('materias')->get();
-        $users=DB::table('users')->where('is_estudiante',true)->get();
+        if (Auth::check()) {
+            $user = Auth::user();
+        }
+        //$users=DB::table('users')->where('is_estudiante',true)->get();
         $users_docentes=DB::table('users')->where('is_docente',true)->get();
-        return view('user_student.solicitar_tutoria',compact('materias','users','users_docentes'));
+        return view('user_student.solicitar_tutoria',compact('materias','user','users_docentes'));
     }
     public function vista_solicitar_tutoria(User $user, User $user_docente, Materia $materia){
         $docente=$user_docente->id;
@@ -190,19 +178,6 @@ class AuthStudentController extends Controller
         $horarios4=DB::table('horario4s')->where('usuario_id',$docente)->first();
         $horarios5=DB::table('horario5s')->where('usuario_id',$docente)->first();
 
-        $noti_docente=new Notidocente;
-        $noti_docente->user_id=auth()->user()->id;
-        $noti_docente->user_docente_id=$docente;
-        $user=DB::table('users')->where('id',$noti_docente->user_id)->first();
-        $noti_docente->title="Solicitud de tutoría ";
-        $noti_docente->descripcion="$user->name $user->lastname esta pidiendo solitud de tutoria";
-        $noti_docente->save();
-
-        $user_notificado=User::where('id','=',$docente)->get();
-        if(\Notification::send($user_notificado,new NotificacionDocente(Notidocente::latest('id')->first()))){
-            return back();
-        }
-
         if($dia==null){
             $mensaje=1;
             Alert::danger('¡Advertencia! ')
@@ -214,37 +189,125 @@ class AuthStudentController extends Controller
                 Alert::danger('¡Advertencia! ')
                 ->details("El campo motivo de tutoría es requerido.");
                 return view('user_student.vista_solicitar_tutoria',compact('user','user_docente','materia','estado','mensaje','horarios','horarios2','horarios3','horarios4','horarios5'));
-            }
-        }
-        if ($dia=='dia1_op1') {
-            $dia=$horarios->dia1_op1;
-            $hora_inicio=$horarios->hora_inicio_op1;
-            $minutos_inicio=$horarios->minutos_inicio_op1;
-            $hora_fin=$horarios->hora_fin_op1;
-            $minutos_fin=$horarios->minutos_fin_op1;
-            DB::table('solitutorias')->insert([
-                'dia'=>$dia,
-                'hora_inicio'=>$hora_inicio,
-                'minutos_inicio'=>$minutos_inicio,
-                'hora_fin'=>$hora_fin,
-                'minutos_fin'=>$minutos_fin,
-                'materia_id'=>$materia->id,
-                'docente_id'=>$user_docente->id,
-                'estudiante_id'=>$user->id,
-                'motivo'=>$motivo,
-                'fecha_solicita'=>now(),
-                'fecha_tutoria'=>now()
-            ]);
-            Alert::success('¡Aviso! ')
-                ->details("Usted ha solicitado tutoría al docente $user_docente->name $user_docente->lastname, espere su confirmación por parte del docente.");
-            return view('user_student.vista_general_cuenta');
-        } else {
-            if ($dia=='dia1_op2') {
-                $dia=$horarios->dia1_op2;
-                $hora_inicio=$horarios->hora_inicio_op2;
-                $minutos_inicio=$horarios->minutos_inicio_op2;
-                $hora_fin=$horarios->hora_fin_op2;
-                $minutos_fin=$horarios->minutos_fin_op2;
+            }else{
+                $noti_docente=new Notidocente;
+                $noti_docente->user_id=auth()->user()->id;
+                $noti_docente->user_docente_id=$docente;
+                $user=DB::table('users')->where('id',$noti_docente->user_id)->first();
+                $noti_docente->title="Solicitud de tutoría ";
+                $noti_docente->descripcion="$user->name $user->lastname esta pidiendo solitud de tutoria.";
+                $noti_docente->save();
+
+                $user_notificado=User::where('id','=',$docente)->get();
+                if(\Notification::send($user_notificado,new NotificacionDocente(Notidocente::latest('id')->first()))){
+                    return back();
+                }
+                
+                if ($dia=='dia1_op1') {
+                    $dia=$horarios->dia1_op1;
+                    $hora_inicio=$horarios->hora_inicio_op1;
+                    $minutos_inicio=$horarios->minutos_inicio_op1;
+                    $hora_fin=$horarios->hora_fin_op1;
+                    $minutos_fin=$horarios->minutos_fin_op1;
+                }
+                if ($dia=='dia1_op2') {
+                    $dia=$horarios->dia1_op2;
+                    $hora_inicio=$horarios->hora_inicio_op2;
+                    $minutos_inicio=$horarios->minutos_inicio_op2;
+                    $hora_fin=$horarios->hora_fin_op2;
+                    $minutos_fin=$horarios->minutos_fin_op2;
+                }
+                if ($dia=='dia1_op3') {
+                    $dia=$horarios->dia1_op3;
+                    $hora_inicio=$horarios->hora_inicio_op3;
+                    $minutos_inicio=$horarios->minutos_inicio_op3;
+                    $hora_fin=$horarios->hora_fin_op3;
+                    $minutos_fin=$horarios->minutos_fin_op3;
+                }
+                if ($dia=='dia2_op1') {
+                    $dia=$horarios2->dia2_op1;
+                    $hora_inicio=$horarios2->hora_inicio_op1;
+                    $minutos_inicio=$horarios2->minutos_inicio_op1;
+                    $hora_fin=$horarios2->hora_fin_op1;
+                    $minutos_fin=$horarios2->minutos_fin_op1;
+                }
+                if ($dia=='dia2_op2') {
+                    $dia=$horarios2->dia2_op2;
+                    $hora_inicio=$horarios2->hora_inicio_op2;
+                    $minutos_inicio=$horarios2->minutos_inicio_op2;
+                    $hora_fin=$horarios2->hora_fin_op2;
+                    $minutos_fin=$horarios2->minutos_fin_op2;
+                }
+                if ($dia=='dia2_op3') {
+                    $dia=$horarios2->dia2_op3;
+                    $hora_inicio=$horarios2->hora_inicio_op3;
+                    $minutos_inicio=$horarios2->minutos_inicio_op3;
+                    $hora_fin=$horarios2->hora_fin_op3;
+                    $minutos_fin=$horarios2->minutos_fin_op3;
+                }
+                if ($dia=='dia3_op1') {
+                    $dia=$horarios3->dia3_op1;
+                    $hora_inicio=$horarios3->hora_inicio_op1;
+                    $minutos_inicio=$horarios3->minutos_inicio_op1;
+                    $hora_fin=$horarios3->hora_fin_op1;
+                    $minutos_fin=$horarios3->minutos_fin_op1;
+                }
+                if ($dia=='dia3_op2') {
+                    $dia=$horarios3->dia3_op2;
+                    $hora_inicio=$horarios3->hora_inicio_op2;
+                    $minutos_inicio=$horarios3->minutos_inicio_op2;
+                    $hora_fin=$horarios3->hora_fin_op2;
+                    $minutos_fin=$horarios3->minutos_fin_op2;
+                }
+                if ($dia=='dia3_op3') {
+                    $dia=$horarios3->dia3_op3;
+                    $hora_inicio=$horarios3->hora_inicio_op3;
+                    $minutos_inicio=$horarios3->minutos_inicio_op3;
+                    $hora_fin=$horarios3->hora_fin_op3;
+                    $minutos_fin=$horarios3->minutos_fin_op3;
+                }
+                if ($dia=='dia4_op1') {
+                    $dia=$horarios4->dia4_op1;
+                    $hora_inicio=$horarios4->hora_inicio_op1;
+                    $minutos_inicio=$horarios4->minutos_inicio_op1;
+                    $hora_fin=$horarios4->hora_fin_op1;
+                    $minutos_fin=$horarios4->minutos_fin_op1;
+                }
+                if ($dia=='dia4_op2') {
+                    $dia=$horarios4->dia4_op2;
+                    $hora_inicio=$horarios4->hora_inicio_op2;
+                    $minutos_inicio=$horarios4->minutos_inicio_op2;
+                    $hora_fin=$horarios4->hora_fin_op2;
+                    $minutos_fin=$horarios4->minutos_fin_op2;
+                }
+                if ($dia=='dia4_op3') {
+                    $dia=$horarios4->dia4_op3;
+                    $hora_inicio=$horarios4->hora_inicio_op3;
+                    $minutos_inicio=$horarios4->minutos_inicio_op3;
+                    $hora_fin=$horarios4->hora_fin_op3;
+                    $minutos_fin=$horarios4->minutos_fin_op3;
+                }
+                if ($dia=='dia5_op1') {
+                    $dia=$horarios5->dia5_op1;
+                    $hora_inicio=$horarios5->hora_inicio_op1;
+                    $minutos_inicio=$horarios5->minutos_inicio_op1;
+                    $hora_fin=$horarios5->hora_fin_op1;
+                    $minutos_fin=$horarios5->minutos_fin_op1;
+                }
+                if ($dia=='dia5_op2') {
+                    $dia=$horarios5->dia5_op2;
+                    $hora_inicio=$horarios5->hora_inicio_op2;
+                    $minutos_inicio=$horarios5->minutos_inicio_op2;
+                    $hora_fin=$horarios5->hora_fin_op2;
+                    $minutos_fin=$horarios5->minutos_fin_op2;
+                }
+                if ($dia=='dia5_op3') {
+                    $dia=$horarios5->dia5_op3;
+                    $hora_inicio=$horarios5->hora_inicio_op3;
+                    $minutos_inicio=$horarios5->minutos_inicio_op3;
+                    $hora_fin=$horarios5->hora_fin_op3;
+                    $minutos_fin=$horarios5->minutos_fin_op3;
+                }
                 DB::table('solitutorias')->insert([
                     'dia'=>$dia,
                     'hora_inicio'=>$hora_inicio,
@@ -258,321 +321,8 @@ class AuthStudentController extends Controller
                     'fecha_solicita'=>now(),
                     'fecha_tutoria'=>now()
                 ]);
-                Alert::success('¡Aviso! ')
-                    ->details("Usted ha solicitado tutoría al docente $user_docente->name $user_docente->lastname, espere su confirmación por parte del docente.");
-                return view('user_student.vista_general_cuenta');
-            } else {
-                if ($dia=='dia1_op3') {
-                    $dia=$horarios->dia1_op3;
-                    $hora_inicio=$horarios->hora_inicio_op3;
-                    $minutos_inicio=$horarios->minutos_inicio_op3;
-                    $hora_fin=$horarios->hora_fin_op3;
-                    $minutos_fin=$horarios->minutos_fin_op3;
-                    DB::table('solitutorias')->insert([
-                        'dia'=>$dia,
-                        'hora_inicio'=>$hora_inicio,
-                        'minutos_inicio'=>$minutos_inicio,
-                        'hora_fin'=>$hora_fin,
-                        'minutos_fin'=>$minutos_fin,
-                        'materia_id'=>$materia->id,
-                        'docente_id'=>$user_docente->id,
-                        'estudiante_id'=>$user->id,
-                        'motivo'=>$motivo,
-                        'fecha_solicita'=>now(),
-                        'fecha_tutoria'=>now()
-                    ]);
-                    Alert::success('¡Aviso! ')
-                        ->details("Usted ha solicitado tutoría al docente $user_docente->name $user_docente->lastname, espere su confirmación por parte del docente.");
-                    return view('user_student.vista_general_cuenta');
-                } else {
-                    if ($dia=='dia2_op1') {
-                        $dia=$horarios2->dia2_op1;
-                        $hora_inicio=$horarios2->hora_inicio_op1;
-                        $minutos_inicio=$horarios2->minutos_inicio_op1;
-                        $hora_fin=$horarios2->hora_fin_op1;
-                        $minutos_fin=$horarios2->minutos_fin_op1;
-                        DB::table('solitutorias')->insert([
-                            'dia'=>$dia,
-                            'hora_inicio'=>$hora_inicio,
-                            'minutos_inicio'=>$minutos_inicio,
-                            'hora_fin'=>$hora_fin,
-                            'minutos_fin'=>$minutos_fin,
-                            'materia_id'=>$materia->id,
-                            'docente_id'=>$user_docente->id,
-                            'estudiante_id'=>$user->id,
-                            'motivo'=>$motivo,
-                            'fecha_solicita'=>now(),
-                            'fecha_tutoria'=>now()
-                        ]);
-                        Alert::success('¡Aviso! ')
-                            ->details("Usted ha solicitado tutoría al docente $user_docente->name $user_docente->lastname, espere su confirmación por parte del docente.");
-                        return view('user_student.vista_general_cuenta');
-                    } else {
-                        if ($dia=='dia2_op2') {
-                            $dia=$horarios2->dia2_op2;
-                            $hora_inicio=$horarios2->hora_inicio_op2;
-                            $minutos_inicio=$horarios2->minutos_inicio_op2;
-                            $hora_fin=$horarios2->hora_fin_op2;
-                            $minutos_fin=$horarios2->minutos_fin_op2;
-                            DB::table('solitutorias')->insert([
-                                'dia'=>$dia,
-                                'hora_inicio'=>$hora_inicio,
-                                'minutos_inicio'=>$minutos_inicio,
-                                'hora_fin'=>$hora_fin,
-                                'minutos_fin'=>$minutos_fin,
-                                'materia_id'=>$materia->id,
-                                'docente_id'=>$user_docente->id,
-                                'estudiante_id'=>$user->id,
-                                'motivo'=>$motivo,
-                                'fecha_solicita'=>now(),
-                                'fecha_tutoria'=>now()
-                            ]);
-                            Alert::success('¡Aviso! ')
-                                ->details("Usted ha solicitado tutoría al docente $user_docente->name $user_docente->lastname, espere su confirmación por parte del docente.");
-                            return view('user_student.vista_general_cuenta');
-                        } else {
-                            if ($dia=='dia2_op3') {
-                                $dia=$horarios2->dia2_op3;
-                                $hora_inicio=$horarios2->hora_inicio_op3;
-                                $minutos_inicio=$horarios2->minutos_inicio_op3;
-                                $hora_fin=$horarios2->hora_fin_op3;
-                                $minutos_fin=$horarios2->minutos_fin_op3;
-                                DB::table('solitutorias')->insert([
-                                    'dia'=>$dia,
-                                    'hora_inicio'=>$hora_inicio,
-                                    'minutos_inicio'=>$minutos_inicio,
-                                    'hora_fin'=>$hora_fin,
-                                    'minutos_fin'=>$minutos_fin,
-                                    'materia_id'=>$materia->id,
-                                    'docente_id'=>$user_docente->id,
-                                    'estudiante_id'=>$user->id,
-                                    'motivo'=>$motivo,
-                                    'fecha_solicita'=>now(),
-                                    'fecha_tutoria'=>now()
-                                ]);
-                                Alert::success('¡Aviso! ')
-                                    ->details("Usted ha solicitado tutoría al docente $user_docente->name $user_docente->lastname, espere su confirmación por parte del docente.");
-                                return view('user_student.vista_general_cuenta');
-                            } else {
-                                if ($dia=='dia3_op1') {
-                                    $dia=$horarios3->dia3_op1;
-                                    $hora_inicio=$horarios3->hora_inicio_op1;
-                                    $minutos_inicio=$horarios3->minutos_inicio_op1;
-                                    $hora_fin=$horarios3->hora_fin_op1;
-                                    $minutos_fin=$horarios3->minutos_fin_op1;
-                                    DB::table('solitutorias')->insert([
-                                        'dia'=>$dia,
-                                        'hora_inicio'=>$hora_inicio,
-                                        'minutos_inicio'=>$minutos_inicio,
-                                        'hora_fin'=>$hora_fin,
-                                        'minutos_fin'=>$minutos_fin,
-                                        'materia_id'=>$materia->id,
-                                        'docente_id'=>$user_docente->id,
-                                        'estudiante_id'=>$user->id,
-                                        'motivo'=>$motivo,
-                                        'fecha_solicita'=>now(),
-                                        'fecha_tutoria'=>now()
-                                    ]);
-                                    Alert::success('¡Aviso! ')
-                                        ->details("Usted ha solicitado tutoría al docente $user_docente->name $user_docente->lastname, espere su confirmación por parte del docente.");
-                                    return view('user_student.vista_general_cuenta');
-                                } else {
-                                    if ($dia=='dia3_op2') {
-                                        $dia=$horarios3->dia3_op2;
-                                        $hora_inicio=$horarios3->hora_inicio_op2;
-                                        $minutos_inicio=$horarios3->minutos_inicio_op2;
-                                        $hora_fin=$horarios3->hora_fin_op2;
-                                        $minutos_fin=$horarios3->minutos_fin_op2;
-                                        DB::table('solitutorias')->insert([
-                                            'dia'=>$dia,
-                                            'hora_inicio'=>$hora_inicio,
-                                            'minutos_inicio'=>$minutos_inicio,
-                                            'hora_fin'=>$hora_fin,
-                                            'minutos_fin'=>$minutos_fin,
-                                            'materia_id'=>$materia->id,
-                                            'docente_id'=>$user_docente->id,
-                                            'estudiante_id'=>$user->id,
-                                            'motivo'=>$motivo,
-                                            'fecha_solicita'=>now(),
-                                            'fecha_tutoria'=>now()
-                                        ]);
-                                        Alert::success('¡Aviso! ')
-                                            ->details("Usted ha solicitado tutoría al docente $user_docente->name $user_docente->lastname, espere su confirmación por parte del docente.");
-                                        return view('user_student.vista_general_cuenta');
-                                    } else {
-                                        if ($dia=='dia3_op3') {
-                                            $dia=$horarios3->dia3_op3;
-                                            $hora_inicio=$horarios3->hora_inicio_op3;
-                                            $minutos_inicio=$horarios3->minutos_inicio_op3;
-                                            $hora_fin=$horarios3->hora_fin_op3;
-                                            $minutos_fin=$horarios3->minutos_fin_op3;
-                                            DB::table('solitutorias')->insert([
-                                                'dia'=>$dia,
-                                                'hora_inicio'=>$hora_inicio,
-                                                'minutos_inicio'=>$minutos_inicio,
-                                                'hora_fin'=>$hora_fin,
-                                                'minutos_fin'=>$minutos_fin,
-                                                'materia_id'=>$materia->id,
-                                                'docente_id'=>$user_docente->id,
-                                                'estudiante_id'=>$user->id,
-                                                'motivo'=>$motivo,
-                                                'fecha_solicita'=>now(),
-                                                'fecha_tutoria'=>now()
-                                            ]);
-                                            Alert::success('¡Aviso! ')
-                                                ->details("Usted ha solicitado tutoría al docente $user_docente->name $user_docente->lastname, espere su confirmación por parte del docente.");
-                                            return view('user_student.vista_general_cuenta');
-                                        } else {
-                                            if ($dia=='dia4_op1') {
-                                                $dia=$horarios4->dia4_op1;
-                                                $hora_inicio=$horarios4->hora_inicio_op1;
-                                                $minutos_inicio=$horarios4->minutos_inicio_op1;
-                                                $hora_fin=$horarios4->hora_fin_op1;
-                                                $minutos_fin=$horarios4->minutos_fin_op1;
-                                                DB::table('solitutorias')->insert([
-                                                    'dia'=>$dia,
-                                                    'hora_inicio'=>$hora_inicio,
-                                                    'minutos_inicio'=>$minutos_inicio,
-                                                    'hora_fin'=>$hora_fin,
-                                                    'minutos_fin'=>$minutos_fin,
-                                                    'materia_id'=>$materia->id,
-                                                    'docente_id'=>$user_docente->id,
-                                                    'estudiante_id'=>$user->id,
-                                                    'motivo'=>$motivo,
-                                                    'fecha_solicita'=>now(),
-                                                    'fecha_tutoria'=>now()
-                                                ]);
-                                                Alert::success('¡Aviso! ')
-                                                    ->details("Usted ha solicitado tutoría al docente $user_docente->name $user_docente->lastname, espere su confirmación por parte del docente.");
-                                                return view('user_student.vista_general_cuenta');
-                                            } else {
-                                                if ($dia=='dia4_op2') {
-                                                    $dia=$horarios4->dia4_op2;
-                                                    $hora_inicio=$horarios4->hora_inicio_op2;
-                                                    $minutos_inicio=$horarios4->minutos_inicio_op2;
-                                                    $hora_fin=$horarios4->hora_fin_op2;
-                                                    $minutos_fin=$horarios4->minutos_fin_op2;
-                                                    DB::table('solitutorias')->insert([
-                                                        'dia'=>$dia,
-                                                        'hora_inicio'=>$hora_inicio,
-                                                        'minutos_inicio'=>$minutos_inicio,
-                                                        'hora_fin'=>$hora_fin,
-                                                        'minutos_fin'=>$minutos_fin,
-                                                        'materia_id'=>$materia->id,
-                                                        'docente_id'=>$user_docente->id,
-                                                        'estudiante_id'=>$user->id,
-                                                        'motivo'=>$motivo,
-                                                        'fecha_solicita'=>now(),
-                                                        'fecha_tutoria'=>now()
-                                                    ]);
-                                                    Alert::success('¡Aviso! ')
-                                                        ->details("Usted ha solicitado tutoría al docente $user_docente->name $user_docente->lastname, espere su confirmación por parte del docente.");
-                                                    return view('user_student.vista_general_cuenta');
-                                                } else {
-                                                    if ($dia=='dia4_op3') {
-                                                        $dia=$horarios4->dia4_op3;
-                                                        $hora_inicio=$horarios4->hora_inicio_op3;
-                                                        $minutos_inicio=$horarios4->minutos_inicio_op3;
-                                                        $hora_fin=$horarios4->hora_fin_op3;
-                                                        $minutos_fin=$horarios4->minutos_fin_op3;
-                                                        DB::table('solitutorias')->insert([
-                                                            'dia'=>$dia,
-                                                            'hora_inicio'=>$hora_inicio,
-                                                            'minutos_inicio'=>$minutos_inicio,
-                                                            'hora_fin'=>$hora_fin,
-                                                            'minutos_fin'=>$minutos_fin,
-                                                            'materia_id'=>$materia->id,
-                                                            'docente_id'=>$user_docente->id,
-                                                            'estudiante_id'=>$user->id,
-                                                            'motivo'=>$motivo,
-                                                            'fecha_solicita'=>now(),
-                                                            'fecha_tutoria'=>now()
-                                                        ]);
-                                                        Alert::success('¡Aviso! ')
-                                                            ->details("Usted ha solicitado tutoría al docente $user_docente->name $user_docente->lastname, espere su confirmación por parte del docente.");
-                                                        return view('user_student.vista_general_cuenta');
-                                                    } else {
-                                                        if ($dia=='dia5_op1') {
-                                                            $dia=$horarios5->dia5_op1;
-                                                            $hora_inicio=$horarios5->hora_inicio_op1;
-                                                            $minutos_inicio=$horarios5->minutos_inicio_op1;
-                                                            $hora_fin=$horarios5->hora_fin_op1;
-                                                            $minutos_fin=$horarios5->minutos_fin_op1;
-                                                            DB::table('solitutorias')->insert([
-                                                                'dia'=>$dia,
-                                                                'hora_inicio'=>$hora_inicio,
-                                                                'minutos_inicio'=>$minutos_inicio,
-                                                                'hora_fin'=>$hora_fin,
-                                                                'minutos_fin'=>$minutos_fin,
-                                                                'materia_id'=>$materia->id,
-                                                                'docente_id'=>$user_docente->id,
-                                                                'estudiante_id'=>$user->id,
-                                                                'motivo'=>$motivo,
-                                                                'fecha_solicita'=>now(),
-                                                                'fecha_tutoria'=>now()
-                                                            ]);
-                                                            Alert::success('¡Aviso! ')
-                                                                ->details("Usted ha solicitado tutoría al docente $user_docente->name $user_docente->lastname, espere su confirmación por parte del docente.");
-                                                            return view('user_student.vista_general_cuenta');
-                                                        } else {
-                                                            if ($dia=='dia5_op2') {
-                                                                $dia=$horarios5->dia5_op2;
-                                                                $hora_inicio=$horarios5->hora_inicio_op2;
-                                                                $minutos_inicio=$horarios5->minutos_inicio_op2;
-                                                                $hora_fin=$horarios5->hora_fin_op2;
-                                                                $minutos_fin=$horarios5->minutos_fin_op2;
-                                                                DB::table('solitutorias')->insert([
-                                                                    'dia'=>$dia,
-                                                                    'hora_inicio'=>$hora_inicio,
-                                                                    'minutos_inicio'=>$minutos_inicio,
-                                                                    'hora_fin'=>$hora_fin,
-                                                                    'minutos_fin'=>$minutos_fin,
-                                                                    'materia_id'=>$materia->id,
-                                                                    'docente_id'=>$user_docente->id,
-                                                                    'estudiante_id'=>$user->id,
-                                                                    'motivo'=>$motivo,
-                                                                    'fecha_solicita'=>now(),
-                                                                    'fecha_tutoria'=>now()
-                                                                ]);
-                                                                Alert::success('¡Aviso! ')
-                                                                    ->details("Usted ha solicitado tutoría al docente $user_docente->name $user_docente->lastname, espere su confirmación por parte del docente.");
-                                                                return view('user_student.vista_general_cuenta');
-                                                            } else {
-                                                                if ($dia=='dia5_op3') {
-                                                                    $dia=$horarios5->dia5_op3;
-                                                                    $hora_inicio=$horarios5->hora_inicio_op3;
-                                                                    $minutos_inicio=$horarios5->minutos_inicio_op3;
-                                                                    $hora_fin=$horarios5->hora_fin_op3;
-                                                                    $minutos_fin=$horarios5->minutos_fin_op3;
-                                                                    DB::table('solitutorias')->insert([
-                                                                        'dia'=>$dia,
-                                                                        'hora_inicio'=>$hora_inicio,
-                                                                        'minutos_inicio'=>$minutos_inicio,
-                                                                        'hora_fin'=>$hora_fin,
-                                                                        'minutos_fin'=>$minutos_fin,
-                                                                        'materia_id'=>$materia->id,
-                                                                        'docente_id'=>$user_docente->id,
-                                                                        'estudiante_id'=>$user->id,
-                                                                        'motivo'=>$motivo,
-                                                                        'fecha_solicita'=>now(),
-                                                                        'fecha_tutoria'=>now()
-                                                                    ]);
-                                                                    Alert::success('¡Aviso! ')
-                                                                        ->details("Usted ha solicitado tutoría al docente $user_docente->name $user_docente->lastname, espere su confirmación por parte del docente.");
-                                                                    return view('user_student.vista_general_cuenta');
-                                                                }
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                } 
-                            }
-                        }
-                    }
-                } 
+                flash("Usted ha solicitado tutoría al docente $user_docente->name $user_docente->lastname, espere su confirmación por parte del docente.")->success();
+                return redirect()->route('vista_general_student');
             }
         }
     }

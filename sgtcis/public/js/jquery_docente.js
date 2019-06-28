@@ -39,3 +39,5 @@ $(document).ready(function(){
         $.datepicker.setDefaults($.datepicker.regional['es']);
    $("#fecha").datepicker();
    });
+
+   $('div#caja_error').delay(4000).slideUp(1500);

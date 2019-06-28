@@ -117,3 +117,17 @@ h4{
 #fondo_solicitud{
     background-color: #0b5345;
 }
+
+/*color fecha solicitar tutoria*/
+.titulo_fecha_tutoria{
+    color: grey;
+    font-style: italic;
+    font-size: 10pt;
+}
+/* Estilos para validar formularios de registro */
+.titulo_error{
+    color: #f78181;
+}
+.caja_error{
+    background-color: #1b1b1b;
+}

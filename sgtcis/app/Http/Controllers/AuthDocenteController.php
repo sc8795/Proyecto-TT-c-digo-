@@ -84,7 +84,7 @@ class AuthDocenteController extends Controller
         $estudiante=DB::table('users')->where('id',$user_student_id)->first();
         $docente=DB::table('users')->where('id',$user_docente_id)->first();
         $materia=DB::table('materias')->where('usuario_id',$docente->id)->first();
-        $datos_tut=DB::table('solitutorias')->where('estudiante_id',$estudiante->id)->where('docente_id',$docente->id)->where('materia_id',$materia->id)->first();
+        $datos_tut=DB::table('solitutorias')->where('estudiante_id',$estudiante->id)->where('docente_id',$docente->id)->first();
         return view('user_docente.vista_tutoria_solicitada',compact('estudiante','docente','materia','datos_tut'));
     }
 /* 
@@ -93,6 +93,11 @@ class AuthDocenteController extends Controller
 |--------------------------------------------------------------------------
 */
     public function confirmar_tutoria(Solitutoria $datos_tut,User $estudiante,User $docente,Materia $materia){
+        $data=request()->validate([
+            'fecha_tutoria'=>'required',
+        ]);
+        $datos_tut->update($data);
+        
         $noti_estudiante=new Notiestudiante;
         $noti_estudiante->user_id=auth()->user()->id;
         $noti_estudiante->user_estudiante_id=$estudiante->id;

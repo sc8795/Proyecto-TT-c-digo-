@@ -21,28 +21,23 @@
         <div class="col-9">
             <div class="container" id="contenedor_general">
                 <div class="row">
-                    <div class="col-3">
-                        <h6 class="tit_general">Buscar docente por: </h6>
-                    </div>
+                    <div class="col-3"></div>
                     <div class="col-9">
                         <form class="card" method="GET" action="{{url("asignar_horario_tutoria")}}">
                             <div class="row no-gutters align-items-center">
-                                <div class="col-auto">
-                                    <i class="fas fa-search">&nbsp;</i>
-                                </div>
                                 <!--end of col-->
                                 <div class="col">
-                                    <input class="form-control form-control-borderless" name="name" type="search" placeholder="Nombres">
+                                    <input class="form-control form-control-borderless form-control-sm" name="name" type="search" placeholder="Nombres">
                                 </div>
                                 <div class="col">
-                                    <input class="form-control form-control-borderless" name="lastname" type="search" placeholder="Apellidos">
+                                    <input class="form-control form-control-borderless form-control-sm" name="lastname" type="search" placeholder="Apellidos">
                                 </div>
                                 <div class="col">
-                                    <input class="form-control form-control-borderless" name="email" type="search" placeholder="Email">
+                                    <input class="form-control form-control-borderless form-control-sm" name="email" type="search" placeholder="Email">
                                 </div>
                                 <!--end of col-->
                                 <div class="col-auto">
-                                    <button class="btn btn-success" type="submit">Buscar</button>
+                                    <button class="btn btn-success btn-sm" type="submit" title="Buscar docente por nombre, apellido o email">Buscar <i class="fas fa-search">&nbsp;</i></button>
                                 </div>
                                 <!--end of col-->
                             </div>
@@ -61,7 +56,7 @@
                         </tr>
                       </thead>
                       <tbody>
-                          @foreach($users as $user)
+                        @foreach($users as $user)
                             <tr>
                                 <td><h6 class="tit_general">{{$user->id}}</h6></td>
                                 <td><h6 class="tit_general">{{$user->name}} {{$user->lastname}}</h6></td>
@@ -74,7 +69,6 @@
                                 </td>
                             </tr>
                         @endforeach
-                        {{$users->render()}}
                       </tbody>
                     </table>
                     {{$users->render()}}
