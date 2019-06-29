@@ -174,3 +174,6 @@ Route::put('confirmar_tutoria/{datos_tut}/{estudiante}/{docente}/{materia}','Aut
 /* Rutas para editar datos de tutoría solicitada */
 Route::get('vista_editar_datos_tutoria/{datos_tut}/{estudiante}/{docente}/{materia}','AuthDocenteController@vista_editar_datos_tutoria')->name('vista_editar_datos_tutoria');
 route::put('editar_datos_tutoria/{datos_tut}/{estudiante}/{docente}/{materia}','AuthDocenteController@editar_datos_tutoria')->name('editar_datos_tutoria');
+
+/* Rutas para evaluar al estudiante */
+Route::get('evaluar_estudiante/{user_docente_id}','AuthDocenteController@evaluar_estudiante')->name('evaluar_estudiante');

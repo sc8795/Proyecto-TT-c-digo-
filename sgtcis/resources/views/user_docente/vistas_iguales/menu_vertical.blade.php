@@ -32,7 +32,7 @@
             @endif
         </li>
         <li>
-            <a href="#"><i class="icono izquierda fas fa-star"></i>Evaluación al estudiante</a>
+            <a href="{{url("evaluar_estudiante/".auth()->user()->id)}}"><i class="icono izquierda fas fa-star"></i>Evaluación al estudiante</a>
         </li>
     </ul>
 </div>

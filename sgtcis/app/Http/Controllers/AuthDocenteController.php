@@ -141,7 +141,7 @@ class AuthDocenteController extends Controller
             'fecha_tutoria'=>'required',
         ]);
         $datos_tut->update($data);
-        $elimina_tutoria_solicitada = DB::table('notifications')->where('created_at','=',$datos_tut->fecha_solicita);
+        $elimina_tutoria_solicitada = DB::table('notifications')->where('created_at',$datos_tut->fecha_solicita);
         $elimina_tutoria_solicitada->delete();
 
         $noti_estudiante=new Notiestudiante;
@@ -160,5 +160,18 @@ class AuthDocenteController extends Controller
         Alert::info('¡Aviso! ')
              ->details("Se ha editado los datos de tutoría y se ha confirmado la tutoría solicitada por el estudiante $estudiante->name $estudiante->lastname, para el día $datos_tut->dia en el horario de $datos_tut->hora_inicio:$datos_tut->minutos_inicio a $datos_tut->hora_fin:$datos_tut->minutos_fin. Ahora podrá evaluar la actuación del estudiante sobre la tutoría impartida, en la opción disponible en el menú EVALUACIÓN AL ESTUDIANTE.");
         return view('user_docente.vista_general_cuenta');
+    }
+/* 
+|--------------------------------------------------------------------------
+| Funciones para evaluar al estudiante después de la tutoría impartida
+|--------------------------------------------------------------------------
+*/
+    public function evaluar_estudiante($user_docente_id){
+        $verifica=DB::table('notiestudiantes')->where('user_id',$user_docente_id)->exists();
+        $noti_estudiantes=DB::table('notiestudiantes')->where('user_id',$user_docente_id)->get();
+        /*foreach ($noti_estudiantes as $noti_estudiante) {
+            $user_estudiante=DB::table('users')->where('id',$noti_estudiante->user_estudiante_id)->first();
+        }*/
+        return view('user_docente.vista_evaluar_estudiante',compact('verifica','noti_estudiantes'));
     }
 }
