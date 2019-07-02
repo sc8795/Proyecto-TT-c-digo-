@@ -26,7 +26,7 @@
                     </div>
                     <div class="container" id="contenedor_general_op2"> 
                         <br>
-                        <table class="table table-bordered table-hover table-sm">
+                        <table class="table table-bordered table-sm">
                             <thead>
                                 <tr>
                                     <th scope="col">Nombres completos</th>
@@ -38,13 +38,14 @@
                             @foreach ($noti_estudiantes as $noti_estudiante)
                                 @php
                                     $user_estudiante=DB::table('users')->where('id',$noti_estudiante->user_estudiante_id)->first();
+                                    $materia=DB::table('materias')->where('usuario_id',auth()->user()->id)->where('ciclo',$user_estudiante->ciclo)->first();
                                 @endphp 
                                 <tbody>
                                     <tr>
                                         <td>{{$user_estudiante->name}} {{$user_estudiante->lastname}}</td>
                                         <td>{{$user_estudiante->ciclo}}</td>
                                         <td>{{$user_estudiante->paralelo}}</td>
-                                        <td>Evaluar</td>
+                                        <td><a href="{{url("evalua_estudiante/{$user_estudiante->id}/".auth()->user()->id)."/{$materia->id}"}}" class="btn btn-block btn-success btn-sm">Evaluar <span class="fas fa-check-circle"></span></a></td>
                                     </tr>
                                     <tr>
                                 </tbody>
@@ -62,7 +63,6 @@
                         <br>
                         <br>
                     </div>
-                    </h6>
                 @endif
             </div>
         </div>

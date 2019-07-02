@@ -8,6 +8,7 @@ use App\Notifications\NotificacionEstudiante;
 use App\Solitutoria;
 use App\Materia;
 use App\Notiestudiante;
+use App\Evaluacion;
 use App\User;
 use Alert;
 use Auth;
@@ -169,9 +170,20 @@ class AuthDocenteController extends Controller
     public function evaluar_estudiante($user_docente_id){
         $verifica=DB::table('notiestudiantes')->where('user_id',$user_docente_id)->exists();
         $noti_estudiantes=DB::table('notiestudiantes')->where('user_id',$user_docente_id)->get();
-        /*foreach ($noti_estudiantes as $noti_estudiante) {
-            $user_estudiante=DB::table('users')->where('id',$noti_estudiante->user_estudiante_id)->first();
-        }*/
         return view('user_docente.vista_evaluar_estudiante',compact('verifica','noti_estudiantes'));
+    }
+    public function evalua_estudiante($user_estudiante_id,$user_docente_id,$materia_id){
+        $user_estudiante=DB::table('users')->where('id',$user_estudiante_id)->first();
+        return view('user_docente.vista_evalua_estudiante',compact('user_estudiante'));
+    }
+    public function evaluacion_estudiante($user_evaluado_id, Request $request){
+        $asistencia=$request->input('asistencia');
+        if($asistencia=="no"){
+            Evaluacion::create([
+                'user_evaluado_id'=>$user_evaluado_id,
+                'evaluacion'=>"no"
+            ]);
+        }
+        dd($user_evaluado_id);
     }
 }

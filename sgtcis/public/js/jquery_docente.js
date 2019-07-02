@@ -40,4 +40,18 @@ $(document).ready(function(){
    $("#fecha").datepicker();
    });
 
+//mensajes
    $('div#caja_error').delay(4000).slideUp(1500);
+
+   //evaluar estudiante
+function asistencia(){
+    var motivo=document.getElementsByName("asistencia");
+    if(motivo[1].checked==true){
+        document.getElementById('asistencia_no').style.display='block';
+        document.getElementById('asistencia_si').style.display='none';
+    }else{
+        document.getElementById('asistencia_no').style.display='none';
+        
+        document.getElementById('asistencia_si').style.display='block';
+    }
+}
