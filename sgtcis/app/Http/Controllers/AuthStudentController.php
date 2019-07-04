@@ -188,20 +188,7 @@ class AuthStudentController extends Controller
                 Alert::danger('¡Advertencia! ')
                 ->details("El campo motivo de tutoría es requerido.");
                 return view('user_student.vista_solicitar_tutoria',compact('user','user_docente','materia','estado','mensaje','horarios','horarios2','horarios3','horarios4','horarios5'));
-            }else{
-                $noti_docente=new Notidocente;
-                $noti_docente->user_id=auth()->user()->id;
-                $noti_docente->user_docente_id=$docente;
-                $user=DB::table('users')->where('id',$noti_docente->user_id)->first();
-                $noti_docente->title="Solicitud de tutoría ";
-                $noti_docente->descripcion="$user->name $user->lastname esta pidiendo solitud de tutoria.";
-                $noti_docente->save();
-
-                $user_notificado=User::where('id','=',$docente)->get();
-                if(\Notification::send($user_notificado,new NotificacionDocente(Notidocente::latest('id')->first()))){
-                    return back();
-                }
-                
+            }else{                
                 if ($dia=='dia1_op1') {
                     $dia=$horarios->dia1_op1;
                     $hora_inicio=$horarios->hora_inicio_op1;
@@ -319,8 +306,25 @@ class AuthStudentController extends Controller
                     'estudiante_id'=>$user->id,
                     'motivo'=>$motivo,
                     'fecha_solicita'=>now(),
-                    'fecha_tutoria'=>now()
+                    'fecha_confirma'=>now(),
+                    'fecha_tutoria'=>now(),
+                    'fecha_evalua'=>now()
                 ]);
+                $solitutoria=DB::table('solitutorias')->where('fecha_solicita',now())->first();
+                $noti_docente=new Notidocente;
+                $noti_docente->user_id=auth()->user()->id;
+                $noti_docente->user_docente_id=$docente;
+                $noti_docente->solitutoria_id=$solitutoria->id;
+                $user=DB::table('users')->where('id',$noti_docente->user_id)->first();
+                $noti_docente->title="Solicitud de tutoría ";
+                $noti_docente->descripcion="$user->name $user->lastname esta pidiendo solitud de tutoria.";
+                $noti_docente->save();
+
+                $user_notificado=User::where('id','=',$docente)->get();
+                if(\Notification::send($user_notificado,new NotificacionDocente(Notidocente::latest('id')->first()))){
+                    return back();
+                }
+
                 flash("Usted ha solicitado tutoría al docente $user_docente->name $user_docente->lastname, espere su confirmación por parte del docente.")->success();
                 return redirect()->route('vista_general_student');
             }

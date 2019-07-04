@@ -81,11 +81,11 @@ class AuthDocenteController extends Controller
 | Funciones para vista de tutoria solicitada por parte del estudiante
 |--------------------------------------------------------------------------
 */
-    public function ver_tutoria_solitada($user_student_id,$user_docente_id){
+    public function ver_tutoria_solitada($user_student_id,$user_docente_id,$solitutoria_id){
         $estudiante=DB::table('users')->where('id',$user_student_id)->first();
         $docente=DB::table('users')->where('id',$user_docente_id)->first();
         $materia=DB::table('materias')->where('usuario_id',$docente->id)->first();
-        $datos_tut=DB::table('solitutorias')->where('estudiante_id',$estudiante->id)->where('docente_id',$docente->id)->first();
+        $datos_tut=DB::table('solitutorias')->where('estudiante_id',$estudiante->id)->where('docente_id',$docente->id)->where('id',$solitutoria_id)->first();
         return view('user_docente.vista_tutoria_solicitada',compact('estudiante','docente','materia','datos_tut'));
     }
 /* 
@@ -97,8 +97,9 @@ class AuthDocenteController extends Controller
         $data=request()->validate([
             'fecha_tutoria'=>'required',
         ]);
+        $data['fecha_confirma']=now();
         $datos_tut->update($data);
-        $elimina_tutoria_solicitada = DB::table('notifications')->where('created_at','=',$datos_tut->fecha_solicita);
+        $elimina_tutoria_solicitada = DB::table('notifications')->where('created_at',$datos_tut->fecha_solicita)->where('notifiable_id',$docente->id);
         $elimina_tutoria_solicitada->delete();
         
         $noti_estudiante=new Notiestudiante;
@@ -141,8 +142,10 @@ class AuthDocenteController extends Controller
             'minutos_fin'=>'required',
             'fecha_tutoria'=>'required',
         ]);
+        $data['fecha_confirma']=now();
         $datos_tut->update($data);
-        $elimina_tutoria_solicitada = DB::table('notifications')->where('created_at',$datos_tut->fecha_solicita);
+
+        $elimina_tutoria_solicitada = DB::table('notifications')->where('created_at',$datos_tut->fecha_solicita)->where('notifiable_id',$docente->id);
         $elimina_tutoria_solicitada->delete();
 
         $noti_estudiante=new Notiestudiante;
@@ -170,10 +173,17 @@ class AuthDocenteController extends Controller
     public function evaluar_estudiante($user_docente_id){
         $verifica=DB::table('notiestudiantes')->where('user_id',$user_docente_id)->exists();
         $noti_estudiantes=DB::table('notiestudiantes')->where('user_id',$user_docente_id)->get();
-        return view('user_docente.vista_evaluar_estudiante',compact('verifica','noti_estudiantes'));
+        $unique_noti_estudiantes=$noti_estudiantes->unique('user_estudiante_id');
+        return view('user_docente.vista_evaluar_estudiante',compact('verifica','unique_noti_estudiantes'));
+    }
+    public function lista_tutorias_confirmadas($user_estudiante_id,$user_docente_id,$materia_id){
+        $solitutorias=DB::table('solitutorias')->where('materia_id',$materia_id)->where('docente_id',$user_docente_id)->where('estudiante_id',$user_estudiante_id)->get();
+        //dd($solitutorias_por_evaluar); exit;
+        return view('user_docente.vista_lista_tutorias_confirmadas',compact('solitutorias'));
     }
     public function evalua_estudiante($user_estudiante_id,$user_docente_id,$materia_id){
         $user_estudiante=DB::table('users')->where('id',$user_estudiante_id)->first();
+
         return view('user_docente.vista_evalua_estudiante',compact('user_estudiante'));
     }
     public function evaluacion_estudiante($user_evaluado_id, Request $request){

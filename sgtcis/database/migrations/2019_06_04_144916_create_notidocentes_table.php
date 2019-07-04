@@ -17,6 +17,7 @@ class CreateNotidocentesTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->integer('user_docente_id');
+            $table->integer('solitutoria_id');
             $table->string('title');
             $table->text('descripcion');
             $table->timestamps();

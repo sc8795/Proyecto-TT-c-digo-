@@ -67,8 +67,8 @@
                         </div>
                         <br>
                     </div>
-                    <a href="{{url("vista_editar_datos_tutoria/{$datos_tut->id}/{$estudiante->id}/{$docente->id}/{$materia->id}")}}" class="btn btn-success btn-sm" title="Editar datos de tutoría">Editar <span class="oi oi-pencil"></span></a>
                     <button type="submit" class="btn btn-info btn-sm" title="Confirmar tutoría al estudiante {{$estudiante->name}} {{$estudiante->lastname}}." name="" value="">Confirmar tutoría <span class="fas fa-check-double"></span></button>
+                    <a href="{{url("vista_editar_datos_tutoria/{$datos_tut->id}/{$estudiante->id}/{$docente->id}/{$materia->id}")}}" class="btn btn-success btn-sm" title="Editar datos de tutoría">Editar tutoría<span class="oi oi-pencil"></span></a>
                 </form>
             </div>
         </div>

@@ -35,7 +35,10 @@
                                     <th scope="col">Acción</th>
                                 </tr>
                             </thead>
-                            @foreach ($noti_estudiantes as $noti_estudiante)
+                            @php
+                                $cont=0;
+                            @endphp
+                            @foreach ($unique_noti_estudiantes as $noti_estudiante)
                                 @php
                                     $user_estudiante=DB::table('users')->where('id',$noti_estudiante->user_estudiante_id)->first();
                                     $materia=DB::table('materias')->where('usuario_id',auth()->user()->id)->where('ciclo',$user_estudiante->ciclo)->first();
@@ -45,9 +48,8 @@
                                         <td>{{$user_estudiante->name}} {{$user_estudiante->lastname}}</td>
                                         <td>{{$user_estudiante->ciclo}}</td>
                                         <td>{{$user_estudiante->paralelo}}</td>
-                                        <td><a href="{{url("evalua_estudiante/{$user_estudiante->id}/".auth()->user()->id)."/{$materia->id}"}}" class="btn btn-block btn-success btn-sm">Evaluar <span class="fas fa-check-circle"></span></a></td>
+                                        <td><a href="{{url("lista_tutorias_confirmadas/{$user_estudiante->id}/".auth()->user()->id)."/{$materia->id}"}}" class="btn btn-block btn-success btn-sm">Evaluar <span class="fas fa-check-circle"></span></a></td>
                                     </tr>
-                                    <tr>
                                 </tbody>
                             @endforeach
                         </table>
