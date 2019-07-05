@@ -30,9 +30,7 @@
 	</div>
 
 <script src="{{asset('js/jquery.js')}}"></script>
+<script src="{{asset('js/bootstrap.min.js')}}"></script>
 <script src="{{asset('js/jquery_administrador.js')}}"></script>
-<script type="text/javascript" src="js/jquery-3.2.1.slim.min.js"></script>
-<script type="text/javascript" src="js/popper.min.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
 </body>
 </html>

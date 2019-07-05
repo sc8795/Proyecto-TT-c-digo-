@@ -100,7 +100,7 @@
                         <br>
                         <!-- >Ventana modal<-->
                         <main class="container">
-                            <div class="modal fade" id="ventanaModal" tabindex="-1" role="dialog" aria-labelledby="tituloVentana" aria-hidden="true">  
+                            <div class="modal fade" id="ventana" tabindex="-1" role="dialog" aria-labelledby="tituloVentana" aria-hidden="true">  
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -132,7 +132,7 @@
                             </div>
                         </main>
                         <!-- >Hasta aquí ventana modal<-->
-                        <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#ventanaModal">Detalles</button>
+                        <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#ventana">Detalles</button>
                         <a href="{{url("descargar_plantilla/{$aux}")}}" class="btn btn-secondary btn-sm" title="Descargar plantilla para registro de materias por medio de documento excel">Descargar <span class="fas fa-file-export"></span></a>
                         <br>
                         <br>

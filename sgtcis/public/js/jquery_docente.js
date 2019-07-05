@@ -42,6 +42,7 @@ $(document).ready(function(){
 
 //mensajes
    $('div#caja_error').delay(4000).slideUp(1500);
+   $('div#mensaje').delay(10000).slideUp(1500);
 
    //evaluar estudiante
 function asistencia(){

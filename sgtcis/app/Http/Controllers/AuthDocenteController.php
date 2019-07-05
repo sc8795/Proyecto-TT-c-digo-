@@ -114,10 +114,8 @@ class AuthDocenteController extends Controller
         if(\Notification::send($user_notificado,new NotificacionEstudiante(Notiestudiante::latest('id')->first()))){
             return back();
         }
-
-        Alert::info('¡Aviso! ')
-             ->details("Ha confirmado la tutoría solicitada por el estudiante $estudiante->name $estudiante->lastname, para el día $datos_tut->dia en el horario de $datos_tut->hora_inicio:$datos_tut->minutos_inicio a $datos_tut->hora_fin:$datos_tut->minutos_fin. Ahora podrá evaluar la actuación del estudiante sobre la tutoría impartida, en la opción disponible en el menú EVALUACIÓN AL ESTUDIANTE.");
-        return view('user_docente.vista_general_cuenta');
+        flash("Ha confirmado la tutoría solicitada por el estudiante $estudiante->name $estudiante->lastname, para el día $datos_tut->dia en el horario de $datos_tut->hora_inicio:$datos_tut->minutos_inicio a $datos_tut->hora_fin:$datos_tut->minutos_fin. Ahora podrá evaluar la actuación del estudiante sobre la tutoría impartida, en la opción disponible en el menú EVALUACIÓN AL ESTUDIANTE.")->success();
+        return redirect()->route('vista_general_docente');
     }
 /* 
 |--------------------------------------------------------------------------
@@ -178,10 +176,9 @@ class AuthDocenteController extends Controller
     }
     public function lista_tutorias_confirmadas($user_estudiante_id,$user_docente_id,$materia_id){
         $solitutorias=DB::table('solitutorias')->where('materia_id',$materia_id)->where('docente_id',$user_docente_id)->where('estudiante_id',$user_estudiante_id)->get();
-        //dd($solitutorias_por_evaluar); exit;
         return view('user_docente.vista_lista_tutorias_confirmadas',compact('solitutorias'));
     }
-    public function evalua_estudiante($user_estudiante_id,$user_docente_id,$materia_id){
+    public function evalua_estudiante($solitutoria_id,$user_estudiante_id,$user_docente_id,$materia_id){
         $user_estudiante=DB::table('users')->where('id',$user_estudiante_id)->first();
 
         return view('user_docente.vista_evalua_estudiante',compact('user_estudiante'));

@@ -41,8 +41,8 @@
                                     @endphp
                                     <div class="container">
                                         <div class="row">
-                                            <div class="col-3" style="background-color: #f7dc6f;">
-                                                <a href="#" class="btn btn-sm">
+                                            <div class="col-3" style="background-color: #f7dc6f; text-align:center;">
+                                                <a href="{{url("evalua_estudiante/{$solitutoria->id}/{$solitutoria->estudiante_id}/".auth()->user()->id."/{$solitutoria->materia_id}")}}" class="btn btn-sm" style="margin-top:50%">
                                                     <h1>{{$cont}}</h1>
                                                     Evaluar
                                                 </a>
@@ -57,8 +57,11 @@
                                                     $date = date_create($fecha_confirma);
                                                     $fecha_confirma=date_format($date, 'd-m-Y');
                                                 @endphp
-                                                <span class="negrita">Fecha solicitada: </span>{{$fecha_solicita}} <br>
-                                                <span class="negrita">Fecha confirmada: </span>{{$fecha_confirma}} <br>
+                                                <span class="negrita tit_general">Datos tutoría <hr></span>
+                                                <span class="negrita">Solicitada: </span>{{$fecha_solicita}} <br>
+                                                <span class="negrita">Confirmada: </span>{{$fecha_confirma}} <br>
+                                                <span class="negrita">Horario: </span> {{$solitutoria->hora_inicio}}:{{$solitutoria->minutos_inicio}} a {{$solitutoria->hora_fin}}:{{$solitutoria->minutos_fin}}
+                                                <hr>
                                             </div>
                                         </div>
                                         <hr>

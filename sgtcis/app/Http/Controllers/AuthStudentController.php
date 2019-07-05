@@ -317,7 +317,7 @@ class AuthStudentController extends Controller
                 $noti_docente->solitutoria_id=$solitutoria->id;
                 $user=DB::table('users')->where('id',$noti_docente->user_id)->first();
                 $noti_docente->title="Solicitud de tutoría ";
-                $noti_docente->descripcion="$user->name $user->lastname esta pidiendo solitud de tutoria.";
+                $noti_docente->descripcion="$user->name $user->lastname solicita tutoría.";
                 $noti_docente->save();
 
                 $user_notificado=User::where('id','=',$docente)->get();
