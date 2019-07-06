@@ -294,7 +294,7 @@ class AuthStudentController extends Controller
                     $hora_fin=$horarios5->hora_fin_op3;
                     $minutos_fin=$horarios5->minutos_fin_op3;
                 }
-
+                $fecha_actual=now();
                 DB::table('solitutorias')->insert([
                     'dia'=>$dia,
                     'hora_inicio'=>$hora_inicio,
@@ -305,12 +305,12 @@ class AuthStudentController extends Controller
                     'docente_id'=>$user_docente->id,
                     'estudiante_id'=>$user->id,
                     'motivo'=>$motivo,
-                    'fecha_solicita'=>now(),
-                    'fecha_confirma'=>now(),
-                    'fecha_tutoria'=>now(),
-                    'fecha_evalua'=>now()
+                    'fecha_solicita'=>$fecha_actual,
+                    'fecha_confirma'=>$fecha_actual,
+                    'fecha_tutoria'=>$fecha_actual,
+                    'fecha_evalua'=>$fecha_actual
                 ]);
-                $solitutoria=DB::table('solitutorias')->where('fecha_solicita',now())->first();
+                $solitutoria=DB::table('solitutorias')->where('fecha_solicita',$fecha_actual)->first();
                 $noti_docente=new Notidocente;
                 $noti_docente->user_id=auth()->user()->id;
                 $noti_docente->user_docente_id=$docente;

@@ -166,10 +166,10 @@ Route::get('editar_perfil_docente','AuthDocenteController@editar_perfil_docente'
 Route::put('editar_docente','AuthDocenteController@editar_docente')->name('editar_docente');
 
 /* Rutas para ver la tutoria solicitada por parte del estudiante*/
-Route::get('ver_tutoria_solitada/{user_student_id}/{user_docente_id}/{solitutoria_id}','AuthDocenteController@ver_tutoria_solitada')->name('ver_tutoria_solitada');
+Route::get('ver_tutoria_solitada/{user_student_id}/{user_docente_id}/{solitutoria_id}/{notificacion_id}','AuthDocenteController@ver_tutoria_solitada')->name('ver_tutoria_solitada');
 
 /* Rutas para confirmar tutoria */
-Route::put('confirmar_tutoria/{datos_tut}/{estudiante}/{docente}/{materia}','AuthDocenteController@confirmar_tutoria')->name('confirmar_tutoria');
+Route::put('confirmar_tutoria/{datos_tut}/{estudiante}/{docente}/{materia}/{notificacion_id}','AuthDocenteController@confirmar_tutoria')->name('confirmar_tutoria');
 
 /* Rutas para editar datos de tutoría solicitada */
 Route::get('vista_editar_datos_tutoria/{datos_tut}/{estudiante}/{docente}/{materia}','AuthDocenteController@vista_editar_datos_tutoria')->name('vista_editar_datos_tutoria');
@@ -179,4 +179,4 @@ route::put('editar_datos_tutoria/{datos_tut}/{estudiante}/{docente}/{materia}','
 Route::get('evaluar_estudiante/{user_docente_id}','AuthDocenteController@evaluar_estudiante')->name('evaluar_estudiante');
 Route::get('lista_tutorias_confirmadas/{user_estudiante_id}/{user_docente_id}/{materia_id}','AuthDocenteController@lista_tutorias_confirmadas')->name('lista_tutorias_confirmadas');
 Route::get('evalua_estudiante/{solitutoria_id}/{user_estudiante_id}/{user_docente_id}/{materia_id}','AuthDocenteController@evalua_estudiante')->name('evalua_estudiante');
-Route::post('evaluacion_estudiante/{user_evaluado_id}','AuthDocenteController@evaluacion_estudiante')->name('evaluacion_estudiante');
+Route::post('evaluacion_estudiante/{user_evaluado_id}/{solitutoria_id}','AuthDocenteController@evaluacion_estudiante')->name('evaluacion_estudiante');

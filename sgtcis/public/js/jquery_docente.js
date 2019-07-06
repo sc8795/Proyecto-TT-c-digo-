@@ -56,3 +56,5 @@ function asistencia(){
         document.getElementById('asistencia_si').style.display='block';
     }
 }
+
+$('#ventana').modal();

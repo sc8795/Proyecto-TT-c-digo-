@@ -32,7 +32,7 @@
                         @endphp
                     @endforeach
                 @endif
-                <form action="{{url("confirmar_tutoria/{$datos_tut->id}/{$estudiante->id}/{$docente->id}/{$materia->id}")}}" method="POST">
+                <form action="{{url("confirmar_tutoria/{$datos_tut->id}/{$estudiante->id}/{$docente->id}/{$materia->id}/{$notificacion_id}")}}" method="POST">
                     {{method_field("PUT")}}
                     {{ csrf_field() }}
                     <h6 class="tit_general">Asunto: 

@@ -17,7 +17,10 @@ class CreateEvaluacionsTable extends Migration
             $table->increments('id');
             $table->integer('user_evaluado_id');
             $table->integer('solitutoria_id');
-            $table->string('evaluacion',500);
+            $table->string('asistencia',2);
+            $table->string('evaluacion',500)->nullable();
+            $table->string('tema')->nullable();
+            $table->string('descripcion',2000)->nullable();
             $table->timestamps();
         });
     }

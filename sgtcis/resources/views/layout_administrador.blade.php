@@ -12,6 +12,7 @@
 	<link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/estilos_administrador.css')}}">
 	<link rel="stylesheet" href="{{asset('css/estilos_pag_inicio.css')}}">
+	<link rel="stylesheet" href="{{asset('css/hint.min.css')}}">
 	
 	<title>@yield('title')Administrador - SGTCIS</title>
 </head>
