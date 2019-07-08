@@ -195,7 +195,47 @@ class AuthDocenteController extends Controller
             return redirect()->route('vista_general_docente');
         }
         if($asistencia=="si"){
+            $tema_tutoria=$request->input('tema_de_tutoria');
+            $descripcion_tutoria=$request->input('descripcion_de_tutoria');
+            $pr1=$request->input('pr1');
+            $pr2=$request->input('pr2');
+            $pr3=$request->input('pr3');
+            $pr4=$request->input('pr4');
+            $pr5=$request->input('pr5');
+            $suma=($pr1)+($pr2)+($pr3)+($pr4)+($pr5);
+            $total=$suma/5;
+            Evaluacion::create([
+                'user_evaluado_id'=>$user_evaluado_id,
+                'solitutoria_id'=>$solitutoria_id,
+                'asistencia'=>$asistencia,
+                'evaluacion'=>$total,
+                'tema'=>$tema_tutoria,
+                'descripcion'=>$descripcion_tutoria
+            ]);
+            flash("Evaluación de tutoria correcta")->success();
+            return redirect()->route('vista_general_docente');
+        }
+    }
+/* 
+|--------------------------------------------------------------------------
+| Funciones para generar reportes pdf - cuando se ha evaluado al estudiante
+|--------------------------------------------------------------------------
+*/
+    public function reporte_pfp_evaluacion_estudiante($tipo, Evaluacion $evaluacion, User $estudiante, User $docente, Solitutoria $solitutoria){
+        $vista_url=("user_docente.reporte_evalaucion_estudiante");
+        return $this->crear_pdf($tipo, $evaluacion, $estudiante, $docente, $solitutoria, $vista_url);
+    }
+    public function crear_pdf($tipo, $evaluacion, $estudiante, $docente, $solitutoria, $vista_url){
+        $date=date('Y-m-d');
+        $view=\View::make($vista_url,compact('estudiante','docente','evaluacion','solitutoria','date'))->render();
+        $pdf=\App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
 
+        if($tipo==1){
+            return $pdf->stream();
+        }
+        if($tipo==2){
+            return $pdf->download("reporte_de_evaluacion_del_estudiante_".$estudiante->name."_".$estudiante->lastname.".pdf");
         }
     }
 }

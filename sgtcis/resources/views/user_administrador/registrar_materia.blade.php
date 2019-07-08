@@ -26,7 +26,7 @@
                             {{ csrf_field() }}
                             <div class="form-group">
                                 <label><h6 class="tit_general">Nombre materia</h6></label>
-                                <input type="text" class="form-control" name="name" id="name" placeholder="Nombre materia" autocomplete="off">
+                                <input type="text" class="form-control" name="name" id="name" placeholder="Nombre materia">
                             </div>
                             <hr>
                             <div class="form-group">

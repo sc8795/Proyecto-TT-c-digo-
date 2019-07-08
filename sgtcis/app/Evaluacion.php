@@ -9,6 +9,6 @@ class Evaluacion extends Model
     protected $table='evaluacions'; 
 
     protected $fillable = [
-        'user_evaluado_id','solitutoria_id','asistencia','evaluacion'
+        'user_evaluado_id','solitutoria_id','asistencia','evaluacion','tema','descripcion'
     ];
 }

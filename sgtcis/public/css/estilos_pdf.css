@@ -1,0 +1,50 @@
+/*estilos para el documento pdf generado*/
+    
+.posicion_logo_unl{
+    width: 20%;  /*Este será el ancho que tendrá tu columna*/
+    float:left; /*Aqui determinas de lado quieres quede esta "columna" */
+}
+.logo_unl{
+    width: 150px;
+    height: 100px;
+    margin-left: -20px;
+}
+.posicion_logo_cis{
+    width: 20%;
+    float: right;
+}
+.logo_cis{
+    width: 120px;
+    height: 75px;
+    margin-left: 20px;
+    margin-top: 0px;
+}
+    
+.posicion_titulo_unl{
+    width: 59%;
+    float: center;
+    margin-left:21%; /*Este margen hace que no se encime el contenido en tu menúlateral, es     importante que pongas un pocos pixeles más que el ancho  de tu columna lateral*/
+    margin-top: -20px;
+}
+.titulo_unl_facultad_carrera{
+    text-align: center;
+}
+
+.titulo_reporte{
+    font-size: 13px;
+}
+.contenedor_datos_estudiante{
+    background-color:  #2874a6 ;
+}
+.titulo_estudiante{
+    color: white;
+}
+.contenedor_datos_estudiante_inf{
+    background-color:  white ;
+}
+.negrita{
+    font-weight: bold;
+}
+.quita_negrita{
+    font-weight: normal;
+}

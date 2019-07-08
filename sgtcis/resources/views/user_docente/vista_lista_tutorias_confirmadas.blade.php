@@ -92,6 +92,11 @@
                                         $evaluacion=DB::table('evaluacions')->where('solitutoria_id',$solitutoria->id)->first();
                                         $estudiante=DB::table('users')->where('id',$evaluacion->user_evaluado_id)->first();
                                         $datos_tut=DB::table('solitutorias')->where('id',$evaluacion->solitutoria_id)->first();
+
+                                        $fecha_tutoria=$solitutoria->fecha_tutoria;
+                                        $date = date_create($fecha_tutoria);
+                                        $fecha_tutoria=date_format($date, 'd-m-Y');
+                                    
                                     @endphp
                                     <!-- >Ventana modal<-->
                                     <main class="container">
@@ -105,11 +110,11 @@
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <h6 class="negrita">Tutoría solicitada por {{$cont2}}: <span class="quita_negrita">{{$estudiante->name}} {{$estudiante->lastname}}</span></h6>
+                                                        <h6 class="negrita">Tutoría solicitada por: <span class="quita_negrita">{{$estudiante->name}} {{$estudiante->lastname}}</span></h6>
                                                         <h6 class="negrita">Fecha solicitada: <span class="quita_negrita">{{$datos_tut->fecha_solicita}}</span></h6>
                                                         <h6 class="negrita">Fecha confirmada: <span class="quita_negrita">{{$datos_tut->fecha_confirma}}</span></h6>
                                                         @if ($evaluacion->asistencia=="si")
-                                                            <h6 class="negrita">Fecha impartida: <span class="quita_negrita">{{$datos_tut->fecha_tutoria}}</span></h6>
+                                                            <h6 class="negrita">Fecha impartida: <span class="quita_negrita">{{$fecha_tutoria}}</span></h6>
                                                         @endif
                                                         <h6 class="negrita">Asistencia: <span class="quita_negrita">{{$evaluacion->asistencia}}</span></h6>
                                                         <hr>
@@ -118,6 +123,18 @@
                                                             <div class="progress">
                                                                 <div class="progress-bar bg-danger" role="progressbar" style="width: 100%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
                                                             </div>
+                                                        @endif
+                                                        @if ($evaluacion->asistencia=="si")
+                                                            @if ($evaluacion->evaluacion>=70)
+                                                                <div class="progress">
+                                                                    <div class="progress-bar bg-success" role="progressbar" style="width: {{$evaluacion->evaluacion}}%;" aria-valuenow="{{$evaluacion->evaluacion}}" aria-valuemin="{{$evaluacion->evaluacion}}" aria-valuemax="100">{{$evaluacion->evaluacion}}%</div>
+                                                                </div>
+                                                            @endif
+                                                            @if ($evaluacion->evaluacion<70)
+                                                                <div class="progress">
+                                                                    <div class="progress-bar bg-danger" role="progressbar" style="width: {{$evaluacion->evaluacion}}%;" aria-valuenow="{{$evaluacion->evaluacion}}" aria-valuemin="{{$evaluacion->evaluacion}}" aria-valuemax="100">{{$evaluacion->evaluacion}}%</div>
+                                                                </div>
+                                                            @endif
                                                         @endif
                                                     </div>
                                                     <div class="modal-footer">
@@ -142,8 +159,15 @@
                                                 <hr>
                                                 @if ($evaluacion->asistencia=="si")
                                                     <div>
-                                                        <span class="fas fa-tasks"></span>
-                                                        <span class="fas fa-file-pdf"></span>
+                                                        <div class="hint--top hint--medium" data-hint="Detalles evaluación">
+                                                            <button class="btn btn-outline btn-sm" data-toggle="modal" data-target="#ventana{{$cont2}}"><span class="fas fa-tasks"></span></button>
+                                                        </div>
+                                                        <div class="hint--top hint--medium" data-hint="Ver evaluación">
+                                                            <a href="{{url("reporte_pfp_evaluacion_estudiante/1/{$evaluacion->id}/{$estudiante->id}/".auth()->user()->id."/{$solitutoria->id}")}}" target="_blank" class="btn btn-outline btn-sm"><span class="fas fa-file-pdf"></span></a>
+                                                        </div>
+                                                        <div class="hint--top hint--medium" data-hint="Descargar reporte de evaluación">
+                                                            <a href="{{url("reporte_pfp_evaluacion_estudiante/2/{$evaluacion->id}/{$estudiante->id}/".auth()->user()->id."/{$solitutoria->id}")}}" target="_blank" class="btn btn-outline btn-sm"><span class="fas fa-cloud-download-alt"></span></a>
+                                                        </div>
                                                     </div>
                                                 @else
                                                     <div class="hint--top hint--medium" data-hint="Detalles evaluación">

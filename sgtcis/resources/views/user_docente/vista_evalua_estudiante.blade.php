@@ -39,209 +39,210 @@
                                     <input type="radio" name="asistencia" onclick="asistencia();"> No
                                 </div>
                             </div>
+                            <!--Asistencia = si-->
                             <div class="input-group mb-3" id="asistencia_si" style="display:none;">
-                                <hr>
-                                <div class="d-flex p-2 bd-highlight" id="contenedor_2">
-                                    <span class="tit_datos">Preguntas de evaluación</span>
-                                </div>
-                                <div class="container" id="contenedor_general_op3"> 
-                                    <br>
-                                    Por favor conteste las siguientes preguntas:
-                                    <hr>
-                                    <span class="negrita"> Tema de tutoría
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1"><i class="fas fa-keyboard"></i></span>
-                                            <input type="text" name="otro_motivo" placeholder="Escriba el tema general que trató la tutoría." class="form-control">
-                                        </div>
-                                    </span>
-                                    <br>
-                                    <span class="negrita"> Descripción de tutoría
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1"><i class="fas fa-font"></i></span>
-                                            <textarea class="form-control" name="" id="" rows="2" placeholder="Describa el tema general de tutoría"></textarea>
-                                        </div>
-                                    </span>
-                                    <hr>
-                                    <table class="table table-bordered table-sm">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">Pregunta
-                                                    <div class="hint--top-right hint--large" data-hint="La pregunta N° 1 tiene la siguiente valoración: &nbsp; &nbsp; &nbsp; &nbsp; - 5 (Totalmente de acuerdo equivale al 100%) &nbsp; &nbsp; &nbsp; &nbsp; - 4 (De acuerdo equivale al 75%) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; - 3 (Indeciso equivale al 50%) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; - 2 (En desacuerdo equivale al 25%) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; - 1 (Totalmente en desacuerdo equivale al 0%)">
-                                                        <span class="fas fa-question-circle"></span>
-                                                    </div>                                                    
-                                                </th>
-                                                <th scope="col">5</th>
-                                                <th scope="col">4</th>
-                                                <th scope="col">3</th>
-                                                <th scope="col">2</th>
-                                                <th scope="col">1</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1. ¿Considera que el estudiante lee el material (artículos, libros, documentos) facilitado o recomendado en clase?</td>
-                                                <td>
-                                                    <span class="hint--bottom" data-hint="Totalmente de acuerdo">
-                                                        <input type="radio" name="pr1">
-                                                    </span>
-                                                </td>
-                                                <td>
-                                                    <span class="hint--bottom" data-hint="De acuerdo">
-                                                        <input type="radio" name="pr1">
-                                                    </span>
-                                                </td>
-                                                <td>
-                                                    <span class="hint--bottom" data-hint="Indeciso">
-                                                        <input type="radio" name="pr1">
-                                                    </span>
-                                                </td>
-                                                <td>
-                                                    <span class="hint--bottom" data-hint="En desacuerdo">
-                                                        <input type="radio" name="pr1">
-                                                    </span>
-                                                </td>
-                                                <td>
-                                                    <span class="hint--bottom" data-hint="Totalmente en desacuerdo">
-                                                        <input type="radio" name="pr1">
-                                                    </span>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                    <hr>
-                                    <table class="table table-bordered table-sm">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">Preguntas
-                                                    <div class="hint--top-right hint--large" data-hint="Las preguntas N° 2, 3, 4 y 5 tienen la siguiente valoración: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; - 5 (Muy alto equivale al 100%) &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; - 4 (Alto equivale al 75%) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; - 3 (Medio equivale al 50%) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; - 2 (Bajo equivale al 25%) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; - 1 (Muy bajo equivale al 0%)">
-                                                        <span class="fas fa-question-circle"></span>
-                                                    </div>                                                    
-                                                </th>
-                                                <th scope="col">5</th>
-                                                <th scope="col">4</th>
-                                                <th scope="col">3</th>
-                                                <th scope="col">2</th>
-                                                <th scope="col">1</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>2. ¿El conocimiento previo del estudiante sobre el tema de tutoría fué?</td>
-                                                <td>
-                                                    <span class="hint--bottom" data-hint="Muy alto">
-                                                        <input type="radio" name="pr2">
-                                                    </span>
-                                                </td>
-                                                <td>
-                                                    <span class="hint--bottom" data-hint="Alto">
-                                                        <input type="radio" name="pr2">
-                                                    </span>
-                                                </td>
-                                                <td>
-                                                    <span class="hint--bottom" data-hint="Medio">
-                                                        <input type="radio" name="pr2">
-                                                    </span>
-                                                </td>
-                                                <td>
-                                                    <span class="hint--bottom" data-hint="Bajo">
-                                                        <input type="radio" name="pr2">
-                                                    </span>
-                                                </td>
-                                                <td>
-                                                    <span class="hint--bottom" data-hint="Muy bajo">
-                                                        <input type="radio" name="pr2">
-                                                    </span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>3. ¿El interés y disposición del estudiante durante la tutoría fué?</td>
-                                                <td>
-                                                    <span class="hint--bottom" data-hint="Muy alto">
-                                                        <input type="radio" name="pr3">
-                                                    </span>
-                                                </td>
-                                                <td>
-                                                    <span class="hint--bottom" data-hint="Alto">
-                                                        <input type="radio" name="pr3">
-                                                    </span>
-                                                </td>
-                                                <td>
-                                                    <span class="hint--bottom" data-hint="Medio">
-                                                        <input type="radio" name="pr3">
-                                                    </span>
-                                                </td>
-                                                <td>
-                                                    <span class="hint--bottom" data-hint="Bajo">
-                                                        <input type="radio" name="pr3">
-                                                    </span>
-                                                </td>
-                                                <td>
-                                                    <span class="hint--bottom" data-hint="Muy bajo">
-                                                        <input type="radio" name="pr3">
-                                                    </span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>4. ¿El desempeño (preguntó sobre nuevas dudas del tema) del estudiante durante la tutoría fué?</td>
-                                                <td>
-                                                    <span class="hint--bottom" data-hint="Muy alto">
-                                                        <input type="radio" name="pr4">
-                                                    </span>
-                                                </td>
-                                                <td>
-                                                    <span class="hint--bottom" data-hint="Alto">
-                                                        <input type="radio" name="pr4">
-                                                    </span>
-                                                </td>
-                                                <td>
-                                                    <span class="hint--bottom" data-hint="Medio">
-                                                        <input type="radio" name="pr4">
-                                                    </span>
-                                                </td>
-                                                <td>
-                                                    <span class="hint--bottom" data-hint="Bajo">
-                                                        <input type="radio" name="pr4">
-                                                    </span>
-                                                </td>
-                                                <td>
-                                                    <span class="hint--bottom" data-hint="Muy bajo">
-                                                        <input type="radio" name="pr4">
-                                                    </span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>5. En general ¿cómo califica la participación del estudiante durante la tutoría?</td>
-                                                <td>
-                                                    <span class="hint--bottom" data-hint="Muy alto">
-                                                        <input type="radio" name="pr5">
-                                                    </span>
-                                                </td>
-                                                <td>
-                                                    <span class="hint--bottom" data-hint="Alto">
-                                                        <input type="radio" name="pr5">
-                                                    </span>
-                                                </td>
-                                                <td>
-                                                    <span class="hint--bottom" data-hint="Medio">
-                                                        <input type="radio" name="pr5">
-                                                    </span>
-                                                </td>
-                                                <td>
-                                                    <span class="hint--bottom" data-hint="Bajo">
-                                                        <input type="radio" name="pr5">
-                                                    </span>
-                                                </td>
-                                                <td>
-                                                    <span class="hint--bottom" data-hint="Muy bajo">
-                                                        <input type="radio" name="pr5">
-                                                    </span>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <form action="{{url("evaluacion_estudiante/{$user_estudiante->id}")}}" method="POST">
+                                <hr>                                
+                                <form action="{{url("evaluacion_estudiante/{$user_estudiante->id}/{$solitutoria_id}")}}" method="POST" onsubmit="return validar_evaluacion_estudiante()">
                                     {{ csrf_field() }}
+                                    <div class="d-flex p-2 bd-highlight" id="contenedor_2">
+                                        <span class="tit_datos">Preguntas de evaluación</span>
+                                    </div>
+                                    <div class="container" id="contenedor_general_op3"> 
+                                        <br>
+                                        Por favor conteste las siguientes preguntas:
+                                        <hr>
+                                        <span class="negrita"> Tema de tutoría
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="basic-addon1"><i class="fas fa-keyboard"></i></span>
+                                                <input type="text" class="form-control" id="tema_de_tutoria" name="tema_de_tutoria" autocomplete="off" placeholder="Escriba el tema general que trató la tutoría.">
+                                            </div>
+                                        </span>
+                                        <br>
+                                        <span class="negrita"> Descripción de tutoría
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="basic-addon1"><i class="fas fa-font"></i></span>
+                                                <textarea class="form-control" name="descripcion_de_tutoria" id="descripcion_de_tutoria" rows="2" autocomplete="off" placeholder="Describa el tema general de tutoría"></textarea>
+                                            </div>
+                                        </span>
+                                        <hr>
+                                        <table class="table table-bordered table-sm">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Pregunta
+                                                        <div class="hint--top-right hint--large" data-hint="La pregunta N° 1 tiene la siguiente valoración: &nbsp; &nbsp; &nbsp; &nbsp; - 5 (Totalmente de acuerdo equivale al 100%) &nbsp; &nbsp; &nbsp; &nbsp; - 4 (De acuerdo equivale al 75%) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; - 3 (Indeciso equivale al 50%) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; - 2 (En desacuerdo equivale al 25%) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; - 1 (Totalmente en desacuerdo equivale al 0%)">
+                                                            <span class="fas fa-question-circle"></span>
+                                                        </div>                                                    
+                                                    </th>
+                                                    <th scope="col">5</th>
+                                                    <th scope="col">4</th>
+                                                    <th scope="col">3</th>
+                                                    <th scope="col">2</th>
+                                                    <th scope="col">1</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>1. ¿Considera que el estudiante lee el material (artículos, libros, documentos) facilitado o recomendado en clase?</td>
+                                                    <td>
+                                                        <span class="hint--bottom" data-hint="Totalmente de acuerdo">
+                                                            <input type="radio" name="pr1" id="pr1" value="100">
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <span class="hint--bottom" data-hint="De acuerdo">
+                                                            <input type="radio" name="pr1" id="pr1" value="75">
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <span class="hint--bottom" data-hint="Indeciso">
+                                                            <input type="radio" name="pr1" id="pr1" value="50">
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <span class="hint--bottom" data-hint="En desacuerdo">
+                                                            <input type="radio" name="pr1" id="pr1" value="25">
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <span class="hint--bottom" data-hint="Totalmente en desacuerdo">
+                                                            <input type="radio" name="pr1" id="pr1" value="0"> 
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <hr>
+                                        <table class="table table-bordered table-sm">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Preguntas
+                                                        <div class="hint--top-right hint--large" data-hint="Las preguntas N° 2, 3, 4 y 5 tienen la siguiente valoración: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; - 5 (Muy alto equivale al 100%) &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; - 4 (Alto equivale al 75%) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; - 3 (Medio equivale al 50%) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; - 2 (Bajo equivale al 25%) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; - 1 (Muy bajo equivale al 0%)">
+                                                            <span class="fas fa-question-circle"></span>
+                                                        </div>                                                    
+                                                    </th>
+                                                    <th scope="col">5</th>
+                                                    <th scope="col">4</th>
+                                                    <th scope="col">3</th>
+                                                    <th scope="col">2</th>
+                                                    <th scope="col">1</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>2. ¿El conocimiento previo del estudiante sobre el tema de tutoría fué?</td>
+                                                    <td>
+                                                        <span class="hint--bottom" data-hint="Muy alto">
+                                                            <input type="radio" name="pr2" id="pr2" value="100">
+                                                        </span>
+                                                    </td>
+                                                    <td> 
+                                                        <span class="hint--bottom" data-hint="Alto">
+                                                            <input type="radio" name="pr2" id="pr2" value="75">
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <span class="hint--bottom" data-hint="Medio">
+                                                            <input type="radio" name="pr2" id="pr2" value="50">
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <span class="hint--bottom" data-hint="Bajo">
+                                                            <input type="radio" name="pr2" id="pr2" value="25">
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <span class="hint--bottom" data-hint="Muy bajo">
+                                                            <input type="radio" name="pr2" id="pr2"value="0">
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>3. ¿El interés y disposición del estudiante durante la tutoría fué?</td>
+                                                    <td>
+                                                        <span class="hint--bottom" data-hint="Muy alto">
+                                                            <input type="radio" name="pr3" id="pr3" value="100">
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <span class="hint--bottom" data-hint="Alto">
+                                                            <input type="radio" name="pr3" id="pr3" value="75">
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <span class="hint--bottom" data-hint="Medio">
+                                                            <input type="radio" name="pr3" id="pr3" value="50">
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <span class="hint--bottom" data-hint="Bajo">
+                                                            <input type="radio" name="pr3" id="pr3" value="25">
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <span class="hint--bottom" data-hint="Muy bajo">
+                                                            <input type="radio" name="pr3" id="pr3" value="0">
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>4. ¿El desempeño (preguntó sobre nuevas dudas del tema) del estudiante durante la tutoría fué?</td>
+                                                    <td>
+                                                        <span class="hint--bottom" data-hint="Muy alto">
+                                                            <input type="radio" name="pr4" id="pr4" value="100">
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <span class="hint--bottom" data-hint="Alto">
+                                                            <input type="radio" name="pr4" id="pr4" value="75">
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <span class="hint--bottom" data-hint="Medio">
+                                                            <input type="radio" name="pr4" id="pr4" value="50">
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <span class="hint--bottom" data-hint="Bajo">
+                                                            <input type="radio" name="pr4" id="pr4" value="25">
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <span class="hint--bottom" data-hint="Muy bajo">
+                                                            <input type="radio" name="pr4" id="pr4" value="0">
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>5. En general ¿cómo califica la participación del estudiante durante la tutoría?</td>
+                                                    <td>
+                                                        <span class="hint--bottom" data-hint="Muy alto">
+                                                            <input type="radio" name="pr5" id="pr5" value="100">
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <span class="hint--bottom" data-hint="Alto">
+                                                            <input type="radio" name="pr5" id="pr5" value="75">
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <span class="hint--bottom" data-hint="Medio">
+                                                            <input type="radio" name="pr5" id="pr5"value="50">
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <span class="hint--bottom" data-hint="Bajo">
+                                                            <input type="radio" name="pr5" id="pr5" value="25">
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <span class="hint--bottom" data-hint="Muy bajo">
+                                                            <input type="radio" name="pr5" id="pr5" value="0">
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                     <button type="submit" class="btn btn-primary btn-sm btn-block" name="asistencia" value="si" title="Evaluar y registrar asistencia del estudiante {{$user_estudiante->name}} {{$user_estudiante->lastname}}">Enviar <span class="fas fa-user-check"></span></button>
                                 </form>
                             </div>

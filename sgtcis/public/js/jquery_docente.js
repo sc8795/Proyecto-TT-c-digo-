@@ -44,7 +44,7 @@ $(document).ready(function(){
    $('div#caja_error').delay(4000).slideUp(1500);
    $('div#mensaje').delay(10000).slideUp(1500);
 
-   //evaluar estudiante
+//evaluar estudiante - asistencia aparece boton de inasistencia y preguntas de asistencia
 function asistencia(){
     var motivo=document.getElementsByName("asistencia");
     if(motivo[1].checked==true){
@@ -57,4 +57,40 @@ function asistencia(){
     }
 }
 
-$('#ventana').modal();
+//evaluar estudiante - validar preguntas de asistencia
+function validar_evaluacion_estudiante(){
+    var datosCorrectos=true;
+    var error="";
+    if(!document.querySelector('input[name="pr5"]:checked')) {
+        datosCorrectos=false;
+        error=" Conteste la pregunta N° 5.";
+    }
+    if(!document.querySelector('input[name="pr4"]:checked')) {
+        datosCorrectos=false;
+        error=" Conteste la pregunta N° 4.";
+    }
+    if(!document.querySelector('input[name="pr3"]:checked')) {
+        datosCorrectos=false;
+        error=" Conteste la pregunta N° 3.";
+    }
+    if(!document.querySelector('input[name="pr2"]:checked')) {
+        datosCorrectos=false;
+        error=" Conteste la pregunta N° 2.";
+    }   
+    if(!document.querySelector('input[name="pr1"]:checked')) {
+        datosCorrectos=false;
+        error=" Conteste la pregunta N° 1.";
+    } 
+    if(document.getElementById("descripcion_de_tutoria").value==""){
+        datosCorrectos=false;
+        error=" El campo descripción de tutoría es obligatorio.";
+    }
+    if(document.getElementById("tema_de_tutoria").value==""){
+        datosCorrectos=false;
+        error=" El campo tema de tutoría es obligatorio.";
+    }
+    if(!datosCorrectos){
+        alert('¡AVISO!'+error);
+    }
+    return datosCorrectos;
+}
