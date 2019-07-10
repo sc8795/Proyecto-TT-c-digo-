@@ -8,7 +8,7 @@
     <div class="row">
         @include('user_student.vistas_iguales.imagen_texto')
         <div class="col-9" id="titulo_general">
-            <h3>Vista general de la cuenta Estudiante</h3>
+            <h3>Vista general - Estudiante</h3>
         </div>
     </div>
 @endsection

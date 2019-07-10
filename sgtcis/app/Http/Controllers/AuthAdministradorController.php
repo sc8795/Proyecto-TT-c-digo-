@@ -335,6 +335,11 @@ public function editar_admin(){
                 return redirect()->back();
             }
         }
+        if($aux==2){
+            if(!$this->downloadFile(app_path()."/Files/plantilla_docentes.xlsx")){
+                return redirect()->back();
+            }
+        }
     }   
     public function downloadFile($archivo){
         if(is_file($archivo)){

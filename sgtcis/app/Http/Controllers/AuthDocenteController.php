@@ -32,7 +32,7 @@ class AuthDocenteController extends Controller
             if($user->is_docente==true){
                 $fecha=now();
                 Log::create([
-                    'detalle'=>"El estudiante ".$user->name." ".$user->lastname." ha iniciado sesión y accedido al sistema.",
+                    'detalle'=>"El docente ".$user->name." ".$user->lastname." ha iniciado sesión y accedido al sistema.",
                     'fecha'=>$fecha,
                 ]);
                 return view('user_docente.auth_docente');  

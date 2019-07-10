@@ -50,14 +50,81 @@
                 </div>
                 <div class="col-6">
                     @php
-                        $aux=1;
+                        $aux=2;
                     @endphp
                     <h4>Registro de docente por medio de documento excel</h4>
-                    <form method="POST" action="{{route('registrar_docente_excel')}}" enctype="multipart/form-data">
-                        {{ csrf_field() }}
-                        <h6 class="excel"><input type="file" name="archivo"></h6><br>
-                        <input type="submit" value="Enviar">
-                    </form>
+                    <div class="d-flex p-2 bd-highlight" id="contenedor_2">
+                        <span class="tit_datos">Descargar plantilla excel</span>
+                    </div>
+                    <div class="container" id="contenedor_general_op2">
+                        <br>
+                        <!-- >Ventana modal<-->
+                        <main class="container">
+                            <div class="modal fade" id="ventana" tabindex="-1" role="dialog" aria-labelledby="tituloVentana" aria-hidden="true">  
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 id="tituloVentana">¡Detalles sobre la plantilla!</h5>
+                                            <button class="close" data-dismiss="modal" aria-label="Cerrar">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <h6>Al descargar la plantilla, el documento excel tendrá los siguientes campos:</h6>
+                                            <h6 class="negrita">nombres:
+                                                <span class="quita_negrita">Nombres completos del docente que desea registrar.</span>
+                                            </h6>
+                                            <h6 class="negrita">apellidos:
+                                                    <span class="quita_negrita">Apellidos completos del docente que desea registrar.</span>
+                                                </h6>
+                                            <h6 class="negrita">correo:
+                                                <span class="quita_negrita">Correo institucional del docente.</span>
+                                            </h6>
+                                            <h6 class="negrita">password:
+                                                <span class="quita_negrita">Contraseña para el inicio de sesión del docente.</span>
+                                            </h6>
+                                            <h6 class="negrita">is_admin:
+                                                <span class="quita_negrita">Este campo sirve para identificar si el usuario a registrar va hacer administrador (se recomienda dejarlo en 0)</span>
+                                            </h6>
+                                            <h6 class="negrita">is_estudiante:
+                                                <span class="quita_negrita">Este campo sirve para identificar si el usuario a registrar va hacer estudiante (se recomienda dejarlo en 0)</span>
+                                            </h6>
+                                            <h6 class="negrita">is_docente:
+                                                <span class="quita_negrita">Este campo sirve para identificar si el usuario a registrar va hacer docente (se recomienda dejarlo en 1)</span>
+                                            </h6>
+                                            <h6 class="negrita">paralelo:
+                                                <span class="quita_negrita">En este campo se recomienda escribir NA</span>
+                                            </h6>
+                                            <h6 class="negrita">ciclo:
+                                                <span class="quita_negrita">En este campo se recomienda escribir NA</span>
+                                            </h6>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-warning" data-dismiss="modal">Cerar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </main>
+                        <!-- >Hasta aquí ventana modal<-->
+                        <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#ventana">Detalles</button>
+                        <a href="{{url("descargar_plantilla/{$aux}")}}" class="btn btn-secondary btn-sm" title="Descargar plantilla para registro de materias por medio de documento excel">Descargar <span class="fas fa-file-excel"></span></a>
+                        <br>
+                        <br>
+                    </div>
+                    <div class="d-flex p-2 bd-highlight" id="contenedor_2">
+                            <span class="tit_datos">Cargar documento excel</span>
+                        </div>
+                        <div class="container" id="contenedor_general_op2"> 
+                            <br>
+                            <form method="POST" action="{{route('registrar_docente_excel')}}" enctype="multipart/form-data">
+                                {{ csrf_field() }}
+                                <h6 class="excel"><input type="file" name="archivo"></h6><br>
+                                <input type="submit" class="btn btn-primary btn-block" value="Registrar docente">
+                            </form>
+                            <br>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
