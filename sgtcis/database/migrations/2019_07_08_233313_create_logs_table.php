@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateNotiestudiantesTable extends Migration
+class CreateLogsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreateNotiestudiantesTable extends Migration
      */
     public function up()
     {
-        Schema::create('notiestudiantes', function (Blueprint $table) {
+        Schema::create('logs', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id');
-            $table->integer('user_estudiante_id');
-            $table->integer('solitutoria_id');
-            $table->string('title');
-            $table->text('descripcion');
+            $table->string('detalle',500);
+            $table->datetime('fecha');
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ class CreateNotiestudiantesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('notiestudiantes');
+        Schema::dropIfExists('logs');
     }
 }

@@ -11,6 +11,7 @@ use App\Horario2;
 use App\Horario3;
 use App\Horario4;
 use App\Horario5;
+use App\Log;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use Auth;
@@ -3801,5 +3802,22 @@ public function editar_admin(){
         Alert::danger('¡Bien hecho! ')
             ->details('Se ha eliminado correctamente el horario de tutoría');
         return view('user_administrador.horario_tutoria_asignada',compact('user','horarios','horario2s','horario3s','horario4s','horario5s'));
+    }
+/* 
+|--------------------------------------------------------------------------
+| Funciones para sistema de log
+|--------------------------------------------------------------------------
+*/
+    public function log(){
+        $logs=Log::orderBy('id','ASC')
+            ->paginate(10);
+        //$logs=DB::table('logs')->get();
+        $aux=0;
+        return view('user_administrador.vista_sistema_log',compact('logs','aux'));
+    }
+    public function descargar_log($aux){
+        $logs=Log::orderBy('id','ASC')
+            ->paginate(10);
+        return view('user_administrador.vista_sistema_log',compact('logs','aux'));
     }
 }

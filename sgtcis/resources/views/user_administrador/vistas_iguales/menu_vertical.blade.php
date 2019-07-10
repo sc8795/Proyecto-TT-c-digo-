@@ -26,5 +26,8 @@
                 </li>
             </ul>
         </li>
+        <li>
+            <a href="{{url('log')}}"><i class="icono izquierda far fa-circle"></i>LOG</a>
+        </li>
     </ul>
 </div>

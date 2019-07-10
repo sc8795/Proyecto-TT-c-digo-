@@ -124,11 +124,16 @@ Route::get('vista_editar_horario_tutoria_asignada_op4/{user}/{aux}','AuthAdminis
 Route::get('vista_editar_horario_tutoria_asignada_op5/{user}/{aux}','AuthAdministradorController@vista_editar_horario_tutoria_asignada_op5')->name('vista_editar_horario_tutoria_asignada_op5');
 Route::put('editando_horario/{user}','AuthAdministradorController@editando_horario')->name('editando_horario');
 Route::get('mensaje_editar_horario/{user}','AuthAdministradorController@mensaje_editar_horario')->name('mensaje_editar_horario');
+
+/* Rutas para el sistema de log */
+Route::get('log','AuthAdministradorController@log')->name('log');
+Route::get('descargar_log/{aux}','AuthAdministradorController@descargar_log')->name('descargar_log');
 /* 
 |--------------------------------------------------------------------------
 | Rutas del Estudiante
 |--------------------------------------------------------------------------
 */
+
 /* Ruta para la vista general */
 Route::get('vista_general_student','AuthStudentController@vista_general_student')->name('vista_general_student');
 
@@ -145,13 +150,17 @@ Route::get('vista_solicitar_tutoria/{user}/{user_docente}/{materia}','AuthStuden
 Route::post('solicitar_tutoria_student/{user}/{user_docente}/{materia}/{estado}','AuthStudentController@solicitar_tutoria_student')->name('solicitar_tutoria_student');
 
 /* Rutas para ver la tutoria confirmada por parte del docente*/
-Route::get('ver_tutoria_confirmada/{user_docente_id}/{user_student_id}','AuthStudentController@ver_tutoria_confirmada')->name('ver_tutoria_confirmada');
+Route::get('ver_tutoria_confirmada/{user_docente_id}/{user_student_id}/{notification}','AuthStudentController@ver_tutoria_confirmada')->name('ver_tutoria_confirmada');
 
 /* Ruta para completar el registro del estudiante logueado o registrado con cuenta de google */
 Route::put('save_completar_registro','AuthStudentController@save_completar_registro')->name('save_completar_registro');
 
 /* Rutas para botón omitir cuando el estudiante está logueado o registrado con cuenta de google */
 Route::get('omitir_completar_registro','AuthStudentController@omitir_completar_registro')->name('omitir_completar_registro');
+
+/* Rutas para evaluar al docente */
+Route::get('evaluar_docente/{user_estudiante_id}/{notification}/{solitutoria}/{materia}/{docente}','AuthStudentController@evaluar_docente')->name('evaluar_docente');
+Route::post('evaluacion_docente/{docente_id}/{solitutoria_id}/{notification}','AuthStudentController@evaluacion_docente')->name('evaluacion_docente');
 
 /* 
 |--------------------------------------------------------------------------
@@ -173,7 +182,7 @@ Route::put('confirmar_tutoria/{datos_tut}/{estudiante}/{docente}/{materia}/{noti
 
 /* Rutas para editar datos de tutoría solicitada */
 Route::get('vista_editar_datos_tutoria/{datos_tut}/{estudiante}/{docente}/{materia}','AuthDocenteController@vista_editar_datos_tutoria')->name('vista_editar_datos_tutoria');
-route::put('editar_datos_tutoria/{datos_tut}/{estudiante}/{docente}/{materia}','AuthDocenteController@editar_datos_tutoria')->name('editar_datos_tutoria');
+route::put('editar_datos_tutoria/{datos_tut}/{estudiante}/{docente}/{materia}/{notificacion_id}','AuthDocenteController@editar_datos_tutoria')->name('editar_datos_tutoria');
 
 /* Rutas para evaluar al estudiante */
 Route::get('evaluar_estudiante/{user_docente_id}','AuthDocenteController@evaluar_estudiante')->name('evaluar_estudiante');

@@ -49,6 +49,9 @@
                     </div>
                 </div>
                 <div class="col-6">
+                    @php
+                        $aux=1;
+                    @endphp
                     <h4>Registro de docente por medio de documento excel</h4>
                     <form method="POST" action="{{route('registrar_docente_excel')}}" enctype="multipart/form-data">
                         {{ csrf_field() }}

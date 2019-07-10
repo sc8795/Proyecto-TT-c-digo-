@@ -82,7 +82,7 @@
                     &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
                     <span class="negrita">Fecha impartida: <span class="quita_negrita">{{$fecha_tutoria}}</span></span>
                 </h6>
-                <h6 class="negrita">Calificación: <span class="quita_negrita">{{$evaluacion->evaluacion}}%</span></h6>
+                <h6 class="negrita">Calificación del estudiante: <span class="quita_negrita">{{$evaluacion->evaluacion}}%</span></h6>
                 <div class="w3-container">
                     @if ($evaluacion->evaluacion>=70)
                         <div class="w3-light-grey">

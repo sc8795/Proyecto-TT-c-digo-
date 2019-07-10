@@ -11,7 +11,8 @@
 	
 	<link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/estilos_estudiante.css')}}">
-    <link rel="stylesheet" href="{{asset('css/estilos_pag_inicio.css')}}">
+	<link rel="stylesheet" href="{{asset('css/estilos_pag_inicio.css')}}">
+	<link rel="stylesheet" href="{{asset('css/hint.min.css')}}">
 	<title>@yield('title')Estudiante - SGTCIS</title>
 </head>
 <body>

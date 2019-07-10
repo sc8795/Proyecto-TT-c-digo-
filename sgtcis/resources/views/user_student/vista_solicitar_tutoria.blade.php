@@ -3941,7 +3941,7 @@
                             </div>
                             <br>
                         </div>
-                        <button type="submit" class="btn btn-info btn-sm btn-block" title="Solicitar tutoría con el docente {{$user_docente->name}} {{$user_docente->name}}">Solicitar tutoría</button>
+                        <button type="submit" class="btn btn-info btn-sm btn-block" title="Solicitar tutoría al docente {{$user_docente->name}} {{$user_docente->name}}">Solicitar tutoría</button>
                     </form>
                 @else
                     {!! Alert::render() !!}

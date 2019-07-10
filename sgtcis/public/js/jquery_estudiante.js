@@ -60,3 +60,33 @@ $(document).on('click', '#boton_omitir', function(){
 });
 
 $('div#mensaje').delay(4000).slideUp(1500);
+
+//evaluar estudiante - validar preguntas de asistencia
+function validar_evaluacion_docente(){
+    var datosCorrectos=true;
+    var error="";
+    if(!document.querySelector('input[name="pr5"]:checked')) {
+        datosCorrectos=false;
+        error=" Conteste la pregunta N° 5.";
+    }
+    if(!document.querySelector('input[name="pr4"]:checked')) {
+        datosCorrectos=false;
+        error=" Conteste la pregunta N° 4.";
+    }
+    if(!document.querySelector('input[name="pr3"]:checked')) {
+        datosCorrectos=false;
+        error=" Conteste la pregunta N° 3.";
+    }
+    if(!document.querySelector('input[name="pr2"]:checked')) {
+        datosCorrectos=false;
+        error=" Conteste la pregunta N° 2.";
+    }   
+    if(!document.querySelector('input[name="pr1"]:checked')) {
+        datosCorrectos=false;
+        error=" Conteste la pregunta N° 1.";
+    }
+    if(!datosCorrectos){
+        alert('¡AVISO!'+error);
+    }
+    return datosCorrectos;
+}

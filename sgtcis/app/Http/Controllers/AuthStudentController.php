@@ -9,6 +9,8 @@ use App\Materia;
 use App\Solitutoria;
 use App\Notifications\NotificacionDocente;
 use App\Notidocente;
+use App\Evaluacion;
+use App\Log;
 use Alert;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
@@ -29,6 +31,11 @@ class AuthStudentController extends Controller
         if (Auth::check()) {
             $user = Auth::user();
             if($user->is_estudiante==true){
+                $fecha=now();
+                Log::create([
+                    'detalle'=>"El estudiante ".$user->name." ".$user->lastname." ha iniciado sesión y accedido al sistema.",
+                    'fecha'=>$fecha,
+                ]);
                 return view('user_student.auth_student');  
             }else{
                 return redirect()->route('show_login_form_student');
@@ -335,11 +342,38 @@ class AuthStudentController extends Controller
 | Funciones para vista de tutoria confirmada por parte del docente
 |--------------------------------------------------------------------------
 */
-    public function ver_tutoria_confirmada($user_docente_id,$user_student_id){
+    public function ver_tutoria_confirmada($user_docente_id,$user_student_id,$notification){
         $estudiante=DB::table('users')->where('id',$user_student_id)->first();
         $docente=DB::table('users')->where('id',$user_docente_id)->first();
         $materia=DB::table('materias')->where('usuario_id',$docente->id)->first();
         $datos_tut=DB::table('solitutorias')->where('estudiante_id',$estudiante->id)->where('docente_id',$docente->id)->where('materia_id',$materia->id)->first();
-        return view('user_student.vista_tutoria_confirmada',compact('estudiante','docente','materia','datos_tut'));
+        return view('user_student.vista_tutoria_confirmada',compact('estudiante','docente','materia','datos_tut','notification'));
+    }
+/* 
+|--------------------------------------------------------------------------
+| Funciones para evaluar al estudiante después de la tutoría impartida
+|--------------------------------------------------------------------------
+*/
+    public function evaluar_docente($user_estudiante_id, $notification,$solitutoria_id,Materia $materia, User $docente){
+        return view('user_student.vista_evaluar_docente',compact('user_estudiante_id','notification','solitutoria_id','materia','docente'));
+    }
+    public function evaluacion_docente($user_evaluado_id,$solitutoria_id,$notification, Request $request){
+        $elimina_tutoria_confirmada = DB::table('notifications')->where('id',$notification);
+        $elimina_tutoria_confirmada->delete();
+        $pr1=$request->input('pr1');
+        $pr2=$request->input('pr2');
+        $pr3=$request->input('pr3');
+        $pr4=$request->input('pr4');
+        $pr5=$request->input('pr5');
+        $suma=($pr1)+($pr2)+($pr3)+($pr4)+($pr5);
+        $total=$suma/5;
+        Evaluacion::create([
+            'user_evaluado_id'=>$user_evaluado_id,
+            'solitutoria_id'=>$solitutoria_id,
+            'asistencia'=>"si",
+            'evaluacion'=>$total
+        ]);
+        flash("Evaluación de tutoria correcta")->success();
+        return redirect()->route('vista_general_student');
     }
 }

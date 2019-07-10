@@ -10,6 +10,7 @@ use App\Materia;
 use App\Notiestudiante;
 use App\Evaluacion;
 use App\User;
+use App\Log;
 use Alert;
 use Auth;
 use Illuminate\Support\Str;
@@ -29,6 +30,11 @@ class AuthDocenteController extends Controller
         if (Auth::check()) {
             $user = Auth::user();
             if($user->is_docente==true){
+                $fecha=now();
+                Log::create([
+                    'detalle'=>"El estudiante ".$user->name." ".$user->lastname." ha iniciado sesión y accedido al sistema.",
+                    'fecha'=>$fecha,
+                ]);
                 return view('user_docente.auth_docente');  
             }else{
                 return redirect()->route('show_login_form_docente');
@@ -105,6 +111,7 @@ class AuthDocenteController extends Controller
         $noti_estudiante=new Notiestudiante;
         $noti_estudiante->user_id=auth()->user()->id;
         $noti_estudiante->user_estudiante_id=$estudiante->id;
+        $noti_estudiante->solitutoria_id=$datos_tut->id;
         $user=DB::table('users')->where('id',$noti_estudiante->user_id)->first();
         $noti_estudiante->title="Tutoría confirmada";
         $noti_estudiante->descripcion="El docente $user->name $user->lastname le ha confirmado la tutoría solicitada";
@@ -132,7 +139,7 @@ class AuthDocenteController extends Controller
             return view('user_docente.editar_datos_tutoria',compact('datos_tut','estudiante','docente','materia','aux'));
         }
     }
-    public function editar_datos_tutoria(Request $request, Solitutoria $datos_tut,User $estudiante,User $docente,Materia $materia){
+    public function editar_datos_tutoria(Request $request, Solitutoria $datos_tut,User $estudiante,User $docente,Materia $materia,$notificacion_id){
         $data=request()->validate([
             'hora_inicio'=>'required',
             'minutos_inicio'=>'required',
@@ -143,12 +150,13 @@ class AuthDocenteController extends Controller
         $data['fecha_confirma']=now();
         $datos_tut->update($data);
 
-        $elimina_tutoria_solicitada = DB::table('notifications')->where('created_at',$datos_tut->fecha_solicita)->where('notifiable_id',$docente->id);
+        $elimina_tutoria_solicitada = DB::table('notifications')->where('id',$notificacion_id);
         $elimina_tutoria_solicitada->delete();
 
         $noti_estudiante=new Notiestudiante;
         $noti_estudiante->user_id=auth()->user()->id;
         $noti_estudiante->user_estudiante_id=$estudiante->id;
+        $noti_estudiante->solitutoria_id=$datos_tut->id;
         $user=DB::table('users')->where('id',$noti_estudiante->user_id)->first();
         $noti_estudiante->title="Tutoría confirmada";
         $noti_estudiante->descripcion="El docente $user->name $user->lastname le ha confirmado la tutoría solicitada";
