@@ -22,7 +22,7 @@
             <div class="row">
                 <div class="col-6">
                     <div class="container" id="contenedor_general">
-                        <form class="formulario_general" method="POST" action="{{route('crear_materia')}}" onsubmit="return validar()">
+                        <form class="formulario_general" method="POST" action="{{route('crear_materia')}}" onsubmit="return validar();">
                             {{ csrf_field() }}
                             <div class="form-group">
                                 <label><h6 class="tit_general">Nombre materia</h6></label>

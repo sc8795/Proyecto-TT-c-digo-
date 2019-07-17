@@ -25,7 +25,6 @@ class LoginController extends Controller
         $authUser=$this->findOrCreateUser($user,$provider);
         Auth::login($authUser,true);
         return redirect()->action('AuthStudentController@vista_student_google', [$user->id]);
-        //return redirect()->action('vista_student_google',[$user]);   
     }
 
     public function findOrCreateUser($user,$provider){

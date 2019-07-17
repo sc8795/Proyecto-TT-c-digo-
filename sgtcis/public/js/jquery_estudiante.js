@@ -25,14 +25,6 @@ function mostrar_otro_motivo(){
         document.getElementById('otro').style.display='none';
     }
 }
-
-//función para hacer aparecer caja de texto al escojer completar registro mediante la etiqueta a
-$(document).ready(function(){ 
-    $('#completar').on('click',function(){
-        /* .show() */
-       $('#contenedor_general').toggle('slow');
-    });
-});
 /*funcion para presentar mensaje de alerta en el caso de que no se complete con todos los campos pedidos en el formulario
 completar registro*/
 
@@ -84,6 +76,43 @@ function validar_evaluacion_docente(){
     if(!document.querySelector('input[name="pr1"]:checked')) {
         datosCorrectos=false;
         error=" Conteste la pregunta N° 1.";
+    }
+    if(!datosCorrectos){
+        alert('¡AVISO!'+error);
+    }
+    return datosCorrectos;
+}
+
+//función para hacer aparecer caja de texto al escojer completar registro mediante la etiqueta a
+$(document).ready(function(){ 
+    
+    /* .show() */
+   //$('#contenedor_general').show();
+   //var radio=document.getElementsByName("arrastre");
+    
+   arrastre();
+
+});
+//Completar registro - arrastre del estudiante
+function arrastre(){
+    var motivo=document.getElementsByName("arrastre");
+    if(motivo[1].checked==true){
+        document.getElementById('arrastre_no').style.display='block';
+        document.getElementById('arrastre_si').style.display='none';
+    }else{
+        document.getElementById('arrastre_no').style.display='none';
+        document.getElementById('arrastre_si').style.display='block';
+        document.getElementById('si').checked=true;
+    }
+}
+
+
+function validar_arrastre(){
+    var datosCorrectos=true;
+    var error="";
+    if(document.getElementById("paralelo_arrastre").value=="NA"){
+        datosCorrectos=false;
+        error=" El campo paralelo es obligatorio.";
     }
     if(!datosCorrectos){
         alert('¡AVISO!'+error);

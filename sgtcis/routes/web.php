@@ -153,7 +153,10 @@ Route::post('solicitar_tutoria_student/{user}/{user_docente}/{materia}/{estado}'
 Route::get('ver_tutoria_confirmada/{user_docente_id}/{user_student_id}/{notification}','AuthStudentController@ver_tutoria_confirmada')->name('ver_tutoria_confirmada');
 
 /* Ruta para completar el registro del estudiante logueado o registrado con cuenta de google */
+
 Route::put('save_completar_registro','AuthStudentController@save_completar_registro')->name('save_completar_registro');
+Route::get('buscar_materia_arrastre','AuthStudentController@buscar_materia_arrastre')->name('buscar_materia_arrastre');
+Route::post('agregar_materia_arrastre','AuthStudentController@agregar_materia_arrastre')->name('agregar_materia_arrastre');
 
 /* Rutas para botón omitir cuando el estudiante está logueado o registrado con cuenta de google */
 Route::get('omitir_completar_registro','AuthStudentController@omitir_completar_registro')->name('omitir_completar_registro');

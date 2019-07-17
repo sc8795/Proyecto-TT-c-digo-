@@ -29,14 +29,22 @@ class AuthStudentController extends Controller
 
     public function auth_student(){
         if (Auth::check()) {
-            $user = Auth::user();
-            if($user->is_estudiante==true){
+            $user_student = Auth::user();
+            if($user_student->is_estudiante==true){
                 $fecha=now();
                 Log::create([
-                    'detalle'=>"El estudiante ".$user->name." ".$user->lastname." ha iniciado sesión y accedido al sistema.",
+                    'detalle'=>"El estudiante ".$user_student->name." ".$user_student->lastname." ha iniciado sesión y accedido al sistema.",
                     'fecha'=>$fecha,
                 ]);
-                return view('user_student.auth_student');  
+                if($user_student->paralelo=="NA" && $user_student->ciclo=="NA"){
+                    $materias=Materia::orderBy('id','DESC')
+                        ->paginate(5);
+                    Alert::success('¡Bienvenido(a)! ')
+                        ->details("$user_student->name $user_student->lastname.");
+                    return view('user_student.completar_registro',compact('user_student','materias'));
+                }else{
+                    return view('user_student.auth_student'); 
+                } 
             }else{
                 return redirect()->route('show_login_form_student');
             }
@@ -57,9 +65,15 @@ class AuthStudentController extends Controller
 */
     public function vista_student_google($user_id){
         $user_student=DB::table('users')->where('provider_id',$user_id)->first();
-        Alert::success('¡Bienvenido(a)! ')
+        if($user_student->paralelo=="NA" && $user_student->ciclo=="NA"){
+            $materias=Materia::orderBy('id','DESC')
+                ->paginate(5);
+            Alert::success('¡Bienvenido(a)! ')
             ->details("$user_student->name $user_student->lastname.");
-        return view('user_student.completar_registro',compact('user_student'));
+            return view('user_student.completar_registro',compact('user_student','materias'));
+        }else{
+            return redirect()->route('auth_student');
+        }
     }
 /* 
 |--------------------------------------------------------------------------
@@ -84,6 +98,29 @@ class AuthStudentController extends Controller
             $user->update($data);
             return redirect()->route('auth_student');
         }
+    }
+    public function buscar_materia_arrastre(Request $request){
+        if (Auth::check()) {
+            $user_student = Auth::user();
+            if($user_student->is_estudiante==true){
+                $name = $request->get('name');
+                if($user_student->paralelo=="NA" && $user_student->ciclo=="NA"){
+                    $materias=Materia::orderBy('id','DESC')
+                        ->name($name)
+                        ->paginate(5);
+                    Alert::success('¡Bienvenido(a)! ')
+                        ->details("$user_student->name $user_student->lastname.");
+                    return view('user_student.completar_registro',compact('user_student','materias'));
+                }else{
+                    return view('user_student.auth_student'); 
+                } 
+            }else{
+                return redirect()->route('show_login_form_student');
+            }
+        }
+    }
+    public function agregar_materia_arrastre(){
+        
     }
 /* 
 |--------------------------------------------------------------------------
