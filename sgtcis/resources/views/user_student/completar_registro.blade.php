@@ -101,6 +101,18 @@
                         </form>
                     </div>
                     <div class="input-group mb-3" id="arrastre_si" style="display:none;">
+                        @php
+                            $mensaje_error="";
+                            $verifica_paralelo=false;
+                        @endphp
+                        @if (count($errors)>0)
+                            @foreach ($errors->all() as $error)
+                                @php
+                                    $mensaje_error=$error;
+                                    $verifica_paralelo = str_contains($mensaje_error, 'paralelo');
+                                @endphp
+                            @endforeach
+                        @endif
                         <div class="d-flex p-2 bd-highlight" id="contenedor_2">
                             <span class="tit_datos">Completar registro con arrastre de materias</span>
                         </div>
@@ -123,6 +135,11 @@
                                         </div>
                                     </form>
                                     <hr>
+                                    @if ($verifica_paralelo==true)
+                                        <div class="alert alert-danger" id="mensaje">
+                                            {{$error}}
+                                        </div>
+                                    @endif
                                     <table class="table table-bordered table-sm">
                                         <thead>
                                             <tr>
@@ -131,15 +148,16 @@
                                                 <th scope="col">Acción</th>
                                             </tr>
                                         </thead>
-                                        <form action="{{url("agregar_materia_arrastre")}}" method="POST" onsubmit="return validar_arrastre()">
-                                            {{ csrf_field() }}
+                                        
                                             @foreach ($materias as $materia) 
+                                            <form action="{{url("agregar_materia_arrastre")}}" method="POST" onsubmit="return validar_arrastre()">
+                                                {{ csrf_field() }}
                                                 <tbody>
                                                     <tr>
-                                                        <td><input type="hidden" id="materia" value="{{$materia->name}}">{{$materia->name}}</td>
+                                                        <td><input type="hidden" id="materia" name="materia" value="{{$materia->name}}">{{$materia->name}}</td>
                                                         <td>
-                                                            <select name="paralelo_arrastre" id="paralelo_arrastre">
-                                                                <option value="NA">-</option>
+                                                            <select name="paralelo" id="paralelo">
+                                                                <option value="">-</option>
                                                                 <option value="A">A</option>
                                                                 <option value="B">B</option>
                                                                 <option value="C">C</option>
@@ -151,8 +169,9 @@
                                                         </td>
                                                     </tr>
                                                 </tbody>
+                                            </form>
                                             @endforeach
-                                        </form>
+                                        
                                     </table>
                                     {{$materias->render()}}
                                 </div>
@@ -161,7 +180,32 @@
                                         <span class="tit_datos">Materias añadidas</span>
                                     </div>
                                     <div class="container" id="contenedor_general_op2">
-                                                          
+                                        @if ($verifica_arrastre==true)
+                                            <table class="table table-bordered table-sm">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Materia</th>
+                                                        <th scope="col">Acción</th>
+                                                    </tr>
+                                                </thead>
+                                                
+                                                <tbody>
+                                                    @foreach ($arreglo_materia as $a_materia)
+                                                        <form action="{{url("eliminar_materia_agregada")}}" method="POST">
+                                                            {{ csrf_field() }}
+                                                            <tr>
+                                                                <td><input type="hidden" name="materia" value="{{$a_materia}}">{{$a_materia}}</td>
+                                                                <td>
+                                                                    <button type="submit" class="hint--top btn btn-block btn-danger btn-sm" data-hint="Eliminar"><span class="fas fa-trash"></span></button>
+                                                                </td>
+                                                            </tr>
+                                                        </form>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        @else
+                                            No ha añadido ninguna materia
+                                        @endif                                        
                                     </div>
                                 </div>
                             </div>

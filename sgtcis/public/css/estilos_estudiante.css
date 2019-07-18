@@ -126,3 +126,7 @@ h4{
 #menu_no_disponible{
     background-color:  #1b1b1b;
 }
+
+.titulo_error{
+    color: #f78181;
+}

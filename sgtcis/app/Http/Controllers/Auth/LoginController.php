@@ -24,7 +24,8 @@ class LoginController extends Controller
         $user = Socialite::driver($provider)->stateless()->user();
         $authUser=$this->findOrCreateUser($user,$provider);
         Auth::login($authUser,true);
-        return redirect()->action('AuthStudentController@vista_student_google', [$user->id]);
+        //return redirect()->action('AuthStudentController@vista_student_google', [$user->id]);
+        return redirect()->action('AuthStudentController@vista_student_google');
     }
 
     public function findOrCreateUser($user,$provider){

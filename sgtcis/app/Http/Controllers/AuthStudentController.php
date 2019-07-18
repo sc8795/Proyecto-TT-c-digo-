@@ -41,7 +41,9 @@ class AuthStudentController extends Controller
                         ->paginate(5);
                     Alert::success('¡Bienvenido(a)! ')
                         ->details("$user_student->name $user_student->lastname.");
-                    return view('user_student.completar_registro',compact('user_student','materias'));
+                    $arrastre=DB::table('arrastres')->where('user_estudiante_id',$user_student->id)->first();
+                    $arreglo_materia=explode('.', $arrastre->materia);
+                    return view('user_student.completar_registro',compact('user_student','materias','arrastre','arreglo_materia'));
                 }else{
                     return view('user_student.auth_student'); 
                 } 
@@ -63,16 +65,27 @@ class AuthStudentController extends Controller
 | Funciones para la vista general del estudiante con cuenta de google
 |--------------------------------------------------------------------------
 */
-    public function vista_student_google($user_id){
-        $user_student=DB::table('users')->where('provider_id',$user_id)->first();
-        if($user_student->paralelo=="NA" && $user_student->ciclo=="NA"){
-            $materias=Materia::orderBy('id','DESC')
-                ->paginate(5);
-            Alert::success('¡Bienvenido(a)! ')
-            ->details("$user_student->name $user_student->lastname.");
-            return view('user_student.completar_registro',compact('user_student','materias'));
-        }else{
-            return redirect()->route('auth_student');
+    public function vista_student_google(){
+        if (Auth::check()) {
+            $user_student = Auth::user();
+            if($user_student->is_estudiante==true){
+                if($user_student->paralelo=="NA" && $user_student->ciclo=="NA"){
+                    $materias=Materia::orderBy('id','DESC')
+                        ->paginate(5);
+                    Alert::success('¡Bienvenido(a)! ')
+                        ->details("$user_student->name $user_student->lastname.");
+                    $verifica_arrastre=DB::table('arrastres')->where('user_estudiante_id',$user_student->id)->exists();
+                    $arrastre=DB::table('arrastres')->where('user_estudiante_id',$user_student->id)->first();
+                    $arreglo_materia=explode('.', $arrastre->materia);
+                    $arreglo_paralelo=explode('.', $arrastre->paralelo);
+                    return view('user_student.completar_registro',compact('user_student','materias','arrastre','arreglo_materia','verifica_arrastre','arreglo_paralelo'));
+                    
+                }else{
+                    return view('user_student.auth_student'); 
+                } 
+            }else{
+                return redirect()->route('show_login_form_student');
+            }
         }
     }
 /* 
@@ -119,8 +132,49 @@ class AuthStudentController extends Controller
             }
         }
     }
-    public function agregar_materia_arrastre(){
-        
+    public function agregar_materia_arrastre(Request $request){
+        if (Auth::check()) {
+            $user_student = Auth::user();
+            if($user_student->is_estudiante==true){
+                if($user_student->paralelo=="NA" && $user_student->ciclo=="NA"){
+                    $data=request()->validate([
+                        'paralelo'=>'required',
+                    ]);
+                    $materia=$request->input('materia');
+                    $paralelo=$request->input('paralelo');
+                    $verifica_arrastre=DB::table('arrastres')->where('user_estudiante_id',$user_student->id)->exists();
+                    if($verifica_arrastre==true){
+                        $arrastre=DB::table('arrastres')->where('user_estudiante_id',$user_student->id)->first();
+                        $id=$arrastre->id;
+                        $materia_agregada=$arrastre->materia;
+                        $paralelo_agregado=$arrastre->paralelo;
+                        $arrastre=DB::table('arrastres')->where('user_estudiante_id',$user_student->id);
+                        $arrastre->delete();
+                        DB::table('arrastres')->insert([
+                            'id'=>$id,
+                            'user_estudiante_id'=>$user_student->id,
+                            'materia'=>$materia_agregada.".".$materia,
+                            'paralelo'=>$paralelo_agregado.".".$paralelo
+                        ]);
+                    }else{
+                        DB::table('arrastres')->insert([
+                            'user_estudiante_id'=>$user_student->id,
+                            'materia'=>$materia,
+                            'paralelo'=>$paralelo
+                        ]);
+                    }
+                    return redirect()->route('vista_student_google');
+                }else{
+                    return view('user_student.auth_student'); 
+                } 
+            }else{
+                return redirect()->route('show_login_form_student');
+            }
+        }
+    }
+    public function eliminar_materia_agregada(Request $request){
+        $materia=$request->input('materia');
+        dd($materia);
     }
 /* 
 |--------------------------------------------------------------------------

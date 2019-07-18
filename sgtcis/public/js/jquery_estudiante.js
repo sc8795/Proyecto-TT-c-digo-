@@ -85,13 +85,7 @@ function validar_evaluacion_docente(){
 
 //función para hacer aparecer caja de texto al escojer completar registro mediante la etiqueta a
 $(document).ready(function(){ 
-    
-    /* .show() */
-   //$('#contenedor_general').show();
-   //var radio=document.getElementsByName("arrastre");
-    
    arrastre();
-
 });
 //Completar registro - arrastre del estudiante
 function arrastre(){
@@ -104,18 +98,4 @@ function arrastre(){
         document.getElementById('arrastre_si').style.display='block';
         document.getElementById('si').checked=true;
     }
-}
-
-
-function validar_arrastre(){
-    var datosCorrectos=true;
-    var error="";
-    if(document.getElementById("paralelo_arrastre").value=="NA"){
-        datosCorrectos=false;
-        error=" El campo paralelo es obligatorio.";
-    }
-    if(!datosCorrectos){
-        alert('¡AVISO!'+error);
-    }
-    return datosCorrectos;
 }
