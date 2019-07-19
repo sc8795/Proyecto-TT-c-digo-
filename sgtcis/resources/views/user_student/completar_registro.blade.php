@@ -114,7 +114,7 @@
                             @endforeach
                         @endif
                         <div class="d-flex p-2 bd-highlight" id="contenedor_2">
-                            <span class="tit_datos">Completar registro con arrastre de materias</span>
+                            <span class="tit_datos">Completar registro con arrastre de materias</span>             
                         </div>
                         <div class="container" id="contenedor_general_op2">                                
                             <span class="">Añada la/las materias que recibe actualmente.</span>
@@ -181,6 +181,11 @@
                                     </div>
                                     <div class="container" id="contenedor_general_op2">
                                         @if ($verifica_arrastre==true)
+                                            @if ($arrastre->materia==null || $arrastre->paralelo==null)
+                                            No ha añadido ninguna materia
+                                            @else
+                                                
+                                            
                                             <table class="table table-bordered table-sm">
                                                 <thead>
                                                     <tr>
@@ -196,13 +201,15 @@
                                                             <tr>
                                                                 <td><input type="hidden" name="materia" value="{{$a_materia}}">{{$a_materia}}</td>
                                                                 <td>
-                                                                    <button type="submit" class="hint--top btn btn-block btn-danger btn-sm" data-hint="Eliminar"><span class="fas fa-trash"></span></button>
+                                                                    <button type="submit" class="hint--top btn btn-block btn-danger btn-sm" data-hint="Borrar"><span class="fas fa-trash"></span></button>
                                                                 </td>
                                                             </tr>
                                                         </form>
                                                     @endforeach
                                                 </tbody>
                                             </table>
+                                            <a href="{{url("completar_registro_arrastre")}}" class="btn btn-primary btn-block btn-sm">Finalizar Registro</a>
+                                            @endif
                                         @else
                                             No ha añadido ninguna materia
                                         @endif                                        
