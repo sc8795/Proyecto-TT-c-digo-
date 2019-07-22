@@ -104,12 +104,14 @@
                         @php
                             $mensaje_error="";
                             $verifica_paralelo=false;
+                            $verifica_password=false;
                         @endphp
                         @if (count($errors)>0)
                             @foreach ($errors->all() as $error)
                                 @php
                                     $mensaje_error=$error;
                                     $verifica_paralelo = str_contains($mensaje_error, 'paralelo');
+                                    $verifica_password = str_contains($mensaje_error, 'contraseña');
                                 @endphp
                             @endforeach
                         @endif
@@ -184,16 +186,14 @@
                                             @if ($arrastre->materia==null || $arrastre->paralelo==null)
                                             No ha añadido ninguna materia
                                             @else
-                                                
-                                            
                                             <table class="table table-bordered table-sm">
+                                                <hr>
                                                 <thead>
                                                     <tr>
                                                         <th scope="col">Materia</th>
                                                         <th scope="col">Acción</th>
                                                     </tr>
                                                 </thead>
-                                                
                                                 <tbody>
                                                     @foreach ($arreglo_materia as $a_materia)
                                                         <form action="{{url("eliminar_materia_agregada")}}" method="POST">
@@ -208,7 +208,21 @@
                                                     @endforeach
                                                 </tbody>
                                             </table>
-                                            <a href="{{url("completar_registro_arrastre")}}" class="btn btn-primary btn-block btn-sm">Finalizar Registro</a>
+                                            <hr>
+                                            <form action="{{url("save_completar_registro")}}" method="POST">
+                                                {{ csrf_field() }}
+                                                {{method_field('PUT')}}
+                                                <input type="hidden" name="paralelo" value="arrastre">
+                                                <input type="hidden" name="ciclo" value="arrastre">
+                                                @if ($verifica_password==true)
+                                                    <div class="alert alert-danger" id="mensaje">
+                                                        {{$error}}
+                                                    </div>
+                                                @endif
+                                                <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña">
+                                                <hr>
+                                                <button type="submit" class="btn btn-primary btn-block btn-sm">Finalizar Registro</button>
+                                            </form>
                                             @endif
                                         @else
                                             No ha añadido ninguna materia

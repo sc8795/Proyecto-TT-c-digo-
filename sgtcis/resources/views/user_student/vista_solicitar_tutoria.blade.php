@@ -3917,6 +3917,39 @@
                             <br>
                         </div>
                         <div class="d-flex p-2 bd-highlight" id="contenedor_2">
+                            <span class="tit_datos">Características de tutoría</span>
+                        </div>
+                        <div class="container" id="contenedor_general_op2">
+                            <br>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-6" id="contenedor_general_op2">
+                                        <h6 class="negrita">Modalidad de tutoría:</h6>
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <input type="radio" name="modalidad" id="modalidad" value="presencial"> Presencial
+                                            </div>
+                                            <div class="col">
+                                                <input type="radio" name="modalidad" id="modalidad" value="virtual"> Virtual
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6" id="contenedor_general_op2">
+                                        <h6 class="negrita">Tipo de tutoría</h6>
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <input type="radio" name="tipo" id="tipo" value="grupal"> Grupal
+                                            </div>
+                                            <div class="col">
+                                                <input type="radio" name="tipo" id="tipo" value="individual"> Individual
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                        </div>
+                        <div class="d-flex p-2 bd-highlight" id="contenedor_2">
                             <span class="tit_datos">Motivo de tutoría</span>
                         </div>
                         <div class="container" id="contenedor_general_op2">

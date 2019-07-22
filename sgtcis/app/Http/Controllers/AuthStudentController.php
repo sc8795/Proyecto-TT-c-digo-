@@ -192,9 +192,6 @@ class AuthStudentController extends Controller
             $user_student = Auth::user();
             if($user_student->is_estudiante==true){
                 if($user_student->paralelo=="NA" && $user_student->ciclo=="NA"){
-                    /*$data=request()->validate([
-                        'materia'=>'required',
-                    ]);*/
                     $materia=$request->input('materia');
                     $arrastre=DB::table('arrastres')->where('user_estudiante_id',$user_student->id)->first();
                     $arreglo_materia=explode('.', $arrastre->materia);
@@ -228,12 +225,23 @@ class AuthStudentController extends Controller
         }
     }
     public function completar_registro_arrastre(){
-        DB::table('arrastres')->insert([
-            'id'=>$id,
-            'user_estudiante_id'=>$user_student->id,
-            'materia'=>$materia_agregada,
-            'paralelo'=>$paralelo_agregado
-        ]);
+        if (Auth::check()) {
+            $user = Auth::user();
+
+            $data=request()->validate([
+                'ciclo'=>'required',
+                'paralelo'=>'required',
+                'password'=>'required'
+            ]);
+
+            if ($data["password"]!=null) {
+                $data["password"]=bcrypt($data['password']);
+            }else{
+                unset($data["password"]);
+            }
+            $user->update($data);
+            return redirect()->route('auth_student');
+        }
     }
 /* 
 |--------------------------------------------------------------------------

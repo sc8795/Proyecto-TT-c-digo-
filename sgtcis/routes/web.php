@@ -158,7 +158,6 @@ Route::put('save_completar_registro','AuthStudentController@save_completar_regis
 Route::get('buscar_materia_arrastre','AuthStudentController@buscar_materia_arrastre')->name('buscar_materia_arrastre');
 Route::post('agregar_materia_arrastre','AuthStudentController@agregar_materia_arrastre')->name('agregar_materia_arrastre');
 Route::post('eliminar_materia_agregada','AuthStudentController@eliminar_materia_agregada')->name('eliminar_materia_agregada');
-Route::get('completar_registro_arrastre','AuthStudentController@completar_registro_arrastre')->name('completar_registro_arrastre');
 
 /* Rutas para botón omitir cuando el estudiante está logueado o registrado con cuenta de google */
 Route::get('omitir_completar_registro','AuthStudentController@omitir_completar_registro')->name('omitir_completar_registro');
