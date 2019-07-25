@@ -15,6 +15,7 @@ $(document).ready(function(){
     $('.menu_vertical li ul li a').click(function(){
         window.location.href=$(this).attr("href");
     });
+
 });
 //función para hacer aparecer caja de texto al escojer otro motivo con el radiobutton
 function mostrar_otro_motivo(){
@@ -97,5 +98,16 @@ function arrastre(){
         document.getElementById('arrastre_no').style.display='none';
         document.getElementById('arrastre_si').style.display='block';
         document.getElementById('si').checked=true;
+    }
+}
+
+//$('#grupal').trigger('click');
+function tipo_tutoria(){
+    var tipo=document.getElementsByName("tipo");
+    if(tipo[0].checked==true){
+        document.getElementById('tipo_grupal').style.display='block';
+        document.getElementById('grupal').checked=true;
+    }else{
+        document.getElementById('tipo_grupal').style.display='none';
     }
 }

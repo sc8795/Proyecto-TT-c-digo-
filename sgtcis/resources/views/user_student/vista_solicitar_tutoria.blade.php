@@ -21,6 +21,24 @@
         <div class="col-9">
             <div class="container" id="contenedor_general">
                 @if ($estado==0)
+                    @php
+                        $mensaje_error="";
+                        $verifica_motivo=false;
+                        $verifica_dia=false;
+                        $verifica_modalidad=false;
+                        $verifica_tipo=false;
+                    @endphp
+                    @if (count($errors)>0)
+                        @foreach ($errors->all() as $error)
+                            @php
+                                $mensaje_error=$error;
+                                $verifica_modalidad = str_contains($mensaje_error, 'modalidad');
+                                $verifica_tipo = str_contains($mensaje_error, 'tipo');
+                                $verifica_motivo = str_contains($mensaje_error, 'motivo');
+                                $verifica_dia = str_contains($mensaje_error, 'dia');
+                            @endphp
+                        @endforeach
+                    @endif
                     <form action="{{url("solicitar_tutoria_student/{$user->id}/{$user_docente->id}/{$materia->id}/{$estado}")}}" method="POST">
                         {{ csrf_field() }}
                         <h6 class="tit_general">Acción: 
@@ -32,10 +50,12 @@
                         </div>
                         <div class="container" id="contenedor_general_op2">
                             <br>
+                            @if ($verifica_dia==true)
+                                <div class="alert alert-danger" id="mensaje">
+                                    {{$error}}
+                                </div>
+                            @endif
                             <h6>
-                                @if ($mensaje==1)
-                                    {!! Alert::render() !!}
-                                @endif
                                 <span class="negrita"> ¡Seleccione el día que desea la tutoría!</span>
                                 El docente {{$user_docente->name}} {{$user_docente->lastname}} tiene asignado los siguientes horarios de tutoría:
                             </h6>
@@ -3917,45 +3937,14 @@
                             <br>
                         </div>
                         <div class="d-flex p-2 bd-highlight" id="contenedor_2">
-                            <span class="tit_datos">Características de tutoría</span>
-                        </div>
-                        <div class="container" id="contenedor_general_op2">
-                            <br>
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-6" id="contenedor_general_op2">
-                                        <h6 class="negrita">Modalidad de tutoría:</h6>
-                                        <div class="row">
-                                            <div class="col-4">
-                                                <input type="radio" name="modalidad" id="modalidad" value="presencial"> Presencial
-                                            </div>
-                                            <div class="col">
-                                                <input type="radio" name="modalidad" id="modalidad" value="virtual"> Virtual
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-6" id="contenedor_general_op2">
-                                        <h6 class="negrita">Tipo de tutoría</h6>
-                                        <div class="row">
-                                            <div class="col-4">
-                                                <input type="radio" name="tipo" id="tipo" value="grupal"> Grupal
-                                            </div>
-                                            <div class="col">
-                                                <input type="radio" name="tipo" id="tipo" value="individual"> Individual
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <br>
-                        </div>
-                        <div class="d-flex p-2 bd-highlight" id="contenedor_2">
                             <span class="tit_datos">Motivo de tutoría</span>
                         </div>
                         <div class="container" id="contenedor_general_op2">
                             <br>
-                            @if ($mensaje==2)
-                                {!! Alert::render() !!}
+                            @if ($verifica_motivo==true)
+                                <div class="alert alert-danger" id="mensaje">
+                                    {{$error}}
+                                </div>
                             @endif
                             <h6>
                                 <input type="radio" name="motivo" value="Dudas sobre algún (deber, investigación, consulta, ensayo) enviado" onclick="mostrar_otro_motivo();"> Dudas sobre algún (deber, investigación, consulta, ensayo) enviado
@@ -3974,6 +3963,50 @@
                             </div>
                             <br>
                         </div>
+                        <div class="d-flex p-2 bd-highlight" id="contenedor_2">
+                            <span class="tit_datos">Características de tutoría</span>
+                        </div>
+                        <div class="container" id="contenedor_general_op2">
+                            <br>
+                            <div class="container">
+                                <div class="row"> 
+                                    <div class="col-6" id="contenedor_general_op2">
+                                        <h6 class="negrita">Tipo de tutoría</h6>
+                                        @if ($verifica_tipo==true)
+                                            <div class="alert alert-danger" id="mensaje">
+                                                {{$error}}
+                                            </div>
+                                        @endif
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <input type="radio" name="tipo" id="grupal" value="grupal"> Grupal
+                                            </div>
+                                            <div class="col">
+                                                <input type="radio" name="tipo" id="individual" value="individual"> Individual
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6" id="contenedor_general_op2">
+                                        <h6 class="negrita">Modalidad de tutoría:</h6>
+                                        @if ($verifica_modalidad==true)
+                                            <div class="alert alert-danger" id="mensaje">
+                                                {{$error}}
+                                            </div>
+                                        @endif
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <input type="radio" name="modalidad" id="modalidad" value="presencial"> Presencial
+                                            </div>
+                                            <div class="col">
+                                                <input type="radio" name="modalidad" id="modalidad" value="virtual"> Virtual
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                        </div>
+                        
                         <button type="submit" class="btn btn-info btn-sm btn-block" title="Solicitar tutoría al docente {{$user_docente->name}} {{$user_docente->name}}">Solicitar tutoría</button>
                     </form>
                 @else

@@ -33,7 +33,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-1">
-                                <input type="radio" id="si" name="arrastre" onclick="arrastre();"> Si
+                                <input type="radio" id="si" name="arrastre" onclick="arrastre();" checked> Si
                             </div>
                             <div class="col-1">
                                 <input type="radio" id="no" name="arrastre" onclick="arrastre();"> No
