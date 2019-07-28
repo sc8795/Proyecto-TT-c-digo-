@@ -152,7 +152,7 @@
                                         </thead>
                                         
                                             @foreach ($materias as $materia) 
-                                            <form action="{{url("agregar_materia_arrastre")}}" method="POST" onsubmit="return validar_arrastre()">
+                                            <form action="{{url("agregar_materia_arrastre#contenedor_2")}}" method="POST" onsubmit="return validar_arrastre()">
                                                 {{ csrf_field() }}
                                                 <tbody>
                                                     <tr>
@@ -166,7 +166,7 @@
                                                                 <option value="D">D</option>
                                                             </select>
                                                         </td>
-                                                        <td>
+                                                        <td>                    
                                                             <button type="submit" class="hint--top btn btn-block btn-success btn-sm" data-hint="Añadir"><span class="fas fa-check-circle"></span></button>
                                                         </td>
                                                     </tr>

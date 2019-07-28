@@ -100,8 +100,8 @@ function arrastre(){
         document.getElementById('si').checked=true;
     }
 }
-
 //$('#grupal').trigger('click');
+tipo_tutoria();
 function tipo_tutoria(){
     var tipo=document.getElementsByName("tipo");
     if(tipo[0].checked==true){
@@ -110,4 +110,9 @@ function tipo_tutoria(){
     }else{
         document.getElementById('tipo_grupal').style.display='none';
     }
+}
+
+function hola(){
+    var tipo=document.getElementsByName("tipo");
+    alert(tipo);
 }

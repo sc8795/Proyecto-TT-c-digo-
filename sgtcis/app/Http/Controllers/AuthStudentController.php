@@ -66,7 +66,7 @@ class AuthStudentController extends Controller
 | Funciones para la vista general del estudiante con cuenta de google
 |--------------------------------------------------------------------------
 */
-    public function vista_student_google(){
+    public function vista_student_google(Request $request){
         if (Auth::check()) {
             $user_student = Auth::user();
             if($user_student->is_estudiante==true){
@@ -125,9 +125,15 @@ class AuthStudentController extends Controller
                     $materias=Materia::orderBy('id','DESC')
                         ->name($name)
                         ->paginate(5);
-                    Alert::success('¡Bienvenido(a)! ')
-                        ->details("$user_student->name $user_student->lastname.");
-                    return view('user_student.completar_registro',compact('user_student','materias'));
+                    $verifica_arrastre=DB::table('arrastres')->where('user_estudiante_id',$user_student->id)->exists();
+                    if($verifica_arrastre==true){
+                        $arrastre=DB::table('arrastres')->where('user_estudiante_id',$user_student->id)->first();
+                        $arreglo_materia=explode('.', $arrastre->materia);
+                        $arreglo_paralelo=explode('.', $arrastre->paralelo);
+                        return view('user_student.completar_registro',compact('user_student','materias','arrastre','arreglo_materia','verifica_arrastre','arreglo_paralelo'));
+                    }else{
+                        return view('user_student.completar_registro',compact('user_student','materias','verifica_arrastre'));
+                    }
                 }else{
                     return view('user_student.auth_student'); 
                 } 
@@ -288,6 +294,7 @@ class AuthStudentController extends Controller
     }
     public function vista_solicitar_tutoria(User $user, User $user_docente, Materia $materia){
         $docente=$user_docente->id;
+        //dd($user_docente);
         $verifica_horarios=DB::table('horarios')->where('usuario_id',$docente)->exists();
         $verifica_horarios2=DB::table('horario2s')->where('usuario_id',$docente)->exists();
         $verifica_horarios3=DB::table('horario3s')->where('usuario_id',$docente)->exists();
@@ -296,13 +303,14 @@ class AuthStudentController extends Controller
         if($verifica_horarios==true || $verifica_horarios2==true || $verifica_horarios3==true || $verifica_horarios4==true || $verifica_horarios5==true){
             $estado=0;
             $mensaje=0;
+            $seleccionado=0;
             $horarios=DB::table('horarios')->where('usuario_id',$docente)->first();
             $horarios2=DB::table('horario2s')->where('usuario_id',$docente)->first();
             $horarios3=DB::table('horario3s')->where('usuario_id',$docente)->first();
             $horarios4=DB::table('horario4s')->where('usuario_id',$docente)->first();
             $horarios5=DB::table('horario5s')->where('usuario_id',$docente)->first();
-            $lista_estudiantes_sin_arrastre=DB::table('users')->where('is_estudiante',true)->where('paralelo',$user->paralelo)->where('ciclo',$user->ciclo)->get();
-            return view('user_student.vista_solicitar_tutoria',compact('lista_estudiantes_sin_arrastre','user','user_docente','materia','estado','mensaje','horarios','horarios2','horarios3','horarios4','horarios5'));
+            $lista_estudiantes_sin_arrastre=DB::table('users')->where('is_estudiante',true)->where('paralelo',$user->paralelo)->where('ciclo',$user->ciclo)->where('id','!=',$user->id)->get();
+            return view('user_student.vista_solicitar_tutoria',compact('seleccionado','lista_estudiantes_sin_arrastre','user','user_docente','materia','estado','mensaje','horarios','horarios2','horarios3','horarios4','horarios5'));
         }else{
             $estado=1;
             Alert::info('¡Aviso! ')
@@ -310,17 +318,24 @@ class AuthStudentController extends Controller
             return view('user_student.vista_solicitar_tutoria',compact('estado'));
         }
     }
-    public function buscar_estudiante(){
+    public function buscar_estudiante(Request $request){
         if (Auth::check()) {
             $user_student = Auth::user();
             if($user_student->is_estudiante==true){
+                $estado=0;
+                $seleccionado=1;
                 $name = $request->get('name');
-                $name = $request->get('lastname');
+                $lastname = $request->get('lastname');
+                $id_materia = $request->get('id_materia');
+                $id_docente = $request->get('id_docente');
+                $materia=DB::table('materias')->where('id',$id_materia)->first();
+                $user_docente=DB::table('users')->where('id',$id_docente)->first();
                 $lista_estudiantes_sin_arrastre=User::orderBy('id','DESC')
-                    ->name($name)
-                    ->name($lastname)
-                    ->paginate(5);
-                return view('user_student.completar_registro',compact('user_student','lista_estudiantes_sin_arrastre'));
+                ->name($name)
+                ->lastname($lastname)
+                ->where('is_estudiante',true)->where('paralelo',$user_student->paralelo)->where('ciclo',$user_student->ciclo)->where('id','!=',$user_student->id)
+                ->paginate(5);
+                return view('user_student.vista_solicitar_tutoria',compact('user_student','lista_estudiantes_sin_arrastre','estado','materia','user_docente','seleccionado'));
             }else{
                 return redirect()->route('show_login_form_student');
             }
@@ -332,6 +347,21 @@ class AuthStudentController extends Controller
         //return redirect()->route('vista_solicitar_tutoria',['user'=>$user,'user_docente'=>$user_docente,'materia'=>$materia]);
     }
     public function solicitar_tutoria_student(Request $request,User $user, User $user_docente, Materia $materia,$estado){
+        if($request->isMethod('post')){
+            $boton=$request->input('boton');
+            if($boton=="Buscar"){
+                $name = $request->get('name');
+                $lastname = $request->get('lastname');
+                $estado=1;
+                $lista_estudiantes_sin_arrastre=User::orderBy('id','DESC')
+                ->name($name)
+                ->lastname($lastname)
+                ->paginate(5);
+                return view('user_student.vista_solicitar_tutoria',compact('user','lista_estudiantes_sin_arrastre','estado'));
+            }
+            //dd($boton);
+            exit;
+        }
         $data=request()->validate([
             'modalidad'=>'required',
             'tipo'=>'required',
@@ -491,12 +521,8 @@ class AuthStudentController extends Controller
         if(\Notification::send($user_notificado,new NotificacionDocente(Notidocente::latest('id')->first()))){
             return back();
         }
-        if($tipo=="grupal"){
-            return view('user_student.invitar_estudiante');
-        }else{
-            flash("Usted ha solicitado tutoría al docente $user_docente->name $user_docente->lastname, espere su confirmación por parte del docente.")->success();
-            return redirect()->route('vista_general_student');    
-        }
+        flash("Usted ha solicitado tutoría $tipo al docente $user_docente->name $user_docente->lastname, espere su confirmación por parte del docente.")->success();
+        return redirect()->route('vista_general_student');    
     }
 /* 
 |--------------------------------------------------------------------------
