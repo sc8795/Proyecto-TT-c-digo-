@@ -71,7 +71,11 @@
                                     </div>
                                     <div class="container" style="display: none;" id="tipo_grupal">
                                         <hr>
-                                        <form class="card" method="GET" action="{{url("buscar_estudiante#tipo_grupal")}}">
+                                        <form class="card" method="POST" action="{{url("vista_solicitar_tutoria#tipo_grupal")}}">
+                                            {{ csrf_field() }}
+                                            @php
+                                                $accion="buscar";
+                                            @endphp
                                             <div class="row no-gutters align-items-center">
                                                 <!--end of col-->
                                                 <div class="col">
@@ -82,6 +86,7 @@
                                                 </div>
                                                 <input type="hidden" name="id_materia" id="id_materia" value="{{$materia->id}}">
                                                 <input type="hidden" name="id_docente" id="id_docente" value="{{$user_docente->id}}">
+                                                <input type="hidden" name="accion" value="{{$accion}}">
                                                 <!--end of col-->
                                                 <div class="col-auto">
                                                     <!--a href="#" id="btn_enviar">Enviar</a-->
@@ -91,33 +96,38 @@
                                             </div>
                                         </form>
                                         <hr>
-                                        @if ($lista_estudiantes_sin_arrastre->isNotEmpty())
-                                            <table class="table table-bordered table-sm">
-                                                <thead>
-                                                    <tr>
-                                                    <th class="col">Nombres</th>
-                                                    <th class="col">Acción</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    @foreach($lista_estudiantes_sin_arrastre as $estudiante)
-                                                        <form action="{{url("invitar_estudiante")}}" method="POST">
-                                                            {{ csrf_field() }}
-                                                            <tr>
-                                                                <td>{{$estudiante->name}} {{$estudiante->lastname}}</td>
-                                                                <input type="hidden" name="estudiante" value="{{$estudiante->id}}">
-                                                                <input type="hidden" name="id_materia" id="id_materia" value="{{$materia->id}}">
-                                                                <input type="hidden" name="id_docente" id="id_docente" value="{{$user_docente->id}}">
-                                                                <td><button type="submit" class="hint--top btn btn-block btn-success btn-sm" data-hint="Invitar"><span class="fas fa-check-circle"></span></button></td>
-                                                            </tr>
-                                                        </form>
-                                                    @endforeach
-                                                </tbody>
-                                            </table>
-                                        @else
-                                            No se han encontrado resultados 
+                                        @if ($accion=="buscar")
+                                            @if ($lista_estudiantes_sin_arrastre->isNotEmpty())
+                                                <table class="table table-bordered table-sm">
+                                                    <thead>
+                                                        <tr>
+                                                        <th class="col">Nombres</th>
+                                                        <th class="col">Acción</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach($lista_estudiantes_sin_arrastre as $estudiante)
+                                                            @php
+                                                                $accion="invitar";
+                                                            @endphp
+                                                            <form action="{{url("vista_solicitar_tutoria#tipo_grupal")}}" method="POST">
+                                                                {{ csrf_field() }}
+                                                                <tr>
+                                                                    <td>{{$estudiante->name}} {{$estudiante->lastname}}</td>
+                                                                    <input type="hidden" name="estudiante" value="{{$estudiante->id}}">
+                                                                    <input type="hidden" name="id_materia" id="id_materia" value="{{$materia->id}}">
+                                                                    <input type="hidden" name="id_docente" id="id_docente" value="{{$user_docente->id}}">
+                                                                    <input type="hidden" name="accion" id="accion" value="{{$accion}}">
+                                                                    <td><button type="submit" class="hint--top btn btn-block btn-success btn-sm" data-hint="Invitar"><span class="fas fa-check-circle"></span></button></td>
+                                                                </tr>
+                                                            </form>
+                                                        @endforeach
+                                                    </tbody>
+                                                </table>
+                                            @else
+                                                No se han encontrado resultados 
+                                            @endif
                                         @endif
-                                        
                                     </div>
                                 </div>
                             </div>

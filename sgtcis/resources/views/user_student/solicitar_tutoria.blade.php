@@ -32,6 +32,8 @@
                     <tbody>
                         @php
                             $cont=0;
+                            //v_p=vista principal
+                            $accion="v_p";  
                         @endphp
                         
                         @foreach ($materias as $materia)
@@ -59,10 +61,10 @@
                                 <td>
                                     @foreach ($users_docentes as $user_docente)
                                         @php
-                                            $paralelo_docente=explode(',', $user_docente->paralelo);    
+                                            $paralelo_docente=explode(',', $user_docente->paralelo);
                                         @endphp
                                         @if ($materia->usuario_id==$user_docente->id && in_array("A",$paralelo_docente))
-                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
+                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}/{$accion}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
                                         @endif
                                     @endforeach
                                 </td>
@@ -89,7 +91,7 @@
                                             $paralelo_docente=explode(',', $user_docente->paralelo);    
                                         @endphp
                                         @if ($materia->usuario_id==$user_docente->id && in_array("B",$paralelo_docente))
-                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
+                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}/{$accion}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
                                         @endif
                                     @endforeach
                                 </td>
@@ -116,7 +118,7 @@
                                             $paralelo_docente=explode(',', $user_docente->paralelo);    
                                         @endphp
                                         @if ($materia->usuario_id==$user_docente->id && in_array("C",$paralelo_docente))
-                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
+                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}/{$accion}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
                                         @endif
                                     @endforeach
                                 </td>
@@ -143,7 +145,7 @@
                                             $paralelo_docente=explode(',', $user_docente->paralelo);    
                                         @endphp
                                         @if ($materia->usuario_id==$user_docente->id && in_array("D",$paralelo_docente))
-                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
+                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}/{$accion}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
                                         @endif
                                     @endforeach
                                 </td>
@@ -171,7 +173,7 @@
                                             $paralelo_docente=explode(',', $user_docente->paralelo);    
                                         @endphp
                                         @if ($materia->usuario_id==$user_docente->id && in_array("A",$paralelo_docente))
-                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
+                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}/{$accion}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
                                         @endif
                                     @endforeach
                                 </td>
@@ -198,7 +200,7 @@
                                             $paralelo_docente=explode(',', $user_docente->paralelo);    
                                         @endphp
                                         @if ($materia->usuario_id==$user_docente->id && in_array("B",$paralelo_docente))
-                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
+                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}/{$accion}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
                                         @endif
                                     @endforeach
                                 </td>
@@ -225,7 +227,7 @@
                                             $paralelo_docente=explode(',', $user_docente->paralelo);    
                                         @endphp
                                         @if ($materia->usuario_id==$user_docente->id && in_array("C",$paralelo_docente))
-                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
+                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}/{$accion}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
                                         @endif
                                     @endforeach
                                 </td>
@@ -252,7 +254,7 @@
                                             $paralelo_docente=explode(',', $user_docente->paralelo);    
                                         @endphp
                                         @if ($materia->usuario_id==$user_docente->id && in_array("D",$paralelo_docente))
-                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
+                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}/{$accion}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
                                         @endif
                                     @endforeach
                                 </td>
@@ -280,7 +282,7 @@
                                             $paralelo_docente=explode(',', $user_docente->paralelo);    
                                         @endphp
                                         @if ($materia->usuario_id==$user_docente->id && in_array("A",$paralelo_docente))
-                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
+                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}/{$accion}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
                                         @endif
                                     @endforeach
                                 </td>
@@ -307,7 +309,7 @@
                                             $paralelo_docente=explode(',', $user_docente->paralelo);    
                                         @endphp
                                         @if ($materia->usuario_id==$user_docente->id && in_array("B",$paralelo_docente))
-                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
+                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}/{$accion}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
                                         @endif
                                     @endforeach
                                 </td>
@@ -334,7 +336,7 @@
                                             $paralelo_docente=explode(',', $user_docente->paralelo);    
                                         @endphp
                                         @if ($materia->usuario_id==$user_docente->id && in_array("C",$paralelo_docente))
-                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
+                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}/{$accion}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
                                         @endif
                                     @endforeach
                                 </td>
@@ -361,7 +363,7 @@
                                             $paralelo_docente=explode(',', $user_docente->paralelo);    
                                         @endphp
                                         @if ($materia->usuario_id==$user_docente->id && in_array("D",$paralelo_docente))
-                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
+                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}/{$accion}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
                                         @endif
                                     @endforeach
                                 </td>
@@ -389,7 +391,7 @@
                                             $paralelo_docente=explode(',', $user_docente->paralelo);    
                                         @endphp
                                         @if ($materia->usuario_id==$user_docente->id && in_array("A",$paralelo_docente))
-                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
+                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}/{$accion}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
                                         @endif
                                     @endforeach
                                 </td>
@@ -416,7 +418,7 @@
                                             $paralelo_docente=explode(',', $user_docente->paralelo);    
                                         @endphp
                                         @if ($materia->usuario_id==$user_docente->id && in_array("B",$paralelo_docente))
-                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
+                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}/{$accion}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
                                         @endif
                                     @endforeach
                                 </td>
@@ -443,7 +445,7 @@
                                             $paralelo_docente=explode(',', $user_docente->paralelo);    
                                         @endphp
                                         @if ($materia->usuario_id==$user_docente->id && in_array("C",$paralelo_docente))
-                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
+                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}/{$accion}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
                                         @endif
                                     @endforeach
                                 </td>
@@ -470,7 +472,7 @@
                                             $paralelo_docente=explode(',', $user_docente->paralelo);    
                                         @endphp
                                         @if ($materia->usuario_id==$user_docente->id && in_array("D",$paralelo_docente))
-                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
+                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}/{$accion}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
                                         @endif
                                     @endforeach
                                 </td>
@@ -498,7 +500,7 @@
                                             $paralelo_docente=explode(',', $user_docente->paralelo);    
                                         @endphp
                                         @if ($materia->usuario_id==$user_docente->id && in_array("A",$paralelo_docente))
-                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
+                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}/{$accion}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
                                         @endif
                                     @endforeach
                                 </td>
@@ -525,7 +527,7 @@
                                             $paralelo_docente=explode(',', $user_docente->paralelo);    
                                         @endphp
                                         @if ($materia->usuario_id==$user_docente->id && in_array("B",$paralelo_docente))
-                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
+                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}/{$accion}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
                                         @endif
                                     @endforeach
                                 </td>
@@ -552,7 +554,7 @@
                                             $paralelo_docente=explode(',', $user_docente->paralelo);    
                                         @endphp
                                         @if ($materia->usuario_id==$user_docente->id && in_array("C",$paralelo_docente))
-                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
+                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}/{$accion}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
                                         @endif
                                     @endforeach
                                 </td>
@@ -579,7 +581,7 @@
                                             $paralelo_docente=explode(',', $user_docente->paralelo);    
                                         @endphp
                                         @if ($materia->usuario_id==$user_docente->id && in_array("D",$paralelo_docente))
-                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
+                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}/{$accion}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
                                         @endif
                                     @endforeach
                                 </td>
@@ -607,7 +609,7 @@
                                             $paralelo_docente=explode(',', $user_docente->paralelo);    
                                         @endphp
                                         @if ($materia->usuario_id==$user_docente->id && in_array("A",$paralelo_docente))
-                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
+                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}/{$accion}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
                                         @endif
                                     @endforeach
                                 </td>
@@ -634,7 +636,7 @@
                                             $paralelo_docente=explode(',', $user_docente->paralelo);    
                                         @endphp
                                         @if ($materia->usuario_id==$user_docente->id && in_array("B",$paralelo_docente))
-                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
+                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}/{$accion}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
                                         @endif
                                     @endforeach
                                 </td>
@@ -661,7 +663,7 @@
                                             $paralelo_docente=explode(',', $user_docente->paralelo);    
                                         @endphp
                                         @if ($materia->usuario_id==$user_docente->id && in_array("C",$paralelo_docente))
-                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
+                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}/{$accion}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
                                         @endif
                                     @endforeach
                                 </td>
@@ -688,7 +690,7 @@
                                             $paralelo_docente=explode(',', $user_docente->paralelo);    
                                         @endphp
                                         @if ($materia->usuario_id==$user_docente->id && in_array("D",$paralelo_docente))
-                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
+                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}/{$accion}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
                                         @endif
                                     @endforeach
                                 </td>
@@ -716,7 +718,7 @@
                                             $paralelo_docente=explode(',', $user_docente->paralelo);    
                                         @endphp
                                         @if ($materia->usuario_id==$user_docente->id && in_array("A",$paralelo_docente))
-                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
+                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}/{$accion}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
                                         @endif
                                     @endforeach
                                 </td>
@@ -743,7 +745,7 @@
                                             $paralelo_docente=explode(',', $user_docente->paralelo);    
                                         @endphp
                                         @if ($materia->usuario_id==$user_docente->id && in_array("B",$paralelo_docente))
-                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
+                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}/{$accion}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
                                         @endif
                                     @endforeach
                                 </td>
@@ -770,7 +772,7 @@
                                             $paralelo_docente=explode(',', $user_docente->paralelo);    
                                         @endphp
                                         @if ($materia->usuario_id==$user_docente->id && in_array("C",$paralelo_docente))
-                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
+                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}/{$accion}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
                                         @endif
                                     @endforeach
                                 </td>
@@ -797,7 +799,7 @@
                                             $paralelo_docente=explode(',', $user_docente->paralelo);    
                                         @endphp
                                         @if ($materia->usuario_id==$user_docente->id && in_array("D",$paralelo_docente))
-                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
+                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}/{$accion}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
                                         @endif
                                     @endforeach
                                 </td>
@@ -825,7 +827,7 @@
                                             $paralelo_docente=explode(',', $user_docente->paralelo);    
                                         @endphp
                                         @if ($materia->usuario_id==$user_docente->id && in_array("A",$paralelo_docente))
-                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
+                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}/{$accion}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
                                         @endif
                                     @endforeach
                                 </td>
@@ -852,7 +854,7 @@
                                             $paralelo_docente=explode(',', $user_docente->paralelo);    
                                         @endphp
                                         @if ($materia->usuario_id==$user_docente->id && in_array("B",$paralelo_docente))
-                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
+                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}/{$accion}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
                                         @endif
                                     @endforeach
                                 </td>
@@ -879,7 +881,7 @@
                                             $paralelo_docente=explode(',', $user_docente->paralelo);    
                                         @endphp
                                         @if ($materia->usuario_id==$user_docente->id && in_array("C",$paralelo_docente))
-                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
+                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}/{$accion}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
                                         @endif
                                     @endforeach
                                 </td>
@@ -906,7 +908,7 @@
                                             $paralelo_docente=explode(',', $user_docente->paralelo);    
                                         @endphp
                                         @if ($materia->usuario_id==$user_docente->id && in_array("D",$paralelo_docente))
-                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
+                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}/{$accion}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
                                         @endif
                                     @endforeach
                                 </td>
@@ -934,7 +936,7 @@
                                             $paralelo_docente=explode(',', $user_docente->paralelo);    
                                         @endphp
                                         @if ($materia->usuario_id==$user_docente->id && in_array("A",$paralelo_docente))
-                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
+                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}/{$accion}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
                                         @endif
                                     @endforeach
                                 </td>
@@ -961,7 +963,7 @@
                                             $paralelo_docente=explode(',', $user_docente->paralelo);    
                                         @endphp
                                         @if ($materia->usuario_id==$user_docente->id && in_array("B",$paralelo_docente))
-                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
+                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}/{$accion}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
                                         @endif
                                     @endforeach
                                 </td>
@@ -988,7 +990,7 @@
                                             $paralelo_docente=explode(',', $user_docente->paralelo);    
                                         @endphp
                                         @if ($materia->usuario_id==$user_docente->id && in_array("C",$paralelo_docente))
-                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
+                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}/{$accion}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
                                         @endif
                                     @endforeach
                                 </td>
@@ -1015,7 +1017,7 @@
                                             $paralelo_docente=explode(',', $user_docente->paralelo);    
                                         @endphp
                                         @if ($materia->usuario_id==$user_docente->id && in_array("D",$paralelo_docente))
-                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
+                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}/{$accion}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
                                         @endif
                                     @endforeach
                                 </td>
@@ -1038,14 +1040,20 @@
                                     </h6>
                                 </td>
                                 <td>
-                                    @foreach ($users_docentes as $user_docente)
-                                        @php
-                                            $paralelo_docente=explode(',', $user_docente->paralelo);    
-                                        @endphp
-                                        @if ($materia->usuario_id==$user_docente->id && in_array("A",$paralelo_docente))
-                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
-                                        @endif
-                                    @endforeach
+                                    <form action="{{url("vista_solicitar_tutoria")}}" method="POST">
+                                        {{ csrf_field() }}
+                                        @foreach ($users_docentes as $user_docente)
+                                            @php
+                                                $paralelo_docente=explode(',', $user_docente->paralelo);    
+                                            @endphp
+                                            @if ($materia->usuario_id==$user_docente->id && in_array("A",$paralelo_docente))
+                                                <input type="hidden" name="accion" value="{{$accion}}">
+                                                <input type="hidden" name="id_docente" value="{{$user_docente->id}}">
+                                                <input type="hidden" name="id_materia" value="{{$materia->id}}">
+                                                <button type="submit" class="btn btn-success btn-sm" title="Ir a formulario - solicitar tutoría">Solicitar tutoría <span class="fas fa-file"></span></button>    
+                                            @endif
+                                        @endforeach
+                                    </form>
                                 </td>
                             @endif
 
@@ -1070,7 +1078,7 @@
                                             $paralelo_docente=explode(',', $user_docente->paralelo);    
                                         @endphp
                                         @if ($materia->usuario_id==$user_docente->id && in_array("B",$paralelo_docente))
-                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
+                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}/{$accion}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
                                         @endif
                                     @endforeach
                                 </td>
@@ -1097,7 +1105,7 @@
                                             $paralelo_docente=explode(',', $user_docente->paralelo);    
                                         @endphp
                                         @if ($materia->usuario_id==$user_docente->id && in_array("C",$paralelo_docente))
-                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
+                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}/{$accion}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
                                         @endif
                                     @endforeach
                                 </td>
@@ -1124,7 +1132,7 @@
                                             $paralelo_docente=explode(',', $user_docente->paralelo);    
                                         @endphp
                                         @if ($materia->usuario_id==$user_docente->id && in_array("D",$paralelo_docente))
-                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
+                                            <a href="{{url("vista_solicitar_tutoria/{$user->id}/{$user_docente->id}/{$materia->id}/{$accion}")}}" class="btn btn-success btn-sm" title="Editar horario de tutoría asignado">Solicitar tutoría <span class="fas fa-file"></span></a>    
                                         @endif
                                     @endforeach
                                 </td>

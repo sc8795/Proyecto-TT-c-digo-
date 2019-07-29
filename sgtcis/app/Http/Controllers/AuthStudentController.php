@@ -294,50 +294,79 @@ class AuthStudentController extends Controller
         $users_docentes=DB::table('users')->where('is_docente',true)->get();
         return view('user_student.solicitar_tutoria',compact('materias','user','users_docentes'));
     }
-    public function vista_solicitar_tutoria(User $user, User $user_docente, Materia $materia){
-        $docente=$user_docente->id;
-        //dd($user_docente);
+    public function vista_solicitar_tutoria(Request $request){
+        if (Auth::check()) {
+            $user_student = Auth::user();
+            if($user_student->is_estudiante==true){
+                $id_docente=$request->input("id_docente");
+                $id_materia=$request->input("id_materia");
+                $accion=$request->input("accion");
+                $materia=DB::table('materias')->where('id',$id_materia)->first();
+                $user_docente=DB::table('users')->where('id',$id_docente)->first();
+                $lista_estudiantes_sin_arrastre=User::orderBy('id','DESC')
+                    ->where('is_estudiante',true)->where('paralelo',$user_student->paralelo)->where('ciclo',$user_student->ciclo)->where('id','!=',$user_student->id)
+                    ->paginate(5);
+                if($accion=='v_p'){
+                    $seleccionado=0;
+                    $estado=0;
+                    return view('user_student.vista_solicitar_tutoria',compact('materia','user_docente','accion','seleccionado','estado','accion','lista_estudiantes_sin_arrastre'));
+                }
+                if($accion=="buscar"){
+                    $seleccionado=1;
+                    $estado=0;
+                    $lista_estudiantes_sin_arrastre=$this->buscar_estudiante($request);
+                    return view('user_student.vista_solicitar_tutoria',compact('materia','user_docente','accion','seleccionado','estado','accion','lista_estudiantes_sin_arrastre'));
+                }
+                if($accion=="invitar"){
+                    $seleccionado=1;
+                    $estado=0;
+                    $lista_estudiantes_sin_arrastre=$this->invitar_estudiante($request);
+                }
+            }else{
+                return redirect()->route('show_login_form_student');
+            }
+        }
+        /*$docente=$user_docente->id;
         $verifica_horarios=DB::table('horarios')->where('usuario_id',$docente)->exists();
         $verifica_horarios2=DB::table('horario2s')->where('usuario_id',$docente)->exists();
         $verifica_horarios3=DB::table('horario3s')->where('usuario_id',$docente)->exists();
         $verifica_horarios4=DB::table('horario4s')->where('usuario_id',$docente)->exists();
         $verifica_horarios5=DB::table('horario5s')->where('usuario_id',$docente)->exists();
-        if($verifica_horarios==true || $verifica_horarios2==true || $verifica_horarios3==true || $verifica_horarios4==true || $verifica_horarios5==true){
-            $estado=0;
-            $mensaje=0;
-            $seleccionado=0;
-            $horarios=DB::table('horarios')->where('usuario_id',$docente)->first();
-            $horarios2=DB::table('horario2s')->where('usuario_id',$docente)->first();
-            $horarios3=DB::table('horario3s')->where('usuario_id',$docente)->first();
-            $horarios4=DB::table('horario4s')->where('usuario_id',$docente)->first();
-            $horarios5=DB::table('horario5s')->where('usuario_id',$docente)->first();
-            $lista_estudiantes_sin_arrastre=DB::table('users')->where('is_estudiante',true)->where('paralelo',$user->paralelo)->where('ciclo',$user->ciclo)->where('id','!=',$user->id)->get();
-            return view('user_student.vista_solicitar_tutoria',compact('seleccionado','lista_estudiantes_sin_arrastre','user','user_docente','materia','estado','mensaje','horarios','horarios2','horarios3','horarios4','horarios5'));
-        }else{
-            $estado=1;
-            Alert::info('¡Aviso! ')
-                ->details("El docente $user_docente->name $user_docente->lastname no tiene asignado horario de tutoría.");
-            return view('user_student.vista_solicitar_tutoria',compact('estado'));
+        if($accion=='v_p'){
+            if($verifica_horarios==true || $verifica_horarios2==true || $verifica_horarios3==true || $verifica_horarios4==true || $verifica_horarios5==true){
+                $estado=0;
+                $mensaje=0;
+                $seleccionado=0;
+                $horarios=DB::table('horarios')->where('usuario_id',$docente)->first();
+                $horarios2=DB::table('horario2s')->where('usuario_id',$docente)->first();
+                $horarios3=DB::table('horario3s')->where('usuario_id',$docente)->first();
+                $horarios4=DB::table('horario4s')->where('usuario_id',$docente)->first();
+                $horarios5=DB::table('horario5s')->where('usuario_id',$docente)->first();
+                $lista_estudiantes_sin_arrastre=DB::table('users')->where('is_estudiante',true)->where('paralelo',$user->paralelo)->where('ciclo',$user->ciclo)->where('id','!=',$user->id)->get();
+                return view('user_student.vista_solicitar_tutoria',compact('seleccionado','lista_estudiantes_sin_arrastre','user','user_docente','materia','estado','mensaje','horarios','horarios2','horarios3','horarios4','horarios5'));
+            }else{
+                $estado=1;
+                Alert::info('¡Aviso! ')
+                    ->details("El docente $user_docente->name $user_docente->lastname no tiene asignado horario de tutoría.");
+                return view('user_student.vista_solicitar_tutoria',compact('estado'));
+            }
         }
+        if($accion="hola"){
+            dd("Hola lili");
+        }*/
     }
     public function buscar_estudiante(Request $request){
         if (Auth::check()) {
             $user_student = Auth::user();
             if($user_student->is_estudiante==true){
-                $estado=0;
-                $seleccionado=1;
-                $name = $request->get('name');
-                $lastname = $request->get('lastname');
-                $id_materia = $request->get('id_materia');
-                $id_docente = $request->get('id_docente');
-                $materia=DB::table('materias')->where('id',$id_materia)->first();
-                $user_docente=DB::table('users')->where('id',$id_docente)->first();
+                $name = $request->input('name');
+                $lastname = $request->input('lastname');
                 $lista_estudiantes_sin_arrastre=User::orderBy('id','DESC')
                     ->name($name)
                     ->lastname($lastname)
                     ->where('is_estudiante',true)->where('paralelo',$user_student->paralelo)->where('ciclo',$user_student->ciclo)->where('id','!=',$user_student->id)
                     ->paginate(5);
-                return view('user_student.vista_solicitar_tutoria',compact('user_student','lista_estudiantes_sin_arrastre','estado','materia','user_docente','seleccionado'));
+                return $lista_estudiantes_sin_arrastre;
             }else{
                 return redirect()->route('show_login_form_student');
             }
@@ -348,13 +377,7 @@ class AuthStudentController extends Controller
             $user_student = Auth::user();
             if($user_student->is_estudiante==true){
                 $id_estudiante_invitado=$request->input('estudiante');
-                $id_materia = $request->input('id_materia');
-                $id_docente = $request->input('id_docente');
                 /* Información que retorno a la vista */
-                $estado=0;
-                $seleccionado=1;
-                $materia=DB::table('materias')->where('id',$id_materia)->first();
-                $user_docente=DB::table('users')->where('id',$id_docente)->first();
                 $lista_estudiantes_sin_arrastre=User::orderBy('id','DESC')
                     ->where('is_estudiante',true)->where('paralelo',$user_student->paralelo)->where('ciclo',$user_student->ciclo)->where('id','!=',$user_student->id)
                     ->paginate(5);
