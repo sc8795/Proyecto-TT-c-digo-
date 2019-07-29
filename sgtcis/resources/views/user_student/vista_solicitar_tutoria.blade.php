@@ -96,40 +96,74 @@
                                             </div>
                                         </form>
                                         <hr>
-                                        @if ($accion=="buscar")
-                                            @if ($lista_estudiantes_sin_arrastre->isNotEmpty())
-                                                <table class="table table-bordered table-sm">
-                                                    <thead>
-                                                        <tr>
-                                                        <th class="col">Nombres</th>
-                                                        <th class="col">Acción</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        @foreach($lista_estudiantes_sin_arrastre as $estudiante)
-                                                            @php
-                                                                $accion="invitar";
-                                                            @endphp
-                                                            <form action="{{url("vista_solicitar_tutoria#tipo_grupal")}}" method="POST">
-                                                                {{ csrf_field() }}
-                                                                <tr>
-                                                                    <td>{{$estudiante->name}} {{$estudiante->lastname}}</td>
-                                                                    <input type="hidden" name="estudiante" value="{{$estudiante->id}}">
-                                                                    <input type="hidden" name="id_materia" id="id_materia" value="{{$materia->id}}">
-                                                                    <input type="hidden" name="id_docente" id="id_docente" value="{{$user_docente->id}}">
-                                                                    <input type="hidden" name="accion" id="accion" value="{{$accion}}">
-                                                                    <td><button type="submit" class="hint--top btn btn-block btn-success btn-sm" data-hint="Invitar"><span class="fas fa-check-circle"></span></button></td>
-                                                                </tr>
-                                                            </form>
-                                                        @endforeach
-                                                    </tbody>
-                                                </table>
-                                            @else
-                                                No se han encontrado resultados 
-                                            @endif
+                                        
+                                        @if ($lista_estudiantes_sin_arrastre->isNotEmpty())
+                                            <table class="table table-bordered table-sm">
+                                                <thead>
+                                                    <tr>
+                                                    <th class="col">Nombres</th>
+                                                    <th class="col">Acción</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach($lista_estudiantes_sin_arrastre as $estudiante)
+                                                        @php
+                                                            $accion="invitar";
+                                                        @endphp
+                                                        <form action="{{url("vista_solicitar_tutoria#tipo_grupal")}}" method="POST">
+                                                            {{ csrf_field() }}
+                                                            <tr>
+                                                                <td>{{$estudiante->name}} {{$estudiante->lastname}}</td>
+                                                                <input type="hidden" name="estudiante" value="{{$estudiante->id}}">
+                                                                <input type="hidden" name="id_materia" id="id_materia" value="{{$materia->id}}">
+                                                                <input type="hidden" name="id_docente" id="id_docente" value="{{$user_docente->id}}">
+                                                                <input type="hidden" name="accion" id="accion" value="{{$accion}}">
+                                                                <td><button type="submit" class="hint--top btn btn-block btn-success btn-sm" data-hint="Invitar"><span class="fas fa-check-circle"></span></button></td>
+                                                            </tr>
+                                                        </form>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        @else
+                                            No se han encontrado resultados 
                                         @endif
                                     </div>
                                 </div>
+                                @if ($invitacion!=null)
+                                    <div class="col-6" id="contenedor_general_op2">
+                                        <div class="d-flex p-2 bd-highlight" id="contenedor_2">
+                                            <span class="tit_datos">Estudiantes invitados</span>
+                                        </div>
+                                        <div class="container" id="contenedor_general_op2">
+                                            <table class="table table-bordered table-sm">
+                                                <hr>
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Estudiante</th>
+                                                        <th scope="col">Acción</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($arreglo_est_inv as $e_invitado)
+                                                        @php
+                                                            $est_invitado=DB::table('users')->where('id',$e_invitado)->first();
+                                                        @endphp
+                                                        <form action="#" method="POST">
+                                                            {{ csrf_field() }}
+                                                            <tr>
+                                                                <td><input type="hidden" name="estudiente" value="">{{$est_invitado->name}} {{$est_invitado->lastname}}</td>
+                                                                <td>
+                                                                    <button type="submit" class="hint--top btn btn-block btn-danger btn-sm" data-hint="Cancelar invitación"><span class="fas fa-trash"></span></button>
+                                                                </td>
+                                                            </tr>
+                                                        </form>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                            <br>
+                                        </div>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                         <br>

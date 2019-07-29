@@ -111,8 +111,3 @@ function tipo_tutoria(){
         document.getElementById('tipo_grupal').style.display='none';
     }
 }
-
-function hola(){
-    var tipo=document.getElementsByName("tipo");
-    alert(tipo);
-}
