@@ -9,6 +9,8 @@ use App\Materia;
 use App\Solitutoria;
 use App\Notifications\NotificacionDocente;
 use App\Notidocente;
+use App\Notifications\InvitacionEstudiante;
+use App\Invitacion;
 use App\Evaluacion;
 use App\Log;
 use Alert;
@@ -331,10 +333,10 @@ class AuthStudentController extends Controller
                 $materia=DB::table('materias')->where('id',$id_materia)->first();
                 $user_docente=DB::table('users')->where('id',$id_docente)->first();
                 $lista_estudiantes_sin_arrastre=User::orderBy('id','DESC')
-                ->name($name)
-                ->lastname($lastname)
-                ->where('is_estudiante',true)->where('paralelo',$user_student->paralelo)->where('ciclo',$user_student->ciclo)->where('id','!=',$user_student->id)
-                ->paginate(5);
+                    ->name($name)
+                    ->lastname($lastname)
+                    ->where('is_estudiante',true)->where('paralelo',$user_student->paralelo)->where('ciclo',$user_student->ciclo)->where('id','!=',$user_student->id)
+                    ->paginate(5);
                 return view('user_student.vista_solicitar_tutoria',compact('user_student','lista_estudiantes_sin_arrastre','estado','materia','user_docente','seleccionado'));
             }else{
                 return redirect()->route('show_login_form_student');
@@ -342,8 +344,75 @@ class AuthStudentController extends Controller
         }
     }
     public function invitar_estudiante(Request $request){
-        $id_estudiante_invitado=$request->input('estudiante');
-        dd($id_estudiante_invitado);
+        if (Auth::check()) {
+            $user_student = Auth::user();
+            if($user_student->is_estudiante==true){
+                $id_estudiante_invitado=$request->input('estudiante');
+                $id_materia = $request->input('id_materia');
+                $id_docente = $request->input('id_docente');
+                /* Información que retorno a la vista */
+                $estado=0;
+                $seleccionado=1;
+                $materia=DB::table('materias')->where('id',$id_materia)->first();
+                $user_docente=DB::table('users')->where('id',$id_docente)->first();
+                $lista_estudiantes_sin_arrastre=User::orderBy('id','DESC')
+                    ->where('is_estudiante',true)->where('paralelo',$user_student->paralelo)->where('ciclo',$user_student->ciclo)->where('id','!=',$user_student->id)
+                    ->paginate(5);
+                $fecha_actual=now();
+                $invita_estudiante=new Invitacion;
+
+                $verifica_invitacion=DB::table('invitacions')->where('user_invita_id',$user_student->id)->exists();
+                if($verifica_invitacion==true){
+                    $invitacion=DB::table('invitacions')->where('user_invita_id',$user_student->id)
+                        ->where('solitutoria_id',null)
+                        ->first();
+                    $id=$invitacion->id;
+                    $user_invitado=$invitacion->user_invitado_id;
+                    $title=$invitacion->title;
+                    $descripcion=$invitacion->descripcion;
+                    $fecha_invita=$invitacion->fecha_invita;
+                    if($invitacion->user_invitado_id==null){
+                        $invitacion=DB::table('invitacions')->where('id',$id);
+                        $invitacion->delete();
+
+                        $invita_estudiante->id=$id;
+                        $invita_estudiante->user_invita_id=auth()->user()->id;
+                        $invita_estudiante->user_invitado_id=$id_estudiante_invitado;
+                        $invita_estudiante->title=$title;
+                        $invita_estudiante->descripcion=$descripcion;
+                        $invita_estudiante->fecha_invita=$fecha_actual;
+                        $invita_estudiante->save();
+                    }else{
+                        //dd("David")->aqui hacer el control cuando quiere invitar alumno que ya ha invitado;
+                        $invitacion=DB::table('invitacions')->where('id',$id);
+                        $invitacion->delete();
+
+                        $invita_estudiante->id=$id;
+                        $invita_estudiante->user_invita_id=auth()->user()->id;
+                        $invita_estudiante->user_invitado_id=$user_invitado.".".$id_estudiante_invitado;
+                        $invita_estudiante->title=$title;
+                        $invita_estudiante->descripcion=$descripcion;
+                        $invita_estudiante->fecha_invita=$fecha_invita.".".$fecha_actual;
+                        $invita_estudiante->save();
+                    }
+                }else{
+                    //dd("Liliana");
+                    $invita_estudiante->user_invita_id=auth()->user()->id;
+                    $invita_estudiante->user_invitado_id=$id_estudiante_invitado;
+                    $invita_estudiante->title="Invitación a tutoría";
+                    $invita_estudiante->descripcion="$user_student->name $user_student->lastname te invitado unirte a tutoría";
+                    $invita_estudiante->fecha_invita=$fecha_actual;
+                    $invita_estudiante->save();
+                }
+                $user_notificado=User::where('id','=',$id_estudiante_invitado)->get();
+                if(\Notification::send($user_notificado,new InvitacionEstudiante(Invitacion::latest('id')->first()))){
+                    return back();
+                }
+                return view('user_student.vista_solicitar_tutoria',compact('user_student','lista_estudiantes_sin_arrastre','estado','materia','user_docente','seleccionado'));
+            }else{
+                return redirect()->route('show_login_form_student');
+            }
+        }
         //return redirect()->route('vista_solicitar_tutoria',['user'=>$user,'user_docente'=>$user_docente,'materia'=>$materia]);
     }
     public function solicitar_tutoria_student(Request $request,User $user, User $user_docente, Materia $materia,$estado){

@@ -102,8 +102,12 @@
                                                 <tbody>
                                                     @foreach($lista_estudiantes_sin_arrastre as $estudiante)
                                                         <form action="{{url("invitar_estudiante")}}" method="POST">
+                                                            {{ csrf_field() }}
                                                             <tr>
                                                                 <td>{{$estudiante->name}} {{$estudiante->lastname}}</td>
+                                                                <input type="hidden" name="estudiante" value="{{$estudiante->id}}">
+                                                                <input type="hidden" name="id_materia" id="id_materia" value="{{$materia->id}}">
+                                                                <input type="hidden" name="id_docente" id="id_docente" value="{{$user_docente->id}}">
                                                                 <td><button type="submit" class="hint--top btn btn-block btn-success btn-sm" data-hint="Invitar"><span class="fas fa-check-circle"></span></button></td>
                                                             </tr>
                                                         </form>
@@ -113,6 +117,7 @@
                                         @else
                                             No se han encontrado resultados 
                                         @endif
+                                        
                                     </div>
                                 </div>
                             </div>

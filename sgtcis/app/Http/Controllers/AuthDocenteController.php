@@ -105,6 +105,7 @@ class AuthDocenteController extends Controller
         ]);
         $data['fecha_confirma']=now();
         $datos_tut->update($data);
+
         $elimina_tutoria_solicitada = DB::table('notifications')->where('id',$notificacion_id);
         $elimina_tutoria_solicitada->delete();
         
