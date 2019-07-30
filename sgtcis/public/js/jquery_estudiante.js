@@ -111,3 +111,25 @@ function tipo_tutoria(){
         document.getElementById('tipo_grupal').style.display='none';
     }
 }
+
+function valida_form_solicita_tutoria(){
+    var datosCorrectos=true;
+    var error="";
+    
+    if(!document.querySelector('input[name="motivo"]:checked')) {
+        datosCorrectos=false;
+        error="El campo motivo de tutoría es obligatorio";
+    }
+    if(!document.querySelector('input[name="dia"]:checked')) {
+        datosCorrectos=false;
+        error="El campo horario de tutoría es obligatorio";
+    }
+    if(!document.querySelector('input[name="modalidad"]:checked')) {
+        datosCorrectos=false;
+        error="El campo modalidad de tutoría es obligatorio";
+    }
+    if(!datosCorrectos){
+        alert('¡AVISO! '+error);
+    }
+    return datosCorrectos;
+}

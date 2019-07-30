@@ -402,7 +402,6 @@ class AuthStudentController extends Controller
                 $id_estudiante_invitado=$request->input('estudiante');
 
                 $fecha_actual=now();
-                $invita_estudiante=new Invitacion;
 
                 $verifica_invitacion=DB::table('invitacionestudiantes')
                     ->where('user_invita_id',$user_student->id)
@@ -444,20 +443,14 @@ class AuthStudentController extends Controller
                         ]);
                     }
                 }else{
-                    /*
-                    $invita_estudiante->title="Invitación a tutoría";
-                    $invita_estudiante->descripcion="$user_student->name $user_student->lastname te invitado unirte a tutoría";
-                    $invita_estudiante->save();*/
+                    
                     DB::table('invitacionestudiantes')->insert([
                         'user_invita_id'=>$user_student->id,
                         'user_invitado_id'=>$id_estudiante_invitado,
                         'fecha_invita'=>$fecha_actual,
                     ]);
                 }
-                /*$user_notificado=User::where('id','=',$id_estudiante_invitado)->get();
-                if(\Notification::send($user_notificado,new InvitacionEstudiante(Invitacion::latest('id')->first()))){
-                    return back();
-                }*/
+                
                 $invitacion=DB::table('invitacionestudiantes')->where('user_invita_id',$user_student->id)
                         ->where('solitutoria_id',null)
                         ->first();
@@ -466,16 +459,13 @@ class AuthStudentController extends Controller
                 return redirect()->route('show_login_form_student');
             }
         }
-        //return redirect()->route('vista_solicitar_tutoria',['user'=>$user,'user_docente'=>$user_docente,'materia'=>$materia]);
     }
     public function cancelar_invitacion(Request $request){
         if (Auth::check()) {
             $user_student = Auth::user();
             if($user_student->is_estudiante==true){
                 $id_est_cancelar_inv=$request->input("id_est_cancelar_inv");
-                //dd($id_est_cancelar_inv);
-                
-                //$materia=$request->input('materia');
+
                 $invitacion=DB::table('invitacionestudiantes')->where('user_invita_id',$user_student->id)
                     ->where('solitutoria_id')
                     ->first();
@@ -508,183 +498,207 @@ class AuthStudentController extends Controller
             }
         }
     }
-    public function solicitar_tutoria_student(Request $request,User $user, User $user_docente, Materia $materia,$estado){
-        if($request->isMethod('post')){
-            $boton=$request->input('boton');
-            if($boton=="Buscar"){
-                $name = $request->get('name');
-                $lastname = $request->get('lastname');
-                $estado=1;
-                $lista_estudiantes_sin_arrastre=User::orderBy('id','DESC')
-                ->name($name)
-                ->lastname($lastname)
-                ->paginate(5);
-                return view('user_student.vista_solicitar_tutoria',compact('user','lista_estudiantes_sin_arrastre','estado'));
+    public function solicitar_tutoria_student(Request $request){
+        if (Auth::check()) {
+            $user_student = Auth::user();
+            if($user_student->is_estudiante==true){ 
+                $id_materia=$request->input("id_materia");
+                $id_docente=$request->input("id_docente");
+                $user_docente=DB::table('users')->where('id',$id_docente)->first();
+                $id_invitacion=$request->input("id_invitacion");
+                $tipo=$request->input('tipo'); 
+                $modalidad=$request->input('modalidad');
+                $dia=$request->input('dia');
+                $motivo=$request->input('motivo');
+                if($motivo=='Otro'){
+                    $motivo=$request->input('otro_motivo');
+                }
+                $horarios=DB::table('horarios')->where('usuario_id',$id_docente)->first();
+                $horarios2=DB::table('horario2s')->where('usuario_id',$id_docente)->first();
+                $horarios3=DB::table('horario3s')->where('usuario_id',$id_docente)->first();
+                $horarios4=DB::table('horario4s')->where('usuario_id',$id_docente)->first();
+                $horarios5=DB::table('horario5s')->where('usuario_id',$id_docente)->first();
+                if ($dia=='dia1_op1') {
+                    $dia=$horarios->dia1_op1;
+                    $hora_inicio=$horarios->hora_inicio_op1;
+                    $minutos_inicio=$horarios->minutos_inicio_op1;
+                    $hora_fin=$horarios->hora_fin_op1;
+                    $minutos_fin=$horarios->minutos_fin_op1;
+                }
+                if ($dia=='dia1_op2') {
+                    $dia=$horarios->dia1_op2;
+                    $hora_inicio=$horarios->hora_inicio_op2;
+                    $minutos_inicio=$horarios->minutos_inicio_op2;
+                    $hora_fin=$horarios->hora_fin_op2;
+                    $minutos_fin=$horarios->minutos_fin_op2;
+                }
+                if ($dia=='dia1_op3') {
+                    $dia=$horarios->dia1_op3;
+                    $hora_inicio=$horarios->hora_inicio_op3;
+                    $minutos_inicio=$horarios->minutos_inicio_op3;
+                    $hora_fin=$horarios->hora_fin_op3;
+                    $minutos_fin=$horarios->minutos_fin_op3;
+                }
+                if ($dia=='dia2_op1') {
+                    $dia=$horarios2->dia2_op1;
+                    $hora_inicio=$horarios2->hora_inicio_op1;
+                    $minutos_inicio=$horarios2->minutos_inicio_op1;
+                    $hora_fin=$horarios2->hora_fin_op1;
+                    $minutos_fin=$horarios2->minutos_fin_op1;
+                }
+                if ($dia=='dia2_op2') {
+                    $dia=$horarios2->dia2_op2;
+                    $hora_inicio=$horarios2->hora_inicio_op2;
+                    $minutos_inicio=$horarios2->minutos_inicio_op2;
+                    $hora_fin=$horarios2->hora_fin_op2;
+                    $minutos_fin=$horarios2->minutos_fin_op2;
+                }
+                if ($dia=='dia2_op3') {
+                    $dia=$horarios2->dia2_op3;
+                    $hora_inicio=$horarios2->hora_inicio_op3;
+                    $minutos_inicio=$horarios2->minutos_inicio_op3;
+                    $hora_fin=$horarios2->hora_fin_op3;
+                    $minutos_fin=$horarios2->minutos_fin_op3;
+                }
+                if ($dia=='dia3_op1') {
+                    $dia=$horarios3->dia3_op1;
+                    $hora_inicio=$horarios3->hora_inicio_op1;
+                    $minutos_inicio=$horarios3->minutos_inicio_op1;
+                    $hora_fin=$horarios3->hora_fin_op1;
+                    $minutos_fin=$horarios3->minutos_fin_op1;
+                }
+                if ($dia=='dia3_op2') {
+                    $dia=$horarios3->dia3_op2;
+                    $hora_inicio=$horarios3->hora_inicio_op2;
+                    $minutos_inicio=$horarios3->minutos_inicio_op2;
+                    $hora_fin=$horarios3->hora_fin_op2;
+                    $minutos_fin=$horarios3->minutos_fin_op2;
+                }
+                if ($dia=='dia3_op3') {
+                    $dia=$horarios3->dia3_op3;
+                    $hora_inicio=$horarios3->hora_inicio_op3;
+                    $minutos_inicio=$horarios3->minutos_inicio_op3;
+                    $hora_fin=$horarios3->hora_fin_op3;
+                    $minutos_fin=$horarios3->minutos_fin_op3;
+                }
+                if ($dia=='dia4_op1') {
+                    $dia=$horarios4->dia4_op1;
+                    $hora_inicio=$horarios4->hora_inicio_op1;
+                    $minutos_inicio=$horarios4->minutos_inicio_op1;
+                    $hora_fin=$horarios4->hora_fin_op1;
+                    $minutos_fin=$horarios4->minutos_fin_op1;
+                }
+                if ($dia=='dia4_op2') {
+                    $dia=$horarios4->dia4_op2;
+                    $hora_inicio=$horarios4->hora_inicio_op2;
+                    $minutos_inicio=$horarios4->minutos_inicio_op2;
+                    $hora_fin=$horarios4->hora_fin_op2;
+                    $minutos_fin=$horarios4->minutos_fin_op2;
+                }
+                if ($dia=='dia4_op3') {
+                    $dia=$horarios4->dia4_op3;
+                    $hora_inicio=$horarios4->hora_inicio_op3;
+                    $minutos_inicio=$horarios4->minutos_inicio_op3;
+                    $hora_fin=$horarios4->hora_fin_op3;
+                    $minutos_fin=$horarios4->minutos_fin_op3;
+                }
+                if ($dia=='dia5_op1') {
+                    $dia=$horarios5->dia5_op1;
+                    $hora_inicio=$horarios5->hora_inicio_op1;
+                    $minutos_inicio=$horarios5->minutos_inicio_op1;
+                    $hora_fin=$horarios5->hora_fin_op1;
+                    $minutos_fin=$horarios5->minutos_fin_op1;
+                }
+                if ($dia=='dia5_op2') {
+                    $dia=$horarios5->dia5_op2;
+                    $hora_inicio=$horarios5->hora_inicio_op2;
+                    $minutos_inicio=$horarios5->minutos_inicio_op2;
+                    $hora_fin=$horarios5->hora_fin_op2;
+                    $minutos_fin=$horarios5->minutos_fin_op2;
+                }
+                if ($dia=='dia5_op3') {
+                    $dia=$horarios5->dia5_op3;
+                    $hora_inicio=$horarios5->hora_inicio_op3;
+                    $minutos_inicio=$horarios5->minutos_inicio_op3;
+                    $hora_fin=$horarios5->hora_fin_op3;
+                    $minutos_fin=$horarios5->minutos_fin_op3;
+                }
+                $fecha_actual=now();
+                DB::table('solitutorias')->insert([
+                    'dia'=>$dia,
+                    'hora_inicio'=>$hora_inicio,
+                    'minutos_inicio'=>$minutos_inicio,
+                    'hora_fin'=>$hora_fin,
+                    'minutos_fin'=>$minutos_fin,
+                    'materia_id'=>$id_materia,
+                    'docente_id'=>$id_docente,
+                    'estudiante_id'=>$user_student->id,
+                    'modalidad'=>$modalidad,
+                    'tipo'=>$tipo,
+                    'motivo'=>$motivo,
+                    'fecha_solicita'=>$fecha_actual,
+                    'fecha_confirma'=>$fecha_actual,
+                    'fecha_tutoria'=>$fecha_actual,
+                    'fecha_evalua'=>$fecha_actual
+                ]);
+                /* Este código sirve para enviar notificación al docente cuando solicita tutoría */
+                $solitutoria=DB::table('solitutorias')->where('fecha_solicita',$fecha_actual)->first();
+                $noti_docente=new Notidocente;
+                $noti_docente->user_id=auth()->user()->id;
+                $noti_docente->user_docente_id=$id_docente;
+                $noti_docente->solitutoria_id=$solitutoria->id;
+                $noti_docente->title="Solicitud de tutoría ";
+                $noti_docente->descripcion="$user_student->name $user_student->lastname solicita tutoría ".$modalidad."-".$tipo.".";
+                $noti_docente->save();
+
+                $user_notificado=User::where('id','=',$id_docente)->get();
+                if(\Notification::send($user_notificado,new NotificacionDocente(Notidocente::latest('id')->first()))){
+                    return back();
+                }
+
+                /* Este código sirve para agregar el solitutoria_id a la tabla invitacionestudiantes */
+                $invitacion=DB::table('invitacionestudiantes')->where('id',$id_invitacion)->where('solitutoria_id',null)->first();
+                $user_invitado_id=$invitacion->user_invitado_id;
+                
+                $fecha_invita=$invitacion->fecha_invita;
+
+                $invitacion=DB::table('invitacionestudiantes')->where('id',$id_invitacion);
+                $invitacion->delete();
+                DB::table('invitacionestudiantes')->insert([
+                    'id'=>$id_invitacion,
+                    'user_invita_id'=>$user_student->id,
+                    'user_invitado_id'=>$user_invitado_id,
+                    'solitutoria_id'=>$solitutoria->id,
+                    'fecha_invita'=>$fecha_invita,  
+                ]);
+                
+                /* Este código invita-notifica a los estudiantes seleccionados */
+                $invitacion=DB::table('invitacionestudiantes')->where('id',$id_invitacion)->where('solitutoria_id',$solitutoria->id)->first();
+                $arreglo_est_inv=explode('.', $invitacion->user_invitado_id);
+                $arreglo_fecha_inv=explode('.', $invitacion->fecha_invita);
+                for ($i=0; $i < count($arreglo_est_inv); $i++) {
+
+                    $invita_estudiante=new Invitacion;
+                    $invita_estudiante->user_invita_id=$user_student->id;
+                    $invita_estudiante->user_invitado_id=$arreglo_est_inv[$i];
+                    $invita_estudiante->solitutoria_id=$solitutoria->id;
+                    $invita_estudiante->title="Invitación a tutoría";
+                    $invita_estudiante->descripcion="$user_student->name $user_student->lastname te invitado unirte a tutoría";
+                    $invita_estudiante->fecha_invita=$arreglo_fecha_inv[$i];
+                    $invita_estudiante->save();
+
+                    $user_notificado=User::where('id','=',$arreglo_est_inv[$i])->get();
+                    if(\Notification::send($user_notificado,new InvitacionEstudiante(Invitacion::latest('id')->first()))){
+                        return back();
+                    }
+                }
+                /* Retorna a la vista cuando todo se haya realizado correctamente */
+                flash("Usted ha solicitado tutoría $tipo al docente $user_docente->name $user_docente->lastname, espere su confirmación por parte del docente.")->success();
+                return redirect()->route('vista_general_student');   
+            }else{
+                return redirect()->route('show_login_form_student');
             }
-            //dd($boton);
-            exit;
-        }
-        $data=request()->validate([
-            'modalidad'=>'required',
-            'tipo'=>'required',
-            'motivo'=>'required',
-            'dia'=>'required',
-        ]);
-        $motivo=$request->input('motivo');
-        if($motivo=='Otro'){
-            $motivo=$request->input('otro_motivo');
-        }
-        $dia=$request->input('dia');
-        $modalidad=$request->input('modalidad');
-        $tipo=$request->input('tipo');
-
-        $docente=$user_docente->id;
-        $horarios=DB::table('horarios')->where('usuario_id',$docente)->first();
-        $horarios2=DB::table('horario2s')->where('usuario_id',$docente)->first();
-        $horarios3=DB::table('horario3s')->where('usuario_id',$docente)->first();
-        $horarios4=DB::table('horario4s')->where('usuario_id',$docente)->first();
-        $horarios5=DB::table('horario5s')->where('usuario_id',$docente)->first();
-
-                  
-        if ($dia=='dia1_op1') {
-            $dia=$horarios->dia1_op1;
-            $hora_inicio=$horarios->hora_inicio_op1;
-            $minutos_inicio=$horarios->minutos_inicio_op1;
-            $hora_fin=$horarios->hora_fin_op1;
-            $minutos_fin=$horarios->minutos_fin_op1;
-        }
-        if ($dia=='dia1_op2') {
-            $dia=$horarios->dia1_op2;
-            $hora_inicio=$horarios->hora_inicio_op2;
-            $minutos_inicio=$horarios->minutos_inicio_op2;
-            $hora_fin=$horarios->hora_fin_op2;
-            $minutos_fin=$horarios->minutos_fin_op2;
-        }
-        if ($dia=='dia1_op3') {
-            $dia=$horarios->dia1_op3;
-            $hora_inicio=$horarios->hora_inicio_op3;
-            $minutos_inicio=$horarios->minutos_inicio_op3;
-            $hora_fin=$horarios->hora_fin_op3;
-            $minutos_fin=$horarios->minutos_fin_op3;
-        }
-        if ($dia=='dia2_op1') {
-            $dia=$horarios2->dia2_op1;
-            $hora_inicio=$horarios2->hora_inicio_op1;
-            $minutos_inicio=$horarios2->minutos_inicio_op1;
-            $hora_fin=$horarios2->hora_fin_op1;
-            $minutos_fin=$horarios2->minutos_fin_op1;
-        }
-        if ($dia=='dia2_op2') {
-            $dia=$horarios2->dia2_op2;
-            $hora_inicio=$horarios2->hora_inicio_op2;
-            $minutos_inicio=$horarios2->minutos_inicio_op2;
-            $hora_fin=$horarios2->hora_fin_op2;
-            $minutos_fin=$horarios2->minutos_fin_op2;
-        }
-        if ($dia=='dia2_op3') {
-            $dia=$horarios2->dia2_op3;
-            $hora_inicio=$horarios2->hora_inicio_op3;
-            $minutos_inicio=$horarios2->minutos_inicio_op3;
-            $hora_fin=$horarios2->hora_fin_op3;
-            $minutos_fin=$horarios2->minutos_fin_op3;
-        }
-        if ($dia=='dia3_op1') {
-            $dia=$horarios3->dia3_op1;
-            $hora_inicio=$horarios3->hora_inicio_op1;
-            $minutos_inicio=$horarios3->minutos_inicio_op1;
-            $hora_fin=$horarios3->hora_fin_op1;
-            $minutos_fin=$horarios3->minutos_fin_op1;
-        }
-        if ($dia=='dia3_op2') {
-            $dia=$horarios3->dia3_op2;
-            $hora_inicio=$horarios3->hora_inicio_op2;
-            $minutos_inicio=$horarios3->minutos_inicio_op2;
-            $hora_fin=$horarios3->hora_fin_op2;
-            $minutos_fin=$horarios3->minutos_fin_op2;
-        }
-        if ($dia=='dia3_op3') {
-            $dia=$horarios3->dia3_op3;
-            $hora_inicio=$horarios3->hora_inicio_op3;
-            $minutos_inicio=$horarios3->minutos_inicio_op3;
-            $hora_fin=$horarios3->hora_fin_op3;
-            $minutos_fin=$horarios3->minutos_fin_op3;
-        }
-        if ($dia=='dia4_op1') {
-            $dia=$horarios4->dia4_op1;
-            $hora_inicio=$horarios4->hora_inicio_op1;
-            $minutos_inicio=$horarios4->minutos_inicio_op1;
-            $hora_fin=$horarios4->hora_fin_op1;
-            $minutos_fin=$horarios4->minutos_fin_op1;
-        }
-        if ($dia=='dia4_op2') {
-            $dia=$horarios4->dia4_op2;
-            $hora_inicio=$horarios4->hora_inicio_op2;
-            $minutos_inicio=$horarios4->minutos_inicio_op2;
-            $hora_fin=$horarios4->hora_fin_op2;
-            $minutos_fin=$horarios4->minutos_fin_op2;
-        }
-        if ($dia=='dia4_op3') {
-            $dia=$horarios4->dia4_op3;
-            $hora_inicio=$horarios4->hora_inicio_op3;
-            $minutos_inicio=$horarios4->minutos_inicio_op3;
-            $hora_fin=$horarios4->hora_fin_op3;
-            $minutos_fin=$horarios4->minutos_fin_op3;
-        }
-        if ($dia=='dia5_op1') {
-            $dia=$horarios5->dia5_op1;
-            $hora_inicio=$horarios5->hora_inicio_op1;
-            $minutos_inicio=$horarios5->minutos_inicio_op1;
-            $hora_fin=$horarios5->hora_fin_op1;
-            $minutos_fin=$horarios5->minutos_fin_op1;
-        }
-        if ($dia=='dia5_op2') {
-            $dia=$horarios5->dia5_op2;
-            $hora_inicio=$horarios5->hora_inicio_op2;
-            $minutos_inicio=$horarios5->minutos_inicio_op2;
-            $hora_fin=$horarios5->hora_fin_op2;
-            $minutos_fin=$horarios5->minutos_fin_op2;
-        }
-        if ($dia=='dia5_op3') {
-            $dia=$horarios5->dia5_op3;
-            $hora_inicio=$horarios5->hora_inicio_op3;
-            $minutos_inicio=$horarios5->minutos_inicio_op3;
-            $hora_fin=$horarios5->hora_fin_op3;
-            $minutos_fin=$horarios5->minutos_fin_op3;
-        }
-        $fecha_actual=now();
-        DB::table('solitutorias')->insert([
-            'dia'=>$dia,
-            'hora_inicio'=>$hora_inicio,
-            'minutos_inicio'=>$minutos_inicio,
-            'hora_fin'=>$hora_fin,
-            'minutos_fin'=>$minutos_fin,
-            'materia_id'=>$materia->id,
-            'docente_id'=>$user_docente->id,
-            'estudiante_id'=>$user->id,
-            'modalidad'=>$modalidad,
-            'tipo'=>$tipo,
-            'motivo'=>$motivo,
-            'fecha_solicita'=>$fecha_actual,
-            'fecha_confirma'=>$fecha_actual,
-            'fecha_tutoria'=>$fecha_actual,
-            'fecha_evalua'=>$fecha_actual
-        ]);
-        $solitutoria=DB::table('solitutorias')->where('fecha_solicita',$fecha_actual)->first();
-        $noti_docente=new Notidocente;
-        $noti_docente->user_id=auth()->user()->id;
-        $noti_docente->user_docente_id=$docente;
-        $noti_docente->solitutoria_id=$solitutoria->id;
-        $user=DB::table('users')->where('id',$noti_docente->user_id)->first();
-        $noti_docente->title="Solicitud de tutoría ";
-        $noti_docente->descripcion="$user->name $user->lastname solicita tutoría ".$modalidad."-".$tipo.".";
-        $noti_docente->save();
-
-        $user_notificado=User::where('id','=',$docente)->get();
-        if(\Notification::send($user_notificado,new NotificacionDocente(Notidocente::latest('id')->first()))){
-            return back();
-        }
-        flash("Usted ha solicitado tutoría $tipo al docente $user_docente->name $user_docente->lastname, espere su confirmación por parte del docente.")->success();
-        return redirect()->route('vista_general_student');    
+        }    
     }
 /* 
 |--------------------------------------------------------------------------

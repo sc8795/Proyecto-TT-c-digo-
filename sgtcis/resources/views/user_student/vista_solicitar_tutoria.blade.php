@@ -178,9 +178,18 @@
                                     </div>
                                 </div>
                                 <hr>
+
                                 <!--FORMULARIO GENERAL PARA SOLICITAR TUTORÍA AL DOCENTE - CUANTO SE SOLICITA TUTORÍA GRUPAL-->
-                                <form action="#" method="POST">
+                                <form action="{{url("solicitar_tutoria_student")}}" method="POST" onsubmit="return valida_form_solicita_tutoria();">
+                                    {{ csrf_field() }}
+                                    <!--Name del tipo de tutoria para recibir por post en el controlador-->
                                     <input type="hidden" name="tipo" value="grupal">
+                                    <input type="hidden" name="id_materia" id="id_materia" value="{{$materia->id}}">
+                                    <input type="hidden" name="id_docente" id="id_docente" value="{{$user_docente->id}}">
+                                    @if ($invitacion!=null)
+                                        <input type="hidden" name="id_invitacion" id="id_invitacion" value="{{$invitacion->id}}">
+                                    @endif
+                                    <!--Name de la modalidad de tutoria para recibir por post en el controlador-->
                                     <h6 class="negrita">Modalidad de tutoría:</h6>
                                     @if ($verifica_modalidad==true)
                                         <div class="alert alert-danger" id="mensaje">
@@ -196,6 +205,7 @@
                                         </div>
                                     </div>
                                     <hr>
+                                    <!--Name del horario de tutoria para recibir por post en el controlador-->
                                     <h6 class="negrita">Horario de tutoría:</h6>
                                     <!--Presenta los horarios de tutoría del docente seleccionado-->
                                     <div class="container" id="contenedor_general_op2">
@@ -4084,6 +4094,7 @@
                                         </div>
                                     </div>
                                     <hr>
+                                    <!--Name del motivo de tutoria para recibir por post en el controlador-->
                                     <h6 class="negrita">Motivo de tutoría:</h6>
                                     <div class="container" id="contenedor_general_op2">
                                         <br>
@@ -4109,6 +4120,7 @@
                                         </div>
                                         <br>
                                     </div>
+                                    <button type="submit" class="btn btn-primary btn-sm btn-block">Solicitar tutoría</button>
                                 </form>
                             </div>
                         </div>

@@ -149,7 +149,7 @@ Route::get('solicitar_tutoria','AuthStudentController@solicitar_tutoria')->name(
 Route::post('vista_solicitar_tutoria','AuthStudentController@vista_solicitar_tutoria')->name('vista_solicitar_tutoria');
 //Route::get('buscar_estudiante','AuthStudentController@buscar_estudiante')->name('buscar_estudiante');
 //Route::post('invitar_estudiante','AuthStudentController@invitar_estudiante')->name('invitar_estudiante');
-Route::post('solicitar_tutoria_student/{user}/{user_docente}/{materia}/{estado}','AuthStudentController@solicitar_tutoria_student')->name('solicitar_tutoria_student');
+Route::post('solicitar_tutoria_student','AuthStudentController@solicitar_tutoria_student')->name('solicitar_tutoria_student');
 
 /* Rutas para ver la tutoria confirmada por parte del docente*/
 Route::get('ver_tutoria_confirmada/{user_docente_id}/{user_student_id}/{notification}','AuthStudentController@ver_tutoria_confirmada')->name('ver_tutoria_confirmada');
