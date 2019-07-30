@@ -19,10 +19,26 @@
                         <!--div class="droptdown-menu" aria-labelledby="navbarDropdown"-->
                             @if (auth()->user()->unreadNotifications->count())
                                 @foreach (auth()->user()->unreadNotifications as $notifications)
-                                    <a href="{{url("ver_tutoria_confirmada/{$notifications->data['noti_estudiante']['user_id']}/{$notifications->data['noti_estudiante']['user_estudiante_id']}/{$notifications->id}")}}" class="droptdown-item">
-                                        {{$notifications->data['noti_estudiante']['descripcion']}}
-                                    </a>
-                                @endforeach    
+                                    @php
+                                        $arreglo=$notifications->data;
+                                        $title1 = data_get($arreglo, 'invita_estudiante.title');
+                                        $valida_invita_estudiante=starts_with($title1, 'Invitación');
+                                        
+                                        $title2 = data_get($arreglo, 'noti_estudiante.title');
+                                        $valida_noti_estudiante=str_contains($title2, 'Tutoría');
+                                    @endphp
+                                    @if ($valida_noti_estudiante==true)
+                                        <a href="{{url("ver_tutoria_confirmada/{$notifications->data['noti_estudiante']['user_id']}/{$notifications->data['noti_estudiante']['user_estudiante_id']}/{$notifications->id}")}}" class="droptdown-item">
+                                            {{$notifications->data['noti_estudiante']['descripcion']}}
+                                        </a>    
+                                    @endif
+                                    @if ($valida_invita_estudiante==true)
+                                        <i class="fas fa-chalkboard-teacher"></i>
+                                        <a href="#" class="droptdown-item">
+                                            {{$notifications->data['invita_estudiante']['descripcion']}}
+                                        </a>    
+                                    @endif
+                                @endforeach   
                             @else 
                                 <a href="#" class="droptdown-item"> No tiene notificaciones </a>
                             @endif
