@@ -135,31 +135,42 @@
                                             <span class="tit_datos">Estudiantes invitados</span>
                                         </div>
                                         <div class="container" id="contenedor_general_op2">
-                                            <table class="table table-bordered table-sm">
-                                                <hr>
-                                                <thead>
-                                                    <tr>
-                                                        <th scope="col">Estudiante</th>
-                                                        <th scope="col">Acción</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    @foreach ($arreglo_est_inv as $e_invitado)
-                                                        @php
-                                                            $est_invitado=DB::table('users')->where('id',$e_invitado)->first();
-                                                        @endphp
-                                                        <form action="#" method="POST">
-                                                            {{ csrf_field() }}
-                                                            <tr>
-                                                                <td><input type="hidden" name="estudiente" value="">{{$est_invitado->name}} {{$est_invitado->lastname}}</td>
-                                                                <td>
-                                                                    <button type="submit" class="hint--top btn btn-block btn-danger btn-sm" data-hint="Cancelar invitación"><span class="fas fa-trash"></span></button>
-                                                                </td>
-                                                            </tr>
-                                                        </form>
-                                                    @endforeach
-                                                </tbody>
-                                            </table>
+                                            @if ($arreglo_est_inv!=null)
+                                                <table class="table table-bordered table-sm">
+                                                    <hr>
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">Estudiante</th>
+                                                            <th scope="col">Acción</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    
+                                                        @foreach ($arreglo_est_inv as $e_invitado)
+                                                            @php
+                                                                $est_invitado=DB::table('users')->where('id',$e_invitado)->first();
+                                                                $accion="cancelar_invitacion";
+                                                            @endphp
+                                                            <form action="{{url("vista_solicitar_tutoria#tipo_grupal")}}" method="POST">
+                                                                {{ csrf_field() }}
+                                                                <tr>
+                                                                    <td><input type="hidden" name="id_est_cancelar_inv" value="{{$est_invitado->id}}">{{$est_invitado->name}} {{$est_invitado->lastname}}</td>
+                                                                    <input type="hidden" name="id_materia" id="id_materia" value="{{$materia->id}}">
+                                                                    <input type="hidden" name="id_docente" id="id_docente" value="{{$user_docente->id}}">
+                                                                    <input type="hidden" name="accion" id="accion" value="{{$accion}}">
+                                                                    <td>
+                                                                        <button type="submit" class="hint--top btn btn-block btn-danger btn-sm" data-hint="Cancelar invitación"><span class="fas fa-trash"></span></button>
+                                                                    </td>
+                                                                </tr>
+                                                            </form>
+                                                        @endforeach
+                                                    
+                                                    </tbody>
+                                                </table>
+                                            @else
+                                            <hr>
+                                                No ha invitado estudiantes
+                                            @endif
                                             <br>
                                         </div>
                                     </div>
