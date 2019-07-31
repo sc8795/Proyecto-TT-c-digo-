@@ -104,14 +104,16 @@ function arrastre(){
 tipo_tutoria();
 function tipo_tutoria(){
     var tipo=document.getElementsByName("tipo");
-    if(tipo[0].checked==true){
+    if(tipo[1].checked==true){
         document.getElementById('tipo_grupal').style.display='block';
         document.getElementById('tipo_individual').style.display='none';
         document.getElementById('grupal').checked=true;
+        document.getElementById('individual').checked=false;
     }else{
         document.getElementById('tipo_grupal').style.display='none';
         document.getElementById('tipo_individual').style.display='block';
         document.getElementById('individual').checked=true;
+        document.getElementById('grupal').checked=false;
     }
 }
 

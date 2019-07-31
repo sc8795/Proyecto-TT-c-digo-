@@ -35,7 +35,7 @@
                                         </a>    
                                     @endif
                                     @if ($valida_invita_estudiante==true)
-                                        <a href="{{url("ver_tutoria_confirmada/{$notifications->data['invita_estudiante']['user_invita_id']}/{$notifications->data['invita_estudiante']['user_invitado_id']}/{$notifications->id}")}}" class="droptdown-item" class="droptdown-item">
+                                        <a href="{{url("invitacion/{$notifications->data['invita_estudiante']['user_invita_id']}/{$notifications->data['invita_estudiante']['user_invitado_id']}/{$notifications->data['invita_estudiante']['solitutoria_id']}/{$notifications->id}")}}" class="droptdown-item">
                                             <span class="fas fa-envelope"></span>
                                             {{$notifications->data['invita_estudiante']['descripcion']}} <br>
                                             <span class="titulo_fecha_tutoria">{{$notifications->data['invita_estudiante']['created_at']}}</span>

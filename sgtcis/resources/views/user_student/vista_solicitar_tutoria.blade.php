@@ -56,15 +56,15 @@
                                 </div>
                             @endif
                             <div class="row">
-                                <div class="col-2">
+                                    <div class="col-2">
+                                            <input type="radio" name="tipo" id="individual" value="individual" onclick="tipo_tutoria();"> Individual
+                                        </div>
+                                <div class="col">
                                     <input type="radio" name="tipo" id="grupal" value="grupal" onclick="tipo_tutoria();" <?php 
                                         if ($seleccionado == 1){
                                             echo 'checked';
                                         } ?>
                                     > Grupal
-                                </div>
-                                <div class="col">
-                                    <input type="radio" name="tipo" id="individual" value="individual" onclick="tipo_tutoria();"> Individual
                                 </div>
                             </div>
 
