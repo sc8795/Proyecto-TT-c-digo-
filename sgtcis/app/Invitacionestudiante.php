@@ -14,6 +14,6 @@ class Invitacionestudiante extends Model
      * @var array
      */
     protected $fillable = [
-        'user_invita_id','user_invitado_id','solitutoria_id','fecha_invita'
+        'user_invita_id','user_invitado_id','solitutoria_id','confirmacion','fecha_invita'
     ];
 }

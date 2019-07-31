@@ -88,11 +88,31 @@ class AuthDocenteController extends Controller
 |--------------------------------------------------------------------------
 */
     public function ver_tutoria_solitada($user_student_id,$user_docente_id,$solitutoria_id,$notificacion_id){
+        if (Auth::check()) {
+            $user_docente = Auth::user();
+            if($user_docente->is_docente==true){
+                $datos_tut=DB::table('solitutorias')->where('id',$solitutoria_id)->first();
+                if($datos_tut->tipo=="grupal"&&$datos_tut->modalidad="presencial"){
+                    return view('user_docente.vista_grupal_presencial');
+                }
+                if($datos_tut->tipo=="grupal"&&$datos_tut->modalidad="virtual"){
+                    return view('user_docente.vista_grupal_virtual');
+                }
+                if($datos_tut->tipo=="individual"&&$datos_tut->modalidad="presencial"){
+                    return view('user_docente.vista_individual_presencial');
+                }
+                if($datos_tut->tipo=="individual"&&$datos_tut->modalidad="virtual"){
+                    return view('user_docente.vista_individual_virtual');
+                }
+            }else{
+                return redirect()->route('show_login_form_docente');
+            }
+        }
+        /*
         $estudiante=DB::table('users')->where('id',$user_student_id)->first();
         $docente=DB::table('users')->where('id',$user_docente_id)->first();
         $materia=DB::table('materias')->where('usuario_id',$docente->id)->first();
-        $datos_tut=DB::table('solitutorias')->where('estudiante_id',$estudiante->id)->where('docente_id',$docente->id)->where('id',$solitutoria_id)->first();
-        return view('user_docente.vista_tutoria_solicitada',compact('estudiante','docente','materia','datos_tut','notificacion_id'));
+        */
     }
 /* 
 |--------------------------------------------------------------------------
