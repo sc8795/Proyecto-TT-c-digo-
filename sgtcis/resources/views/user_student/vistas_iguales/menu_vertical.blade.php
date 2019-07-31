@@ -29,13 +29,16 @@
                                     @endphp
                                     @if ($valida_noti_estudiante==true)
                                         <a href="{{url("ver_tutoria_confirmada/{$notifications->data['noti_estudiante']['user_id']}/{$notifications->data['noti_estudiante']['user_estudiante_id']}/{$notifications->id}")}}" class="droptdown-item">
-                                            {{$notifications->data['noti_estudiante']['descripcion']}}
+                                            <span class="fas fa-check-circle"></span>
+                                            {{$notifications->data['noti_estudiante']['descripcion']}} <br>
+                                            <span class="titulo_fecha_tutoria">{{$notifications->data['noti_estudiante']['created_at']}}</span>
                                         </a>    
                                     @endif
                                     @if ($valida_invita_estudiante==true)
-                                        <i class="fas fa-chalkboard-teacher"></i>
-                                        <a href="#" class="droptdown-item">
-                                            {{$notifications->data['invita_estudiante']['descripcion']}}
+                                        <a href="{{url("ver_tutoria_confirmada/{$notifications->data['invita_estudiante']['user_invita_id']}/{$notifications->data['invita_estudiante']['user_invitado_id']}/{$notifications->id}")}}" class="droptdown-item" class="droptdown-item">
+                                            <span class="fas fa-envelope"></span>
+                                            {{$notifications->data['invita_estudiante']['descripcion']}} <br>
+                                            <span class="titulo_fecha_tutoria">{{$notifications->data['invita_estudiante']['created_at']}}</span>
                                         </a>    
                                     @endif
                                 @endforeach   

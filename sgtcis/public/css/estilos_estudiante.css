@@ -130,3 +130,8 @@ h4{
 .titulo_error{
     color: #f78181;
 }
+.titulo_fecha_tutoria{
+    color: grey;
+    font-style: italic;
+    font-size: 10pt;
+}

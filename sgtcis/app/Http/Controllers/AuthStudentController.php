@@ -656,40 +656,42 @@ class AuthStudentController extends Controller
                     return back();
                 }
 
-                /* Este código sirve para agregar el solitutoria_id a la tabla invitacionestudiantes */
-                $invitacion=DB::table('invitacionestudiantes')->where('id',$id_invitacion)->where('solitutoria_id',null)->first();
-                $user_invitado_id=$invitacion->user_invitado_id;
-                
-                $fecha_invita=$invitacion->fecha_invita;
+                if($tipo=="grupal"){
+                    /* Este código sirve para agregar el solitutoria_id a la tabla invitacionestudiantes */
+                    $invitacion=DB::table('invitacionestudiantes')->where('id',$id_invitacion)->where('solitutoria_id',null)->first();
+                    $user_invitado_id=$invitacion->user_invitado_id;
+                    
+                    $fecha_invita=$invitacion->fecha_invita;
 
-                $invitacion=DB::table('invitacionestudiantes')->where('id',$id_invitacion);
-                $invitacion->delete();
-                DB::table('invitacionestudiantes')->insert([
-                    'id'=>$id_invitacion,
-                    'user_invita_id'=>$user_student->id,
-                    'user_invitado_id'=>$user_invitado_id,
-                    'solitutoria_id'=>$solitutoria->id,
-                    'fecha_invita'=>$fecha_invita,  
-                ]);
-                
-                /* Este código invita-notifica a los estudiantes seleccionados */
-                $invitacion=DB::table('invitacionestudiantes')->where('id',$id_invitacion)->where('solitutoria_id',$solitutoria->id)->first();
-                $arreglo_est_inv=explode('.', $invitacion->user_invitado_id);
-                $arreglo_fecha_inv=explode('.', $invitacion->fecha_invita);
-                for ($i=0; $i < count($arreglo_est_inv); $i++) {
+                    $invitacion=DB::table('invitacionestudiantes')->where('id',$id_invitacion);
+                    $invitacion->delete();
+                    DB::table('invitacionestudiantes')->insert([
+                        'id'=>$id_invitacion,
+                        'user_invita_id'=>$user_student->id,
+                        'user_invitado_id'=>$user_invitado_id,
+                        'solitutoria_id'=>$solitutoria->id,
+                        'fecha_invita'=>$fecha_invita,  
+                    ]);
+                    
+                    /* Este código invita-notifica a los estudiantes seleccionados */
+                    $invitacion=DB::table('invitacionestudiantes')->where('id',$id_invitacion)->where('solitutoria_id',$solitutoria->id)->first();
+                    $arreglo_est_inv=explode('.', $invitacion->user_invitado_id);
+                    $arreglo_fecha_inv=explode('.', $invitacion->fecha_invita);
+                    for ($i=0; $i < count($arreglo_est_inv); $i++) {
 
-                    $invita_estudiante=new Invitacion;
-                    $invita_estudiante->user_invita_id=$user_student->id;
-                    $invita_estudiante->user_invitado_id=$arreglo_est_inv[$i];
-                    $invita_estudiante->solitutoria_id=$solitutoria->id;
-                    $invita_estudiante->title="Invitación a tutoría";
-                    $invita_estudiante->descripcion="$user_student->name $user_student->lastname te invitado unirte a tutoría";
-                    $invita_estudiante->fecha_invita=$arreglo_fecha_inv[$i];
-                    $invita_estudiante->save();
+                        $invita_estudiante=new Invitacion;
+                        $invita_estudiante->user_invita_id=$user_student->id;
+                        $invita_estudiante->user_invitado_id=$arreglo_est_inv[$i];
+                        $invita_estudiante->solitutoria_id=$solitutoria->id;
+                        $invita_estudiante->title="Invitación a tutoría";
+                        $invita_estudiante->descripcion="$user_student->name $user_student->lastname te ha invitado a que te unas a tutoría";
+                        $invita_estudiante->fecha_invita=$arreglo_fecha_inv[$i];
+                        $invita_estudiante->save();
 
-                    $user_notificado=User::where('id','=',$arreglo_est_inv[$i])->get();
-                    if(\Notification::send($user_notificado,new InvitacionEstudiante(Invitacion::latest('id')->first()))){
-                        return back();
+                        $user_notificado=User::where('id','=',$arreglo_est_inv[$i])->get();
+                        if(\Notification::send($user_notificado,new InvitacionEstudiante(Invitacion::latest('id')->first()))){
+                            return back();
+                        }
                     }
                 }
                 /* Retorna a la vista cuando todo se haya realizado correctamente */

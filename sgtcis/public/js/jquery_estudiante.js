@@ -106,9 +106,12 @@ function tipo_tutoria(){
     var tipo=document.getElementsByName("tipo");
     if(tipo[0].checked==true){
         document.getElementById('tipo_grupal').style.display='block';
+        document.getElementById('tipo_individual').style.display='none';
         document.getElementById('grupal').checked=true;
     }else{
         document.getElementById('tipo_grupal').style.display='none';
+        document.getElementById('tipo_individual').style.display='block';
+        document.getElementById('individual').checked=true;
     }
 }
 
