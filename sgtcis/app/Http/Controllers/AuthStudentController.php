@@ -726,11 +726,11 @@ class AuthStudentController extends Controller
             }
         } 
     }
-    public function cancela_invitacion($id_notificacion){
+    public function cancela_invitacion($notificacion_id){
         if (Auth::check()) {
             $user_student = Auth::user();
             if($user_student->is_estudiante==true){
-                $elimina_inv_tut = DB::table('notifications')->where('id',$id_notificacion);
+                $elimina_inv_tut = DB::table('notifications')->where('id',$notificacion_id);
                 $elimina_inv_tut->delete();
                 flash("Has cancelado la invitación a tutoría.")->error();
                 return redirect()->route('vista_general_student');
@@ -738,6 +738,46 @@ class AuthStudentController extends Controller
                 return redirect()->route('show_login_form_student');
             }
         } 
+    }
+    public function confirmar_invitacion($solitutoria_id,$notificacion_id){
+        if (Auth::check()) {
+            $user_student = Auth::user();
+            if($user_student->is_estudiante==true){
+                
+                $invitacion=DB::table('invitacionestudiantes')->where('solitutoria_id',$solitutoria_id)->first();
+                $id=$invitacion->id;
+                $user_invita=$invitacion->user_invita_id;
+                $user_invitado=$invitacion->user_invitado_id;
+                $fecha_invita=$invitacion->fecha_invita;
+                $arreglo_est_inv=explode('.', $invitacion->user_invitado_id);
+                $arreglo_confirmacion=explode('.', $invitacion->confirmacion);
+
+                for ($i=0; $i < count($arreglo_est_inv); $i++) {
+                    if($arreglo_est_inv[$i]==$user_student->id){
+                        unset($arreglo_confirmacion[$i]);
+                        $arreglo_confirmacion[$i]="si";
+                        $confirmacion=implode('.',$arreglo_confirmacion);
+                        //dd($confirmacion);
+                        $invitacion=DB::table('invitacionestudiantes')->where('id',$id);
+                        $invitacion->delete();
+                        DB::table('invitacionestudiantes')->insert([
+                            'id'=>$id,
+                            'user_invita_id'=>$user_invita,
+                            'user_invitado_id'=>$user_invitado,
+                            'solitutoria_id'=>$solitutoria_id,
+                            'confirmacion'=>$confirmacion,
+                            'fecha_invita'=>$fecha_invita,  
+                        ]);
+                    }
+                }
+                $elimina_inv_tut = DB::table('notifications')->where('id',$notificacion_id);
+                $elimina_inv_tut->delete();
+                flash("Has aceptado la invitación a tutoría. Espera la confirmación por parte del docente.")->success();
+                return redirect()->route('vista_general_student');
+            }else{
+                return redirect()->route('show_login_form_student');
+            }
+        }
     }
 /* 
 |--------------------------------------------------------------------------

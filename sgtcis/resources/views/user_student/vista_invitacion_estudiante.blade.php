@@ -33,7 +33,7 @@
                     <span class="negrita">Tipo: <span class="quita_negrita">{{$solitutoria->tipo}}</span></span><br>
                     <span class="negrita">Motivo: <span class="quita_negrita">{{$solitutoria->motivo}}.</span></span>
                     <hr>
-                    <a href="#" class="btn btn-success btn-sm">Confirmar invitación</a>
+                    <a href="{{url("confirmar_invitacion/{$solitutoria->id}/{$id_notificacion}")}}" class="btn btn-success btn-sm">Confirmar invitación</a>
                     <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#ventana">Cancelar invitación</button>
                     <hr>
                 </div>

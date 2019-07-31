@@ -152,8 +152,10 @@ Route::post('solicitar_tutoria_student','AuthStudentController@solicitar_tutoria
 /* Rutas para ver la invitacion de unirte a tutoria */
 Route::get('invitacion/{user_invita}/{user_invitado}/{solitutoria}/{notification}','AuthStudentController@invitacion')->name('invitacion');
 
-/* Rutas para cancelar la invitacion de unirte a tutoria */
+/* Rutas para cancelar-confirmar la invitacion de unirte a tutoria */
 Route::get('cancela_invitacion/{notification}','AuthStudentController@cancela_invitacion')->name('cancela_invitacion');
+Route::get('confirmar_invitacion/{solitutoria}/{notificacion}','AuthStudentController@confirmar_invitacion')->name('confirmar_invitacion');
+
 /* Rutas para ver la tutoria confirmada por parte del docente*/
 Route::get('ver_tutoria_confirmada/{user_docente_id}/{user_student_id}/{notification}','AuthStudentController@ver_tutoria_confirmada')->name('ver_tutoria_confirmada');
 
