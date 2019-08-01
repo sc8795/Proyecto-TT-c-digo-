@@ -36,7 +36,13 @@
                     {{method_field("PUT")}}
                     {{ csrf_field() }}
                     <input type="hidden" name="solitutoria_id" value="{{$datos_tut->id}}">
+                    <input type="hidden" name="hora_inicio" value="{{$datos_tut->hora_inicio}}">
+                    <input type="hidden" name="minutos_inicio" value="{{$datos_tut->minutos_inicio}}">
+                    <input type="hidden" name="hora_fin" value="{{$datos_tut->hora_fin}}">
+                    <input type="hidden" name="minutos_fin" value="{{$datos_tut->minutos_fin}}">
+                    <input type="hidden" name="modalidad" value="{{$datos_tut->modalidad}}">
                     <input type="hidden" name="notificacion_id" value="{{$notificacion_id}}">
+                    
                     <h6 class="tit_general">Asunto: 
                         <span class="tit_datos_op2">{{$estudiante->name}} {{$estudiante->lastname}} alumno del {{$estudiante->ciclo}} ciclo, paralelo
                             {{$estudiante->paralelo}} le ha solicitado tutoría con respecto a la materia  {{$materia->name}} impartida por Ud.

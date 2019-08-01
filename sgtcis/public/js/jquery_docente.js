@@ -100,10 +100,6 @@ function capturar_fecha(){
     if(fecha==""){
         alert("El campo fecha es obligatorio");
     }else{
-        /*var dia = date.getDate();
-        var mes = date.getMonth()+1;
-        var yyy = date.getFullYear();*/
-        //alert("hola");
         var fecha_format=formato(fecha);
         if (valida_fecha(fecha_format)==true){
             $('#ventana').modal('show');
@@ -126,4 +122,55 @@ function valida_fecha(fecha_format){
 
 function formato(fecha){
   return fecha.replace(/^(\d{4})-(\d{2})-(\d{2})$/g,'$3/$2/$1');
+}
+
+function capturar_fecha_horario(){
+    var fecha=document.getElementById("fecha").value;
+    var hora_inicio=document.getElementById("hora_inicio").value;
+    var minutos_inicio=document.getElementById("minutos_inicio").value;
+    var hora_fin=document.getElementById("hora_fin").value;
+    var minutos_fin=document.getElementById("minutos_fin").value;
+    if(fecha==""){
+        alert("El campo fecha es obligatorio");
+    }else{
+        var fecha_format=formato(fecha);
+        if (valida_fecha(fecha_format)==true && valida_horario(hora_inicio,minutos_inicio,hora_fin,minutos_fin)==true){
+            $('#ventana').modal('show');
+            if(minutos_inicio==0){
+                minutos_inicio="00";
+            }
+            if(minutos_inicio==5){
+                minutos_inicio="05";
+            }
+            if(minutos_fin==0){
+                minutos_fin="00";
+            }
+            if(minutos_fin==5){
+                minutos_fin="05";
+            }
+            document.getElementById("fecha_modal").innerHTML=fecha_format;
+            document.getElementById("hora_inicio_modal").innerHTML=hora_inicio;
+            document.getElementById("minutos_inicio_modal").innerHTML=minutos_inicio;
+            document.getElementById("hora_fin_modal").innerHTML=hora_fin;
+            document.getElementById("minutos_fin_modal").innerHTML=minutos_fin;
+        }else{
+            if(valida_fecha(fecha_format)==false){
+                return alert("La fecha seleccionada es pasada.");
+            }
+            if(valida_horario(hora_inicio,minutos_inicio,hora_fin,minutos_fin)==false){
+                return alert("La hora de inicio debe ser menor a la hora de fin");
+            }
+        }
+    }
+}
+function valida_horario(hora_inicio,minutos_inicio,hora_fin,minutos_fin){
+    if(Number(hora_inicio)<=Number(hora_fin)){
+        if(Number(hora_inicio)==Number(hora_fin) && Number(minutos_inicio)>=Number(minutos_fin)){
+            return false;
+        }
+        return true;
+    }else{
+        alert("mal");
+        return false;
+    }
 }

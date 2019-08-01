@@ -122,14 +122,30 @@ class AuthDocenteController extends Controller
             $docente = Auth::user();
             if($docente->is_docente==true){
                 $solitutoria_id=$request->input("solitutoria_id");
+                $hora_inicio=$request->input("hora_inicio");
+                $minutos_inicio=$request->input("minutos_inicio");
+                $hora_fin=$request->input("hora_fin");
+                $minutos_fin=$request->input("minutos_fin");
+                $modalidad=$request->input("modalidad");
                 $notificacion_id=$request->input("notificacion_id");
                 $fecha_tutoria=$request->input("fecha_tutoria");
                 $datos_tut=Solitutoria::find($solitutoria_id);
                 $estudiante=DB::table('users')->where('id',$datos_tut->estudiante_id)->first();
                 if($datos_tut->tipo=="grupal" && $datos_tut->modalidad=="presencial"){
-                    $datos_tut->fecha_tutoria=$fecha_tutoria;
-                    $datos_tut->fecha_confirma=now();
-                    $datos_tut->save();
+                    //if($datos_tut->hora_inicio!=$hora_inicio || $datos_tut->minutos_inicio!=$minutos_inicio || $datos_tut->hora_fin!=$hora_fin || $datos_tut->minutos_fin!=$minutos_fin || $datos_tut->modalidad!=$modalidad){
+                        $datos_tut->hora_inicio=$hora_inicio;
+                        $datos_tut->minutos_inicio=$minutos_inicio;
+                        $datos_tut->hora_fin=$hora_fin;
+                        $datos_tut->minutos_fin=$minutos_fin;
+                        $datos_tut->modalidad=$modalidad;
+                        $datos_tut->fecha_tutoria=$fecha_tutoria;
+                        $datos_tut->fecha_confirma=now();
+                        $datos_tut->save();
+                    /*}else{
+                        $datos_tut->fecha_tutoria=$fecha_tutoria;
+                        $datos_tut->fecha_confirma=now();
+                        $datos_tut->save();
+                    }*/
                 }
                 /* Codigo para eliminar la tutoria solicitada al docente por parte del estudiante */
                 $elimina_tutoria_solicitada = DB::table('notifications')->where('id',$notificacion_id);
@@ -182,7 +198,7 @@ class AuthDocenteController extends Controller
 | Funciones para editar datos de tutoria solicitada
 |--------------------------------------------------------------------------
 */
-    public function vista_editar_datos_tutoria(Solitutoria $datos_tut,User $estudiante,Materia $materia){
+    public function vista_editar_datos_tutoria(Solitutoria $datos_tut,User $estudiante,Materia $materia, $notificacion_id){
         if (Auth::check()) {
             $docente = Auth::user();
             if($docente->is_docente==true){
@@ -190,48 +206,18 @@ class AuthDocenteController extends Controller
                 if($valor==true){
                     $aux=1;
                     if($datos_tut->tipo=="grupal" && $datos_tut->modalidad=="presencial"){
-                        return view('user_docente.vista_editar_presencial_grupal',compact('datos_tut','estudiante','docente','materia','aux'));
+                        return view('user_docente.vista_editar_presencial_grupal',compact('datos_tut','estudiante','docente','materia','notificacion_id','aux'));
                     }
                 }else{
                     $aux=2;
-                    return view('user_docente.editar_datos_tutoria',compact('datos_tut','estudiante','docente','materia','aux'));
+                    if($datos_tut->tipo=="grupal" && $datos_tut->modalidad=="presencial"){
+                        return view('user_docente.editar_datos_tutoria',compact('datos_tut','estudiante','docente','materia','aux'));
+                    }
                 }
             }else{
                 return redirect()->route('show_login_form_docente');
             }
         }
-    }
-    public function editar_datos_tutoria(Request $request, Solitutoria $datos_tut,User $estudiante,User $docente,Materia $materia,$notificacion_id){
-        $data=request()->validate([
-            'hora_inicio'=>'required',
-            'minutos_inicio'=>'required',
-            'hora_fin'=>'required',
-            'minutos_fin'=>'required',
-            'fecha_tutoria'=>'required',
-        ]);
-        $data['fecha_confirma']=now();
-        $datos_tut->update($data);
-
-        $elimina_tutoria_solicitada = DB::table('notifications')->where('id',$notificacion_id);
-        $elimina_tutoria_solicitada->delete();
-
-        $noti_estudiante=new Notiestudiante;
-        $noti_estudiante->user_id=auth()->user()->id;
-        $noti_estudiante->user_estudiante_id=$estudiante->id;
-        $noti_estudiante->solitutoria_id=$datos_tut->id;
-        $user=DB::table('users')->where('id',$noti_estudiante->user_id)->first();
-        $noti_estudiante->title="Tutoría confirmada";
-        $noti_estudiante->descripcion="El docente $user->name $user->lastname le ha confirmado la tutoría solicitada";
-        $noti_estudiante->save();
-
-        $user_notificado=User::where('id','=',$estudiante->id)->get();
-        if(\Notification::send($user_notificado,new NotificacionEstudiante(Notiestudiante::latest('id')->first()))){
-            return back();
-        }
-        
-        Alert::info('¡Aviso! ')
-             ->details("Se ha editado los datos de tutoría y se ha confirmado la tutoría solicitada por el estudiante $estudiante->name $estudiante->lastname, para el día $datos_tut->dia en el horario de $datos_tut->hora_inicio:$datos_tut->minutos_inicio a $datos_tut->hora_fin:$datos_tut->minutos_fin. Ahora podrá evaluar la actuación del estudiante sobre la tutoría impartida, en la opción disponible en el menú EVALUACIÓN AL ESTUDIANTE.");
-        return view('user_docente.vista_general_cuenta');
     }
 /* 
 |--------------------------------------------------------------------------
