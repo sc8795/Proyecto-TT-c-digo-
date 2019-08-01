@@ -189,11 +189,11 @@ Route::put('editar_docente','AuthDocenteController@editar_docente')->name('edita
 Route::get('ver_tutoria_solitada/{user_student_id}/{user_docente_id}/{solitutoria_id}/{notificacion_id}','AuthDocenteController@ver_tutoria_solitada')->name('ver_tutoria_solitada');
 
 /* Rutas para confirmar tutoria */
-Route::put('confirmar_tutoria/{datos_tut}/{estudiante}/{docente}/{materia}/{notificacion_id}','AuthDocenteController@confirmar_tutoria')->name('confirmar_tutoria');
+Route::put('confirmar_tutoria','AuthDocenteController@confirmar_tutoria')->name('confirmar_tutoria');
 
 /* Rutas para editar datos de tutoría solicitada */
-Route::get('vista_editar_datos_tutoria/{datos_tut}/{estudiante}/{docente}/{materia}','AuthDocenteController@vista_editar_datos_tutoria')->name('vista_editar_datos_tutoria');
-route::put('editar_datos_tutoria/{datos_tut}/{estudiante}/{docente}/{materia}/{notificacion_id}','AuthDocenteController@editar_datos_tutoria')->name('editar_datos_tutoria');
+Route::get('vista_editar_datos_tutoria/{datos_tut}/{estudiante}/{materia}/{notificacion}','AuthDocenteController@vista_editar_datos_tutoria')->name('vista_editar_datos_tutoria');
+route::put('editar_datos_tutoria/{datos_tut}/{estudiante}/{docente}/{materia}/{notificacion}','AuthDocenteController@editar_datos_tutoria')->name('editar_datos_tutoria');
 
 /* Rutas para evaluar al estudiante */
 Route::get('evaluar_estudiante/{user_docente_id}','AuthDocenteController@evaluar_estudiante')->name('evaluar_estudiante');

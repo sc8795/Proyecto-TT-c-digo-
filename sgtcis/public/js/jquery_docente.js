@@ -94,3 +94,36 @@ function validar_evaluacion_estudiante(){
     }
     return datosCorrectos;
 }
+
+function capturar_fecha(){
+    var fecha=document.getElementById("fecha").value;
+    if(fecha==""){
+        alert("El campo fecha es obligatorio");
+    }else{
+        /*var dia = date.getDate();
+        var mes = date.getMonth()+1;
+        var yyy = date.getFullYear();*/
+        //alert("hola");
+        var fecha_format=formato(fecha);
+        if (valida_fecha(fecha_format)==true){
+            $('#ventana').modal('show');
+            document.getElementById("fecha_modal").innerHTML=fecha_format;
+        }else
+            return alert("La fecha seleccionada es pasada.");
+    }
+}
+
+function valida_fecha(fecha_format){
+    var x=new Date();
+      var fecha1 = fecha_format.split("/");
+      x.setFullYear(fecha1[2],fecha1[1]-1,fecha1[0]);
+      var today = new Date();
+      if (x <= today)
+        return false;
+      else
+        return true;
+}
+
+function formato(fecha){
+  return fecha.replace(/^(\d{4})-(\d{2})-(\d{2})$/g,'$3/$2/$1');
+}

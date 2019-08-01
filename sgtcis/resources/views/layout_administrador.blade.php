@@ -33,5 +33,6 @@
 <script src="{{asset('js/jquery.js')}}"></script>
 <script src="{{asset('js/bootstrap.min.js')}}"></script>
 <script src="{{asset('js/jquery_administrador.js')}}"></script>
+
 </body>
 </html>

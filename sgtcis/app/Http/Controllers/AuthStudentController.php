@@ -276,7 +276,6 @@ class AuthStudentController extends Controller
             }else{
                 unset($data["password"]);
             }
-            
             $user->update($data);
             return redirect()->action('AuthStudentController@vista_general_student', [1]);
         }
@@ -446,7 +445,6 @@ class AuthStudentController extends Controller
                         ]);
                     }
                 }else{
-                    
                     DB::table('invitacionestudiantes')->insert([
                         'user_invita_id'=>$user_student->id,
                         'user_invitado_id'=>$id_estudiante_invitado,
@@ -454,7 +452,6 @@ class AuthStudentController extends Controller
                         'fecha_invita'=>$fecha_actual,
                     ]);
                 }
-                
                 $invitacion=DB::table('invitacionestudiantes')->where('user_invita_id',$user_student->id)
                         ->where('solitutoria_id',null)
                         ->first();
