@@ -25,9 +25,9 @@ class CreateSolitutoriasTable extends Migration
             $table->integer('estudiante_id');
             $table->text('motivo');
             $table->datetime('fecha_solicita');
-            $table->datetime('fecha_confirma');
-            $table->datetime('fecha_tutoria');
-            $table->datetime('fecha_evalua');
+            $table->datetime('fecha_confirma')->nullable();
+            $table->datetime('fecha_tutoria')->nullable();
+            $table->datetime('fecha_evalua')->nullable();
             $table->timestamps();
         });
     }

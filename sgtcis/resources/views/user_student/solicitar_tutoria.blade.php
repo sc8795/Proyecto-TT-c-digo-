@@ -1030,10 +1030,7 @@
                                 <td>
                                     <h6 class="tit_general">
                                         @foreach ($users_docentes as $user_docente)
-                                        @php
-                                            $paralelo_docente=explode(',', $user_docente->paralelo);    
-                                        @endphp
-                                            @if ($materia->usuario_id==$user_docente->id && in_array("A",$paralelo_docente))
+                                            @if ($materia->usuario_id==$user_docente->id)
                                                 {{$user_docente->name}} {{$user_docente->lastname}}
                                             @endif
                                         @endforeach
@@ -1043,10 +1040,7 @@
                                     <form action="{{url("vista_solicitar_tutoria")}}" method="POST">
                                         {{ csrf_field() }}
                                         @foreach ($users_docentes as $user_docente)
-                                            @php
-                                                $paralelo_docente=explode(',', $user_docente->paralelo);    
-                                            @endphp
-                                            @if ($materia->usuario_id==$user_docente->id && in_array("A",$paralelo_docente))
+                                            @if ($materia->usuario_id==$user_docente->id)
                                                 <input type="hidden" name="accion" value="{{$accion}}">
                                                 <input type="hidden" name="id_docente" value="{{$user_docente->id}}">
                                                 <input type="hidden" name="id_materia" value="{{$materia->id}}">

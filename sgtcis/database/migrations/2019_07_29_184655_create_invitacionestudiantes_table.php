@@ -20,6 +20,7 @@ class CreateInvitacionestudiantesTable extends Migration
             $table->integer('solitutoria_id')->nullable();
             $table->string('confirmacion',200);
             $table->string('fecha_invita',2500);
+            $table->string('notificacion_id')->nullable();
             $table->timestamps();
         });
     }

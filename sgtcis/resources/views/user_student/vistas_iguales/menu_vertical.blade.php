@@ -26,7 +26,14 @@
                                         
                                         $title2 = data_get($arreglo, 'noti_estudiante.title');
                                         $valida_noti_estudiante=str_contains($title2, 'Tutoría');
+
+                                        $solitutoria=DB::table('solitutorias')->where('id',$notifications->data['invita_estudiante']['solitutoria_id'])->first();
+                                        
                                     @endphp
+                                    
+                                    <input type="hidden" name="fecha_solicita" id="fecha_solicita" value="{{$solitutoria->fecha_solicita}}">
+                                    <input type="hidden" name="fecha_tutoria" id="fecha_tutoria" value="{{$solitutoria->fecha_tutoria}}">
+                                
                                     @if ($valida_noti_estudiante==true)
                                         <a href="{{url("ver_tutoria_confirmada/{$notifications->data['noti_estudiante']['user_id']}/{$notifications->data['noti_estudiante']['user_estudiante_id']}/{$notifications->id}")}}" class="droptdown-item">
                                             <span class="fas fa-check-circle"></span>
@@ -35,11 +42,11 @@
                                         </a>    
                                     @endif
                                     @if ($valida_invita_estudiante==true)
-                                        <a href="{{url("invitacion/{$notifications->data['invita_estudiante']['user_invita_id']}/{$notifications->data['invita_estudiante']['user_invitado_id']}/{$notifications->data['invita_estudiante']['solitutoria_id']}/{$notifications->id}")}}" class="droptdown-item">
+                                        <a href="{{url("invitacion/{$notifications->data['invita_estudiante']['user_invita_id']}/{$notifications->data['invita_estudiante']['user_invitado_id']}/{$notifications->data['invita_estudiante']['solitutoria_id']}/{$notifications->id}")}}" class="droptdown-item" onclick="valida_confirmacion_docente();">
                                             <span class="fas fa-envelope"></span>
                                             {{$notifications->data['invita_estudiante']['descripcion']}} <br>
                                             <span class="titulo_fecha_tutoria">{{$notifications->data['invita_estudiante']['created_at']}}</span>
-                                        </a>    
+                                        </a>  
                                     @endif
                                 @endforeach   
                             @else 

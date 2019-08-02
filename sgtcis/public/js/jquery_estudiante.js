@@ -138,3 +138,10 @@ function valida_form_solicita_tutoria(){
     }
     return datosCorrectos;
 }
+function valida_confirmacion_docente(){
+    var fecha_solicita=document.getElementById("fecha_solicita").value;
+    var fecha_tutoria=document.getElementById("fecha_tutoria").value;
+    if(fecha_solicita!=fecha_tutoria && fecha_tutoria!=""){
+        alert("El docente ha confirmado la tutoría a la que has sido invitado. Acepta la invitación antes del día que será impartida la tutoría.");
+    }
+}

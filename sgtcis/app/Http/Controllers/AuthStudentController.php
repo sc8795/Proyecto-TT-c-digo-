@@ -642,9 +642,6 @@ class AuthStudentController extends Controller
                     'tipo'=>$tipo,
                     'motivo'=>$motivo,
                     'fecha_solicita'=>$fecha_actual,
-                    'fecha_confirma'=>$fecha_actual,
-                    'fecha_tutoria'=>$fecha_actual,
-                    'fecha_evalua'=>$fecha_actual
                 ]);
                 /* Este código sirve para enviar notificación al docente cuando solicita tutoría */
                 $solitutoria=DB::table('solitutorias')->where('fecha_solicita',$fecha_actual)->first();
@@ -717,6 +714,22 @@ class AuthStudentController extends Controller
         if (Auth::check()) {
             $user_student = Auth::user();
             if($user_student->is_estudiante==true){
+                $fecha_actual=now();
+                $date = date_create($fecha_actual);
+                $fecha_actual=date_format($date, 'd-m-Y');
+                
+                $fecha_tutoria=$solitutoria->fecha_tutoria;
+                if($fecha_tutoria!=null){
+                    $date = date_create($fecha_tutoria);
+                    $fecha_tutoria=date_format($date, 'd-m-Y');
+                }
+                
+                if($fecha_actual==$fecha_tutoria){
+                    $elimina_inv_tut = DB::table('notifications')->where('id',$id_notificacion);
+                    $elimina_inv_tut->delete();
+                    flash("La invitación ha sido eliminada")->error();
+                    return redirect()->route('vista_general_student');
+                }
                 return view('user_student.vista_invitacion_estudiante',compact('user_invita','solitutoria','id_notificacion'));
             }else{
                 return redirect()->route('show_login_form_student');

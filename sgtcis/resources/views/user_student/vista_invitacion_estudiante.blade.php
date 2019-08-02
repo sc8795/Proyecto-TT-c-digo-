@@ -1,4 +1,4 @@
-@extends('layout_administrador')
+@extends('layout_estudiante')
 
 @section('content')
     @include('user_student.vistas_iguales.menu_horizontal')
@@ -32,6 +32,15 @@
                     <span class="negrita">Modalidad: <span class="quita_negrita">{{$solitutoria->modalidad}}</span></span><br>
                     <span class="negrita">Tipo: <span class="quita_negrita">{{$solitutoria->tipo}}</span></span><br>
                     <span class="negrita">Motivo: <span class="quita_negrita">{{$solitutoria->motivo}}.</span></span>
+                    @if ($solitutoria->fecha_solicita!=$solitutoria->fecha_tutoria && $solitutoria->fecha_tutoria!=null)
+                        @php
+                            $fecha_tutoria=$solitutoria->fecha_tutoria;
+                            $date = date_create($fecha_tutoria);
+                            $fecha_tutoria=date_format($date, 'd-m-Y');
+                        @endphp
+                        <br>
+                        <span class="negrita">Fecha que será impartida: <span class="quita_negrita">{{$fecha_tutoria}}.</span></span>
+                    @endif
                     <hr>
                     <a href="{{url("confirmar_invitacion/{$solitutoria->id}/{$id_notificacion}")}}" class="btn btn-success btn-sm">Confirmar invitación</a>
                     <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#ventana">Cancelar invitación</button>
@@ -63,4 +72,8 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script src="{{asset('js/bootstrap.min.js')}}"></script>
 @endsection
