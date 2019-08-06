@@ -11,6 +11,8 @@ use App\Notifications\NotificacionDocente;
 use App\Notidocente;
 use App\Notifications\InvitacionEstudiante;
 use App\Invitacion;
+use App\Notifications\NotificacionEstudiante;
+use App\Notiestudiante;
 use App\Evaluacion;
 use App\Log;
 use Alert;
@@ -767,7 +769,6 @@ class AuthStudentController extends Controller
                         unset($arreglo_confirmacion[$i]);
                         $arreglo_confirmacion[$i]="si";
                         $confirmacion=implode('.',$arreglo_confirmacion);
-                        //dd($confirmacion);
                         $invitacion=DB::table('invitacionestudiantes')->where('id',$id);
                         $invitacion->delete();
                         DB::table('invitacionestudiantes')->insert([
@@ -782,7 +783,25 @@ class AuthStudentController extends Controller
                 }
                 $elimina_inv_tut = DB::table('notifications')->where('id',$notificacion_id);
                 $elimina_inv_tut->delete();
-                flash("Has aceptado la invitación a tutoría. Espera la confirmación por parte del docente.")->success();
+                $solitutoria=DB::table('solitutorias')->where('id',$solitutoria_id)->first();
+                if($solitutoria->fecha_tutoria==null){
+                    flash("Has aceptado la invitación a tutoría. Espera la confirmación por parte del docente.")->success();
+                }else{
+                    $noti_estudiante=new Notiestudiante;
+                    $noti_estudiante->user_id=$solitutoria->docente_id;
+                    $noti_estudiante->user_estudiante_id=auth()->user()->id;
+                    $noti_estudiante->solitutoria_id=$solitutoria->id;
+                    $noti_estudiante->title="Tutoría confirmada";
+                    $docente=DB::table('users')->where('id',$solitutoria->docente_id)->first();
+                    $noti_estudiante->descripcion="El docente $docente->name $docente->lastname ha confirmado la tutoría solicitada";
+                    $noti_estudiante->save();
+
+                    $user_notificado=User::where('id','=',auth()->user()->id)->get();
+                    if(\Notification::send($user_notificado,new NotificacionEstudiante(Notiestudiante::latest('id')->first()))){
+                        return back();
+                    }
+                    flash("Has aceptado la invitación a tutoría. Ahora podrás evaluar al docente, al hacer clic en la nueva notificación que se le ha enviado.")->success();
+                }
                 return redirect()->route('vista_general_student');
             }else{
                 return redirect()->route('show_login_form_student');
@@ -794,12 +813,16 @@ class AuthStudentController extends Controller
 | Funciones para vista de tutoria confirmada por parte del docente
 |--------------------------------------------------------------------------
 */
-    public function ver_tutoria_confirmada($user_docente_id,$user_student_id,$notification){
+    public function ver_tutoria_confirmada($user_docente_id,$user_student_id,$notification,$solitutoria_id){
         $estudiante=DB::table('users')->where('id',$user_student_id)->first();
         $docente=DB::table('users')->where('id',$user_docente_id)->first();
         $materia=DB::table('materias')->where('usuario_id',$docente->id)->first();
-        $datos_tut=DB::table('solitutorias')->where('estudiante_id',$estudiante->id)->where('docente_id',$docente->id)->where('materia_id',$materia->id)->first();
-        return view('user_student.vista_tutoria_confirmada',compact('estudiante','docente','materia','datos_tut','notification'));
+        $datos_tut=DB::table('solitutorias')->where('id',$solitutoria_id)->first();
+        if($datos_tut->modalidad=="presencial"){
+            return view('user_student.vista_tutoria_confirmada',compact('estudiante','docente','materia','datos_tut','notification'));
+        }else{
+            dd("Es virtual");
+        }
     }
 /* 
 |--------------------------------------------------------------------------

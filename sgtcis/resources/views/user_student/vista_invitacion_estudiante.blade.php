@@ -38,7 +38,7 @@
                             $date = date_create($fecha_tutoria);
                             $fecha_tutoria=date_format($date, 'd-m-Y');
                         @endphp
-                        <br>
+                        <hr>
                         <span class="negrita">Fecha que será impartida: <span class="quita_negrita">{{$fecha_tutoria}}.</span></span>
                     @endif
                     <hr>
@@ -58,7 +58,7 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    Si cancela la invitación el sistema eliminará la notificación recibida y su nombre no aparecerá en el registro del docente. Si está de acuerdo haga clic en Aceptar.
+                                    Al cancelar la invitación el sistema automáticamente eliminará la notificación recibida. Si está de acuerdo haga clic en Aceptar.
                                 </div>
                                 <div class="modal-footer">
                                     <a href="{{url("cancela_invitacion/{$id_notificacion}")}}" class="btn btn-danger">Aceptar</a>

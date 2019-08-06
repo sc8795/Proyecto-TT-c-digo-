@@ -20,14 +20,8 @@
         </div>
         <div class="col-9">
             <div class="container" id="contenedor_general">
-                <h6 class="tit_general">Asunto: 
-                    <span class="tit_datos_op2">el Ing. {{$docente->name}} {{$docente->lastname}}
-                        le ha confirmado la tutoría solicitada por Ud. con respecto a la materia {{$materia->name}}.
-                    </span>
-                </h6>
-                <br>
                 <div class="d-flex p-2 bd-highlight" id="contenedor_2">
-                    <span class="tit_datos">Horario y Fecha de tutoría</span>
+                    <span class="tit_datos">Horario y Fecha de tutoría - {{$materia->name}}</span>
                 </div>
                 <div class="container" id="contenedor_general_op2">
                     <br>

@@ -157,7 +157,7 @@ Route::get('cancela_invitacion/{notification}','AuthStudentController@cancela_in
 Route::get('confirmar_invitacion/{solitutoria}/{notificacion}','AuthStudentController@confirmar_invitacion')->name('confirmar_invitacion');
 
 /* Rutas para ver la tutoria confirmada por parte del docente*/
-Route::get('ver_tutoria_confirmada/{user_docente_id}/{user_student_id}/{notification}','AuthStudentController@ver_tutoria_confirmada')->name('ver_tutoria_confirmada');
+Route::get('ver_tutoria_confirmada/{user_docente_id}/{user_student_id}/{notification}/{solitutoria}','AuthStudentController@ver_tutoria_confirmada')->name('ver_tutoria_confirmada');
 
 /* Ruta para completar el registro del estudiante logueado o registrado con cuenta de google */
 

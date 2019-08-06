@@ -102,7 +102,7 @@ class AuthDocenteController extends Controller
                     return view('user_docente.vista_grupal_virtual');
                 }
                 if($datos_tut->tipo=="individual"&&$datos_tut->modalidad="presencial"){
-                    return view('user_docente.vista_individual_presencial');
+                    return view('user_docente.vista_individual_presencial',compact('datos_tut','estudiante','docente','materia','notificacion_id'));
                 }
                 if($datos_tut->tipo=="individual"&&$datos_tut->modalidad="virtual"){
                     return view('user_docente.vista_individual_virtual');
@@ -131,22 +131,17 @@ class AuthDocenteController extends Controller
                 $fecha_tutoria=$request->input("fecha_tutoria");
                 $datos_tut=Solitutoria::find($solitutoria_id);
                 $estudiante=DB::table('users')->where('id',$datos_tut->estudiante_id)->first();
-                if($datos_tut->tipo=="grupal" && $datos_tut->modalidad=="presencial"){
-                    //if($datos_tut->hora_inicio!=$hora_inicio || $datos_tut->minutos_inicio!=$minutos_inicio || $datos_tut->hora_fin!=$hora_fin || $datos_tut->minutos_fin!=$minutos_fin || $datos_tut->modalidad!=$modalidad){
-                        $datos_tut->hora_inicio=$hora_inicio;
-                        $datos_tut->minutos_inicio=$minutos_inicio;
-                        $datos_tut->hora_fin=$hora_fin;
-                        $datos_tut->minutos_fin=$minutos_fin;
-                        $datos_tut->modalidad=$modalidad;
-                        $datos_tut->fecha_tutoria=$fecha_tutoria;
-                        $datos_tut->fecha_confirma=now();
-                        $datos_tut->save();
-                    /*}else{
-                        $datos_tut->fecha_tutoria=$fecha_tutoria;
-                        $datos_tut->fecha_confirma=now();
-                        $datos_tut->save();
-                    }*/
-                }
+                
+                /* Codigo para cuando el docente decida editar datos aqui los actualiza */
+                $datos_tut->hora_inicio=$hora_inicio;
+                $datos_tut->minutos_inicio=$minutos_inicio;
+                $datos_tut->hora_fin=$hora_fin;
+                $datos_tut->minutos_fin=$minutos_fin;
+                $datos_tut->modalidad=$modalidad;
+                $datos_tut->fecha_tutoria=$fecha_tutoria;
+                $datos_tut->fecha_confirma=now();
+                $datos_tut->save();
+                
                 /* Codigo para eliminar la tutoria solicitada al docente por parte del estudiante */
                 $elimina_tutoria_solicitada = DB::table('notifications')->where('id',$notificacion_id);
                 $elimina_tutoria_solicitada->delete();
