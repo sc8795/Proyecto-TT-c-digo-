@@ -22,7 +22,7 @@
             <div class="container" id="contenedor_general">
                 @if ($verifica==true)
                     <div class="d-flex p-2 bd-highlight" id="contenedor_2">
-                        <span class="tit_datos">Lista de estudiantes que ha realizado tutoría</span>
+                        <span class="tit_datos">Lista de tutorías confirmadas</span>
                     </div>
                     <div class="container" id="contenedor_general_op2"> 
                         <br>

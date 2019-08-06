@@ -105,7 +105,7 @@ class AuthDocenteController extends Controller
                     return view('user_docente.vista_individual_presencial',compact('datos_tut','estudiante','docente','materia','notificacion_id'));
                 }
                 if($datos_tut->tipo=="individual"&&$datos_tut->modalidad="virtual"){
-                    return view('user_docente.vista_individual_virtual');
+                    return view('user_docente.vista_individual_virtual',compact('datos_tut','estudiante','docente','materia','notificacion_id'));
                 }
             }else{
                 return redirect()->route('show_login_form_docente');
@@ -224,11 +224,18 @@ class AuthDocenteController extends Controller
 | Funciones para evaluar al estudiante después de la tutoría impartida
 |--------------------------------------------------------------------------
 */
-    public function evaluar_estudiante($user_docente_id){
-        $verifica=DB::table('notiestudiantes')->where('user_id',$user_docente_id)->exists();
-        $noti_estudiantes=DB::table('notiestudiantes')->where('user_id',$user_docente_id)->get();
-        $unique_noti_estudiantes=$noti_estudiantes->unique('user_estudiante_id');
-        return view('user_docente.vista_evaluar_estudiante',compact('verifica','unique_noti_estudiantes'));
+    public function evaluar_estudiante(){
+        if (Auth::check()) {
+            $docente = Auth::user();
+            if($docente->is_docente==true){
+                $verifica=DB::table('notiestudiantes')->where('user_id',$docente->id)->exists();
+                $noti_estudiantes=DB::table('notiestudiantes')->where('user_id',$docente->id)->get();
+                $unique_noti_estudiantes=$noti_estudiantes->unique(['user_estudiante_id','solitutoria_id']);
+                return view('user_docente.vista_evaluar_estudiante',compact('verifica','unique_noti_estudiantes'));
+            }else{
+                return redirect()->route('show_login_form_docente');
+            }
+        }
     }
     public function lista_tutorias_confirmadas($user_estudiante_id,$user_docente_id,$materia_id){
         $solitutorias=DB::table('solitutorias')->where('materia_id',$materia_id)->where('docente_id',$user_docente_id)->where('estudiante_id',$user_estudiante_id)->get();

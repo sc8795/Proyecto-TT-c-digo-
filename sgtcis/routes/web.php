@@ -196,7 +196,7 @@ Route::get('vista_editar_datos_tutoria/{datos_tut}/{estudiante}/{materia}/{notif
 route::put('editar_datos_tutoria','AuthDocenteController@editar_datos_tutoria')->name('editar_datos_tutoria');
 
 /* Rutas para evaluar al estudiante */
-Route::get('evaluar_estudiante/{user_docente_id}','AuthDocenteController@evaluar_estudiante')->name('evaluar_estudiante');
+Route::get('evaluar_estudiante','AuthDocenteController@evaluar_estudiante')->name('evaluar_estudiante');
 Route::get('lista_tutorias_confirmadas/{user_estudiante_id}/{user_docente_id}/{materia_id}','AuthDocenteController@lista_tutorias_confirmadas')->name('lista_tutorias_confirmadas');
 Route::get('evalua_estudiante/{solitutoria_id}/{user_estudiante_id}/{user_docente_id}/{materia_id}','AuthDocenteController@evalua_estudiante')->name('evalua_estudiante');
 Route::post('evaluacion_estudiante/{user_evaluado_id}/{solitutoria_id}','AuthDocenteController@evaluacion_estudiante')->name('evaluacion_estudiante');

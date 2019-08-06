@@ -142,6 +142,27 @@ function valida_form_solicita_tutoria(){
     }
     return datosCorrectos;
 }
+function valida_form_solicita_tutoria_2(){
+    var datosCorrectos=true;
+    var error="";
+    
+    if(!document.querySelector('input[name="motivo"]:checked')) {
+        datosCorrectos=false;
+        error="El campo motivo de tutoría es obligatorio";
+    }
+    if(!document.querySelector('input[name="dia"]:checked')) {
+        datosCorrectos=false;
+        error="El campo horario de tutoría es obligatorio";
+    }
+    if(!document.querySelector('input[name="modalidad"]:checked')) {
+        datosCorrectos=false;
+        error="El campo modalidad de tutoría es obligatorio";
+    }
+    if(!datosCorrectos){
+        alert('¡AVISO! '+error);
+    }
+    return datosCorrectos;
+}
 function valida_confirmacion_docente(){
     var fecha_solicita=document.getElementById("fecha_solicita").value;
     var fecha_tutoria=document.getElementById("fecha_tutoria").value;

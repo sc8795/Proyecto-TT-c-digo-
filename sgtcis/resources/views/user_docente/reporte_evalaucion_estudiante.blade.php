@@ -82,6 +82,15 @@
                     &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
                     <span class="negrita">Fecha impartida: <span class="quita_negrita">{{$fecha_tutoria}}</span></span>
                 </h6>
+                <h6 class="negrita">Modalidad: <span class="quita_negrita">{{$solitutoria->modalidad}}</span>
+                    &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
+                    <span class="negrita">Tipo: <span class="quita_negrita">{{$solitutoria->tipo}}</span></span>
+                </h6>
+                @if ($solitutoria->modalidad=="virtual")
+                    <h6 class="negrita">Medio virtual: <span class="quita_negrita">{{$solitutoria->medio_virtual}}</span>
+
+                    </h6>
+                @endif
                 <h6 class="negrita">Calificación del estudiante: <span class="quita_negrita">{{$evaluacion->evaluacion}}%</span></h6>
                 <div class="w3-container">
                     @if ($evaluacion->evaluacion>=70)

@@ -26,7 +26,8 @@
                 <div class="container" id="contenedor_general_op2">
                     <br>
                     <h6>
-                        Los datos que se muestran a continuación corresponden al día, fecha y hora que deberá acercarse a la oficina del Ing. {{$docente->name}} {{$docente->lastname}} para recibir la tutoría solicitada.
+                        Los datos que se muestran a continuación corresponden al día, fecha y hora que deberá acceder al medio virtual en dónde el docente {{$docente->name}} 
+                        {{$docente->lastname}} impartirá la tutoría.
                     </h6>
                     <h6 class="negrita">Día: <span class="quita_negrita">{{$datos_tut->dia}}</span></h6>
                     <h6 class="negrita">Hora: <span class="quita_negrita">{{$datos_tut->hora_inicio}}:{{$datos_tut->minutos_inicio}} a {{$datos_tut->hora_fin}}:{{$datos_tut->minutos_fin}}</span></h6>
@@ -36,6 +37,10 @@
                         $fecha=date_format($date, 'd-m-Y');
                     @endphp
                     <h6 class="negrita">Fecha: <span class="quita_negrita">{{$fecha}}</span></h6>
+                    <hr>
+                    <h6 class="negrita">Medio virtual: <span class="quita_negrita">{{$datos_tut->medio_virtual}}</span></h6>
+                    <h6>Para poder agregar y establecer comunicación con el docente, por favor en el medio virtual establecido búsquelo con el siguiente nombre de usuario
+                    <span class="negrita">"{{$datos_tut->cuenta_virtual}}"</span></h6>
                     <br>
                     <div class="alert alert-primary" role="alert">
                         <h6>

@@ -187,7 +187,7 @@
                                 <form action="{{url("solicitar_tutoria_student")}}" method="POST" onsubmit="return valida_form_solicita_tutoria();">
                                     {{ csrf_field() }}
                                     <!--Name del tipo de tutoria para recibir por post en el controlador-->
-                                    <input type="hidden" name="tipo" value="grupal">
+                                    <input type="hidden" name="tipo" id="tipo" value="grupal">
                                     <input type="hidden" name="id_materia" id="id_materia" value="{{$materia->id}}">
                                     <input type="hidden" name="id_docente" id="id_docente" value="{{$user_docente->id}}">
                                     <input type="hidden" name="verifica_invitacion" id="verifica_invitacion" value="{{$verifica_invitacion}}">
@@ -4132,10 +4132,10 @@
                             <div class="container" style="display: none;" id="tipo_individual">
                                 <hr>
                                 <!--FORMULARIO GENERAL PARA SOLICITAR TUTORÍA AL DOCENTE - CUANTO SE SOLICITA TUTORÍA INDIVIDUAL-->
-                                <form action="{{url("solicitar_tutoria_student")}}" method="POST" onsubmit="return valida_form_solicita_tutoria();">
+                                <form action="{{url("solicitar_tutoria_student")}}" method="POST" onsubmit="return valida_form_solicita_tutoria_2();">
                                     {{ csrf_field() }}
                                     <!--Name del tipo de tutoria para recibir por post en el controlador-->
-                                    <input type="hidden" name="tipo" value="individual">
+                                    <input type="hidden" name="tipo" id="tipo" value="individual">
                                     <input type="hidden" name="id_materia" id="id_materia" value="{{$materia->id}}">
                                     <input type="hidden" name="id_docente" id="id_docente" value="{{$user_docente->id}}">
                                     

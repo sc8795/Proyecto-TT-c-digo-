@@ -1,4 +1,4 @@
-@extends('layout_administrador')
+@extends('layout_docente')
 
 @section('content')
     @include('user_docente.vistas_iguales.menu_horizontal')
@@ -192,4 +192,8 @@
         </div>
     </div>
     
+@endsection
+
+@section('scripts')
+    <script src="{{asset('js/bootstrap.min.js')}}"></script>
 @endsection
