@@ -41,6 +41,8 @@
                     <input type="hidden" name="hora_fin" value="{{$datos_tut->hora_fin}}">
                     <input type="hidden" name="minutos_fin" value="{{$datos_tut->minutos_fin}}">
                     <input type="hidden" name="modalidad" value="{{$datos_tut->modalidad}}">
+                    <input type="hidden" name="medio_virtual" value="{{$datos_tut->medio_virtual}}">
+                    <input type="hidden" name="cuenta_virtual" value="{{$datos_tut->cuenta_virtual}}">
                     <input type="hidden" name="notificacion_id" value="{{$notificacion_id}}">
                     
                     <h6 class="tit_general">Asunto: 

@@ -972,7 +972,7 @@
                         <br>
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1"><i class="fas fa-calendar-week"></i></span>
-                            <input type="text" id="fecha" placeholder="Haga clic y seleccione la fecha de tutoría." class="form-control" name="fecha_tutoria">
+                            <input type="text" id="fecha" placeholder="Haga clic y seleccione la fecha de tutoría." class="form-control" name="fecha_tutoria" autocomplete="off">
                         </div>
                         <br>
                     </div>

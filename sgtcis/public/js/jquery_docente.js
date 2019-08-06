@@ -174,3 +174,27 @@ function valida_horario(hora_inicio,minutos_inicio,hora_fin,minutos_fin){
         return false;
     }
 }
+
+function capturar_virtual(){
+    var fecha=document.getElementById("fecha").value;
+    var medio_virtual=document.getElementById("medio_virtual").value;
+    var cuenta_virtual=document.getElementById("cuenta_virtual").value;
+    if(fecha==""){
+        alert("El campo fecha es obligatorio");
+    }else{
+        if(medio_virtual==""){
+            alert("El campo medio virtual es obligatorio");
+        }else{
+            if(cuenta_virtual==""){
+                alert("El campo cuenta virtual es obligatorio");
+            }else{
+                var fecha_format=formato(fecha);
+                if (valida_fecha(fecha_format)==true){
+                    $('#ventana').modal('show');
+                    document.getElementById("fecha_modal").innerHTML=fecha_format;
+                }else
+                    return alert("La fecha seleccionada es pasada.");
+            }
+        }
+    }
+}

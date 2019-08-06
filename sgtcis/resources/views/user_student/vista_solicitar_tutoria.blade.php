@@ -27,6 +27,7 @@
                         $verifica_dia=false;
                         $verifica_modalidad=false;
                         $verifica_tipo=false;
+                        $verifica_invitacion=0;
                     @endphp
                     @if (count($errors)>0)
                         @foreach ($errors->all() as $error)
@@ -140,6 +141,9 @@
                                             </div>
                                             <div class="container" id="contenedor_general_op2">
                                                 @if ($arreglo_est_inv!=null)
+                                                    @php
+                                                        $verifica_invitacion=1;
+                                                    @endphp
                                                     <table class="table table-bordered table-sm">
                                                         <hr>
                                                         <thead>
@@ -186,6 +190,7 @@
                                     <input type="hidden" name="tipo" value="grupal">
                                     <input type="hidden" name="id_materia" id="id_materia" value="{{$materia->id}}">
                                     <input type="hidden" name="id_docente" id="id_docente" value="{{$user_docente->id}}">
+                                    <input type="hidden" name="verifica_invitacion" id="verifica_invitacion" value="{{$verifica_invitacion}}">
                                     @if ($invitacion!=null)
                                         <input type="hidden" name="id_invitacion" id="id_invitacion" value="{{$invitacion->id}}">
                                     @endif

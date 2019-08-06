@@ -120,7 +120,7 @@ function tipo_tutoria(){
 function valida_form_solicita_tutoria(){
     var datosCorrectos=true;
     var error="";
-    
+    var verifica_invitacion=document.getElementById('verifica_invitacion').value;
     if(!document.querySelector('input[name="motivo"]:checked')) {
         datosCorrectos=false;
         error="El campo motivo de tutoría es obligatorio";
@@ -132,6 +132,10 @@ function valida_form_solicita_tutoria(){
     if(!document.querySelector('input[name="modalidad"]:checked')) {
         datosCorrectos=false;
         error="El campo modalidad de tutoría es obligatorio";
+    }
+    if(verifica_invitacion==0) {
+        datosCorrectos=false;
+        error="Debe invitar por lo menos a un estudiante";
     }
     if(!datosCorrectos){
         alert('¡AVISO! '+error);

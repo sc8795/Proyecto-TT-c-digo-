@@ -406,6 +406,7 @@ class AuthStudentController extends Controller
 
                 $verifica_invitacion=DB::table('invitacionestudiantes')
                     ->where('user_invita_id',$user_student->id)
+                    ->where('solitutoria_id',null)
                     ->exists();
 
                 if($verifica_invitacion==true){
@@ -821,7 +822,7 @@ class AuthStudentController extends Controller
         if($datos_tut->modalidad=="presencial"){
             return view('user_student.vista_tutoria_confirmada',compact('estudiante','docente','materia','datos_tut','notification'));
         }else{
-            dd("Es virtual");
+            return view('user_student.vista_tutoria_confirmada_virtual',compact('estudiante','docente','materia','datos_tut','notification'));
         }
     }
 /* 

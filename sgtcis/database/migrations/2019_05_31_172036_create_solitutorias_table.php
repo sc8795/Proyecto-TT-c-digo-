@@ -24,6 +24,8 @@ class CreateSolitutoriasTable extends Migration
             $table->integer('docente_id');
             $table->integer('estudiante_id');
             $table->text('motivo');
+            $table->string('medio_virtual')->nullable();
+            $table->string('cuenta_virtual')->nullable();
             $table->datetime('fecha_solicita');
             $table->datetime('fecha_confirma')->nullable();
             $table->datetime('fecha_tutoria')->nullable();

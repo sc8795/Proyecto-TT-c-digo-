@@ -95,11 +95,11 @@ class AuthDocenteController extends Controller
                 $estudiante=DB::table('users')->where('id',$user_student_id)->first();
                 $materia=DB::table('materias')->where('usuario_id',$docente->id)->first();
                 $invitacion=DB::table('invitacionestudiantes')->where('solitutoria_id',$solitutoria_id)->first();
-                if($datos_tut->tipo=="grupal"&&$datos_tut->modalidad="presencial"){
+                if($datos_tut->tipo=="grupal"&&$datos_tut->modalidad=="presencial"){
                     return view('user_docente.vista_grupal_presencial',compact('datos_tut','estudiante','docente','materia','notificacion_id','invitacion'));
                 }
-                if($datos_tut->tipo=="grupal"&&$datos_tut->modalidad="virtual"){
-                    return view('user_docente.vista_grupal_virtual');
+                if($datos_tut->tipo=="grupal"&&$datos_tut->modalidad=="virtual"){
+                    return view('user_docente.vista_grupal_virtual',compact('datos_tut','estudiante','docente','materia','notificacion_id','invitacion'));
                 }
                 if($datos_tut->tipo=="individual"&&$datos_tut->modalidad="presencial"){
                     return view('user_docente.vista_individual_presencial',compact('datos_tut','estudiante','docente','materia','notificacion_id'));
@@ -129,6 +129,9 @@ class AuthDocenteController extends Controller
                 $modalidad=$request->input("modalidad");
                 $notificacion_id=$request->input("notificacion_id");
                 $fecha_tutoria=$request->input("fecha_tutoria");
+                $medio_virtual=$request->input("medio_virtual");
+                $cuenta_virtual=$request->input("cuenta_virtual");
+        
                 $datos_tut=Solitutoria::find($solitutoria_id);
                 $estudiante=DB::table('users')->where('id',$datos_tut->estudiante_id)->first();
                 
@@ -139,6 +142,8 @@ class AuthDocenteController extends Controller
                 $datos_tut->minutos_fin=$minutos_fin;
                 $datos_tut->modalidad=$modalidad;
                 $datos_tut->fecha_tutoria=$fecha_tutoria;
+                $datos_tut->medio_virtual=$medio_virtual;
+                $datos_tut->cuenta_virtual=$cuenta_virtual;
                 $datos_tut->fecha_confirma=now();
                 $datos_tut->save();
                 
@@ -200,7 +205,7 @@ class AuthDocenteController extends Controller
                 $valor=Str::endsWith($datos_tut->dia,'mañana');
                 if($valor==true){
                     $aux=1;
-                    if($datos_tut->tipo=="grupal" && $datos_tut->modalidad=="presencial"){
+                    if(($datos_tut->tipo=="grupal" && $datos_tut->modalidad=="presencial") || ($datos_tut->tipo=="individual" && $datos_tut->modalidad=="presencial")){
                         return view('user_docente.vista_editar_presencial_grupal',compact('datos_tut','estudiante','docente','materia','notificacion_id','aux'));
                     }
                 }else{
