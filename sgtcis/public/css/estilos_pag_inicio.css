@@ -8,64 +8,50 @@
 body{
     background-color:#212121;
 }
-#contenedor_header{
-    background-color: black;
-    color: white;
-}
-.logo_imagen{
-    width: 70%;
-}
-#contenedor_header ul{
-    list-style: none;
-}
-.menu >li{
-    position: relative;
-    display: inline-block;
-}
-.menu >li >a{
-    display: block;
-    margin-top: 35%;
-    padding:  auto;
-    /*color: aqua;*/
-    text-decoration: none;
-}
-.menu li a:hover{
-    color: aqua;
-    transition: all .3s;
-}
-/*SUBMENU*/
-.submenu {
-    position: absolute;
-    width: 132%;
-    visibility: hidden;
-    opacity: 0;
-    transition: opacity 1.5s;
-}
-.submenu li a{
-    display: block;
-    padding: 5px;
-    background-color: black;
-    color: white;
-    text-decoration: none;
-}
-.menu li:hover .submenu{
-    visibility: visible;
-    opacity: 1;
-}
-/*estilos contenededor pagina inicia (contenido)*/
+
+/*estilos generales del contemido de la página de inicio*/
 #espacio_menu_texto{
     margin-top: 15px;
 }
-/*#cont_pag_inicio{
-   padding: 5px;
-}*/
 .texto_formulario{
-    color: white;
+    color:black;
+}
+#cont_pag_inicio{
+    background-color:  #ecf0f1 ;
+}
+#formulario_registro{
+    margin-top: 6%;
 }
 /*ESTILOS PARA FORMULARIO DE REGISTRO DEL ESTUDIANTE*/
 .tit_ciclo_form{
     color: #4665ac;
 }
-.radios{
+/*Estilos generales del menu header y footer de la página de inicio*/
+#logo_menu{
+    width: 70px;
+}
+#fondo_header_footer{
+    background-color: rgba(150, 189, 255, 0.5);
+}
+#txt_opcion_menu_horizontal{
     color: white;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 200;
+}
+#registro{
+    margin-left: 15px;
+}
+.negrita{
+    font-weight: bold;
+}
+.quita_negrita{
+    font-weight: normal;
+}
+#txt_footer{
+    color: black;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 200;
+}
+#fondo_copyright{
+    background-color: #4665ac;
 }
