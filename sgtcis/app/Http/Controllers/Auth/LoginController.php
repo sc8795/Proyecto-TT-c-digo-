@@ -27,7 +27,7 @@ class LoginController extends Controller
             User::create([
                 'name'=>$name,
                 'lastname'=>$lastname,
-                'password'=>'',
+                'password'=>bcrypt("12345"),
                 'is_admin'=>false,
                 'is_docente'=>false,
                 'is_estudiante'=>true,

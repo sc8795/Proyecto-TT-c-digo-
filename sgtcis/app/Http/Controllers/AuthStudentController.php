@@ -45,10 +45,15 @@ class AuthStudentController extends Controller
                         ->paginate(5);
                     Alert::success('¡Bienvenido(a)! ')
                         ->details("$user_student->name $user_student->lastname.");
-                    $arrastre=DB::table('arrastres')->where('user_estudiante_id',$user_student->id)->first();
                     $verifica_arrastre=DB::table('arrastres')->where('user_estudiante_id',$user_student->id)->exists();
-                    $arreglo_materia=explode('.', $arrastre->materia);
-                    return view('user_student.completar_registro',compact('user_student','materias','arrastre','arreglo_materia','verifica_arrastre'));
+                    if($verifica_arrastre==true){
+                        $arrastre=DB::table('arrastres')->where('user_estudiante_id',$user_student->id)->first();
+                        $arreglo_materia=explode('.', $arrastre->materia);
+                        $arreglo_paralelo=explode('.', $arrastre->paralelo);
+                        return view('user_student.completar_registro',compact('user_student','materias','arrastre','arreglo_materia','verifica_arrastre','arreglo_paralelo'));
+                    }else{
+                        return view('user_student.completar_registro',compact('user_student','materias','verifica_arrastre'));
+                    }
                 }else{
                     return view('user_student.auth_student'); 
                 } 

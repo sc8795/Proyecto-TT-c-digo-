@@ -21,6 +21,18 @@
                   <a class="nav-link" href="#" id="txt_opcion_menu_horizontal">AYUDA</a>
                 </li>
               </ul>
+              @if (Auth::check())
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown" id="txt_opcion_menu_horizontal">
+                        <a class="nav-link dropdown-toggle btn btn-outline-success btn-sm m-1" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white">
+                            {{auth()->user()->name}} {{auth()->user()->lastname}}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="opcion_logueo">
+                            <a class="dropdown-item" href="{{route('vista_student_google')}}">Ver cuenta <span class="fas fa-arrow-circle-right"></span></a>
+                        </div>
+                    </li>
+                </ul>
+              @else
               <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
                     <a class="nav-link btn btn-outline-primary btn-sm m-1" href="{{url('/#cont_pag_inicio')}}" id="txt_opcion_menu_horizontal">Registrarse</a>
@@ -29,12 +41,13 @@
                     <a class="nav-link dropdown-toggle btn btn-outline-warning btn-sm m-1" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white">
                     Iniciar Sesión
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="opciones_inicio_sesion">
                         <a class="dropdown-item" href="{{route('show_login_form_student')}}">Estudiante</a>
                         <a class="dropdown-item" href="{{route('show_login_form_docente')}}">Docente</a>
                     </div>
                 </li>
               </ul>
+              @endif
             </div>
           </nav>
     </header>

@@ -55,3 +55,10 @@ body{
 #fondo_copyright{
     background-color: #4665ac;
 }
+#opciones_inicio_sesion{
+    margin-left: -40px;
+    float: left;
+}
+#opcion_logueo{
+    float: left;
+}
