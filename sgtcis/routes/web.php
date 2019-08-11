@@ -7,6 +7,9 @@ Route::get('/', function () {
 Route::get('student/auth/{provider}', 'Auth\LoginController@redirectToProvider');
 Route::get('student/auth/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
 
+/*Ruta para el registro manual del estudiante */
+Route::post('registro_manual','Auth\LoginController@registro_manual')->name('registro_manual');
+
 /* 
 |--------------------------------------------------------------------------
 | Rutas para el inicio de sesion de administrador
@@ -132,7 +135,6 @@ Route::get('descargar_log/{aux}','AuthAdministradorController@descargar_log')->n
 |--------------------------------------------------------------------------
 | Rutas del Estudiante
 |--------------------------------------------------------------------------
-*/
 
 /* Ruta para la vista general */
 Route::get('vista_general_student','AuthStudentController@vista_general_student')->name('vista_general_student');

@@ -9,11 +9,37 @@ use Illuminate\Http\Request;
 use App\User;
 use Auth;
 use Redirect;
+use Laracasts\Flash\Flash;
 
 use Socialite;
 
 class LoginController extends Controller
 {
+    public function registro_manual(Request $request){
+        $email=$request->input("email");
+        $name=$request->input("name");
+        $lastname=$request->input("lastname");
+        $valida_email = User::where('email', '=', $email)->exists(); 
+        if($valida_email==true){
+            flash('El correo ingresado ya existe. Intente nuevamente')->error();
+            return view('welcome');
+        }else{
+            User::create([
+                'name'=>$name,
+                'lastname'=>$lastname,
+                'password'=>'',
+                'is_admin'=>false,
+                'is_docente'=>false,
+                'is_estudiante'=>true,
+                'paralelo'=>'NA',
+                'ciclo'=>'NA',
+                'email'=>$email,
+            ]);
+            $authUser = User::where('email', '=', $email)->first(); 
+            Auth::login($authUser,true);
+            return redirect()->action('AuthStudentController@vista_student_google');
+        }
+    }
     public function redirectToProvider($provider)
     {
         return Socialite::driver($provider)->redirect();

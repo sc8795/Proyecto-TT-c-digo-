@@ -46,8 +46,9 @@
             </div>
             <div class="col-lg-5 col-xs-12 col-sm-12 col-md-12" id="formulario_registro">
                 <h1 class="texto_formulario">Registro estudiante</h1>
+                <hr>
                 <div>
-                    <form method="POST" action="registrar_estudiante.php">
+                    <form method="POST" action="{{url("registro_manual")}}" onsubmit="return validar_registro_manual();">
                         {{ csrf_field() }}
                         <div class="row">
                             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
@@ -63,6 +64,9 @@
                         </div>
                         <hr>
                         <div class="form-group">
+                            <div id="mensaje_correo_existe">
+                                @include('flash::message')
+                            </div>
                             <input type="email" class="form-control" name="email" id="email" placeholder="Correo institucional">
                         </div>
                         <hr>
