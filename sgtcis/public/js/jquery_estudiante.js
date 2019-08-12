@@ -52,7 +52,9 @@ $(document).on('click', '#boton_omitir', function(){
     }
 });
 
-$('div#mensaje').delay(4000).slideUp(1500);
+$('div#mensaje_uno').delay(1000).slideUp(1500);
+$('div#mensaje_cuatro').delay(4000).slideUp(1500);
+$('div#mensaje_siete').delay(7000).slideUp(1500);
 
 //evaluar estudiante - validar preguntas de asistencia
 function validar_evaluacion_docente(){

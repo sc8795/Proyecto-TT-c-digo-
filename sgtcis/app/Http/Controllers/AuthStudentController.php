@@ -82,8 +82,6 @@ class AuthStudentController extends Controller
                 if($user_student->paralelo=="NA" && $user_student->ciclo=="NA"){
                     $materias=Materia::orderBy('id','DESC')
                         ->paginate(5);
-                    Alert::success('¡Bienvenido(a)! ')
-                        ->details("$user_student->name $user_student->lastname.");
                     $verifica_arrastre=DB::table('arrastres')->where('user_estudiante_id',$user_student->id)->exists();
                     if($verifica_arrastre==true){
                         $arrastre=DB::table('arrastres')->where('user_estudiante_id',$user_student->id)->first();
@@ -177,6 +175,13 @@ class AuthStudentController extends Controller
                                 'paralelo'=>$paralelo
                             ]);
                         }else{
+                            $arreglo_materia_agregada=explode('.', $materia_agregada);
+                            foreach ($arreglo_materia_agregada as $recorre) {
+                                if($recorre==$materia){
+                                    flash("La materia $materia, ya ha sido añadida")->error();
+                                    return redirect()->route('vista_student_google');
+                                }                            
+                            }
                             $arrastre=DB::table('arrastres')->where('user_estudiante_id',$user_student->id);
                             $arrastre->delete();
                             DB::table('arrastres')->insert([
@@ -193,6 +198,7 @@ class AuthStudentController extends Controller
                             'paralelo'=>$paralelo
                         ]);
                     }
+                    flash("La materia $materia, ha sido añadida")->success();
                     return redirect()->route('vista_student_google');
                 }else{
                     return view('user_student.auth_student'); 

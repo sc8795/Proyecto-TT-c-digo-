@@ -1,64 +1,69 @@
-<div class="vertical-menu">
-    <ul class="menu_vertical">
-        <li>
-            <a href="{{url("vista_general_student")}}"><i class="icono izquierda far fa-eye"></i>Vista general de la cuenta</a>
-        </li>
-        <li>
-            <a href="{{route('solicitar_tutoria')}}"><i class="icono izquierda fas fa-chalkboard-teacher"></i>Solicitar tutoría</a>
-        </li>
-        <li>
-            @if (Auth::check())
-                <!--li class="nav-item dropdown"-->
-                    <a href="#" id="navbarDropdown" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-bell"></i> Notificaciones
-                        <span class="badge badge-danger" id="count-notification">{{auth()->user()->unreadNotifications->count()}}</span>
-                        <span class="caret"></span>
-                    </a>
-                    <ul class="submenu_vertical">
-                        <li>
-                        <!--div class="droptdown-menu" aria-labelledby="navbarDropdown"-->
-                            @if (auth()->user()->unreadNotifications->count())
-                                @foreach (auth()->user()->unreadNotifications as $notifications)
-                                    @php
-                                        $arreglo=$notifications->data;
-                                        $title1 = data_get($arreglo, 'invita_estudiante.title');
-                                        $valida_invita_estudiante=starts_with($title1, 'Invitación');
-                                        
-                                        $title2 = data_get($arreglo, 'noti_estudiante.title');
-                                        $valida_noti_estudiante=str_contains($title2, 'Tutoría');
-                                        
-                                    @endphp
-                                
-                                    @if ($valida_noti_estudiante==true)
-                                        <a href="{{url("ver_tutoria_confirmada/{$notifications->data['noti_estudiante']['user_id']}/{$notifications->data['noti_estudiante']['user_estudiante_id']}/{$notifications->id}/{$notifications->data['noti_estudiante']['solitutoria_id']}")}}" class="droptdown-item">
-                                            <span class="fas fa-check-circle"></span>
-                                            {{$notifications->data['noti_estudiante']['descripcion']}} <br>
-                                            <span class="titulo_fecha_tutoria">{{$notifications->data['noti_estudiante']['created_at']}}</span>
-                                        </a>    
-                                    @endif
-                                    @if ($valida_invita_estudiante==true)
-                                        @php
-                                            $solitutoria=DB::table('solitutorias')->where('id',$notifications->data['invita_estudiante']['solitutoria_id'])->first();
-                                        @endphp
-                            
-                                        <input type="hidden" name="fecha_solicita" id="fecha_solicita" value="{{$solitutoria->fecha_solicita}}">
-                                        <input type="hidden" name="fecha_tutoria" id="fecha_tutoria" value="{{$solitutoria->fecha_tutoria}}">
-                                        
-                                        <a href="{{url("invitacion/{$notifications->data['invita_estudiante']['user_invita_id']}/{$notifications->data['invita_estudiante']['user_invitado_id']}/{$notifications->data['invita_estudiante']['solitutoria_id']}/{$notifications->id}")}}" class="droptdown-item" onclick="valida_confirmacion_docente();">
-                                            <span class="fas fa-envelope"></span>
-                                            {{$notifications->data['invita_estudiante']['descripcion']}} <br>
-                                            <span class="titulo_fecha_tutoria">{{$notifications->data['invita_estudiante']['created_at']}}</span>
-                                        </a>  
-                                    @endif
-                                @endforeach   
-                            @else 
-                                <a href="#" class="droptdown-item"> No tiene notificaciones </a>
-                            @endif
-                        <!--/div-->
-                        </li>
-                    </ul>
-                <!--/li-->
-            @endif
-        </li>
-    </ul>
-</div>
+<div class="d-flex" id="wrapper">
+    <!-- Sidebar -->
+    <div class="bg-light border-right" id="sidebar-wrapper">
+      <div class="sidebar-heading">Start Bootstrap </div>
+      <div class="list-group list-group-flush">
+        <a href="#" class="list-group-item list-group-item-action bg-light">Dashboard</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light">Shortcuts</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light">Overview</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light">Events</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light">Profile</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light">Status</a>
+      </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+        <button class="btn btn-primary" id="menu-toggle">Toggle Menu</button>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Dropdown
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="container-fluid">
+        <h1 class="mt-4">Simple Sidebar</h1>
+        <p>The starting state of the menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will change.</p>
+        <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>. The top navbar is optional, and just for demonstration. Just create an element with the <code>#menu-toggle</code> ID which will toggle the menu when clicked.</p>
+      </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+
+@section('scripts')
+<script>
+    $("#menu-toggle").click(function(e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+  </script>
+@endsection
+  <!-- Menu Toggle Script -->
+  

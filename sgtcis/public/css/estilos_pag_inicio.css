@@ -6,7 +6,8 @@
     box-sizing: border-box;
 }
 body{
-    background-color:#212121;
+    overflow-x: hidden;
+    background-color:#1b1b1b;
 }
 
 /*estilos generales del contemido de la página de inicio*/
@@ -31,7 +32,7 @@ body{
     width: 70px;
 }
 #fondo_header_footer{
-    background-color: rgba(150, 189, 255, 0.5);
+    background-color: rgba(150, 189, 255, 0.5); ;
 }
 #txt_opcion_menu_horizontal{
     color: white;
@@ -53,7 +54,7 @@ body{
     font-weight: 200;
 }
 #fondo_copyright{
-    background-color: #4665ac;
+    background-color:#4665ac;;
 }
 #opciones_inicio_sesion{
     margin-left: -40px;

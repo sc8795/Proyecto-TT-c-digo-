@@ -5,37 +5,43 @@
 @endsection
 
 @section('content2')
-    <div class="row">
+    <div class="container-fluid" id="espacio_menu_texto"></div>
+    <div class="row" id="cont_pag_inicio">
         @include('user_student.vistas_iguales.imagen_texto')
-        <div class="col-9" id="titulo_general">
-            {!! Alert::render() !!}
+        <div class="col-lg-9 col-xs-12 col-sm-9 col-md-9">
+            <br>
+            <h6><span class="negrita">¡Bienvenido!</span> {{auth()->user()->name}} {{auth()->user()->lastname}}</h6>
+            <hr>
+            <h6>Por favor completa el registro para que puedas solicitar tu tutoría.</h6>
+            <hr>
         </div>
     </div>
 @endsection
 
 @section('content3')
-    <div class="row">
-        <div class="col-3">
-            <div class="alert alert-dark">Menú de opciones no disponible hasta que complete el proceso de registro. 
+    <div class="row" id="cont_pag_inicio">
+        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-3">
+            <div class="alert alert-dark" id="fondo_completar_registro">
+                Menú de opciones no disponible hasta que complete el proceso de registro. 
                 <br><br>
                 <a href="{{ url('omitir_completar_registro') }}" id="boton_omitir" class="btn btn-dark btn-sm" title="Acceder al menú de opciones, si ya ha completado su registro.">Omitir </a>
             </div>
         </div>
-        <div class="col-9">            
+        <div class="col-lg-9 col-xs-12 col-sm-12 col-md-9">            
             <div class="container" id="contenedor_general">
-                <div class="d-flex p-2 bd-highlight" id="contenedor_2">
+                <div class="d-flex p-2 bd-highlight" id="fondo_tabla_general">
                     <span class="tit_datos">Completar registro</span>
                 </div>
-                <div class="container" id="contenedor_general_op2">
+                <div class="container" id="fondo_contenido_tabla_general">
                     <span class="negrita">
                         ¿Actualmente se encuentra arrastrando una materia?
                     </span>
                     <div class="container">
                         <div class="row">
-                            <div class="col-1">
+                            <div class="col-lg-2 col-sm-2 col-md-3">
                                 <input type="radio" id="si" name="arrastre" onclick="arrastre();" checked> Si
                             </div>
-                            <div class="col-1">
+                            <div class="col-lg-2 col-sm-2 col-md-3">
                                 <input type="radio" id="no" name="arrastre" onclick="arrastre();"> No
                             </div>
                         </div>
@@ -47,7 +53,7 @@
                             {{method_field("PUT")}}
                             {{ csrf_field() }}
                             <input type="hidden" id="verifica_ciclo" value="{{$user_student->ciclo}}">
-                            <div class="d-flex p-2 bd-highlight" id="contenedor_2">
+                            <div class="d-flex p-2 bd-highlight" id="fondo_tabla_general">
                                 <span class="tit_datos">Completar registro sin arrastre de materias</span>
                             </div>
                             <div class="container" id="contenedor_general_op2">
@@ -115,19 +121,19 @@
                                 @endphp
                             @endforeach
                         @endif
-                        <div class="d-flex p-2 bd-highlight" id="contenedor_2">
+                        <div class="d-flex p-2 bd-highlight" id="fondo_tabla_general">
                             <span class="tit_datos">Completar registro con arrastre de materias</span>             
                         </div>
                         <div class="container" id="contenedor_general_op2">                                
                             <span class="">Añada la/las materias que recibe actualmente.</span>
                             <div class="row">
-                                <div class="col-6">
+                                <div class="col-lg-6 col-xs-12 col-sm-12 col-md-12">
                                     <hr>
                                     <form class="card" method="GET" action="{{url("buscar_materia_arrastre")}}">
                                         <div class="row no-gutters align-items-center">
                                             <!--end of col-->
                                             <div class="col">
-                                                <input class="form-control form-control-borderless form-control-sm" name="name" type="search" placeholder="Nombre de materia" title="Escriba el nombre de la materia">
+                                                <input class="form-control form-control-borderless form-control-sm" name="name" type="search" placeholder="Nombre de materia a añadir" title="Escriba el nombre de la materia">
                                             </div>                                                
                                             <!--end of col-->
                                             <div class="col-auto">
@@ -138,10 +144,14 @@
                                     </form>
                                     <hr>
                                     @if ($verifica_paralelo==true)
-                                        <div class="alert alert-danger" id="mensaje">
+                                        <div class="alert alert-danger" id="mensaje_uno">
                                             {{$error}}
+                                            @php
+                                                echo '<script language="javascript">alert("El campo paralelo es obligatorio");</script>';
+                                            @endphp
                                         </div>
                                     @endif
+                                    @if ($materias->isNotEmpty())
                                     <table class="table table-bordered table-sm">
                                         <thead>
                                             <tr>
@@ -150,9 +160,8 @@
                                                 <th scope="col">Acción</th>
                                             </tr>
                                         </thead>
-                                        
                                             @foreach ($materias as $materia) 
-                                            <form action="{{url("agregar_materia_arrastre#contenedor_2")}}" method="POST" onsubmit="return validar_arrastre()">
+                                            <form action="{{url("agregar_materia_arrastre")}}" method="POST">
                                                 {{ csrf_field() }}
                                                 <tbody>
                                                     <tr>
@@ -173,21 +182,23 @@
                                                 </tbody>
                                             </form>
                                             @endforeach
-                                        
                                     </table>
                                     {{$materias->render()}}
+                                    @else
+                                        <span class="negrita">No se han encontrado resultados</span>
+                                    @endif
                                 </div>
-                                <div class="col-6">
-                                    <div class="d-flex p-2 bd-highlight" id="contenedor_2">
+                                <div class="col-lg-6 col-xs-12 col-sm-12 col-md-12">
+                                    <div class="d-flex p-2 bd-highlight" id="fondo_tabla_general">
                                         <span class="tit_datos">Materias añadidas</span>
                                     </div>
-                                    <div class="container" id="contenedor_general_op2">
+                                    <div class="container" id="fondo_contenido_tabla_original_op2">
+                                        <hr>
                                         @if ($verifica_arrastre==true)
                                             @if ($arrastre->materia==null || $arrastre->paralelo==null)
-                                            No ha añadido ninguna materia
+                                                <h6 class="negrita">No ha añadido ninguna materia</h6>
                                             @else
                                             <table class="table table-bordered table-sm">
-                                                <hr>
                                                 <thead>
                                                     <tr>
                                                         <th scope="col">Materia</th>
@@ -195,6 +206,9 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                    <div id="mensaje_cuatro">
+                                                        @include('flash::message')
+                                                    </div>
                                                     @foreach ($arreglo_materia as $a_materia)
                                                         <form action="{{url("eliminar_materia_agregada")}}" method="POST">
                                                             {{ csrf_field() }}
@@ -215,7 +229,7 @@
                                                 <input type="hidden" name="paralelo" value="arrastre">
                                                 <input type="hidden" name="ciclo" value="arrastre">
                                                 @if ($verifica_password==true)
-                                                    <div class="alert alert-danger" id="mensaje">
+                                                    <div class="alert alert-danger" id="mensaje_siete">
                                                         {{$error}}
                                                     </div>
                                                 @endif
@@ -225,7 +239,7 @@
                                             </form>
                                             @endif
                                         @else
-                                            No ha añadido ninguna materia
+                                            <h6 class="negrita">No ha añadido ninguna materia</h6>
                                         @endif                                        
                                     </div>
                                 </div>
@@ -236,4 +250,14 @@
             </div>
         </div>
     </div>
+    <div class="container-fluid" id="espacio_menu_texto"></div>
+@endsection
+
+
+@section('content4')
+    @include('user_student.vistas_iguales.footer')
+@endsection
+
+@section('scripts')
+    <script src="{{asset('js/bootstrap.min.js')}}"></script>
 @endsection
