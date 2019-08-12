@@ -236,6 +236,7 @@ class AuthStudentController extends Controller
                             ]);
                         }
                     }
+                    flash("La materia $materia, ha sido eliminada")->warning();
                     return redirect()->route('vista_student_google');
                 }else{
                     return view('user_student.auth_student'); 

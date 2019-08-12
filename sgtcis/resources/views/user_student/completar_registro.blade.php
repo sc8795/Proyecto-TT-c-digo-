@@ -58,7 +58,7 @@
                             </div>
                             <div class="container" id="contenedor_general_op2">
                                 <div class="row">
-                                    <div class="col-6">
+                                    <div class="col-lg-6 col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
                                             <br>
                                             <label><h6 class="tit_ciclo_form">Ciclo</h6></label>
@@ -83,7 +83,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-lg-6 col-xs-12 col-sm-12 col-md-12">
                                         <br>
                                         <div class="form-group">
                                             <label><h6 class="tit_ciclo_form">Paralelo</h6></label>
@@ -101,11 +101,13 @@
                                         </div>
                                         <hr>
                                         <button type="submit" class="btn btn-block btn-primary" id="boton_completar">Completar registro</button>
+                                        <hr>
                                     </div>
                                 </div>
                             </div>
                         </form>
                     </div>
+                    <!--Arrastre Si-->
                     <div class="input-group mb-3" id="arrastre_si" style="display:none;">
                         @php
                             $mensaje_error="";
@@ -152,6 +154,8 @@
                                         </div>
                                     @endif
                                     @if ($materias->isNotEmpty())
+                                    <span class="negrita" id="color_verde">Resultados encontrados:</span>
+                                    <hr>
                                     <table class="table table-bordered table-sm">
                                         <thead>
                                             <tr>
@@ -185,7 +189,7 @@
                                     </table>
                                     {{$materias->render()}}
                                     @else
-                                        <span class="negrita">No se han encontrado resultados</span>
+                                        <span class="negrita" id="color_rojo">No se han encontrado resultados</span>
                                     @endif
                                 </div>
                                 <div class="col-lg-6 col-xs-12 col-sm-12 col-md-12">
@@ -236,6 +240,7 @@
                                                 <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña">
                                                 <hr>
                                                 <button type="submit" class="btn btn-primary btn-block btn-sm">Finalizar Registro</button>
+                                                <hr>
                                             </form>
                                             @endif
                                         @else
