@@ -1,10 +1,6 @@
 @extends('layout_estudiante')
 
-@section('content2')
-    
-@endsection
-
-@section('content3')
+@section('content')
     <div class="row">
         <div class="col-12">
             @include('user_student.vistas_iguales.menu_vertical')
@@ -14,7 +10,7 @@
                 <br>
                 <h4 id="txt_opcion_menu_vertical"><span class="negrita">Perfil</span></h4>
                 <br>
-                <div id="mensaje">
+                <div id="mensaje_siete">
                     @include('flash::message')
                 </div>
 

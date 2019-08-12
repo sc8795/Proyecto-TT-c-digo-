@@ -40,7 +40,7 @@
     background:#1b4f72;
 }
 .vertical-menu .menu_vertical li a:hover{
-    background-color: #96b0e5;
+    background-color:rgba(156, 150, 172, 0.5);;
     color: aliceblue;
 }
 .vertical-menu .menu_vertical .icono{

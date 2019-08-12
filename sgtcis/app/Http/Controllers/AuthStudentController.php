@@ -277,11 +277,6 @@ class AuthStudentController extends Controller
             $data=request()->validate([
                 'name'=>'required',
                 'lastname'=>'required',
-                'email'=>[
-                    'required',
-                    'email',
-                    Rule::unique('users')->ignore($user->id)
-                ],
                 'password'=>''
             ]);
 
@@ -291,7 +286,8 @@ class AuthStudentController extends Controller
                 unset($data["password"]);
             }
             $user->update($data);
-            return redirect()->action('AuthStudentController@vista_general_student', [1]);
+            flash("Perfil editado correctamente")->success();
+            return redirect()->action('AuthStudentController@vista_general_student');
         }
     }
 /* 

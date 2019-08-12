@@ -95,7 +95,10 @@
                             {{auth()->user()->name}} {{auth()->user()->lastname}}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="opcion_logueo">
-                            <a class="dropdown-item" href="{{route('vista_student_google')}}">Cerrar sesión <span class="fas fa-sign-out-alt"></span></a>
+                            <form method="POST" action="{{route('logout_student')}}" class="boton_logout">
+                                {{ csrf_field() }}
+                                <button class="btn btn-outline-danger btn-sm">Cerrar sesion <span class="fas fa-sign-out-alt"></span></button>
+                            </form>
                         </div>
                     </li>
                 </ul>
