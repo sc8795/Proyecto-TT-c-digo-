@@ -42,7 +42,9 @@ $(document).ready(function(){
 
 //mensajes
    $('div#caja_error').delay(4000).slideUp(1500);
-   $('div#mensaje').delay(10000).slideUp(1500);
+   $('div#mensaje_uno').delay(1000).slideUp(1500);
+$('div#mensaje_cuatro').delay(4000).slideUp(1500);
+$('div#mensaje_siete').delay(7000).slideUp(1500);
 
 //evaluar estudiante - asistencia aparece boton de inasistencia y preguntas de asistencia
 function asistencia(){

@@ -1,43 +1,52 @@
 @extends('layout_docente')
 
 @section('content')
-    @include('user_docente.vistas_iguales.menu_horizontal')
-@endsection
-
-@section('content2')
     <div class="row">
-        @include('user_docente.vistas_iguales.imagen_texto')
-        <div class="col-9" id="titulo_general">
-            <h3>Vista general - Docente</h3>
-            {!! Alert::render() !!}
-        </div>
-    </div>
-@endsection
-
-@section('content3')
-    <div class="row">
-        <div class="col-3">
+        <div class="col-12">
             @include('user_docente.vistas_iguales.menu_vertical')
-        </div>
-        <div class="col-9">
-            <div id="mensaje">
-                @include('flash::message')
-            </div>
-            <div class="container" id="contenedor_general">
-                @php
-                    $user=auth()->user()->id
-                @endphp
+            <div class="container-fluid" id="espacio_menu_texto"></div>
+            <div class="container" style="background: white">
+                <h1 id="txt_opcion_menu_vertical"><span class="negrita">Vista general de la cuenta</span></h1>
+                <br>
+                <h4 id="txt_opcion_menu_vertical"><span class="negrita">Perfil</span></h4>
+                <br>
+                <div id="mensaje_siete">
+                    @include('flash::message')
+                </div>
+
                 <form action="{{route('editar_perfil_docente')}}">
-                    <h5 class="tit_general">Usuario:</h5>
-                    <h6 class="tit_datos">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{auth()->user()->name}} {{auth()->user()->lastname}}</h6>
-                    <hr>
-                    <h5 class="tit_general">Correo electrónico:</h5>
-                    <h6 class="tit_datos">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{auth()->user()->email}}</h6>
-                    <hr>
-                    <button type="submit" class="btn btn-dark">Editar perfil</button>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-3 col-xs-12 col-sm-6 col-md-4">
+                                <h5 id="txt_opcion_menu_vertical">Nombres - apellidos:</h5>
+                            </div>
+                            <div class="col-lg-6 col-xs-12 col-sm-6 col-md-6">
+                                <h5 id="txt_opcion_menu_vertical">{{auth()->user()->name}} {{auth()->user()->lastname}}</h5>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-3">
+                                <h5 id="txt_opcion_menu_vertical">Email:</h5>
+                            </div>
+                            <div class="col-6">
+                                <h5 id="txt_opcion_menu_vertical">{{auth()->user()->email}}</h5>
+                            </div>
+                        </div>
+                        <hr>
+                        <button type="submit" class="btn btn-dark">Editar perfil</button>
+                    </div>
+                    <br>
                 </form>
             </div>
-        </div>  
+            <div class="container-fluid" id="espacio_menu_texto"></div>
+            @include('user_student.vistas_iguales.footer')
+            </div>
+            </div>
+        </div>
     </div>
 @endsection
- 
+
+@section('scripts')
+    <script src="{{asset('js/bootstrap.min.js')}}"></script>
+@endsection 

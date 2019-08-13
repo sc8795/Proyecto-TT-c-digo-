@@ -1,25 +1,33 @@
-body{
-    background-color: #212121;
-}
-/* ---------- ESTILOS MENU HORIZONTAL ---------- */
-/*boton cerrar sesion*/
-.boton_logout{
-    position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    /*background-color: rgba(49, 44, 44, 0.9);*/
-    padding: 10px;
+*{
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 /* ---------- ESTILOS MENU VERTICAL ---------- */
 .vertical-menu{
     width: 100%;
-    min-width: 300px;
     display: inline-block;
+    background:  #1b4f72 ;
+}
+#footer_menu_vertical{
+    background-color: #1c2833 ;
+}
+#fondo_copyright_menu_vertical{
+    background-color:  #2c3e50 ;
+}
+#fondo_img_menu_vertical{
+    background:  #1b4f72 ;   
+}
+#fondo_horizontal{
+    margin-top: -10px;
+    background:  #1b4f72 ;
 }
 .vertical-menu .menu_vertical{
     width: 100%;
+    max-height: 100vh;
 }
 .vertical-menu ul{
     list-style: none;
@@ -29,11 +37,14 @@ body{
     text-decoration: none;
     display: block;
     padding: 15px;
-    background: #1b1b1b;
+    background:#1b4f72;
 }
 .vertical-menu .menu_vertical li a:hover{
-    background-color: rgba(27, 44, 25, 0.2);
+    background-color:rgba(156, 150, 172, 0.5);;
     color: aliceblue;
+}
+#borde_radio{
+    border-radius: 20px;
 }
 .vertical-menu .menu_vertical .icono{
     font-size: 12px;
@@ -56,57 +67,66 @@ body{
     color:aqua;
 }
 
+/* ---------- ESTILOS GENERALES PARA COMPLETAR REGISTRO ---------- */ 
 
-
-/* ---------- ESTILOS VISTA DE IMAGEN Y TITULO DE MENU VERTICAL ---------- */ 
-/*imagen del usuario administrador*/
 .centrar_img_usuario_logueo{
     text-align: center;
-    background: #1b1b1b;
+    background: #ecf0f1;
+}
+.centrar_img_menu_vertical{
+    text-align: center;
 }
 .img_usuario_logueo{
     width: 150px;
     padding: 20px;
 }
+
+#fondo_completar_registro{
+    background-color:  #a6acaf ;
+}
+
+/* ---------- ESTILOS GENERALES DE LETRAS ---------- */ 
 /*Titulo general del menu vertical*/
-h3{
-    color: #83e6b4;
-}
-h4{
-    color: #83e6b4;
-}
+
 #titulo_general{
     display: flex;
     justify-content: left;
     align-items: center;
 }
-
-/* ---------- ESTILOS VISTA GENERAL DE LA CUENTA ---------- */ 
 .tit_general{
     color: #4665ac;
 }
 .tit_datos{
     color: white;
 }
+#txt_opcion_menu_vertical{
+    color: black;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 200;
+}
 
 /* ---------- ESTILOS USADOS POR TODAS LAS VISTAS ---------- */ 
 #contenedor_general{
-    background-color:  #1b1b1b;
-    padding: 20px;
+    background-color:  #ecf0f1;
+    padding: 0px;
 }
 .formulario_general{
     width: 50%;
 }
 .tit_datos_op2{
-    color: #83e6b4;
+    color: black;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 200;
 }
 
-/*estilos contenedores vista*/
-#contenedor_2{
-    background-color:  #0b5345 ;
+#fondo_tabla_general{
+    background-color:  #547795 ;
 }
-#contenedor_general_op2{
-    background-color: gray;
+#fondo_contenido_tabla_general{
+    background-color:  #d0d3d4 ;
+}
+#fondo_contenido_tabla_original_op2{
+    background-color:#ccd1d1;
 }
 #contenedor_general_op3{
     background-color:   #707b7c ;
@@ -118,19 +138,72 @@ h4{
     font-weight: normal;
 }
 #fondo_solicitud{
-    background-color: #0b5345;
+    background-color: #f2f3f4 ;
+}
+#fondo_solicitud h6{
+    color: black;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 200;
+    font-weight: bold;
+}
+#menu_no_disponible{
+    background-color:  #1b1b1b;
 }
 
-/*color fecha solicitar tutoria*/
+.titulo_error{
+    color: #f78181;
+}
 .titulo_fecha_tutoria{
     color: grey;
     font-style: italic;
     font-size: 10pt;
 }
-/* Estilos para validar formularios de registro */
-.titulo_error{
-    color: #f78181;
+#color_verde{
+    color: #0b5345;
 }
-.caja_error{
-    background-color: #1b1b1b;
+#color_rojo{
+    color: red;
 }
+
+
+#sidebar-wrapper {
+    /*min-height: 100vh;*/
+    margin-left: -15rem;
+    -webkit-transition: margin .25s ease-out;
+    -moz-transition: margin .25s ease-out;
+    -o-transition: margin .25s ease-out;
+    transition: margin .25s ease-out;
+  }
+  
+  #sidebar-wrapper .sidebar-heading {
+    /*padding: 0.875rem 1.25rem;*/
+    padding: 0.875rem 1.25rem;
+    font-size: 1.2rem;
+  }
+  
+  #sidebar-wrapper .list-group {
+    width: 15rem;
+  }
+  
+  #page-content-wrapper {
+    min-width: 100vw;
+  }
+  
+  #wrapper.toggled #sidebar-wrapper {
+    margin-left: 0;
+  }
+  
+  @media (min-width: 768px) {
+    #sidebar-wrapper {
+      margin-left: 0;
+    }
+  
+    #page-content-wrapper {
+      min-width: 0;
+      width: 100%;
+    }
+  
+    #wrapper.toggled #sidebar-wrapper {
+      margin-left: -15rem;
+    }
+  }

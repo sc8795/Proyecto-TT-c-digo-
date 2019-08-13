@@ -64,11 +64,6 @@ class AuthDocenteController extends Controller
             $data=request()->validate([
                 'name'=>'required',
                 'lastname'=>'required',
-                'email'=>[
-                    'required',
-                    'email',
-                    Rule::unique('users')->ignore($user->id)
-                ],
                 'password'=>''
             ]);
 
@@ -77,8 +72,8 @@ class AuthDocenteController extends Controller
             }else{
                 unset($data["password"]);
             }
-            
             $user->update($data);
+            flash("Perfil editado correctamente")->success();
             return redirect()->route('vista_general_docente');
         }
     }

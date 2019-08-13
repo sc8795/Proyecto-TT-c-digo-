@@ -745,7 +745,7 @@ class AuthStudentController extends Controller
                     }
                 }
                 /* Retorna a la vista cuando todo se haya realizado correctamente */
-                flash("Usted ha solicitado tutoría $tipo al docente $user_docente->name $user_docente->lastname, espere su confirmación por parte del docente.")->success();
+                flash("Ha solicitado tutoría $tipo al docente $user_docente->name $user_docente->lastname, espere la confirmación por parte del docente.")->success();
                 return redirect()->route('vista_general_student');   
             }else{
                 return redirect()->route('show_login_form_student');

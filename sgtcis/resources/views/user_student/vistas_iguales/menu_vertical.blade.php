@@ -114,7 +114,6 @@
       $("#wrapper").toggleClass("toggled");
     });
   </script>
-  <script src="{{asset('js/bootstrap.min.js')}}"></script>
 @endsection
   <!-- Menu Toggle Script -->
   
