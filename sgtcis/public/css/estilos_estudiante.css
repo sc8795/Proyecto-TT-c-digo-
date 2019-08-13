@@ -114,7 +114,9 @@
     width: 50%;
 }
 .tit_datos_op2{
-    color: #83e6b4;
+    color: black;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 200;
 }
 
 #fondo_tabla_general{
@@ -136,9 +138,14 @@
     font-weight: normal;
 }
 #fondo_solicitud{
-    background-color: #0b5345;
+    background-color: #f2f3f4 ;
 }
-
+#fondo_solicitud h6{
+    color: black;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 200;
+    font-weight: bold;
+}
 #menu_no_disponible{
     background-color:  #1b1b1b;
 }

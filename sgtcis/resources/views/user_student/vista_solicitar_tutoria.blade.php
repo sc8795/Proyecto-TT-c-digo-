@@ -45,10 +45,10 @@
                             <h6 id="txt_opcion_menu_vertical"><span class="negrita">Tipo de tutoría</span></h6>
                             <!--Seleccionar tipo (individual o grupal)-->
                             <div class="row">
-                                <div class="col-2" id="txt_opcion_menu_vertical">
+                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="txt_opcion_menu_vertical">
                                     <input type="radio" name="tipo" id="individual" value="individual" onclick="tipo_tutoria();"> Individual
                                 </div>
-                                <div class="col" id="txt_opcion_menu_vertical">
+                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="txt_opcion_menu_vertical">
                                     <input type="radio" name="tipo" id="grupal" value="grupal" onclick="tipo_tutoria();" <?php 
                                         if ($seleccionado == 1){
                                             echo 'checked';
@@ -60,7 +60,7 @@
                             <div class="container" style="display: none;" id="tipo_grupal">
                                 <hr>
                                 <div class="row">
-                                    <div class="col-6">
+                                    <div class="col-lg-6 col-xs-12 col-sm-12 col-md-12">
                                         <!--FORMULARIO PARA BUSCAR ESTUDIANTE-->
                                         <form class="card" method="POST" action="{{url("vista_solicitar_tutoria#tipo_grupal")}}">
                                             {{ csrf_field() }}
@@ -86,6 +86,9 @@
                                         <!--CONDICIÓN QUE MUESTRA LOS RESULTADOS OBTENIDOS DE LA BÚSQUEDA, DENTRO DE ELLA SE ENCUENTRA EL FORMULARIO 
                                         DE INVITACIÓN AL ESTUDIANTE-->
                                         @if ($lista_estudiantes_sin_arrastre->isNotEmpty())
+                                            <div id="mensaje_cuatro" class="alert alert-success">
+                                                <span>Resultados encontrados</span>
+                                            </div>
                                             <table class="table table-bordered table-sm" id="txt_opcion_menu_vertical">
                                                 <thead>
                                                     <tr>
@@ -113,10 +116,10 @@
                                                 </tbody>
                                             </table>
                                         @else
-                                            No se han encontrado resultados 
+                                            <span id="color_rojo">No se han encontrado resultados</span> 
                                         @endif
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-lg-6 col-xs-12 col-sm-12 col-md-12">
                                         <!--CONDICIÓN QUE MUESTRA LA LISTA DE LOS ESTUDIANTES INVITADOS, DENTRO DE ELLA SE ENCUENTRA EL FORMULARIO 
                                         DE CANCELAR INVITACIÓN AL ESTUDIANTE-->
                                         @if ($invitacion!=null)
@@ -137,6 +140,9 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
+                                                            <div id="mensaje_siete">
+                                                                @include('flash::message')
+                                                            </div>
                                                             @foreach ($arreglo_est_inv as $e_invitado)
                                                                 @php
                                                                     $est_invitado=DB::table('users')->where('id',$e_invitado)->first();
@@ -159,6 +165,9 @@
                                                     </table>
                                                 @else
                                                 <hr>
+                                                    <div id="mensaje_siete">
+                                                        @include('flash::message')
+                                                    </div>
                                                     No ha invitado estudiantes
                                                 @endif
                                             </div>
@@ -180,31 +189,21 @@
                                     @endif
                                     <!--Name de la modalidad de tutoria para recibir por post en el controlador-->
                                     <h6 id="txt_opcion_menu_vertical"><span class="negrita">Modalidad de tutoría:</span></h6>
-                                    @if ($verifica_modalidad==true)
-                                        <div class="alert alert-danger" id="mensaje">
-                                            {{$error}}
-                                        </div>
-                                    @endif
                                     <div class="row" id="txt_opcion_menu_vertical">
-                                        <div class="col-2">
+                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12">
                                             <input type="radio" name="modalidad" id="modalidad" value="presencial"> Presencial
                                         </div>
-                                        <div class="col">
+                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12">
                                             <input type="radio" name="modalidad" id="modalidad" value="virtual"> Virtual
                                         </div>
                                     </div>
                                     <hr>
                                     <!--Name del horario de tutoria para recibir por post en el controlador-->
-                                    <h6 class="negrita">Horario de tutoría:</h6>
+                                    <h6 id="txt_opcion_menu_vertical"><span class="negrita">Horario de tutoría:</span></h6>
                                     <!--Presenta los horarios de tutoría del docente seleccionado-->
                                     <div class="container">
-                                        @if ($verifica_dia==true)
-                                            <div class="alert alert-danger" id="mensaje">
-                                                {{$error}}
-                                            </div>
-                                        @endif
-                                        <h6>
-                                            El docente {{$user_docente->name}} {{$user_docente->lastname}} tiene asignado los siguientes horarios de tutoría:
+                                        <h6 id="txt_opcion_menu_vertical">
+                                            El docente {{$user_docente->name}} {{$user_docente->lastname}} tiene asignado el/los siguiente/s horario/s de tutoría:
                                         </h6>
                                         <div class="form-group">
                                             <!--Creo el primer contenedor cuando cont=0><-->
@@ -216,7 +215,7 @@
                                                     <!-- *****************************************************************************************************************************><-->
                                                     @if ($horarios!=null )
                                                         @if ($horarios->cont_dia==2 && $horarios->cont_tarde==1)
-                                                            <div class="col-3" id="fondo_solicitud">
+                                                            <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                 <span class="tit_datos_op2">{{$horarios->dia1_op1}} <br>
                                                                     De {{$horarios->hora_inicio_op1}}:{{$horarios->minutos_inicio_op1}} a {{$horarios->hora_fin_op1}}:{{$horarios->minutos_fin_op1}}
                                                                 </span>
@@ -224,7 +223,7 @@
                                                                     <input type="radio" name="dia" value="dia1_op1"> Seleccionar
                                                                 </h6>
                                                             </div>
-                                                            <div class="col-3" id="fondo_solicitud">
+                                                            <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                 <span class="tit_datos_op2">{{$horarios->dia1_op2}} <br>
                                                                     De {{$horarios->hora_inicio_op2}}:{{$horarios->minutos_inicio_op2}} a {{$horarios->hora_fin_op2}}:{{$horarios->minutos_fin_op2}}
                                                                 </span>
@@ -232,7 +231,7 @@
                                                                     <input type="radio" name="dia" value="dia1_op2"> Seleccionar
                                                                 </h6>
                                                             </div>
-                                                            <div class="col-3" id="fondo_solicitud">
+                                                            <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                 <span class="tit_datos_op2">{{$horarios->dia1_op3}} <br>
                                                                     De {{$horarios->hora_inicio_op3}}:{{$horarios->minutos_inicio_op3}} a {{$horarios->hora_fin_op3}}:{{$horarios->minutos_fin_op3}}
                                                                 </span>
@@ -245,7 +244,7 @@
                                                             @endphp
                                                         @else
                                                             @if ($horarios->cont_dia==0 && $horarios->cont_tarde==1)
-                                                                <div class="col-3" id="fondo_solicitud">
+                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                     <span class="tit_datos_op2">{{$horarios->dia1_op3}} <br>
                                                                         De {{$horarios->hora_inicio_op3}}:{{$horarios->minutos_inicio_op3}} a {{$horarios->hora_fin_op3}}:{{$horarios->minutos_fin_op3}}
                                                                     </span>
@@ -258,7 +257,7 @@
                                                                 @endphp
                                                             @else
                                                                 @if ($horarios->cont_dia==1 && $horarios->cont_tarde==0)
-                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                         <span class="tit_datos_op2">{{$horarios->dia1_op1}} <br>
                                                                             De {{$horarios->hora_inicio_op1}}:{{$horarios->minutos_inicio_op1}} a {{$horarios->hora_fin_op1}}:{{$horarios->minutos_fin_op1}}
                                                                         </span>
@@ -271,7 +270,7 @@
                                                                     @endphp
                                                                 @else
                                                                     @if ($horarios->cont_dia==2 && $horarios->cont_tarde==0)
-                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                             <span class="tit_datos_op2">{{$horarios->dia1_op1}} <br>
                                                                                 De {{$horarios->hora_inicio_op1}}:{{$horarios->minutos_inicio_op1}} a {{$horarios->hora_fin_op1}}:{{$horarios->minutos_fin_op1}}
                                                                             </span>
@@ -279,7 +278,7 @@
                                                                                 <input type="radio" name="dia" value="dia1_op1"> Seleccionar
                                                                             </h6>
                                                                         </div>
-                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                             <span class="tit_datos_op2">{{$horarios->dia1_op2}} <br>
                                                                                 De {{$horarios->hora_inicio_op2}}:{{$horarios->minutos_inicio_op2}} a {{$horarios->hora_fin_op2}}:{{$horarios->minutos_fin_op2}}
                                                                             </span>
@@ -292,7 +291,7 @@
                                                                         @endphp
                                                                     @else
                                                                         @if ($horarios->cont_dia==1 && $horarios->cont_tarde==1)
-                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                            <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                 <span class="tit_datos_op2">{{$horarios->dia1_op1}} <br>
                                                                                     De {{$horarios->hora_inicio_op1}}:{{$horarios->minutos_inicio_op1}} a {{$horarios->hora_fin_op1}}:{{$horarios->minutos_fin_op1}}
                                                                                 </span>
@@ -300,7 +299,7 @@
                                                                                     <input type="radio" name="dia" value="dia1_op1"> Seleccionar
                                                                                 </h6>
                                                                             </div>
-                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                            <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                 <span class="tit_datos_op2">{{$horarios->dia1_op3}} <br>
                                                                                     De {{$horarios->hora_inicio_op3}}:{{$horarios->minutos_inicio_op3}} a {{$horarios->hora_fin_op3}}:{{$horarios->minutos_fin_op3}}
                                                                                 </span>
@@ -321,7 +320,7 @@
                                                     @if ($horarios2!=null)
                                                         @if ($cont==1)
                                                             @if ($horarios2->cont_dia==2 && $horarios2->cont_tarde==1)
-                                                                <div class="col-3" id="fondo_solicitud">
+                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                     <span class="tit_datos_op2">{{$horarios2->dia2_op1}} <br>
                                                                         De {{$horarios2->hora_inicio_op1}}:{{$horarios2->minutos_inicio_op1}} a {{$horarios2->hora_fin_op1}}:{{$horarios2->minutos_fin_op1}}
                                                                     </span>
@@ -329,7 +328,7 @@
                                                                         <input type="radio" name="dia" value="dia2_op1"> Seleccionar
                                                                     </h6>
                                                                 </div>
-                                                                <div class="col-3" id="fondo_solicitud">
+                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                     <span class="tit_datos_op2">{{$horarios2->dia2_op2}} <br>
                                                                         De {{$horarios2->hora_inicio_op2}}:{{$horarios2->minutos_inicio_op2}} a {{$horarios2->hora_fin_op2}}:{{$horarios2->minutos_fin_op2}}
                                                                     </span>
@@ -337,7 +336,7 @@
                                                                         <input type="radio" name="dia" value="dia2_op2"> Seleccionar
                                                                     </h6>
                                                                 </div>
-                                                                <div class="col-3" id="fondo_solicitud">
+                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                     <span class="tit_datos_op2">{{$horarios2->dia2_op3}} <br>
                                                                         De {{$horarios2->hora_inicio_op3}}:{{$horarios2->minutos_inicio_op3}} a {{$horarios2->hora_fin_op3}}:{{$horarios2->minutos_fin_op3}}
                                                                     </span>
@@ -350,7 +349,7 @@
                                                                 @endphp
                                                             @else
                                                                 @if ($horarios2->cont_dia==0 && $horarios2->cont_tarde==1)
-                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                         <span class="tit_datos_op2">{{$horarios2->dia2_op3}} <br>
                                                                             De {{$horarios2->hora_inicio_op3}}:{{$horarios2->minutos_inicio_op3}} a {{$horarios2->hora_fin_op3}}:{{$horarios2->minutos_fin_op3}}
                                                                         </span>
@@ -363,7 +362,7 @@
                                                                     @endphp
                                                                 @else
                                                                     @if ($horarios2->cont_dia==1 && $horarios2->cont_tarde==0)
-                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                             <span class="tit_datos_op2">{{$horarios2->dia2_op1}} <br>
                                                                                 De {{$horarios2->hora_inicio_op1}}:{{$horarios2->minutos_inicio_op1}} a {{$horarios2->hora_fin_op1}}:{{$horarios2->minutos_fin_op1}}
                                                                             </span>
@@ -376,7 +375,7 @@
                                                                         @endphp
                                                                     @else
                                                                         @if ($horarios2->cont_dia==2 && $horarios2->cont_tarde==0)
-                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                            <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                 <span class="tit_datos_op2">{{$horarios2->dia2_op1}} <br>
                                                                                     De {{$horarios2->hora_inicio_op1}}:{{$horarios2->minutos_inicio_op1}} a {{$horarios2->hora_fin_op1}}:{{$horarios2->minutos_fin_op1}}
                                                                                 </span>
@@ -384,7 +383,7 @@
                                                                                     <input type="radio" name="dia" value="dia2_op1"> Seleccionar
                                                                                 </h6>
                                                                             </div>
-                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                            <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                 <span class="tit_datos_op2">{{$horarios2->dia2_op2}} <br>
                                                                                     De {{$horarios2->hora_inicio_op2}}:{{$horarios2->minutos_inicio_op2}} a {{$horarios2->hora_fin_op2}}:{{$horarios2->minutos_fin_op2}}
                                                                                 </span>
@@ -397,7 +396,7 @@
                                                                             @endphp
                                                                         @else
                                                                             @if ($horarios2->cont_dia==1 && $horarios2->cont_tarde==1)
-                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                     <span class="tit_datos_op2">{{$horarios2->dia2_op1}} <br>
                                                                                         De {{$horarios2->hora_inicio_op1}}:{{$horarios2->minutos_inicio_op1}} a {{$horarios2->hora_fin_op1}}:{{$horarios2->minutos_fin_op1}}
                                                                                     </span>
@@ -405,7 +404,7 @@
                                                                                         <input type="radio" name="dia" value="dia2_op1"> Seleccionar
                                                                                     </h6>
                                                                                 </div>
-                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                     <span class="tit_datos_op2">{{$horarios2->dia2_op3}} <br>
                                                                                         De {{$horarios2->hora_inicio_op3}}:{{$horarios2->minutos_inicio_op3}} a {{$horarios2->hora_fin_op3}}:{{$horarios2->minutos_fin_op3}}
                                                                                     </span>
@@ -424,7 +423,7 @@
                                                         @else
                                                             @if ($cont==2)
                                                                 @if ($horarios2->cont_dia==2 && $horarios2->cont_tarde==1)
-                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                         <span class="tit_datos_op2">{{$horarios2->dia2_op1}} <br>
                                                                             De {{$horarios2->hora_inicio_op1}}:{{$horarios2->minutos_inicio_op1}} a {{$horarios2->hora_fin_op1}}:{{$horarios2->minutos_fin_op1}}
                                                                         </span>
@@ -432,7 +431,7 @@
                                                                             <input type="radio" name="dia" value="dia2_op1"> Seleccionar
                                                                         </h6>
                                                                     </div>
-                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                         <span class="tit_datos_op2">{{$horarios2->dia2_op2}} <br>
                                                                             De {{$horarios2->hora_inicio_op2}}:{{$horarios2->minutos_inicio_op2}} a {{$horarios2->hora_fin_op2}}:{{$horarios2->minutos_fin_op2}}
                                                                         </span>
@@ -444,7 +443,7 @@
                                                                     <div class="container">
                                                                         <br>
                                                                         <div class="row">
-                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                            <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                 <span class="tit_datos_op2">{{$horarios2->dia2_op3}} <br>
                                                                                     De {{$horarios2->hora_inicio_op3}}:{{$horarios2->minutos_inicio_op3}} a {{$horarios2->hora_fin_op3}}:{{$horarios2->minutos_fin_op3}}
                                                                                 </span>
@@ -460,7 +459,7 @@
                                                                     </div-->
                                                                 @else
                                                                     @if ($horarios2->cont_dia==0 && $horarios2->cont_tarde==1)
-                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                             <span class="tit_datos_op2">{{$horarios2->dia2_op3}} <br>
                                                                                 De {{$horarios2->hora_inicio_op3}}:{{$horarios2->minutos_inicio_op3}} a {{$horarios2->hora_fin_op3}}:{{$horarios2->minutos_fin_op3}}
                                                                             </span>
@@ -473,7 +472,7 @@
                                                                         @endphp
                                                                     @else
                                                                         @if ($horarios2->cont_dia==1 && $horarios2->cont_tarde==0)
-                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                            <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                 <span class="tit_datos_op2">{{$horarios2->dia2_op1}} <br>
                                                                                     De {{$horarios2->hora_inicio_op1}}:{{$horarios2->minutos_inicio_op1}} a {{$horarios2->hora_fin_op1}}:{{$horarios2->minutos_fin_op1}}
                                                                                 </span>
@@ -486,7 +485,7 @@
                                                                             @endphp
                                                                         @else
                                                                             @if ($horarios2->cont_dia==2 && $horarios2->cont_tarde==0)
-                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                     <span class="tit_datos_op2">{{$horarios2->dia2_op1}} <br>
                                                                                         De {{$horarios2->hora_inicio_op1}}:{{$horarios2->minutos_inicio_op1}} a {{$horarios2->hora_fin_op1}}:{{$horarios2->minutos_fin_op1}}
                                                                                     </span>
@@ -494,7 +493,7 @@
                                                                                         <input type="radio" name="dia" value="dia2_op1"> Seleccionar
                                                                                     </h6>
                                                                                 </div>
-                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                     <span class="tit_datos_op2">{{$horarios2->dia2_op2}} <br>
                                                                                         De {{$horarios2->hora_inicio_op2}}:{{$horarios2->minutos_inicio_op2}} a {{$horarios2->hora_fin_op2}}:{{$horarios2->minutos_fin_op2}}
                                                                                     </span>
@@ -507,7 +506,7 @@
                                                                                 @endphp
                                                                             @else
                                                                                 @if ($horarios2->cont_dia==1 && $horarios2->cont_tarde==1)
-                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                         <span class="tit_datos_op2">{{$horarios2->dia2_op1}} <br>
                                                                                             De {{$horarios2->hora_inicio_op1}}:{{$horarios2->minutos_inicio_op1}} a {{$horarios2->hora_fin_op1}}:{{$horarios2->minutos_fin_op1}}
                                                                                         </span>
@@ -515,7 +514,7 @@
                                                                                             <input type="radio" name="dia" value="dia2_op1"> Seleccionar
                                                                                         </h6>
                                                                                     </div>
-                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                         <span class="tit_datos_op2">{{$horarios2->dia2_op3}} <br>
                                                                                             De {{$horarios2->hora_inicio_op3}}:{{$horarios2->minutos_inicio_op3}} a {{$horarios2->hora_fin_op3}}:{{$horarios2->minutos_fin_op3}}
                                                                                         </span>
@@ -534,7 +533,7 @@
                                                             @else
                                                                 @if ($cont==3)
                                                                     @if ($horarios2->cont_dia==2 && $horarios2->cont_tarde==1)
-                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                             <span class="tit_datos_op2">{{$horarios2->dia2_op1}} <br>
                                                                                 De {{$horarios2->hora_inicio_op1}}:{{$horarios2->minutos_inicio_op1}} a {{$horarios2->hora_fin_op1}}:{{$horarios2->minutos_fin_op1}}
                                                                             </span>
@@ -546,7 +545,7 @@
                                                                         <div class="container">
                                                                             <br>
                                                                             <div class="row">
-                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                     <span class="tit_datos_op2">{{$horarios2->dia2_op2}} <br>
                                                                                         De {{$horarios2->hora_inicio_op2}}:{{$horarios2->minutos_inicio_op2}} a {{$horarios2->hora_fin_op2}}:{{$horarios2->minutos_fin_op2}}
                                                                                     </span>
@@ -554,7 +553,7 @@
                                                                                         <input type="radio" name="dia" value="dia2_op2"> Seleccionar
                                                                                     </h6>
                                                                                 </div>
-                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                     <span class="tit_datos_op2">{{$horarios2->dia2_op3}} <br>
                                                                                         De {{$horarios2->hora_inicio_op3}}:{{$horarios2->minutos_inicio_op3}} a {{$horarios2->hora_fin_op3}}:{{$horarios2->minutos_fin_op3}}
                                                                                     </span>
@@ -569,7 +568,7 @@
                                                                         </div-->
                                                                     @else
                                                                         @if ($horarios2->cont_dia==0 && $horarios2->cont_tarde==1)
-                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                            <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                 <span class="tit_datos_op2">{{$horarios2->dia2_op3}} <br>
                                                                                     De {{$horarios2->hora_inicio_op3}}:{{$horarios2->minutos_inicio_op3}} a {{$horarios2->hora_fin_op3}}:{{$horarios2->minutos_fin_op3}}
                                                                                 </span>
@@ -582,7 +581,7 @@
                                                                             @endphp
                                                                         @else
                                                                             @if ($horarios2->cont_dia==1 && $horarios2->cont_tarde==0)
-                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                     <span class="tit_datos_op2">{{$horarios2->dia2_op1}} <br>
                                                                                         De {{$horarios2->hora_inicio_op1}}:{{$horarios2->minutos_inicio_op1}} a {{$horarios2->hora_fin_op1}}:{{$horarios2->minutos_fin_op1}}
                                                                                     </span>
@@ -595,7 +594,7 @@
                                                                                 @endphp
                                                                             @else
                                                                                 @if ($horarios2->cont_dia==2 && $horarios2->cont_tarde==0)
-                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                         <span class="tit_datos_op2">{{$horarios2->dia2_op1}} <br>
                                                                                             De {{$horarios2->hora_inicio_op1}}:{{$horarios2->minutos_inicio_op1}} a {{$horarios2->hora_fin_op1}}:{{$horarios2->minutos_fin_op1}}
                                                                                         </span>
@@ -607,7 +606,7 @@
                                                                                     <div class="container">
                                                                                         <br>
                                                                                         <div class="row">
-                                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                                            <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                 <span class="tit_datos_op2">{{$horarios2->dia2_op2}} <br>
                                                                                                     De {{$horarios2->hora_inicio_op2}}:{{$horarios2->minutos_inicio_op2}} a {{$horarios2->hora_fin_op2}}:{{$horarios2->minutos_fin_op2}}
                                                                                                 </span>
@@ -622,7 +621,7 @@
                                                                                     @endphp
                                                                                 @else
                                                                                     @if ($horarios2->cont_dia==1 && $horarios2->cont_tarde==1)
-                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                             <span class="tit_datos_op2">{{$horarios2->dia2_op1}} <br>
                                                                                                 De {{$horarios2->hora_inicio_op1}}:{{$horarios2->minutos_inicio_op1}} a {{$horarios2->hora_fin_op1}}:{{$horarios2->minutos_fin_op1}}
                                                                                             </span>
@@ -634,7 +633,7 @@
                                                                                         <div class="container">
                                                                                             <br>
                                                                                             <div class="row">
-                                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                     <span class="tit_datos_op2">{{$horarios2->dia2_op3}} <br>
                                                                                                         De {{$horarios2->hora_inicio_op3}}:{{$horarios2->minutos_inicio_op3}} a {{$horarios2->hora_fin_op3}}:{{$horarios2->minutos_fin_op3}}
                                                                                                     </span>
@@ -655,7 +654,7 @@
                                                                 @else
                                                                     @if ($cont==0)
                                                                         @if ($horarios2->cont_dia==2 && $horarios2->cont_tarde==1)
-                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                            <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                 <span class="tit_datos_op2">{{$horarios2->dia2_op1}} <br>
                                                                                     De {{$horarios2->hora_inicio_op1}}:{{$horarios2->minutos_inicio_op1}} a {{$horarios2->hora_fin_op1}}:{{$horarios2->minutos_fin_op1}}
                                                                                 </span>
@@ -663,7 +662,7 @@
                                                                                     <input type="radio" name="dia" value="dia2_op1"> Seleccionar
                                                                                 </h6>
                                                                             </div>
-                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                            <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                 <span class="tit_datos_op2">{{$horarios2->dia2_op2}} <br>
                                                                                     De {{$horarios2->hora_inicio_op2}}:{{$horarios2->minutos_inicio_op2}} a {{$horarios2->hora_fin_op2}}:{{$horarios2->minutos_fin_op2}}
                                                                                 </span>
@@ -671,7 +670,7 @@
                                                                                     <input type="radio" name="dia" value="dia2_op2"> Seleccionar
                                                                                 </h6>
                                                                             </div>
-                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                            <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                 <span class="tit_datos_op2">{{$horarios2->dia2_op3}} <br>
                                                                                     De {{$horarios2->hora_inicio_op3}}:{{$horarios2->minutos_inicio_op3}} a {{$horarios2->hora_fin_op3}}:{{$horarios2->minutos_fin_op3}}
                                                                                 </span>
@@ -684,7 +683,7 @@
                                                                             @endphp
                                                                         @else
                                                                             @if ($horarios2->cont_dia==0 && $horarios2->cont_tarde==1)
-                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                     <span class="tit_datos_op2">{{$horarios2->dia2_op3}} <br>
                                                                                         De {{$horarios2->hora_inicio_op3}}:{{$horarios2->minutos_inicio_op3}} a {{$horarios2->hora_fin_op3}}:{{$horarios2->minutos_fin_op3}}
                                                                                     </span>
@@ -697,7 +696,7 @@
                                                                                 @endphp
                                                                             @else
                                                                                 @if ($horarios2->cont_dia==1 && $horarios2->cont_tarde==0)
-                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                         <span class="tit_datos_op2">{{$horarios2->dia2_op1}} <br>
                                                                                             De {{$horarios2->hora_inicio_op1}}:{{$horarios2->minutos_inicio_op1}} a {{$horarios2->hora_fin_op1}}:{{$horarios2->minutos_fin_op1}}
                                                                                         </span>
@@ -710,7 +709,7 @@
                                                                                     @endphp
                                                                                 @else
                                                                                     @if ($horarios2->cont_dia==2 && $horarios2->cont_tarde==0)
-                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                             <span class="tit_datos_op2">{{$horarios2->dia2_op1}} <br>
                                                                                                 De {{$horarios2->hora_inicio_op1}}:{{$horarios2->minutos_inicio_op1}} a {{$horarios2->hora_fin_op1}}:{{$horarios2->minutos_fin_op1}}
                                                                                             </span>
@@ -718,7 +717,7 @@
                                                                                                 <input type="radio" name="dia" value="dia2_op1"> Seleccionar
                                                                                             </h6>
                                                                                         </div>
-                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                             <span class="tit_datos_op2">{{$horarios2->dia2_op2}} <br>
                                                                                                 De {{$horarios2->hora_inicio_op2}}:{{$horarios2->minutos_inicio_op2}} a {{$horarios2->hora_fin_op2}}:{{$horarios2->minutos_fin_op2}}
                                                                                             </span>
@@ -731,7 +730,7 @@
                                                                                         @endphp
                                                                                     @else
                                                                                         @if ($horarios2->cont_dia==1 && $horarios2->cont_tarde==1)
-                                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                                            <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                 <span class="tit_datos_op2">{{$horarios2->dia2_op1}} <br>
                                                                                                     De {{$horarios2->hora_inicio_op1}}:{{$horarios2->minutos_inicio_op1}} a {{$horarios2->hora_fin_op1}}:{{$horarios2->minutos_fin_op1}}
                                                                                                 </span>
@@ -739,7 +738,7 @@
                                                                                                     <input type="radio" name="dia" value="dia2_op1"> Seleccionar
                                                                                                 </h6>
                                                                                             </div>
-                                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                                            <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                 <span class="tit_datos_op2">{{$horarios2->dia2_op3}} <br>
                                                                                                     De {{$horarios2->hora_inicio_op3}}:{{$horarios2->minutos_inicio_op3}} a {{$horarios2->hora_fin_op3}}:{{$horarios2->minutos_fin_op3}}
                                                                                                 </span>
@@ -764,7 +763,7 @@
                                                     @if ($horarios3!=null)
                                                         @if ($cont==0)
                                                             @if ($horarios3->cont_dia==2 && $horarios3->cont_tarde==1)
-                                                                <div class="col-3" id="fondo_solicitud">
+                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                     <span class="tit_datos_op2">{{$horarios3->dia3_op1}} <br>
                                                                         De {{$horarios3->hora_inicio_op1}}:{{$horarios3->minutos_inicio_op1}} a {{$horarios3->hora_fin_op1}}:{{$horarios3->minutos_fin_op1}}
                                                                     </span>
@@ -772,7 +771,7 @@
                                                                         <input type="radio" name="dia" value="dia3_op1"> Seleccionar
                                                                     </h6>
                                                                 </div>
-                                                                <div class="col-3" id="fondo_solicitud">
+                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                     <span class="tit_datos_op2">{{$horarios3->dia3_op2}} <br>
                                                                         De {{$horarios3->hora_inicio_op2}}:{{$horarios3->minutos_inicio_op2}} a {{$horarios3->hora_fin_op2}}:{{$horarios3->minutos_fin_op2}}
                                                                     </span>
@@ -780,7 +779,7 @@
                                                                         <input type="radio" name="dia" value="dia3_op2"> Seleccionar
                                                                     </h6>
                                                                 </div>
-                                                                <div class="col-3" id="fondo_solicitud">
+                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                     <span class="tit_datos_op2">{{$horarios3->dia3_op3}} <br>
                                                                         De {{$horarios3->hora_inicio_op3}}:{{$horarios3->minutos_inicio_op3}} a {{$horarios3->hora_fin_op3}}:{{$horarios3->minutos_fin_op3}}
                                                                     </span>
@@ -793,7 +792,7 @@
                                                                 @endphp
                                                             @else
                                                                 @if ($horarios3->cont_dia==0 && $horarios3->cont_tarde==1)
-                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                         <span class="tit_datos_op2">{{$horarios3->dia3_op3}} <br>
                                                                             De {{$horarios3->hora_inicio_op3}}:{{$horarios3->minutos_inicio_op3}} a {{$horarios3->hora_fin_op3}}:{{$horarios3->minutos_fin_op3}}
                                                                         </span>
@@ -806,7 +805,7 @@
                                                                     @endphp
                                                                 @else
                                                                     @if ($horarios3->cont_dia==1 && $horarios3->cont_tarde==0)
-                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                             <span class="tit_datos_op2">{{$horarios3->dia3_op1}} <br>
                                                                                 De {{$horarios3->hora_inicio_op1}}:{{$horarios3->minutos_inicio_op1}} a {{$horarios3->hora_fin_op1}}:{{$horarios3->minutos_fin_op1}}
                                                                             </span>
@@ -819,7 +818,7 @@
                                                                         @endphp
                                                                     @else
                                                                         @if ($horarios3->cont_dia==2 && $horarios3->cont_tarde==0)
-                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                            <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                 <span class="tit_datos_op2">{{$horarios3->dia3_op1}} <br>
                                                                                     De {{$horarios3->hora_inicio_op1}}:{{$horarios3->minutos_inicio_op1}} a {{$horarios3->hora_fin_op1}}:{{$horarios3->minutos_fin_op1}}
                                                                                 </span>
@@ -827,7 +826,7 @@
                                                                                     <input type="radio" name="dia" value="dia3_op1"> Seleccionar
                                                                                 </h6>
                                                                             </div>
-                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                            <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                 <span class="tit_datos_op2">{{$horarios3->dia3_op2}} <br>
                                                                                     De {{$horarios3->hora_inicio_op2}}:{{$horarios3->minutos_inicio_op2}} a {{$horarios3->hora_fin_op2}}:{{$horarios3->minutos_fin_op2}}
                                                                                 </span>
@@ -840,7 +839,7 @@
                                                                             @endphp
                                                                         @else
                                                                             @if ($horarios3->cont_dia==1 && $horarios3->cont_tarde==1)
-                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                     <span class="tit_datos_op2">{{$horarios3->dia3_op1}} <br>
                                                                                         De {{$horarios3->hora_inicio_op1}}:{{$horarios3->minutos_inicio_op1}} a {{$horarios3->hora_fin_op1}}:{{$horarios3->minutos_fin_op1}}
                                                                                     </span>
@@ -848,7 +847,7 @@
                                                                                         <input type="radio" name="dia" value="dia3_op1"> Seleccionar
                                                                                     </h6>
                                                                                 </div>
-                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                     <span class="tit_datos_op2">{{$horarios3->dia3_op3}} <br>
                                                                                         De {{$horarios3->hora_inicio_op3}}:{{$horarios3->minutos_inicio_op3}} a {{$horarios3->hora_fin_op3}}:{{$horarios3->minutos_fin_op3}}
                                                                                     </span>
@@ -867,7 +866,7 @@
                                                         @else
                                                             @if ($cont==1)
                                                                 @if ($horarios3->cont_dia==2 && $horarios3->cont_tarde==1)
-                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                         <span class="tit_datos_op2">{{$horarios3->dia3_op1}} <br>
                                                                             De {{$horarios3->hora_inicio_op1}}:{{$horarios3->minutos_inicio_op1}} a {{$horarios3->hora_fin_op1}}:{{$horarios3->minutos_fin_op1}}
                                                                         </span>
@@ -875,7 +874,7 @@
                                                                             <input type="radio" name="dia" value="dia3_op1"> Seleccionar
                                                                         </h6>
                                                                     </div>
-                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                         <span class="tit_datos_op2">{{$horarios3->dia3_op2}} <br>
                                                                             De {{$horarios3->hora_inicio_op2}}:{{$horarios3->minutos_inicio_op2}} a {{$horarios3->hora_fin_op2}}:{{$horarios3->minutos_fin_op2}}
                                                                         </span>
@@ -883,7 +882,7 @@
                                                                             <input type="radio" name="dia" value="dia3_op2"> Seleccionar
                                                                         </h6>
                                                                     </div>
-                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                         <span class="tit_datos_op2">{{$horarios3->dia3_op3}} <br>
                                                                             De {{$horarios3->hora_inicio_op3}}:{{$horarios3->minutos_inicio_op3}} a {{$horarios3->hora_fin_op3}}:{{$horarios3->minutos_fin_op3}}
                                                                         </span>
@@ -896,7 +895,7 @@
                                                                     @endphp
                                                                 @else
                                                                     @if ($horarios3->cont_dia==0 && $horarios3->cont_tarde==1)
-                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                             <span class="tit_datos_op2">{{$horarios3->dia3_op3}} <br>
                                                                                 De {{$horarios3->hora_inicio_op3}}:{{$horarios3->minutos_inicio_op3}} a {{$horarios3->hora_fin_op3}}:{{$horarios3->minutos_fin_op3}}
                                                                             </span>
@@ -909,7 +908,7 @@
                                                                         @endphp
                                                                     @else
                                                                         @if ($horarios3->cont_dia==1 && $horarios3->cont_tarde==0)
-                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                            <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                 <span class="tit_datos_op2">{{$horarios3->dia3_op1}} <br>
                                                                                     De {{$horarios3->hora_inicio_op1}}:{{$horarios3->minutos_inicio_op1}} a {{$horarios3->hora_fin_op1}}:{{$horarios3->minutos_fin_op1}}
                                                                                 </span>
@@ -922,7 +921,7 @@
                                                                             @endphp
                                                                         @else
                                                                             @if ($horarios3->cont_dia==2 && $horarios3->cont_tarde==0)
-                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                     <span class="tit_datos_op2">{{$horarios3->dia3_op1}} <br>
                                                                                         De {{$horarios3->hora_inicio_op1}}:{{$horarios3->minutos_inicio_op1}} a {{$horarios3->hora_fin_op1}}:{{$horarios3->minutos_fin_op1}}
                                                                                     </span>
@@ -930,7 +929,7 @@
                                                                                         <input type="radio" name="dia" value="dia3_op1"> Seleccionar
                                                                                     </h6>
                                                                                 </div>
-                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                     <span class="tit_datos_op2">{{$horarios3->dia3_op2}} <br>
                                                                                         De {{$horarios3->hora_inicio_op2}}:{{$horarios3->minutos_inicio_op2}} a {{$horarios3->hora_fin_op2}}:{{$horarios3->minutos_fin_op2}}
                                                                                     </span>
@@ -943,7 +942,7 @@
                                                                                 @endphp
                                                                             @else
                                                                                 @if ($horarios3->cont_dia==1 && $horarios3->cont_tarde==1)
-                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                         <span class="tit_datos_op2">{{$horarios3->dia3_op1}} <br>
                                                                                             De {{$horarios3->hora_inicio_op1}}:{{$horarios3->minutos_inicio_op1}} a {{$horarios3->hora_fin_op1}}:{{$horarios3->minutos_fin_op1}}
                                                                                         </span>
@@ -951,7 +950,7 @@
                                                                                             <input type="radio" name="dia" value="dia3_op1"> Seleccionar
                                                                                         </h6>
                                                                                     </div>
-                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                         <span class="tit_datos_op2">{{$horarios3->dia3_op3}} <br>
                                                                                             De {{$horarios3->hora_inicio_op3}}:{{$horarios3->minutos_inicio_op3}} a {{$horarios3->hora_fin_op3}}:{{$horarios3->minutos_fin_op3}}
                                                                                         </span>
@@ -970,7 +969,7 @@
                                                             @else
                                                                 @if ($cont==2)
                                                                     @if ($horarios3->cont_dia==2 && $horarios3->cont_tarde==1)
-                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                             <span class="tit_datos_op2">{{$horarios3->dia3_op1}} <br>
                                                                                 De {{$horarios3->hora_inicio_op1}}:{{$horarios3->minutos_inicio_op1}} a {{$horarios3->hora_fin_op1}}:{{$horarios3->minutos_fin_op1}}
                                                                             </span>
@@ -978,7 +977,7 @@
                                                                                 <input type="radio" name="dia" value="dia3_op1"> Seleccionar
                                                                             </h6>
                                                                         </div>
-                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                             <span class="tit_datos_op2">{{$horarios3->dia3_op2}} <br>
                                                                                 De {{$horarios3->hora_inicio_op2}}:{{$horarios3->minutos_inicio_op2}} a {{$horarios3->hora_fin_op2}}:{{$horarios3->minutos_fin_op2}}
                                                                             </span>
@@ -990,7 +989,7 @@
                                                                         <div class="container">
                                                                             <br>
                                                                             <div class="row">
-                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                     <span class="tit_datos_op2">{{$horarios3->dia3_op3}} <br>
                                                                                         De {{$horarios3->hora_inicio_op3}}:{{$horarios3->minutos_inicio_op3}} a {{$horarios3->hora_fin_op3}}:{{$horarios3->minutos_fin_op3}}
                                                                                     </span>
@@ -1005,7 +1004,7 @@
                                                                         @endphp
                                                                     @else
                                                                         @if ($horarios3->cont_dia==0 && $horarios3->cont_tarde==1)
-                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                            <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                 <span class="tit_datos_op2">{{$horarios3->dia3_op3}} <br>
                                                                                     De {{$horarios3->hora_inicio_op3}}:{{$horarios3->minutos_inicio_op3}} a {{$horarios3->hora_fin_op3}}:{{$horarios3->minutos_fin_op3}}
                                                                                 </span>
@@ -1018,7 +1017,7 @@
                                                                             @endphp
                                                                         @else
                                                                             @if ($horarios3->cont_dia==1 && $horarios3->cont_tarde==0)
-                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                     <span class="tit_datos_op2">{{$horarios3->dia3_op1}} <br>
                                                                                         De {{$horarios3->hora_inicio_op1}}:{{$horarios3->minutos_inicio_op1}} a {{$horarios3->hora_fin_op1}}:{{$horarios3->minutos_fin_op1}}
                                                                                     </span>
@@ -1031,7 +1030,7 @@
                                                                                 @endphp
                                                                             @else
                                                                                 @if ($horarios3->cont_dia==2 && $horarios3->cont_tarde==0)
-                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                         <span class="tit_datos_op2">{{$horarios3->dia3_op1}} <br>
                                                                                             De {{$horarios3->hora_inicio_op1}}:{{$horarios3->minutos_inicio_op1}} a {{$horarios3->hora_fin_op1}}:{{$horarios3->minutos_fin_op1}}
                                                                                         </span>
@@ -1039,7 +1038,7 @@
                                                                                             <input type="radio" name="dia" value="dia3_op1"> Seleccionar
                                                                                         </h6>
                                                                                     </div>
-                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                         <span class="tit_datos_op2">{{$horarios3->dia3_op2}} <br>
                                                                                             De {{$horarios3->hora_inicio_op2}}:{{$horarios3->minutos_inicio_op2}} a {{$horarios3->hora_fin_op2}}:{{$horarios3->minutos_fin_op2}}
                                                                                         </span>
@@ -1052,7 +1051,7 @@
                                                                                     @endphp
                                                                                 @else
                                                                                     @if ($horarios3->cont_dia==1 && $horarios3->cont_tarde==1)
-                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                             <span class="tit_datos_op2">{{$horarios3->dia3_op1}} <br>
                                                                                                 De {{$horarios3->hora_inicio_op1}}:{{$horarios3->minutos_inicio_op1}} a {{$horarios3->hora_fin_op1}}:{{$horarios3->minutos_fin_op1}}
                                                                                             </span>
@@ -1060,7 +1059,7 @@
                                                                                                 <input type="radio" name="dia" value="dia3_op1"> Seleccionar
                                                                                             </h6>
                                                                                         </div>
-                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                             <span class="tit_datos_op2">{{$horarios3->dia3_op3}} <br>
                                                                                                 De {{$horarios3->hora_inicio_op3}}:{{$horarios3->minutos_inicio_op3}} a {{$horarios3->hora_fin_op3}}:{{$horarios3->minutos_fin_op3}}
                                                                                             </span>
@@ -1079,7 +1078,7 @@
                                                                 @else
                                                                     @if ($cont==3)
                                                                         @if ($horarios3->cont_dia==2 && $horarios3->cont_tarde==1)
-                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                            <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                 <span class="tit_datos_op2">{{$horarios3->dia3_op1}} <br>
                                                                                     De {{$horarios3->hora_inicio_op1}}:{{$horarios3->minutos_inicio_op1}} a {{$horarios3->hora_fin_op1}}:{{$horarios3->minutos_fin_op1}}
                                                                                 </span>
@@ -1090,7 +1089,7 @@
                                                                             <!-- Creo el segundo contenedor><-->
                                                                             <div class="container">
                                                                                 <br>
-                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                     <span class="tit_datos_op2">{{$horarios3->dia3_op2}} <br>
                                                                                         De {{$horarios3->hora_inicio_op2}}:{{$horarios3->minutos_inicio_op2}} a {{$horarios3->hora_fin_op2}}:{{$horarios3->minutos_fin_op2}}
                                                                                     </span>
@@ -1099,7 +1098,7 @@
                                                                                     </h6>
                                                                                 </div>
                                                                                 <div class="row">
-                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                         <span class="tit_datos_op2">{{$horarios3->dia3_op3}} <br>
                                                                                             De {{$horarios3->hora_inicio_op3}}:{{$horarios3->minutos_inicio_op3}} a {{$horarios3->hora_fin_op3}}:{{$horarios3->minutos_fin_op3}}
                                                                                         </span>
@@ -1114,7 +1113,7 @@
                                                                             @endphp
                                                                         @else
                                                                             @if ($horarios3->cont_dia==0 && $horarios3->cont_tarde==1)
-                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                     <span class="tit_datos_op2">{{$horarios3->dia3_op3}} <br>
                                                                                         De {{$horarios3->hora_inicio_op3}}:{{$horarios3->minutos_inicio_op3}} a {{$horarios3->hora_fin_op3}}:{{$horarios3->minutos_fin_op3}}
                                                                                     </span>
@@ -1127,7 +1126,7 @@
                                                                                 @endphp
                                                                             @else
                                                                                 @if ($horarios3->cont_dia==1 && $horarios3->cont_tarde==0)
-                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                         <span class="tit_datos_op2">{{$horarios3->dia3_op1}} <br>
                                                                                             De {{$horarios3->hora_inicio_op1}}:{{$horarios3->minutos_inicio_op1}} a {{$horarios3->hora_fin_op1}}:{{$horarios3->minutos_fin_op1}}
                                                                                         </span>
@@ -1140,7 +1139,7 @@
                                                                                     @endphp
                                                                                 @else
                                                                                     @if ($horarios3->cont_dia==2 && $horarios3->cont_tarde==0)
-                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                             <span class="tit_datos_op2">{{$horarios3->dia3_op1}} <br>
                                                                                                 De {{$horarios3->hora_inicio_op1}}:{{$horarios3->minutos_inicio_op1}} a {{$horarios3->hora_fin_op1}}:{{$horarios3->minutos_fin_op1}}
                                                                                             </span>
@@ -1152,7 +1151,7 @@
                                                                                         <div class="container">
                                                                                             <br>
                                                                                             <div class="row">
-                                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                     <span class="tit_datos_op2">{{$horarios3->dia3_op2}} <br>
                                                                                                         De {{$horarios3->hora_inicio_op2}}:{{$horarios3->minutos_inicio_op2}} a {{$horarios3->hora_fin_op2}}:{{$horarios3->minutos_fin_op2}}
                                                                                                     </span>
@@ -1167,7 +1166,7 @@
                                                                                         @endphp
                                                                                     @else
                                                                                         @if ($horarios3->cont_dia==1 && $horarios3->cont_tarde==1)
-                                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                                            <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                 <span class="tit_datos_op2">{{$horarios3->dia3_op1}} <br>
                                                                                                     De {{$horarios3->hora_inicio_op1}}:{{$horarios3->minutos_inicio_op1}} a {{$horarios3->hora_fin_op1}}:{{$horarios3->minutos_fin_op1}}
                                                                                                 </span>
@@ -1179,7 +1178,7 @@
                                                                                             <div class="container">
                                                                                                 <br>
                                                                                                 <div class="row">
-                                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                         <span class="tit_datos_op2">{{$horarios3->dia3_op3}} <br>
                                                                                                             De {{$horarios3->hora_inicio_op3}}:{{$horarios3->minutos_inicio_op3}} a {{$horarios3->hora_fin_op3}}:{{$horarios3->minutos_fin_op3}}
                                                                                                         </span>
@@ -1204,7 +1203,7 @@
                                                                                 <br>
                                                                                 <div class="row">
                                                                                     @if ($horarios3->cont_dia==2 && $horarios3->cont_tarde==1)
-                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                             <span class="tit_datos_op2">{{$horarios3->dia3_op1}} <br>
                                                                                                 De {{$horarios3->hora_inicio_op1}}:{{$horarios3->minutos_inicio_op1}} a {{$horarios3->hora_fin_op1}}:{{$horarios3->minutos_fin_op1}}
                                                                                             </span>
@@ -1212,7 +1211,7 @@
                                                                                                 <input type="radio" name="dia" value="dia3_op1"> Seleccionar
                                                                                             </h6>
                                                                                         </div>
-                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                             <span class="tit_datos_op2">{{$horarios3->dia3_op2}} <br>
                                                                                                 De {{$horarios3->hora_inicio_op2}}:{{$horarios3->minutos_inicio_op2}} a {{$horarios3->hora_fin_op2}}:{{$horarios3->minutos_fin_op2}}
                                                                                             </span>
@@ -1220,7 +1219,7 @@
                                                                                                 <input type="radio" name="dia" value="dia3_op2"> Seleccionar
                                                                                             </h6>
                                                                                         </div>
-                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                             <span class="tit_datos_op2">{{$horarios3->dia3_op3}} <br>
                                                                                                 De {{$horarios3->hora_inicio_op3}}:{{$horarios3->minutos_inicio_op3}} a {{$horarios3->hora_fin_op3}}:{{$horarios3->minutos_fin_op3}}
                                                                                             </span>
@@ -1233,7 +1232,7 @@
                                                                                         @endphp
                                                                                     @else
                                                                                         @if ($horarios3->cont_dia==0 && $horarios3->cont_tarde==1)
-                                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                                            <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                 <span class="tit_datos_op2">{{$horarios3->dia3_op3}} <br>
                                                                                                     De {{$horarios3->hora_inicio_op3}}:{{$horarios3->minutos_inicio_op3}} a {{$horarios3->hora_fin_op3}}:{{$horarios3->minutos_fin_op3}}
                                                                                                 </span>
@@ -1246,7 +1245,7 @@
                                                                                             @endphp
                                                                                         @else
                                                                                             @if ($horarios3->cont_dia==1 && $horarios3->cont_tarde==0)
-                                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                     <span class="tit_datos_op2">{{$horarios3->dia3_op1}} <br>
                                                                                                         De {{$horarios3->hora_inicio_op1}}:{{$horarios3->minutos_inicio_op1}} a {{$horarios3->hora_fin_op1}}:{{$horarios3->minutos_fin_op1}}
                                                                                                     </span>
@@ -1259,7 +1258,7 @@
                                                                                                 @endphp
                                                                                             @else
                                                                                                 @if ($horarios3->cont_dia==2 && $horarios3->cont_tarde==0)
-                                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                         <span class="tit_datos_op2">{{$horarios3->dia3_op1}} <br>
                                                                                                             De {{$horarios3->hora_inicio_op1}}:{{$horarios3->minutos_inicio_op1}} a {{$horarios3->hora_fin_op1}}:{{$horarios3->minutos_fin_op1}}
                                                                                                         </span>
@@ -1267,7 +1266,7 @@
                                                                                                             <input type="radio" name="dia" value="dia3_op1"> Seleccionar
                                                                                                         </h6>
                                                                                                     </div>
-                                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                         <span class="tit_datos_op2">{{$horarios3->dia3_op2}} <br>
                                                                                                             De {{$horarios3->hora_inicio_op2}}:{{$horarios3->minutos_inicio_op2}} a {{$horarios3->hora_fin_op2}}:{{$horarios3->minutos_fin_op2}}
                                                                                                         </span>
@@ -1280,7 +1279,7 @@
                                                                                                     @endphp
                                                                                                 @else
                                                                                                     @if ($horarios3->cont_dia==1 && $horarios3->cont_tarde==1)
-                                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                             <span class="tit_datos_op2">{{$horarios3->dia3_op1}} <br>
                                                                                                                 De {{$horarios3->hora_inicio_op1}}:{{$horarios3->minutos_inicio_op1}} a {{$horarios3->hora_fin_op1}}:{{$horarios3->minutos_fin_op1}}
                                                                                                             </span>
@@ -1288,7 +1287,7 @@
                                                                                                                 <input type="radio" name="dia" value="dia3_op1"> Seleccionar
                                                                                                             </h6>
                                                                                                         </div>
-                                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                             <span class="tit_datos_op2">{{$horarios3->dia3_op3}} <br>
                                                                                                                 De {{$horarios3->hora_inicio_op3}}:{{$horarios3->minutos_inicio_op3}} a {{$horarios3->hora_fin_op3}}:{{$horarios3->minutos_fin_op3}}
                                                                                                             </span>
@@ -1309,7 +1308,7 @@
                                                                         @else
                                                                             @if ($cont==5)
                                                                                 @if ($horarios3->cont_dia==2 && $horarios3->cont_tarde==1)
-                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                         <span class="tit_datos_op2">{{$horarios3->dia3_op1}} <br>
                                                                                             De {{$horarios3->hora_inicio_op1}}:{{$horarios3->minutos_inicio_op1}} a {{$horarios3->hora_fin_op1}}:{{$horarios3->minutos_fin_op1}}
                                                                                         </span>
@@ -1317,7 +1316,7 @@
                                                                                             <input type="radio" name="dia" value="dia3_op1"> Seleccionar
                                                                                         </h6>
                                                                                     </div>
-                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                         <span class="tit_datos_op2">{{$horarios3->dia3_op2}} <br>
                                                                                             De {{$horarios3->hora_inicio_op2}}:{{$horarios3->minutos_inicio_op2}} a {{$horarios3->hora_fin_op2}}:{{$horarios3->minutos_fin_op2}}
                                                                                         </span>
@@ -1325,7 +1324,7 @@
                                                                                             <input type="radio" name="dia" value="dia3_op2"> Seleccionar
                                                                                         </h6>
                                                                                     </div>
-                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                         <span class="tit_datos_op2">{{$horarios3->dia3_op3}} <br>
                                                                                             De {{$horarios3->hora_inicio_op3}}:{{$horarios3->minutos_inicio_op3}} a {{$horarios3->hora_fin_op3}}:{{$horarios3->minutos_fin_op3}}
                                                                                         </span>
@@ -1338,7 +1337,7 @@
                                                                                     @endphp
                                                                                 @else
                                                                                     @if ($horarios3->cont_dia==0 && $horarios3->cont_tarde==1)
-                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                             <span class="tit_datos_op2">{{$horarios3->dia3_op3}} <br>
                                                                                                 De {{$horarios3->hora_inicio_op3}}:{{$horarios3->minutos_inicio_op3}} a {{$horarios3->hora_fin_op3}}:{{$horarios3->minutos_fin_op3}}
                                                                                             </span>
@@ -1351,7 +1350,7 @@
                                                                                         @endphp
                                                                                     @else
                                                                                         @if ($horarios3->cont_dia==1 && $horarios3->cont_tarde==0)
-                                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                                            <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                 <span class="tit_datos_op2">{{$horarios3->dia3_op1}} <br>
                                                                                                     De {{$horarios3->hora_inicio_op1}}:{{$horarios3->minutos_inicio_op1}} a {{$horarios3->hora_fin_op1}}:{{$horarios3->minutos_fin_op1}}
                                                                                                 </span>
@@ -1364,7 +1363,7 @@
                                                                                             @endphp
                                                                                         @else
                                                                                             @if ($horarios3->cont_dia==2 && $horarios3->cont_tarde==0)
-                                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                     <span class="tit_datos_op2">{{$horarios3->dia3_op1}} <br>
                                                                                                         De {{$horarios3->hora_inicio_op1}}:{{$horarios3->minutos_inicio_op1}} a {{$horarios3->hora_fin_op1}}:{{$horarios3->minutos_fin_op1}}
                                                                                                     </span>
@@ -1372,7 +1371,7 @@
                                                                                                         <input type="radio" name="dia" value="dia3_op1"> Seleccionar
                                                                                                     </h6>
                                                                                                 </div>
-                                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                     <span class="tit_datos_op2">{{$horarios3->dia3_op2}} <br>
                                                                                                         De {{$horarios3->hora_inicio_op2}}:{{$horarios3->minutos_inicio_op2}} a {{$horarios3->hora_fin_op2}}:{{$horarios3->minutos_fin_op2}}
                                                                                                     </span>
@@ -1385,7 +1384,7 @@
                                                                                                 @endphp
                                                                                             @else
                                                                                                 @if ($horarios3->cont_dia==1 && $horarios3->cont_tarde==1)
-                                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                         <span class="tit_datos_op2">{{$horarios3->dia3_op1}} <br>
                                                                                                             De {{$horarios3->hora_inicio_op1}}:{{$horarios3->minutos_inicio_op1}} a {{$horarios3->hora_fin_op1}}:{{$horarios3->minutos_fin_op1}}
                                                                                                         </span>
@@ -1393,7 +1392,7 @@
                                                                                                             <input type="radio" name="dia" value="dia3_op1"> Seleccionar
                                                                                                         </h6>
                                                                                                     </div>
-                                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                         <span class="tit_datos_op2">{{$horarios3->dia3_op3}} <br>
                                                                                                             De {{$horarios3->hora_inicio_op3}}:{{$horarios3->minutos_inicio_op3}} a {{$horarios3->hora_fin_op3}}:{{$horarios3->minutos_fin_op3}}
                                                                                                         </span>
@@ -1415,7 +1414,7 @@
                                                                             @else
                                                                                 @if ($cont==6)
                                                                                     @if ($horarios3->cont_dia==2 && $horarios3->cont_tarde==1)
-                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                             <span class="tit_datos_op2">{{$horarios3->dia3_op1}} <br>
                                                                                                 De {{$horarios3->hora_inicio_op1}}:{{$horarios3->minutos_inicio_op1}} a {{$horarios3->hora_fin_op1}}:{{$horarios3->minutos_fin_op1}}
                                                                                             </span>
@@ -1423,7 +1422,7 @@
                                                                                                 <input type="radio" name="dia" value="dia3_op1"> Seleccionar
                                                                                             </h6>
                                                                                         </div>
-                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                             <span class="tit_datos_op2">{{$horarios3->dia3_op2}} <br>
                                                                                                 De {{$horarios3->hora_inicio_op2}}:{{$horarios3->minutos_inicio_op2}} a {{$horarios3->hora_fin_op2}}:{{$horarios3->minutos_fin_op2}}
                                                                                             </span>
@@ -1435,7 +1434,7 @@
                                                                                         <div class="container">
                                                                                             <br>
                                                                                             <div class="row">
-                                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                     <span class="tit_datos_op2">{{$horarios3->dia3_op3}} <br>
                                                                                                         De {{$horarios3->hora_inicio_op3}}:{{$horarios3->minutos_inicio_op3}} a {{$horarios3->hora_fin_op3}}:{{$horarios3->minutos_fin_op3}}
                                                                                                     </span>
@@ -1450,7 +1449,7 @@
                                                                                         @endphp
                                                                                     @else
                                                                                         @if ($horarios3->cont_dia==0 && $horarios3->cont_tarde==1)
-                                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                                            <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                 <span class="tit_datos_op2">{{$horarios3->dia3_op3}} <br>
                                                                                                     De {{$horarios3->hora_inicio_op3}}:{{$horarios3->minutos_inicio_op3}} a {{$horarios3->hora_fin_op3}}:{{$horarios3->minutos_fin_op3}}
                                                                                                 </span>
@@ -1463,7 +1462,7 @@
                                                                                             @endphp
                                                                                         @else
                                                                                             @if ($horarios3->cont_dia==1 && $horarios3->cont_tarde==0)
-                                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                     <span class="tit_datos_op2">{{$horarios3->dia3_op1}} <br>
                                                                                                         De {{$horarios3->hora_inicio_op1}}:{{$horarios3->minutos_inicio_op1}} a {{$horarios3->hora_fin_op1}}:{{$horarios3->minutos_fin_op1}}
                                                                                                     </span>
@@ -1476,7 +1475,7 @@
                                                                                                 @endphp
                                                                                             @else
                                                                                                 @if ($horarios3->cont_dia==2 && $horarios3->cont_tarde==0)
-                                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                         <span class="tit_datos_op2">{{$horarios3->dia3_op1}} <br>
                                                                                                             De {{$horarios3->hora_inicio_op1}}:{{$horarios3->minutos_inicio_op1}} a {{$horarios3->hora_fin_op1}}:{{$horarios3->minutos_fin_op1}}
                                                                                                         </span>
@@ -1484,7 +1483,7 @@
                                                                                                             <input type="radio" name="dia" value="dia3_op1"> Seleccionar
                                                                                                         </h6>
                                                                                                     </div>
-                                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                         <span class="tit_datos_op2">{{$horarios3->dia3_op2}} <br>
                                                                                                             De {{$horarios3->hora_inicio_op2}}:{{$horarios3->minutos_inicio_op2}} a {{$horarios3->hora_fin_op2}}:{{$horarios3->minutos_fin_op2}}
                                                                                                         </span>
@@ -1497,7 +1496,7 @@
                                                                                                     @endphp
                                                                                                 @else
                                                                                                     @if ($horarios3->cont_dia==1 && $horarios3->cont_tarde==1)
-                                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                             <span class="tit_datos_op2">{{$horarios3->dia3_op1}} <br>
                                                                                                                 De {{$horarios3->hora_inicio_op1}}:{{$horarios3->minutos_inicio_op1}} a {{$horarios3->hora_fin_op1}}:{{$horarios3->minutos_fin_op1}}
                                                                                                             </span>
@@ -1505,7 +1504,7 @@
                                                                                                                 <input type="radio" name="dia" value="dia3_op1"> Seleccionar
                                                                                                             </h6>
                                                                                                         </div>
-                                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                             <span class="tit_datos_op2">{{$horarios3->dia3_op3}} <br>
                                                                                                                 De {{$horarios3->hora_inicio_op3}}:{{$horarios3->minutos_inicio_op3}} a {{$horarios3->hora_fin_op3}}:{{$horarios3->minutos_fin_op3}}
                                                                                                             </span>
@@ -1536,7 +1535,7 @@
                                                     @if ($horarios4!=null)
                                                         @if ($cont==0)
                                                             @if ($horarios4->cont_dia==2 && $horarios4->cont_tarde==1)
-                                                                <div class="col-3" id="fondo_solicitud">
+                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                     <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                         De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                     </span>
@@ -1544,7 +1543,7 @@
                                                                         <input type="radio" name="dia" value="dia4_op1"> Seleccionar
                                                                     </h6>
                                                                 </div>
-                                                                <div class="col-3" id="fondo_solicitud">
+                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                     <span class="tit_datos_op2">{{$horarios4->dia4_op2}} <br>
                                                                         De {{$horarios4->hora_inicio_op2}}:{{$horarios4->minutos_inicio_op2}} a {{$horarios4->hora_fin_op2}}:{{$horarios4->minutos_fin_op2}}
                                                                     </span>
@@ -1552,7 +1551,7 @@
                                                                         <input type="radio" name="dia" value="dia4_op2"> Seleccionar
                                                                     </h6>
                                                                 </div>
-                                                                <div class="col-3" id="fondo_solicitud">
+                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                     <span class="tit_datos_op2">{{$horarios4->dia4_op3}} <br>
                                                                         De {{$horarios4->hora_inicio_op3}}:{{$horarios4->minutos_inicio_op3}} a {{$horarios4->hora_fin_op3}}:{{$horarios4->minutos_fin_op3}}
                                                                     </span>
@@ -1565,7 +1564,7 @@
                                                                 @endphp
                                                             @else
                                                                 @if ($horarios4->cont_dia==0 && $horarios4->cont_tarde==1)
-                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                         <span class="tit_datos_op2">{{$horarios4->dia4_op3}} <br>
                                                                             De {{$horarios4->hora_inicio_op3}}:{{$horarios4->minutos_inicio_op3}} a {{$horarios4->hora_fin_op3}}:{{$horarios4->minutos_fin_op3}}
                                                                         </span>
@@ -1578,7 +1577,7 @@
                                                                     @endphp
                                                                 @else
                                                                     @if ($horarios4->cont_dia==1 && $horarios4->cont_tarde==0)
-                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                             <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                                 De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                             </span>
@@ -1591,7 +1590,7 @@
                                                                         @endphp
                                                                     @else
                                                                         @if ($horarios4->cont_dia==2 && $horarios4->cont_tarde==0)
-                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                            <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                 <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                                     De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                                 </span>
@@ -1599,7 +1598,7 @@
                                                                                     <input type="radio" name="dia" value="dia4_op1"> Seleccionar
                                                                                 </h6>
                                                                             </div>
-                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                            <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                 <span class="tit_datos_op2">{{$horarios4->dia4_op2}} <br>
                                                                                     De {{$horarios4->hora_inicio_op2}}:{{$horarios4->minutos_inicio_op2}} a {{$horarios4->hora_fin_op2}}:{{$horarios4->minutos_fin_op2}}
                                                                                 </span>
@@ -1612,7 +1611,7 @@
                                                                             @endphp
                                                                         @else
                                                                             @if ($horarios4->cont_dia==1 && $horarios4->cont_tarde==1)
-                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                     <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                                         De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                                     </span>
@@ -1620,7 +1619,7 @@
                                                                                         <input type="radio" name="dia" value="dia4_op1"> Seleccionar
                                                                                     </h6>
                                                                                 </div>
-                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                     <span class="tit_datos_op2">{{$horarios4->dia4_op3}} <br>
                                                                                         De {{$horarios4->hora_inicio_op3}}:{{$horarios4->minutos_inicio_op3}} a {{$horarios4->hora_fin_op3}}:{{$horarios4->minutos_fin_op3}}
                                                                                     </span>
@@ -1639,7 +1638,7 @@
                                                         @else
                                                             @if ($cont==1)
                                                                 @if ($horarios4->cont_dia==2 && $horarios4->cont_tarde==1)
-                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                         <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                             De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                         </span>
@@ -1647,7 +1646,7 @@
                                                                             <input type="radio" name="dia" value="dia4_op1"> Seleccionar
                                                                         </h6>
                                                                     </div>
-                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                         <span class="tit_datos_op2">{{$horarios4->dia4_op2}} <br>
                                                                             De {{$horarios4->hora_inicio_op2}}:{{$horarios4->minutos_inicio_op2}} a {{$horarios4->hora_fin_op2}}:{{$horarios4->minutos_fin_op2}}
                                                                         </span>
@@ -1655,7 +1654,7 @@
                                                                             <input type="radio" name="dia" value="dia4_op2"> Seleccionar
                                                                         </h6>
                                                                     </div>
-                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                         <span class="tit_datos_op2">{{$horarios4->dia4_op3}} <br>
                                                                             De {{$horarios4->hora_inicio_op3}}:{{$horarios4->minutos_inicio_op3}} a {{$horarios4->hora_fin_op3}}:{{$horarios4->minutos_fin_op3}}
                                                                         </span>
@@ -1668,7 +1667,7 @@
                                                                     @endphp
                                                                 @else
                                                                     @if ($horarios4->cont_dia==0 && $horarios4->cont_tarde==1)
-                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                             <span class="tit_datos_op2">{{$horarios4->dia4_op3}} <br>
                                                                                 De {{$horarios4->hora_inicio_op3}}:{{$horarios4->minutos_inicio_op3}} a {{$horarios4->hora_fin_op3}}:{{$horarios4->minutos_fin_op3}}
                                                                             </span>
@@ -1681,7 +1680,7 @@
                                                                         @endphp
                                                                     @else
                                                                         @if ($horarios4->cont_dia==1 && $horarios4->cont_tarde==0)
-                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                            <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                 <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                                     De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                                 </span>
@@ -1694,7 +1693,7 @@
                                                                             @endphp
                                                                         @else
                                                                             @if ($horarios4->cont_dia==2 && $horarios4->cont_tarde==0)
-                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                     <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                                         De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                                     </span>
@@ -1702,7 +1701,7 @@
                                                                                         <input type="radio" name="dia" value="dia4_op1"> Seleccionar
                                                                                     </h6>
                                                                                 </div>
-                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                     <span class="tit_datos_op2">{{$horarios4->dia4_op2}} <br>
                                                                                         De {{$horarios4->hora_inicio_op2}}:{{$horarios4->minutos_inicio_op2}} a {{$horarios4->hora_fin_op2}}:{{$horarios4->minutos_fin_op2}}
                                                                                     </span>
@@ -1715,7 +1714,7 @@
                                                                                 @endphp
                                                                             @else
                                                                                 @if ($horarios4->cont_dia==1 && $horarios4->cont_tarde==1)
-                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                         <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                                             De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                                         </span>
@@ -1723,7 +1722,7 @@
                                                                                             <input type="radio" name="dia" value="dia4_op1"> Seleccionar
                                                                                         </h6>
                                                                                     </div>
-                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                         <span class="tit_datos_op2">{{$horarios4->dia4_op3}} <br>
                                                                                             De {{$horarios4->hora_inicio_op3}}:{{$horarios4->minutos_inicio_op3}} a {{$horarios4->hora_fin_op3}}:{{$horarios4->minutos_fin_op3}}
                                                                                         </span>
@@ -1742,7 +1741,7 @@
                                                             @else
                                                                 @if ($cont==2)
                                                                     @if ($horarios4->cont_dia==2 && $horarios4->cont_tarde==1)
-                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                             <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                                 De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                             </span>
@@ -1750,7 +1749,7 @@
                                                                                 <input type="radio" name="dia" value="dia4_op1"> Seleccionar
                                                                             </h6>
                                                                         </div>
-                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                             <span class="tit_datos_op2">{{$horarios4->dia4_op2}} <br>
                                                                                 De {{$horarios4->hora_inicio_op2}}:{{$horarios4->minutos_inicio_op2}} a {{$horarios4->hora_fin_op2}}:{{$horarios4->minutos_fin_op2}}
                                                                             </span>
@@ -1762,7 +1761,7 @@
                                                                         <div class="container">
                                                                             <br>
                                                                             <div class="row">
-                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                     <span class="tit_datos_op2">{{$horarios4->dia4_op3}} <br>
                                                                                         De {{$horarios4->hora_inicio_op3}}:{{$horarios4->minutos_inicio_op3}} a {{$horarios4->hora_fin_op3}}:{{$horarios4->minutos_fin_op3}}
                                                                                     </span>
@@ -1777,7 +1776,7 @@
                                                                         @endphp
                                                                     @else
                                                                         @if ($horarios4->cont_dia==0 && $horarios4->cont_tarde==1)
-                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                            <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                 <span class="tit_datos_op2">{{$horarios4->dia4_op3}} <br>
                                                                                     De {{$horarios4->hora_inicio_op3}}:{{$horarios4->minutos_inicio_op3}} a {{$horarios4->hora_fin_op3}}:{{$horarios4->minutos_fin_op3}}
                                                                                 </span>
@@ -1790,7 +1789,7 @@
                                                                             @endphp
                                                                         @else
                                                                             @if ($horarios4->cont_dia==1 && $horarios4->cont_tarde==0)
-                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                     <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                                         De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                                     </span>
@@ -1803,7 +1802,7 @@
                                                                                 @endphp
                                                                             @else
                                                                                 @if ($horarios4->cont_dia==2 && $horarios4->cont_tarde==0)
-                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                         <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                                             De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                                         </span>
@@ -1811,7 +1810,7 @@
                                                                                             <input type="radio" name="dia" value="dia4_op1"> Seleccionar
                                                                                         </h6>
                                                                                     </div>
-                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                         <span class="tit_datos_op2">{{$horarios4->dia4_op2}} <br>
                                                                                             De {{$horarios4->hora_inicio_op2}}:{{$horarios4->minutos_inicio_op2}} a {{$horarios4->hora_fin_op2}}:{{$horarios4->minutos_fin_op2}}
                                                                                         </span>
@@ -1824,7 +1823,7 @@
                                                                                     @endphp
                                                                                 @else
                                                                                     @if ($horarios4->cont_dia==1 && $horarios4->cont_tarde==1)
-                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                             <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                                                 De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                                             </span>
@@ -1832,7 +1831,7 @@
                                                                                                 <input type="radio" name="dia" value="dia4_op1"> Seleccionar
                                                                                             </h6>
                                                                                         </div>
-                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                             <span class="tit_datos_op2">{{$horarios4->dia4_op3}} <br>
                                                                                                 De {{$horarios4->hora_inicio_op3}}:{{$horarios4->minutos_inicio_op3}} a {{$horarios4->hora_fin_op3}}:{{$horarios4->minutos_fin_op3}}
                                                                                             </span>
@@ -1851,7 +1850,7 @@
                                                                 @else
                                                                     @if ($cont==3)
                                                                         @if ($horarios4->cont_dia==2 && $horarios4->cont_tarde==1)
-                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                            <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                 <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                                     De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                                 </span>
@@ -1863,7 +1862,7 @@
                                                                             <div class="container">
                                                                                 <br>
                                                                                 <div class="row">
-                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                         <span class="tit_datos_op2">{{$horarios4->dia4_op2}} <br>
                                                                                             De {{$horarios4->hora_inicio_op2}}:{{$horarios4->minutos_inicio_op2}} a {{$horarios4->hora_fin_op2}}:{{$horarios4->minutos_fin_op2}}
                                                                                         </span>
@@ -1871,7 +1870,7 @@
                                                                                             <input type="radio" name="dia" value="dia4_op2"> Seleccionar
                                                                                         </h6>
                                                                                     </div>
-                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                         <span class="tit_datos_op2">{{$horarios4->dia4_op3}} <br>
                                                                                             De {{$horarios4->hora_inicio_op3}}:{{$horarios4->minutos_inicio_op3}} a {{$horarios4->hora_fin_op3}}:{{$horarios4->minutos_fin_op3}}
                                                                                         </span>
@@ -1886,7 +1885,7 @@
                                                                             @endphp
                                                                         @else
                                                                             @if ($horarios4->cont_dia==0 && $horarios4->cont_tarde==1)
-                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                     <span class="tit_datos_op2">{{$horarios4->dia4_op3}} <br>
                                                                                         De {{$horarios4->hora_inicio_op3}}:{{$horarios4->minutos_inicio_op3}} a {{$horarios4->hora_fin_op3}}:{{$horarios4->minutos_fin_op3}}
                                                                                     </span>
@@ -1899,7 +1898,7 @@
                                                                                 @endphp
                                                                             @else
                                                                                 @if ($horarios4->cont_dia==1 && $horarios4->cont_tarde==0)
-                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                         <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                                             De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                                         </span>
@@ -1912,7 +1911,7 @@
                                                                                     @endphp
                                                                                 @else
                                                                                     @if ($horarios4->cont_dia==2 && $horarios4->cont_tarde==0)
-                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                             <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                                                 De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                                             </span>
@@ -1924,7 +1923,7 @@
                                                                                         <div class="container">
                                                                                             <br>
                                                                                             <div class="row">
-                                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                     <span class="tit_datos_op2">{{$horarios4->dia4_op2}} <br>
                                                                                                         De {{$horarios4->hora_inicio_op2}}:{{$horarios4->minutos_inicio_op2}} a {{$horarios4->hora_fin_op2}}:{{$horarios4->minutos_fin_op2}}
                                                                                                     </span>
@@ -1939,7 +1938,7 @@
                                                                                         @endphp
                                                                                     @else
                                                                                         @if ($horarios4->cont_dia==1 && $horarios4->cont_tarde==1)
-                                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                                            <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                 <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                                                     De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                                                 </span>
@@ -1951,7 +1950,7 @@
                                                                                             <div class="container">
                                                                                                 <br>
                                                                                                 <div class="row">
-                                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                         <span class="tit_datos_op2">{{$horarios4->dia4_op3}} <br>
                                                                                                             De {{$horarios4->hora_inicio_op3}}:{{$horarios4->minutos_inicio_op3}} a {{$horarios4->hora_fin_op3}}:{{$horarios4->minutos_fin_op3}}
                                                                                                         </span>
@@ -1976,7 +1975,7 @@
                                                                                 <br>
                                                                                 <div class="row">
                                                                                     @if ($horarios4->cont_dia==2 && $horarios4->cont_tarde==1)
-                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                             <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                                                 De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                                             </span>
@@ -1984,7 +1983,7 @@
                                                                                                 <input type="radio" name="dia" value="dia4_op1"> Seleccionar
                                                                                             </h6>
                                                                                         </div>
-                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                             <span class="tit_datos_op2">{{$horarios4->dia4_op2}} <br>
                                                                                                 De {{$horarios4->hora_inicio_op2}}:{{$horarios4->minutos_inicio_op2}} a {{$horarios4->hora_fin_op2}}:{{$horarios4->minutos_fin_op2}}
                                                                                             </span>
@@ -1992,7 +1991,7 @@
                                                                                                 <input type="radio" name="dia" value="dia4_op2"> Seleccionar
                                                                                             </h6>
                                                                                         </div>
-                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                             <span class="tit_datos_op2">{{$horarios4->dia4_op3}} <br>
                                                                                                 De {{$horarios4->hora_inicio_op3}}:{{$horarios4->minutos_inicio_op3}} a {{$horarios4->hora_fin_op3}}:{{$horarios4->minutos_fin_op3}}
                                                                                             </span>
@@ -2005,7 +2004,7 @@
                                                                                         @endphp
                                                                                     @else
                                                                                         @if ($horarios4->cont_dia==0 && $horarios4->cont_tarde==1)
-                                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                                            <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                 <span class="tit_datos_op2">{{$horarios4->dia4_op3}} <br>
                                                                                                     De {{$horarios4->hora_inicio_op3}}:{{$horarios4->minutos_inicio_op3}} a {{$horarios4->hora_fin_op3}}:{{$horarios4->minutos_fin_op3}}
                                                                                                 </span>
@@ -2018,7 +2017,7 @@
                                                                                             @endphp
                                                                                         @else
                                                                                             @if ($horarios4->cont_dia==1 && $horarios4->cont_tarde==0)
-                                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                     <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                                                         De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                                                     </span>
@@ -2031,7 +2030,7 @@
                                                                                                 @endphp
                                                                                             @else
                                                                                                 @if ($horarios4->cont_dia==2 && $horarios4->cont_tarde==0)
-                                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                         <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                                                             De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                                                         </span>
@@ -2039,7 +2038,7 @@
                                                                                                             <input type="radio" name="dia" value="dia4_op1"> Seleccionar
                                                                                                         </h6>
                                                                                                     </div>
-                                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                         <span class="tit_datos_op2">{{$horarios4->dia4_op2}} <br>
                                                                                                             De {{$horarios4->hora_inicio_op2}}:{{$horarios4->minutos_inicio_op2}} a {{$horarios4->hora_fin_op2}}:{{$horarios4->minutos_fin_op2}}
                                                                                                         </span>
@@ -2052,7 +2051,7 @@
                                                                                                     @endphp
                                                                                                 @else
                                                                                                     @if ($horarios4->cont_dia==1 && $horarios4->cont_tarde==1)
-                                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                             <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                                                                 De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                                                             </span>
@@ -2060,7 +2059,7 @@
                                                                                                                 <input type="radio" name="dia" value="dia4_op1"> Seleccionar
                                                                                                             </h6>
                                                                                                         </div>
-                                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                             <span class="tit_datos_op2">{{$horarios4->dia4_op3}} <br>
                                                                                                                 De {{$horarios4->hora_inicio_op3}}:{{$horarios4->minutos_inicio_op3}} a {{$horarios4->hora_fin_op3}}:{{$horarios4->minutos_fin_op3}}
                                                                                                             </span>
@@ -2081,7 +2080,7 @@
                                                                         @else
                                                                             @if ($cont==5)
                                                                                 @if ($horarios4->cont_dia==2 && $horarios4->cont_tarde==1)
-                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                         <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                                             De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                                         </span>
@@ -2089,7 +2088,7 @@
                                                                                             <input type="radio" name="dia" value="dia4_op1"> Seleccionar
                                                                                         </h6>
                                                                                     </div>
-                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                         <span class="tit_datos_op2">{{$horarios4->dia4_op2}} <br>
                                                                                             De {{$horarios4->hora_inicio_op2}}:{{$horarios4->minutos_inicio_op2}} a {{$horarios4->hora_fin_op2}}:{{$horarios4->minutos_fin_op2}}
                                                                                         </span>
@@ -2097,7 +2096,7 @@
                                                                                             <input type="radio" name="dia" value="dia4_op2"> Seleccionar
                                                                                         </h6>
                                                                                     </div>
-                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                         <span class="tit_datos_op2">{{$horarios4->dia4_op3}} <br>
                                                                                             De {{$horarios4->hora_inicio_op3}}:{{$horarios4->minutos_inicio_op3}} a {{$horarios4->hora_fin_op3}}:{{$horarios4->minutos_fin_op3}}
                                                                                         </span>
@@ -2110,7 +2109,7 @@
                                                                                     @endphp
                                                                                 @else
                                                                                     @if ($horarios4->cont_dia==0 && $horarios4->cont_tarde==1)
-                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                             <span class="tit_datos_op2">{{$horarios4->dia4_op3}} <br>
                                                                                                 De {{$horarios4->hora_inicio_op3}}:{{$horarios4->minutos_inicio_op3}} a {{$horarios4->hora_fin_op3}}:{{$horarios4->minutos_fin_op3}}
                                                                                             </span>
@@ -2123,7 +2122,7 @@
                                                                                         @endphp
                                                                                     @else
                                                                                         @if ($horarios4->cont_dia==1 && $horarios4->cont_tarde==0)
-                                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                                            <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                 <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                                                     De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                                                 </span>
@@ -2136,7 +2135,7 @@
                                                                                             @endphp
                                                                                         @else
                                                                                             @if ($horarios4->cont_dia==2 && $horarios4->cont_tarde==0)
-                                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                     <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                                                         De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                                                     </span>
@@ -2144,7 +2143,7 @@
                                                                                                         <input type="radio" name="dia" value="dia4_op1"> Seleccionar
                                                                                                     </h6>
                                                                                                 </div>
-                                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                     <span class="tit_datos_op2">{{$horarios4->dia4_op2}} <br>
                                                                                                         De {{$horarios4->hora_inicio_op2}}:{{$horarios4->minutos_inicio_op2}} a {{$horarios4->hora_fin_op2}}:{{$horarios4->minutos_fin_op2}}
                                                                                                     </span>
@@ -2157,7 +2156,7 @@
                                                                                                 @endphp
                                                                                             @else
                                                                                                 @if ($horarios4->cont_dia==1 && $horarios4->cont_tarde==1)
-                                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                         <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                                                             De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                                                         </span>
@@ -2165,7 +2164,7 @@
                                                                                                             <input type="radio" name="dia" value="dia4_op1"> Seleccionar
                                                                                                         </h6>
                                                                                                     </div>
-                                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                         <span class="tit_datos_op2">{{$horarios4->dia4_op3}} <br>
                                                                                                             De {{$horarios4->hora_inicio_op3}}:{{$horarios4->minutos_inicio_op3}} a {{$horarios4->hora_fin_op3}}:{{$horarios4->minutos_fin_op3}}
                                                                                                         </span>
@@ -2184,7 +2183,7 @@
                                                                             @else
                                                                                 @if ($cont==6)
                                                                                     @if ($horarios4->cont_dia==2 && $horarios4->cont_tarde==1)
-                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                             <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                                                 De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                                             </span>
@@ -2192,7 +2191,7 @@
                                                                                                 <input type="radio" name="dia" value="dia4_op1"> Seleccionar
                                                                                             </h6>
                                                                                         </div>
-                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                             <span class="tit_datos_op2">{{$horarios4->dia4_op2}} <br>
                                                                                                 De {{$horarios4->hora_inicio_op2}}:{{$horarios4->minutos_inicio_op2}} a {{$horarios4->hora_fin_op2}}:{{$horarios4->minutos_fin_op2}}
                                                                                             </span>
@@ -2204,7 +2203,7 @@
                                                                                         <div class="container">
                                                                                             <br>
                                                                                             <div class="row">
-                                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                     <span class="tit_datos_op2">{{$horarios4->dia4_op3}} <br>
                                                                                                         De {{$horarios4->hora_inicio_op3}}:{{$horarios4->minutos_inicio_op3}} a {{$horarios4->hora_fin_op3}}:{{$horarios4->minutos_fin_op3}}
                                                                                                     </span>
@@ -2219,7 +2218,7 @@
                                                                                         @endphp
                                                                                     @else
                                                                                         @if ($horarios4->cont_dia==0 && $horarios4->cont_tarde==1)
-                                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                                            <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                 <span class="tit_datos_op2">{{$horarios4->dia4_op3}} <br>
                                                                                                     De {{$horarios4->hora_inicio_op3}}:{{$horarios4->minutos_inicio_op3}} a {{$horarios4->hora_fin_op3}}:{{$horarios4->minutos_fin_op3}}
                                                                                                 </span>
@@ -2232,7 +2231,7 @@
                                                                                             @endphp
                                                                                         @else
                                                                                             @if ($horarios4->cont_dia==1 && $horarios4->cont_tarde==0)
-                                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                     <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                                                         De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                                                     </span>
@@ -2245,7 +2244,7 @@
                                                                                                 @endphp
                                                                                             @else
                                                                                                 @if ($horarios4->cont_dia==2 && $horarios4->cont_tarde==0)
-                                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                         <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                                                             De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                                                         </span>
@@ -2253,7 +2252,7 @@
                                                                                                             <input type="radio" name="dia" value="dia4_op1"> Seleccionar
                                                                                                         </h6>
                                                                                                     </div>
-                                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                         <span class="tit_datos_op2">{{$horarios4->dia4_op2}} <br>
                                                                                                             De {{$horarios4->hora_inicio_op2}}:{{$horarios4->minutos_inicio_op2}} a {{$horarios4->hora_fin_op2}}:{{$horarios4->minutos_fin_op2}}
                                                                                                         </span>
@@ -2266,7 +2265,7 @@
                                                                                                     @endphp
                                                                                                 @else
                                                                                                     @if ($horarios4->cont_dia==1 && $horarios4->cont_tarde==1)
-                                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                             <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                                                                 De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                                                             </span>
@@ -2274,7 +2273,7 @@
                                                                                                                 <input type="radio" name="dia" value="dia4_op1"> Seleccionar
                                                                                                             </h6>
                                                                                                         </div>
-                                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                             <span class="tit_datos_op2">{{$horarios4->dia4_op3}} <br>
                                                                                                                 De {{$horarios4->hora_inicio_op3}}:{{$horarios4->minutos_inicio_op3}} a {{$horarios4->hora_fin_op3}}:{{$horarios4->minutos_fin_op3}}
                                                                                                             </span>
@@ -2293,7 +2292,7 @@
                                                                                 @else
                                                                                     @if ($cont==7)
                                                                                         @if ($horarios4->cont_dia==2 && $horarios4->cont_tarde==1)
-                                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                                            <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                 <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                                                     De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                                                 </span>
@@ -2304,7 +2303,7 @@
                                                                                             <!-- Creo el tercer contenedor><-->
                                                                                             <div class="container">
                                                                                                 <br>
-                                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                     <span class="tit_datos_op2">{{$horarios4->dia4_op2}} <br>
                                                                                                         De {{$horarios4->hora_inicio_op2}}:{{$horarios4->minutos_inicio_op2}} a {{$horarios4->hora_fin_op2}}:{{$horarios4->minutos_fin_op2}}
                                                                                                     </span>
@@ -2313,7 +2312,7 @@
                                                                                                     </h6>
                                                                                                 </div>
                                                                                                 <div class="row">
-                                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                         <span class="tit_datos_op2">{{$horarios4->dia4_op3}} <br>
                                                                                                             De {{$horarios4->hora_inicio_op3}}:{{$horarios4->minutos_inicio_op3}} a {{$horarios4->hora_fin_op3}}:{{$horarios4->minutos_fin_op3}}
                                                                                                         </span>
@@ -2328,7 +2327,7 @@
                                                                                             @endphp
                                                                                         @else
                                                                                             @if ($horarios4->cont_dia==0 && $horarios4->cont_tarde==1)
-                                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                     <span class="tit_datos_op2">{{$horarios4->dia4_op3}} <br>
                                                                                                         De {{$horarios4->hora_inicio_op3}}:{{$horarios4->minutos_inicio_op3}} a {{$horarios4->hora_fin_op3}}:{{$horarios4->minutos_fin_op3}}
                                                                                                     </span>
@@ -2341,7 +2340,7 @@
                                                                                                 @endphp
                                                                                             @else
                                                                                                 @if ($horarios4->cont_dia==1 && $horarios4->cont_tarde==0)
-                                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                         <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                                                             De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                                                         </span>
@@ -2354,7 +2353,7 @@
                                                                                                     @endphp
                                                                                                 @else
                                                                                                     @if ($horarios4->cont_dia==2 && $horarios4->cont_tarde==0)
-                                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                             <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                                                                 De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                                                             </span>
@@ -2366,7 +2365,7 @@
                                                                                                         <div class="container">
                                                                                                             <br>
                                                                                                             <div class="row">
-                                                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                                     <span class="tit_datos_op2">{{$horarios4->dia4_op2}} <br>
                                                                                                                         De {{$horarios4->hora_inicio_op2}}:{{$horarios4->minutos_inicio_op2}} a {{$horarios4->hora_fin_op2}}:{{$horarios4->minutos_fin_op2}}
                                                                                                                     </span>
@@ -2381,7 +2380,7 @@
                                                                                                         @endphp
                                                                                                     @else
                                                                                                         @if ($horarios4->cont_dia==1 && $horarios4->cont_tarde==1)
-                                                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                                                            <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                                 <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                                                                     De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                                                                 </span>
@@ -2393,7 +2392,7 @@
                                                                                                             <div class="container">
                                                                                                                 <br>
                                                                                                                 <div class="row">
-                                                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                                         <span class="tit_datos_op2">{{$horarios4->dia4_op3}} <br>
                                                                                                                             De {{$horarios4->hora_inicio_op3}}:{{$horarios4->minutos_inicio_op3}} a {{$horarios4->hora_fin_op3}}:{{$horarios4->minutos_fin_op3}}
                                                                                                                         </span>
@@ -2418,7 +2417,7 @@
                                                                                                 <br>
                                                                                                 <div class="row">
                                                                                                     @if ($horarios4->cont_dia==2 && $horarios4->cont_tarde==1)
-                                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                             <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                                                                 De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                                                             </span>
@@ -2426,7 +2425,7 @@
                                                                                                                 <input type="radio" name="dia" value="dia4_op1"> Seleccionar
                                                                                                             </h6>
                                                                                                         </div>
-                                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                             <span class="tit_datos_op2">{{$horarios4->dia4_op2}} <br>
                                                                                                                 De {{$horarios4->hora_inicio_op2}}:{{$horarios4->minutos_inicio_op2}} a {{$horarios4->hora_fin_op2}}:{{$horarios4->minutos_fin_op2}}
                                                                                                             </span>
@@ -2434,7 +2433,7 @@
                                                                                                                 <input type="radio" name="dia" value="dia4_op2"> Seleccionar
                                                                                                             </h6>
                                                                                                         </div>
-                                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                             <span class="tit_datos_op2">{{$horarios4->dia4_op3}} <br>
                                                                                                                 De {{$horarios4->hora_inicio_op3}}:{{$horarios4->minutos_inicio_op3}} a {{$horarios4->hora_fin_op3}}:{{$horarios4->minutos_fin_op3}}
                                                                                                             </span>
@@ -2447,7 +2446,7 @@
                                                                                                         @endphp
                                                                                                     @else
                                                                                                         @if ($horarios4->cont_dia==0 && $horarios4->cont_tarde==1)
-                                                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                                                            <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                                 <span class="tit_datos_op2">{{$horarios4->dia4_op3}} <br>
                                                                                                                     De {{$horarios4->hora_inicio_op3}}:{{$horarios4->minutos_inicio_op3}} a {{$horarios4->hora_fin_op3}}:{{$horarios4->minutos_fin_op3}}
                                                                                                                 </span>
@@ -2460,7 +2459,7 @@
                                                                                                             @endphp
                                                                                                         @else
                                                                                                             @if ($horarios4->cont_dia==1 && $horarios4->cont_tarde==0)
-                                                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                                     <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                                                                         De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                                                                     </span>
@@ -2473,7 +2472,7 @@
                                                                                                                 @endphp
                                                                                                             @else
                                                                                                                 @if ($horarios4->cont_dia==2 && $horarios4->cont_tarde==0)
-                                                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                                         <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                                                                             De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                                                                         </span>
@@ -2481,7 +2480,7 @@
                                                                                                                             <input type="radio" name="dia" value="dia4_op1"> Seleccionar
                                                                                                                         </h6>
                                                                                                                     </div>
-                                                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                                         <span class="tit_datos_op2">{{$horarios4->dia4_op2}} <br>
                                                                                                                             De {{$horarios4->hora_inicio_op2}}:{{$horarios4->minutos_inicio_op2}} a {{$horarios4->hora_fin_op2}}:{{$horarios4->minutos_fin_op2}}
                                                                                                                         </span>
@@ -2494,7 +2493,7 @@
                                                                                                                     @endphp
                                                                                                                 @else
                                                                                                                     @if ($horarios4->cont_dia==1 && $horarios4->cont_tarde==1)
-                                                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                                             <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                                                                                 De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                                                                             </span>
@@ -2502,7 +2501,7 @@
                                                                                                                                 <input type="radio" name="dia" value="dia4_op1"> Seleccionar
                                                                                                                             </h6>
                                                                                                                         </div>
-                                                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                                             <span class="tit_datos_op2">{{$horarios4->dia4_op3}} <br>
                                                                                                                                 De {{$horarios4->hora_inicio_op3}}:{{$horarios4->minutos_inicio_op3}} a {{$horarios4->hora_fin_op3}}:{{$horarios4->minutos_fin_op3}}
                                                                                                                             </span>
@@ -2523,7 +2522,7 @@
                                                                                         @else
                                                                                             @if ($cont==9)
                                                                                                 @if ($horarios4->cont_dia==2 && $horarios4->cont_tarde==1)
-                                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                         <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                                                             De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                                                         </span>
@@ -2531,7 +2530,7 @@
                                                                                                             <input type="radio" name="dia" value="dia4_op1"> Seleccionar
                                                                                                         </h6>
                                                                                                     </div>
-                                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                         <span class="tit_datos_op2">{{$horarios4->dia4_op2}} <br>
                                                                                                             De {{$horarios4->hora_inicio_op2}}:{{$horarios4->minutos_inicio_op2}} a {{$horarios4->hora_fin_op2}}:{{$horarios4->minutos_fin_op2}}
                                                                                                         </span>
@@ -2539,7 +2538,7 @@
                                                                                                             <input type="radio" name="dia" value="dia4_op2"> Seleccionar
                                                                                                         </h6>
                                                                                                     </div>
-                                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                         <span class="tit_datos_op2">{{$horarios4->dia4_op3}} <br>
                                                                                                             De {{$horarios4->hora_inicio_op3}}:{{$horarios4->minutos_inicio_op3}} a {{$horarios4->hora_fin_op3}}:{{$horarios4->minutos_fin_op3}}
                                                                                                         </span>
@@ -2552,7 +2551,7 @@
                                                                                                     @endphp
                                                                                                 @else
                                                                                                     @if ($horarios4->cont_dia==0 && $horarios4->cont_tarde==1)
-                                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                             <span class="tit_datos_op2">{{$horarios4->dia4_op3}} <br>
                                                                                                                 De {{$horarios4->hora_inicio_op3}}:{{$horarios4->minutos_inicio_op3}} a {{$horarios4->hora_fin_op3}}:{{$horarios4->minutos_fin_op3}}
                                                                                                             </span>
@@ -2565,7 +2564,7 @@
                                                                                                         @endphp
                                                                                                     @else
                                                                                                         @if ($horarios4->cont_dia==1 && $horarios4->cont_tarde==0)
-                                                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                                                            <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                                 <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                                                                     De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                                                                 </span>
@@ -2578,7 +2577,7 @@
                                                                                                             @endphp
                                                                                                         @else
                                                                                                             @if ($horarios4->cont_dia==2 && $horarios4->cont_tarde==0)
-                                                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                                     <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                                                                         De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                                                                     </span>
@@ -2586,7 +2585,7 @@
                                                                                                                         <input type="radio" name="dia" value="dia4_op1"> Seleccionar
                                                                                                                     </h6>
                                                                                                                 </div>
-                                                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                                     <span class="tit_datos_op2">{{$horarios4->dia4_op2}} <br>
                                                                                                                         De {{$horarios4->hora_inicio_op2}}:{{$horarios4->minutos_inicio_op2}} a {{$horarios4->hora_fin_op2}}:{{$horarios4->minutos_fin_op2}}
                                                                                                                     </span>
@@ -2599,7 +2598,7 @@
                                                                                                                 @endphp
                                                                                                             @else
                                                                                                                 @if ($horarios4->cont_dia==1 && $horarios4->cont_tarde==1)
-                                                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                                         <span class="tit_datos_op2">{{$horarios4->dia4_op1}} <br>
                                                                                                                             De {{$horarios4->hora_inicio_op1}}:{{$horarios4->minutos_inicio_op1}} a {{$horarios4->hora_fin_op1}}:{{$horarios4->minutos_fin_op1}}
                                                                                                                         </span>
@@ -2607,7 +2606,7 @@
                                                                                                                             <input type="radio" name="dia" value="dia4_op1"> Seleccionar
                                                                                                                         </h6>
                                                                                                                     </div>
-                                                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                                         <span class="tit_datos_op2">{{$horarios4->dia4_op3}} <br>
                                                                                                                             De {{$horarios4->hora_inicio_op3}}:{{$horarios4->minutos_inicio_op3}} a {{$horarios4->hora_fin_op3}}:{{$horarios4->minutos_fin_op3}}
                                                                                                                         </span>
@@ -2638,7 +2637,7 @@
                                                     @if ($horarios5!=null)
                                                         @if ($cont==0)
                                                             @if ($horarios5->cont_dia==2 && $horarios5->cont_tarde==1)
-                                                                <div class="col-3" id="fondo_solicitud">
+                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                     <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                         De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                     </span>
@@ -2646,7 +2645,7 @@
                                                                         <input type="radio" name="dia" value="dia5_op1"> Seleccionar
                                                                     </h6>
                                                                 </div>
-                                                                <div class="col-3" id="fondo_solicitud">
+                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                     <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
                                                                         De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
                                                                     </span>
@@ -2654,7 +2653,7 @@
                                                                         <input type="radio" name="dia" value="dia5_op2"> Seleccionar
                                                                     </h6>
                                                                 </div>
-                                                                <div class="col-3" id="fondo_solicitud">
+                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                     <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                         De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                     </span>
@@ -2667,7 +2666,7 @@
                                                                 @endphp
                                                             @else
                                                                 @if ($horarios5->cont_dia==0 && $horarios5->cont_tarde==1)
-                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                         <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                             De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                         </span>
@@ -2680,7 +2679,7 @@
                                                                     @endphp
                                                                 @else
                                                                     @if ($horarios5->cont_dia==1 && $horarios5->cont_tarde==0)
-                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                 De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                             </span>
@@ -2693,7 +2692,7 @@
                                                                         @endphp
                                                                     @else
                                                                         @if ($horarios5->cont_dia==2 && $horarios5->cont_tarde==0)
-                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                            <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                 <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                     De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                 </span>
@@ -2701,7 +2700,7 @@
                                                                                     <input type="radio" name="dia" value="dia5_op1"> Seleccionar
                                                                                 </h6>
                                                                             </div>
-                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                            <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                 <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
                                                                                     De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
                                                                                 </span>
@@ -2714,7 +2713,7 @@
                                                                             @endphp
                                                                         @else
                                                                             @if ($horarios5->cont_dia==1 && $horarios5->cont_tarde==1)
-                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                     <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                         De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                     </span>
@@ -2722,7 +2721,7 @@
                                                                                         <input type="radio" name="dia" value="dia5_op1"> Seleccionar
                                                                                     </h6>
                                                                                 </div>
-                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                     <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                                         De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                                     </span>
@@ -2741,7 +2740,7 @@
                                                         @else
                                                             @if ($cont==1)
                                                                 @if ($horarios5->cont_dia==2 && $horarios5->cont_tarde==1)
-                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                         <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                             De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                         </span>
@@ -2749,7 +2748,7 @@
                                                                             <input type="radio" name="dia" value="dia5_op1"> Seleccionar
                                                                         </h6>
                                                                     </div>
-                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                         <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
                                                                             De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
                                                                         </span>
@@ -2757,7 +2756,7 @@
                                                                             <input type="radio" name="dia" value="dia5_op2"> Seleccionar
                                                                         </h6>
                                                                     </div>
-                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                         <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                             De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                         </span>
@@ -2770,7 +2769,7 @@
                                                                     @endphp
                                                                 @else
                                                                     @if ($horarios5->cont_dia==0 && $horarios5->cont_tarde==1)
-                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                                 De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                             </span>
@@ -2783,7 +2782,7 @@
                                                                         @endphp
                                                                     @else
                                                                         @if ($horarios5->cont_dia==1 && $horarios5->cont_tarde==0)
-                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                            <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                 <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                     De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                 </span>
@@ -2796,7 +2795,7 @@
                                                                             @endphp
                                                                         @else
                                                                             @if ($horarios5->cont_dia==2 && $horarios5->cont_tarde==0)
-                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                     <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                         De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                     </span>
@@ -2804,7 +2803,7 @@
                                                                                         <input type="radio" name="dia" value="dia5_op1"> Seleccionar
                                                                                     </h6>
                                                                                 </div>
-                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                     <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
                                                                                         De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
                                                                                     </span>
@@ -2817,7 +2816,7 @@
                                                                                 @endphp
                                                                             @else
                                                                                 @if ($horarios5->cont_dia==1 && $horarios5->cont_tarde==1)
-                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                         <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                             De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                         </span>
@@ -2825,7 +2824,7 @@
                                                                                             <input type="radio" name="dia" value="dia5_op1"> Seleccionar
                                                                                         </h6>
                                                                                     </div>
-                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                         <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                                             De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                                         </span>
@@ -2844,7 +2843,7 @@
                                                             @else
                                                                 @if ($cont==2)
                                                                     @if ($horarios5->cont_dia==2 && $horarios5->cont_tarde==1)
-                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                 De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                             </span>
@@ -2852,7 +2851,7 @@
                                                                                 <input type="radio" name="dia" value="dia5_op1"> Seleccionar
                                                                             </h6>
                                                                         </div>
-                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
                                                                                 De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
                                                                             </span>
@@ -2864,7 +2863,7 @@
                                                                         <div class="container">
                                                                             <br>
                                                                             <div class="row">
-                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                     <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                                         De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                                     </span>
@@ -2879,7 +2878,7 @@
                                                                         @endphp
                                                                     @else
                                                                         @if ($horarios5->cont_dia==0 && $horarios5->cont_tarde==1)
-                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                            <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                 <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                                     De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                                 </span>
@@ -2892,7 +2891,7 @@
                                                                             @endphp
                                                                         @else
                                                                             @if ($horarios5->cont_dia==1 && $horarios5->cont_tarde==0)
-                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                     <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                         De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                     </span>
@@ -2905,7 +2904,7 @@
                                                                                 @endphp
                                                                             @else
                                                                                 @if ($horarios5->cont_dia==2 && $horarios5->cont_tarde==0)
-                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                         <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                             De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                         </span>
@@ -2913,7 +2912,7 @@
                                                                                             <input type="radio" name="dia" value="dia5_op1"> Seleccionar
                                                                                         </h6>
                                                                                     </div>
-                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                         <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
                                                                                             De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
                                                                                         </span>
@@ -2926,7 +2925,7 @@
                                                                                     @endphp
                                                                                 @else
                                                                                     @if ($horarios5->cont_dia==1 && $horarios5->cont_tarde==1)
-                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                                 De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                             </span>
@@ -2934,7 +2933,7 @@
                                                                                                 <input type="radio" name="dia" value="dia5_op1"> Seleccionar
                                                                                             </h6>
                                                                                         </div>
-                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                                                 De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                                             </span>
@@ -2953,7 +2952,7 @@
                                                                 @else
                                                                     @if ($cont==3)
                                                                         @if ($horarios5->cont_dia==2 && $horarios5->cont_tarde==1)
-                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                            <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                 <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                     De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                 </span>
@@ -2965,7 +2964,7 @@
                                                                             <div class="container">
                                                                                 <br>
                                                                                 <div class="row">
-                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                         <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
                                                                                             De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
                                                                                         </span>
@@ -2973,7 +2972,7 @@
                                                                                             <input type="radio" name="dia" value="dia5_op2"> Seleccionar
                                                                                         </h6>
                                                                                     </div>
-                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                         <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                                             De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                                         </span>
@@ -2988,7 +2987,7 @@
                                                                             @endphp
                                                                         @else
                                                                             @if ($horarios5->cont_dia==0 && $horarios5->cont_tarde==1)
-                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                     <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                                         De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                                     </span>
@@ -3001,7 +3000,7 @@
                                                                                 @endphp
                                                                             @else
                                                                                 @if ($horarios5->cont_dia==1 && $horarios5->cont_tarde==0)
-                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                         <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                             De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                         </span>
@@ -3014,7 +3013,7 @@
                                                                                     @endphp
                                                                                 @else
                                                                                     @if ($horarios5->cont_dia==2 && $horarios5->cont_tarde==0)
-                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                                 De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                             </span>
@@ -3026,7 +3025,7 @@
                                                                                         <div class="container">
                                                                                             <br>
                                                                                             <div class="row">
-                                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                     <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
                                                                                                         De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
                                                                                                     </span>
@@ -3041,7 +3040,7 @@
                                                                                         @endphp
                                                                                     @else
                                                                                         @if ($horarios5->cont_dia==1 && $horarios5->cont_tarde==1)
-                                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                                            <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                 <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                                     De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                                 </span>
@@ -3053,7 +3052,7 @@
                                                                                             <div class="container">
                                                                                                 <br>
                                                                                                 <div class="row">
-                                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                         <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                                                             De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                                                         </span>
@@ -3077,7 +3076,7 @@
                                                                             <div class="container">
                                                                                 <div class="row">
                                                                                     @if ($horarios5->cont_dia==2 && $horarios5->cont_tarde==1)
-                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                                 De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                             </span>
@@ -3085,7 +3084,7 @@
                                                                                                 <input type="radio" name="dia" value="dia5_op1"> Seleccionar
                                                                                             </h6>
                                                                                         </div>
-                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
                                                                                                 De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
                                                                                             </span>
@@ -3093,7 +3092,7 @@
                                                                                                 <input type="radio" name="dia" value="dia5_op2"> Seleccionar
                                                                                             </h6>
                                                                                         </div>
-                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                                                 De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                                             </span>
@@ -3106,7 +3105,7 @@
                                                                                         @endphp
                                                                                     @else
                                                                                         @if ($horarios5->cont_dia==0 && $horarios5->cont_tarde==1)
-                                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                                            <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                 <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                                                     De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                                                 </span>
@@ -3119,7 +3118,7 @@
                                                                                             @endphp
                                                                                         @else
                                                                                             @if ($horarios5->cont_dia==1 && $horarios5->cont_tarde==0)
-                                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                     <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                                         De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                                     </span>
@@ -3132,7 +3131,7 @@
                                                                                                 @endphp
                                                                                             @else
                                                                                                 @if ($horarios5->cont_dia==2 && $horarios5->cont_tarde==0)
-                                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                         <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                                             De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                                         </span>
@@ -3140,7 +3139,7 @@
                                                                                                             <input type="radio" name="dia" value="dia5_op1"> Seleccionar
                                                                                                         </h6>
                                                                                                     </div>
-                                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                         <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
                                                                                                             De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
                                                                                                         </span>
@@ -3153,7 +3152,7 @@
                                                                                                     @endphp
                                                                                                 @else
                                                                                                     @if ($horarios5->cont_dia==1 && $horarios5->cont_tarde==1)
-                                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                                                 De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                                             </span>
@@ -3161,7 +3160,7 @@
                                                                                                                 <input type="radio" name="dia" value="dia5_op1"> Seleccionar
                                                                                                             </h6>
                                                                                                         </div>
-                                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                                                                 De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                                                             </span>
@@ -3182,7 +3181,7 @@
                                                                         @else
                                                                             @if ($cont==5)
                                                                                 @if ($horarios5->cont_dia==2 && $horarios5->cont_tarde==1)
-                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                         <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                             De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                         </span>
@@ -3190,7 +3189,7 @@
                                                                                             <input type="radio" name="dia" value="dia5_op1"> Seleccionar
                                                                                         </h6>
                                                                                     </div>
-                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                         <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
                                                                                             De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
                                                                                         </span>
@@ -3198,7 +3197,7 @@
                                                                                             <input type="radio" name="dia" value="dia5_op2"> Seleccionar
                                                                                         </h6>
                                                                                     </div>
-                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                         <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                                             De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                                         </span>
@@ -3211,7 +3210,7 @@
                                                                                     @endphp
                                                                                 @else
                                                                                     @if ($horarios5->cont_dia==0 && $horarios5->cont_tarde==1)
-                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                                                 De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                                             </span>
@@ -3224,7 +3223,7 @@
                                                                                         @endphp
                                                                                     @else
                                                                                         @if ($horarios5->cont_dia==1 && $horarios5->cont_tarde==0)
-                                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                                            <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                 <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                                     De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                                 </span>
@@ -3237,7 +3236,7 @@
                                                                                             @endphp
                                                                                         @else
                                                                                             @if ($horarios5->cont_dia==2 && $horarios5->cont_tarde==0)
-                                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                     <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                                         De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                                     </span>
@@ -3245,7 +3244,7 @@
                                                                                                         <input type="radio" name="dia" value="dia5_op1"> Seleccionar
                                                                                                     </h6>
                                                                                                 </div>
-                                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                     <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
                                                                                                         De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
                                                                                                     </span>
@@ -3258,7 +3257,7 @@
                                                                                                 @endphp
                                                                                             @else
                                                                                                 @if ($horarios5->cont_dia==1 && $horarios5->cont_tarde==1)
-                                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                         <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                                             De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                                         </span>
@@ -3266,7 +3265,7 @@
                                                                                                             <input type="radio" name="dia" value="dia5_op1"> Seleccionar
                                                                                                         </h6>
                                                                                                     </div>
-                                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                         <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                                                             De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                                                         </span>
@@ -3285,7 +3284,7 @@
                                                                             @else
                                                                                 @if ($cont==6)
                                                                                     @if ($horarios5->cont_dia==2 && $horarios5->cont_tarde==1)
-                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                                 De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                             </span>
@@ -3293,7 +3292,7 @@
                                                                                                 <input type="radio" name="dia" value="dia5_op1"> Seleccionar
                                                                                             </h6>
                                                                                         </div>
-                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
                                                                                                 De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
                                                                                             </span>
@@ -3305,7 +3304,7 @@
                                                                                         <div class="container">
                                                                                             <br>
                                                                                             <div class="row">
-                                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                     <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                                                         De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                                                     </span>
@@ -3320,7 +3319,7 @@
                                                                                         @endphp
                                                                                     @else
                                                                                         @if ($horarios5->cont_dia==0 && $horarios5->cont_tarde==1)
-                                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                                            <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                 <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                                                     De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                                                 </span>
@@ -3333,7 +3332,7 @@
                                                                                             @endphp
                                                                                         @else
                                                                                             @if ($horarios5->cont_dia==1 && $horarios5->cont_tarde==0)
-                                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                     <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                                         De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                                     </span>
@@ -3346,7 +3345,7 @@
                                                                                                 @endphp
                                                                                             @else
                                                                                                 @if ($horarios5->cont_dia==2 && $horarios5->cont_tarde==0)
-                                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                         <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                                             De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                                         </span>
@@ -3354,7 +3353,7 @@
                                                                                                             <input type="radio" name="dia" value="dia5_op1"> Seleccionar
                                                                                                         </h6>
                                                                                                     </div>
-                                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                         <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
                                                                                                             De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
                                                                                                         </span>
@@ -3367,7 +3366,7 @@
                                                                                                     @endphp
                                                                                                 @else
                                                                                                     @if ($horarios5->cont_dia==1 && $horarios5->cont_tarde==1)
-                                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                                                 De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                                             </span>
@@ -3375,7 +3374,7 @@
                                                                                                                 <input type="radio" name="dia" value="dia5_op1"> Seleccionar
                                                                                                             </h6>
                                                                                                         </div>
-                                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                                                                 De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                                                             </span>
@@ -3394,7 +3393,7 @@
                                                                                 @else
                                                                                     @if ($cont==7)
                                                                                         @if ($horarios5->cont_dia==2 && $horarios5->cont_tarde==1)
-                                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                                            <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                 <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                                     De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                                 </span>
@@ -3406,7 +3405,7 @@
                                                                                             <div class="container">
                                                                                                 <br>
                                                                                                 <div class="row">
-                                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                         <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
                                                                                                             De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
                                                                                                         </span>
@@ -3414,7 +3413,7 @@
                                                                                                             <input type="radio" name="dia" value="dia5_op2"> Seleccionar
                                                                                                         </h6>
                                                                                                     </div>
-                                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                         <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                                                             De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                                                         </span>
@@ -3429,7 +3428,7 @@
                                                                                             @endphp
                                                                                         @else
                                                                                             @if ($horarios5->cont_dia==0 && $horarios5->cont_tarde==1)
-                                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                     <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                                                         De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                                                     </span>
@@ -3442,7 +3441,7 @@
                                                                                                 @endphp
                                                                                             @else
                                                                                                 @if ($horarios5->cont_dia==1 && $horarios5->cont_tarde==0)
-                                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                         <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                                             De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                                         </span>
@@ -3455,7 +3454,7 @@
                                                                                                     @endphp
                                                                                                 @else
                                                                                                     @if ($horarios5->cont_dia==2 && $horarios5->cont_tarde==0)
-                                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                                                 De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                                             </span>
@@ -3467,7 +3466,7 @@
                                                                                                         <div class="container">
                                                                                                             <br>
                                                                                                             <div class="row">
-                                                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                                     <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
                                                                                                                         De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
                                                                                                                     </span>
@@ -3482,7 +3481,7 @@
                                                                                                         @endphp
                                                                                                     @else
                                                                                                         @if ($horarios5->cont_dia==1 && $horarios5->cont_tarde==1)
-                                                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                                                            <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                                 <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                                                     De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                                                 </span>
@@ -3494,7 +3493,7 @@
                                                                                                             <div class="container">
                                                                                                                 <br>
                                                                                                                 <div class="row">
-                                                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                                         <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                                                                             De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                                                                         </span>
@@ -3519,7 +3518,7 @@
                                                                                                 <br>
                                                                                                 <div class="row">
                                                                                                     @if ($horarios5->cont_dia==2 && $horarios5->cont_tarde==1)
-                                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                                                 De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                                             </span>
@@ -3527,7 +3526,7 @@
                                                                                                                 <input type="radio" name="dia" value="dia5_op1"> Seleccionar
                                                                                                             </h6>
                                                                                                         </div>
-                                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
                                                                                                                 De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
                                                                                                             </span>
@@ -3535,7 +3534,7 @@
                                                                                                                 <input type="radio" name="dia" value="dia5_op2"> Seleccionar
                                                                                                             </h6>
                                                                                                         </div>
-                                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                                                                 De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                                                             </span>
@@ -3548,7 +3547,7 @@
                                                                                                         @endphp
                                                                                                     @else
                                                                                                         @if ($horarios5->cont_dia==0 && $horarios5->cont_tarde==1)
-                                                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                                                            <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                                 <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                                                                     De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                                                                 </span>
@@ -3561,7 +3560,7 @@
                                                                                                             @endphp
                                                                                                         @else
                                                                                                             @if ($horarios5->cont_dia==1 && $horarios5->cont_tarde==0)
-                                                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                                     <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                                                         De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                                                     </span>
@@ -3574,7 +3573,7 @@
                                                                                                                 @endphp
                                                                                                             @else
                                                                                                                 @if ($horarios5->cont_dia==2 && $horarios5->cont_tarde==0)
-                                                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                                         <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                                                             De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                                                         </span>
@@ -3582,7 +3581,7 @@
                                                                                                                             <input type="radio" name="dia" value="dia5_op1"> Seleccionar
                                                                                                                         </h6>
                                                                                                                     </div>
-                                                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                                         <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
                                                                                                                             De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
                                                                                                                         </span>
@@ -3595,7 +3594,7 @@
                                                                                                                     @endphp
                                                                                                                 @else
                                                                                                                     @if ($horarios5->cont_dia==1 && $horarios5->cont_tarde==1)
-                                                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                                                                 De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                                                             </span>
@@ -3603,7 +3602,7 @@
                                                                                                                                 <input type="radio" name="dia" value="dia5_op1"> Seleccionar
                                                                                                                             </h6>
                                                                                                                         </div>
-                                                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                                                                                 De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                                                                             </span>
@@ -3624,7 +3623,7 @@
                                                                                         @else
                                                                                             @if ($cont==9)
                                                                                                 @if ($horarios5->cont_dia==2 && $horarios5->cont_tarde==1)
-                                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                         <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                                             De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                                         </span>
@@ -3632,7 +3631,7 @@
                                                                                                             <input type="radio" name="dia" value="dia5_op1"> Seleccionar
                                                                                                         </h6>
                                                                                                     </div>
-                                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                         <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
                                                                                                             De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
                                                                                                         </span>
@@ -3640,7 +3639,7 @@
                                                                                                             <input type="radio" name="dia" value="dia5_op2"> Seleccionar
                                                                                                         </h6>
                                                                                                     </div>
-                                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                         <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                                                             De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                                                         </span>
@@ -3653,7 +3652,7 @@
                                                                                                     @endphp
                                                                                                 @else
                                                                                                     @if ($horarios5->cont_dia==0 && $horarios5->cont_tarde==1)
-                                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                                                                 De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                                                             </span>
@@ -3666,7 +3665,7 @@
                                                                                                         @endphp
                                                                                                     @else
                                                                                                         @if ($horarios5->cont_dia==1 && $horarios5->cont_tarde==0)
-                                                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                                                            <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                                 <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                                                     De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                                                 </span>
@@ -3679,7 +3678,7 @@
                                                                                                             @endphp
                                                                                                         @else
                                                                                                             @if ($horarios5->cont_dia==2 && $horarios5->cont_tarde==0)
-                                                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                                     <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                                                         De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                                                     </span>
@@ -3687,7 +3686,7 @@
                                                                                                                         <input type="radio" name="dia" value="dia5_op1"> Seleccionar
                                                                                                                     </h6>
                                                                                                                 </div>
-                                                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                                     <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
                                                                                                                         De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
                                                                                                                     </span>
@@ -3700,7 +3699,7 @@
                                                                                                                 @endphp
                                                                                                             @else
                                                                                                                 @if ($horarios5->cont_dia==1 && $horarios5->cont_tarde==1)
-                                                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                                         <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                                                             De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                                                         </span>
@@ -3708,7 +3707,7 @@
                                                                                                                             <input type="radio" name="dia" value="dia5_op1"> Seleccionar
                                                                                                                         </h6>
                                                                                                                     </div>
-                                                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                                         <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                                                                             De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                                                                         </span>
@@ -3727,7 +3726,7 @@
                                                                                             @else
                                                                                                 @if ($cont==10)
                                                                                                     @if ($horarios5->cont_dia==2 && $horarios5->cont_tarde==1)
-                                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                                                 De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                                             </span>
@@ -3735,7 +3734,7 @@
                                                                                                                 <input type="radio" name="dia" value="dia5_op1"> Seleccionar
                                                                                                             </h6>
                                                                                                         </div>
-                                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
                                                                                                                 De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
                                                                                                             </span>
@@ -3747,7 +3746,7 @@
                                                                                                         <div class="container">
                                                                                                             <br>
                                                                                                             <div class="row">
-                                                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                                     <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                                                                         De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                                                                     </span>
@@ -3762,7 +3761,7 @@
                                                                                                         @endphp
                                                                                                     @else
                                                                                                         @if ($horarios5->cont_dia==0 && $horarios5->cont_tarde==1)
-                                                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                                                            <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                                 <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                                                                     De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                                                                 </span>
@@ -3775,7 +3774,7 @@
                                                                                                             @endphp
                                                                                                         @else
                                                                                                             @if ($horarios5->cont_dia==1 && $horarios5->cont_tarde==0)
-                                                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                                     <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                                                         De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                                                     </span>
@@ -3788,7 +3787,7 @@
                                                                                                                 @endphp
                                                                                                             @else
                                                                                                                 @if ($horarios5->cont_dia==2 && $horarios5->cont_tarde==0)
-                                                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                                         <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                                                             De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                                                         </span>
@@ -3796,7 +3795,7 @@
                                                                                                                             <input type="radio" name="dia" value="dia5_op1"> Seleccionar
                                                                                                                         </h6>
                                                                                                                     </div>
-                                                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                                         <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
                                                                                                                             De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
                                                                                                                         </span>
@@ -3809,7 +3808,7 @@
                                                                                                                     @endphp
                                                                                                                 @else
                                                                                                                     @if ($horarios5->cont_dia==1 && $horarios5->cont_tarde==1)
-                                                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                                                                 De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                                                             </span>
@@ -3817,7 +3816,7 @@
                                                                                                                                 <input type="radio" name="dia" value="dia5_op1"> Seleccionar
                                                                                                                             </h6>
                                                                                                                         </div>
-                                                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                                                                                 De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                                                                             </span>
@@ -3836,7 +3835,7 @@
                                                                                                 @else
                                                                                                     @if ($cont==11)
                                                                                                         @if ($horarios5->cont_dia==2 && $horarios5->cont_tarde==1)
-                                                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                                                            <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                                 <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                                                     De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                                                 </span>
@@ -3848,7 +3847,7 @@
                                                                                                             <div class="container">
                                                                                                                 <br>
                                                                                                                 <div class="row">
-                                                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                                         <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
                                                                                                                             De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
                                                                                                                         </span>
@@ -3856,7 +3855,7 @@
                                                                                                                             <input type="radio" name="dia" value="dia5_op2"> Seleccionar
                                                                                                                         </h6>
                                                                                                                     </div>
-                                                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                                         <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                                                                             De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                                                                         </span>
@@ -3871,7 +3870,7 @@
                                                                                                             @endphp
                                                                                                         @else
                                                                                                             @if ($horarios5->cont_dia==0 && $horarios5->cont_tarde==1)
-                                                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                                     <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                                                                         De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                                                                     </span>
@@ -3884,7 +3883,7 @@
                                                                                                                 @endphp
                                                                                                             @else
                                                                                                                 @if ($horarios5->cont_dia==1 && $horarios5->cont_tarde==0)
-                                                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                                         <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                                                             De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                                                         </span>
@@ -3897,7 +3896,7 @@
                                                                                                                     @endphp
                                                                                                                 @else
                                                                                                                     @if ($horarios5->cont_dia==2 && $horarios5->cont_tarde==0)
-                                                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                                                                 De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                                                             </span>
@@ -3909,7 +3908,7 @@
                                                                                                                         <div class="container">
                                                                                                                             <br>
                                                                                                                             <div class="row">
-                                                                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                                                     <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
                                                                                                                                         De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
                                                                                                                                     </span>
@@ -3924,7 +3923,7 @@
                                                                                                                         @endphp
                                                                                                                     @else
                                                                                                                         @if ($horarios5->cont_dia==1 && $horarios5->cont_tarde==1)
-                                                                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                                                                            <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                                                 <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                                                                     De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                                                                 </span>
@@ -3936,7 +3935,7 @@
                                                                                                                             <div class="container">
                                                                                                                                 <br>
                                                                                                                                 <div class="row">
-                                                                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                                                         <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                                                                                             De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                                                                                         </span>
@@ -3961,7 +3960,7 @@
                                                                                                                 <br>
                                                                                                                 <div class="row">
                                                                                                                     @if ($horarios5->cont_dia==2 && $horarios5->cont_tarde==1)
-                                                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                                                                 De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                                                             </span>
@@ -3969,7 +3968,7 @@
                                                                                                                                 <input type="radio" name="dia" value="dia5_op1"> Seleccionar
                                                                                                                             </h6>
                                                                                                                         </div>
-                                                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
                                                                                                                                 De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
                                                                                                                             </span>
@@ -3977,7 +3976,7 @@
                                                                                                                                 <input type="radio" name="dia" value="dia5_op2"> Seleccionar
                                                                                                                             </h6>
                                                                                                                         </div>
-                                                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                                                                                 De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                                                                             </span>
@@ -3990,7 +3989,7 @@
                                                                                                                         @endphp
                                                                                                                     @else
                                                                                                                         @if ($horarios5->cont_dia==0 && $horarios5->cont_tarde==1)
-                                                                                                                            <div class="col-3" id="fondo_solicitud">
+                                                                                                                            <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                                                 <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                                                                                     De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                                                                                 </span>
@@ -4003,7 +4002,7 @@
                                                                                                                             @endphp
                                                                                                                         @else
                                                                                                                             @if ($horarios5->cont_dia==1 && $horarios5->cont_tarde==0)
-                                                                                                                                <div class="col-3" id="fondo_solicitud">
+                                                                                                                                <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                                                     <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                                                                         De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                                                                     </span>
@@ -4016,7 +4015,7 @@
                                                                                                                                 @endphp
                                                                                                                             @else
                                                                                                                                 @if ($horarios5->cont_dia==2 && $horarios5->cont_tarde==0)
-                                                                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                                                         <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                                                                             De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                                                                         </span>
@@ -4024,7 +4023,7 @@
                                                                                                                                             <input type="radio" name="dia" value="dia5_op1"> Seleccionar
                                                                                                                                         </h6>
                                                                                                                                     </div>
-                                                                                                                                    <div class="col-3" id="fondo_solicitud">
+                                                                                                                                    <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                                                         <span class="tit_datos_op2">{{$horarios5->dia5_op2}} <br>
                                                                                                                                             De {{$horarios5->hora_inicio_op2}}:{{$horarios5->minutos_inicio_op2}} a {{$horarios5->hora_fin_op2}}:{{$horarios5->minutos_fin_op2}}
                                                                                                                                         </span>
@@ -4037,7 +4036,7 @@
                                                                                                                                     @endphp
                                                                                                                                 @else
                                                                                                                                     @if ($horarios5->cont_dia==1 && $horarios5->cont_tarde==1)
-                                                                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op1}} <br>
                                                                                                                                                 De {{$horarios5->hora_inicio_op1}}:{{$horarios5->minutos_inicio_op1}} a {{$horarios5->hora_fin_op1}}:{{$horarios5->minutos_fin_op1}}
                                                                                                                                             </span>
@@ -4045,7 +4044,7 @@
                                                                                                                                                 <input type="radio" name="dia" value="dia5_op1"> Seleccionar
                                                                                                                                             </h6>
                                                                                                                                         </div>
-                                                                                                                                        <div class="col-3" id="fondo_solicitud">
+                                                                                                                                        <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12" id="fondo_solicitud">
                                                                                                                                             <span class="tit_datos_op2">{{$horarios5->dia5_op3}} <br>
                                                                                                                                                 De {{$horarios5->hora_inicio_op3}}:{{$horarios5->minutos_inicio_op3}} a {{$horarios5->hora_fin_op3}}:{{$horarios5->minutos_fin_op3}}
                                                                                                                                             </span>
@@ -4084,21 +4083,16 @@
                                     </div>
                                     <hr>
                                     <!--Name del motivo de tutoria para recibir por post en el controlador-->
-                                    <h6 class="negrita">Motivo de tutoría:</h6>
-                                    <div class="container" id="contenedor_general_op2">
+                                    <h6 id="txt_opcion_menu_vertical"><span class="negrita">Motivo de tutoría:</span></h6>
+                                    <div class="container">
                                         <br>
-                                        @if ($verifica_motivo==true)
-                                            <div class="alert alert-danger" id="mensaje">
-                                                {{$error}}
-                                            </div>
-                                        @endif
-                                        <h6>
+                                        <h6 id="txt_opcion_menu_vertical">
                                             <input type="radio" name="motivo" value="Dudas sobre algún (deber, investigación, consulta, ensayo) enviado" onclick="mostrar_otro_motivo();"> Dudas sobre algún (deber, investigación, consulta, ensayo) enviado
                                         </h6>
-                                        <h6>
+                                        <h6 id="txt_opcion_menu_vertical">
                                             <input type="radio" name="motivo" value="Dudas sobre la clase recibida" onclick="mostrar_otro_motivo();"> Dudas sobre la clase recibida 
                                         </h6>
-                                        <h6>
+                                        <h6 id="txt_opcion_menu_vertical">
                                             <input type="radio" name="motivo" value="Otro" onclick="mostrar_otro_motivo();"> Otro
                                         </h6>
                                         <div class="input-group mb-3" id="otro" style="display:none;">
@@ -4109,7 +4103,7 @@
                                         </div>
                                         <br>
                                     </div>
-                                    <button type="submit" class="btn btn-primary btn-sm btn-block">Solicitar tutoría</button>
+                                    <button type="submit" class="btn btn-dark" id="borde_radio">Solicitar tutoría</button>
                                 </form>
                             </div>
 

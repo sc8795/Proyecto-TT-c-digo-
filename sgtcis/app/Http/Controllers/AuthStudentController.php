@@ -334,6 +334,7 @@ class AuthStudentController extends Controller
                     $accion=$request->input("accion");
                     $materia=DB::table('materias')->where('id',$id_materia)->first();
                     $user_docente=DB::table('users')->where('id',$id_docente)->first();
+
                     $verifica_horarios=DB::table('horarios')->where('usuario_id',$id_docente)->exists();
                     $verifica_horarios2=DB::table('horario2s')->where('usuario_id',$id_docente)->exists();
                     $verifica_horarios3=DB::table('horario3s')->where('usuario_id',$id_docente)->exists();
@@ -360,7 +361,6 @@ class AuthStudentController extends Controller
                     }else{
                         $arreglo_est_inv=null;
                     }
-                    //dd($arreglo_est_inv);
                     $lista_estudiantes_sin_arrastre=User::orderBy('id','DESC')
                         ->where('is_estudiante',true)->where('paralelo',$user_student->paralelo)->where('ciclo',$user_student->ciclo)->where('id','!=',$user_student->id)
                         ->paginate(5);
@@ -376,17 +376,25 @@ class AuthStudentController extends Controller
                         return view('user_student.vista_solicitar_tutoria',compact('materia','user_docente','accion','seleccionado','estado','accion','lista_estudiantes_sin_arrastre','invitacion','arreglo_est_inv','horarios','horarios2','horarios3','horarios4','horarios5'));
                     }
                     if($accion=="invitar"){
+                        $id_estudiante_invitado=$request->input('estudiante');
+                        $user_invitado_msj=DB::table('users')->where('id',$id_estudiante_invitado)->first();
                         $seleccionado=1;
                         $estado=0;
                         $invitacion=$this->invitar_estudiante($request);
                         if($invitacion=="error"){
-                            /* ------------------------------------------------------- FALTA PONER MENSAJE DE ERROR NO SE PUEDE INVITAR */
+                            $invitacion=DB::table('invitacionestudiantes')->where('user_invita_id',$user_student->id)
+                                ->where('solitutoria_id',null)
+                                ->first();
+                            flash("El estudiante $user_invitado_msj->name $user_invitado_msj->lastname, ya ha sido invitado")->error();
                         }else{
                             $arreglo_est_inv=explode('.', $invitacion->user_invitado_id);
+                            flash("El estudiante $user_invitado_msj->name $user_invitado_msj->lastname, ha sido invitado")->success();
                         }
                         return view('user_student.vista_solicitar_tutoria',compact('materia','user_docente','accion','seleccionado','estado','accion','lista_estudiantes_sin_arrastre','invitacion','arreglo_est_inv','horarios','horarios2','horarios3','horarios4','horarios5'));
                     }
                     if($accion=="cancelar_invitacion"){
+                        $id_est_cancelar_inv=$request->input("id_est_cancelar_inv");
+                        $user_invitado_msj=DB::table('users')->where('id',$id_est_cancelar_inv)->first();
                         $seleccionado=1;
                         $estado=0;
                         $invitacion=$this->cancelar_invitacion($request);
@@ -398,6 +406,7 @@ class AuthStudentController extends Controller
                         }else{
                             $arreglo_est_inv=null;
                         }
+                        flash("Ha cancelado la invitación a $user_invitado_msj->name $user_invitado_msj->lastname")->warning();
                         return view('user_student.vista_solicitar_tutoria',compact('materia','user_docente','accion','seleccionado','estado','accion','lista_estudiantes_sin_arrastre','invitacion','arreglo_est_inv','horarios','horarios2','horarios3','horarios4','horarios5'));
                     }
                 }
@@ -491,8 +500,8 @@ class AuthStudentController extends Controller
                     ]);
                 }
                 $invitacion=DB::table('invitacionestudiantes')->where('user_invita_id',$user_student->id)
-                        ->where('solitutoria_id',null)
-                        ->first();
+                    ->where('solitutoria_id',null)
+                    ->first();
                 return $invitacion;
             }else{
                 return redirect()->route('show_login_form_student');
