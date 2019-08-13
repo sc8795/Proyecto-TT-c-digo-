@@ -32,7 +32,6 @@
                     <tbody>
                         @php
                             $cont=0;
-                            //v_p=vista principal
                             $accion="v_p";  
                         @endphp
                         
@@ -1136,7 +1135,7 @@
                     </tbody>
                 </table>
                 @else
-                    <h6 class="tit_general">No hay datos registradas</h6>
+                    <h6 class="tit_general">No hay materias registradas</h6>
                 @endif
             </div>
         </div>

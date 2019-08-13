@@ -43,6 +43,9 @@
     background-color:rgba(156, 150, 172, 0.5);;
     color: aliceblue;
 }
+#borde_radio{
+    border-radius: 20px;
+}
 .vertical-menu .menu_vertical .icono{
     font-size: 12px;
 }

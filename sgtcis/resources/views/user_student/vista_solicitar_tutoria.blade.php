@@ -1,25 +1,16 @@
 @extends('layout_estudiante')
 
 @section('content')
-    @include('user_student.vistas_iguales.menu_horizontal')
-@endsection
-
-@section('content2')
     <div class="row">
-        @include('user_student.vistas_iguales.imagen_texto')
-        <div class="col-9" id="titulo_general">
-            <h3>Solicitar tutoría</h3>
-        </div>
-    </div>
-@endsection
-
-@section('content3')
-    <div class="row">
-        <div class="col-3">
+        <div class="col-12">
             @include('user_student.vistas_iguales.menu_vertical')
-        </div>
-        <div class="col-9">
-            <div class="container" id="contenedor_general">
+            <div class="container-fluid" id="espacio_menu_texto"></div>
+            <div class="container" style="background: white">
+                <h1 id="txt_opcion_menu_vertical">
+                    <a href="{{url("vista_general_student")}}" title="Regresar a vista general de la cuenta"><span class="fas fa-arrow-circle-left"></span></a>
+                    <span class="negrita">Solicitar tutoría</span>
+                </h1>
+                <br>
                 @if ($estado==0)
                     @php
                         $mensaje_error="";
@@ -40,27 +31,24 @@
                             @endphp
                         @endforeach
                     @endif
-                    <h6 class="tit_general">Acción: 
-                            <span class="tit_datos">Solicitar tutoría para la materia {{$materia->name}} con el docente {{$user_docente->name}} {{$user_docente->lastname}}.</span>
-                        </h6><br>
-                        <h6 class="tit_datos_op2">Llene los campos a continuación, para completar el proceso de solicitud de tutoría:</h6><br>
-                    <div class="d-flex p-2 bd-highlight" id="contenedor_2">
+                    <h5 id="txt_opcion_menu_vertical">
+                        <span class="negrita">Solicita tutoría para la materia {{$materia->name}} con el docente {{$user_docente->name}} {{$user_docente->lastname}}.</span>
+                        <a href="{{route('solicitar_tutoria')}}" class="btn btn-outline-dark" id="borde_radio" title="Solicitar tutoría a otro docente">Cancelar</a>
+                    </h5>
+                    <h6 id="txt_opcion_menu_vertical">Llene los campos a continuación, para completar el proceso de solicitud de tutoría:</h6><br>
+                    <div class="d-flex p-2 bd-highlight" id="fondo_tabla_general">
                         <span class="tit_datos">Formulario de solicitud de tutoría</span>
                     </div>
-                    <div class="container" id="contenedor_general_op2">
+                    <div class="container">
                         <br>
                         <div class="container">
-                            <h6 class="negrita">Tipo de tutoría</h6>
-                            @if ($verifica_tipo==true)
-                                <div class="alert alert-danger" id="mensaje">
-                                    {{$error}}
-                                </div>
-                            @endif
+                            <h6 id="txt_opcion_menu_vertical"><span class="negrita">Tipo de tutoría</span></h6>
+                            <!--Seleccionar tipo (individual o grupal)-->
                             <div class="row">
-                                    <div class="col-2">
-                                            <input type="radio" name="tipo" id="individual" value="individual" onclick="tipo_tutoria();"> Individual
-                                        </div>
-                                <div class="col">
+                                <div class="col-2" id="txt_opcion_menu_vertical">
+                                    <input type="radio" name="tipo" id="individual" value="individual" onclick="tipo_tutoria();"> Individual
+                                </div>
+                                <div class="col" id="txt_opcion_menu_vertical">
                                     <input type="radio" name="tipo" id="grupal" value="grupal" onclick="tipo_tutoria();" <?php 
                                         if ($seleccionado == 1){
                                             echo 'checked';
@@ -68,7 +56,7 @@
                                     > Grupal
                                 </div>
                             </div>
-
+                            <!--Contenedor que aparece cuando selecciona tipo grupal-->
                             <div class="container" style="display: none;" id="tipo_grupal">
                                 <hr>
                                 <div class="row">
@@ -80,7 +68,6 @@
                                                 $accion="buscar";
                                             @endphp
                                             <div class="row no-gutters align-items-center">
-                                                <!--end of col-->
                                                 <div class="col">
                                                     <input class="form-control form-control-borderless form-control-sm" name="name" id="name" type="search" placeholder="Nombre" title="Escriba el nombre de la materia">
                                                 </div>
@@ -90,19 +77,16 @@
                                                 <input type="hidden" name="id_materia" id="id_materia" value="{{$materia->id}}">
                                                 <input type="hidden" name="id_docente" id="id_docente" value="{{$user_docente->id}}">
                                                 <input type="hidden" name="accion" value="{{$accion}}">
-                                                <!--end of col-->
-                                                <div class="col-auto">
-                                                    <!--a href="#" id="btn_enviar">Enviar</a-->
-                                                    <button class="btn btn-success btn-sm" type="submit" title="Buscar estudiante">Buscar <span class="fas fa-search"></span></button>
+                                                <div class="col-auto" id="txt_opcion_menu_vertical">
+                                                    <button class="btn btn-outline-success btn-sm" type="submit" title="Buscar estudiante">Buscar <span class="fas fa-search"></span></button>
                                                 </div>
-                                                <!--end of col-->
                                             </div>
                                         </form>
                                         <hr>
                                         <!--CONDICIÓN QUE MUESTRA LOS RESULTADOS OBTENIDOS DE LA BÚSQUEDA, DENTRO DE ELLA SE ENCUENTRA EL FORMULARIO 
                                         DE INVITACIÓN AL ESTUDIANTE-->
                                         @if ($lista_estudiantes_sin_arrastre->isNotEmpty())
-                                            <table class="table table-bordered table-sm">
+                                            <table class="table table-bordered table-sm" id="txt_opcion_menu_vertical">
                                                 <thead>
                                                     <tr>
                                                     <th class="col">Nombres</th>
@@ -122,7 +106,7 @@
                                                                 <input type="hidden" name="id_materia" id="id_materia" value="{{$materia->id}}">
                                                                 <input type="hidden" name="id_docente" id="id_docente" value="{{$user_docente->id}}">
                                                                 <input type="hidden" name="accion" id="accion" value="{{$accion}}">
-                                                                <td><button type="submit" class="hint--top btn btn-block btn-success btn-sm" data-hint="Invitar" name="modalidad" id="modalidad" value="modalidad" onclick="btn_invita_est();"><span class="fas fa-check-circle"></span></button></td>
+                                                                <td><button type="submit" class="hint--top btn btn-block btn-outline-warning btn-sm" data-hint="Invitar" name="modalidad" id="borde_radio" value="modalidad"><span class="fas fa-check-circle"></span></button></td>
                                                             </tr>
                                                         </form>
                                                     @endforeach
@@ -136,15 +120,15 @@
                                         <!--CONDICIÓN QUE MUESTRA LA LISTA DE LOS ESTUDIANTES INVITADOS, DENTRO DE ELLA SE ENCUENTRA EL FORMULARIO 
                                         DE CANCELAR INVITACIÓN AL ESTUDIANTE-->
                                         @if ($invitacion!=null)
-                                            <div class="d-flex p-1 bd-highlight" id="contenedor_2">
+                                            <div class="d-flex p-1 bd-highlight" id="fondo_tabla_general">
                                                 <span class="tit_datos">Estudiantes invitados</span>
                                             </div>
-                                            <div class="container" id="contenedor_general_op2">
+                                            <div class="container">
                                                 @if ($arreglo_est_inv!=null)
                                                     @php
                                                         $verifica_invitacion=1;
                                                     @endphp
-                                                    <table class="table table-bordered table-sm">
+                                                    <table class="table table-bordered table-sm" id="txt_opcion_menu_vertical">
                                                         <hr>
                                                         <thead>
                                                             <tr>
@@ -166,7 +150,7 @@
                                                                         <input type="hidden" name="id_docente" id="id_docente" value="{{$user_docente->id}}">
                                                                         <input type="hidden" name="accion" id="accion" value="{{$accion}}">
                                                                         <td>
-                                                                            <button type="submit" class="hint--top btn btn-block btn-danger btn-sm" data-hint="Cancelar invitación"><span class="fas fa-trash"></span></button>
+                                                                            <button type="submit" class="hint--top btn btn-outline-danger btn-block btn-sm" data-hint="Cancelar invitación" id="borde_radio"><span class="fas fa-trash"></span></button>
                                                                         </td>
                                                                     </tr>
                                                                 </form>
@@ -195,13 +179,13 @@
                                         <input type="hidden" name="id_invitacion" id="id_invitacion" value="{{$invitacion->id}}">
                                     @endif
                                     <!--Name de la modalidad de tutoria para recibir por post en el controlador-->
-                                    <h6 class="negrita">Modalidad de tutoría:</h6>
+                                    <h6 id="txt_opcion_menu_vertical"><span class="negrita">Modalidad de tutoría:</span></h6>
                                     @if ($verifica_modalidad==true)
                                         <div class="alert alert-danger" id="mensaje">
                                             {{$error}}
                                         </div>
                                     @endif
-                                    <div class="row">
+                                    <div class="row" id="txt_opcion_menu_vertical">
                                         <div class="col-2">
                                             <input type="radio" name="modalidad" id="modalidad" value="presencial"> Presencial
                                         </div>
@@ -213,7 +197,7 @@
                                     <!--Name del horario de tutoria para recibir por post en el controlador-->
                                     <h6 class="negrita">Horario de tutoría:</h6>
                                     <!--Presenta los horarios de tutoría del docente seleccionado-->
-                                    <div class="container" id="contenedor_general_op2">
+                                    <div class="container">
                                         @if ($verifica_dia==true)
                                             <div class="alert alert-danger" id="mensaje">
                                                 {{$error}}
@@ -8077,9 +8061,24 @@
                         <br>
                     </div>
                 @else
-                    {!! Alert::render() !!}
+                    <h5 id="txt_opcion_menu_vertical"><span class="negrita">El docente {{$user_docente->name}} {{$user_docente->lastname}} no tiene asignado horario de tutoría.</span></h5>
+                    <br>
+                    <br>
+                    <hr>
+                    <a href="{{route('solicitar_tutoria')}}" class="btn btn-dark" id="borde_radio">Solicitar tutoría a otro docente</a>
+                    <br>
+                    <br>
                 @endif
-            </div>        
+                <br>
+            </div>
+            <div class="container-fluid" id="espacio_menu_texto"></div>
+            @include('user_student.vistas_iguales.footer')
+            </div>
+            </div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script src="{{asset('js/bootstrap.min.js')}}"></script>
 @endsection

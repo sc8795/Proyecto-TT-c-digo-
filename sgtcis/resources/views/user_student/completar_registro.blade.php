@@ -112,6 +112,7 @@
                         @php
                             $mensaje_error="";
                             $verifica_paralelo=false;
+                            $verifica_docente=false;
                             $verifica_password=false;
                         @endphp
                         @if (count($errors)>0)
@@ -120,6 +121,7 @@
                                     $mensaje_error=$error;
                                     $verifica_paralelo = str_contains($mensaje_error, 'paralelo');
                                     $verifica_password = str_contains($mensaje_error, 'contraseña');
+                                    $verifica_docente = str_contains($mensaje_error, 'docente');
                                 @endphp
                             @endforeach
                         @endif
@@ -153,15 +155,24 @@
                                             @endphp
                                         </div>
                                     @endif
+                                    @if ($verifica_docente==true)
+                                        <div class="alert alert-danger" id="mensaje_uno">
+                                            {{$error}}
+                                            @php
+                                                echo '<script language="javascript">alert("El campo docente es obligatorio");</script>';
+                                            @endphp
+                                        </div>
+                                    @endif
                                     @if ($materias->isNotEmpty())
                                     <span class="negrita" id="color_verde">Resultados encontrados:</span>
                                     <hr>
-                                    <table class="table table-bordered table-sm">
+                                    <table class="table table-bordered table-sm table-responsive table-striped">
                                         <thead>
                                             <tr>
-                                                <th scope="col">Materia</th>
-                                                <th scope="col">Paralelo</th>
-                                                <th scope="col">Acción</th>
+                                                <th class="col">Materia</th>
+                                                <th class="col">Paralelo</th>
+                                                <th class="col">Docente</th>
+                                                <th class="col">Acción</th>
                                             </tr>
                                         </thead>
                                             @foreach ($materias as $materia) 
@@ -169,7 +180,7 @@
                                                 {{ csrf_field() }}
                                                 <tbody>
                                                     <tr>
-                                                        <td><input type="hidden" id="materia" name="materia" value="{{$materia->name}}">{{$materia->name}}</td>
+                                                        <td><input type="hidden" id="materia" name="materia" value="{{$materia->id}}">{{$materia->name}}</td>
                                                         <td>
                                                             <select name="paralelo" id="paralelo">
                                                                 <option value="">-</option>
@@ -177,6 +188,16 @@
                                                                 <option value="B">B</option>
                                                                 <option value="C">C</option>
                                                                 <option value="D">D</option>
+                                                            </select>
+                                                        </td>
+                                                        <td>
+                                                            <select name="docente" id="docente">
+                                                                <option value="">-</option>
+                                                                @foreach ($docentes as $user)
+                                                                    <option value="{{$user->id}}">
+                                                                        {{$user->name}} {{$user->lastname}}
+                                                                    </option>
+                                                                @endforeach
                                                             </select>
                                                         </td>
                                                         <td>                    
@@ -214,10 +235,13 @@
                                                         @include('flash::message')
                                                     </div>
                                                     @foreach ($arreglo_materia as $a_materia)
+                                                        @php
+                                                            $materia_n=DB::table('materias')->where('id',$a_materia)->first();
+                                                        @endphp
                                                         <form action="{{url("eliminar_materia_agregada")}}" method="POST">
                                                             {{ csrf_field() }}
                                                             <tr>
-                                                                <td><input type="hidden" name="materia" value="{{$a_materia}}">{{$a_materia}}</td>
+                                                                <td><input type="hidden" name="materia" value="{{$a_materia}}">{{$materia_n->name}}</td>
                                                                 <td>
                                                                     <button type="submit" class="hint--top btn btn-block btn-danger btn-sm" data-hint="Borrar"><span class="fas fa-trash"></span></button>
                                                                 </td>
@@ -233,8 +257,11 @@
                                                 <input type="hidden" name="paralelo" value="arrastre">
                                                 <input type="hidden" name="ciclo" value="arrastre">
                                                 @if ($verifica_password==true)
-                                                    <div class="alert alert-danger" id="mensaje_siete">
+                                                    <div class="alert alert-danger" id="mensaje_uno">
                                                         {{$error}}
+                                                        @php
+                                                            echo '<script language="javascript">alert("El campo contraseña es obligatorio");</script>';
+                                                        @endphp
                                                     </div>
                                                 @endif
                                                 <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña">
@@ -257,7 +284,6 @@
     </div>
     <div class="container-fluid" id="espacio_menu_texto"></div>
 @endsection
-
 
 @section('content4')
     @include('user_student.vistas_iguales.footer')

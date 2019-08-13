@@ -14,6 +14,6 @@ class Arrastre extends Model
      * @var array
      */
     protected $fillable = [
-        'user_estudiante_id','materia','paralelo'
+        'user_estudiante_id','materia','paralelo','docente'
     ];
 }

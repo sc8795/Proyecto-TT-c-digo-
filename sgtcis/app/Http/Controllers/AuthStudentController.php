@@ -83,13 +83,14 @@ class AuthStudentController extends Controller
                     $materias=Materia::orderBy('id','DESC')
                         ->paginate(5);
                     $verifica_arrastre=DB::table('arrastres')->where('user_estudiante_id',$user_student->id)->exists();
+                    $docentes=DB::table('users')->where('is_docente',true)->get();
                     if($verifica_arrastre==true){
                         $arrastre=DB::table('arrastres')->where('user_estudiante_id',$user_student->id)->first();
                         $arreglo_materia=explode('.', $arrastre->materia);
                         $arreglo_paralelo=explode('.', $arrastre->paralelo);
-                        return view('user_student.completar_registro',compact('user_student','materias','arrastre','arreglo_materia','verifica_arrastre','arreglo_paralelo'));
+                        return view('user_student.completar_registro',compact('user_student','materias','arrastre','arreglo_materia','verifica_arrastre','arreglo_paralelo','docentes'));
                     }else{
-                        return view('user_student.completar_registro',compact('user_student','materias','verifica_arrastre'));
+                        return view('user_student.completar_registro',compact('user_student','materias','verifica_arrastre','docentes'));
                     }   
                 }else{
                     return view('user_student.auth_student'); 
@@ -156,29 +157,34 @@ class AuthStudentController extends Controller
                 if($user_student->paralelo=="NA" && $user_student->ciclo=="NA"){
                     $data=request()->validate([
                         'paralelo'=>'required',
+                        'docente'=>'required'
                     ]);
-                    $materia=$request->input('materia');
+                    $materia_id=$request->input('materia');
                     $paralelo=$request->input('paralelo');
+                    $docente_id=$request->input('docente');
+                    $materia=DB::table('materias')->where('id',$materia_id)->first();
                     $verifica_arrastre=DB::table('arrastres')->where('user_estudiante_id',$user_student->id)->exists();
                     if($verifica_arrastre==true){
                         $arrastre=DB::table('arrastres')->where('user_estudiante_id',$user_student->id)->first();
                         $id=$arrastre->id;
                         $materia_agregada=$arrastre->materia;
                         $paralelo_agregado=$arrastre->paralelo;
+                        $docente_agregado=$arrastre->docente;
                         if($arrastre->materia==null){
                             $arrastre=DB::table('arrastres')->where('user_estudiante_id',$user_student->id);
                             $arrastre->delete();
                             DB::table('arrastres')->insert([
                                 'id'=>$id,
                                 'user_estudiante_id'=>$user_student->id,
-                                'materia'=>$materia,
-                                'paralelo'=>$paralelo
+                                'materia'=>$materia_id,
+                                'paralelo'=>$paralelo,
+                                'docente'=>$docente_id
                             ]);
                         }else{
                             $arreglo_materia_agregada=explode('.', $materia_agregada);
                             foreach ($arreglo_materia_agregada as $recorre) {
-                                if($recorre==$materia){
-                                    flash("La materia $materia, ya ha sido añadida")->error();
+                                if($recorre==$materia_id){
+                                    flash("La materia $materia->name, ya ha sido añadida")->error();
                                     return redirect()->route('vista_student_google');
                                 }                            
                             }
@@ -187,18 +193,20 @@ class AuthStudentController extends Controller
                             DB::table('arrastres')->insert([
                                 'id'=>$id,
                                 'user_estudiante_id'=>$user_student->id,
-                                'materia'=>$materia_agregada.".".$materia,
-                                'paralelo'=>$paralelo_agregado.".".$paralelo
+                                'materia'=>$materia_agregada.".".$materia_id,
+                                'paralelo'=>$paralelo_agregado.".".$paralelo,
+                                'docente'=>$docente_agregado.".".$docente_id
                             ]);
                         }
                     }else{
                         DB::table('arrastres')->insert([
                             'user_estudiante_id'=>$user_student->id,
-                            'materia'=>$materia,
-                            'paralelo'=>$paralelo
+                            'materia'=>$materia_id,
+                            'paralelo'=>$paralelo,
+                            'docente'=>$docente_id
                         ]);
                     }
-                    flash("La materia $materia, ha sido añadida")->success();
+                    flash("La materia $materia->name, ha sido añadida")->success();
                     return redirect()->route('vista_student_google');
                 }else{
                     return view('user_student.auth_student'); 
@@ -213,30 +221,35 @@ class AuthStudentController extends Controller
             $user_student = Auth::user();
             if($user_student->is_estudiante==true){
                 if($user_student->paralelo=="NA" && $user_student->ciclo=="NA"){
-                    $materia=$request->input('materia');
+                    $materia_id=$request->input('materia');
+                    $materia=DB::table('materias')->where('id',$materia_id)->first();
                     $arrastre=DB::table('arrastres')->where('user_estudiante_id',$user_student->id)->first();
                     $arreglo_materia=explode('.', $arrastre->materia);
                     $arreglo_paralelo=explode('.', $arrastre->paralelo);
+                    $arreglo_docente=explode('.', $arrastre->docente);
                     for ($i=0; $i < count($arreglo_materia); $i++) { 
                         if($arreglo_materia[$i]==$materia){
                             unset($arreglo_materia[$i]);
                             unset($arreglo_paralelo[$i]);
+                            unset($arreglo_docente[$i]);
 
                             $id=$arrastre->id;
                             //$paralelo = implode(',', $paralelo);
                             $materia_agregada=implode('.',$arreglo_materia);
                             $paralelo_agregado=implode('.',$arreglo_paralelo);
+                            $docente_agregado=implode('.',$arreglo_docente);
                             $arrastre=DB::table('arrastres')->where('user_estudiante_id',$user_student->id);
                             $arrastre->delete();
                             DB::table('arrastres')->insert([
                                 'id'=>$id,
                                 'user_estudiante_id'=>$user_student->id,
                                 'materia'=>$materia_agregada,
-                                'paralelo'=>$paralelo_agregado
+                                'paralelo'=>$paralelo_agregado,
+                                'docente'=>$docente_agregado,
                             ]);
                         }
                     }
-                    flash("La materia $materia, ha sido eliminada")->warning();
+                    flash("La materia $materia->name, ha sido eliminada")->warning();
                     return redirect()->route('vista_student_google');
                 }else{
                     return view('user_student.auth_student'); 
@@ -269,7 +282,6 @@ class AuthStudentController extends Controller
     public function editar_perfil_student(){
         return view('user_student.editar_perfil_student');
     }
-
     public function editar_student(){
         if (Auth::check()) {
             $user = Auth::user();
@@ -296,12 +308,21 @@ class AuthStudentController extends Controller
 |--------------------------------------------------------------------------
 */
     public function solicitar_tutoria(){
-        $materias = DB::table('materias')->get();
         if (Auth::check()) {
             $user = Auth::user();
+            if($user->is_estudiante==true){
+                $materias = DB::table('materias')->get();
+                $users_docentes=DB::table('users')->where('is_docente',true)->get();
+                if($user->paralelo=="arrastre" && $user->ciclo=="arrastre"){
+                    $arrastre=DB::table('arrastres')->where('user_estudiante_id',$user->id)->get();
+                    return view('user_student.solicitar_tutoria_arrastre',compact('arrastre','users_docentes','materias'));
+                }else{
+                    return view('user_student.solicitar_tutoria',compact('materias','user','users_docentes'));
+                }
+            }else{
+                return redirect()->route('show_login_form_student');
+            }
         }
-        $users_docentes=DB::table('users')->where('is_docente',true)->get();
-        return view('user_student.solicitar_tutoria',compact('materias','user','users_docentes'));
     }
     public function vista_solicitar_tutoria(Request $request){
         if (Auth::check()) {
@@ -326,9 +347,7 @@ class AuthStudentController extends Controller
                         $horarios5=DB::table('horario5s')->where('usuario_id',$id_docente)->first();
                     }else{
                         $estado=1;
-                        Alert::info('¡Aviso! ')
-                            ->details("El docente $user_docente->name $user_docente->lastname no tiene asignado horario de tutoría.");
-                        return view('user_student.vista_solicitar_tutoria',compact('estado'));
+                        return view('user_student.vista_solicitar_tutoria',compact('estado','user_docente'));
                     }
                     $invitacion=DB::table('invitacionestudiantes')->where('user_invita_id',$user_student->id)
                         ->where('solitutoria_id',null)
@@ -393,6 +412,14 @@ class AuthStudentController extends Controller
             if($user_student->is_estudiante==true){
                 $name = $request->input('name');
                 $lastname = $request->input('lastname');
+                if($user_student->ciclo=="arrastre" && $user_student->paralelo=="arrastre"){
+                    $lista_estudiantes_sin_arrastre=User::orderBy('id','DESC')
+                        ->name($name)
+                        ->lastname($lastname)
+                        ->where('is_estudiante',true)->where('id','!=',$user_student->id)
+                        ->paginate(1);
+                    return $lista_estudiantes_sin_arrastre;
+                }
                 $lista_estudiantes_sin_arrastre=User::orderBy('id','DESC')
                     ->name($name)
                     ->lastname($lastname)
