@@ -164,15 +164,17 @@
                                         </div>
                                     @endif
                                     @if ($materias->isNotEmpty())
-                                    <span class="negrita" id="color_verde">Resultados encontrados:</span>
+                                    <div id="mensaje_cuatro" class="alert alert-success">
+                                        <span>Resultados encontrados</span>
+                                    </div>
                                     <hr>
                                     <table class="table table-bordered table-sm table-responsive table-striped">
                                         <thead>
                                             <tr>
-                                                <th class="col">Materia</th>
-                                                <th class="col">Paralelo</th>
-                                                <th class="col">Docente</th>
-                                                <th class="col">Acción</th>
+                                                <th class="col-lg-4">Materia</th>
+                                                <th class="col-lg-2">Paralelo</th>
+                                                <th class="col-lg-4">Docente</th>
+                                                <th class="col-lg-2">Acción</th>
                                             </tr>
                                         </thead>
                                             @foreach ($materias as $materia) 
@@ -285,8 +287,62 @@
     <div class="container-fluid" id="espacio_menu_texto"></div>
 @endsection
 
-@section('content4')
-    @include('user_student.vistas_iguales.footer')
+@section('footer')
+    <footer class="page-footer font-small blue pt-4" id="fondo_header_footer">
+        <div class="container-fluid text-center text-md-left">
+          <div class="row">
+            <div class="col-md-1 mt-md-0 mt-1"></div>
+            <div class="col-md-3 mt-md-0 mt-3">
+              <h6 class="text-uppercase" id="txt_opcion_menu_horizontal"><span class="negrita">SGT - CIS</span></h6>
+              <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background:#fba707;">
+              <p class="text-justify" id="txt_footer">Software web para tutorías académicas dentro de la Carrera de Ingeniería en Sistemas de la Universidad Nacional de Loja.</p>      
+            </div>
+            <div class="col-md-2 mb-md-0 mb-2">
+      
+              <!-- Links -->
+              <h6 class="text-uppercase" id="txt_opcion_menu_horizontal"><span class="negrita">NAVEGAR</span></h6>
+              <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background:#fba707;">
+              <ul class="list-unstyled">
+                <li>
+                  <a href="{{url('/')}}" id="txt_opcion_menu_horizontal">INICIO</a>
+                </li>
+                <li>
+                  <a href="{{url("acerca_de")}}" id="txt_opcion_menu_horizontal">ACERCA DE</a>
+                </li>
+                <!--li>
+                  <a href="#!" id="txt_opcion_menu_horizontal">AYUDA</a>
+                </li-->
+              </ul>
+            </div>
+            <div class="col-md-2 mb-md-0 mb-2">
+    
+                <!-- Links -->
+                <h6 class="text-uppercase" id="txt_opcion_menu_horizontal"><span class="negrita">CERRAR SESIÓN</span></h6>
+                <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background:#fba707;">
+                <ul class="list-unstyled">
+                    <li>
+                    <form method="POST" action="{{route('logout_student')}}" id="logout">
+                        {{ csrf_field() }}
+                        <button class="btn btn-outline-light btn-sm">Cerrar <span class="fas fa-sign-out-alt"></span></button>
+                    </form>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-3 mt-md-0 mt-3">
+                <h6 class="text-uppercase" id="txt_opcion_menu_horizontal"><span class="negrita">CONTACTOS</span></h6>
+                <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background:#fba707;">
+                <p id="txt_footer"><span class="fas fa-home"></span> <span>Loja - Ecuador</span></p>
+                <hr>
+                <p id="txt_footer"><span class="fas fa-envelope-square"></span> <span>sdcartuchem@unl.edu.ec</span></p>   
+            </div>
+            <div class="col-md-1 mt-md-0 mt-1"></div>
+          </div>
+        </div>
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3" id="fondo_copyright">© 2019 Copyright:
+          <a href="http://sgtcis.azurewebsites.net/public/" id="txt_footer"> sgtcis.azurewebsites.net</a>
+        </div>
+      </footer>
 @endsection
 
 @section('scripts')

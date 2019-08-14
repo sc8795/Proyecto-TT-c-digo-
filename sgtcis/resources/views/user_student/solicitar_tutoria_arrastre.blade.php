@@ -45,7 +45,7 @@
                                                 <input type="hidden" name="accion" value="{{$accion}}">
                                                 <input type="hidden" name="id_docente" value="{{$user_docente->id}}">
                                                 <input type="hidden" name="id_materia" value="{{$materia->id}}">
-                                                <button type="submit" class="btn btn-outline-dark btn-sm" id="borde_radio" title="Ir a formulario - solicitar tutoría">Solicitar tutoría <span class="fas fa-check-circle"></span></button>    
+                                                <button type="submit" class="btn btn-outline-dark btn-sm" id="borde_radio" title="Solicitar tutoría">Solicitar tutoría <span class="fas fa-check-circle"></span></button>    
                                             </form>
                                         </td>
                                     </tr>
@@ -56,6 +56,12 @@
                     <br>
                 @else
                     <h6 id="txt_opcion_menu_vertical"><span class="negrita">No hay materias registradas</span></h6>
+                    <br>
+                    <br>
+                    <hr>
+                    <a href="{{url("vista_general_student")}}" class="btn btn-dark" id="borde_radio">Vista general de la cuenta</a>
+                    <br>
+                    <br>
                 @endif
             </div>
             <div class="container-fluid" id="espacio_menu_texto"></div>

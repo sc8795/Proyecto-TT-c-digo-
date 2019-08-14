@@ -10,7 +10,7 @@ body{
     background-color:#1b1b1b;
 }
 
-/*estilos generales del contemido de la página de inicio*/
+/*estilos generales del contenido de la página de inicio*/
 #espacio_menu_texto{
     margin-top: 15px;
 }
@@ -22,6 +22,14 @@ body{
 }
 #formulario_registro{
     margin-top: 6%;
+}
+.acerca{
+    width: 80%;
+    margin: 2% auto;
+    text-align: justify;
+    border: solid 2px #4665ac;
+    border-radius: 10px;
+    padding: 1%;
 }
 /*ESTILOS PARA FORMULARIO DE REGISTRO DEL ESTUDIANTE*/
 .tit_ciclo_form{
@@ -36,6 +44,11 @@ body{
 }
 #txt_opcion_menu_horizontal{
     color: white;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 200;
+}
+#txt_negro{
+    color: black;
     font-family: 'Nunito', sans-serif;
     font-weight: 200;
 }
@@ -54,7 +67,7 @@ body{
     font-weight: 200;
 }
 #fondo_copyright{
-    background-color:#4665ac;;
+    background-color:#4665ac;
 }
 #opciones_inicio_sesion{
     margin-left: -40px;

@@ -9,12 +9,6 @@
             <div class="vertical-menu">
                 <ul class="menu_vertical">
                     <li>
-                        <form method="POST" action="{{route('logout_docente')}}" id="logout">
-                            {{ csrf_field() }}
-                            <button class="btn btn-outline-light btn-block btn-sm">Cerrar sesión <span class="fas fa-sign-out-alt"></span></button>
-                        </form>
-                    </li>
-                    <li>
                         <a href="{{route('vista_general_docente')}}"><i class="icono izquierda far fa-eye"></i>Vista general de la cuenta</a>
                     </li>
                     <li>
@@ -22,7 +16,9 @@
                             <!--li class="nav-item dropdown"-->
                                 <a href="#" id="navbarDropdown" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fa fa-bell"></i> Notificaciones
-                                    <span class="badge badge-danger" id="count-notification">{{auth()->user()->unreadNotifications->count()}}</span>
+                                    @if (auth()->user()->unreadNotifications->count()!=0)
+                                        <span class="badge badge-danger" id="count-notification">{{auth()->user()->unreadNotifications->count()}}</span>
+                                    @endif
                                     <span class="caret"></span>
                                 </a>
                                 <ul class="submenu_vertical">
@@ -37,7 +33,7 @@
                                                 </a>
                                             @endforeach    
                                         @else 
-                                            <a href="#" class="droptdown-item"> No tiene notificaciones </a>
+                                            <a href="{{route('vista_general_docente')}}" class="droptdown-item"> No tiene notificaciones </a>
                                         @endif
                                     <!--/div-->
                                     </li>
@@ -46,7 +42,14 @@
                         @endif
                     </li>
                     <li>
-                        <a href="{{url("evaluar_estudiante")}}"><i class="icono izquierda fas fa-star"></i>Evaluación al estudiante</a>
+                        <!--a href="{{url("evaluar_estudiante")}}"><i class="icono izquierda fas fa-star"></i>Evaluación al estudiante</a-->
+                        <a href="{{url("#")}}"><i class="icono izquierda fas fa-star"></i>Evaluación al estudiante</a>
+                    </li>
+                    <li style="margin-top: 20px;">
+                        <form method="POST" action="{{route('logout_docente')}}" id="logout">
+                            {{ csrf_field() }}
+                            <button class="btn btn-outline-light btn-block btn-sm">Cerrar sesión <span class="fas fa-sign-out-alt"></span></button>
+                        </form>
                     </li>
                 </ul>
             </div>
@@ -91,4 +94,5 @@
         $("#wrapper").toggleClass("toggled");
     });
     </script>
+    <script src="{{asset('js/bootstrap.min.js')}}"></script>
 @endsection

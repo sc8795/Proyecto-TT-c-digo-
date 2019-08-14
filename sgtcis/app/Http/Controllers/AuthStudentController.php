@@ -81,7 +81,7 @@ class AuthStudentController extends Controller
             if($user_student->is_estudiante==true){
                 if($user_student->paralelo=="NA" && $user_student->ciclo=="NA"){
                     $materias=Materia::orderBy('id','DESC')
-                        ->paginate(5);
+                        ->paginate(1);
                     $verifica_arrastre=DB::table('arrastres')->where('user_estudiante_id',$user_student->id)->exists();
                     $docentes=DB::table('users')->where('is_docente',true)->get();
                     if($verifica_arrastre==true){
@@ -116,7 +116,8 @@ class AuthStudentController extends Controller
             ]);
 
             if ($data["password"]!=null) {
-                $data["password"]=bcrypt($data['password']);
+                //$data["password"]=bcrypt($data['password']);
+                $data["password"]=$data['password'];
             }else{
                 unset($data["password"]);
             }
@@ -132,7 +133,7 @@ class AuthStudentController extends Controller
                 if($user_student->paralelo=="NA" && $user_student->ciclo=="NA"){
                     $materias=Materia::orderBy('id','DESC')
                         ->name($name)
-                        ->paginate(5);
+                        ->paginate(3);
                     $verifica_arrastre=DB::table('arrastres')->where('user_estudiante_id',$user_student->id)->exists();
                     if($verifica_arrastre==true){
                         $arrastre=DB::table('arrastres')->where('user_estudiante_id',$user_student->id)->first();
@@ -293,7 +294,8 @@ class AuthStudentController extends Controller
             ]);
 
             if ($data["password"]!=null) {
-                $data["password"]=bcrypt($data['password']);
+                //$data["password"]=bcrypt($data['password']);
+                $data["password"]=$data['password'];
             }else{
                 unset($data["password"]);
             }
@@ -363,7 +365,7 @@ class AuthStudentController extends Controller
                     }
                     $lista_estudiantes_sin_arrastre=User::orderBy('id','DESC')
                         ->where('is_estudiante',true)->where('paralelo',$user_student->paralelo)->where('ciclo',$user_student->ciclo)->where('id','!=',$user_student->id)
-                        ->paginate(5);
+                        ->paginate(3);
                     if($accion=='v_p'){
                         $seleccionado=0;
                         $estado=0;
@@ -373,6 +375,8 @@ class AuthStudentController extends Controller
                         $seleccionado=1;
                         $estado=0;
                         $lista_estudiantes_sin_arrastre=$this->buscar_estudiante($request);
+                        Alert::success('')
+                            ->details('Resultados encontrados');
                         return view('user_student.vista_solicitar_tutoria',compact('materia','user_docente','accion','seleccionado','estado','accion','lista_estudiantes_sin_arrastre','invitacion','arreglo_est_inv','horarios','horarios2','horarios3','horarios4','horarios5'));
                     }
                     if($accion=="invitar"){
@@ -426,14 +430,14 @@ class AuthStudentController extends Controller
                         ->name($name)
                         ->lastname($lastname)
                         ->where('is_estudiante',true)->where('id','!=',$user_student->id)
-                        ->paginate(1);
+                        ->paginate(7);
                     return $lista_estudiantes_sin_arrastre;
                 }
                 $lista_estudiantes_sin_arrastre=User::orderBy('id','DESC')
                     ->name($name)
                     ->lastname($lastname)
                     ->where('is_estudiante',true)->where('paralelo',$user_student->paralelo)->where('ciclo',$user_student->ciclo)->where('id','!=',$user_student->id)
-                    ->paginate(5);
+                    ->paginate(7);
                 return $lista_estudiantes_sin_arrastre;
             }else{
                 return redirect()->route('show_login_form_student');
@@ -561,10 +565,16 @@ class AuthStudentController extends Controller
                 $tipo=$request->input('tipo'); 
                 $modalidad=$request->input('modalidad');
                 $dia=$request->input('dia');
-                $motivo=$request->input('motivo');
+                if($tipo=="grupal"){
+                    $motivo=$request->input('motivo_grupal');
+                }else{
+                    $motivo=$request->input('motivo_individual');
+                }  
                 if($motivo=='Otro'){
                     $motivo=$request->input('otro_motivo');
                 }
+                /*dd($motivo);
+                exit;*/
                 $horarios=DB::table('horarios')->where('usuario_id',$id_docente)->first();
                 $horarios2=DB::table('horario2s')->where('usuario_id',$id_docente)->first();
                 $horarios3=DB::table('horario3s')->where('usuario_id',$id_docente)->first();

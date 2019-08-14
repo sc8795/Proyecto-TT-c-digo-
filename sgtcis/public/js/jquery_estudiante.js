@@ -19,12 +19,25 @@ $(document).ready(function(){
 });
 //función para hacer aparecer caja de texto al escojer otro motivo con el radiobutton
 function mostrar_otro_motivo(){
-    var motivo=document.getElementsByName("motivo");
-    if(motivo[2].checked==true){
-        document.getElementById('otro').style.display='block';
-    }else{
-        document.getElementById('otro').style.display='none';
+    var cont=document.form_grupal.motivo_grupal.length;
+    for (i=0;i<cont;i++){ 
+        if (document.form_grupal.motivo_grupal[2].checked){
+            document.getElementById('otro_grupal').style.display='block';
+        }else{
+            document.getElementById('otro_grupal').style.display='none';
+        }
     }
+}
+
+function mostrar_otro_motivo_individual(){
+    var cont=document.form_individual.motivo_individual.length;
+    for (i=0;i<cont;i++){ 
+        if (document.form_individual.motivo_individual[2].checked){
+            document.getElementById('otro_individual').style.display='block';
+        }else{
+            document.getElementById('otro_individual').style.display='none';
+        }
+    } 
 }
 /*funcion para presentar mensaje de alerta en el caso de que no se complete con todos los campos pedidos en el formulario
 completar registro*/
@@ -50,6 +63,9 @@ $(document).on('click', '#boton_omitir', function(){
         alert("Por favor complete su registro para que pueda acceder al menú de opciones.");
         return false;
     }
+});
+$(document).on('click', '#boton_cancelar_inv', function(){
+    $('#ventana').modal('show');
 });
 
 $('div#mensaje_uno').delay(1000).slideUp(1500);
@@ -123,7 +139,7 @@ function valida_form_solicita_tutoria(){
     var datosCorrectos=true;
     var error="";
     var verifica_invitacion=document.getElementById('verifica_invitacion').value;
-    if(!document.querySelector('input[name="motivo"]:checked')) {
+    if(!document.querySelector('input[name="motivo_grupal"]:checked')) {
         datosCorrectos=false;
         error="El campo motivo de tutoría es obligatorio";
     }
@@ -148,7 +164,7 @@ function valida_form_solicita_tutoria_2(){
     var datosCorrectos=true;
     var error="";
     
-    if(!document.querySelector('input[name="motivo"]:checked')) {
+    if(!document.querySelector('input[name="motivo_individual"]:checked')) {
         datosCorrectos=false;
         error="El campo motivo de tutoría es obligatorio";
     }

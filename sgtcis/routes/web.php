@@ -12,6 +12,12 @@ Route::post('registro_manual','Auth\LoginController@registro_manual')->name('reg
 
 /* 
 |--------------------------------------------------------------------------
+| Rutas para header y footer
+|--------------------------------------------------------------------------
+*/
+Route::get('acerca_de','Header_footerController@acerca_de')->name('acerca_de');
+/* 
+|--------------------------------------------------------------------------
 | Rutas para el inicio de sesion de administrador
 |--------------------------------------------------------------------------
 */

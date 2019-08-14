@@ -164,8 +164,26 @@
 #color_rojo{
     color: red;
 }
-
-
+#hora_fin{
+    border-radius: 20px; 
+    background: #547795;
+    color: white;
+}
+#hora_inicio{
+    border-radius: 20px; 
+    background: #547795;
+    color: white;
+}
+#minutos_inicio{
+    border-radius: 20px; 
+    background: #547795;
+    color: white;
+}
+#minutos_fin{
+    border-radius: 20px; 
+    background: #547795;
+    color: white;
+}
 #sidebar-wrapper {
     /*min-height: 100vh;*/
     margin-left: -15rem;

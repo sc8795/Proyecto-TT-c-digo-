@@ -12,10 +12,21 @@
     display: inline-block;
     background:  #1b4f72 ;
 }
+.nombre_menu{
+    width: 90%;
+    text-align: right;
+}
+.menu{
+    width: 10%;
+}
+.logout_student{
+    margin-top: 20px;
+}
 #footer_menu_vertical{
     background-color: #1c2833 ;
 }
 #fondo_copyright_menu_vertical{
+    color:white;
     background-color:  #2c3e50 ;
 }
 #fondo_img_menu_vertical{
@@ -64,7 +75,10 @@
 }
 .vertical-menu .menu_vertical ul li a{
     background: #1b1b1b;
-    color:aqua;
+    color: #1b4f72;
+    /*font-family: 'Nunito', sans-serif;*/
+    /*font-style: italic;*/
+    font-size: 10pt;
 }
 
 /* ---------- ESTILOS GENERALES PARA COMPLETAR REGISTRO ---------- */ 
@@ -84,7 +98,9 @@
 #fondo_completar_registro{
     background-color:  #a6acaf ;
 }
-
+#fondo_blanco{
+    background: #ecf0f1;
+}
 /* ---------- ESTILOS GENERALES DE LETRAS ---------- */ 
 /*Titulo general del menu vertical*/
 
@@ -101,6 +117,11 @@
 }
 #txt_opcion_menu_vertical{
     color: black;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 200;
+}
+#txt_footer_op2{
+    color: white;
     font-family: 'Nunito', sans-serif;
     font-weight: 200;
 }

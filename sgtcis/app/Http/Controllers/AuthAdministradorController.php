@@ -74,7 +74,8 @@ public function editar_admin(){
             'password'=>''
         ]);
         if ($data["password"]!=null) {
-            $data["password"]=bcrypt($data['password']);
+            //$data["password"]=bcrypt($data['password']);
+            $data["password"]=$data['password'];
         }else{
             unset($data["password"]);
         }
@@ -187,7 +188,8 @@ public function editar_admin(){
         ]);
 
         if ($data["password"]!=null) {
-            $data["password"]=bcrypt($data['password']);
+            //$data["password"]=bcrypt($data['password']);
+            $data["password"]=$data['password'];
         }else{
             unset($data["password"]);
         }
@@ -304,7 +306,8 @@ public function editar_admin(){
     }
     public function editando_materia(Materia $materia, Request $request){
         $data=request()->validate([
-            'name'=>['required','regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/'],
+            //'name'=>['required','regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/'],
+            'name'=>'required',
             'ciclo'=>'required',
             'usuario_id'=>'required',
             'paralelo'=>'required',

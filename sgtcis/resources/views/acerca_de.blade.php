@@ -53,45 +53,18 @@
     </header>
     <div class="container-fluid" id="espacio_menu_texto"></div>
     <div class="container-fluid" id="cont_pag_inicio">
-        <div class="row">
-            <div class="col-lg-7 col-xs-12 col-sm-12 col-md-12">
-                <img src="{{asset('images/img_inicio.jpg')}}" style="width: 100%;" class="img-fluid">
-            </div>
-            <div class="col-lg-5 col-xs-12 col-sm-12 col-md-12" id="formulario_registro">
-                <h1 class="texto_formulario">Registro estudiante</h1>
-                <hr>
-                <div>
-                    <form method="POST" action="{{url("registro_manual")}}" onsubmit="return validar_registro_manual();">
-                        {{ csrf_field() }}
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" name="name" id="name" placeholder="Nombres completos">
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Apellidos completos">
-                                </div>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="form-group">
-                            <div id="mensaje_correo_existe">
-                                @include('flash::message')
-                            </div>
-                            <input type="email" class="form-control" name="email" id="email" placeholder="Correo institucional">
-                        </div>
-                        <hr>
-                        <input type="submit" name="registrarse" class="btn btn-primary btn-block" value="Registrarse">
-                        <br>
-                        <div class="form-group">
-                            <a href="{{ url('student/auth/google') }}" class="btn btn-google btn-danger btn-block"><i class="fab fa-google"></i> Registrarse con Google</a>
-                         </div>
-                    </form>
-                </div>
-            </div>
+        <hr>
+        <br>
+        <div class="acerca" id="txt_negro">
+            <h5><span class="negrita">El software para tutorías académicas (SGT - CIS)</span>, es un prototipo desarrollado para la acción tutorial docente 
+            dentro de la Carrera de Ingeniería en Sistemas y Computación de la Universidad Nacional de Loja, que se origina a partir del trabajo de titulación 
+            "Incorporación de la comunicación asíncrona en los procesos de la acción tutorial docente en ambientes universitarios". 
+            <br><br>
+            SGT - CIS está desarrollado mediante la utilización del framework Laravel (origina código PHP) y su interfaz mediante páginas blade.php.  
+            </h5>
         </div>
+        <br>
+        <hr>
     </div>
     <div class="container-fluid" id="espacio_menu_texto"></div>
 @endsection
@@ -116,7 +89,7 @@
                   <a href="{{url('/')}}" id="txt_opcion_menu_horizontal">INICIO</a>
                 </li>
                 <li>
-                  <a href="{{url("acerca_de")}}" id="txt_opcion_menu_horizontal">ACERCA DE</a>
+                  <a href="{{url('acerca_de')}}" id="txt_opcion_menu_horizontal">ACERCA DE</a>
                 </li>
                 <!--li>
                   <a href="#!" id="txt_opcion_menu_horizontal">AYUDA</a>
@@ -153,6 +126,7 @@
         </div>
       </footer>
 @endsection
+
 @section('scripts')
     <script src="{{asset('js/bootstrap.min.js')}}"></script>
 @endsection

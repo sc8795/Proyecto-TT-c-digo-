@@ -20,7 +20,7 @@
             {!! $errors->first('password','<span class="help-block">:message</span>') !!}
         </div>
         <button type="submit" class="btn btn-primary btn-block">Iniciar Sesión</button>
+        <h6 class="texto_volver"><a href="{{url('/')}}"><i class="fas fa-arrow-left"></i> Volver a inicio</a></h6>
     </form>
 </div>
-
 @endsection    

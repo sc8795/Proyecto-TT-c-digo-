@@ -68,7 +68,8 @@ class AuthDocenteController extends Controller
             ]);
 
             if ($data["password"]!=null) {
-                $data["password"]=bcrypt($data['password']);
+                //$data["password"]=bcrypt($data['password']);
+                $data["password"]=$data['password'];
             }else{
                 unset($data["password"]);
             }
@@ -181,7 +182,7 @@ class AuthDocenteController extends Controller
                         }
                     }
                 }
-                flash("Ha confirmado la tutoría solicitada por el estudiante $estudiante->name $estudiante->lastname. Ahora podrá evaluar la actuación del estudiante sobre la tutoría impartida, en la opción disponible en el menú EVALUACIÓN AL ESTUDIANTE.")->success();
+                flash("Ha confirmado la tutoría solicitada. Ahora podrá evaluar la actuación del estudiante luego de impartir la tutoría.")->success();
                 return redirect()->route('vista_general_docente');
             }else{
                 return redirect()->route('show_login_form_docente');

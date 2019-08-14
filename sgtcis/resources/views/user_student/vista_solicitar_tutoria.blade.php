@@ -1,4 +1,4 @@
-@extends('layout_estudiante')
+@extends('layout_administrador')
 
 @section('content')
     <div class="row">
@@ -86,8 +86,8 @@
                                         <!--CONDICIÓN QUE MUESTRA LOS RESULTADOS OBTENIDOS DE LA BÚSQUEDA, DENTRO DE ELLA SE ENCUENTRA EL FORMULARIO 
                                         DE INVITACIÓN AL ESTUDIANTE-->
                                         @if ($lista_estudiantes_sin_arrastre->isNotEmpty())
-                                            <div id="mensaje_cuatro" class="alert alert-success">
-                                                <span>Resultados encontrados</span>
+                                            <div id="mensaje_cuatro">
+                                                {!! Alert::render() !!}
                                             </div>
                                             <table class="table table-bordered table-sm" id="txt_opcion_menu_vertical">
                                                 <thead>
@@ -177,7 +177,7 @@
                                 <hr>
 
                                 <!--FORMULARIO GENERAL PARA SOLICITAR TUTORÍA AL DOCENTE - CUANTO SE SOLICITA TUTORÍA GRUPAL-->
-                                <form action="{{url("solicitar_tutoria_student")}}" method="POST" onsubmit="return valida_form_solicita_tutoria();">
+                                <form action="{{url("solicitar_tutoria_student")}}" method="POST" onsubmit="return valida_form_solicita_tutoria();" name="form_grupal">
                                     {{ csrf_field() }}
                                     <!--Name del tipo de tutoria para recibir por post en el controlador-->
                                     <input type="hidden" name="tipo" id="tipo" value="grupal">
@@ -4087,15 +4087,15 @@
                                     <div class="container">
                                         <br>
                                         <h6 id="txt_opcion_menu_vertical">
-                                            <input type="radio" name="motivo" value="Dudas sobre algún (deber, investigación, consulta, ensayo) enviado" onclick="mostrar_otro_motivo();"> Dudas sobre algún (deber, investigación, consulta, ensayo) enviado
+                                            <input type="radio" name="motivo_grupal" value="Dudas sobre algún (deber, investigación, consulta, ensayo) enviado" onclick="mostrar_otro_motivo();"> Dudas sobre algún (deber, investigación, consulta, ensayo) enviado
                                         </h6>
                                         <h6 id="txt_opcion_menu_vertical">
-                                            <input type="radio" name="motivo" value="Dudas sobre la clase recibida" onclick="mostrar_otro_motivo();"> Dudas sobre la clase recibida 
+                                            <input type="radio" name="motivo_grupal" value="Dudas sobre la clase recibida" onclick="mostrar_otro_motivo();"> Dudas sobre la clase recibida 
                                         </h6>
                                         <h6 id="txt_opcion_menu_vertical">
-                                            <input type="radio" name="motivo" value="Otro" onclick="mostrar_otro_motivo();"> Otro
+                                            <input type="radio" name="motivo_grupal" value="Otro" onclick="mostrar_otro_motivo();"> Otro
                                         </h6>
-                                        <div class="input-group mb-3" id="otro" style="display:none;">
+                                        <div class="input-group mb-3" id="otro_grupal" style="display:none;">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text" id="basic-addon1"><i class="fas fa-keyboard"></i></span>
                                                 <input type="text" name="otro_motivo" placeholder="Escriba el motivo de tutoría" class="form-control">
@@ -4110,7 +4110,7 @@
                             <div class="container" style="display: none;" id="tipo_individual">
                                 <hr>
                                 <!--FORMULARIO GENERAL PARA SOLICITAR TUTORÍA AL DOCENTE - CUANTO SE SOLICITA TUTORÍA INDIVIDUAL-->
-                                <form action="{{url("solicitar_tutoria_student")}}" method="POST" onsubmit="return valida_form_solicita_tutoria_2();">
+                                <form action="{{url("solicitar_tutoria_student")}}" method="POST" onsubmit="return valida_form_solicita_tutoria_2();" name="form_individual">
                                     {{ csrf_field() }}
                                     <!--Name del tipo de tutoria para recibir por post en el controlador-->
                                     <input type="hidden" name="tipo" id="tipo" value="individual">
@@ -8017,15 +8017,15 @@
                                     <div class="container">
                                         <br>
                                         <h6 id="txt_opcion_menu_vertical">
-                                            <input type="radio" name="motivo" value="Dudas sobre algún (deber, investigación, consulta, ensayo) enviado" onclick="mostrar_otro_motivo();"> Dudas sobre algún (deber, investigación, consulta, ensayo) enviado
+                                            <input type="radio" name="motivo_individual" id="motivo_individual" value="Dudas sobre algún (deber, investigación, consulta, ensayo) enviado" onclick="mostrar_otro_motivo_individual();"> Dudas sobre algún (deber, investigación, consulta, ensayo) enviado
                                         </h6>
                                         <h6 id="txt_opcion_menu_vertical">
-                                            <input type="radio" name="motivo" value="Dudas sobre la clase recibida" onclick="mostrar_otro_motivo();"> Dudas sobre la clase recibida 
+                                            <input type="radio" name="motivo_individual" id="motivo_individual" value="Dudas sobre la clase recibida" onclick="mostrar_otro_motivo_individual();"> Dudas sobre la clase recibida 
                                         </h6>
                                         <h6 id="txt_opcion_menu_vertical">
-                                            <input type="radio" name="motivo" value="Otro" onclick="mostrar_otro_motivo();"> Otro
+                                            <input type="radio" name="motivo_individual" id="motivo_individual" value="Otro" onclick="mostrar_otro_motivo_individual();"> Otro
                                         </h6>
-                                        <div class="input-group mb-3" id="otro" style="display:none;">
+                                        <div class="input-group mb-3" id="otro_individual" style="display:none;">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text" id="basic-addon1"><i class="fas fa-keyboard"></i></span>
                                                 <input type="text" name="otro_motivo" placeholder="Escriba el motivo de tutoría" class="form-control">

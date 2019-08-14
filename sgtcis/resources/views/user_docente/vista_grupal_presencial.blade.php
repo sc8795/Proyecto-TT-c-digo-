@@ -1,25 +1,16 @@
 @extends('layout_docente')
 
 @section('content')
-    @include('user_docente.vistas_iguales.menu_horizontal')
-@endsection
-
-@section('content2')
     <div class="row">
-        @include('user_docente.vistas_iguales.imagen_texto')
-        <div class="col-9" id="titulo_general">
-            <h3>Vista tutoría solicitada (presencial - grupal)</h3>
-        </div>
-    </div>
-@endsection
-
-@section('content3')
-    <div class="row">
-        <div class="col-3">
+        <div class="col-12">
             @include('user_docente.vistas_iguales.menu_vertical')
-        </div>
-        <div class="col-9">
-            <div class="container" id="contenedor_general">
+            <div class="container-fluid" id="espacio_menu_texto"></div>
+            <div class="container" style="background: white">
+                <h1 id="txt_opcion_menu_vertical"><span class="negrita">Solicitud de tutoría presencial - grupal</span></h1>
+                <br>
+                <h5 id="txt_opcion_menu_vertical" class="text-justify">{{$estudiante->name}} {{$estudiante->lastname}} alumno del {{$estudiante->ciclo}} ciclo, paralelo
+                        {{$estudiante->paralelo}} le ha solicitado tutoría con respecto a la materia  <span class="negrita">{{$materia->name}}</span> impartida por Ud.</span>
+                </h5>
                 @php
                     $mensaje_error="";
                     $verifica_fecha_tutoria=false;
@@ -44,20 +35,11 @@
                     <input type="hidden" name="medio_virtual" value="{{$datos_tut->medio_virtual}}">
                     <input type="hidden" name="cuenta_virtual" value="{{$datos_tut->cuenta_virtual}}">
                     <input type="hidden" name="notificacion_id" value="{{$notificacion_id}}">
-                    
-                    <h6 class="tit_general">Asunto: 
-                        <span class="tit_datos_op2">{{$estudiante->name}} {{$estudiante->lastname}} alumno del {{$estudiante->ciclo}} ciclo, paralelo
-                            {{$estudiante->paralelo}} le ha solicitado tutoría con respecto a la materia  {{$materia->name}} impartida por Ud.
-                        </span>
-                    </h6>
-                    <br>
-                    <div class="d-flex p-2 bd-highlight" id="contenedor_2">
-                        <span class="tit_datos">Datos de tutoría</span>
-                    </div>
-                    <div class="container" id="contenedor_general_op2">
-                        <br>
-                        <div class="row">
-                            <div class="col-6">
+
+                    <div class="container" id="fondo_blanco">
+                        <hr>
+                        <div class="row" id="txt_opcion_menu_vertical">
+                            <div class="col-lg-6 col-sm-12 col-xs-12 col-md-12">
                                 @php
                                     $arreglo_est_inv=explode('.', $invitacion->user_invitado_id);
                                     $arreglo_confirmacion=explode('.', $invitacion->confirmacion);
@@ -75,19 +57,15 @@
                                     @endif
                                 @endfor
                             </div>
-                            <div class="col-6">
+                            <div class="col-lg-6 col-sm-12 col-xs-12 col-md-12">
                                 <h6 class="negrita">Horario: <span class="quita_negrita">{{$datos_tut->dia}} de {{$datos_tut->hora_inicio}}:{{$datos_tut->minutos_inicio}} a {{$datos_tut->hora_fin}}:{{$datos_tut->minutos_fin}}</span></h6>
                                 <h6 class="negrita">Motivo: <span class="quita_negrita">{{$datos_tut->motivo}}.</span></h6>
                                 <h6 class="negrita">Modalidad - Tipo: <span class="quita_negrita">{{$datos_tut->modalidad}} - {{$datos_tut->tipo}}</span></h6>
                             </div>
                         </div>
-                        <br>
-                    </div>
-                    <div class="d-flex p-2 bd-highlight" id="contenedor_2">
-                        <span class="tit_datos">Datos de tutoría - fecha</span>
-                    </div>
-                    <div class="container" id="contenedor_general_op2">
-                        <br>
+                        <hr>
+                        <h6 id="txt_opcion_menu_vertical"><span class="negrita">Fecha para impartir la tutoría</span></h6>
+                        <hr>
                         @if ($verifica_fecha_tutoria==true)
                             <div class="caja_error" id="caja_error">
                                 <h6 class="titulo_error">{{$error}}</h6>
@@ -95,14 +73,12 @@
                         @endif
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1"><i class="fas fa-calendar-week"></i></span>
-                            <input type="text" id="fecha" placeholder="Haga clic y seleccione la fecha de tutoría." class="form-control" name="fecha_tutoria">
+                            <input type="text" id="fecha" placeholder="Haga clic y seleccione la fecha para impartir la tutoría." class="form-control" name="fecha_tutoria" autocomplete="off">
                         </div>
-                        <br>
-                    </div>
-                    <button type="button" class="btn btn-success btn-sm" onclick="capturar_fecha();">Confirmar <i class="fas fa-check-circle"></i></button>  
-                    <a href="{{url("vista_editar_datos_tutoria/{$datos_tut->id}/{$estudiante->id}/{$materia->id}/{$notificacion_id}")}}" class="btn btn-primary btn-sm" title="Editar datos de tutoría">Editar tutoría <span class="oi oi-pencil"></span></a>                    
-                    <!-- >Ventana modal<-->
-                    <main class="container" id="ventana_2">
+                        <hr>
+                        <button type="button" class="btn btn-success btn-sm" onclick="capturar_fecha();">Confirmar <i class="fas fa-check-circle"></i></button>  
+                    <a href="{{url("vista_editar_datos_tutoria/{$datos_tut->id}/{$estudiante->id}/{$materia->id}/{$notificacion_id}")}}" class="btn btn-primary btn-sm" title="Editar datos de tutoría">Editar tutoría <span class="oi oi-pencil"></span></a>
+                    <main>
                         <div class="modal fade" id="ventana" tabindex="-1" role="dialog" aria-labelledby="tituloVentana" aria-hidden="true">  
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
@@ -124,14 +100,15 @@
                                 </div>
                             </div>
                         </div>
+                    </main>
                     </div>
-                    <!-- >Hasta aquí ventana modal<-->
-                </form>  
+                </form>
+                <br>
+            </div>
+            <div class="container-fluid" id="espacio_menu_texto"></div>
+            @include('user_student.vistas_iguales.footer')
+            </div>
             </div>
         </div>
     </div>
-@endsection
-
-@section('scripts')
-    <script src="{{asset('js/bootstrap.min.js')}}"></script>
 @endsection

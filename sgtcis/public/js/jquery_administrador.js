@@ -33,7 +33,7 @@ function validar(){
         error=" El campo docente es obligatorio.";
     }
     var c1 = document.getElementById('paralelo[]').checked;
-
+    
     if(c1==false){
         datosCorrectos=false;
         error=" El campo paralelo es obligatorio.";

@@ -1,30 +1,16 @@
-@extends('layout_estudiante')
+@extends('layout_administrador')
 
 @section('content')
-    @include('user_student.vistas_iguales.menu_horizontal')
-@endsection
-
-@section('content2')
     <div class="row">
-        @include('user_student.vistas_iguales.imagen_texto')
-        <div class="col-9" id="titulo_general">
-            <h3>Invitación a tutoría</h3>
-        </div>
-    </div>
-@endsection
-
-@section('content3')
-    <div class="row">
-        <div class="col-3">
+        <div class="col-12">
             @include('user_student.vistas_iguales.menu_vertical')
-        </div>
-        <div class="col-9">
-            <div class="container" id="contenedor_general">
-                <div class="d-flex p-2 bd-highlight" id="contenedor_2">
-                    <span class="tit_datos">{{$user_invita->name}} {{$user_invita->lastname}}, te ha invitado unirte a tutoría</span>
-                </div>
-                <div class="container" id="contenedor_general_op2">
-                    <br>
+            <div class="container-fluid" id="espacio_menu_texto"></div>
+            <div class="container" style="background: white">
+                <h1 id="txt_opcion_menu_vertical"><span class="negrita">Invitación</span></h1>
+                <br>
+                <h4 id="txt_opcion_menu_vertical"><span class="negrita">{{$user_invita->name}} {{$user_invita->lastname}}, te ha invitado unirte a tutoría</span></h4>
+                <br>
+                <div class="container" id="fondo_blanco">
                     <span class="negrita">Datos de tutoría a unirte</span>
                     <hr>
                     <span class="negrita">Día: <span class="quita_negrita">{{$solitutoria->dia}}</span></span> <br>
@@ -43,37 +29,38 @@
                     @endif
                     <hr>
                     <a href="{{url("confirmar_invitacion/{$solitutoria->id}/{$id_notificacion}")}}" class="btn btn-success btn-sm">Confirmar invitación</a>
-                    <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#ventana">Cancelar invitación</button>
+                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#ventana">Cancelar invitación</button>
                     <hr>
                 </div>
-                <!-- >Ventana modal<-->
-                <main class="container">
-                    <div class="modal fade" id="ventana" tabindex="-1" role="dialog" aria-labelledby="tituloVentana" aria-hidden="true">  
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 id="tituloVentana">¡Aviso!</h5>
-                                    <button class="close" data-dismiss="modal" aria-label="Cerrar">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    Al cancelar la invitación el sistema automáticamente eliminará la notificación recibida. Si está de acuerdo haga clic en Aceptar.
-                                </div>
-                                <div class="modal-footer">
-                                    <a href="{{url("cancela_invitacion/{$id_notificacion}")}}" class="btn btn-danger">Aceptar</a>
-                                    <button type="button" class="btn btn-warning" data-dismiss="modal">Cancelar</button>
+                    <!-- >Ventana modal<-->
+                    <main class="container">
+                        <div class="modal fade" id="ventana" tabindex="-1" role="dialog" aria-labelledby="tituloVentana" aria-hidden="true">  
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 id="tituloVentana">¡Aviso!</h5>
+                                        <button class="close" data-dismiss="modal" aria-label="Cerrar">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Al cancelar la invitación el sistema automáticamente eliminará la notificación recibida. Si está de acuerdo haga clic en Aceptar.
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a href="{{url("cancela_invitacion/{$id_notificacion}")}}" class="btn btn-danger">Aceptar</a>
+                                        <button type="button" class="btn btn-warning" data-dismiss="modal">Cancelar</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </main>
-                <!-- >Hasta aquí ventana modal<-->
+                    </main>
+                    <!-- >Hasta aquí ventana modal<-->
+            </div>
+            <div class="container-fluid" id="espacio_menu_texto"></div>
+            @include('user_student.vistas_iguales.footer')
+            </div>
             </div>
         </div>
     </div>
 @endsection
 
-@section('scripts')
-    <script src="{{asset('js/bootstrap.min.js')}}"></script>
-@endsection
