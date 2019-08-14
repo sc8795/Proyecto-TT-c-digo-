@@ -61,8 +61,6 @@
                                                   </a>  
                                               @endif
                                           @endforeach   
-                                      @else 
-                                          <a href="#" class="droptdown-item"> No tiene notificaciones </a>
                                       @endif
                                   <!--/div-->
                                   </li>

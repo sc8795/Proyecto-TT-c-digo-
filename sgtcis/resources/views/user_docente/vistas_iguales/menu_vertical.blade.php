@@ -32,8 +32,6 @@
                                                     <span class="titulo_fecha_tutoria">{{$notifications->data['noti_docente']['created_at']}}</span>
                                                 </a>
                                             @endforeach    
-                                        @else 
-                                            <a href="{{route('vista_general_docente')}}" class="droptdown-item"> No tiene notificaciones </a>
                                         @endif
                                     <!--/div-->
                                     </li>
