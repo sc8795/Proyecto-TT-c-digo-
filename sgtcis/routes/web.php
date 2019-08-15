@@ -1,7 +1,20 @@
 <?php
 
 Route::get('/', function () {
-    return view('welcome');
+    if (Auth::check()){
+        $user = Auth::user();
+        if($user->is_admin==true){
+            return redirect()->route('auth_admin');
+        }
+        if($user->is_docente==true){
+            return redirect()->route('auth_docente');
+        }
+        if($user->is_estudiante==true){
+            return redirect()->route('auth_student');
+        }
+    }else{
+        return view('welcome');
+    }
 });
 /* Rutas para registro e inicio de sesión con cuenta de Google */
 Route::get('student/auth/{provider}', 'Auth\LoginController@redirectToProvider');
