@@ -74,7 +74,7 @@
                         {{auth()->user()->name}} {{auth()->user()->lastname}}
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="opcion_logueo">
-                        <form method="POST" action="{{route('logout_student')}}" class="boton_logout" id="logout">
+                        <form method="POST" action="{{route('logout_docente')}}" class="boton_logout" id="logout">
                             {{ csrf_field() }}
                             <button class="btn btn-outline-danger btn-sm">Cerrar sesion <span class="fas fa-sign-out-alt"></span></button>
                         </form>

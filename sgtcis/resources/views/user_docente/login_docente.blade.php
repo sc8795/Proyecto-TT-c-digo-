@@ -5,6 +5,7 @@
         <!--Creamos la ruta login_administrador en web.php con el metodo post-->
     <form method="POST" action="{{route('login_docente')}}">
         {{ csrf_field() }}
+        <h2 class="text-center" style="color: white;">Inicio Sesión del Docente</h2>
         <div class="centrar_img_usuario_logueo">
             <img src="{{asset('images/usuario_logueo.png')}}" class="img_usuario_logueo">
         </div>
@@ -20,7 +21,8 @@
             {!! $errors->first('password','<span class="help-block">:message</span>') !!}
         </div>
         <button type="submit" class="btn btn-primary btn-block">Iniciar Sesión</button>
-        <h6 class="texto_volver"><a href="{{url('/')}}"><i class="fas fa-arrow-left"></i> Volver a inicio</a></h6>
+        <hr>
+        <h6 class="texto_volver"><a href="{{url('/')}}" class="btn btn-outline-dark"><i class="fas fa-arrow-left"></i> Volver a inicio</a></h6>
     </form>
 </div>
 @endsection    

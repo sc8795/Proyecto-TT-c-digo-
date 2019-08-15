@@ -986,7 +986,7 @@
                 </form>
             </div>
             <div class="container-fluid" id="espacio_menu_texto"></div>
-            @include('user_student.vistas_iguales.footer')
+            @include('user_docente.vistas_iguales.footer')
             </div>
             </div>
         </div>
