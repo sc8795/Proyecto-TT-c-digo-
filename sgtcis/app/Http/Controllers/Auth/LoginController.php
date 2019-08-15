@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Collection;
 use Illuminate\Http\Request;
 use App\User;
+use App\Materia;
 use Auth;
 use Redirect;
 use Laracasts\Flash\Flash;
@@ -138,9 +139,25 @@ class LoginController extends Controller
     /*Metodo para devolver el formulario de inicio de sesion del administrador*/
     public function show_login_form_student(){
         if (Auth::check()){
-            $user = Auth::user();
-            if($user->is_estudiante==true){
-                return redirect()->route('auth_student');
+            $user_student = Auth::user();
+            if($user_student->is_estudiante==true){
+                if($user_student->paralelo=="NA" && $user_student->ciclo=="NA"){
+                    $materias=Materia::orderBy('id','DESC')
+                        ->paginate(1);
+                    $verifica_arrastre=DB::table('arrastres')->where('user_estudiante_id',$user_student->id)->exists();
+                    $docentes=DB::table('users')->where('is_docente',true)->get();
+                    if($verifica_arrastre==true){
+                        $arrastre=DB::table('arrastres')->where('user_estudiante_id',$user_student->id)->first();
+                        $arreglo_materia=explode('.', $arrastre->materia);
+                        $arreglo_paralelo=explode('.', $arrastre->paralelo);
+                        return view('user_student.completar_registro',compact('user_student','materias','arrastre','arreglo_materia','verifica_arrastre','arreglo_paralelo','docentes'));
+                    }else{
+                        return view('user_student.completar_registro',compact('user_student','materias','verifica_arrastre','docentes'));
+                    }   
+                }else{
+                    return view('user_student.auth_student'); 
+                }
+                //return redirect()->route('auth_student');
             }else{
                 return view('user_student.login_student');
             }

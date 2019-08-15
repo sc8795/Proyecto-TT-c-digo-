@@ -134,14 +134,15 @@ class AuthStudentController extends Controller
                     $materias=Materia::orderBy('id','DESC')
                         ->name($name)
                         ->paginate(3);
+                    $docentes=DB::table('users')->where('is_docente',true)->get();
                     $verifica_arrastre=DB::table('arrastres')->where('user_estudiante_id',$user_student->id)->exists();
                     if($verifica_arrastre==true){
                         $arrastre=DB::table('arrastres')->where('user_estudiante_id',$user_student->id)->first();
                         $arreglo_materia=explode('.', $arrastre->materia);
                         $arreglo_paralelo=explode('.', $arrastre->paralelo);
-                        return view('user_student.completar_registro',compact('user_student','materias','arrastre','arreglo_materia','verifica_arrastre','arreglo_paralelo'));
+                        return view('user_student.completar_registro',compact('user_student','materias','arrastre','arreglo_materia','verifica_arrastre','arreglo_paralelo','docentes'));
                     }else{
-                        return view('user_student.completar_registro',compact('user_student','materias','verifica_arrastre'));
+                        return view('user_student.completar_registro',compact('user_student','materias','verifica_arrastre','docentes'));
                     }
                 }else{
                     return view('user_student.auth_student'); 

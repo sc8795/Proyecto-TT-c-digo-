@@ -27,9 +27,16 @@
                         <a class="nav-link dropdown-toggle btn btn-outline-success btn-sm m-1" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white">
                             {{auth()->user()->name}} {{auth()->user()->lastname}}
                         </a>
+                        @if (auth()->user()->is_docente==true)
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="opcion_logueo">
+                            <a class="dropdown-item" href="{{route('vista_general_docente')}}">Ver cuenta <span class="fas fa-arrow-circle-right"></span></a>
+                        </div>
+                        @endif
+                        @if (auth()->user()->is_estudiante==true)
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="opcion_logueo">
                             <a class="dropdown-item" href="{{route('vista_student_google')}}">Ver cuenta <span class="fas fa-arrow-circle-right"></span></a>
                         </div>
+                        @endif
                     </li>
                 </ul>
               @else

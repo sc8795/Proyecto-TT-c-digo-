@@ -9,14 +9,14 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav">
             <li class="nav-item active">
-              <a class="nav-link" href="#" id="txt_opcion_menu_horizontal">INICIO <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="{{url('/')}}" id="txt_opcion_menu_horizontal">INICIO <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#" id="txt_opcion_menu_horizontal">ACERCA DE</a>
+              <a class="nav-link" href="{{url("acerca_de")}}" id="txt_opcion_menu_horizontal">ACERCA DE</a>
             </li>
-            <li class="nav-item">
+            <!--li class="nav-item">
               <a class="nav-link" href="#" id="txt_opcion_menu_horizontal">AYUDA</a>
-            </li>
+            </li-->
           </ul>
           @if (Auth::check())
             <ul class="navbar-nav ml-auto">
