@@ -49,13 +49,15 @@
                                                 </select>
                                             @endif
                                             @if ($datos_tut->hora_inicio=="9")
-                                                <option value="7">7</option>
-                                                <option value="8">8</option>
-                                                <option value="{{$datos_tut->hora_inicio}}" selected>{{$datos_tut->hora_inicio}}</option>
-                                                <option value="10">10</option>
-                                                <option value="11">11</option>
-                                                <option value="12">12</option>
-                                                <option value="13">13</option>
+                                                <select name="hora_inicio" id="hora_inicio">
+                                                    <option value="7">7</option>
+                                                    <option value="8">8</option>
+                                                    <option value="{{$datos_tut->hora_inicio}}" selected>{{$datos_tut->hora_inicio}}</option>
+                                                    <option value="10">10</option>
+                                                    <option value="11">11</option>
+                                                    <option value="12">12</option>
+                                                    <option value="13">13</option>
+                                                </select>
                                             @endif
                                             @if ($datos_tut->hora_inicio=="10")
                                                 <select name="hora_inicio" id="hora_inicio">
