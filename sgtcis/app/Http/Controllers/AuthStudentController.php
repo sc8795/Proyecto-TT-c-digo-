@@ -452,58 +452,65 @@ class AuthStudentController extends Controller
                 $id_estudiante_invitado=$request->input('estudiante');
 
                 $fecha_actual=now();
-
-                $verifica_invitacion=DB::table('invitacionestudiantes')
+                /*$date = date_create($fecha_actual);
+                $fecha_actual=date_format($date, 'd-m-Y');*/
+                    
+                /*$cont_verifica_invitacion=DB::table('invitacionestudiantes')
                     ->where('user_invita_id',$user_student->id)
-                    ->where('solitutoria_id',null)
-                    ->exists();
-
-                if($verifica_invitacion==true){
-                    $invitacion=DB::table('invitacionestudiantes')->where('user_invita_id',$user_student->id)
+                    ->count();
+                if($cont_verifica_invitacion==0){*/
+                    $verifica_invitacion=DB::table('invitacionestudiantes')
+                        ->where('user_invita_id',$user_student->id)
                         ->where('solitutoria_id',null)
-                        ->first();
-                    $id=$invitacion->id;
-                    $user_invitado=$invitacion->user_invitado_id;
-                    $confirmacion=$invitacion->confirmacion;
-                    $fecha_invita=$invitacion->fecha_invita;
-                    if($invitacion->user_invitado_id==null){
-                        $invitacion=DB::table('invitacionestudiantes')->where('id',$id);
-                        $invitacion->delete();
+                        ->exists();
 
+                    if($verifica_invitacion==true){
+                        $invitacion=DB::table('invitacionestudiantes')->where('user_invita_id',$user_student->id)
+                            ->where('solitutoria_id',null)
+                            ->first();
+                        $id=$invitacion->id;
+                        $user_invitado=$invitacion->user_invitado_id;
+                        $confirmacion=$invitacion->confirmacion;
+                        $fecha_invita=$invitacion->fecha_invita;
+                        if($invitacion->user_invitado_id==null){
+                            $invitacion=DB::table('invitacionestudiantes')->where('id',$id);
+                            $invitacion->delete();
+
+                            DB::table('invitacionestudiantes')->insert([
+                                'id'=>$id,
+                                'user_invita_id'=>$user_student->id,
+                                'user_invitado_id'=>$id_estudiante_invitado,
+                                'confirmacion'=>"no",
+                                'fecha_invita'=>$fecha_actual,
+                            ]);
+                        }else{
+                            //dd("David")->aqui hacer el control cuando quiere invitar alumno que ya ha invitado;
+                            $arreglo_est_inv=explode('.', $user_invitado);
+                            foreach ($arreglo_est_inv as $recorre) {
+                                if($recorre==$id_estudiante_invitado){
+                                    $invitacion="error";
+                                    return $invitacion;
+                                }                            
+                            }
+                            $invitacion=DB::table('invitacionestudiantes')->where('id',$id);
+                            $invitacion->delete();
+                            DB::table('invitacionestudiantes')->insert([
+                                'id'=>$id,
+                                'user_invita_id'=>$user_student->id,
+                                'user_invitado_id'=>$user_invitado.".".$id_estudiante_invitado,
+                                'confirmacion'=>$confirmacion."."."no",
+                                'fecha_invita'=>$fecha_invita.".".$fecha_actual,
+                            ]);
+                        }
+                    }else{
                         DB::table('invitacionestudiantes')->insert([
-                            'id'=>$id,
                             'user_invita_id'=>$user_student->id,
                             'user_invitado_id'=>$id_estudiante_invitado,
                             'confirmacion'=>"no",
                             'fecha_invita'=>$fecha_actual,
                         ]);
-                    }else{
-                        //dd("David")->aqui hacer el control cuando quiere invitar alumno que ya ha invitado;
-                        $arreglo_est_inv=explode('.', $user_invitado);
-                        foreach ($arreglo_est_inv as $recorre) {
-                            if($recorre==$id_estudiante_invitado){
-                                $invitacion="error";
-                                return $invitacion;
-                            }                            
-                        }
-                        $invitacion=DB::table('invitacionestudiantes')->where('id',$id);
-                        $invitacion->delete();
-                        DB::table('invitacionestudiantes')->insert([
-                            'id'=>$id,
-                            'user_invita_id'=>$user_student->id,
-                            'user_invitado_id'=>$user_invitado.".".$id_estudiante_invitado,
-                            'confirmacion'=>$confirmacion."."."no",
-                            'fecha_invita'=>$fecha_invita.".".$fecha_actual,
-                        ]);
                     }
-                }else{
-                    DB::table('invitacionestudiantes')->insert([
-                        'user_invita_id'=>$user_student->id,
-                        'user_invitado_id'=>$id_estudiante_invitado,
-                        'confirmacion'=>"no",
-                        'fecha_invita'=>$fecha_actual,
-                    ]);
-                }
+                //}
                 $invitacion=DB::table('invitacionestudiantes')->where('user_invita_id',$user_student->id)
                     ->where('solitutoria_id',null)
                     ->first();
@@ -558,7 +565,8 @@ class AuthStudentController extends Controller
     public function solicitar_tutoria_student(Request $request){
         if (Auth::check()) {
             $user_student = Auth::user();
-            if($user_student->is_estudiante==true){ 
+            if($user_student->is_estudiante==true){
+
                 $id_materia=$request->input("id_materia");
                 $id_docente=$request->input("id_docente");
                 $user_docente=DB::table('users')->where('id',$id_docente)->first();
