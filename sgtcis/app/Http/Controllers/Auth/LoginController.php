@@ -62,7 +62,7 @@ class LoginController extends Controller
         return User::create([
             'name'=>$user->name,
             'lastname'=>'',
-            'password'=>'',
+            'password'=>'sgtcis12345',
             'is_admin'=>false,
             'is_docente'=>false,
             'is_estudiante'=>true,
