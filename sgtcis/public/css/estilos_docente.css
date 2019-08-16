@@ -189,6 +189,14 @@
     font-family: 'Nunito', sans-serif;
     font-weight: 200;
 }
+
+.nombre_menu{
+    width: 90%;
+    text-align: right;
+}
+.menu{
+    width: 10%;
+}
 #sidebar-wrapper {
     /*min-height: 100vh;*/
     margin-left: -15rem;

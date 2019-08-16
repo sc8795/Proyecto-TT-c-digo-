@@ -87,7 +87,6 @@
             <div class="menu">
                 <button class="btn btn-outline-primary btn-sm" id="menu-toggle"><span class="navbar-toggler-icon"></span></button>
             </div>
-    
             <div class="nombre_menu">
                 @if (Auth::check())
                     {{auth()->user()->name}} {{auth()->user()->lastname}}

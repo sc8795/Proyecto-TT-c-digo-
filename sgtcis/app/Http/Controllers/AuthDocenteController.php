@@ -217,6 +217,25 @@ class AuthDocenteController extends Controller
     }
 /* 
 |--------------------------------------------------------------------------
+| Funciones para visualizar tutorías confirmadas e impartidas
+|--------------------------------------------------------------------------
+*/
+    public function vista_tutorias_conf_imp(){
+        if (Auth::check()) {
+            $docente = Auth::user();
+            if($docente->is_docente==true){
+                $solitutorias=DB::table('solitutorias')
+                    ->where('docente_id',$docente->id)
+                    ->where('fecha_tutoria','!=',null)
+                    ->get();
+                return view('user_docente.vista_tutorias_conf_imp',compact('solitutorias'));
+            }else{
+                return redirect()->route('show_login_form_docente');
+            }
+        }
+    }
+/* 
+|--------------------------------------------------------------------------
 | Funciones para evaluar al estudiante después de la tutoría impartida
 |--------------------------------------------------------------------------
 */
