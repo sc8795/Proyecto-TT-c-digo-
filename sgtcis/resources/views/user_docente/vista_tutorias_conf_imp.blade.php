@@ -6,7 +6,7 @@
             @include('user_docente.vistas_iguales.menu_vertical')
             <div class="container-fluid" id="espacio_menu_texto"></div>
             <div class="container" style="background: white">
-                <h1 id="txt_opcion_menu_vertical"><span class="negrita">Tutorías</span></h1>
+                <h1 id="txt_opcion_menu_vertical"><span class="negrita">Registro de tutorías</span></h1>
                 <br>
                 <h4 id="txt_opcion_menu_vertical"><span class="negrita">Lista de tutorías impartidas - por impartir</span></h4>
                 <br>
@@ -19,6 +19,7 @@
                                         <th>Solicitada por</th>
                                         <th>Materia</th>
                                         <th>Fecha a impartir</th>
+                                        <th>Hora</th>
                                         <th>Estado</th>
                                     </tr>
                                     @foreach ($solitutorias as $solitutoria)
@@ -33,16 +34,24 @@
                                             $fecha_actual=now();
                                             $date = date_create($fecha_actual);
                                             $fecha_actual=date_format($date, 'd-m-Y');
+
+                                            $hora_actual=date("G");
+                                            $minuto_actual=date("i"); 
+
                                         @endphp
                                         <tr>
                                             <td>{{$estudiante->name}} {{$estudiante->lastname}}</td>
                                             <td>{{$materia->name}}</td>
                                             <td>{{$fecha_tutoria}}</td>
                                             <td>
-                                                @if ($fecha_actual>$fecha_tutoria)
-                                                    Impartida
-                                                @else
+                                                {{$solitutoria->hora_inicio}}:{{$solitutoria->minutos_inicio}} -
+                                                {{$solitutoria->hora_fin}}:{{$solitutoria->minutos_fin}}
+                                            </td>
+                                            <td>
+                                                @if ($fecha_tutoria>=$fecha_actual)
                                                     Por impartir
+                                                @else
+                                                    Impartida
                                                 @endif
                                             </td>
                                         </tr>

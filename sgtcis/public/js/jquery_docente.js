@@ -107,7 +107,7 @@ function capturar_fecha(){
             $('#ventana').modal('show');
             document.getElementById("fecha_modal").innerHTML=fecha_format;
         }else
-            return alert("La fecha seleccionada es pasada.");
+            return alert("La fecha seleccionada no es válida");
     }
 }
 
@@ -157,7 +157,7 @@ function capturar_fecha_horario(){
             document.getElementById("minutos_fin_modal").innerHTML=minutos_fin;
         }else{
             if(valida_fecha(fecha_format)==false){
-                return alert("La fecha seleccionada es pasada.");
+                return alert("La fecha seleccionada no es válida");
             }
             if(valida_horario(hora_inicio,minutos_inicio,hora_fin,minutos_fin)==false){
                 return alert("La hora de inicio debe ser menor a la hora de fin");
