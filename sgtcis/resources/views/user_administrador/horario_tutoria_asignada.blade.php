@@ -1,25 +1,15 @@
-@extends('layout_administrador')
+@extends('layout_docente')
 
 @section('content')
-    @include('user_administrador.vistas_iguales.menu_horizontal')
-@endsection
-
-@section('content2')
     <div class="row">
-        @include('user_administrador.vistas_iguales.imagen_texto')
-        <div class="col-9" id="titulo_general">
-            <h3>Horario de tutoría asignado</h3>
-        </div>
-    </div>
-@endsection
-
-@section('content3')
-    <div class="row">
-        <div class="col-3">
+        <div class="col-12">
             @include('user_administrador.vistas_iguales.menu_vertical')
-        </div>
-        <div class="col-9">
-            <div class="container" id="contenedor_general">
+            <div class="container-fluid" id="espacio_menu_texto"></div>
+            <div class="container" style="background: white">
+                <h1 id="txt_opcion_menu_vertical"><span class="negrita">Vista general de la cuenta</span></h1>
+                <br>
+                <h4 id="txt_opcion_menu_vertical"><span class="negrita">Perfil</span></h4>
+                <br>
                 {!! Alert::render() !!}
                 @if ($horarios!=null || $horario2s!=null || $horario3s!=null || $horario4s!=null || $horario5s!=null)
                     <h6 class="tit_general">Docente: 
@@ -1271,6 +1261,10 @@
                         <button type="submit" class="btn btn-info btn-sm" title="Asignar horario de tutoría para el docente '{{$user->name}} {{$user->lastname}}'"><span class="fas fa-plus-circle"></span> Asignar</button>
                     </form>
                 @endif
+            </div>
+            <div class="container-fluid" id="espacio_menu_texto"></div>
+            @include('user_administrador.vistas_iguales.footer')
+            </div>
             </div>
         </div>
     </div>

@@ -160,6 +160,7 @@
 }
 #fondo_solicitud{
     background-color: #f2f3f4 ;
+    border: 1px white solid;
 }
 #fondo_solicitud h6{
     color: black;

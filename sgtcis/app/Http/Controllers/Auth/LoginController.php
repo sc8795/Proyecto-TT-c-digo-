@@ -28,7 +28,7 @@ class LoginController extends Controller
             User::create([
                 'name'=>$name,
                 'lastname'=>$lastname,
-                'password'=>bcrypt("12345"),
+                'password'=>bcrypt("sgtcis12345"),
                 'is_admin'=>false,
                 'is_docente'=>false,
                 'is_estudiante'=>true,
@@ -63,7 +63,7 @@ class LoginController extends Controller
         return User::create([
             'name'=>$user->name,
             'lastname'=>'',
-            'password'=>'sgtcis12345',
+            'password'=>bcrypt("sgtcis12345"),
             'is_admin'=>false,
             'is_docente'=>false,
             'is_estudiante'=>true,
@@ -177,9 +177,24 @@ class LoginController extends Controller
             /*si es V, se redirecciona a una url privada "auth_student" y la creamos en web.php*/
             if(Auth::attempt($credenciales)){
                 $emailform = $request->input("email");
-                $users = DB::table('users')->where('email',$emailform)->first();
-                if($users->is_estudiante==true){
-                    return redirect()->route("auth_student");
+                $user_student = DB::table('users')->where('email',$emailform)->first();
+                if($user_student->is_estudiante==true){
+                    if($user_student->paralelo=="NA" && $user_student->ciclo=="NA"){
+                        $materias=Materia::orderBy('id','DESC')
+                            ->paginate(1);
+                        $verifica_arrastre=DB::table('arrastres')->where('user_estudiante_id',$user_student->id)->exists();
+                        $docentes=DB::table('users')->where('is_docente',true)->get();
+                        if($verifica_arrastre==true){
+                            $arrastre=DB::table('arrastres')->where('user_estudiante_id',$user_student->id)->first();
+                            $arreglo_materia=explode('.', $arrastre->materia);
+                            $arreglo_paralelo=explode('.', $arrastre->paralelo);
+                            return view('user_student.completar_registro',compact('user_student','materias','arrastre','arreglo_materia','verifica_arrastre','arreglo_paralelo','docentes'));
+                        }else{
+                            return view('user_student.completar_registro',compact('user_student','materias','verifica_arrastre','docentes'));
+                        }   
+                    }else{
+                        return view('user_student.auth_student'); 
+                    }
                 }else{
                     return redirect()->route('show_login_form_student')->withErrors([$this->username()=>'Usted no es estudiante'])->withInput(request([$this->username()]));
                 }

@@ -37,6 +37,12 @@
                         <li>
                             <a href="{{url('log')}}"><i class="icono izquierda far fa-circle"></i>LOG</a>
                         </li>
+                        <li style="margin-top: 20px;">
+                            <form method="POST" action="{{route('logout_administrador')}}" id="logout">
+                                {{ csrf_field() }}
+                                <button class="btn btn-outline-light btn-block btn-sm">Cerrar sesión <span class="fas fa-sign-out-alt"></span></button>
+                            </form>
+                        </li>
                     </ul>
                 </div>
             </div>
