@@ -14,6 +14,7 @@
                     $solitutorias=DB::table('solitutorias')
                         ->where('docente_id',auth()->user()->id)
                         ->where('fecha_tutoria','!=',null)
+                        ->where('materia_id',$materia->id)
                         ->get();
                 @endphp
                 @if($solitutorias->isNotEmpty())
@@ -51,7 +52,7 @@
                                         <td>{{$estudiante->name}} {{$estudiante->lastname}}</td>
                                         <td>{{$materia->name}}</td>
                                         <td>{{$estudiante->ciclo}}</td>
-                                        <td>{{$estudiante->paralelo}}</td>
+                                        <td class="text-center">{{$estudiante->paralelo}}</td>
                                         <td>{{$fecha_tutoria}}</td>
                                         <td>
                                             {{$solitutoria->hora_inicio}}:{{$solitutoria->minutos_inicio}} -
