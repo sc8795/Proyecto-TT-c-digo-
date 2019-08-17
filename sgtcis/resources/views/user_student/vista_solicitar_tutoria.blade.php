@@ -171,6 +171,10 @@
                                                     No ha invitado estudiantes
                                                 @endif
                                             </div>
+                                        @else
+                                        <div id="mensaje_siete">
+                                            @include('flash::message')
+                                        </div>
                                         @endif
                                     </div>
                                 </div>

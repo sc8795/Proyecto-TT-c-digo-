@@ -389,10 +389,19 @@ class AuthStudentController extends Controller
                             $invitacion=DB::table('invitacionestudiantes')->where('user_invita_id',$user_student->id)
                                 ->where('solitutoria_id',null)
                                 ->first();
-                            flash("El estudiante $user_invitado_msj->name $user_invitado_msj->lastname, ya ha sido invitado")->error();
+                            flash("El estudiante $user_invitado_msj->name $user_invitado_msj->lastname, ya ha sido invitado")->error(); 
                         }else{
-                            $arreglo_est_inv=explode('.', $invitacion->user_invitado_id);
-                            flash("El estudiante $user_invitado_msj->name $user_invitado_msj->lastname, ha sido invitado")->success();
+                            if($invitacion=="error_dia"){
+                                //dd("Hola");
+                                $invitacion=DB::table('invitacionestudiantes')->where('user_invita_id',$user_student->id)
+                                    ->where('solitutoria_id',null)
+                                    ->first();
+                                //dd($invitacion);
+                                flash("Usted ya ha solicitado tutoría, este proceso puede hacerlo una vez por día")->error();
+                            }else{
+                                $arreglo_est_inv=explode('.', $invitacion->user_invitado_id);
+                                flash("El estudiante $user_invitado_msj->name $user_invitado_msj->lastname, ha sido invitado")->success();
+                            }
                         }
                         return view('user_student.vista_solicitar_tutoria',compact('materia','user_docente','accion','seleccionado','estado','accion','lista_estudiantes_sin_arrastre','invitacion','arreglo_est_inv','horarios','horarios2','horarios3','horarios4','horarios5'));
                     }
@@ -451,13 +460,30 @@ class AuthStudentController extends Controller
                 $id_estudiante_invitado=$request->input('estudiante');
 
                 $fecha_actual=now();
-                /*$date = date_create($fecha_actual);
-                $fecha_actual=date_format($date, 'd-m-Y');*/
+                $date = date_create($fecha_actual);
+                $fecha_hoy=date_format($date, 'd-m-Y');
                     
-                /*$cont_verifica_invitacion=DB::table('invitacionestudiantes')
+                $verifica_dia=DB::table('invitacionestudiantes')
                     ->where('user_invita_id',$user_student->id)
-                    ->count();
-                if($cont_verifica_invitacion==0){*/
+                    ->where('solitutoria_id','!=',null)
+                    ->exists();
+                //dd($verifica_dia);
+                if($verifica_dia==true){
+                    $invs=DB::table('invitacionestudiantes')->where('user_invita_id',$user_student->id)->where('solitutoria_id','!=',null)->get();
+                    foreach ($invs as $inv) {
+                        $fecha_invita=$inv->fecha_invita;
+                        $arreglo_fecha_invita=explode('.',$fecha_invita);
+                        for ($i=0; $i < count($arreglo_fecha_invita); $i++) { 
+                            $fecha_tut=$arreglo_fecha_invita[$i];
+                            $date = date_create($fecha_tut);
+                            $fecha_tut=date_format($date, 'd-m-Y');
+                            if($fecha_tut==$fecha_hoy){
+                                $invitacion="error_dia";
+                                return $invitacion;
+                            }
+                        }
+                    }
+                }
                     $verifica_invitacion=DB::table('invitacionestudiantes')
                         ->where('user_invita_id',$user_student->id)
                         ->where('solitutoria_id',null)
@@ -509,7 +535,7 @@ class AuthStudentController extends Controller
                             'fecha_invita'=>$fecha_actual,
                         ]);
                     }
-                //}
+                
                 $invitacion=DB::table('invitacionestudiantes')->where('user_invita_id',$user_student->id)
                     ->where('solitutoria_id',null)
                     ->first();
@@ -573,6 +599,9 @@ class AuthStudentController extends Controller
                 $tipo=$request->input('tipo'); 
                 $modalidad=$request->input('modalidad');
                 $dia=$request->input('dia');
+                if(($modalidad=="virtual" && $tipo=="individual") || ($modalidad=="virtual" && $tipo=="grupal")){
+                    dd("Tutoría a solicitar no disponible por el momento, vuelve atrás para seguir utilizando el sistema");
+                }
                 if($tipo=="grupal"){
                     $motivo=$request->input('motivo_grupal');
                 }else{

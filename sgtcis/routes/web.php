@@ -218,6 +218,7 @@ route::put('editar_datos_tutoria','AuthDocenteController@editar_datos_tutoria')-
 
 /* Rutas para visualizar las tutorías confirmadas e impartidas */
 Route::get('vista_tutorias_conf_imp','AuthDocenteController@vista_tutorias_conf_imp')->name('vista_tutorias_conf_imp');
+Route::get('ciclo/{materia}','AuthDocenteController@ciclo')->name('ciclo');
 
 /* Rutas para evaluar al estudiante */
 Route::get('evaluar_estudiante','AuthDocenteController@evaluar_estudiante')->name('evaluar_estudiante');

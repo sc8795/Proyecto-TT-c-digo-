@@ -224,11 +224,23 @@ class AuthDocenteController extends Controller
         if (Auth::check()) {
             $docente = Auth::user();
             if($docente->is_docente==true){
-                $solitutorias=DB::table('solitutorias')
-                    ->where('docente_id',$docente->id)
-                    ->where('fecha_tutoria','!=',null)
+                $materias=DB::table('materias')
+                    ->where('usuario_id',$docente->id)
                     ->get();
-                return view('user_docente.vista_tutorias_conf_imp',compact('solitutorias'));
+                return view('user_docente.vista_tutorias_conf_imp',compact('materias'));
+            }else{
+                return redirect()->route('show_login_form_docente');
+            }
+        }
+    }
+    public function ciclo($id_materia){
+        if (Auth::check()) {
+            $docente = Auth::user();
+            if($docente->is_docente==true){
+                $materia=DB::table('materias')
+                    ->where('id',$id_materia)
+                    ->first();
+                return view('user_docente.vista_ciclo',compact('materia'));
             }else{
                 return redirect()->route('show_login_form_docente');
             }
