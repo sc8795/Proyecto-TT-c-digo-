@@ -8,7 +8,7 @@
             <div class="container" style="background: white">
                 <h1 id="txt_opcion_menu_vertical"><span class="negrita">Registro de tutorías</span></h1>
                 <br>
-                <h4 id="txt_opcion_menu_vertical"><span class="negrita">Lista de tutorías por impartir - impartidas para materia {{$materia->name}}</span></h4>
+                <h4 id="txt_opcion_menu_vertical"><span class="negrita">Lista de tutorías <span style="background-color: #f78181" id="borde_radio">por impartir</span> - <span style="background-color: #81c784" id="borde_radio">impartidas</span>, para materia {{$materia->name}}</span></h4>
                 <br>
                 @php
                     $solitutorias=DB::table('solitutorias')
@@ -24,10 +24,10 @@
                             <thead>
                                 <tr>
                                     <th>Solicitada por</th>
-                                    <th>Materia</th>
                                     <th>Ciclo</th>
                                     <th>Paralelo</th>
                                     <th>Fecha a impartir</th>
+                                    <th>Día</th>
                                     <th>Hora</th>
                                     <th>Estado</th>
                                 </tr>
@@ -50,13 +50,23 @@
                                     @endphp
                                     <tr>
                                         <td>{{$estudiante->name}} {{$estudiante->lastname}}</td>
-                                        <td>{{$materia->name}}</td>
                                         <td>{{$estudiante->ciclo}}</td>
                                         <td class="text-center">{{$estudiante->paralelo}}</td>
                                         <td>{{$fecha_tutoria}}</td>
+                                        <td>{{$solitutoria->dia}}</td>
                                         <td>
-                                            {{$solitutoria->hora_inicio}}:{{$solitutoria->minutos_inicio}} -
-                                            {{$solitutoria->hora_fin}}:{{$solitutoria->minutos_fin}}
+                                            {{$solitutoria->hora_inicio}}:
+                                            @if ($solitutoria->minutos_inicio=="0")
+                                            {{$solitutoria->minutos_inicio}}0
+                                            @else
+                                            {{$solitutoria->minutos_inicio}}
+                                            @endif -
+                                            {{$solitutoria->hora_fin}}:
+                                            @if ($solitutoria->minutos_fin=="0")
+                                            {{$solitutoria->minutos_fin}}0
+                                            @else
+                                            {{$solitutoria->minutos_fin}}    
+                                            @endif
                                         </td>
                                         <td>
                                             @if ($fecha_tutoria>=$fecha_actual)
