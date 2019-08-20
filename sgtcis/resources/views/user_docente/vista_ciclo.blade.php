@@ -69,10 +69,26 @@
                                             @endif
                                         </td>
                                         <td>
-                                            @if ($fecha_tutoria>=$fecha_actual)
-                                                <h6 style="background-color: #f78181" id="borde_radio" class="text-center">Por impartir</h6>
+                                            @if ($fecha_tutoria==$fecha_actual)
+                                                @if ($solitutoria->hora_fin==$hora_actual)
+                                                    @if ($solitutoria->minutos_fin > $minuto_actual)
+                                                        <h6 style="background-color: #f78181" id="borde_radio" class="text-center">Por impartir</h6>
+                                                    @else
+                                                        <h6 style="background-color: #81c784" id="borde_radio" class="text-center">Impartida</h6>
+                                                    @endif
+                                                @else
+                                                    @if ($solitutoria->hora_fin > $hora_actual)
+                                                        <h6 style="background-color: #f78181" id="borde_radio" class="text-center">Por impartir</h6>
+                                                    @else
+                                                        <h6 style="background-color: #81c784" id="borde_radio" class="text-center">Impartida</h6>
+                                                    @endif
+                                                @endif
                                             @else
-                                            <h6 style="background-color: #81c784" id="borde_radio" class="text-center">Impartida</h6>
+                                                @if ($fecha_tutoria>$fecha_actual)
+                                                    <h6 style="background-color: #f78181" id="borde_radio" class="text-center">Por impartir</h6>
+                                                @else
+                                                    <h6 style="background-color: #81c784" id="borde_radio" class="text-center">Impartida</h6>
+                                                @endif
                                             @endif
                                         </td>
                                     </tr>

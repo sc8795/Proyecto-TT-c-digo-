@@ -77,7 +77,7 @@
                         </div>
                         <hr>
                         <button type="button" class="btn btn-success btn-sm" onclick="capturar_fecha();">Confirmar <i class="fas fa-check-circle"></i></button>  
-                    <a href="{{url("vista_editar_datos_tutoria/{$datos_tut->id}/{$estudiante->id}/{$materia->id}/{$notificacion_id}")}}" class="btn btn-primary btn-sm" title="Editar datos de tutoría">Editar tutoría <span class="oi oi-pencil"></span></a>
+                        <a href="{{url("vista_editar_datos_tutoria/{$datos_tut->id}/{$estudiante->id}/{$materia->id}/{$notificacion_id}")}}" class="btn btn-primary btn-sm" title="Editar datos de tutoría">Editar tutoría <span class="oi oi-pencil"></span></a>
                     <main>
                         <div class="modal fade" id="ventana" tabindex="-1" role="dialog" aria-labelledby="tituloVentana" aria-hidden="true">  
                             <div class="modal-dialog" role="document">

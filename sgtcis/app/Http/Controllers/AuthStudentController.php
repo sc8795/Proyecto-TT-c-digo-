@@ -294,8 +294,8 @@ class AuthStudentController extends Controller
             ]);
 
             if ($data["password"]!=null) {
-                //$data["password"]=bcrypt($data['password']);
-                $data["password"]=$data['password'];
+                $data["password"]=bcrypt($data['password']);
+                //$data["password"]=$data['password'];
             }else{
                 unset($data["password"]);
             }
