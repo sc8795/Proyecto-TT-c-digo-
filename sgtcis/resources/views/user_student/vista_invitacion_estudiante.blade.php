@@ -11,26 +11,28 @@
                 <h4 id="txt_opcion_menu_vertical"><span class="negrita">{{$user_invita->name}} {{$user_invita->lastname}}, te ha invitado unirte a tutoría</span></h4>
                 <br>
                 <div class="container" id="fondo_blanco">
-                    <span class="negrita">Datos de tutoría a unirte</span>
-                    <hr>
-                    <span class="negrita">Día: <span class="quita_negrita">{{$solitutoria->dia}}</span></span> <br>
-                    <span class="negrita">Horario de atención: <span class="quita_negrita">{{$solitutoria->hora_inicio}}:{{$solitutoria->minutos_inicio}} a {{$solitutoria->hora_fin}}:{{$solitutoria->minutos_fin}}</span></span> <br>
-                    <span class="negrita">Modalidad: <span class="quita_negrita">{{$solitutoria->modalidad}}</span></span><br>
-                    <span class="negrita">Tipo: <span class="quita_negrita">{{$solitutoria->tipo}}</span></span><br>
-                    <span class="negrita">Motivo: <span class="quita_negrita">{{$solitutoria->motivo}}.</span></span>
-                    @if ($solitutoria->fecha_solicita!=$solitutoria->fecha_tutoria && $solitutoria->fecha_tutoria!=null)
-                        @php
-                            $fecha_tutoria=$solitutoria->fecha_tutoria;
-                            $date = date_create($fecha_tutoria);
-                            $fecha_tutoria=date_format($date, 'd-m-Y');
-                        @endphp
+                    <div id="txt_opcion_menu_vertical">
+                        <span class="negrita">Datos de tutoría a unirte</span>
                         <hr>
-                        <span class="negrita">Fecha que será impartida: <span class="quita_negrita">{{$fecha_tutoria}}.</span></span>
-                    @endif
-                    <hr>
-                    <a href="{{url("confirmar_invitacion/{$solitutoria->id}/{$id_notificacion}")}}" class="btn btn-success btn-sm">Confirmar invitación</a>
-                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#ventana">Cancelar invitación</button>
-                    <hr>
+                        <span class="negrita">Día: <span class="quita_negrita">{{$solitutoria->dia}}</span></span> <br>
+                        <span class="negrita">Horario de atención: <span class="quita_negrita">{{$solitutoria->hora_inicio}}:{{$solitutoria->minutos_inicio}} a {{$solitutoria->hora_fin}}:{{$solitutoria->minutos_fin}}</span></span> <br>
+                        <span class="negrita">Modalidad: <span class="quita_negrita">{{$solitutoria->modalidad}}</span></span><br>
+                        <span class="negrita">Tipo: <span class="quita_negrita">{{$solitutoria->tipo}}</span></span><br>
+                        <span class="negrita">Motivo: <span class="quita_negrita">{{$solitutoria->motivo}}.</span></span>
+                        @if ($solitutoria->fecha_solicita!=$solitutoria->fecha_tutoria && $solitutoria->fecha_tutoria!=null)
+                            @php
+                                $fecha_tutoria=$solitutoria->fecha_tutoria;
+                                $date = date_create($fecha_tutoria);
+                                $fecha_tutoria=date_format($date, 'd-m-Y');
+                            @endphp
+                            <hr>
+                            <span class="negrita">Fecha que será impartida: <span class="quita_negrita">{{$fecha_tutoria}}.</span></span>
+                        @endif
+                        <hr>
+                        <a href="{{url("confirmar_invitacion/{$solitutoria->id}/{$id_notificacion}")}}" class="btn btn-outline-dark btn-sm" id="borde_radio">Confirmar invitación</a>
+                        <button type="button" class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#ventana" id="borde_radio">Cancelar invitación</button>
+                        <hr>
+                    </div>
                 </div>
                     <!-- >Ventana modal<-->
                     <main class="container">

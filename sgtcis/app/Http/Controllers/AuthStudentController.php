@@ -16,6 +16,8 @@ use App\Notiestudiante;
 use App\Evaluacion;
 use App\Log;
 use Alert;
+use Mail;
+use Session;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
 use Redirect;
@@ -484,57 +486,57 @@ class AuthStudentController extends Controller
                         }
                     }
                 }
-                    $verifica_invitacion=DB::table('invitacionestudiantes')
-                        ->where('user_invita_id',$user_student->id)
+                $verifica_invitacion=DB::table('invitacionestudiantes')
+                    ->where('user_invita_id',$user_student->id)
+                    ->where('solitutoria_id',null)
+                    ->exists();
+
+                if($verifica_invitacion==true){
+                    $invitacion=DB::table('invitacionestudiantes')->where('user_invita_id',$user_student->id)
                         ->where('solitutoria_id',null)
-                        ->exists();
+                        ->first();
+                    $id=$invitacion->id;
+                    $user_invitado=$invitacion->user_invitado_id;
+                    $confirmacion=$invitacion->confirmacion;
+                    $fecha_invita=$invitacion->fecha_invita;
+                    if($invitacion->user_invitado_id==null){
+                        $invitacion=DB::table('invitacionestudiantes')->where('id',$id);
+                        $invitacion->delete();
 
-                    if($verifica_invitacion==true){
-                        $invitacion=DB::table('invitacionestudiantes')->where('user_invita_id',$user_student->id)
-                            ->where('solitutoria_id',null)
-                            ->first();
-                        $id=$invitacion->id;
-                        $user_invitado=$invitacion->user_invitado_id;
-                        $confirmacion=$invitacion->confirmacion;
-                        $fecha_invita=$invitacion->fecha_invita;
-                        if($invitacion->user_invitado_id==null){
-                            $invitacion=DB::table('invitacionestudiantes')->where('id',$id);
-                            $invitacion->delete();
-
-                            DB::table('invitacionestudiantes')->insert([
-                                'id'=>$id,
-                                'user_invita_id'=>$user_student->id,
-                                'user_invitado_id'=>$id_estudiante_invitado,
-                                'confirmacion'=>"no",
-                                'fecha_invita'=>$fecha_actual,
-                            ]);
-                        }else{
-                            //dd("David")->aqui hacer el control cuando quiere invitar alumno que ya ha invitado;
-                            $arreglo_est_inv=explode('.', $user_invitado);
-                            foreach ($arreglo_est_inv as $recorre) {
-                                if($recorre==$id_estudiante_invitado){
-                                    $invitacion="error";
-                                    return $invitacion;
-                                }                            
-                            }
-                            $invitacion=DB::table('invitacionestudiantes')->where('id',$id);
-                            $invitacion->delete();
-                            DB::table('invitacionestudiantes')->insert([
-                                'id'=>$id,
-                                'user_invita_id'=>$user_student->id,
-                                'user_invitado_id'=>$user_invitado.".".$id_estudiante_invitado,
-                                'confirmacion'=>$confirmacion."."."no",
-                                'fecha_invita'=>$fecha_invita.".".$fecha_actual,
-                            ]);
-                        }
-                    }else{
                         DB::table('invitacionestudiantes')->insert([
+                            'id'=>$id,
                             'user_invita_id'=>$user_student->id,
                             'user_invitado_id'=>$id_estudiante_invitado,
                             'confirmacion'=>"no",
                             'fecha_invita'=>$fecha_actual,
                         ]);
+                    }else{
+                        //dd("David")->aqui hacer el control cuando quiere invitar alumno que ya ha invitado;
+                        $arreglo_est_inv=explode('.', $user_invitado);
+                        foreach ($arreglo_est_inv as $recorre) {
+                            if($recorre==$id_estudiante_invitado){
+                                $invitacion="error";
+                                return $invitacion;
+                            }                            
+                        }
+                        $invitacion=DB::table('invitacionestudiantes')->where('id',$id);
+                        $invitacion->delete();
+                        DB::table('invitacionestudiantes')->insert([
+                            'id'=>$id,
+                            'user_invita_id'=>$user_student->id,
+                            'user_invitado_id'=>$user_invitado.".".$id_estudiante_invitado,
+                            'confirmacion'=>$confirmacion."."."no",
+                            'fecha_invita'=>$fecha_invita.".".$fecha_actual,
+                        ]);
                     }
+                }else{
+                    DB::table('invitacionestudiantes')->insert([
+                        'user_invita_id'=>$user_student->id,
+                        'user_invitado_id'=>$id_estudiante_invitado,
+                        'confirmacion'=>"no",
+                        'fecha_invita'=>$fecha_actual,
+                    ]);
+                }
                 
                 $invitacion=DB::table('invitacionestudiantes')->where('user_invita_id',$user_student->id)
                     ->where('solitutoria_id',null)
@@ -817,7 +819,7 @@ class AuthStudentController extends Controller
                     $date = date_create($fecha_tutoria);
                     $fecha_tutoria=date_format($date, 'd-m-Y');
                 }
-                
+                /*Elimino la invitación a tutoría cuando llega el día a ser impartida */
                 if($fecha_actual==$fecha_tutoria){
                     $elimina_inv_tut = DB::table('notifications')->where('id',$id_notificacion);
                     $elimina_inv_tut->delete();
@@ -855,10 +857,8 @@ class AuthStudentController extends Controller
                 $fecha_invita=$invitacion->fecha_invita;
                 $arreglo_est_inv=explode('.', $invitacion->user_invitado_id);
                 $arreglo_confirmacion=explode('.', $invitacion->confirmacion);
-
                 for ($i=0; $i < count($arreglo_est_inv); $i++) {
-                    if($arreglo_est_inv[$i]==$user_student->id){
-                        unset($arreglo_confirmacion[$i]);
+                    if($arreglo_est_inv[$i]==$user_student->id){                        
                         $arreglo_confirmacion[$i]="si";
                         $confirmacion=implode('.',$arreglo_confirmacion);
                         $invitacion=DB::table('invitacionestudiantes')->where('id',$id);
@@ -885,7 +885,7 @@ class AuthStudentController extends Controller
                     $noti_estudiante->solitutoria_id=$solitutoria->id;
                     $noti_estudiante->title="Tutoría confirmada";
                     $docente=DB::table('users')->where('id',$solitutoria->docente_id)->first();
-                    $noti_estudiante->descripcion="El docente $docente->name $docente->lastname ha confirmado la tutoría solicitada";
+                    $noti_estudiante->descripcion="El docente $docente->name $docente->lastname ha confirmado la tutoría a la que te uniste";
                     $noti_estudiante->save();
 
                     $user_notificado=User::where('id','=',auth()->user()->id)->get();
@@ -894,6 +894,24 @@ class AuthStudentController extends Controller
                     }
                     flash("Has aceptado la invitación a tutoría. Ahora podrás evaluar al docente, al hacer clic en la nueva notificación que se le ha enviado.")->success();
                 }
+                return redirect()->route('vista_general_student');
+            }else{
+                return redirect()->route('show_login_form_student');
+            }
+        }
+    }
+    public function invitacion_eliminada($id_notificacion,$id_solitutoria){
+        if (Auth::check()) {
+            $user_student = Auth::user();
+            if($user_student->is_estudiante==true){
+                $elimina_inv_tut = DB::table('notifications')->where('id',$id_notificacion);
+                $elimina_inv_tut->delete();
+                /* Obtengo y cargo el id de la tabla notiestudiantes referente al campo solitutoria_id a eliminar */
+                $invitacion=DB::table('invitacions')->where('user_invitado_id',$user_student->id)->first();
+                $id_invitacion=$invitacion->id;
+                $invitacion=Invitacion::find($id_invitacion);  
+                $invitacion->delete(); 
+                flash("¡ERROR! La tutoría ha sido eliminada por quién la solicitó.")->error();
                 return redirect()->route('vista_general_student');
             }else{
                 return redirect()->route('show_login_form_student');
@@ -914,6 +932,173 @@ class AuthStudentController extends Controller
             return view('user_student.vista_tutoria_confirmada',compact('estudiante','docente','materia','datos_tut','notification'));
         }else{
             return view('user_student.vista_tutoria_confirmada_virtual',compact('estudiante','docente','materia','datos_tut','notification'));
+        }
+    }
+
+/* 
+|--------------------------------------------------------------------------
+| Funciones para ver las tutorias solicitadas
+|--------------------------------------------------------------------------
+*/
+    public function vista_tut_sol_est(){
+        if (Auth::check()) {
+            $user_student = Auth::user();
+            if($user_student->is_estudiante==true){
+                $solitutorias=DB::table('solitutorias')->where('estudiante_id',$user_student->id)->get();
+                $invitaciones=DB::table('invitacions')->where('user_invitado_id',$user_student->id)->get();
+                return view('user_student.vista_tut_sol',compact('solitutorias','invitaciones'));
+            }else{
+                return redirect()->route('show_login_form_student');
+            }
+        }
+    }
+    public function vista_tut_sol(){
+        if (Auth::check()) {
+            $user_student = Auth::user();
+            if($user_student->is_estudiante==true){
+                $solitutorias=DB::table('solitutorias')->where('estudiante_id',$user_student->id)->get();
+                return view('user_student.vista_tut_sol_est',compact('solitutorias'));
+            }else{
+                return redirect()->route('show_login_form_student');
+            }
+        }
+    }
+    public function vista_tut_inv(){
+        if (Auth::check()) {
+            $user_student = Auth::user();
+            if($user_student->is_estudiante==true){
+                $invitaciones=DB::table('invitacions')->where('user_invitado_id',$user_student->id)->get();
+                return view('user_student.vista_tut_inv_est',compact('invitaciones'));
+            }else{
+                return redirect()->route('show_login_form_student');
+            }
+        }
+    }
+    public function eliminar_tutoria(Request $request){
+        if (Auth::check()) {
+            $user_student = Auth::user();
+            if($user_student->is_estudiante==true){
+                $solitutoria_id=$request->input("solitutoria_id");
+                /* Obtengo y cargo el id de la tabla invitacionestudiantes referente al campo solitutoria_id a eliminar */
+                $invitacion_estudiante=DB::table('invitacionestudiantes')->where('solitutoria_id',$solitutoria_id)->first();
+                $id_invitacion_estudiante=$invitacion_estudiante->id;
+                $invitacion_estudiante='App\Invitacionestudiante'::find($id_invitacion_estudiante);
+                $invitacion_estudiante->delete();
+                /* Obtengo y cargo el id de la tabla solitutoria a eliminar */
+                $solitutoria = Solitutoria::find($solitutoria_id);
+                $solitutoria->delete();
+                
+                $solitutorias=DB::table('solitutorias')->where('estudiante_id',$user_student->id)->get();
+                flash("La tutoría ha sido eliminada correctamente")->success();
+                return view('user_student.vista_tut_sol_est',compact('solitutorias'));
+            }else{
+                return redirect()->route('show_login_form_student');
+            }
+        }
+    }
+    public function invitar_est_desp($solitutoria_id){
+        if (Auth::check()) {
+            $user_student = Auth::user();
+            if($user_student->is_estudiante==true){
+                $invitacion=DB::table('invitacionestudiantes')->where('solitutoria_id',$solitutoria_id)->first();
+                $lista_estudiantes_sin_arrastre=User::orderBy('name','DESC')
+                    ->where('is_estudiante',true)->where('paralelo',$user_student->paralelo)->where('ciclo',$user_student->ciclo)->where('id','!=',$user_student->id)
+                    ->paginate(3);
+                return view('user_student.vista_est_inv',compact('invitacion','lista_estudiantes_sin_arrastre'));
+            }else{
+                return redirect()->route('show_login_form_student');
+            }
+        }
+    }
+    public function buscar_est(Request $request){
+        if (Auth::check()) {
+            $user_student = Auth::user();
+            if($user_student->is_estudiante==true){
+                $name = $request->input('name');
+                $lastname = $request->input('lastname');
+                $solitutoria_id=$request->input('solitutoria_id');
+                $invitacion=DB::table('invitacionestudiantes')->where('solitutoria_id',$solitutoria_id)->first();
+                $lista_estudiantes_sin_arrastre=User::orderBy('id','DESC')
+                    ->name($name)
+                    ->lastname($lastname)
+                    ->where('is_estudiante',true)->where('paralelo',$user_student->paralelo)->where('ciclo',$user_student->ciclo)->where('id','!=',$user_student->id)
+                    ->paginate(7);
+                Alert::success('')
+                    ->details('Resultados encontrados');
+                return view('user_student.vista_est_inv',compact('invitacion','lista_estudiantes_sin_arrastre'));
+            }else{
+                return redirect()->route('show_login_form_student');
+            }
+        }
+    }
+    public function reg_est_inv_desp(Request $request){
+        if (Auth::check()) {
+            $user_student = Auth::user();
+            if($user_student->is_estudiante==true){
+                $user_invitado_id=$request->input("user_invitado_id");
+                $estudiante=DB::table('users')->where('id',$user_invitado_id)->first();
+                $invitacion_id=$request->input("invitacion_id");       
+                $solitutoria_id=$request->input('solitutoria_id');
+                $invitacion=DB::table('invitacionestudiantes')->where('id',$invitacion_id)->first();
+                $user_invitado=$invitacion->user_invitado_id;
+                $confirmacion=$invitacion->confirmacion;
+                $fecha_invita=$invitacion->fecha_invita;
+                
+                $lista_estudiantes_sin_arrastre=User::orderBy('name','DESC')
+                    ->where('is_estudiante',true)->where('paralelo',$user_student->paralelo)->where('ciclo',$user_student->ciclo)->where('id','!=',$user_student->id)
+                    ->paginate(3);
+                //dd("David")->aqui hacer el control cuando quiere invitar alumno que ya ha invitado;
+                $arreglo_est_inv=explode('.', $user_invitado);
+                foreach ($arreglo_est_inv as $recorre) {
+                    if($recorre==$user_invitado_id){
+                        $invitacion=DB::table('invitacionestudiantes')->where('solitutoria_id',$solitutoria_id)->first();
+                        flash("$estudiante->name $estudiante->lastname ya ha sido invitado")->error();
+                        return view('user_student.vista_est_inv',compact('invitacion','lista_estudiantes_sin_arrastre'));
+                    }                            
+                }
+                $invitacion=DB::table('invitacionestudiantes')->where('id',$invitacion_id);
+                $invitacion->delete();
+                DB::table('invitacionestudiantes')->insert([
+                    'id'=>$invitacion_id,
+                    'user_invita_id'=>$user_student->id,
+                    'user_invitado_id'=>$user_invitado.".".$user_invitado_id,
+                    'solitutoria_id'=>$solitutoria_id,
+                    'confirmacion'=>$confirmacion."."."no",
+                    'fecha_invita'=>$fecha_invita.".".now(),
+                ]);
+                $invita_estudiante=new Invitacion;
+                $invita_estudiante->user_invita_id=$user_student->id;
+                $invita_estudiante->user_invitado_id=$user_invitado_id;
+                $invita_estudiante->solitutoria_id=$solitutoria_id;
+                $invita_estudiante->title="Invitación a tutoría";
+                $invita_estudiante->descripcion="$user_student->name $user_student->lastname te ha invitado unirte a tutoría";
+                $invita_estudiante->fecha_invita=now();
+                $invita_estudiante->save();
+
+                $user_notificado=User::where('id','=',$user_invitado_id)->get();
+                if(\Notification::send($user_notificado,new InvitacionEstudiante(Invitacion::latest('id')->first()))){
+                    return back();
+                }
+                $invitacion=DB::table('invitacionestudiantes')->where('solitutoria_id',$solitutoria_id)->first();
+                flash("Has invitado a $estudiante->name $estudiante->lastname")->success();
+                return view('user_student.vista_est_inv',compact('invitacion','lista_estudiantes_sin_arrastre'));
+            }else{
+                return redirect()->route('show_login_form_student');
+            }
+        }
+    }
+    public function enviar_mail(Request $request){
+        if (Auth::check()) {
+            $user = Auth::user();
+            if($user->is_estudiante==true){
+                Mail::send('user_student.vista_tut_sol_est',$request->all(),function($msj){
+                    $msj->subject("Correo enviado");
+                    $msj->to("sdcartuchem@unl.edu.ec");
+                });
+                return view('user_student.vista_tut_sol_est');
+            }else{
+                return redirect()->route('show_login_form_student');
+            }
         }
     }
 /* 
@@ -940,7 +1125,7 @@ class AuthStudentController extends Controller
             'asistencia'=>"si",
             'evaluacion'=>$total
         ]);
-        flash("Evaluación de tutoria correcta")->success();
+        flash("Se ha registrado la evaluación al docente")->success();
         return redirect()->route('vista_general_student');
     }
 }

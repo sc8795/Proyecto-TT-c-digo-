@@ -172,6 +172,7 @@ Route::post('solicitar_tutoria_student','AuthStudentController@solicitar_tutoria
 
 /* Rutas para ver la invitacion de unirte a tutoria */
 Route::get('invitacion/{user_invita}/{user_invitado}/{solitutoria}/{notification}','AuthStudentController@invitacion')->name('invitacion');
+Route::get('invitacion_eliminada/{notification}/{solitutoria}','AuthStudentController@invitacion_eliminada')->name('invitacion_eliminada');
 
 /* Rutas para cancelar-confirmar la invitacion de unirte a tutoria */
 Route::get('cancela_invitacion/{notification}','AuthStudentController@cancela_invitacion')->name('cancela_invitacion');
@@ -180,8 +181,17 @@ Route::get('confirmar_invitacion/{solitutoria}/{notificacion}','AuthStudentContr
 /* Rutas para ver la tutoria confirmada por parte del docente*/
 Route::get('ver_tutoria_confirmada/{user_docente_id}/{user_student_id}/{notification}/{solitutoria}','AuthStudentController@ver_tutoria_confirmada')->name('ver_tutoria_confirmada');
 
-/* Ruta para completar el registro del estudiante logueado o registrado con cuenta de google */
+/* Ruta para ver la lista de las tutorias solicitadas */
+Route::get('vista_tut_sol_est','AuthStudentController@vista_tut_sol_est')->name('vista_tut_sol_est');
+Route::get('vista_tut_sol','AuthStudentController@vista_tut_sol')->name('vista_tut_sol');
+Route::get('vista_tut_inv','AuthStudentController@vista_tut_inv')->name('vista_tut_inv');
+Route::get('invitar_est_desp/{solitutoria}','AuthStudentController@invitar_est_desp')->name('invitar_est_desp');
+Route::post('buscar_est','AuthStudentController@buscar_est')->name('buscar_est');
+Route::post('reg_est_inv_desp','AuthStudentController@reg_est_inv_desp')->name('reg_est_inv_desp');
+Route::delete('eliminar_tutoria','AuthStudentController@eliminar_tutoria')->name('eliminar_tutoria');
+Route::post('enviar_mail','AuthStudentController@enviar_mail')->name('enviar_mail');
 
+/* Ruta para completar el registro del estudiante logueado o registrado con cuenta de google */
 Route::put('save_completar_registro','AuthStudentController@save_completar_registro')->name('save_completar_registro');
 Route::get('buscar_materia_arrastre','AuthStudentController@buscar_materia_arrastre')->name('buscar_materia_arrastre');
 Route::post('agregar_materia_arrastre','AuthStudentController@agregar_materia_arrastre')->name('agregar_materia_arrastre');

@@ -69,10 +69,10 @@
                                             @endphp
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col">
-                                                    <input class="form-control form-control-borderless form-control-sm" name="name" id="name" type="search" placeholder="Nombre" title="Escriba el nombre de la materia">
+                                                    <input class="form-control form-control-borderless form-control-sm" name="name" id="name" type="search" placeholder="Nombre" title="Escriba un nombre para buscar">
                                                 </div>
                                                 <div class="col">
-                                                    <input class="form-control form-control-borderless form-control-sm" name="lastname" id="lastname" type="search" placeholder="Apellido" title="Escriba el ciclo en que se imparte la materia (p. ej. Primero)">
+                                                    <input class="form-control form-control-borderless form-control-sm" name="lastname" id="lastname" type="search" placeholder="Apellido" title="Escriba un apellido para buscar">
                                                 </div>
                                                 <input type="hidden" name="id_materia" id="id_materia" value="{{$materia->id}}">
                                                 <input type="hidden" name="id_docente" id="id_docente" value="{{$user_docente->id}}">

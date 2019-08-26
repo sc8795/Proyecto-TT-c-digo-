@@ -8,6 +8,7 @@ use App\Notifications\NotificacionEstudiante;
 use App\Solitutoria;
 use App\Materia;
 use App\Notiestudiante;
+use App\Notidocente;
 use App\Evaluacion;
 use App\User;
 use App\Log;
@@ -87,21 +88,34 @@ class AuthDocenteController extends Controller
         if (Auth::check()) {
             $docente = Auth::user();
             if($docente->is_docente==true){
-                $datos_tut=DB::table('solitutorias')->where('id',$solitutoria_id)->first();
-                $estudiante=DB::table('users')->where('id',$user_student_id)->first();
-                $materia=DB::table('materias')->where('usuario_id',$docente->id)->first();
-                $invitacion=DB::table('invitacionestudiantes')->where('solitutoria_id',$solitutoria_id)->first();
-                if($datos_tut->tipo=="grupal"&&$datos_tut->modalidad=="presencial"){
-                    return view('user_docente.vista_grupal_presencial',compact('datos_tut','estudiante','docente','materia','notificacion_id','invitacion'));
-                }
-                if($datos_tut->tipo=="grupal"&&$datos_tut->modalidad=="virtual"){
-                    return view('user_docente.vista_grupal_virtual',compact('datos_tut','estudiante','docente','materia','notificacion_id','invitacion'));
-                }
-                if($datos_tut->tipo=="individual"&&$datos_tut->modalidad="presencial"){
-                    return view('user_docente.vista_individual_presencial',compact('datos_tut','estudiante','docente','materia','notificacion_id'));
-                }
-                if($datos_tut->tipo=="individual"&&$datos_tut->modalidad="virtual"){
-                    return view('user_docente.vista_individual_virtual',compact('datos_tut','estudiante','docente','materia','notificacion_id'));
+                $v_datos_tut=DB::table('solitutorias')->where('id',$solitutoria_id)->exists();
+                if($v_datos_tut==true){
+                    $datos_tut=DB::table('solitutorias')->where('id',$solitutoria_id)->first();
+                    $estudiante=DB::table('users')->where('id',$user_student_id)->first();
+                    $materia=DB::table('materias')->where('usuario_id',$docente->id)->first();
+                    $invitacion=DB::table('invitacionestudiantes')->where('solitutoria_id',$solitutoria_id)->first();
+                    if($datos_tut->tipo=="grupal"&&$datos_tut->modalidad=="presencial"){
+                        return view('user_docente.vista_grupal_presencial',compact('datos_tut','estudiante','docente','materia','notificacion_id','invitacion'));
+                    }
+                    if($datos_tut->tipo=="grupal"&&$datos_tut->modalidad=="virtual"){
+                        return view('user_docente.vista_grupal_virtual',compact('datos_tut','estudiante','docente','materia','notificacion_id','invitacion'));
+                    }
+                    if($datos_tut->tipo=="individual"&&$datos_tut->modalidad="presencial"){
+                        return view('user_docente.vista_individual_presencial',compact('datos_tut','estudiante','docente','materia','notificacion_id'));
+                    }
+                    if($datos_tut->tipo=="individual"&&$datos_tut->modalidad="virtual"){
+                        return view('user_docente.vista_individual_virtual',compact('datos_tut','estudiante','docente','materia','notificacion_id'));
+                    }
+                }else{
+                    $elimina_sol_tut = DB::table('notifications')->where('id',$notificacion_id);
+                    $elimina_sol_tut->delete();
+                    /* Obtengo y cargo el id de la tabla notidocentes referente al campo solitutoria_id a eliminar */
+                    $notidocente=DB::table('notidocentes')->where('solitutoria_id',$solitutoria_id)->first();
+                    $id_notidocente=$notidocente->id;
+                    $notidocente=Notidocente::find($id_notidocente);
+                    $notidocente->delete();
+                    flash("¡ERROR! La tutoría ha sido eliminada por quién la solicitó.")->error();
+                    return view('user_docente.vista_general_cuenta'); 
                 }
             }else{
                 return redirect()->route('show_login_form_docente');

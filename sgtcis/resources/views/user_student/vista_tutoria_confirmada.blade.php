@@ -46,8 +46,7 @@
                             <span class="negrita">¡Aviso!</span>
                             Una vez recibida la tutoría en el día acordado, el proceso finalizará cuando evalúe al docente sobre la tutoría impartida.
                             <br><br>
-                            <!--a href="{{url("evaluar_docente/".auth()->user()->id."/{$notification}/{$datos_tut->id}/{$materia->id}/{$docente->id}")}}" class="btn btn-sm btn-outline-success">Evaluar docente</a-->
-                            <button type="button" class="btn btn-dark btn-sm" disabled="disabled" id="borde_radio">Evaluar docente</button>
+                            <a href="{{url("evaluar_docente/".auth()->user()->id."/{$notification}/{$datos_tut->id}/{$materia->id}/{$docente->id}")}}" class="btn btn-sm btn-outline-success">Evaluar docente</a>
                         </h6>
                     </div>
                     <br>

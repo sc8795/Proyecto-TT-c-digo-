@@ -1,31 +1,22 @@
 @extends('layout_estudiante')
 
 @section('content')
-    @include('user_student.vistas_iguales.menu_horizontal')
-@endsection
-
-@section('content2')
     <div class="row">
-        @include('user_student.vistas_iguales.imagen_texto')
-        <div class="col-9" id="titulo_general">
-            <h3>Evaluación al docente</h3>
-        </div>
-    </div>
-@endsection
-
-@section('content3')
-    <div class="row">
-        <div class="col-3">
+        <div class="col-12">
             @include('user_student.vistas_iguales.menu_vertical')
-        </div>
-        <div class="col-9">
-            <div class="container" id="contenedor_general">
+            <div class="container-fluid" id="espacio_menu_texto"></div>
+            <div class="container" style="background: white">
+                <h1 id="txt_opcion_menu_vertical"><span class="negrita">Evaluación al docente</span></h1>
+                <br>
+                <h4 id="txt_opcion_menu_vertical"><span class="negrita">Preguntas</span></h4>
+                <br>
+                <div id="mensaje_siete">
+                    @include('flash::message')
+                </div>
+
                 <form action="{{url("evaluacion_docente/{$docente->id}/{$solitutoria_id}/{$notification}")}}" method="POST" onsubmit="return validar_evaluacion_docente()">
                     {{ csrf_field() }}
-                    <div class="d-flex p-2 bd-highlight" id="contenedor_2">
-                        <span class="tit_datos">Preguntas de evaluación</span>
-                    </div>
-                    <div class="container" id="contenedor_general_op2"> 
+                    <div class="container" id=""> 
                         <br>
                         Por favor conteste las siguientes preguntas:
                         <hr>
@@ -188,6 +179,14 @@
                     <button type="submit" class="btn btn-primary btn-sm btn-block" title="Evaluar al docente {{$docente->name}} {{$docente->lastname}}">Enviar <span class="fas fa-user-check"></span></button>
                 </form>
             </div>
+            <div class="container-fluid" id="espacio_menu_texto"></div>
+            @include('user_student.vistas_iguales.footer')
+            </div>
+            </div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script src="{{asset('js/bootstrap.min.js')}}"></script>
 @endsection
