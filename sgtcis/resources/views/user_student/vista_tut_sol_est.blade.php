@@ -26,7 +26,7 @@
                                         <th>Materia</th>
                                         <th>Fecha solicitada</th>
                                         <th>Estado</th>
-                                        <th>Acción</th>
+                                        
                                     </tr>
                                     @foreach ($solitutorias as $solitutoria)
                                         @php
@@ -75,7 +75,15 @@
                                                 virtual grupal
                                             @endif
                                             @if ($solitutoria->tipo=="individual" && $solitutoria->modalidad=="presencial")
-                                                presencial individual
+                                                <td>{{$docente->name}} {{$docente->lastname}}</td>
+                                                <td>{{$materia->name}}</td>
+                                                <td>{{$fecha_solicita}}</td>
+                                                @if ($solitutoria->fecha_tutoria==null)
+                                                    <td><h6 style="background-color: #f78181" id="borde_radio" class="text-center">Por confirmar</h6></td>
+                                                @else
+                                                    <td><h6 style="background-color: #81c784" id="borde_radio" class="text-center">Confirmada</h6></td>
+                                                @endif
+                                                
                                             @endif
                                             @if ($solitutoria->tipo=="individual" && $solitutoria->modalidad=="virtual")
                                                 virtual individual

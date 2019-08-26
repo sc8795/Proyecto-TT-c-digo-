@@ -12,8 +12,8 @@
                         <a href="{{url("vista_general_student")}}"><i class="icono izquierda far fa-eye"></i>Vista general de la cuenta</a>
                     </li>
                     <li>
-                        <!--a href="{{route('solicitar_tutoria')}}"><i class="icono izquierda fas fa-chalkboard-teacher"></i>Solicitar tutoría</a-->
-                        <a href="#"><i class="icono izquierda fas fa-chalkboard-teacher"></i>Solicitar tutoría</a>
+                        <a href="{{route('solicitar_tutoria')}}"><i class="icono izquierda fas fa-chalkboard-teacher"></i>Solicitar tutoría</a>
+                        <!--a href="#"><i class="icono izquierda fas fa-chalkboard-teacher"></i>Solicitar tutoría</a-->
                     </li>
                     <li>
                         @if (Auth::check())
