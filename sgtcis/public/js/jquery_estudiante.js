@@ -188,3 +188,83 @@ function valida_confirmacion_docente(){
         alert("El docente ha confirmado la tutoría a la que has sido invitado. Acepta la invitación antes del día que será impartida la tutoría.");
     }
 }
+
+function ayuda_tut_sin_confirmar(){
+    alertify.alert(
+        'Ayuda', 
+        'La tutoría que solicitó aún no ha sido confirmada por parte del docente. Por ahora podrá invitar a más estudiantes a participar de la tutoría o cancelar (borrar) la tutoría.', 
+        function(){ 
+            //alertify.success('Ok'); 
+        }
+    );
+}
+
+function ayuda_tut_confirmada(){
+    alertify.alert(
+        'Ayuda', 
+        'La tutoría ya ha sido confirmada por parte del docente. Por ahora podrá invitar a más estudiantes a participar de la tutoría. Lo podrá hacer antes del día en que será impartida (fecha de tutoría). Si la fecha actual es mayor o igual a la fecha de tutoría, SGT - CIS eliminará la acción para invitar a más estudiantes.', 
+        function(){ 
+            //alertify.success('Ok'); 
+        }
+    );
+}
+
+function ayuda_tut_confirmada_fecha_igual(){
+    alertify.alert(
+        'Ayuda', 
+        'Ha llegado el día de la tutoría solicitada. Por ahora deberá acercarse al lugar establecido para que reciba la tutoría por parte del docente.', 
+        function(){ 
+            //alertify.success('Ok'); 
+        }
+    );
+}
+
+function ayuda_tut_confirmada_fecha_menor(){
+    alertify.alert(
+        'Ayuda', 
+        'Usted ya ha recibido la tutoría solicitada. Por ahora no dispone de ninguna acción para realizar.', 
+        function(){ 
+            //alertify.success('Ok'); 
+        }
+    );
+}
+
+function confirmar_invitacion(){
+    alertify.alert(
+        'Confirmar invitación', 
+        'Si desea confirmar la invitación diríjase al menú de notificaciones, seleccione la invitación recibida y haga clic en confirmar invitación.', 
+        function(){ 
+            //alertify.success('Ok'); 
+        }
+    );
+}
+
+function cancelar_invitacion(){
+    alertify.alert(
+        'Cancelar invitación', 
+        'Si desea cancelar la invitación diríjase al menú de notificaciones, seleccione la invitación recibida y haga clic en cancelar invitación.', 
+        function(){ 
+            //alertify.success('Ok'); 
+        }
+    );
+}
+
+function ayuda_tut_sin_confirmar_inv(){
+    alertify.alert(
+        'Ayuda', 
+        'La tutoría a la que ha sido invitado, aún no ha sido confirmada por parte del docente. Por ahora podrá confirmar o cancelar la invitación a tutoría.', 
+        function(){ 
+            //alertify.success('Ok'); 
+        }
+    );
+}
+
+function ayuda_tut_confirmada_inv(){
+    alertify.alert(
+        'Ayuda', 
+        'La tutoría a la que ha sido invitado, ha sido confirmada por parte del docente. Por ahora podrá confirmar o cancelar la invitación a tutoría.', 
+        function(){ 
+            //alertify.success('Ok'); 
+        }
+    );
+}
