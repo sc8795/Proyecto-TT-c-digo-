@@ -252,7 +252,7 @@ function cancelar_invitacion(){
 function ayuda_tut_sin_confirmar_inv(){
     alertify.alert(
         'Ayuda', 
-        'La tutoría a la que ha sido invitado, aún no ha sido confirmada por parte del docente. Por ahora podrá confirmar o cancelar la invitación a tutoría.', 
+        'La tutoría a la que ha sido invitado, aún no ha sido confirmada por parte del docente. Si usted aún no ha confirmado o cancelado la invitación a tutoría, por favor seleccione y confirme alguna de estas acciones.', 
         function(){ 
             //alertify.success('Ok'); 
         }
@@ -262,7 +262,27 @@ function ayuda_tut_sin_confirmar_inv(){
 function ayuda_tut_confirmada_inv(){
     alertify.alert(
         'Ayuda', 
-        'La tutoría a la que ha sido invitado, ha sido confirmada por parte del docente. Por ahora podrá confirmar o cancelar la invitación a tutoría.', 
+        'La tutoría a la que ha sido invitado, ha sido confirmada por parte del docente. Si usted aún no ha confirmado o cancelado la invitación a tutoría, por favor seleccione y confirme alguna de estas acciones.', 
+        function(){ 
+            //alertify.success('Ok'); 
+        }
+    );
+}
+
+function ayuda_tut_sin_confirmar_inv_conf(){
+    alertify.alert(
+        'Ayuda', 
+        'La tutoría a la que ha sido invitado, aún no ha sido confirmada por parte del docente. Por ahora no dispone de ninguna acción debido a que usted ya aceptó la invitación a tutoría. Por favor espere la confirmación por parte del docente.', 
+        function(){ 
+            //alertify.success('Ok'); 
+        }
+    );
+}
+
+function ayuda_tut_confirmada_inv_conf(){
+    alertify.alert(
+        'Ayuda', 
+        'La tutoría a la que ha sido invitado, ha sido confirmada por parte del docente. Por ahora no dispone de ninguna acción debido a que usted ya aceptó la invitación a tutoría. Por favor espere la confirmación por parte del docente.', 
         function(){ 
             //alertify.success('Ok'); 
         }

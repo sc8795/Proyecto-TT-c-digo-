@@ -32,58 +32,87 @@
                                     @foreach ($invitaciones as $invitacion)
                                         @php
                                             $estudiante=DB::table('users')->where('id',$invitacion->user_invita_id)->first();
-                                            $solitutoria=DB::table('solitutorias')->where('id',$invitacion->solitutoria_id)->first();
-                                            $docente=DB::table('users')->where('id',$solitutoria->docente_id)->first();
-                                            $materia=DB::table('materias')->where('id',$solitutoria->materia_id)->first();
-
-                                            $fecha_tutoria_aux=$solitutoria->fecha_tutoria;
-                                            $date = date_create($fecha_tutoria_aux);
-                                            $fecha_tutoria_aux=date_format($date, 'd-m-Y');
-                                            $fecha_tutoria=strtotime($fecha_tutoria_aux);
-                                            
-                                            
-                                            $fecha_actual=now();
-                                            $date = date_create($fecha_actual);
-                                            $fecha_actual=date_format($date, 'd-m-Y');
-                                            $fecha_actual=strtotime($fecha_actual);
+                                            $v_solitutoria=DB::table('solitutorias')->where('id',$invitacion->solitutoria_id)->exists();
                                         @endphp
-                                        <tr>                                        
-                                            <td>{{$estudiante->name}} {{$estudiante->lastname}}</td>
-                                            <td>{{$docente->name}} {{$docente->lastname}}</td>
-                                            <td>{{$materia->name}}</td>
-                                            @if ($solitutoria->fecha_tutoria==null)
-                                                <td><p>NA</p></td>
-                                            @else
-                                                <td>{{$fecha_tutoria_aux}}</td>
-                                            @endif
-                                            @if ($solitutoria->fecha_tutoria==null)
-                                                <td><h6 style="background-color: #f78181" id="borde_radio" class="text-center">Por confirmar</h6></td>
-                                            @else
-                                                <td><h6 style="background-color: #81c784" id="borde_radio" class="text-center">Confirmada</h6></td>
-                                            @endif
-                                            <td> 
-                                                <!--Cuando el docente aún no confirma tutoría-->
+                                        @if ($v_solitutoria==true)
+                                            @php
+                                                $solitutoria=DB::table('solitutorias')->where('id',$invitacion->solitutoria_id)->first();
+                                                
+                                                $invitacion_estudiante=DB::table('invitacionestudiantes')->where('solitutoria_id',$solitutoria->id)->first();
+                                                $user_invitados=$invitacion_estudiante->user_invitado_id;
+                                                $confirmacion=$invitacion_estudiante->confirmacion;
+                                                $arreglo_user_invitados=explode('.',$user_invitados);
+                                                $arreglo_confirmacion=explode('.',$confirmacion);
+                                                //dd($arreglo_confirmacion);
+                                                
+                                                $docente=DB::table('users')->where('id',$solitutoria->docente_id)->first();
+                                                $materia=DB::table('materias')->where('id',$solitutoria->materia_id)->first();
+
+                                                $fecha_tutoria_aux=$solitutoria->fecha_tutoria;
+                                                $date = date_create($fecha_tutoria_aux);
+                                                $fecha_tutoria_aux=date_format($date, 'd-m-Y');
+                                                $fecha_tutoria=strtotime($fecha_tutoria_aux);
+                                                
+                                                $fecha_actual=now();
+                                                $date = date_create($fecha_actual);
+                                                $fecha_actual=date_format($date, 'd-m-Y');
+                                                $fecha_actual=strtotime($fecha_actual);
+                                            @endphp
+                                        
+                                            <tr>                                        
+                                                <td>{{$estudiante->name}} {{$estudiante->lastname}}</td>
+                                                <td>{{$docente->name}} {{$docente->lastname}}</td>
+                                                <td>{{$materia->name}}</td>
                                                 @if ($solitutoria->fecha_tutoria==null)
-                                                    <button type="button" class="hint--top-left btn btn-outline-dark btn-sm" data-hint="Ayuda" id="borde_radio" onclick="ayuda_tut_sin_confirmar_inv();"><span class="fas fa-question"></span></button>
-                                                    <button type="button" class="hint--top-left btn btn-outline-success btn-sm" data-hint="Confirmar invitación" id="borde_radio" onclick="confirmar_invitacion();"><span class="fas fa-check-circle"></span></button>
-                                                    <button type="button" class="hint--top-left btn btn-outline-danger btn-sm" data-hint="Cancelar invitación" id="borde_radio" onclick="cancelar_invitacion();"><span class="fas fa-times-circle"></span></button>
+                                                    <td><p>NA</p></td>
                                                 @else
-                                                    @if ($fecha_tutoria > $fecha_actual)
-                                                    <button type="button" class="hint--top-left btn btn-outline-dark btn-sm" data-hint="Ayuda" id="borde_radio" onclick="ayuda_tut_confirmada_inv();"><span class="fas fa-question"></span></button>
-                                                    <button type="button" class="hint--top-left btn btn-outline-success btn-sm" data-hint="Confirmar invitación" id="borde_radio" onclick="confirmar_invitacion();"><span class="fas fa-check-circle"></span></button>
-                                                    <button type="button" class="hint--top-left btn btn-outline-danger btn-sm" data-hint="Cancelar invitación" id="borde_radio" onclick="cancelar_invitacion();"><span class="fas fa-times-circle"></span></button>
+                                                    <td>{{$fecha_tutoria_aux}}</td>
+                                                @endif
+                                                @if ($solitutoria->fecha_tutoria==null)
+                                                    <td><h6 style="background-color: #f78181" id="borde_radio" class="text-center">Por confirmar</h6></td>
+                                                @else
+                                                    <td><h6 style="background-color: #81c784" id="borde_radio" class="text-center">Confirmada</h6></td>
+                                                @endif
+                                                <td> 
+                                                    <!--Cuando el docente aún no confirma tutoría-->
+                                                    @if ($solitutoria->fecha_tutoria==null)
+                                                        @for ($i = 0; $i < count($arreglo_user_invitados); $i++)
+                                                            @if ($arreglo_user_invitados[$i] == auth()->user()->id && $arreglo_confirmacion[$i]=="no")
+                                                                <button type="button" class="hint--top-left btn btn-outline-dark btn-sm" data-hint="Ayuda" id="borde_radio" onclick="ayuda_tut_sin_confirmar_inv();"><span class="fas fa-question"></span></button>
+                                                                <button type="button" class="hint--top-left btn btn-outline-success btn-sm" data-hint="Confirmar invitación" id="borde_radio" onclick="confirmar_invitacion();"><span class="fas fa-check-circle"></span></button>
+                                                                <button type="button" class="hint--top-left btn btn-outline-danger btn-sm" data-hint="Cancelar invitación" id="borde_radio" onclick="cancelar_invitacion();"><span class="fas fa-times-circle"></span></button>
+                                                            @else
+                                                                @if ($arreglo_user_invitados[$i] == auth()->user()->id && $arreglo_confirmacion[$i]=="si")
+                                                                    <button type="button" class="hint--top-left btn btn-outline-dark btn-sm" data-hint="Ayuda" id="borde_radio" onclick="ayuda_tut_sin_confirmar_inv_conf();"><span class="fas fa-question"></span></button>
+                                                                @endif
+                                                            @endif
+                                                        @endfor
                                                     @else
-                                                        @if ($fecha_tutoria == $fecha_actual)
-                                                            <button type="button" class="hint--top-left btn btn-outline-dark btn-sm" data-hint="Ayuda" id="borde_radio" onclick="ayuda_tut_confirmada_fecha_igual();"><span class="fas fa-question"></span></button>
+                                                        @if ($fecha_tutoria > $fecha_actual)
+                                                            @for ($i = 0; $i < count($arreglo_user_invitados); $i++)
+                                                                @if ($arreglo_user_invitados[$i] == auth()->user()->id && $arreglo_confirmacion[$i]=="no")
+                                                                    <button type="button" class="hint--top-left btn btn-outline-dark btn-sm" data-hint="Ayuda" id="borde_radio" onclick="ayuda_tut_confirmada_inv();"><span class="fas fa-question"></span></button>
+                                                                    <button type="button" class="hint--top-left btn btn-outline-success btn-sm" data-hint="Confirmar invitación" id="borde_radio" onclick="confirmar_invitacion();"><span class="fas fa-check-circle"></span></button>
+                                                                    <button type="button" class="hint--top-left btn btn-outline-danger btn-sm" data-hint="Cancelar invitación" id="borde_radio" onclick="cancelar_invitacion();"><span class="fas fa-times-circle"></span></button>
+                                                                @else
+                                                                    @if ($arreglo_user_invitados[$i] == auth()->user()->id && $arreglo_confirmacion[$i]=="si")
+                                                                        <button type="button" class="hint--top-left btn btn-outline-dark btn-sm" data-hint="Ayuda" id="borde_radio" onclick="ayuda_tut_confirmada_inv_conf();"><span class="fas fa-question"></span></button>
+                                                                    @endif
+                                                                @endif
+                                                            @endfor
                                                         @else
-                                                            @if ($fecha_tutoria < $fecha_actual)
-                                                                <button type="button" class="hint--top-left btn btn-outline-dark btn-sm" data-hint="Ayuda" id="borde_radio" onclick="ayuda_tut_confirmada_fecha_menor();"><span class="fas fa-question"></span></button>
+                                                            @if ($fecha_tutoria == $fecha_actual)
+                                                                <button type="button" class="hint--top-left btn btn-outline-dark btn-sm" data-hint="Ayuda" id="borde_radio" onclick="ayuda_tut_confirmada_fecha_igual();"><span class="fas fa-question"></span></button>
+                                                            @else
+                                                                @if ($fecha_tutoria < $fecha_actual)
+                                                                    <button type="button" class="hint--top-left btn btn-outline-dark btn-sm" data-hint="Ayuda" id="borde_radio" onclick="ayuda_tut_confirmada_fecha_menor();"><span class="fas fa-question"></span></button>
+                                                                @endif
                                                             @endif
                                                         @endif
                                                     @endif
-                                                @endif
-                                            </td>
-                                        </tr>
+                                                </td>
+                                            </tr>
+                                        @endif
                                     @endforeach
                                 </thead>
                             </table>
