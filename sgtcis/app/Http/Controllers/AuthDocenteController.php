@@ -279,10 +279,11 @@ class AuthDocenteController extends Controller
         }
     }
     public function lista_tutorias_confirmadas($user_estudiante_id,$user_docente_id,$materia_id){
+        $estudiante=DB::table('users')->where('id',$user_estudiante_id)->first();
         $solitutorias=DB::table('solitutorias')->where('materia_id',$materia_id)->where('docente_id',$user_docente_id)->where('estudiante_id',$user_estudiante_id)->get();
-        return view('user_docente.vista_lista_tutorias_confirmadas',compact('solitutorias'));
+        return view('user_docente.vista_lista_tutorias_confirmadas',compact('solitutorias','estudiante'));
     }
-    public function evalua_estudiante($solitutoria_id,$user_estudiante_id,$user_docente_id,$materia_id){
+    public function evalua_estudiante_pre_ind($solitutoria_id,$user_estudiante_id,$user_docente_id,$materia_id){
         $user_estudiante=DB::table('users')->where('id',$user_estudiante_id)->first();
         return view('user_docente.vista_evalua_estudiante',compact('user_estudiante','solitutoria_id'));
     }
