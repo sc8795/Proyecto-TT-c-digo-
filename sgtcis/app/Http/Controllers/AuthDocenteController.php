@@ -271,7 +271,7 @@ class AuthDocenteController extends Controller
             if($docente->is_docente==true){
                 $verifica=DB::table('notiestudiantes')->where('user_id',$docente->id)->exists();
                 $noti_estudiantes=DB::table('notiestudiantes')->where('user_id',$docente->id)->get();
-                $unique_noti_estudiantes=$noti_estudiantes->unique(['user_estudiante_id','solitutoria_id']);
+                $unique_noti_estudiantes=$noti_estudiantes->unique(['solitutoria_id']);
                 return view('user_docente.vista_evaluar_estudiante',compact('verifica','unique_noti_estudiantes'));
             }else{
                 return redirect()->route('show_login_form_docente');

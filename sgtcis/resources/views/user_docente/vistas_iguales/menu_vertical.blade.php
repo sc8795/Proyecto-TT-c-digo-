@@ -43,8 +43,7 @@
                         <a href="{{url('vista_tutorias_conf_imp')}}"><i class="icono izquierda far fa-eye"></i>Vista tutorías</a>
                     </li>
                     <li>
-                        <!--a href="{{url("evaluar_estudiante")}}"><i class="icono izquierda fas fa-star"></i>Evaluación al estudiante</a-->
-                        <a href="{{url("#")}}"><i class="icono izquierda fas fa-star"></i>Evaluación al estudiante</a>
+                        <a href="{{url("evaluar_estudiante")}}"><i class="icono izquierda fas fa-star"></i>Evaluación al estudiante</a>
                     </li>
                     <li style="margin-top: 20px;">
                         <form method="POST" action="{{route('logout_docente')}}" id="logout">
