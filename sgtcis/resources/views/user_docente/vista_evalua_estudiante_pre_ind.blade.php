@@ -1,32 +1,19 @@
 @extends('layout_docente')
 
 @section('content')
-    @include('user_docente.vistas_iguales.menu_horizontal')
-@endsection
-
-@section('content2')
     <div class="row">
-        @include('user_docente.vistas_iguales.imagen_texto')
-        <div class="col-9" id="titulo_general">
-            <h3>Evaluación al estudiante</h3>
-        </div>
-    </div>
-@endsection
-
-@section('content3')
-    <div class="row">
-        <div class="col-3">
+        <div class="col-12">
             @include('user_docente.vistas_iguales.menu_vertical')
-        </div>
-        <div class="col-9">
-            <div class="container" id="contenedor_general">
-                <div class="d-flex p-2 bd-highlight" id="contenedor_2">
-                    <span class="tit_datos">Proceso de evaluación al estudiante {{$user_estudiante->name}} {{$user_estudiante->lastname}}</span>
-                </div>
+            <div class="container-fluid" id="espacio_menu_texto"></div>
+            <div class="container" style="background: white">
+                <h1 id="txt_opcion_menu_vertical"><span class="negrita">Evaluación estudiante</span></h1>
+                <br>
+                <h4 id="txt_opcion_menu_vertical"><span class="negrita">Proceso de evaluación al estudiante {{$user_estudiante->name}} {{$user_estudiante->lastname}}</span></h4>
+                <hr>
                 <div class="container" id="contenedor_general_op2"> 
                     <br>
                         Conteste la siguiente pregunta:
-                        <hr>
+                        <br><br>
                         <span class="negrita">
                             ¿El estudiante asistió a la tutoría?
                         </span>
@@ -44,12 +31,12 @@
                                 <hr>                                
                                 <form action="{{url("evaluacion_estudiante/{$user_estudiante->id}/{$solitutoria_id}")}}" method="POST" onsubmit="return validar_evaluacion_estudiante()">
                                     {{ csrf_field() }}
-                                    <div class="d-flex p-2 bd-highlight" id="contenedor_2">
+                                    <div class="d-flex p-2 bd-highlight" id="fondo_tabla_general">
                                         <span class="tit_datos">Preguntas de evaluación</span>
                                     </div>
-                                    <div class="container" id="contenedor_general_op3"> 
+                                    <div class="container" id="fondo_solicitud"> 
                                         <br>
-                                        Por favor conteste las siguientes preguntas:
+                                        Por favor responda las siguientes preguntas:
                                         <hr>
                                         <span class="negrita"> Tema de tutoría
                                             <div class="input-group-prepend">
@@ -61,7 +48,7 @@
                                         <span class="negrita"> Descripción de tutoría
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text" id="basic-addon1"><i class="fas fa-font"></i></span>
-                                                <textarea class="form-control" name="descripcion_de_tutoria" id="descripcion_de_tutoria" rows="2" autocomplete="off" placeholder="Describa el tema general de tutoría"></textarea>
+                                                <textarea class="form-control" name="descripcion_de_tutoria" id="descripcion_de_tutoria" rows="2" autocomplete="off" placeholder="Describa el tema general de tutoría o las tareas que se abordaron durante la tutoría."></textarea>
                                             </div>
                                         </span>
                                         <hr>
@@ -243,7 +230,7 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    <button type="submit" class="btn btn-primary btn-sm btn-block" name="asistencia" value="si" title="Evaluar y registrar asistencia del estudiante {{$user_estudiante->name}} {{$user_estudiante->lastname}}">Enviar <span class="fas fa-user-check"></span></button>
+                                    <button type="submit" class="btn btn-outline-dark btn-block" name="asistencia" value="si" title="Evaluar y registrar asistencia del estudiante {{$user_estudiante->name}} {{$user_estudiante->lastname}}">Registrar evaluación <span class="fas fa-user-check"></span></button>
                                 </form>
                             </div>
                         </div>
@@ -256,6 +243,14 @@
                     </form>
                 </div>
             </div>
+            <div class="container-fluid" id="espacio_menu_texto"></div>
+            @include('user_docente.vistas_iguales.footer')
+            </div>
+            </div>
         </div>
     </div>
 @endsection
+
+@section('scripts')
+    <script src="{{asset('js/bootstrap.min.js')}}"></script>
+@endsection 
