@@ -10,14 +10,9 @@
                 <br>
                 <h4 id="txt_opcion_menu_vertical"><span class="negrita">Preguntas</span></h4>
                 <br>
-                <div id="mensaje_siete">
-                    @include('flash::message')
-                </div>
-
                 <form action="{{url("evaluacion_docente/{$docente->id}/{$solitutoria_id}/{$notification}")}}" method="POST" onsubmit="return validar_evaluacion_docente()">
                     {{ csrf_field() }}
-                    <div class="container" id=""> 
-                        <br>
+                    <div class="container"> 
                         Por favor conteste las siguientes preguntas:
                         <hr>
                         <table class="table table-bordered table-sm">
@@ -176,8 +171,9 @@
                         </table>
                         <hr>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-sm btn-block" title="Evaluar al docente {{$docente->name}} {{$docente->lastname}}">Enviar <span class="fas fa-user-check"></span></button>
+                    <button type="submit" class="btn btn-outline-dark btn-block" id="centrar_boton" title="Evaluar al docente {{$docente->name}} {{$docente->lastname}}">Registrar evaluación <span class="fas fa-user-check"></span></button>
                 </form>
+                <br>
             </div>
             <div class="container-fluid" id="espacio_menu_texto"></div>
             @include('user_student.vistas_iguales.footer')
