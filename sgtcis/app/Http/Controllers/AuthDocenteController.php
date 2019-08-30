@@ -296,7 +296,7 @@ class AuthDocenteController extends Controller
                 'asistencia'=>$asistencia,
                 'evaluacion'=>0
             ]);
-            flash("Evaluación de tutoria correcta")->success();
+            flash("Se ha registrado la evaluación del estudiante (Inasistencia).")->success();
             return redirect()->route('vista_general_docente');
         }
         if($asistencia=="si"){
@@ -317,7 +317,7 @@ class AuthDocenteController extends Controller
                 'tema'=>$tema_tutoria,
                 'descripcion'=>$descripcion_tutoria
             ]);
-            flash("Evaluación de tutoria correcta")->success();
+            flash("Se ha registrado la evaluación de tutoría al estudiante.")->success();
             return redirect()->route('vista_general_docente');
         }
     }
@@ -341,6 +341,21 @@ class AuthDocenteController extends Controller
         }
         if($tipo==2){
             return $pdf->download("reporte_de_evaluacion_del_estudiante_".$estudiante->name."_".$estudiante->lastname.".pdf");
+        }
+    }
+/* 
+|--------------------------------------------------------------------------
+| Funciones para generar reporte general de todas las tutorías que ha realizado
+|--------------------------------------------------------------------------
+*/
+    public function reporte_general(){
+        if (Auth::check()) {
+            $docente = Auth::user();
+            if($docente->is_docente==true){
+                return view('user_docente.vista_reporte_general');
+            }else{
+                return redirect()->route('show_login_form_docente');
+            }
         }
     }
 }

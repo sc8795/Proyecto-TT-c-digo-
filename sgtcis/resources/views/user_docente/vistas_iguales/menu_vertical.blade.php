@@ -45,6 +45,9 @@
                     <li>
                         <a href="{{url("evaluar_estudiante")}}"><i class="icono izquierda fas fa-star"></i>Evaluación al estudiante</a>
                     </li>
+                    <li>
+                        <a href="{{url("reporte_general")}}"><i class="icono izquierda fas fa-bars"></i>Reporte de tutorías</a>
+                    </li>
                     <li style="margin-top: 20px;">
                         <form method="POST" action="{{route('logout_docente')}}" id="logout">
                             {{ csrf_field() }}

@@ -12,7 +12,7 @@
                 <hr>
                 <div class="row">
                     <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-                        <div class="d-flex p-2 bd-highlight" id="fondo_tabla_general">
+                        <div class="d-flex p-2 bd-highlight" id="contenedor_general_op3">
                             <span class="tit_datos">Tutorías por evaluar</span>
                         </div>
                         <div class="container" id="contenedor_general_op2"> 
@@ -69,7 +69,7 @@
                         </div>
                     </div>
                         <div class="col-6">
-                            <div class="d-flex p-2 bd-highlight" id="contenedor_2">
+                            <div class="d-flex p-2 bd-highlight" id="contenedor_general_op3">
                                 <span class="tit_datos">Registro de tutorías evaluadas</span>
                             </div>
                             <div class="container" id="contenedor_general_op2"> 
@@ -143,6 +143,7 @@
                                         <div class="container">
                                             <div class="row">
                                                 <div class="col-3" style="background-color:  #1f618d; text-align:center;">
+                                                    <br>
                                                     <h1>{{$cont2}}</h1>
                                                 </div>
                                                 <div class="col-9" style="background-color: #85c1e9; text-align: center;">

@@ -238,3 +238,6 @@ Route::post('evaluacion_estudiante/{user_evaluado_id}/{solitutoria_id}','AuthDoc
 
 /* Rutas para generar reportes pdf - cuando se ha evaluado al estudiante */
 Route::get('reporte_pfp_evaluacion_estudiante/{tipo}/{evaluacion}/{estudiante}/{docente}/{solitutoria}','AuthDocenteController@reporte_pfp_evaluacion_estudiante')->name('reporte_pfp_evaluacion_estudiante');
+
+/* Rutas para generar reporte general de tutorías realizadas */
+Route::get('reporte_general','AuthDocenteController@reporte_general')->name('reporte_general');
