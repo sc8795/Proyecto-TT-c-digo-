@@ -352,7 +352,8 @@ class AuthDocenteController extends Controller
         if (Auth::check()) {
             $docente = Auth::user();
             if($docente->is_docente==true){
-                return view('user_docente.vista_reporte_general');
+                $solitutorias=DB::table('solitutorias')->where('docente_id',$docente->id)->get();
+                return view('user_docente.vista_reporte_general',compact('solitutorias'));
             }else{
                 return redirect()->route('show_login_form_docente');
             }
