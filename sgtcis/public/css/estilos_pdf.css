@@ -10,7 +10,7 @@
     margin-left: -20px;
 }
 .posicion_logo_cis{
-    width: 20%;
+    width: 15%;
     float: right;
 }
 .logo_cis{
@@ -19,7 +19,9 @@
     margin-left: 20px;
     margin-top: 0px;
 }
-    
+#borde{
+    border: black 1px solid;
+}
 .posicion_titulo_unl{
     width: 59%;
     float: center;
@@ -29,7 +31,30 @@
 .titulo_unl_facultad_carrera{
     text-align: center;
 }
-
+.titulo_unl{
+    font-weight: bold;
+    color: gray;
+    font-size: 15pt;
+}
+.titulo_facultad{
+    font-weight: bold;
+    color: black;
+    font-size: 13px;
+}
+.titulo_registro{
+    font-weight: bold;
+    color: black;
+    font-size: 14px;
+}
+#titulos_tabla{
+    color: black;
+    font-size: 12px;
+    text-align: center;
+}
+#subtitulos_tabla{
+    color: black;
+    font-size: 12px;
+}
 .titulo_reporte{
     font-size: 13px;
 }

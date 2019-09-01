@@ -359,4 +359,45 @@ class AuthDocenteController extends Controller
             }
         }
     }
+    public function op_reporte_general(){
+        if (Auth::check()) {
+            $docente = Auth::user();
+            if($docente->is_docente==true){
+                return view("user_docente.vista_op_reporte_general");
+            }else{
+                return redirect()->route('show_login_form_docente');
+            }
+        }
+    }
+    public function ver_op_reporte_general($opcion){
+        if (Auth::check()) {
+            $docente = Auth::user();
+            if($docente->is_docente==true){
+                $vista_url=("user_docente.vista_reporte_op_reporte_general_pdf");
+                return $this->generar_reporte_op_reporte_general_pdf($opcion,$vista_url);
+            }else{
+                return redirect()->route('show_login_form_docente');
+            }
+        }
+    }
+    public function generar_reporte_op_reporte_general_pdf($opcion,$vista_url){
+        if (Auth::check()) {
+            $docente = Auth::user();
+            if($docente->is_docente==true){
+                $date=date('Y-m-d');
+                $solitutorias=DB::table('solitutorias')->where('docente_id',$docente->id)->get();
+                $view=\View::make($vista_url,compact('date','solitutorias','docente'))->render();
+                $pdf=\App::make('dompdf.wrapper');
+                $pdf->loadHTML($view)->setPaper('a4', 'landscape');
+                if($opcion==1){
+                    return $pdf->stream();
+                }
+                if($opcion==2){
+                    return $pdf->download("reporte_gneral_tutorías_periodo_academico.pdf");
+                }
+            }else{
+                return redirect()->route('show_login_form_docente');
+            }
+        }
+    }
 }

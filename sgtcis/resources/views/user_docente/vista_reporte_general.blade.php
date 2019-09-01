@@ -66,7 +66,7 @@
                     @if ($cont>0)
                         <br>
                         <div class="container text-center" id="cont_carga_h">
-                            <a href="#" class="btn btn-outline-dark btn-block btn-sm" id="borde_radio">Reporte general de todo el período académico</a>
+                            <a href="{{url("op_reporte_general")}}" class="btn btn-outline-dark btn-block btn-sm" id="borde_radio">Reporte general de todo el período académico</a>
                         </div>
                         <br>
                         <div class="container text-center" id="cont_carga_h">

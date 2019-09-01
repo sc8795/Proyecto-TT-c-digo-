@@ -241,3 +241,5 @@ Route::get('reporte_pfp_evaluacion_estudiante/{tipo}/{evaluacion}/{estudiante}/{
 
 /* Rutas para generar reporte general de tutorías realizadas */
 Route::get('reporte_general','AuthDocenteController@reporte_general')->name('reporte_general');
+Route::get('op_reporte_general','AuthDocenteController@op_reporte_general')->name('op_reporte_general');
+Route::get('ver_op_reporte_general/{opcion}','AuthDocenteController@ver_op_reporte_general')->name('ver_op_reporte_general');

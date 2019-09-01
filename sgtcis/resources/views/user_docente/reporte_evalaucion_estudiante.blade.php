@@ -16,7 +16,7 @@
             </div>
             <div class="posicion_titulo_unl">
                 <h4 class="titulo_unl_facultad_carrera">Universidad Nacional de Loja</h4>
-                <h5 class="titulo_unl_facultad_carrera">Facultad de la Energía las Industrias y los Recursos Naturales no Renovables</h5>
+                <h6 class="titulo_unl_facultad_carrera">Facultad de la Energía las Industrias y los Recursos Naturales no Renovables</h6>
                 <h6 class="titulo_unl_facultad_carrera">Carrera de Ingeniería en Sistemas</h6>
             </div>
             <div class="posicion_logo_cis">
