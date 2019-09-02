@@ -12,6 +12,7 @@ use App\Horario3;
 use App\Horario4;
 use App\Horario5;
 use App\Log;
+use App\Encryption;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use Auth;
@@ -20,6 +21,7 @@ use Illuminate\Support\Facades\Storage;
 use Alert;
 use Illuminate\Support\Str;
 use Laracasts\Flash\Flash;
+use Illuminate\Support\Facades\Crypt;
 
 class AuthAdministradorController extends Controller
 {
@@ -3827,5 +3829,20 @@ public function editar_admin(){
         $logs=Log::orderBy('id','ASC')
             ->paginate(10);
         return view('user_administrador.vista_sistema_log',compact('logs','aux'));
+    }
+/* 
+|--------------------------------------------------------------------------
+| Funciones para ver las claves de los usarios registrados
+|--------------------------------------------------------------------------
+*/
+    public function claves(){
+        if (Auth::check()) {
+            $admin = Auth::user();
+            if($admin->is_admin==true){
+                return view('user_administrador.vista_claves');
+            }else{
+                return redirect()->route('show_login_form');
+            }
+        }
     }
 }

@@ -150,6 +150,11 @@ Route::get('mensaje_editar_horario/{user}','AuthAdministradorController@mensaje_
 /* Rutas para el sistema de log */
 Route::get('log','AuthAdministradorController@log')->name('log');
 Route::get('descargar_log/{aux}','AuthAdministradorController@descargar_log')->name('descargar_log');
+
+/* Rutas para ver claves de los usuarios registrados */
+Route::get('claves','AuthAdministradorController@claves')->name('claves');
+Route::get('ver_op_pass/{user}','AuthAdministradorController@ver_op_pass')->name('ver_op_pass');
+
 /* 
 |--------------------------------------------------------------------------
 | Rutas del Estudiante

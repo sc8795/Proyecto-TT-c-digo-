@@ -384,6 +384,7 @@ class AuthDocenteController extends Controller
         if (Auth::check()) {
             $docente = Auth::user();
             if($docente->is_docente==true){
+                set_time_limit(0);
                 $date=date('Y-m-d');
                 $solitutorias=DB::table('solitutorias')->where('docente_id',$docente->id)->get();
                 $view=\View::make($vista_url,compact('date','solitutorias','docente'))->render();

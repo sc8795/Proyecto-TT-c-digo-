@@ -8,7 +8,7 @@
             <div class="container" style="background: white" id="txt_opcion_menu_vertical">
                 <h1 id="txt_opcion_menu_vertical"><span class="negrita">Reporte general de tutorías</span></h1>
                 <br>
-                <h4 id="txt_opcion_menu_vertical"><span class="negrita">Por favor seleccione una de las opciones para que pueda ver el reporte general de tutorías</span></h4>
+                <h4 id="txt_opcion_menu_vertical"><span class="negrita">Por favor seleccione haga clic en la opción para que pueda ver el reporte general de tutorías</span></h4>
                 <hr>
                 @if ($solitutorias->isNotEmpty())
                     @php
@@ -70,11 +70,11 @@
                         </div>
                         <br>
                         <div class="container text-center" id="cont_carga_h">
-                            <a href="#" class="btn btn-outline-dark btn-block btn-sm" id="borde_radio">Reporte general por materia</a>
+                            <!--a href="#" class="btn btn-outline-dark btn-block btn-sm" id="borde_radio">Reporte general por materia</a-->
                         </div>
                         <br>
                         <div class="container text-center" id="cont_carga_h">
-                            <a href="#" class="btn btn-outline-dark btn-block btn-sm" id="borde_radio">Reporte general por paralelo</a>
+                            <!--a href="#" class="btn btn-outline-dark btn-block btn-sm" id="borde_radio">Reporte general por paralelo</a-->
                         </div>
                         <hr>
                     @else

@@ -52,13 +52,13 @@
                         <th rowspan="2">Temática abordada</th>
                         <th rowspan="2">Tareas realizadas</th>
                         <th rowspan="2">Modalidad - Tipo</th>
-                        <th colspan="2">Calificación</th>
+                        <!--th colspan="2">Calificación</th-->
                     </tr>
                     <tr>
                         <th>Inicio</th>
                         <th>Final</th>
-                        <th>Docente</th>
-                        <th>Estudiante</th>
+                        <!--th>Docente</th>
+                        <th>Estudiante</th-->
                     </tr>
                 </thead>
                 <tbody id="subtitulos_tabla">
@@ -127,39 +127,6 @@
                                             <td>Doc. aún no evalúa</td>
                                         @endif
                                         <td>{{$solitutoria->modalidad}} - {{$solitutoria->tipo}}</td>
-                                        @if ($solitutoria->tipo=="grupal")
-                                            @if ($v_evaluacion_docente==true)
-                                                @php
-                                                    $evaluaciones=DB::table('evaluacions')->where('solitutoria_id',$solitutoria->id)->where('user_evaluado_id',$docente->id)->get();
-                                                    $total=0;
-                                                    $cont=$evaluaciones->count();
-                                                    foreach ($evaluaciones as $evaluacion) {
-                                                        $total=$total+$evaluacion->evaluacion;
-                                                    }
-                                                    $total=$total/$cont;
-                                                @endphp
-                                                <td>{{$total}}%</td>
-                                            @else
-                                                <td>Est. aún no evalúa</td>
-                                            @endif
-                                        @else
-                                            @if ($v_evaluacion_docente==true)
-                                            @php
-                                                $evaluacion=DB::table('evaluacions')->where('solitutoria_id',$solitutoria->id)->where('user_evaluado_id',$docente->id)->first();
-                                            @endphp
-                                                <td>{{$evaluacion->evaluacion}}%</td>
-                                            @else
-                                                <td>Est. aún no evalúa</td>
-                                            @endif
-                                        @endif
-                                        @if ($v_evaluacion==true)
-                                            @php
-                                                $evaluacion=DB::table('evaluacions')->where('solitutoria_id',$solitutoria->id)->where('user_evaluado_id',$solitutoria->estudiante_id)->first();
-                                            @endphp
-                                            <td>{{$evaluacion->evaluacion}}%</td>
-                                        @else
-                                            <td>Doc. aún no evalúa</td>
-                                        @endif
                                     </tr>
                                 @endif
                             @else
@@ -209,39 +176,6 @@
                                             <td>Doc. aún no evalúa</td>
                                         @endif
                                         <td>{{$solitutoria->modalidad}} - {{$solitutoria->tipo}}</td>
-                                        @if ($solitutoria->tipo=="grupal")
-                                            @if ($v_evaluacion_docente==true)
-                                                @php
-                                                    $evaluaciones=DB::table('evaluacions')->where('solitutoria_id',$solitutoria->id)->where('user_evaluado_id',$docente->id)->get();
-                                                    $total=0;
-                                                    $cont=$evaluaciones->count();
-                                                    foreach ($evaluaciones as $evaluacion) {
-                                                        $total=$total+$evaluacion->evaluacion;
-                                                    }
-                                                    $total=$total/$cont;
-                                                @endphp
-                                                <td>{{$total}}%</td>
-                                            @else
-                                                <td>Est. aún no evalúa</td>
-                                            @endif
-                                        @else
-                                            @if ($v_evaluacion_docente==true)
-                                            @php
-                                                $evaluacion=DB::table('evaluacions')->where('solitutoria_id',$solitutoria->id)->where('user_evaluado_id',$docente->id)->first();
-                                            @endphp
-                                                <td>{{$evaluacion->evaluacion}}%</td>
-                                            @else
-                                                <td>Est. aún no evalúa</td>
-                                            @endif
-                                        @endif
-                                        @if ($v_evaluacion==true)
-                                            @php
-                                                $evaluacion=DB::table('evaluacions')->where('solitutoria_id',$solitutoria->id)->where('user_evaluado_id',$solitutoria->estudiante_id)->first();
-                                            @endphp
-                                            <td>{{$evaluacion->evaluacion}}%</td>
-                                        @else
-                                            <td>Doc. aún no evalúa</td>
-                                        @endif
                                     </tr>
                                 @endif
                             @endif
@@ -292,39 +226,6 @@
                                         <td>Doc. aún no evalúa</td>
                                     @endif
                                     <td>{{$solitutoria->modalidad}} - {{$solitutoria->tipo}}</td>
-                                    @if ($solitutoria->tipo=="grupal")
-                                        @if ($v_evaluacion_docente==true)
-                                            @php
-                                                $evaluaciones=DB::table('evaluacions')->where('solitutoria_id',$solitutoria->id)->where('user_evaluado_id',$docente->id)->get();
-                                                $total=0;
-                                                $cont=$evaluaciones->count();
-                                                foreach ($evaluaciones as $evaluacion) {
-                                                    $total=$total+$evaluacion->evaluacion;
-                                                }
-                                                $total=$total/$cont;
-                                            @endphp
-                                            <td>{{$total}}%</td>
-                                        @else
-                                            <td>Doc. aún no evalúa</td>
-                                        @endif
-                                    @else
-                                        @if ($v_evaluacion_docente==true)
-                                        @php
-                                            $evaluacion=DB::table('evaluacions')->where('solitutoria_id',$solitutoria->id)->where('user_evaluado_id',$docente->id)->first();
-                                        @endphp
-                                            <td>{{$evaluacion->evaluacion}}%</td>
-                                        @else
-                                            <td>Est. aún no evalúa</td>
-                                        @endif
-                                    @endif
-                                    @if ($v_evaluacion==true)
-                                        @php
-                                            $evaluacion=DB::table('evaluacions')->where('solitutoria_id',$solitutoria->id)->where('user_evaluado_id',$solitutoria->estudiante_id)->first();
-                                        @endphp
-                                        <td>{{$evaluacion->evaluacion}}%</td>
-                                    @else
-                                        <td>Doc. aún no evalúa</td>
-                                    @endif
                                 </tr>
                             @endif
                         @endif

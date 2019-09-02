@@ -37,6 +37,9 @@
                         <li>
                             <a href="{{url('log')}}"><i class="icono izquierda far fa-circle"></i>LOG</a>
                         </li>
+                        <li>
+                            <a href="{{url("claves")}}"><i class="icono izquierda fas fa-key"></i>Claves</a>
+                        </li>
                         <li style="margin-top: 20px;">
                             <form method="POST" action="{{route('logout_administrador')}}" id="logout">
                                 {{ csrf_field() }}
