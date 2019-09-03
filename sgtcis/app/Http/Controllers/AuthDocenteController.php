@@ -287,6 +287,10 @@ class AuthDocenteController extends Controller
         $user_estudiante=DB::table('users')->where('id',$user_estudiante_id)->first();
         return view('user_docente.vista_evalua_estudiante_pre_ind',compact('user_estudiante','solitutoria_id'));
     }
+    public function evalua_estudiante_pre_gru($solitutoria_id,$user_estudiante_id,$user_docente_id,$materia_id){
+        $user_estudiante=DB::table('users')->where('id',$user_estudiante_id)->first();
+        return view('user_docente.vista_evalua_estudiante_pre_gru',compact('user_estudiante','solitutoria_id'));
+    }
     public function evaluacion_estudiante($user_evaluado_id, $solitutoria_id, Request $request){
         $asistencia=$request->input('asistencia');
         if($asistencia=="no"){

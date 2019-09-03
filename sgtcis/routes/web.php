@@ -239,6 +239,7 @@ Route::get('ciclo/{materia}','AuthDocenteController@ciclo')->name('ciclo');
 Route::get('evaluar_estudiante','AuthDocenteController@evaluar_estudiante')->name('evaluar_estudiante');
 Route::get('lista_tutorias_confirmadas/{user_estudiante_id}/{user_docente_id}/{materia_id}','AuthDocenteController@lista_tutorias_confirmadas')->name('lista_tutorias_confirmadas');
 Route::get('evalua_estudiante_pre_ind/{solitutoria_id}/{user_estudiante_id}/{user_docente_id}/{materia_id}','AuthDocenteController@evalua_estudiante_pre_ind')->name('evalua_estudiante_pre_ind');
+Route::get('evalua_estudiante_pre_gru/{solitutoria_id}/{user_estudiante_id}/{user_docente_id}/{materia_id}','AuthDocenteController@evalua_estudiante_pre_gru')->name('evalua_estudiante_pre_gru');
 Route::post('evaluacion_estudiante/{user_evaluado_id}/{solitutoria_id}','AuthDocenteController@evaluacion_estudiante')->name('evaluacion_estudiante');
 
 /* Rutas para generar reportes pdf - cuando se ha evaluado al estudiante */

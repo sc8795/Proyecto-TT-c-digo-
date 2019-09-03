@@ -22,9 +22,9 @@
                             @endphp
                             @foreach ($solitutorias as $solitutoria)
                                 @php
-                                    $verifica_evaluacion=DB::table('evaluacions')->where('solitutoria_id',$solitutoria->id)->exists();
+                                    $verifica_evaluacion=DB::table('evaluacions')->where('solitutoria_id',$solitutoria->id)->where('user_evaluado_id',$solitutoria->estudiante_id)->exists();
                                 @endphp
-                                @if ($solitutoria->fecha_solicita != $solitutoria->fecha_confirma && $verifica_evaluacion==false)
+                                @if ($solitutoria->fecha_solicita != $solitutoria->fecha_tutoria && $verifica_evaluacion==false)
                                     @php
                                         $cont++;
                                     @endphp
@@ -38,7 +38,10 @@
                                                     </a>
                                                 @endif
                                                 @if ($solitutoria->modalidad =="presencial" && $solitutoria->tipo == "grupal")
-                                                    Hola
+                                                    <a href="{{url("evalua_estudiante_pre_gru/{$solitutoria->id}/{$solitutoria->estudiante_id}/".auth()->user()->id."/{$solitutoria->materia_id}")}}" class="btn btn-sm" style="margin-top:50%">
+                                                        <h1>{{$cont}}</h1>
+                                                        Evaluar
+                                                    </a>
                                                 @endif
                                             </div>
                                             <div class="col-9" style="background-color: #f9e79f;">
@@ -79,7 +82,7 @@
                                 @endphp
                                 @foreach ($solitutorias as $solitutoria)
                                     @php
-                                        $verifica_evaluacion=DB::table('evaluacions')->where('solitutoria_id',$solitutoria->id)->exists();
+                                        $verifica_evaluacion=DB::table('evaluacions')->where('solitutoria_id',$solitutoria->id)->where('user_evaluado_id',$solitutoria->estudiante_id)->exists();
                                     @endphp
                                     @if ($verifica_evaluacion==true)
                                         @php
