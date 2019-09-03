@@ -8,9 +8,11 @@ use Illuminate\Support\Collection;
 use Illuminate\Http\Request;
 use App\User;
 use App\Materia;
+use App\Encryption;
 use Auth;
 use Redirect;
 use Laracasts\Flash\Flash;
+use Illuminate\Support\Facades\Crypt;
 
 use Socialite;
 
@@ -63,7 +65,8 @@ class LoginController extends Controller
         return User::create([
             'name'=>$user->name,
             'lastname'=>'',
-            'password'=>bcrypt("sgtcis12345"),
+            //'password'=>Crypt::encrypt('sgtcis12345'),
+            'password'=>bcrypt('sgtcis12345'),
             'is_admin'=>false,
             'is_docente'=>false,
             'is_estudiante'=>true,
@@ -234,7 +237,7 @@ class LoginController extends Controller
             $this->username()=>'required|string',
             'password'=>'required|string'
         ]);
-
+        //dd($credenciales[$this->username()]);
         /*Codigo en donde se inicia la sesion del usuario administrador, para lo cual hacemos uso del fasat Auth y accedemos al metodo attempt y le pasamos las credenciales directamente. Esto devuelve un boolean (V o F) dependiendo si los datos de acceso coinciden con los datos que se encuentran en la BD*/
         if($request->isMethod('post')){
             /*si es V, se redirecciona a una url privada "auth_admin" y la creamos en web.php*/

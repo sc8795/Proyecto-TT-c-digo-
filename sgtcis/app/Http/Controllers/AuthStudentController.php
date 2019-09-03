@@ -15,11 +15,13 @@ use App\Notifications\NotificacionEstudiante;
 use App\Notiestudiante;
 use App\Evaluacion;
 use App\Log;
+use App\Encryption;
 use Alert;
 use Mail;
 use Session;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Crypt;
 use Redirect;
 
 class AuthStudentController extends Controller
@@ -45,8 +47,6 @@ class AuthStudentController extends Controller
                 if($user_student->paralelo=="NA" && $user_student->ciclo=="NA"){
                     $materias=Materia::orderBy('id','DESC')
                         ->paginate(5);
-                    Alert::success('¡Bienvenido(a)! ')
-                        ->details("$user_student->name $user_student->lastname.");
                     $verifica_arrastre=DB::table('arrastres')->where('user_estudiante_id',$user_student->id)->exists();
                     if($verifica_arrastre==true){
                         $arrastre=DB::table('arrastres')->where('user_estudiante_id',$user_student->id)->first();
@@ -118,6 +118,7 @@ class AuthStudentController extends Controller
             ]);
 
             if ($data["password"]!=null) {
+                //$data["password"]=Crypt::encrypt($data['password']);
                 $data["password"]=bcrypt($data['password']);
             }else{
                 unset($data["password"]);

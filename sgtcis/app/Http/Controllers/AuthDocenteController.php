@@ -14,7 +14,9 @@ use App\User;
 use App\Log;
 use Alert;
 use Auth;
+use App\Encryption;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Crypt;
 
 class AuthDocenteController extends Controller
 {
@@ -69,8 +71,9 @@ class AuthDocenteController extends Controller
             ]);
 
             if ($data["password"]!=null) {
-                //$data["password"]=bcrypt($data['password']);
-                $data["password"]=$data['password'];
+                $data["password"]=bcrypt($data['password']);
+                //$data["password"]=Crypt::encrypt($data['password']);
+                //$data["password"]=$data['password'];
             }else{
                 unset($data["password"]);
             }
