@@ -59,6 +59,17 @@ class AccederSoftwareTest extends TestCase
     /** * @test */
     function acceder_software_docente(){
         //$this->withoutExceptionHandling();
+        User::create([
+            'name'=>'Luis Antonio',
+            'lastname'=>'Chamba Eras',
+            'password'=>bcrypt('luischamba'),
+            'is_admin'=>false,
+            'is_docente'=>true,
+            'is_estudiante'=>false,
+            'paralelo'=>'NA',
+            'ciclo'=>'NA',
+            'email'=>'lachamba@unl.edu.ec',
+        ]);
         $response = $this->from('auth_docente')
             ->post('login_docente', [
                 'password'=>bcrypt('luischamba'),
@@ -74,6 +85,17 @@ class AccederSoftwareTest extends TestCase
     /** * @test */
     function acceder_software_admin(){
         //$this->withoutExceptionHandling();
+        /*User::create([
+            'name'=>'Administrador',
+            'lastname'=>'SGT-CIS',
+            'password'=>bcrypt('sgtcisadmin'),
+            'is_admin'=>true,
+            'is_docente'=>false,
+            'is_estudiante'=>false,
+            'paralelo'=>'NA',
+            'ciclo'=>'NA',
+            'email'=>'adminsgtcis@unl.edu.ec',
+        ]);*/
         $response = $this->from('auth_admin')
             ->post('login_administrador', [
                 'password'=>bcrypt('sgtcisadmin'),
