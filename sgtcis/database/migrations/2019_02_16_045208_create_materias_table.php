@@ -17,13 +17,9 @@ class CreateMateriasTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('usuario_id');
             $table->foreign('usuario_id')->references('id')->on('users');
-
             $table->string('name');
             $table->string('ciclo');
             $table->string('paralelo');
-            /*$table->string('paralelo_b');
-            $table->string('paralelo_c');
-            $table->string('paralelo_d');*/
             $table->timestamps();
         });
     }

@@ -1,25 +1,15 @@
 @extends('layout_administrador')
 
 @section('content')
-    @include('user_administrador.vistas_iguales.menu_horizontal')
-@endsection
-
-@section('content2')
     <div class="row">
-        @include('user_administrador.vistas_iguales.imagen_texto')
-        <div class="col-9" id="titulo_general">
-            <h3>Editar Materia</h3>
-        </div>
-    </div>
-@endsection
-
-@section('content3')
-    <div class="row">
-        <div class="col-3">
+        <div class="col-12">
             @include('user_administrador.vistas_iguales.menu_vertical')
-        </div>
-        <div class="col-9">
-            <div class="container" id="contenedor_general">
+            <div class="container-fluid" id="espacio_menu_texto"></div>
+            <div class="container" style="background: white">
+                <h1 id="txt_opcion_menu_vertical"><span class="negrita">Editar materia</span></h1>
+                <br>
+                <h4 id="txt_opcion_menu_vertical"><span class="negrita">{{$materia->name}}</span></h4>
+                <br>
                 @php
                     $mensaje_error="";
                     $verifica_nombre=false;
@@ -36,6 +26,7 @@
                         @endphp
                     @endforeach
                 @endif
+                <!--Formulario para editar materia-->
                 <form class="formulario_general" method="POST" action="{{url("editando_materia/{$materia->id}")}}">
                     {{method_field("PUT")}}
                     {{ csrf_field() }}
@@ -190,6 +181,10 @@
                     <hr>
                     <button type="submit" class="btn btn-primary btn-block">Guardar cambios</button>
                 </form>
+            </div>
+            <div class="container-fluid" id="espacio_menu_texto"></div>
+            @include('user_administrador.vistas_iguales.footer')
+            </div>
             </div>
         </div>
     </div>

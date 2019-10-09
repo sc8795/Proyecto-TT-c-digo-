@@ -7,17 +7,12 @@ use Illuminate\Notifications\Notifiable;
 
 class Materia extends Model
 {
-    //use Notifiable;
-
     protected $table='materias'; 
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+    /* se indican los campos de la tabla materias para
+    que el controlador pueda hacer uso de ellos (buscarlos,
+    actualizarlos o eliminarlos) */
     protected $fillable = [
-        'name','ciclo','usuario_id','paralelo'
+        'usuario_id','name','ciclo','paralelo'
     ];
 
     /* Funciones para la búsqueda de materia */

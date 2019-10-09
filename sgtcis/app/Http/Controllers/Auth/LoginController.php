@@ -40,7 +40,8 @@ class LoginController extends Controller
             ]);
             $authUser = User::where('email', '=', $email)->first(); 
             Auth::login($authUser,true);
-            return redirect()->action('AuthStudentController@vista_student_google');
+            //return redirect()->action('AuthStudentController@vista_student_google');
+            return redirect()->route('vista_student_google');
         }
     }
     public function redirectToProvider($provider)
@@ -104,24 +105,22 @@ class LoginController extends Controller
         }
     }
     public function login_administrador(Request $request){
-        /*Establecemos las reglas de validacion para el formulario de login admistrador, en donde los campos email y password seran requeridos y de tipo string, estas reglas las guardamos en la variable $credenciales*/
-        $credenciales=$this->validate(request(),[
-            $this->username()=>'required|string',
-            'password'=>'required|string'
-        ]);
         /*Codigo en donde se inicia la sesion del usuario administrador, para lo cual hacemos uso del fasat Auth y accedemos al metodo attempt y le pasamos las credenciales directamente. Esto devuelve un boolean (V o F) dependiendo si los datos de acceso coinciden con los datos que se encuentran en la BD*/
         if($request->isMethod('post')){
+            /*Establecemos las reglas de validacion para el formulario de login admistrador, en donde los campos email y password seran requeridos y de tipo string, estas reglas las guardamos en la variable $credenciales*/
+            $credenciales=$this->validate(request(),[
+                $this->username()=>'required|string',
+                'password'=>'required|string'
+            ]);
             /*si es V, se redirecciona a una url privada "auth_admin" y la creamos en web.php*/
             if(Auth::attempt($credenciales)){
                 $emailform = $request->input("email");
                 $users = DB::table('users')->where('email',$emailform)->first();
                 if($users->is_admin==true){
-                    //dd("Hola lili");
                     if (Auth::check()){
                         return redirect()->route('auth_admin');
                     }
                 }else{
-                    //dd("Hola guisella");
                     return redirect()->route('show_login_form')->withErrors([$this->username()=>'Usted no es administrador'])->withInput(request([$this->username()]));
                 }
             }
@@ -169,14 +168,13 @@ class LoginController extends Controller
         }
     }
     public function login_student(Request $request){
-        /*Establecemos las reglas de validacion para el formulario de login admistrador, en donde los campos email y password seran requeridos y de tipo string, estas reglas las guardamos en la variable $credenciales*/
-        $credenciales=$this->validate(request(),[
-            $this->username()=>'required|string',
-            'password'=>'required|string'
-        ]);
-
         /*Codigo en donde se inicia la sesion del usuario administrador, para lo cual hacemos uso del fasat Auth y accedemos al metodo attempt y le pasamos las credenciales directamente. Esto devuelve un boolean (V o F) dependiendo si los datos de acceso coinciden con los datos que se encuentran en la BD*/
         if($request->isMethod('post')){
+            /*Establecemos las reglas de validacion para el formulario de login admistrador, en donde los campos email y password seran requeridos y de tipo string, estas reglas las guardamos en la variable $credenciales*/
+            $credenciales=$this->validate(request(),[
+                $this->username()=>'required|string',
+                'password'=>'required|string'
+            ]);
             /*si es V, se redirecciona a una url privada "auth_student" y la creamos en web.php*/
             if(Auth::attempt($credenciales)){
                 $emailform = $request->input("email");
@@ -196,7 +194,8 @@ class LoginController extends Controller
                             return view('user_student.completar_registro',compact('user_student','materias','verifica_arrastre','docentes'));
                         }   
                     }else{
-                        return view('user_student.auth_student'); 
+                        //return view('user_student.auth_student'); 
+                        return redirect()->route('vista_general_student');
                     }
                 }else{
                     return redirect()->route('show_login_form_student')->withErrors([$this->username()=>'Usted no es estudiante'])->withInput(request([$this->username()]));
@@ -231,15 +230,14 @@ class LoginController extends Controller
         }
     }
     public function login_docente(Request $request){
-        /*Establecemos las reglas de validacion para el formulario de login admistrador, en donde los campos email y password seran requeridos y de tipo string, estas reglas las guardamos en la variable $credenciales*/
-
-        $credenciales=$this->validate(request(),[
-            $this->username()=>'required|string',
-            'password'=>'required|string'
-        ]);
         //dd($credenciales[$this->username()]);
         /*Codigo en donde se inicia la sesion del usuario administrador, para lo cual hacemos uso del fasat Auth y accedemos al metodo attempt y le pasamos las credenciales directamente. Esto devuelve un boolean (V o F) dependiendo si los datos de acceso coinciden con los datos que se encuentran en la BD*/
         if($request->isMethod('post')){
+            /*Establecemos las reglas de validacion para el formulario de login admistrador, en donde los campos email y password seran requeridos y de tipo string, estas reglas las guardamos en la variable $credenciales*/
+            $credenciales=$this->validate(request(),[
+                $this->username()=>'required|string',
+                'password'=>'required|string'
+            ]);
             /*si es V, se redirecciona a una url privada "auth_admin" y la creamos en web.php*/
             if(Auth::attempt($credenciales)){
                 $emailform = $request->input("email");

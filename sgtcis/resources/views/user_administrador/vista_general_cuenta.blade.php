@@ -14,7 +14,7 @@
                     @include('flash::message')
                 </div>
 
-                <form action="{{route('editar_perfil_docente')}}">
+                <form action="{{route('editar_perfil_admin')}}">
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-3 col-xs-12 col-sm-6 col-md-4">

@@ -68,11 +68,6 @@ public function editar_admin(){
         $data=request()->validate([
             'name'=>'required',
             'lastname'=>'required',
-            'email'=>[
-                'required',
-                'email',
-                Rule::unique('users')->ignore($user->id)
-            ],
             'password'=>''
         ]);
         if ($data["password"]!=null) {
@@ -121,7 +116,6 @@ public function editar_admin(){
         ]);
         return redirect()->route('docentes_registrados');
     }
-    
     public function registrar_docente_excel(Request $request){
         $users = DB::table('users')->where('is_docente',true)->get();
         foreach ($users as $user)
@@ -225,11 +219,12 @@ public function editar_admin(){
         $ciclo=$request->input('gender');
         $docente=$request->input('docente');
         $paralelo=$request->input('paralelo');
+        $paralelo=array();
         $paralelo = implode(',', $paralelo);
         DB::table('materias')->insert([
+            'usuario_id'=>$docente,
             'name'=>$name,
             'ciclo'=>$ciclo,
-            'usuario_id'=>$docente,
             'paralelo'=>$paralelo,            
         ]);
        
@@ -308,7 +303,6 @@ public function editar_admin(){
     }
     public function editando_materia(Materia $materia, Request $request){
         $data=request()->validate([
-            //'name'=>['required','regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/'],
             'name'=>'required',
             'ciclo'=>'required',
             'usuario_id'=>'required',

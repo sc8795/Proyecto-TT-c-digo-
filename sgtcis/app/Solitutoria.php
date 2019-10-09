@@ -14,6 +14,6 @@ class Solitutoria extends Model
      * @var array
      */
     protected $fillable = [
-        'dia','hora_inicio','minutos_inicio','hora_fin','minutos_fin','materia_id','docente_id','estudiante_id','fecha_solicita','fecha_confirma','fecha_tutoria','fecha_evalua'
+        'dia','hora_inicio','minutos_inicio','hora_fin','minutos_fin','materia_id','docente_id','estudiante_id','modalidad','tipo','motivo','medio_virtual','cuenta_virtual','fecha_solicita','fecha_confirma','fecha_tutoria','fecha_evalua'
     ];
 }
