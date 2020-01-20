@@ -23,6 +23,10 @@ use Illuminate\Support\Str;
 use Laracasts\Flash\Flash;
 use Illuminate\Support\Facades\Crypt;
 
+/**
+* @OA\Info(title="Documentación software SGT - CIS", version="1.0")
+*
+*/
 class AuthAdministradorController extends Controller
 {
 /* 
@@ -33,24 +37,20 @@ class AuthAdministradorController extends Controller
     public function __construct(){
         $this->middleware('auth');
     }
-
-    public function auth_admin(){
-        if (Auth::check()) {
-            $user = Auth::user();
-            if($user->is_admin==true){
-                return view('user_administrador.auth_admin');  
-            }else{
-                return redirect()->route('show_login_form');
-            }
-        } 
-    }
 /* 
 |--------------------------------------------------------------------------
 | Funciones para la vista general del administrador
 |--------------------------------------------------------------------------
 */
     public function vista_general_admin(){
-        return view('user_administrador.vista_general_cuenta');
+        if (Auth::check()){
+            $user = Auth::user();
+            if($user->is_admin==true){
+                return view('user_administrador.vista_general_cuenta');
+            }else{
+                return view('user_administrador.login_administrador');
+            }
+        }
     }
 /* 
 |--------------------------------------------------------------------------

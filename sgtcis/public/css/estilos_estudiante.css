@@ -125,6 +125,9 @@
     font-family: 'Nunito', sans-serif;
     font-weight: 200;
 }
+#justificar{
+    text-align: justify;
+}
 
 /* ---------- ESTILOS USADOS POR TODAS LAS VISTAS ---------- */ 
 #contenedor_general{

@@ -1,0 +1,20 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Documentación software SGT - CIS",
+        "version": "1.0"
+    },
+    "paths": {
+        "/sgtcis/public/auth_admin": {
+            "get": {
+                "summary": "Administrador inicia sesión",
+                "operationId": "App\\Http\\Controllers\\AuthAdministradorController::auth_admin",
+                "responses": {
+                    "200": {
+                        "description": "Muestra vista general de la cuenta."
+                    }
+                }
+            }
+        }
+    }
+}

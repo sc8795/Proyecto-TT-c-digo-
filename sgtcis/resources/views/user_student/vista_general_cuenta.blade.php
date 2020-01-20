@@ -10,12 +10,14 @@
                 <br>
                 <h4 id="txt_opcion_menu_vertical"><span class="negrita">Perfil</span></h4>
                 <br>
+                <!--Para presentar mensajes-->
                 <div id="mensaje_siete">
                     @include('flash::message')
                 </div>
 
                 <form action="{{route('editar_perfil_student')}}">
                     <div class="container">
+                        <!--Presenta nombres y apellidos-->
                         <div class="row">
                             <div class="col-lg-3 col-xs-12 col-sm-6 col-md-4">
                                 <h5 id="txt_opcion_menu_vertical">Nombres - apellidos:</h5>
@@ -25,6 +27,7 @@
                             </div>
                         </div>
                         <hr>
+                        <!--Presenta correo (email)-->
                         <div class="row">
                             <div class="col-3">
                                 <h5 id="txt_opcion_menu_vertical">Email:</h5>

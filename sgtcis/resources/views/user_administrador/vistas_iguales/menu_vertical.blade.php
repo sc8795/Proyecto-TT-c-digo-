@@ -7,9 +7,13 @@
             </div>
             <div class="list-group list-group-flush">
                 <div class="vertical-menu">
+                    <!--Menú de opciones del administrador-->
                     <ul class="menu_vertical">
+                        <!--Vista general de la cuenta-->
                         <li>
-                            <a href="{{route('vista_general_admin')}}"><i class="icono izquierda far fa-eye"></i>Vista general de la cuenta</a>
+                            <a href="{{route('vista_general_admin')}}">
+                                <i class="icono izquierda far fa-eye"></i>Vista general de la cuenta
+                            </a>
                         </li>
                         <li>
                             <a href="#"><i class="icono izquierda fas fa-cog"></i>Configuración docente<i class="icono derecha fas fa-chevron-down"></i></a>

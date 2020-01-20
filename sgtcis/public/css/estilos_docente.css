@@ -66,6 +66,12 @@
     background: #1b1b1b;
     color:aqua;
 }
+#alinear_derecha{
+    text-align: right;
+}
+#numeros{
+    color: red;
+}
 
 /* ---------- ESTILOS GENERALES PARA COMPLETAR REGISTRO ---------- */ 
 

@@ -50,7 +50,14 @@ class AuthDocenteController extends Controller
 |--------------------------------------------------------------------------
 */
     public function vista_general_docente(){
-        return view('user_docente.vista_general_cuenta');
+        if (Auth::check()){
+            $user = Auth::user();
+            if($user->is_docente==true){
+                return view('user_docente.vista_general_cuenta');
+            }else{
+                return view('user_docente.login_docente');
+            }
+        }
     }
 /* 
 |--------------------------------------------------------------------------

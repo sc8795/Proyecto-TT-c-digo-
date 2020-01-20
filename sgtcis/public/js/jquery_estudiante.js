@@ -54,16 +54,6 @@ $(document).on('click', '#boton_completar', function(){
         return true;
     }
 });
-
-/* Función para presentar mensaje de alerta en el caso de que el usuario logueado no haya completado su registro */
-$(document).on('click', '#boton_omitir', function(){
-    var verifica_ciclo;
-    verifica_ciclo=document.getElementById('verifica_ciclo').value;
-    if(verifica_ciclo==="NA"){
-        alert("Por favor complete su registro para que pueda acceder al menú de opciones.");
-        return false;
-    }
-});
 $(document).on('click', '#boton_cancelar_inv', function(){
     $('#ventana').modal('show');
 });
@@ -71,6 +61,7 @@ $(document).on('click', '#boton_cancelar_inv', function(){
 $('div#mensaje_uno').delay(1000).slideUp(1500);
 $('div#mensaje_cuatro').delay(4000).slideUp(1500);
 $('div#mensaje_siete').delay(7000).slideUp(1500);
+$('div#mensaje_veinte').delay(20000).slideUp(1500);
 
 //evaluar estudiante - validar preguntas de asistencia
 function validar_evaluacion_docente(){
@@ -282,7 +273,27 @@ function ayuda_tut_sin_confirmar_inv_conf(){
 function ayuda_tut_confirmada_inv_conf(){
     alertify.alert(
         'Ayuda', 
-        'La tutoría a la que ha sido invitado, ha sido confirmada por parte del docente. Por ahora no dispone de ninguna acción debido a que usted ya aceptó la invitación a tutoría. Por favor espere la confirmación por parte del docente.', 
+        'La tutoría a la que ha sido invitado, ha sido confirmada por parte del docente. Por ahora no dispone de ninguna acción debido a que usted ya aceptó la invitación a tutoría. Por favor espere la confirmación por parte del docente', 
+        function(){ 
+            //alertify.success('Ok'); 
+        }
+    );
+}
+
+function ayuda_asignar_materia(){
+    alertify.alert(
+        'SGTCIS - Ayuda', 
+        '<div id="justificar">Por favor añada cada una de las materias que se encuentra recibiendo en el período académico. <br/><span class="negrita">Pasos:</span><br/><span class="negrita">1. </span> Obtenga la materia que desea añadir por medio del buscador. <br/><span class="negrita">2. </span>Asigne el paralelo y docente a la materia.<br/><span class="negrita">3. </span>Haga clic en el botón Añadir. </div>', 
+        function(){ 
+            //alertify.success('Ok'); 
+        }
+    );
+}
+
+function boton_omitir(){
+    alertify.alert(
+        'SGTCIS - Aviso', 
+        '<div id="justificar">Por favor complete su registro para que pueda acceder al menú de opciones.</div>', 
         function(){ 
             //alertify.success('Ok'); 
         }

@@ -9,7 +9,9 @@
             <div class="vertical-menu">
                 <ul class="menu_vertical">
                     <li>
-                        <a href="{{route('vista_general_docente')}}"><i class="icono izquierda far fa-eye"></i>Vista general de la cuenta</a>
+                        <a href="{{route('vista_general_docente')}}">
+                            <i class="icono izquierda far fa-eye"></i>Vista general de la cuenta
+                        </a>
                     </li>
                     <li>
                         @if (Auth::check())

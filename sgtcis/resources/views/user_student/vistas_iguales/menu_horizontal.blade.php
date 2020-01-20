@@ -25,7 +25,7 @@
                         {{auth()->user()->name}} {{auth()->user()->lastname}}
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="opcion_logueo">
-                        <a class="dropdown-item" href="{{route('vista_student_google')}}">Ver cuenta <span class="fas fa-user"></span></a>
+                        <a class="dropdown-item" href="{{route('vista_completar_registro')}}">Ver cuenta <span class="fas fa-user"></span></a>
                     </div>
                 </li>
             </ul>

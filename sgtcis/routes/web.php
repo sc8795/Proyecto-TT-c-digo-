@@ -1,5 +1,5 @@
 <?php
-
+/*Ruta que devuelve la página de inicio del software*/
 Route::get('/', function () {
     if (Auth::check()){
         $user = Auth::user();
@@ -29,56 +29,23 @@ Route::post('registro_manual','Auth\LoginController@registro_manual')->name('reg
 |--------------------------------------------------------------------------
 */
 Route::get('acerca_de','Header_footerController@acerca_de')->name('acerca_de');
-/* 
-|--------------------------------------------------------------------------
-| Rutas para el inicio de sesion de administrador
-|--------------------------------------------------------------------------
-*/
-/*Ruta para la vista del formulario de inicio de sesion del administrador, para lo cual se crea el metodo show_login_form (mostrar formulario de inicio de sesion) que se encuentra en el archivo LoginController */
-Route::get('/administrator','Auth\LoginController@show_login_form')->name('show_login_form');
-/*Ruta privada para el usuario administrador que inician sesion*/
-Route::get('auth_admin','AuthAdministradorController@auth_admin')->name('auth_admin');
-
-/*Ruta del formulario login_administrador: se debe crear el metodo login_administrador*/
-Route::post('login_administrador','Auth\LoginController@login_administrador')->name('login_administrador');
-/*Ruta para cerrar sesión del administrador*/
-Route::post('logout_administrador','Auth\LoginController@logout_administrador')->name('logout_administrador');
-
-/* 
-|--------------------------------------------------------------------------
-| Rutas para el inicio de sesion del estudiante
-|--------------------------------------------------------------------------
-*/
-Route::get('/student','Auth\LoginController@show_login_form_student')->name('show_login_form_student')->middleware('guest');
-
-Route::get('auth_student','AuthStudentController@auth_student')->name('auth_student');
-
-Route::post('login_student','Auth\LoginController@login_student')->name('login_student');
-
-Route::post('logout_student','Auth\LoginController@logout_student')->name('logout_student');
-
-Route::get('verifica_cuenta_google','Auth\LoginController@verifica_cuenta_google')->name('verifica_cuenta_google');
-
-/* 
-|--------------------------------------------------------------------------
-| Rutas para el inicio de sesion del docente
-|--------------------------------------------------------------------------
-*/
-Route::get('/docente','Auth\LoginController@show_login_form_docente')->name('show_login_form_docente')->middleware('guest');
-
-Route::get('auth_docente','AuthDocenteController@auth_docente')->name('auth_docente');
-
-Route::post('login_docente','Auth\LoginController@login_docente')->name('login_docente');
-
-Route::post('logout_docente','Auth\LoginController@logout_docente')->name('logout_docente');
 
 /* 
 |--------------------------------------------------------------------------
 | RUTAS DEL ADMINISTRADOR 
 |--------------------------------------------------------------------------
 */
-/* Ruta para la vista general */
-Route::get('vista_general_admin','AuthAdministradorController@vista_general_admin')->name('vista_general_admin');
+/*Ruta para la vista del formulario de inicio de sesion del administrador*/
+Route::get('/administrator','Auth\LoginController@show_login_form')->name('show_login_form');
+/*Ruta para acceder al software como administrador*/
+Route::post('login_administrador','Auth\LoginController@login_administrador')
+    ->name('login_administrador');
+/*Ruta para cerrar sesión del administrador*/
+Route::post('logout_administrador','Auth\LoginController@logout_administrador')->name('logout_administrador');
+
+/* Ruta para la vista general de la cuenta del administrador*/
+Route::get('vista_general_admin','AuthAdministradorController@vista_general_admin')
+    ->name('vista_general_admin');
 
 /* Rutas para editar perfil del administrador */
 Route::get('editar_perfil_admin','AuthAdministradorController@editar_perfil_admin')->name('editar_perfil_admin');
@@ -159,12 +126,26 @@ Route::get('ver_op_pass/{user}','AuthAdministradorController@ver_op_pass')->name
 |--------------------------------------------------------------------------
 | Rutas del Estudiante
 |--------------------------------------------------------------------------
+/*Ruta para la vista del formulario inicio de sesión del estudiante */
+Route::get('/student','Auth\LoginController@show_login_form_student')->name('show_login_form_student')
+    ->middleware('guest');
 
-/* Ruta para la vista general */
-Route::get('vista_general_student','AuthStudentController@vista_general_student')->name('vista_general_student');
+Route::get('auth_student','AuthStudentController@auth_student')->name('auth_student');
+/*Ruta para acceder al software como estudiante */
+Route::post('login_student','Auth\LoginController@login_student')
+    ->name('login_student');
 
-/* Ruta para la vista general del estudiante logueado o registrado con cuenta de google */
-Route::get('vista_student_google','AuthStudentController@vista_student_google')->name('vista_student_google');
+Route::post('logout_student','Auth\LoginController@logout_student')->name('logout_student');
+
+Route::get('verifica_cuenta_google','Auth\LoginController@verifica_cuenta_google')->name('verifica_cuenta_google');
+
+/* Ruta para la vista general de la cuenta del estudiante*/
+Route::get('vista_general_student','AuthStudentController@vista_general_student')
+    ->name('vista_general_student');
+
+/* Ruta para la vista completar registro del estudiante */
+Route::get('vista_completar_registro','AuthStudentController@vista_completar_registro')
+    ->name('vista_completar_registro');
 
 /* Rutas para editar perfil */
 Route::get('editar_perfil_student','AuthStudentController@editar_perfil_student')->name('editar_perfil_student');
@@ -196,14 +177,16 @@ Route::post('reg_est_inv_desp','AuthStudentController@reg_est_inv_desp')->name('
 Route::delete('eliminar_tutoria','AuthStudentController@eliminar_tutoria')->name('eliminar_tutoria');
 Route::post('enviar_mail','AuthStudentController@enviar_mail')->name('enviar_mail');
 
-/* Ruta para completar el registro del estudiante logueado o registrado con cuenta de google */
-Route::put('save_completar_registro','AuthStudentController@save_completar_registro')->name('save_completar_registro');
-Route::get('buscar_materia_arrastre','AuthStudentController@buscar_materia_arrastre')->name('buscar_materia_arrastre');
-Route::post('agregar_materia_arrastre','AuthStudentController@agregar_materia_arrastre')->name('agregar_materia_arrastre');
+/* Ruta para finalizar el registro del estudiante */
+Route::put('save_completar_registro','AuthStudentController@save_completar_registro')
+    ->name('save_completar_registro');
+/* Ruta para buscar materia */
+Route::get('buscar_materia_arrastre','AuthStudentController@buscar_materia_arrastre')
+    ->name('buscar_materia_arrastre');
+/* Ruta para asignar materia */
+Route::post('agregar_materia_arrastre','AuthStudentController@agregar_materia_arrastre')
+    ->name('agregar_materia_arrastre');
 Route::post('eliminar_materia_agregada','AuthStudentController@eliminar_materia_agregada')->name('eliminar_materia_agregada');
-
-/* Rutas para botón omitir cuando el estudiante está logueado o registrado con cuenta de google */
-Route::get('omitir_completar_registro','AuthStudentController@omitir_completar_registro')->name('omitir_completar_registro');
 
 /* Rutas para evaluar al docente */
 Route::get('evaluar_docente/{user_estudiante_id}/{notification}/{solitutoria}/{materia}/{docente}','AuthStudentController@evaluar_docente')->name('evaluar_docente');
@@ -214,8 +197,18 @@ Route::post('evaluacion_docente/{docente_id}/{solitutoria_id}/{notification}','A
 | Rutas del Docente
 |--------------------------------------------------------------------------
 */
-/* Rutas para la vista general de la cuenta*/
-Route::get('vista_general_docente','AuthDocenteController@vista_general_docente')->name('vista_general_docente');
+Route::get('/docente','Auth\LoginController@show_login_form_docente')->name('show_login_form_docente')
+    ->middleware('guest');
+
+Route::get('auth_docente','AuthDocenteController@auth_docente')->name('auth_docente');
+/*Ruta para acceder al software como docente */
+Route::post('login_docente','Auth\LoginController@login_docente')->name('login_docente');
+
+Route::post('logout_docente','Auth\LoginController@logout_docente')->name('logout_docente');
+
+/* Ruta para la vista general de la cuenta del docente*/
+Route::get('vista_general_docente','AuthDocenteController@vista_general_docente')
+    ->name('vista_general_docente');
 
 /* Rutas para editar perfil del docente */
 Route::get('editar_perfil_docente','AuthDocenteController@editar_perfil_docente')->name('editar_perfil_docente');
