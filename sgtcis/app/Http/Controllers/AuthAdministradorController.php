@@ -58,7 +58,14 @@ class AuthAdministradorController extends Controller
 |--------------------------------------------------------------------------
 */
 public function editar_perfil_admin(){
-    return view('user_administrador.editar_perfil_admin');
+    if (Auth::check()){
+        $user = Auth::user();
+        if($user->is_admin==true){
+            return view('user_administrador.editar_perfil_admin');
+        }else{
+            return view('user_administrador.login_administrador');
+        }
+    }
 }
 
 public function editar_admin(){
