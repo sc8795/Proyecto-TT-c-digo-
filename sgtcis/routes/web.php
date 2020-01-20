@@ -48,8 +48,10 @@ Route::get('vista_general_admin','AuthAdministradorController@vista_general_admi
     ->name('vista_general_admin');
 
 /* Rutas para editar perfil del administrador */
-Route::get('editar_perfil_admin','AuthAdministradorController@editar_perfil_admin')->name('editar_perfil_admin');
-Route::put('editar_admin','AuthAdministradorController@editar_admin')->name('editar_admin');
+Route::get('editar_perfil_admin','AuthAdministradorController@editar_perfil_admin')
+    ->name('editar_perfil_admin');
+Route::put('editar_admin','AuthAdministradorController@editar_admin')
+    ->name('editar_admin');
 
 /* Rutas para registrar un docente */
 Route::get('registrar_docente','AuthAdministradorController@registrar_docente')->name('registrar_docente');
