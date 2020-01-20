@@ -71,21 +71,23 @@ public function editar_perfil_admin(){
 public function editar_admin(){
     if (Auth::check()) {
         $user = Auth::user();
-        
-        $data=request()->validate([
-            'name'=>'required',
-            'lastname'=>'required',
-            'password'=>''
-        ]);
-        if ($data["password"]!=null) {
-            //$data["password"]=bcrypt($data['password']);
-            $data["password"]=$data['password'];
+        if($user->is_admin==true){
+            $data=request()->validate([
+                'name'=>'required',
+                'lastname'=>'required',
+                'password'=>''
+            ]);
+            if ($data["password"]!=null) {
+                $data["password"]=bcrypt($data['password']);
+            }else{
+                unset($data["password"]);
+            }
+            
+            $user->update($data);
+            return redirect()->route('vista_general_admin');
         }else{
-            unset($data["password"]);
+            return view('user_administrador.login_administrador');
         }
-        
-        $user->update($data);
-        return redirect()->route('vista_general_admin');
     }
 }
 /* 

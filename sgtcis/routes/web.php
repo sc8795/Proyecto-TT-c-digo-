@@ -4,7 +4,7 @@ Route::get('/', function () {
     if (Auth::check()){
         $user = Auth::user();
         if($user->is_admin==true){
-            return redirect()->route('auth_admin');
+            return redirect()->route('vista_general_admin');
         }
         if($user->is_docente==true){
             return redirect()->route('auth_docente');

@@ -300,23 +300,26 @@ class AuthStudentController extends Controller
     public function editar_student(){
         if (Auth::check()) {
             $user = Auth::user();
-            
-            $data=request()->validate([
-                'name'=>'required',
-                'lastname'=>'required',
-                'password'=>''
-            ]);
-
-            if ($data["password"]!=null) {
-                $data["password"]=bcrypt($data['password']);
-                //$data["password"]=$data['password'];
+            if($user->is_estudiante==true){
+                $data=request()->validate([
+                    'name'=>'required',
+                    'lastname'=>'required',
+                    'password'=>''
+                ]);
+    
+                if ($data["password"]!=null) {
+                    $data["password"]=bcrypt($data['password']);
+                    //$data["password"]=$data['password'];
+                }else{
+                    unset($data["password"]);
+                }
+                $user->update($data);
+                flash("Perfil editado correctamente")->success();
+                //return redirect()->action('AuthStudentController@vista_general_student');
+                return redirect()->route('vista_general_student');
             }else{
-                unset($data["password"]);
+                return view('user_student.login_student');
             }
-            $user->update($data);
-            flash("Perfil editado correctamente")->success();
-            //return redirect()->action('AuthStudentController@vista_general_student');
-            return redirect()->route('vista_general_student');
         }
     }
 /* 
