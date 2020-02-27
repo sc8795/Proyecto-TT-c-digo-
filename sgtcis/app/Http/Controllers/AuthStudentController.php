@@ -295,7 +295,14 @@ class AuthStudentController extends Controller
 |--------------------------------------------------------------------------
 */
     public function editar_perfil_student(){
-        return view('user_student.editar_perfil_student');
+        if (Auth::check()){
+            $user = Auth::user();
+            if($user->is_estudiante==true){
+                return view('user_student.editar_perfil_student');
+            }else{
+                return view('user_student.login_student');
+            }
+        }
     }
     public function editar_student(){
         if (Auth::check()) {
@@ -309,13 +316,11 @@ class AuthStudentController extends Controller
     
                 if ($data["password"]!=null) {
                     $data["password"]=bcrypt($data['password']);
-                    //$data["password"]=$data['password'];
                 }else{
                     unset($data["password"]);
                 }
                 $user->update($data);
                 flash("Perfil editado correctamente")->success();
-                //return redirect()->action('AuthStudentController@vista_general_student');
                 return redirect()->route('vista_general_student');
             }else{
                 return view('user_student.login_student');

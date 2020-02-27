@@ -3,7 +3,7 @@
 @section('content')
     <div class="row">
         <div class="col-12">
-            @include('user_student.vistas_iguales.menu_vertical')
+            @include('user_administrador.vistas_iguales.menu_vertical')
             <div class="container-fluid" id="espacio_menu_texto"></div>
             <div class="container" style="background: white">
                 <h1 id="txt_opcion_menu_vertical">

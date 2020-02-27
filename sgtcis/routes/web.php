@@ -7,7 +7,7 @@ Route::get('/', function () {
             return redirect()->route('vista_general_admin');
         }
         if($user->is_docente==true){
-            return redirect()->route('auth_docente');
+            return redirect()->route('vista_general_docente');
         }
         if($user->is_estudiante==true){
             return redirect()->route('auth_student');
@@ -150,8 +150,10 @@ Route::get('vista_completar_registro','AuthStudentController@vista_completar_reg
     ->name('vista_completar_registro');
 
 /* Rutas para editar perfil */
-Route::get('editar_perfil_student','AuthStudentController@editar_perfil_student')->name('editar_perfil_student');
-Route::put('editar_student','AuthStudentController@editar_student')->name('editar_student');
+Route::get('editar_perfil_student','AuthStudentController@editar_perfil_student')
+    ->name('editar_perfil_student');
+Route::put('editar_student','AuthStudentController@editar_student')
+    ->name('editar_student');
 
 /* Rutas para solicitar tutoria*/
 Route::get('solicitar_tutoria','AuthStudentController@solicitar_tutoria')->name('solicitar_tutoria');
@@ -213,8 +215,10 @@ Route::get('vista_general_docente','AuthDocenteController@vista_general_docente'
     ->name('vista_general_docente');
 
 /* Rutas para editar perfil del docente */
-Route::get('editar_perfil_docente','AuthDocenteController@editar_perfil_docente')->name('editar_perfil_docente');
-Route::put('editar_docente','AuthDocenteController@editar_docente')->name('editar_docente');
+Route::get('editar_perfil_docente','AuthDocenteController@editar_perfil_docente')
+    ->name('editar_perfil_docente');
+Route::put('editar_docente','AuthDocenteController@editar_docente')
+    ->name('editar_docente');
 
 /* Rutas para ver la tutoria solicitada por parte del estudiante*/
 Route::get('ver_tutoria_solitada/{user_student_id}/{user_docente_id}/{solitutoria_id}/{notificacion_id}','AuthDocenteController@ver_tutoria_solitada')->name('ver_tutoria_solitada');

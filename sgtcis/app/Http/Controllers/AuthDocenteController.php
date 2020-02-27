@@ -65,28 +65,36 @@ class AuthDocenteController extends Controller
 |--------------------------------------------------------------------------
 */
     public function editar_perfil_docente(){
-        return view('user_docente.editar_perfil_docente');
+        if (Auth::check()){
+            $user = Auth::user();
+            if($user->is_docente==true){
+                return view('user_docente.editar_perfil_docente');
+            }else{
+                return view('user_docente.login_docente');
+            }
+        }
     }
     public function editar_docente(){
         if (Auth::check()) {
             $user = Auth::user();
-            
-            $data=request()->validate([
-                'name'=>'required',
-                'lastname'=>'required',
-                'password'=>''
-            ]);
-
-            if ($data["password"]!=null) {
-                $data["password"]=bcrypt($data['password']);
-                //$data["password"]=Crypt::encrypt($data['password']);
-                //$data["password"]=$data['password'];
+            if($user->is_docente==true){
+                $data=request()->validate([
+                    'name'=>'required',
+                    'lastname'=>'required',
+                    'password'=>''
+                ]);
+    
+                if ($data["password"]!=null) {
+                    $data["password"]=bcrypt($data['password']);
+                }else{
+                    unset($data["password"]);
+                }
+                $user->update($data);
+                flash("Perfil editado correctamente")->success();
+                return redirect()->route('vista_general_docente');
             }else{
-                unset($data["password"]);
+                return view('user_docente.login_docente');
             }
-            $user->update($data);
-            flash("Perfil editado correctamente")->success();
-            return redirect()->route('vista_general_docente');
         }
     }
 /* 

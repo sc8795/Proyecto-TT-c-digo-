@@ -17,6 +17,8 @@
 	<link rel="stylesheet" href="{{asset('css/estilos_estudiante.css')}}">
 	<link rel="stylesheet" href="{{asset('css/estilos_docente.css')}}">
 	<link rel="stylesheet" href="{{asset('css/hint.min.css')}}">
+	<link rel="stylesheet" href="{{asset('alertifyjs/css/alertify.css')}}">
+	<link rel="stylesheet" href="{{asset('alertifyjs/css/themes/default.css')}}">
 	
 	<!-- Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
@@ -35,9 +37,10 @@
 	
 <script src="{{asset('js/jquery.js')}}"></script>
 <script src="{{asset('js/bootstrap.min.js')}}"></script>
+<script src="{{asset('alertifyjs/alertify.js')}}"></script>
 <script src="{{asset('js/jquery_administrador.js')}}"></script>
-<script src="{{asset('js/jquery_docente.js')}}"></script>
 <script src="{{asset('js/jquery_estudiante.js')}}"></script>
+<script src="{{asset('js/jquery_docente.js')}}"></script>
 
 @yield('scripts')
 

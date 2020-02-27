@@ -1,4 +1,4 @@
-$(document).ready(function(){
+/*$(document).ready(function(){
     $('.menu_vertical li:has(ul)').click(function(e){
         e.preventDefault();
         if($(this).hasClass('activado')){
@@ -14,7 +14,7 @@ $(document).ready(function(){
     $('.menu_vertical li ul li a').click(function(){
         window.location.href=$(this).attr("href");
     });
-});
+});*/
 
 /* Funciones para validar formulario de registro de materia */
 function validar(){
@@ -45,3 +45,28 @@ function validar(){
 }
 
 $('div#mensaje').delay(4000).slideUp(1500);
+
+function valida_form_registro_docente(){
+    var datosCorrectos=true;
+    var mensaje_error="";
+    if(document.getElementById('password').value =="") {
+        datosCorrectos=false;
+        mensaje_error="El campo contrasseña es obligatorio";
+    }
+    if(document.getElementById('email').value =="") {
+        datosCorrectos=false;
+        mensaje_error="El campo correo es obligatorio";
+    }
+    if(document.getElementById('lastname').value =="") {
+        datosCorrectos=false;
+        mensaje_error="El campo apellido es obligatorio";
+    }
+    if(document.getElementById('name').value =="") {
+        datosCorrectos=false;
+        mensaje_error="El campo nombre es obligatorio";
+    }
+    if(!datosCorrectos){
+        alertify.error(mensaje_error);
+    }
+    return datosCorrectos;
+}

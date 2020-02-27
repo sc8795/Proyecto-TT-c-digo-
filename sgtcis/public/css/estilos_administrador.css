@@ -101,9 +101,9 @@ body{
 h3{
     color: #83e6b4;
 }
-h4{
+/*h4{
     color: #83e6b4;
-}
+}*/
 #titulo_general{
     display: flex;
     justify-content: left;
@@ -121,9 +121,6 @@ h4{
 /* ---------- ESTILOS VISTA REGISTRAR MATERIA ---------- */
 .radios{
     color: white;
-} 
-.excel{
-    color:white;
 }
 
 /* ---------- ESTILOS USADOS POR TODAS LAS VISTAS ---------- */ 
