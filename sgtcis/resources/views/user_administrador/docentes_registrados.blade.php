@@ -19,7 +19,7 @@
           @include('user_administrador.vistas_iguales.menu_vertical')
         </div>
         <div class="col-9">
-            <div id="mensaje">
+            <div id="mensaje_siete">
                 @include('flash::message')
             </div>
             <div class="container" id="contenedor_general">
