@@ -80,13 +80,13 @@
                                                 <h6 class="negrita">password:
                                                     <span class="quita_negrita">Contraseña para el inicio de sesión del docente.</span>
                                                 </h6>
-                                                <h6 class="negrita">is_admin:
+                                                <h6 class="negrita">es_admin:
                                                     <span class="quita_negrita">Este campo sirve para identificar si el usuario a registrar va hacer administrador (se recomienda dejarlo en 0)</span>
                                                 </h6>
-                                                <h6 class="negrita">is_estudiante:
+                                                <h6 class="negrita">es_estudiante:
                                                     <span class="quita_negrita">Este campo sirve para identificar si el usuario a registrar va hacer estudiante (se recomienda dejarlo en 0)</span>
                                                 </h6>
-                                                <h6 class="negrita">is_docente:
+                                                <h6 class="negrita">es_docente:
                                                     <span class="quita_negrita">Este campo sirve para identificar si el usuario a registrar va hacer docente (se recomienda dejarlo en 1)</span>
                                                 </h6>
                                                 <h6 class="negrita">paralelo:

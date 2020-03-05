@@ -142,40 +142,75 @@ public function editar_admin(){
         }
     }
     public function registrar_docente_excel(Request $request){
-        $users = DB::table('users')->where('is_docente',true)->get();
-        foreach ($users as $user)
-        {
-            User::destroy($user->id);
-        }
-        $archivo=$request->file('archivo');
-        if($archivo==null){
-            flash('Error al cargar el documento excel. Intente nuevamente.')->error()->important();
-            return redirect()->route('materias_registradas');
-        }else{
-            $nombre_original=$archivo->getClientOriginalName();
-            $extension=$archivo->getClientOriginalExtension();
-            $r1=Storage::disk('archivos')->put($nombre_original,\File::get($archivo));
-            $ruta=storage_path('archivos')."/".$nombre_original;
-
-            if($r1){
-                Excel::load($ruta,function($reader){
-
-                    foreach ($reader->get() as $archivo) {
-                        User::create([
-                            'name'=>$archivo->nombres,
-                            'lastname'=>$archivo->apellidos,
-                            'email'=>$archivo->correo,
-                            'password'=>bcrypt($archivo->password),
-                            'is_admin'=>$archivo->is_admin,
-                            'is_docente'=>$archivo->is_docente,
-                            'is_estudiante'=>$archivo->is_estudiante,
-                            'paralelo'=>$archivo->paralelo,
-                            'ciclo'=>$archivo->ciclo
-                        ]);
+        if (Auth::check()){
+            $user = Auth::user();
+            if($user->is_admin==true){
+                $users = DB::table('users')->where('is_docente',true)->get();
+                $materias = DB::table('materias')->get();
+                $horarios=DB::table('horarios')->get();
+                $horario2s=DB::table('horario2s')->get();
+                $horario3s=DB::table('horario3s')->get();
+                $horario4s=DB::table('horario4s')->get();
+                $horario5s=DB::table('horario5s')->get();
+                $archivo=$request->file('archivo');
+                if($archivo==null){
+                    flash('No ha seleccionado ningún documento. Por favor seleccione un documento e intente nuevamente.')
+                        ->error()->important();
+                    return redirect()->route('registrar_docente');
+                }else{
+                    $nombre_original=$archivo->getClientOriginalName();
+                    $extension=$archivo->getClientOriginalExtension();
+                    if($extension!='csv'){
+                        flash('Solamente se acepta documentos con extensión csv. Por favor descargue la plantilla proporcionada e intente nuevamente.')
+                            ->error()->important();
+                        return redirect()->route('registrar_docente');
                     }
-                });
-                flash('Docentes registrados desde documento excel correctamente')->success()->important();
-                return redirect()->route('docentes_registrados');
+                    $r1=Storage::disk('archivos')->put($nombre_original,\File::get($archivo));
+                    $ruta=storage_path('archivos')."/".$nombre_original;
+                    if($r1){
+                        foreach ($materias as $materia){
+                            Materia::destroy($materia->id);
+                        }
+                        foreach ($horarios as $horario){
+                            Horario::destroy($horario->id);
+                        }
+                        foreach ($horario2s as $horario){
+                            Horario2::destroy($horario->id);
+                        }
+                        foreach ($horario3s as $horario){
+                            Horario3::destroy($horario->id);
+                        }
+                        foreach ($horario4s as $horario){
+                            Horario4::destroy($horario->id);
+                        }
+                        foreach ($horario5s as $horario){
+                            Horario5::destroy($horario->id);
+                        }
+                        foreach ($users as $user){
+                            User::destroy($user->id);
+                        }
+                        Excel::load($ruta,function($reader){
+                            foreach ($reader->get() as $archivo) {
+                                User::create([
+                                    'name'=>$archivo->nombres,
+                                    'lastname'=>$archivo->apellidos,
+                                    'email'=>$archivo->correo,
+                                    'password'=>bcrypt($archivo->clave),
+                                    'is_admin'=>$archivo->es_admin,
+                                    'is_docente'=>$archivo->es_docente,
+                                    'is_estudiante'=>$archivo->es_estudiante,
+                                    'paralelo'=>$archivo->paralelo,
+                                    'ciclo'=>$archivo->ciclo
+                                ]);
+                            }
+                        });
+                        flash('Docentes registrados correctamente desde documento excel.')
+                            ->success()->important();
+                        return redirect()->route('docentes_registrados');
+                    }
+                }
+            }else{
+                return view('user_administrador.login_administrador');
             }
         }
     }
@@ -355,12 +390,12 @@ public function editar_admin(){
 */
     public function descargar_plantilla($aux){
         if($aux==1){
-            if(!$this->downloadFile(app_path()."/Files/plantilla_materias.xlsx")){
+            if(!$this->downloadFile(app_path()."/Files/plantilla_materias.csv")){
                 return redirect()->back();
             }
         }
         if($aux==2){
-            if(!$this->downloadFile(app_path()."/Files/plantilla_docentes.xlsx")){
+            if(!$this->downloadFile(app_path()."/Files/plantilla_docentes.csv")){
                 return redirect()->back();
             }
         }
