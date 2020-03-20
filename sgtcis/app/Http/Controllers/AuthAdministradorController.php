@@ -191,15 +191,14 @@ public function editar_admin(){
                         }
                         Excel::load($ruta,function($reader){
                             foreach ($reader->get() as $archivo) {
-                                //dd(utf8_encode($archivo));
                                 User::create([
                                     'name'=>$archivo->nombres,
                                     'lastname'=>$archivo->apellidos,
                                     'email'=>$archivo->correo,
                                     'password'=>bcrypt($archivo->clave),
-                                    'is_admin'=>$archivo->es_admin,
-                                    'is_docente'=>$archivo->es_docente,
-                                    'is_estudiante'=>$archivo->es_estudiante,
+                                    'is_admin'=>false,
+                                    'is_docente'=>true,
+                                    'is_estudiante'=>false,
                                     'paralelo'=>'NA',
                                     'ciclo'=>'NA'
                                 ]);
@@ -391,12 +390,12 @@ public function editar_admin(){
 */
     public function descargar_plantilla($aux){
         if($aux==1){
-            if(!$this->downloadFile(app_path()."/Files/plantilla_materias.csv")){
+            if(!$this->downloadFile(app_path()."/Files/materias.csv")){
                 return redirect()->back();
             }
         }
         if($aux==2){
-            if(!$this->downloadFile(app_path()."/Files/plantilla_docentes.csv")){
+            if(!$this->downloadFile(app_path()."/Files/docentes.csv")){
                 return redirect()->back();
             }
         }
