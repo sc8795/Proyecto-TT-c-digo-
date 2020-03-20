@@ -191,6 +191,7 @@ public function editar_admin(){
                         }
                         Excel::load($ruta,function($reader){
                             foreach ($reader->get() as $archivo) {
+                                //dd(utf8_encode($archivo));
                                 User::create([
                                     'name'=>$archivo->nombres,
                                     'lastname'=>$archivo->apellidos,
@@ -199,8 +200,8 @@ public function editar_admin(){
                                     'is_admin'=>$archivo->es_admin,
                                     'is_docente'=>$archivo->es_docente,
                                     'is_estudiante'=>$archivo->es_estudiante,
-                                    'paralelo'=>$archivo->paralelo,
-                                    'ciclo'=>$archivo->ciclo
+                                    'paralelo'=>'NA',
+                                    'ciclo'=>'NA'
                                 ]);
                             }
                         });

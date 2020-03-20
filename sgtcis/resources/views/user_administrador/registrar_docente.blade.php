@@ -66,7 +66,7 @@
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
-                                            <div class="modal-body">
+                                            <div class="modal-body justificar">
                                                 <h6>Al descargar la plantilla, el documento excel tendrá los siguientes campos:</h6>
                                                 <h6 class="negrita">nombres:
                                                     <span class="quita_negrita">Nombres completos del docente que desea registrar.</span>
@@ -77,7 +77,7 @@
                                                 <h6 class="negrita">correo:
                                                     <span class="quita_negrita">Correo institucional del docente.</span>
                                                 </h6>
-                                                <h6 class="negrita">password:
+                                                <h6 class="negrita">clave:
                                                     <span class="quita_negrita">Contraseña para el inicio de sesión del docente.</span>
                                                 </h6>
                                                 <h6 class="negrita">es_admin:
@@ -88,12 +88,6 @@
                                                 </h6>
                                                 <h6 class="negrita">es_docente:
                                                     <span class="quita_negrita">Este campo sirve para identificar si el usuario a registrar va hacer docente (se recomienda dejarlo en 1)</span>
-                                                </h6>
-                                                <h6 class="negrita">paralelo:
-                                                    <span class="quita_negrita">En este campo se recomienda escribir NA</span>
-                                                </h6>
-                                                <h6 class="negrita">ciclo:
-                                                    <span class="quita_negrita">En este campo se recomienda escribir NA</span>
                                                 </h6>
                                             </div>
                                             <div class="modal-footer">

@@ -1,24 +1,24 @@
-nombres,apellidos,correo,clave,es_admin,es_estudiante,es_docente,paralelo,ciclo
-Angel Freddy,Ganazhapa Malla,angel.f.ganazhapa@unl.edu.ec,angelganazhapa,0,0,1,NA,NA
-Cristian Ramiro,Narvaez Guillen,cristian.narvaez@unl.edu.ec,cristiannarvaez,0,0,1,NA,NA
-Edison Leonardo,Coronel Romero,edison.coronel@unl.edu.ec,edisoncoronel,0,0,1,NA,NA
-Francisco Javier,Alvarez Pineda,fjalvarez@unl.edu.ec,franciscoalvarez,0,0,1,NA,NA
-Gast?n Ren?,Chamba Romero,gaston.chamba@unl.edu.ec,gast?nchamba,0,0,1,NA,NA
-Hernan Leonardo,Torres Carrion ,hltorres@unl.edu.ec,hernantorres,0,0,1,NA,NA
-Javier Francisco,Sinche Freire ,javier.sinche@unl.edu.ec,javiersinche,0,0,1,NA,NA
-Jorge Iv?n,Tocto,jorge.tocto@unl.edu.ec,jorgetocto,0,0,1,NA,NA
-Jose Oswaldo,Guaman Quinche,jose.o.guaman@unl.edu.ec,joseguaman,0,0,1,NA,NA
-Kelvin Armando,Alulima Carrion,kelvin.alulima@unl.edu.ec,kelvinalulima,0,0,1,NA,NA
-Luis Antonio,Chamba Eras,lachamba@unl.edu.ec,luischamba,0,0,1,NA,NA
-Luis Roberto,Jacome Galarza,lrjacome@unl.edu.ec,luisjacome,0,0,1,NA,NA
-Maria del Cisne,Ruilova Sanchez,maria.ruilova.s@unl.edu.ec,mariaruilova,0,0,1,NA,NA
-Mario Enrique,Cueva Hurtado,mecueva@unl.edu.ec,mariocueva,0,0,1,NA,NA
-Marlon Santiago,Vi?an Lude?a,marlon.vinan@unl.edu.ec,marlonvi?an,0,0,1,NA,NA
-Nora Esperanza ,Parra Celi,nora.parra@unl.edu.ec,noraparra,0,0,1,NA,NA
-Oscar Miguel,Cumbicus Pineda,oscar.cumbicus@unl.edu.ec,oscarcumbicus,0,0,1,NA,NA
-Pablo Fernando,Ordo?ez Ordo?ez,pablo.ordonez@unl.edu.ec,pabloordo?ez,0,0,1,NA,NA
-Edwin Rene ,Guaman Quinche,edwin.guaman@unl.edu.ec,edwinguaman,0,0,1,NA,NA
-Roberth Gustavo,Figueroa Diaz,roberth.figueroa@unl.edu.ec,roberthfigueroa,0,0,1,NA,NA
-Valeria del Rosario ,Herrera Salazar,vherrera@unl.edu.ec,valeriaherrera,0,0,1,NA,NA
-Wilman Patricio,Chamba Zaragocin ,wpchamba@unl.edu.ec,wilmanchamba,0,0,1,NA,NA
-Ximena Yadira,Naranjo Ruiz,ximena.naranjo@unl.edu.ec,ximenanaranjo,0,0,1,NA,NA
+nombre,apellidos,correo,clave,es_admin,es_estudiante,es_docente
+Ángel Freddy,Ganazhapa Malla,angel.f.ganazhapa@unl.edu.ec,angelganazhapa,0,0,1
+Cristian Ramiro,Narváez Guillen,cristian.narvaez@unl.edu.ec,cristiannarvaez,0,0,1
+Edison Leonardo,Coronel Romero,edison.coronel@unl.edu.ec,edisoncoronel,0,0,1
+Francisco Javier,Álvarez Pineda,fjalvarez@unl.edu.ec,franciscoalvarez,0,0,1
+Gastón René,Chamba Romero,gaston.chamba@unl.edu.ec,gastonchamba,0,0,1
+Hernán Leonardo,Torres Carrión ,hltorres@unl.edu.ec,hernantorres,0,0,1
+Javier Francisco,Sinche Freire ,javier.sinche@unl.edu.ec,javiersinche,0,0,1
+Jorge Iván,Tocto,jorge.tocto@unl.edu.ec,jorgetocto,0,0,1
+José Oswaldo,Guamán Quinche,jose.o.guaman@unl.edu.ec,joseguaman,0,0,1
+Kelvin Armando,Alulima Carrion,kelvin.alulima@unl.edu.ec,kelvinalulima,0,0,1
+Luis Antonio,Chamba Eras,lachamba@unl.edu.ec,luischamba,0,0,1
+Luis Roberto,Jacome Galarza,lrjacome@unl.edu.ec,luisjacome,0,0,1
+María del Cisne,Ruilova Sánchez,maria.ruilova.s@unl.edu.ec,mariaruilova,0,0,1
+Mario Enrique,Cueva Hurtado,mecueva@unl.edu.ec,mariocueva,0,0,1
+Marlon Santiago,Viñan Ludeña,marlon.vinan@unl.edu.ec,marlonviñan,0,0,1
+Nora Esperanza ,Parra Celi,nora.parra@unl.edu.ec,noraparra,0,0,1
+Óscar Miguel,Cumbicus Pineda,oscar.cumbicus@unl.edu.ec,oscarcumbicus,0,0,1
+Pablo Fernando,Ordoñez Ordóñez,pablo.ordonez@unl.edu.ec,pabloordoñez,0,0,1
+Edwin René ,Guamán Quinche,edwin.guaman@unl.edu.ec,edwinguaman,0,0,1
+Roberth Gustavo,Figueroa Díaz,roberth.figueroa@unl.edu.ec,roberthfigueroa,0,0,1
+Valeria del Rosario ,Herrera Salazar,vherrera@unl.edu.ec,valeriaherrera,0,0,1
+Wilman Patricio,Chamba Zaragocín ,wpchamba@unl.edu.ec,wilmanchamba,0,0,1
+Ximena Yadira,Naranjo Ruiz,ximena.naranjo@unl.edu.ec,ximenanaranjo,0,0,1
