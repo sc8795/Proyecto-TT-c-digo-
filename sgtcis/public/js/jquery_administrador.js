@@ -25,7 +25,11 @@ function validar(){
     }
     return datosCorrectos;
 }
-
+$('#dataTable').DataTable({
+    "language": {
+        "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+    }
+});
 $('div#mensaje').delay(4000).slideUp(1500);
 $('div#mensaje_siete').delay(7000).slideUp(1500);
 

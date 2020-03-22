@@ -220,16 +220,31 @@ public function editar_admin(){
 |--------------------------------------------------------------------------
 */
     public function docentes_registrados(){
-        $users = DB::table('users')->where('is_docente',true)->get();
-        return view('user_administrador.docentes_registrados',compact('users'));
+        if (Auth::check()){
+            $user = Auth::user();
+            if($user->is_admin==true){
+                $users = DB::table('users')->where('is_docente',true)->get();
+                return view('user_administrador.docentes_registrados',compact('users'));
+            }else{
+                return view('user_administrador.login_administrador');
+            }
+        }
     }
 /* 
 |--------------------------------------------------------------------------
 | Funciones para editar datos de un docente
 |--------------------------------------------------------------------------
 */
-    public function editar_perfil_docente(User $user){
-        return view('user_administrador.editar_perfil_docente',['user'=>$user]);
+    public function editar_perfil_docente($id_docente){
+        if (Auth::check()){
+            $user = Auth::user();
+            if($user->is_admin==true){
+                $user_docente= DB::table('users')->where('id',$id_docente)->first();
+                return view('user_administrador.editar_perfil_docente',['user_docente'=>$user_docente]);
+            }else{
+                return view('user_administrador.login_administrador');
+            }
+        }
     }
     public function editar_docente(User $user){
         $data=request()->validate([
