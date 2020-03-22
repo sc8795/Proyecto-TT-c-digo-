@@ -16,25 +16,25 @@
                 </div>
                 <hr>
                 <div class="container">
-                    <form class="formulario_general" method="POST" action="{{url("editar_docente/{$user_docente->id}")}}">
+                    <form class="formulario_general" method="POST" action="{{url("editar_docente_admin/{$user_docente->id}")}}">
                         {{method_field("PUT")}}
                         {{ csrf_field() }}
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="txt_opcion_menu_vertical">Nombres</span>
-                            <input type="text" class="form-control" name="name" id="name" value="{{old('name',$user_docente->name)}}">
+                            <input type="text" class="form-control" name="name" id="name" value="{{old('name',$user_docente->name)}}" autocomplete="off">
                         </div>
                         <hr>
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="txt_opcion_menu_vertical">Apellidos</span>
-                            <input type="text" class="form-control" name="lastname" id="lastname" value="{{old('lastname',$user_docente->lastname)}}">
+                            <input type="text" class="form-control" name="lastname" id="lastname" value="{{old('lastname',$user_docente->lastname)}}" autocomplete="off">
                         </div>
                         <hr>
-                        <div class="form-group">
-                            <label><h6 class="tit_general">Contraseña</h6></label>
-                            <input type="password" class="form-control" name="password">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="txt_opcion_menu_vertical">Contraseña</span>
+                            <input type="password" class="form-control" name="password" id="password" placeholder="********">
                         </div>
                         <hr>
-                        <button type="submit" class="btn btn-primary btn-block">Guardar cambios</button>
+                        <button type="submit" class="btn btn-dark">Guardar perfil</button>
                     </form>
                     <br>
                 </div>

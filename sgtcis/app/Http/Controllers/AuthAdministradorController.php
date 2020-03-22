@@ -247,26 +247,28 @@ public function editar_admin(){
         }
     }
     public function editar_docente(User $user){
-        $data=request()->validate([
-            'name'=>'required',
-            'lastname'=>'required',
-            'email'=>[
-                'required',
-                'email',
-                Rule::unique('users')->ignore($user->id)
-            ],
-            'password'=>''
-        ]);
-
-        if ($data["password"]!=null) {
-            $data["password"]=bcrypt($data['password']);
-            //$data["password"]=$data['password'];
-        }else{
-            unset($data["password"]);
-        }
+        if (Auth::check()){
+            $user_admin = Auth::user();
+            if($user_admin->is_admin==true){
+                $data=request()->validate([
+                    'name'=>'required',
+                    'lastname'=>'required',
+                    'password'=>''
+                ]);
         
-        $user->update($data);
-        return redirect()->route('docentes_registrados');
+                if ($data["password"]!=null) {
+                    $data["password"]=bcrypt($data['password']); 
+                }else{
+                    unset($data["password"]);
+                }
+                
+                $user->update($data);
+                flash("Perfil editado correctamente")->success();
+                return redirect()->route('docentes_registrados');
+            }else{
+                return view('user_administrador.login_administrador');
+            }
+        }
     }
 
 /* 
