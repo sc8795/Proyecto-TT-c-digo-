@@ -6,9 +6,12 @@
             @include('user_administrador.vistas_iguales.menu_vertical')
             <div class="container-fluid" id="espacio_menu_texto"></div>
             <div class="container" style="background: white">
-                <h1 id="txt_opcion_menu_vertical"><span class="negrita">Vista general de la cuenta</span></h1>
+                <h1 id="txt_opcion_menu_vertical">
+                    <a href="{{url("vista_general_admin")}}" title="Vista general de la cuenta"><span class="fas fa-arrow-circle-left"></span></a>
+                    <span class="negrita">Asignar horario de tutoría</span>
+                </h1>
                 <br>
-                <h4 id="txt_opcion_menu_vertical"><span class="negrita">Perfil</span></h4>
+                <h4 id="txt_opcion_menu_vertical"><span class="negrita">Busque y seleccione docente</span></h4>
                 <br>
                 <div class="row">
                         <div class="col-3"></div>

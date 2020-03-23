@@ -57,3 +57,15 @@ function valida_form_registro_docente(){
     }
     return datosCorrectos;
 }
+
+function confirmar_eliminacion(){
+    alertify.confirm('Confirm Title', 
+        'Confirm Message', 
+        function(){ 
+            alertify.success('Ok') 
+        }, 
+        function(){ 
+            alertify.error('Cancel')
+        }
+    );
+}

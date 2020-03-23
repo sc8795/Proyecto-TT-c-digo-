@@ -18,7 +18,7 @@
                 <div class="container">
                   <div class="row">
                     <div class="col-1"></div>
-                    <div class="col-10">
+                    <div class="col-10" id="txt_opcion_menu_vertical">
                       @if($users->isNotEmpty())
                         <table class="table" id="dataTable">
                           <thead class="thead-dark">
@@ -31,17 +31,40 @@
                           <tbody>
                               @foreach($users as $user)
                                 <tr>
-                                  <td><h6 class="tit_general">{{$user->name}} {{$user->lastname}}</h6></td>
-                                  <td><h6 class="tit_general">{{$user->email}}</h6></td>
+                                  <td><h6>{{$user->name}} {{$user->lastname}}</h6></td>
+                                  <td><h6>{{$user->email}}</h6></td>
                                   <td>
-                                    <form method="POST" action="{{url("eliminar_docente/{$user->id}")}}">
-                                        {{csrf_field()}}
-                                        {{method_field('DELETE')}}
-                                        <a href="{{url("editar_perfil_docente/{$user->id}")}}" class="btn btn-link">
-                                          <span class="oi oi-pencil"></span>
-                                        </a>
-                                        <button type="submit" class="btn btn-link"><span class="oi oi-trash"></span></button>
-                                    </form>
+                                    <a href="{{url("editar_perfil_docente/{$user->id}")}}" class="hint--top hint--success btn btn-outline-success" data-hint="Editar">
+                                      <span class="oi oi-pencil"></span>
+                                    </a>
+                                    <button type="button" class="hint--top hint--error btn btn-outline-danger" data-hint="Eliminar" data-toggle="modal" data-target="#confirmaEliminacion">
+                                      <span class="oi oi-trash"></span>
+                                    </button>
+                                    
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="confirmaEliminacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                      <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                          <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Advertencia</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                              <span aria-hidden="true">&times;</span>
+                                            </button>
+                                          </div>
+                                          <div class="modal-body">
+                                            <span>¿Está seguro que desea eliminar docente?</span>
+                                          </div>
+                                          <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">NO</button>
+                                            <form method="POST" action="{{url("eliminar_docente/{$user->id}")}}">
+                                              {{csrf_field()}}
+                                              {{method_field('DELETE')}}
+                                              <button type="submit" class="btn btn-primary">SI</button>
+                                            </form>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
                                   </td>
                                 </tr>
                             @endforeach

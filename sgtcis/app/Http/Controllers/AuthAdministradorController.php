@@ -277,8 +277,64 @@ public function editar_admin(){
 |--------------------------------------------------------------------------
 */
     public function eliminar_docente(User $user){
-        $user->delete();
-        return redirect()->route('docentes_registrados');
+        if (Auth::check()){
+            $user_auth = Auth::user();
+            if($user_auth->is_admin==true){
+                $verifica_materias = DB::table('materias')
+                    ->where('usuario_id',$user->id)->exists();
+                //Actualiza las materias que el docente a eliminar tiene asignadas
+                if($verifica_materias){
+                    $materias=Materia::where('usuario_id',$user->id)
+                        ->orderBy('id','DESC')
+                        ->get();
+                    foreach ($materias as $materia) {
+                        $materia["usuario_id"]=1;
+                        $materia->update();
+                    }
+                }
+                //Elimina horarios de tutoría que el docente a eliminar tiene asignados
+                $verifica_horarios = DB::table('horarios')->where('usuario_id',$user->id)->exists();
+                if($verifica_horarios){
+                    $horarios=DB::table('horarios')->where('usuario_id',$user->id)->get();
+                    foreach ($horarios as $horario){
+                        Horario::destroy($horario->id);
+                    }
+                }
+                $verifica_horarios2 = DB::table('horario2s')->where('usuario_id',$user->id)->exists();
+                if($verifica_horarios2){
+                    $horarios=DB::table('horario2s')->where('usuario_id',$user->id)->get();
+                    foreach ($horarios as $horario){
+                        Horario2::destroy($horario->id);
+                    }
+                }
+                $verifica_horarios3 = DB::table('horario3s')->where('usuario_id',$user->id)->exists();
+                if($verifica_horarios3){
+                    $horarios=DB::table('horario3s')->where('usuario_id',$user->id)->get();
+                    foreach ($horarios as $horario){
+                        Horario3::destroy($horario->id);
+                    }
+                }
+                $verifica_horarios4 = DB::table('horario4s')->where('usuario_id',$user->id)->exists();
+                if($verifica_horarios4){
+                    $horarios=DB::table('horario4s')->where('usuario_id',$user->id)->get();
+                    foreach ($horarios as $horario){
+                        Horario4::destroy($horario->id);
+                    }
+                }
+                $verifica_horarios5 = DB::table('horario5s')->where('usuario_id',$user->id)->exists();
+                if($verifica_horarios5){
+                    $horarios=DB::table('horario5s')->where('usuario_id',$user->id)->get();
+                    foreach ($horarios as $horario){
+                        Horario5::destroy($horario->id);
+                    }
+                }
+                $user->delete();
+                flash("Docente eliminado correctamente")->success();
+                return redirect()->route('docentes_registrados');
+            }else{
+                return view('user_administrador.login_administrador');
+            }
+        }
     }
 /* 
 |--------------------------------------------------------------------------
