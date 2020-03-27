@@ -25,7 +25,7 @@
                             <tr>
                               <th scope="col">Nombres y Apellidos</th>
                               <th scope="col">Correo</th>
-                              <th scope="col">Acciones</th>
+                              <th scope="col" style="text-align: center">Acciones</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -33,7 +33,7 @@
                                 <tr>
                                   <td><h6>{{$user->name}} {{$user->lastname}}</h6></td>
                                   <td><h6>{{$user->email}}</h6></td>
-                                  <td>
+                                  <td style="text-align: center">
                                     <a href="{{url("editar_perfil_docente/{$user->id}")}}" class="hint--top hint--success btn btn-outline-success" data-hint="Editar">
                                       <span class="oi oi-pencil"></span>
                                     </a>

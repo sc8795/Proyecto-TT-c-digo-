@@ -44,6 +44,7 @@ class AuthStudentController extends Controller
                 Log::create([
                     'detalle'=>"El estudiante ".$user_student->name." ".$user_student->lastname." ha iniciado sesión y accedido al sistema.",
                     'fecha'=>$fecha,
+                    'tipo'=>1
                 ]);
                 if($user_student->paralelo=="NA" && $user_student->ciclo=="NA"){
                     $materias=Materia::orderBy('id','DESC')

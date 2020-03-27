@@ -343,8 +343,8 @@ public function editar_admin(){
 */
     public function registrar_materia(){
         if (Auth::check()){
-            $user = Auth::user();
-            if($user->is_admin==true){
+            $user_admin = Auth::user();
+            if($user_admin->is_admin==true){
                 $users = DB::table('users')->where('is_docente',true)->get();
                 return view('user_administrador.registrar_materia',compact('users'));
             }else{
@@ -354,51 +354,65 @@ public function editar_admin(){
     }    
 
     public function crear_materia(Request $request){
-        $name=$request->input('name');
-        $ciclo=$request->input('gender');
-        $docente=$request->input('docente');
-        $paralelo=$request->input('paralelo');
-        $paralelo=array();
-        $paralelo = implode(',', $paralelo);
-        DB::table('materias')->insert([
-            'usuario_id'=>$docente,
-            'name'=>$name,
-            'ciclo'=>$ciclo,
-            'paralelo'=>$paralelo,            
-        ]);
-       
-        return redirect()->route('materias_registradas');
+        if (Auth::check()){
+            $user_admin = Auth::user();
+            if($user_admin->is_admin==true){
+                $name=$request->input('name');
+                $ciclo=$request->input('gender');
+                $docente=$request->input('docente');
+                $paralelo=$request->input('paralelo');
+                $paralelo = implode(',', $paralelo);
+                DB::table('materias')->insert([
+                    'usuario_id'=>$docente,
+                    'name'=>$name,
+                    'ciclo'=>$ciclo,
+                    'paralelo'=>$paralelo,            
+                ]);
+                flash('Materia registrada correctamente')
+                    ->success();
+                return redirect()->route('materias_registradas');
+            }else{
+                return view('user_administrador.login_administrador');
+            }
+        }
     }
 
     public function registrar_materia_excel(Request $request){
-        $users = DB::table('materias')->get();
-        foreach ($users as $user)
-        {
-            Materia::destroy($user->id);
-        }
-        $archivo=$request->file('archivo');
-        if($archivo==null){
-            flash('Error al cargar el documento excel. Intente nuevamente.')->error()->important();
-            return redirect()->route('materias_registradas');
-        }else{
-            $nombre_original=$archivo->getClientOriginalName();
-            $extension=$archivo->getClientOriginalExtension();
-            $r1=Storage::disk('archivos')->put($nombre_original,\File::get($archivo));
-            $ruta=storage_path('archivos')."/".$nombre_original;
+        if (Auth::check()){
+            $user_admin = Auth::user();
+            if($user_admin->is_admin==true){
+                $users = DB::table('materias')->get();
+                foreach ($users as $user)
+                {
+                    Materia::destroy($user->id);
+                }
+                $archivo=$request->file('archivo');
+                if($archivo==null){
+                    flash('Error al cargar el documento excel. Intente nuevamente.')->error()->important();
+                    return redirect()->route('materias_registradas');
+                }else{
+                    $nombre_original=$archivo->getClientOriginalName();
+                    $extension=$archivo->getClientOriginalExtension();
+                    $r1=Storage::disk('archivos')->put($nombre_original,\File::get($archivo));
+                    $ruta=storage_path('archivos')."/".$nombre_original;
 
-            if($r1){
-                Excel::load($ruta,function($reader){
-                    foreach ($reader->get() as $archivo) {
-                        DB::table('materias')->insert([
-                            'name'=>$archivo->nombre,
-                            'ciclo'=>$archivo->ciclo,
-                            'usuario_id'=>$archivo->id_docente,
-                            'paralelo'=>$archivo->paralelo,
-                        ]);
+                    if($r1){
+                        Excel::load($ruta,function($reader){
+                            foreach ($reader->get() as $archivo) {
+                                DB::table('materias')->insert([
+                                    'name'=>$archivo->nombre,
+                                    'ciclo'=>$archivo->ciclo,
+                                    'usuario_id'=>$archivo->id_docente,
+                                    'paralelo'=>$archivo->paralelo,
+                                ]);
+                            }
+                        });
+                        flash('Materias registradas desde documento excel correctamente')->success()->important();
+                        return redirect()->route('materias_registradas');
                     }
-                });
-                flash('Materias registradas desde documento excel correctamente')->success()->important();
-                return redirect()->route('materias_registradas');
+                }
+            }else{
+                return view('user_administrador.login_administrador');
             }
         }
     }
@@ -408,11 +422,17 @@ public function editar_admin(){
 |--------------------------------------------------------------------------
 */
     public function materias_registradas(){
-        $aux=0;
-        $materias=Materia::orderBy('id','DESC')
-            ->paginate(5);
-        $users=DB::table('users')->where('is_docente',true)->get();
-        return view('user_administrador.materias_registradas',compact('materias','users','aux'));
+        if (Auth::check()){
+            $user_admin = Auth::user();
+            if($user_admin->is_admin==true){
+                $aux=0;
+                $materias=Materia::orderBy('id','DESC')->get();
+                $users=DB::table('users')->where('is_docente',true)->get();
+                return view('user_administrador.materias_registradas',compact('materias','users','aux'));
+            }else{
+                return view('user_administrador.login_administrador');
+            }
+        }
     }
 /* 
 |--------------------------------------------------------------------------
@@ -468,14 +488,21 @@ public function editar_admin(){
 |--------------------------------------------------------------------------
 */
     public function descargar_plantilla($aux){
-        if($aux==1){
-            if(!$this->downloadFile(app_path()."/Files/materias.csv")){
-                return redirect()->back();
-            }
-        }
-        if($aux==2){
-            if(!$this->downloadFile(app_path()."/Files/docentes.csv")){
-                return redirect()->back();
+        if (Auth::check()){
+            $user_admin = Auth::user();
+            if($user_admin->is_admin==true){
+                if($aux==1){
+                    if(!$this->downloadFile(app_path()."/Files/plantilla_materias.xlsx")){
+                        return redirect()->back();
+                    }
+                }
+                if($aux==2){
+                    if(!$this->downloadFile(app_path()."/Files/docentes.csv")){
+                        return redirect()->back();
+                    }
+                }
+            }else{
+                return view('user_administrador.login_administrador');
             }
         }
     }   

@@ -1,25 +1,69 @@
 @extends('layout_administrador')
 
 @section('content')
-    @include('user_administrador.vistas_iguales.menu_horizontal')
-@endsection
-
-@section('content2')
     <div class="row">
-        @include('user_administrador.vistas_iguales.imagen_texto')
-        <div class="col-9" id="titulo_general">
-            <h3>Registros del sistema</h3>
-        </div>
-    </div>
-@endsection
-
-@section('content3')
-    <div class="row">
-        <div class="col-3">
+        <div class="col-12">
             @include('user_administrador.vistas_iguales.menu_vertical')
-        </div>
-        <div class="col-9">
-            <div class="container" id="contenedor_general">
+            <div class="container-fluid" id="espacio_menu_texto"></div>
+            <div class="container" style="background: white" id="txt_opcion_menu_vertical">
+                <h1><span class="negrita">Registro de actividades realizadas en el sistema</span></h1>
+                <div class="row">
+                    @php
+                        $docentes=DB::table('users')->where('is_docente',true)->get();
+                        $num_docentes=$docentes->count();
+                        $estudiantes=DB::table('users')->where('is_estudiante',true)->get();
+                        $num_est=$estudiantes->count();
+                        $tutorias=DB::table('solitutorias')->get();
+                        $num_tut=$tutorias->count();
+                    @endphp
+                    <div class="col-5" style="margin-right: 75px;"></div>
+                    <div class="col-2">
+                        <div class="row bg-info">
+                            <div class="col-2">
+                                <span class="fas fa-user-tie text-white" style="margin-top: 20px;"></span>
+                            </div>
+                            <div class="col-10 text-right">
+                                <span class="text-white" style="font-size: 35px;">{{$num_docentes}}</span>
+                            </div>
+                        </div>
+                        <div class="row border border-info">
+                            <div class="col-12 text-right">Docentes registrados</div>
+                        </div>
+                    </div>
+                    <div class="col-2" style="margin-left: 5px;">
+                        <div class="row bg-success">
+                            <div class="col-2">
+                                <span class="fas fa-user text-white" style="margin-top: 20px;"></span>
+                            </div>
+                            <div class="col-10 text-right">
+                                <span class="text-white" style="font-size: 35px;">{{$num_est}}</span>
+                            </div>
+                        </div>
+                        <div class="row border border-success">
+                            <div class="col-12 text-right">Alumnos registrados</div>
+                        </div>
+                    </div>
+                    <div class="col-2" style="margin-left: 5px;">
+                        <div class="row bg-warning">
+                            <div class="col-2">
+                                <span class="fas fa-chalkboard-teacher text-white" style="margin-top: 20px;"></span>
+                            </div>
+                            <div class="col-10 text-right">
+                                <span class="text-white" style="font-size: 35px;">{{$num_tut}}</span>
+                            </div>
+                        </div>
+                        <div class="row border border-warning">
+                            <div class="col-12 text-right">Tutorías solicitadas</div>
+                        </div>
+                    </div>
+                </div> 
+                <hr>
+                <h4><span class="negrita">Perfil</span></h4>
+                <br>
+                <!--Para presentar mensajes-->
+                <div id="mensaje_siete">
+                    @include('flash::message')
+                </div>
                 @if($logs->isNotEmpty())
                     <div class="row">
                         <div class="col-11"></div>
@@ -73,7 +117,11 @@
                 @else
                     <h6 class="tit_general">No hay registros de actividad en el sistema</h6>
                 @endif
-            </div>  
+            </div>
+            <div class="container-fluid" id="espacio_menu_texto"></div>
+            @include('user_administrador.vistas_iguales.footer')
+            </div>
+            </div>
         </div>
     </div>
 @endsection
