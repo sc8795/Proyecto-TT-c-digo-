@@ -70,6 +70,7 @@
                             @endforeach
                           </tbody>
                         </table>
+                        <br>
                       @else
                           <h6 class="tit_general">No hay usuarios registrados</h6>
                       @endif

@@ -28,7 +28,13 @@ function validar(){
 $('#dataTable').DataTable({
     "language": {
         "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
-    }
+    },
+});
+$('#dataTable2').DataTable({
+    "language": {
+        "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+    },
+    "lengthMenu":[[1,5, 10, 20, 25, 50, -1], [1,5, 10, 20, 25, 50, "Todos"]],
 });
 $('div#mensaje').delay(4000).slideUp(1500);
 $('div#mensaje_siete').delay(7000).slideUp(1500);
@@ -58,14 +64,25 @@ function valida_form_registro_docente(){
     return datosCorrectos;
 }
 
-function confirmar_eliminacion(){
-    alertify.confirm('Confirm Title', 
-        'Confirm Message', 
-        function(){ 
-            alertify.success('Ok') 
-        }, 
-        function(){ 
-            alertify.error('Cancel')
+function verifica_horario(){
+    var datosCorrectos=true;
+    if(document.getElementById('hora_inicio1').value !="NA"){
+        if(document.getElementById('minutos_inicio1').value !="NA"){
+            if(document.getElementById('hora_fin1').value !="NA"){
+                if(document.getElementById('minutos_fin1').value !="NA"){
+                    if(document.getElementById('hora_inicio1').value === document.getElementById('hora_fin1').value){
+                        if(document.getElementById('minutos_inicio1').value*1 > document.getElementById('minutos_fin1').value*1){
+                            alertify.error("El horario de tutoría que intenta asignar es incorrecto. Por favor revise el formulario e intente nuevamente.");
+                            datosCorrectos = false;
+                        }
+                    }
+                    if(document.getElementById('hora_inicio1').value*1 > document.getElementById('hora_fin1').value*1){
+                        alertify.error("El horario de tutoría que intenta asignar es incorrecto. Por favor revise el formulario e intente nuevamente.");
+                        datosCorrectos = false;
+                    }
+                }
+            }
         }
-    );
+    }
+    return datosCorrectos;
 }

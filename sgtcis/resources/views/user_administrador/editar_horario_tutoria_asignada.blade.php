@@ -1,36 +1,28 @@
 @extends('layout_administrador')
 
 @section('content')
-    @include('user_administrador.vistas_iguales.menu_horizontal')
-@endsection
-
-@section('content2')
     <div class="row">
-        @include('user_administrador.vistas_iguales.imagen_texto')
-        <div class="col-9" id="titulo_general">
-            <h3>Editar horario de tutoría asignado</h3>
-        </div>
-    </div>
-@endsection
-
-@section('content3')
-    <div class="row">
-        <div class="col-3">
+        <div class="col-12">
             @include('user_administrador.vistas_iguales.menu_vertical')
-        </div>
-        <div class="col-9">
-            <div class="container" id="contenedor_general">
-                <h6 class="tit_general">Docente: 
-                    <span class="tit_datos"> {{$user->name}} {{$user->lastname}}</span>
-                </h6>
-                <form action="{{url("editando_horario/{$user->id}")}}" method="POST">
+            <div class="container-fluid" id="espacio_menu_texto"></div>
+            <div class="container" style="background: white" id="txt_opcion_menu_vertical">
+                <h1 id="txt_opcion_menu_vertical">
+                    <a href="{{url("horario_tutoria_asignada_op2/{$user->id}")}}" title="Regresar a horario de tutoría asignado"><span class="fas fa-arrow-circle-left"></span></a>
+                    <span class="negrita">Editar horario de tutoría</span>
+                </h1>
+                <hr>
+                <h4 id="txt_opcion_menu_vertical">
+                    <span class="negrita">Docente: </span><span>{{$user->name}} {{$user->lastname}}</span>
+                </h4>
+                <form action="{{url("editando_horario/{$user->id}")}}" method="POST" id="txt_opcion_menu_vertical">
                     {{method_field("PUT")}}
                     {{ csrf_field() }}
-                    <h6 class="tit_general">Día: 
-                        <span class="tit_datos">
+                    <h5><span class="negrita">Día:</span> 
+                        <span>
                             <input type="hidden" name="dia" value="{{$var1}}">{{$var1}}
                         </span>
-                    </h6>
+                    </h5>
+                    <hr>
                     <div class="row">
                         @if ($aux==1 || $aux==2)
                         <div class="col-3">
@@ -146,9 +138,18 @@
                             @endif
                         @endif
                     </div>
-                    <button type="submit" class="btn btn-success btn-sm" title="Editar horario de tutoría">Editar <span class="oi oi-pencil"></span></button>
+                    <hr>
+                    <br>
+                    <button type="submit" class="btn btn-dark btn-sm" title="Editar horario de tutoría">Editar <span class="oi oi-pencil"></span></button>
                 </form>
+                <br>
+            </div>
+            <div class="container-fluid" id="espacio_menu_texto"></div>
+            @include('user_administrador.vistas_iguales.footer')
+            </div>
             </div>
         </div>
     </div>
 @endsection
+
+ 

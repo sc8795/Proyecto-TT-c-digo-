@@ -60,6 +60,11 @@ body{
     background-color:rgba(156, 150, 172, 0.5);;
     color: aliceblue;
 }
+#txt_opcion_menu_vertical{
+    color: black;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 200;
+}
 #borde_radio{
     border-radius: 20px;
 }
