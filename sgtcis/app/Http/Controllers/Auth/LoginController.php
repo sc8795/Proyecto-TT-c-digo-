@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Materia;
 use App\Encryption;
+use App\Log;
 use Auth;
 use Redirect;
 use Laracasts\Flash\Flash;
@@ -205,6 +206,13 @@ class LoginController extends Controller
                     if($user_student->paralelo=="NA" && $user_student->ciclo=="NA"){
                         return redirect()->route('auth_student');   
                     }else{
+                        $fecha=now();
+                        Log::create([
+                            'detalle'=>"El estudiante ".$user_student->name." ".$user_student->lastname." ha iniciado sesión y accedido al sistema.",
+                            'fecha'=>$fecha,
+                            'tipo'=>1,
+                            'tipo_usuario'=>2
+                        ]);
                         return redirect()->route('vista_general_student');
                     }
                 }else{

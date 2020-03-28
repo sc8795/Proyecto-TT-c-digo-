@@ -14,6 +14,6 @@ class Log extends Model
      * @var array
      */
     protected $fillable = [
-        'detalle','fecha'
+        'detalle','fecha','tipo','tipo_usuario'
     ];
 }

@@ -37,6 +37,8 @@ class AuthDocenteController extends Controller
                 Log::create([
                     'detalle'=>"El docente ".$user->name." ".$user->lastname." ha iniciado sesión y accedido al sistema.",
                     'fecha'=>$fecha,
+                    'tipo'=>1,
+                    'tipo_usuario'=>3
                 ]);
                 return view('user_docente.auth_docente');  
             }else{

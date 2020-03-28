@@ -3952,11 +3952,17 @@ public function editar_admin(){
 |--------------------------------------------------------------------------
 */
     public function log(){
-        $logs=Log::orderBy('id','ASC')
-            ->paginate(10);
-        //$logs=DB::table('logs')->get();
-        $aux=0;
-        return view('user_administrador.vista_sistema_log',compact('logs','aux'));
+        if (Auth::check()) {
+            $admin = Auth::user();
+            if($admin->is_admin==true){
+                $aux=0;
+                $login_estudiantes=DB::table('logs')->where('tipo',1)->where('tipo_usuario',2)->get();
+                $login_docentes=DB::table('logs')->where('tipo',1)->where('tipo_usuario',3)->get();
+                return view('user_administrador.vista_sistema_log',compact('aux','login_estudiantes','login_docentes'));
+            }else{
+                return redirect()->route('show_login_form');
+            }
+        }
     }
     public function descargar_log($aux){
         $logs=Log::orderBy('id','ASC')

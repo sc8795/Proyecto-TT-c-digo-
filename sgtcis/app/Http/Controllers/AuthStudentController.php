@@ -44,7 +44,8 @@ class AuthStudentController extends Controller
                 Log::create([
                     'detalle'=>"El estudiante ".$user_student->name." ".$user_student->lastname." ha iniciado sesión y accedido al sistema.",
                     'fecha'=>$fecha,
-                    'tipo'=>1
+                    'tipo'=>1,
+                    'tipo_usuario'=>2
                 ]);
                 if($user_student->paralelo=="NA" && $user_student->ciclo=="NA"){
                     $materias=Materia::orderBy('id','DESC')
@@ -74,8 +75,8 @@ class AuthStudentController extends Controller
 */
     public function vista_general_student(){
         if (Auth::check()){
-            $user = Auth::user();
-            if($user->is_estudiante==true){
+            $user_student = Auth::user();
+            if($user_student->is_estudiante==true){
                 return view('user_student.vista_general_cuenta');
             }else{
                 return view('user_student.login_student');
