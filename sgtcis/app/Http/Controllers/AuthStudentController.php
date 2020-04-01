@@ -762,6 +762,12 @@ class AuthStudentController extends Controller
                     'motivo'=>$motivo,
                     'fecha_solicita'=>$fecha_actual,
                 ]);
+                Log::create([
+                    'detalle'=>"El estudiante ".$user_student->name." ".$user_student->lastname." solicitó tutoría al docente ".$user_docente->name." ".$user_docente->lastname.".",
+                    'fecha'=>$fecha_actual,
+                    'tipo'=>2,
+                    'tipo_usuario'=>3
+                ]);
                 /* Este código sirve para enviar notificación al docente cuando solicita tutoría */
                 $solitutoria=DB::table('solitutorias')->where('fecha_solicita',$fecha_actual)->first();
                 $noti_docente=new Notidocente;
@@ -776,7 +782,12 @@ class AuthStudentController extends Controller
                 if(\Notification::send($user_notificado,new NotificacionDocente(Notidocente::latest('id')->first()))){
                     return back();
                 }
-
+                Log::create([
+                    'detalle'=>"El docente ".$user_docente->name." ".$user_docente->lastname." ha sido notificado por la tutoría solicitada del estudiante ".$user_student->name." ".$user_student->lastname.".",
+                    'fecha'=>$fecha_actual,
+                    'tipo'=>3,
+                    'tipo_usuario'=>2
+                ]);
                 if($tipo=="grupal"){
                     /* Este código sirve para agregar el solitutoria_id a la tabla invitacionestudiantes */
                     $invitacion=DB::table('invitacionestudiantes')->where('id',$id_invitacion)->where('solitutoria_id',null)->first();
@@ -811,9 +822,17 @@ class AuthStudentController extends Controller
                         $invita_estudiante->save();
 
                         $user_notificado=User::where('id','=',$arreglo_est_inv[$i])->get();
+                        $user_notificado_log=DB::table('users')->where('id',$arreglo_est_inv[$i])->first();
                         if(\Notification::send($user_notificado,new InvitacionEstudiante(Invitacion::latest('id')->first()))){
                             return back();
                         }
+
+                        Log::create([
+                            'detalle'=>$user_notificado_log->name." ".$user_notificado_log->lastname." ha sido notificado por la invitación a tutoría de su compañero ".$user_student->name." ".$user_student->lastname.".",
+                            'fecha'=>$fecha_actual,
+                            'tipo'=>4,
+                            'tipo_usuario'=>2
+                        ]);
                     }
                 }
                 /* Retorna a la vista cuando todo se haya realizado correctamente */

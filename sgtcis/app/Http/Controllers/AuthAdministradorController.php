@@ -399,12 +399,14 @@ public function editar_admin(){
                     if($r1){
                         Excel::load($ruta,function($reader){
                             foreach ($reader->get() as $archivo) {
-                                DB::table('materias')->insert([
-                                    'name'=>$archivo->nombre,
-                                    'ciclo'=>$archivo->ciclo,
-                                    'usuario_id'=>$archivo->id_docente,
-                                    'paralelo'=>$archivo->paralelo,
-                                ]);
+                                if($archivo->nombre != null && $archivo->ciclo != null && $archivo->id_docente != null && $archivo->paralelo != null){
+                                    DB::table('materias')->insert([
+                                        'name'=>$archivo->nombre,
+                                        'ciclo'=>$archivo->ciclo,
+                                        'usuario_id'=>$archivo->id_docente,
+                                        'paralelo'=>$archivo->paralelo,
+                                    ]);
+                                }
                             }
                         });
                         flash('Materias registradas desde documento excel correctamente')->success()->important();
@@ -3958,7 +3960,12 @@ public function editar_admin(){
                 $aux=0;
                 $login_estudiantes=DB::table('logs')->where('tipo',1)->where('tipo_usuario',2)->get();
                 $login_docentes=DB::table('logs')->where('tipo',1)->where('tipo_usuario',3)->get();
-                return view('user_administrador.vista_sistema_log',compact('aux','login_estudiantes','login_docentes'));
+                $tutorias_solicitadas=DB::table('logs')->where('tipo',2)->where('tipo_usuario',3)->get();
+                $notificaciones_docentes=DB::table('logs')->where('tipo',3)->where('tipo_usuario',2)->get();
+                $notificaciones_estudiantes=DB::table('logs')->where('tipo',3)->where('tipo_usuario',3)->get();
+                $invitaciones_estudiantes=DB::table('logs')->where('tipo',4)->where('tipo_usuario',2)->get();
+                return view('user_administrador.vista_sistema_log',compact('aux','login_estudiantes','login_docentes','tutorias_solicitadas','notificaciones_docentes',
+                    'invitaciones_estudiantes','notificaciones_estudiantes'));
             }else{
                 return redirect()->route('show_login_form');
             }

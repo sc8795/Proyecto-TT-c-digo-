@@ -36,6 +36,18 @@ $('#dataTable2').DataTable({
     },
     "lengthMenu":[[1,5, 10, 20, 25, 50, -1], [1,5, 10, 20, 25, 50, "Todos"]],
 });
+$('#dataTableTutorias').DataTable({
+    "language": {
+        "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+    },
+    "lengthMenu":[[1,5, 10, 20, 25, 50, -1], [1,5, 10, 20, 25, 50, "Todos"]],
+});
+$('#dataTableNotificaciones').DataTable({
+    "language": {
+        "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+    },
+    "lengthMenu":[[1,5, 10, 20, 25, 50, -1], [1,5, 10, 20, 25, 50, "Todos"]],
+});
 $('#dataTable3').DataTable({
     "language": {
         "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"

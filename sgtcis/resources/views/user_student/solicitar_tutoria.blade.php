@@ -21,7 +21,7 @@
                                         <tr>
                                             <th>Nombre materia</th>
                                             <th>Docente que la imparte</th>
-                                            <th>Acción</th>
+                                            <th style="text-align: center">Acción</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -41,25 +41,49 @@
                                                 <td>{{$materia->name}}
                                                 </td>
                                                 <td>
-                                                    
-                                                        @foreach ($users_docentes as $user_docente)
-                                                            @if ($materia->usuario_id==$user_docente->id)
-                                                                {{$user_docente->name}} {{$user_docente->lastname}}
-                                                            @endif
-                                                        @endforeach
-                                                    
+                                                    @php
+                                                        $cont=0;$cont_aux=0;
+                                                    @endphp
+                                                    @foreach ($users_docentes as $user_docente)
+                                                        @if ($materia->usuario_id==$user_docente->id)
+                                                            {{$user_docente->name}} {{$user_docente->lastname}}
+                                                            @php
+                                                                $cont=1;$cont_aux=1;
+                                                            @endphp
+                                                        @else
+                                                            @php
+                                                                $cont=2;
+                                                            @endphp
+                                                        @endif
+                                                    @endforeach
+                                                    @if ($cont_aux==0 && $cont==2 )
+                                                        <div class="text-left"><span>No tiene asignado</span></div>
+                                                    @endif
                                                 </td>
-                                                <td>
+                                                <td style="text-align: center">
                                                     <form action="{{url("vista_solicitar_tutoria")}}" method="POST">
                                                         {{ csrf_field() }}
+                                                        @php
+                                                            $cont=0;$cont_aux=0;
+                                                        @endphp
                                                         @foreach ($users_docentes as $user_docente)
                                                             @if ($materia->usuario_id==$user_docente->id)
                                                                 <input type="hidden" name="accion" value="{{$accion}}">
                                                                 <input type="hidden" name="id_docente" value="{{$user_docente->id}}">
                                                                 <input type="hidden" name="id_materia" value="{{$materia->id}}">
-                                                                <button type="submit" class="btn btn-outline-dark btn-sm" id="borde_radio" title="Ir a formulario - solicitar tutoría">Solicitar tutoría <span class="fas fa-check-circle"></span></button>    
+                                                                <button type="submit" class="btn btn-outline-dark btn-sm" id="borde_radio" title="Ir a formulario - solicitar tutoría">Solicitar tutoría <span class="fas fa-check-circle"></span></button>
+                                                                @php
+                                                                    $cont=1;$cont_aux=1;
+                                                                @endphp    
+                                                            @else
+                                                                @php
+                                                                    $cont=2;
+                                                                @endphp
                                                             @endif
                                                         @endforeach
+                                                        @if ($cont_aux==0 && $cont==2 )
+                                                            <div class="text-center"><span>---</span></div>
+                                                        @endif
                                                     </form>
                                                 </td>
                                             @endif
@@ -68,25 +92,49 @@
                                                 <td>{{$materia->name}}
                                                 </td>
                                                 <td>
-                                                    
-                                                        @foreach ($users_docentes as $user_docente)
-                                                            @if ($materia->usuario_id==$user_docente->id)
-                                                                {{$user_docente->name}} {{$user_docente->lastname}}
-                                                            @endif
-                                                        @endforeach
-                                                    
+                                                    @php
+                                                        $cont=0;$cont_aux=0;
+                                                    @endphp
+                                                    @foreach ($users_docentes as $user_docente)
+                                                        @if ($materia->usuario_id==$user_docente->id)
+                                                            {{$user_docente->name}} {{$user_docente->lastname}}
+                                                            @php
+                                                                $cont=1;$cont_aux=1;
+                                                            @endphp
+                                                        @else
+                                                            @php
+                                                                $cont=2;
+                                                            @endphp
+                                                        @endif
+                                                    @endforeach
+                                                    @if ($cont_aux==0 && $cont==2 )
+                                                        <div class="text-left"><span>No tiene asignado</span></div>
+                                                    @endif
                                                 </td>
-                                                <td>
+                                                <td style="text-align: center">
                                                     <form action="{{url("vista_solicitar_tutoria")}}" method="POST">
                                                         {{ csrf_field() }}
+                                                        @php
+                                                            $cont=0;$cont_aux=0;
+                                                        @endphp
                                                         @foreach ($users_docentes as $user_docente)
                                                             @if ($materia->usuario_id==$user_docente->id)
                                                                 <input type="hidden" name="accion" value="{{$accion}}">
                                                                 <input type="hidden" name="id_docente" value="{{$user_docente->id}}">
                                                                 <input type="hidden" name="id_materia" value="{{$materia->id}}">
                                                                 <button type="submit" class="btn btn-outline-dark btn-sm" id="borde_radio" title="Solicitar tutoría">Solicitar tutoría <span class="fas fa-check-circle"></span></button>    
+                                                                @php
+                                                                    $cont=1;$cont_aux=1;
+                                                                @endphp    
+                                                            @else
+                                                                @php
+                                                                    $cont=2;
+                                                                @endphp
                                                             @endif
                                                         @endforeach
+                                                        @if ($cont_aux==0 && $cont==2 )
+                                                            <div class="text-center"><span>---</span></div>
+                                                        @endif
                                                     </form>
                                                 </td>
                                             @endif
@@ -95,25 +143,49 @@
                                                 <td>{{$materia->name}}
                                                 </td>
                                                 <td>
-                                                    
-                                                        @foreach ($users_docentes as $user_docente)
-                                                            @if ($materia->usuario_id==$user_docente->id)
-                                                                {{$user_docente->name}} {{$user_docente->lastname}}
-                                                            @endif
-                                                        @endforeach
-                                                    
+                                                    @php
+                                                        $cont=0;$cont_aux=0;
+                                                    @endphp
+                                                    @foreach ($users_docentes as $user_docente)
+                                                        @if ($materia->usuario_id==$user_docente->id)
+                                                            {{$user_docente->name}} {{$user_docente->lastname}}
+                                                            @php
+                                                                $cont=1;$cont_aux=1;
+                                                            @endphp
+                                                        @else
+                                                            @php
+                                                                $cont=2;
+                                                            @endphp
+                                                        @endif
+                                                    @endforeach
+                                                    @if ($cont_aux==0 && $cont==2 )
+                                                        <div class="text-left"><span>No tiene asignado</span></div>
+                                                    @endif
                                                 </td>
-                                                <td>
+                                                <td style="text-align: center">
                                                     <form action="{{url("vista_solicitar_tutoria")}}" method="POST">
                                                         {{ csrf_field() }}
+                                                        @php
+                                                            $cont=0;$cont_aux=0;
+                                                        @endphp
                                                         @foreach ($users_docentes as $user_docente)
                                                             @if ($materia->usuario_id==$user_docente->id)
                                                                 <input type="hidden" name="accion" value="{{$accion}}">
                                                                 <input type="hidden" name="id_docente" value="{{$user_docente->id}}">
                                                                 <input type="hidden" name="id_materia" value="{{$materia->id}}">
                                                                 <button type="submit" class="btn btn-outline-dark btn-sm" id="borde_radio" title="Solicitar tutoría">Solicitar tutoría <span class="fas fa-check-circle"></span></button>    
+                                                                @php
+                                                                    $cont=1;$cont_aux=1;
+                                                                @endphp    
+                                                            @else
+                                                                @php
+                                                                    $cont=2;
+                                                                @endphp
                                                             @endif
                                                         @endforeach
+                                                        @if ($cont_aux==0 && $cont==2 )
+                                                            <div class="text-center"><span>---</span></div>
+                                                        @endif
                                                     </form>
                                                 </td>
                                             @endif
@@ -122,25 +194,49 @@
                                                 <td>{{$materia->name}}
                                                 </td>
                                                 <td>
-                                                    
-                                                        @foreach ($users_docentes as $user_docente)
-                                                            @if ($materia->usuario_id==$user_docente->id)
-                                                                {{$user_docente->name}} {{$user_docente->lastname}}
-                                                            @endif
-                                                        @endforeach
-                                                    
+                                                    @php
+                                                        $cont=0;$cont_aux=0;
+                                                    @endphp
+                                                    @foreach ($users_docentes as $user_docente)
+                                                        @if ($materia->usuario_id==$user_docente->id)
+                                                            {{$user_docente->name}} {{$user_docente->lastname}}
+                                                            @php
+                                                                $cont=1;$cont_aux=1;
+                                                            @endphp
+                                                        @else
+                                                            @php
+                                                                $cont=2;
+                                                            @endphp
+                                                        @endif
+                                                    @endforeach
+                                                    @if ($cont_aux==0 && $cont==2 )
+                                                        <div class="text-left"><span>No tiene asignado</span></div>
+                                                    @endif
                                                 </td>
-                                                <td>
+                                                <td style="text-align: center">
                                                     <form action="{{url("vista_solicitar_tutoria")}}" method="POST">
                                                         {{ csrf_field() }}
+                                                        @php
+                                                            $cont=0;$cont_aux=0;
+                                                        @endphp
                                                         @foreach ($users_docentes as $user_docente)
                                                             @if ($materia->usuario_id==$user_docente->id)
                                                                 <input type="hidden" name="accion" value="{{$accion}}">
                                                                 <input type="hidden" name="id_docente" value="{{$user_docente->id}}">
                                                                 <input type="hidden" name="id_materia" value="{{$materia->id}}">
                                                                 <button type="submit" class="btn btn-outline-dark btn-sm" id="borde_radio" title="Solicitar tutoría">Solicitar tutoría <span class="fas fa-check-circle"></span></button>    
+                                                                @php
+                                                                    $cont=1;$cont_aux=1;
+                                                                @endphp    
+                                                            @else
+                                                                @php
+                                                                    $cont=2;
+                                                                @endphp
                                                             @endif
                                                         @endforeach
+                                                        @if ($cont_aux==0 && $cont==2 )
+                                                            <div class="text-center"><span>---</span></div>
+                                                        @endif
                                                     </form>
                                                 </td>
                                             @endif
@@ -150,23 +246,44 @@
                                                 <td>{{$materia->name}}
                                                 </td>
                                                 <td>
-                                                    
-                                                        @foreach ($users_docentes as $user_docente)
-                                                            @if ($materia->usuario_id==$user_docente->id)
-                                                                {{$user_docente->name}} {{$user_docente->lastname}}
-                                                            @endif
-                                                        @endforeach
-                                                    
+                                                    @php
+                                                        $cont=0;$cont_aux=0;
+                                                    @endphp
+                                                    @foreach ($users_docentes as $user_docente)
+                                                        @if ($materia->usuario_id==$user_docente->id)
+                                                            {{$user_docente->name}} {{$user_docente->lastname}}
+                                                            @php
+                                                                $cont=1;$cont_aux=1;
+                                                            @endphp
+                                                        @else
+                                                            @php
+                                                                $cont=2;
+                                                            @endphp
+                                                        @endif
+                                                    @endforeach
+                                                    @if ($cont_aux==0 && $cont==2 )
+                                                        <div class="text-left"><span>No tiene asignado</span></div>
+                                                    @endif
                                                 </td>
-                                                <td>
+                                                <td style="text-align: center">
                                                     <form action="{{url("vista_solicitar_tutoria")}}" method="POST">
                                                         {{ csrf_field() }}
+                                                        @php
+                                                            $cont=0;$cont_aux=0;
+                                                        @endphp
                                                         @foreach ($users_docentes as $user_docente)
                                                             @if ($materia->usuario_id==$user_docente->id)
                                                                 <input type="hidden" name="accion" value="{{$accion}}">
                                                                 <input type="hidden" name="id_docente" value="{{$user_docente->id}}">
                                                                 <input type="hidden" name="id_materia" value="{{$materia->id}}">
                                                                 <button type="submit" class="btn btn-outline-dark btn-sm" id="borde_radio" title="Solicitar tutoría">Solicitar tutoría <span class="fas fa-check-circle"></span></button>    
+                                                                @php
+                                                                    $cont=1;$cont_aux=1;
+                                                                @endphp
+                                                            @else
+                                                                @php
+                                                                    $cont=2;
+                                                                @endphp
                                                             @endif
                                                         @endforeach
                                                     </form>
@@ -177,25 +294,49 @@
                                                 <td>{{$materia->name}}
                                                 </td>
                                                 <td>
-                                                    
-                                                        @foreach ($users_docentes as $user_docente)
-                                                            @if ($materia->usuario_id==$user_docente->id)
-                                                                {{$user_docente->name}} {{$user_docente->lastname}}
-                                                            @endif
-                                                        @endforeach
-                                                    
+                                                    @php
+                                                        $cont=0;$cont_aux=0;
+                                                    @endphp
+                                                    @foreach ($users_docentes as $user_docente)
+                                                        @if ($materia->usuario_id==$user_docente->id)
+                                                            {{$user_docente->name}} {{$user_docente->lastname}}
+                                                            @php
+                                                                $cont=1;$cont_aux=1;
+                                                            @endphp
+                                                        @else
+                                                            @php
+                                                                $cont=2;
+                                                            @endphp
+                                                        @endif
+                                                    @endforeach
+                                                    @if ($cont_aux==0 && $cont==2 )
+                                                        <div class="text-left"><span>No tiene asignado</span></div>
+                                                    @endif
                                                 </td>
-                                                <td>
+                                                <td style="text-align: center">
                                                     <form action="{{url("vista_solicitar_tutoria")}}" method="POST">
                                                         {{ csrf_field() }}
+                                                        @php
+                                                            $cont=0;$cont_aux=0;
+                                                        @endphp
                                                         @foreach ($users_docentes as $user_docente)
                                                             @if ($materia->usuario_id==$user_docente->id)
                                                                 <input type="hidden" name="accion" value="{{$accion}}">
                                                                 <input type="hidden" name="id_docente" value="{{$user_docente->id}}">
                                                                 <input type="hidden" name="id_materia" value="{{$materia->id}}">
                                                                 <button type="submit" class="btn btn-outline-dark btn-sm" id="borde_radio" title="Solicitar tutoría">Solicitar tutoría <span class="fas fa-check-circle"></span></button>    
+                                                                @php
+                                                                    $cont=1;$cont_aux=1;
+                                                                @endphp    
+                                                            @else
+                                                                @php
+                                                                    $cont=2;
+                                                                @endphp
                                                             @endif
                                                         @endforeach
+                                                        @if ($cont_aux==0 && $cont==2 )
+                                                            <div class="text-center"><span>---</span></div>
+                                                        @endif
                                                     </form>
                                                 </td>
                                             @endif
@@ -204,25 +345,49 @@
                                                 <td>{{$materia->name}}
                                                 </td>
                                                 <td>
-                                                    
-                                                        @foreach ($users_docentes as $user_docente)
-                                                            @if ($materia->usuario_id==$user_docente->id)
-                                                                {{$user_docente->name}} {{$user_docente->lastname}}
-                                                            @endif
-                                                        @endforeach
-                                                    
+                                                    @php
+                                                        $cont=0;$cont_aux=0;
+                                                    @endphp
+                                                    @foreach ($users_docentes as $user_docente)
+                                                        @if ($materia->usuario_id==$user_docente->id)
+                                                            {{$user_docente->name}} {{$user_docente->lastname}}
+                                                            @php
+                                                                $cont=1;$cont_aux=1;
+                                                            @endphp
+                                                        @else
+                                                            @php
+                                                                $cont=2;
+                                                            @endphp
+                                                        @endif
+                                                    @endforeach
+                                                    @if ($cont_aux==0 && $cont==2 )
+                                                        <div class="text-left"><span>No tiene asignado</span></div>
+                                                    @endif
                                                 </td>
-                                                <td>
+                                                <td style="text-align: center">
                                                     <form action="{{url("vista_solicitar_tutoria")}}" method="POST">
                                                         {{ csrf_field() }}
+                                                        @php
+                                                            $cont=0;$cont_aux=0;
+                                                        @endphp
                                                         @foreach ($users_docentes as $user_docente)
                                                             @if ($materia->usuario_id==$user_docente->id)
                                                                 <input type="hidden" name="accion" value="{{$accion}}">
                                                                 <input type="hidden" name="id_docente" value="{{$user_docente->id}}">
                                                                 <input type="hidden" name="id_materia" value="{{$materia->id}}">
                                                                 <button type="submit" class="btn btn-outline-dark btn-sm" id="borde_radio" title="Solicitar tutoría">Solicitar tutoría <span class="fas fa-check-circle"></span></button>    
+                                                                @php
+                                                                    $cont=1;$cont_aux=1;
+                                                                @endphp    
+                                                            @else
+                                                                @php
+                                                                    $cont=2;
+                                                                @endphp
                                                             @endif
                                                         @endforeach
+                                                        @if ($cont_aux==0 && $cont==2 )
+                                                            <div class="text-center"><span>---</span></div>
+                                                        @endif
                                                     </form>
                                                 </td>
                                             @endif
@@ -231,25 +396,49 @@
                                                 <td>{{$materia->name}}
                                                 </td>
                                                 <td>
-                                                    
-                                                        @foreach ($users_docentes as $user_docente)
-                                                            @if ($materia->usuario_id==$user_docente->id)
-                                                                {{$user_docente->name}} {{$user_docente->lastname}}
-                                                            @endif
-                                                        @endforeach
-                                                    
+                                                    @php
+                                                        $cont=0;$cont_aux=0;
+                                                    @endphp
+                                                    @foreach ($users_docentes as $user_docente)
+                                                        @if ($materia->usuario_id==$user_docente->id)
+                                                            {{$user_docente->name}} {{$user_docente->lastname}}
+                                                            @php
+                                                                $cont=1;$cont_aux=1;
+                                                            @endphp
+                                                        @else
+                                                            @php
+                                                                $cont=2;
+                                                            @endphp
+                                                        @endif
+                                                    @endforeach
+                                                    @if ($cont_aux==0 && $cont==2 )
+                                                        <div class="text-left"><span>No tiene asignado</span></div>
+                                                    @endif
                                                 </td>
-                                                <td>
+                                                <td style="text-align: center">
                                                     <form action="{{url("vista_solicitar_tutoria")}}" method="POST">
                                                         {{ csrf_field() }}
+                                                        @php
+                                                            $cont=0;$cont_aux=0;
+                                                        @endphp
                                                         @foreach ($users_docentes as $user_docente)
                                                             @if ($materia->usuario_id==$user_docente->id)
                                                                 <input type="hidden" name="accion" value="{{$accion}}">
                                                                 <input type="hidden" name="id_docente" value="{{$user_docente->id}}">
                                                                 <input type="hidden" name="id_materia" value="{{$materia->id}}">
                                                                 <button type="submit" class="btn btn-outline-dark btn-sm" id="borde_radio" title="Solicitar tutoría">Solicitar tutoría <span class="fas fa-check-circle"></span></button>    
+                                                                @php
+                                                                    $cont=1;$cont_aux=1;
+                                                                @endphp    
+                                                            @else
+                                                                @php
+                                                                    $cont=2;
+                                                                @endphp
                                                             @endif
                                                         @endforeach
+                                                        @if ($cont_aux==0 && $cont==2 )
+                                                            <div class="text-center"><span>---</span></div>
+                                                        @endif
                                                     </form>
                                                 </td>
                                             @endif
@@ -259,25 +448,49 @@
                                                 <td>{{$materia->name}}
                                                 </td>
                                                 <td>
-                                                    
-                                                        @foreach ($users_docentes as $user_docente)
-                                                            @if ($materia->usuario_id==$user_docente->id)
-                                                                {{$user_docente->name}} {{$user_docente->lastname}}
-                                                            @endif
-                                                        @endforeach
-                                                    
+                                                    @php
+                                                        $cont=0;$cont_aux=0;
+                                                    @endphp
+                                                    @foreach ($users_docentes as $user_docente)
+                                                        @if ($materia->usuario_id==$user_docente->id)
+                                                            {{$user_docente->name}} {{$user_docente->lastname}}
+                                                            @php
+                                                                $cont=1;$cont_aux=1;
+                                                            @endphp
+                                                        @else
+                                                            @php
+                                                                $cont=2;
+                                                            @endphp
+                                                        @endif
+                                                    @endforeach
+                                                    @if ($cont_aux==0 && $cont==2 )
+                                                        <div class="text-left"><span>No tiene asignado</span></div>
+                                                    @endif
                                                 </td>
-                                                <td>
+                                                <td style="text-align: center">
                                                     <form action="{{url("vista_solicitar_tutoria")}}" method="POST">
                                                         {{ csrf_field() }}
+                                                        @php
+                                                            $cont=0;$cont_aux=0;
+                                                        @endphp
                                                         @foreach ($users_docentes as $user_docente)
                                                             @if ($materia->usuario_id==$user_docente->id)
                                                                 <input type="hidden" name="accion" value="{{$accion}}">
                                                                 <input type="hidden" name="id_docente" value="{{$user_docente->id}}">
                                                                 <input type="hidden" name="id_materia" value="{{$materia->id}}">
                                                                 <button type="submit" class="btn btn-outline-dark btn-sm" id="borde_radio" title="Solicitar tutoría">Solicitar tutoría <span class="fas fa-check-circle"></span></button>    
+                                                                @php
+                                                                    $cont=1;$cont_aux=1;
+                                                                @endphp    
+                                                            @else
+                                                                @php
+                                                                    $cont=2;
+                                                                @endphp
                                                             @endif
                                                         @endforeach
+                                                        @if ($cont_aux==0 && $cont==2 )
+                                                            <div class="text-center"><span>---</span></div>
+                                                        @endif
                                                     </form>
                                                 </td>
                                             @endif
@@ -286,25 +499,49 @@
                                                 <td>{{$materia->name}}
                                                 </td>
                                                 <td>
-                                                    
-                                                        @foreach ($users_docentes as $user_docente)
-                                                            @if ($materia->usuario_id==$user_docente->id)
-                                                                {{$user_docente->name}} {{$user_docente->lastname}}
-                                                            @endif
-                                                        @endforeach
-                                                    
+                                                    @php
+                                                        $cont=0;$cont_aux=0;
+                                                    @endphp
+                                                    @foreach ($users_docentes as $user_docente)
+                                                        @if ($materia->usuario_id==$user_docente->id)
+                                                            {{$user_docente->name}} {{$user_docente->lastname}}
+                                                            @php
+                                                                $cont=1;$cont_aux=1;
+                                                            @endphp
+                                                        @else
+                                                            @php
+                                                                $cont=2;
+                                                            @endphp
+                                                        @endif
+                                                    @endforeach
+                                                    @if ($cont_aux==0 && $cont==2 )
+                                                        <div class="text-left"><span>No tiene asignado</span></div>
+                                                    @endif
                                                 </td>
-                                                <td>
+                                                <td style="text-align: center">
                                                     <form action="{{url("vista_solicitar_tutoria")}}" method="POST">
                                                         {{ csrf_field() }}
+                                                        @php
+                                                            $cont=0;$cont_aux=0;
+                                                        @endphp
                                                         @foreach ($users_docentes as $user_docente)
                                                             @if ($materia->usuario_id==$user_docente->id)
                                                                 <input type="hidden" name="accion" value="{{$accion}}">
                                                                 <input type="hidden" name="id_docente" value="{{$user_docente->id}}">
                                                                 <input type="hidden" name="id_materia" value="{{$materia->id}}">
                                                                 <button type="submit" class="btn btn-outline-dark btn-sm" id="borde_radio" title="Solicitar tutoría">Solicitar tutoría <span class="fas fa-check-circle"></span></button>    
+                                                                @php
+                                                                    $cont=1;$cont_aux=1;
+                                                                @endphp    
+                                                            @else
+                                                                @php
+                                                                    $cont=2;
+                                                                @endphp
                                                             @endif
                                                         @endforeach
+                                                        @if ($cont_aux==0 && $cont==2 )
+                                                            <div class="text-center"><span>---</span></div>
+                                                        @endif
                                                     </form>
                                                 </td>
                                             @endif
@@ -313,25 +550,49 @@
                                                 <td>{{$materia->name}}
                                                 </td>
                                                 <td>
-                                                    
-                                                        @foreach ($users_docentes as $user_docente)
-                                                            @if ($materia->usuario_id==$user_docente->id)
-                                                                {{$user_docente->name}} {{$user_docente->lastname}}
-                                                            @endif
-                                                        @endforeach
-                                                    
+                                                    @php
+                                                        $cont=0;$cont_aux=0;
+                                                    @endphp
+                                                    @foreach ($users_docentes as $user_docente)
+                                                        @if ($materia->usuario_id==$user_docente->id)
+                                                            {{$user_docente->name}} {{$user_docente->lastname}}
+                                                            @php
+                                                                $cont=1;$cont_aux=1;
+                                                            @endphp
+                                                        @else
+                                                            @php
+                                                                $cont=2;
+                                                            @endphp
+                                                        @endif
+                                                    @endforeach
+                                                    @if ($cont_aux==0 && $cont==2 )
+                                                        <div class="text-left"><span>No tiene asignado</span></div>
+                                                    @endif
                                                 </td>
-                                                <td>
+                                                <td style="text-align: center">
                                                     <form action="{{url("vista_solicitar_tutoria")}}" method="POST">
                                                         {{ csrf_field() }}
+                                                        @php
+                                                            $cont=0;$cont_aux=0;
+                                                        @endphp
                                                         @foreach ($users_docentes as $user_docente)
                                                             @if ($materia->usuario_id==$user_docente->id)
                                                                 <input type="hidden" name="accion" value="{{$accion}}">
                                                                 <input type="hidden" name="id_docente" value="{{$user_docente->id}}">
                                                                 <input type="hidden" name="id_materia" value="{{$materia->id}}">
                                                                 <button type="submit" class="btn btn-outline-dark btn-sm" id="borde_radio" title="Solicitar tutoría">Solicitar tutoría <span class="fas fa-check-circle"></span></button>    
+                                                                @php
+                                                                    $cont=1;$cont_aux=1;
+                                                                @endphp    
+                                                            @else
+                                                                @php
+                                                                    $cont=2;
+                                                                @endphp
                                                             @endif
                                                         @endforeach
+                                                        @if ($cont_aux==0 && $cont==2 )
+                                                            <div class="text-center"><span>---</span></div>
+                                                        @endif
                                                     </form>
                                                 </td>
                                             @endif
@@ -340,25 +601,49 @@
                                                 <td>{{$materia->name}}
                                                 </td>
                                                 <td>
-                                                    
-                                                        @foreach ($users_docentes as $user_docente)
-                                                            @if ($materia->usuario_id==$user_docente->id)
-                                                                {{$user_docente->name}} {{$user_docente->lastname}}
-                                                            @endif
-                                                        @endforeach
-                                                    
+                                                    @php
+                                                        $cont=0;$cont_aux=0;
+                                                    @endphp
+                                                    @foreach ($users_docentes as $user_docente)
+                                                        @if ($materia->usuario_id==$user_docente->id)
+                                                            {{$user_docente->name}} {{$user_docente->lastname}}
+                                                            @php
+                                                                $cont=1;$cont_aux=1;
+                                                            @endphp
+                                                        @else
+                                                            @php
+                                                                $cont=2;
+                                                            @endphp
+                                                        @endif
+                                                    @endforeach
+                                                    @if ($cont_aux==0 && $cont==2 )
+                                                        <div class="text-left"><span>No tiene asignado</span></div>
+                                                    @endif
                                                 </td>
-                                                <td>
+                                                <td style="text-align: center">
                                                     <form action="{{url("vista_solicitar_tutoria")}}" method="POST">
                                                         {{ csrf_field() }}
+                                                        @php
+                                                            $cont=0;$cont_aux=0;
+                                                        @endphp
                                                         @foreach ($users_docentes as $user_docente)
                                                             @if ($materia->usuario_id==$user_docente->id)
                                                                 <input type="hidden" name="accion" value="{{$accion}}">
                                                                 <input type="hidden" name="id_docente" value="{{$user_docente->id}}">
                                                                 <input type="hidden" name="id_materia" value="{{$materia->id}}">
                                                                 <button type="submit" class="btn btn-outline-dark btn-sm" id="borde_radio" title="Solicitar tutoría">Solicitar tutoría <span class="fas fa-check-circle"></span></button>    
+                                                                @php
+                                                                    $cont=1;$cont_aux=1;
+                                                                @endphp    
+                                                            @else
+                                                                @php
+                                                                    $cont=2;
+                                                                @endphp
                                                             @endif
                                                         @endforeach
+                                                        @if ($cont_aux==0 && $cont==2 )
+                                                            <div class="text-center"><span>---</span></div>
+                                                        @endif
                                                     </form>
                                                 </td>
                                             @endif
@@ -368,25 +653,49 @@
                                                 <td>{{$materia->name}}
                                                 </td>
                                                 <td>
-                                                    
-                                                        @foreach ($users_docentes as $user_docente)
-                                                            @if ($materia->usuario_id==$user_docente->id)
-                                                                {{$user_docente->name}} {{$user_docente->lastname}}
-                                                            @endif
-                                                        @endforeach
-                                                    
+                                                    @php
+                                                        $cont=0;$cont_aux=0;
+                                                    @endphp
+                                                    @foreach ($users_docentes as $user_docente)
+                                                        @if ($materia->usuario_id==$user_docente->id)
+                                                            {{$user_docente->name}} {{$user_docente->lastname}}
+                                                            @php
+                                                                $cont=1;$cont_aux=1;
+                                                            @endphp
+                                                        @else
+                                                            @php
+                                                                $cont=2;
+                                                            @endphp
+                                                        @endif
+                                                    @endforeach
+                                                    @if ($cont_aux==0 && $cont==2 )
+                                                        <div class="text-left"><span>No tiene asignado</span></div>
+                                                    @endif
                                                 </td>
-                                                <td>
+                                                <td style="text-align: center">
                                                     <form action="{{url("vista_solicitar_tutoria")}}" method="POST">
                                                         {{ csrf_field() }}
+                                                        @php
+                                                            $cont=0;$cont_aux=0;
+                                                        @endphp
                                                         @foreach ($users_docentes as $user_docente)
                                                             @if ($materia->usuario_id==$user_docente->id)
                                                                 <input type="hidden" name="accion" value="{{$accion}}">
                                                                 <input type="hidden" name="id_docente" value="{{$user_docente->id}}">
                                                                 <input type="hidden" name="id_materia" value="{{$materia->id}}">
                                                                 <button type="submit" class="btn btn-outline-dark btn-sm" id="borde_radio" title="Solicitar tutoría">Solicitar tutoría <span class="fas fa-check-circle"></span></button>    
+                                                                @php
+                                                                    $cont=1;$cont_aux=1;
+                                                                @endphp    
+                                                            @else
+                                                                @php
+                                                                    $cont=2;
+                                                                @endphp
                                                             @endif
                                                         @endforeach
+                                                        @if ($cont_aux==0 && $cont==2 )
+                                                            <div class="text-center"><span>---</span></div>
+                                                        @endif
                                                     </form>
                                                 </td>
                                             @endif
@@ -395,25 +704,49 @@
                                                 <td>{{$materia->name}}
                                                 </td>
                                                 <td>
-                                                    
-                                                        @foreach ($users_docentes as $user_docente)
-                                                            @if ($materia->usuario_id==$user_docente->id)
-                                                                {{$user_docente->name}} {{$user_docente->lastname}}
-                                                            @endif
-                                                        @endforeach
-                                                    
+                                                    @php
+                                                        $cont=0;$cont_aux=0;
+                                                    @endphp
+                                                    @foreach ($users_docentes as $user_docente)
+                                                        @if ($materia->usuario_id==$user_docente->id)
+                                                            {{$user_docente->name}} {{$user_docente->lastname}}
+                                                            @php
+                                                                $cont=1;$cont_aux=1;
+                                                            @endphp
+                                                        @else
+                                                            @php
+                                                                $cont=2;
+                                                            @endphp
+                                                        @endif
+                                                    @endforeach
+                                                    @if ($cont_aux==0 && $cont==2 )
+                                                        <div class="text-left"><span>No tiene asignado</span></div>
+                                                    @endif
                                                 </td>
-                                                <td>
+                                                <td style="text-align: center">
                                                     <form action="{{url("vista_solicitar_tutoria")}}" method="POST">
                                                         {{ csrf_field() }}
+                                                        @php
+                                                            $cont=0;$cont_aux=0;
+                                                        @endphp
                                                         @foreach ($users_docentes as $user_docente)
                                                             @if ($materia->usuario_id==$user_docente->id)
                                                                 <input type="hidden" name="accion" value="{{$accion}}">
                                                                 <input type="hidden" name="id_docente" value="{{$user_docente->id}}">
                                                                 <input type="hidden" name="id_materia" value="{{$materia->id}}">
                                                                 <button type="submit" class="btn btn-outline-dark btn-sm" id="borde_radio" title="Solicitar tutoría">Solicitar tutoría <span class="fas fa-check-circle"></span></button>    
+                                                                @php
+                                                                    $cont=1;$cont_aux=1;
+                                                                @endphp    
+                                                            @else
+                                                                @php
+                                                                    $cont=2;
+                                                                @endphp
                                                             @endif
                                                         @endforeach
+                                                        @if ($cont_aux==0 && $cont==2 )
+                                                            <div class="text-center"><span>---</span></div>
+                                                        @endif
                                                     </form>
                                                 </td>
                                             @endif
@@ -422,25 +755,49 @@
                                                 <td>{{$materia->name}}
                                                 </td>
                                                 <td>
-                                                    
-                                                        @foreach ($users_docentes as $user_docente)
-                                                            @if ($materia->usuario_id==$user_docente->id)
-                                                                {{$user_docente->name}} {{$user_docente->lastname}}
-                                                            @endif
-                                                        @endforeach
-                                                    
+                                                    @php
+                                                        $cont=0;$cont_aux=0;
+                                                    @endphp
+                                                    @foreach ($users_docentes as $user_docente)
+                                                        @if ($materia->usuario_id==$user_docente->id)
+                                                            {{$user_docente->name}} {{$user_docente->lastname}}
+                                                            @php
+                                                                $cont=1;$cont_aux=1;
+                                                            @endphp
+                                                        @else
+                                                            @php
+                                                                $cont=2;
+                                                            @endphp
+                                                        @endif
+                                                    @endforeach
+                                                    @if ($cont_aux==0 && $cont==2 )
+                                                        <div class="text-left"><span>No tiene asignado</span></div>
+                                                    @endif
                                                 </td>
-                                                <td>
+                                                <td style="text-align: center">
                                                     <form action="{{url("vista_solicitar_tutoria")}}" method="POST">
                                                         {{ csrf_field() }}
+                                                        @php
+                                                            $cont=0;$cont_aux=0;
+                                                        @endphp
                                                         @foreach ($users_docentes as $user_docente)
                                                             @if ($materia->usuario_id==$user_docente->id)
                                                                 <input type="hidden" name="accion" value="{{$accion}}">
                                                                 <input type="hidden" name="id_docente" value="{{$user_docente->id}}">
                                                                 <input type="hidden" name="id_materia" value="{{$materia->id}}">
                                                                 <button type="submit" class="btn btn-outline-dark btn-sm" id="borde_radio" title="Solicitar tutoría">Solicitar tutoría <span class="fas fa-check-circle"></span></button>    
+                                                                @php
+                                                                    $cont=1;$cont_aux=1;
+                                                                @endphp    
+                                                            @else
+                                                                @php
+                                                                    $cont=2;
+                                                                @endphp
                                                             @endif
                                                         @endforeach
+                                                        @if ($cont_aux==0 && $cont==2 )
+                                                            <div class="text-center"><span>---</span></div>
+                                                        @endif
                                                     </form>
                                                 </td>
                                             @endif
@@ -449,25 +806,49 @@
                                                 <td>{{$materia->name}}
                                                 </td>
                                                 <td>
-                                                    
-                                                        @foreach ($users_docentes as $user_docente)
-                                                            @if ($materia->usuario_id==$user_docente->id)
-                                                                {{$user_docente->name}} {{$user_docente->lastname}}
-                                                            @endif
-                                                        @endforeach
-                                                    
+                                                    @php
+                                                        $cont=0;$cont_aux=0;
+                                                    @endphp
+                                                    @foreach ($users_docentes as $user_docente)
+                                                        @if ($materia->usuario_id==$user_docente->id)
+                                                            {{$user_docente->name}} {{$user_docente->lastname}}
+                                                            @php
+                                                                $cont=1;$cont_aux=1;
+                                                            @endphp
+                                                        @else
+                                                            @php
+                                                                $cont=2;
+                                                            @endphp
+                                                        @endif
+                                                    @endforeach
+                                                    @if ($cont_aux==0 && $cont==2 )
+                                                        <div class="text-left"><span>No tiene asignado</span></div>
+                                                    @endif
                                                 </td>
-                                                <td>
+                                                <td style="text-align: center">
                                                     <form action="{{url("vista_solicitar_tutoria")}}" method="POST">
                                                         {{ csrf_field() }}
+                                                        @php
+                                                            $cont=0;$cont_aux=0;
+                                                        @endphp
                                                         @foreach ($users_docentes as $user_docente)
                                                             @if ($materia->usuario_id==$user_docente->id)
                                                                 <input type="hidden" name="accion" value="{{$accion}}">
                                                                 <input type="hidden" name="id_docente" value="{{$user_docente->id}}">
                                                                 <input type="hidden" name="id_materia" value="{{$materia->id}}">
                                                                 <button type="submit" class="btn btn-outline-dark btn-sm" id="borde_radio" title="Solicitar tutoría">Solicitar tutoría <span class="fas fa-check-circle"></span></button>    
+                                                                @php
+                                                                    $cont=1;$cont_aux=1;
+                                                                @endphp    
+                                                            @else
+                                                                @php
+                                                                    $cont=2;
+                                                                @endphp
                                                             @endif
                                                         @endforeach
+                                                        @if ($cont_aux==0 && $cont==2 )
+                                                            <div class="text-center"><span>---</span></div>
+                                                        @endif
                                                     </form>
                                                 </td>
                                             @endif
@@ -477,25 +858,49 @@
                                                 <td>{{$materia->name}}
                                                 </td>
                                                 <td>
-                                                    
-                                                        @foreach ($users_docentes as $user_docente)
-                                                            @if ($materia->usuario_id==$user_docente->id)
-                                                                {{$user_docente->name}} {{$user_docente->lastname}}
-                                                            @endif
-                                                        @endforeach
-                                                    
+                                                    @php
+                                                        $cont=0;$cont_aux=0;
+                                                    @endphp
+                                                    @foreach ($users_docentes as $user_docente)
+                                                        @if ($materia->usuario_id==$user_docente->id)
+                                                            {{$user_docente->name}} {{$user_docente->lastname}}
+                                                            @php
+                                                                $cont=1;$cont_aux=1;
+                                                            @endphp
+                                                        @else
+                                                            @php
+                                                                $cont=2;
+                                                            @endphp
+                                                        @endif
+                                                    @endforeach
+                                                    @if ($cont_aux==0 && $cont==2 )
+                                                        <div class="text-left"><span>No tiene asignado</span></div>
+                                                    @endif
                                                 </td>
-                                                <td>
+                                                <td style="text-align: center">
                                                     <form action="{{url("vista_solicitar_tutoria")}}" method="POST">
                                                         {{ csrf_field() }}
+                                                        @php
+                                                            $cont=0;$cont_aux=0;
+                                                        @endphp
                                                         @foreach ($users_docentes as $user_docente)
                                                             @if ($materia->usuario_id==$user_docente->id)
                                                                 <input type="hidden" name="accion" value="{{$accion}}">
                                                                 <input type="hidden" name="id_docente" value="{{$user_docente->id}}">
                                                                 <input type="hidden" name="id_materia" value="{{$materia->id}}">
                                                                 <button type="submit" class="btn btn-outline-dark btn-sm" id="borde_radio" title="Solicitar tutoría">Solicitar tutoría <span class="fas fa-check-circle"></span></button>    
+                                                                @php
+                                                                    $cont=1;$cont_aux=1;
+                                                                @endphp    
+                                                            @else
+                                                                @php
+                                                                    $cont=2;
+                                                                @endphp
                                                             @endif
                                                         @endforeach
+                                                        @if ($cont_aux==0 && $cont==2 )
+                                                            <div class="text-center"><span>---</span></div>
+                                                        @endif
                                                     </form>
                                                 </td>
                                             @endif
@@ -504,25 +909,49 @@
                                                 <td>{{$materia->name}}
                                                 </td>
                                                 <td>
-                                                    
-                                                        @foreach ($users_docentes as $user_docente)
-                                                            @if ($materia->usuario_id==$user_docente->id)
-                                                                {{$user_docente->name}} {{$user_docente->lastname}}
-                                                            @endif
-                                                        @endforeach
-                                                    
+                                                    @php
+                                                        $cont=0;$cont_aux=0;
+                                                    @endphp
+                                                    @foreach ($users_docentes as $user_docente)
+                                                        @if ($materia->usuario_id==$user_docente->id)
+                                                            {{$user_docente->name}} {{$user_docente->lastname}}
+                                                            @php
+                                                                $cont=1;$cont_aux=1;
+                                                            @endphp
+                                                        @else
+                                                            @php
+                                                                $cont=2;
+                                                            @endphp
+                                                        @endif
+                                                    @endforeach
+                                                    @if ($cont_aux==0 && $cont==2 )
+                                                        <div class="text-left"><span>No tiene asignado</span></div>
+                                                    @endif
                                                 </td>
-                                                <td>
+                                                <td style="text-align: center">
                                                     <form action="{{url("vista_solicitar_tutoria")}}" method="POST">
                                                         {{ csrf_field() }}
+                                                        @php
+                                                            $cont=0;$cont_aux=0;
+                                                        @endphp
                                                         @foreach ($users_docentes as $user_docente)
                                                             @if ($materia->usuario_id==$user_docente->id)
                                                                 <input type="hidden" name="accion" value="{{$accion}}">
                                                                 <input type="hidden" name="id_docente" value="{{$user_docente->id}}">
                                                                 <input type="hidden" name="id_materia" value="{{$materia->id}}">
                                                                 <button type="submit" class="btn btn-outline-dark btn-sm" id="borde_radio" title="Solicitar tutoría">Solicitar tutoría <span class="fas fa-check-circle"></span></button>    
+                                                                @php
+                                                                    $cont=1;$cont_aux=1;
+                                                                @endphp    
+                                                            @else
+                                                                @php
+                                                                    $cont=2;
+                                                                @endphp
                                                             @endif
                                                         @endforeach
+                                                        @if ($cont_aux==0 && $cont==2 )
+                                                            <div class="text-center"><span>---</span></div>
+                                                        @endif
                                                     </form>
                                                 </td>
                                             @endif
@@ -531,25 +960,49 @@
                                                 <td>{{$materia->name}}
                                                 </td>
                                                 <td>
-                                                    
-                                                        @foreach ($users_docentes as $user_docente)
-                                                            @if ($materia->usuario_id==$user_docente->id)
-                                                                {{$user_docente->name}} {{$user_docente->lastname}}
-                                                            @endif
-                                                        @endforeach
-                                                    
+                                                    @php
+                                                        $cont=0;$cont_aux=0;
+                                                    @endphp
+                                                    @foreach ($users_docentes as $user_docente)
+                                                        @if ($materia->usuario_id==$user_docente->id)
+                                                            {{$user_docente->name}} {{$user_docente->lastname}}
+                                                            @php
+                                                                $cont=1;$cont_aux=1;
+                                                            @endphp
+                                                        @else
+                                                            @php
+                                                                $cont=2;
+                                                            @endphp
+                                                        @endif
+                                                    @endforeach
+                                                    @if ($cont_aux==0 && $cont==2 )
+                                                        <div class="text-left"><span>No tiene asignado</span></div>
+                                                    @endif
                                                 </td>
-                                                <td>
+                                                <td style="text-align: center">
                                                     <form action="{{url("vista_solicitar_tutoria")}}" method="POST">
                                                         {{ csrf_field() }}
+                                                        @php
+                                                            $cont=0;$cont_aux=0;
+                                                        @endphp
                                                         @foreach ($users_docentes as $user_docente)
                                                             @if ($materia->usuario_id==$user_docente->id)
                                                                 <input type="hidden" name="accion" value="{{$accion}}">
                                                                 <input type="hidden" name="id_docente" value="{{$user_docente->id}}">
                                                                 <input type="hidden" name="id_materia" value="{{$materia->id}}">
                                                                 <button type="submit" class="btn btn-outline-dark btn-sm" id="borde_radio" title="Solicitar tutoría">Solicitar tutoría <span class="fas fa-check-circle"></span></button>    
+                                                                @php
+                                                                    $cont=1;$cont_aux=1;
+                                                                @endphp    
+                                                            @else
+                                                                @php
+                                                                    $cont=2;
+                                                                @endphp
                                                             @endif
                                                         @endforeach
+                                                        @if ($cont_aux==0 && $cont==2 )
+                                                            <div class="text-center"><span>---</span></div>
+                                                        @endif
                                                     </form>
                                                 </td>
                                             @endif
@@ -558,25 +1011,49 @@
                                                 <td>{{$materia->name}}
                                                 </td>
                                                 <td>
-                                                    
-                                                        @foreach ($users_docentes as $user_docente)
-                                                            @if ($materia->usuario_id==$user_docente->id)
-                                                                {{$user_docente->name}} {{$user_docente->lastname}}
-                                                            @endif
-                                                        @endforeach
-                                                    
+                                                    @php
+                                                        $cont=0;$cont_aux=0;
+                                                    @endphp
+                                                    @foreach ($users_docentes as $user_docente)
+                                                        @if ($materia->usuario_id==$user_docente->id)
+                                                            {{$user_docente->name}} {{$user_docente->lastname}}
+                                                            @php
+                                                                $cont=1;$cont_aux=1;
+                                                            @endphp
+                                                        @else
+                                                            @php
+                                                                $cont=2;
+                                                            @endphp
+                                                        @endif
+                                                    @endforeach
+                                                    @if ($cont_aux==0 && $cont==2 )
+                                                        <div class="text-left"><span>No tiene asignado</span></div>
+                                                    @endif
                                                 </td>
-                                                <td>
+                                                <td style="text-align: center">
                                                     <form action="{{url("vista_solicitar_tutoria")}}" method="POST">
                                                         {{ csrf_field() }}
+                                                        @php
+                                                            $cont=0;$cont_aux=0;
+                                                        @endphp
                                                         @foreach ($users_docentes as $user_docente)
                                                             @if ($materia->usuario_id==$user_docente->id)
                                                                 <input type="hidden" name="accion" value="{{$accion}}">
                                                                 <input type="hidden" name="id_docente" value="{{$user_docente->id}}">
                                                                 <input type="hidden" name="id_materia" value="{{$materia->id}}">
                                                                 <button type="submit" class="btn btn-outline-dark btn-sm" id="borde_radio" title="Solicitar tutoría">Solicitar tutoría <span class="fas fa-check-circle"></span></button>    
+                                                                @php
+                                                                    $cont=1;$cont_aux=1;
+                                                                @endphp    
+                                                            @else
+                                                                @php
+                                                                    $cont=2;
+                                                                @endphp
                                                             @endif
                                                         @endforeach
+                                                        @if ($cont_aux==0 && $cont==2 )
+                                                            <div class="text-center"><span>---</span></div>
+                                                        @endif
                                                     </form>
                                                 </td>
                                             @endif
@@ -586,25 +1063,49 @@
                                                 <td>{{$materia->name}}
                                                 </td>
                                                 <td>
-                                                    
-                                                        @foreach ($users_docentes as $user_docente)
-                                                            @if ($materia->usuario_id==$user_docente->id)
-                                                                {{$user_docente->name}} {{$user_docente->lastname}}
-                                                            @endif
-                                                        @endforeach
-                                                    
+                                                    @php
+                                                        $cont=0;$cont_aux=0;
+                                                    @endphp
+                                                    @foreach ($users_docentes as $user_docente)
+                                                        @if ($materia->usuario_id==$user_docente->id)
+                                                            {{$user_docente->name}} {{$user_docente->lastname}}
+                                                            @php
+                                                                $cont=1;$cont_aux=1;
+                                                            @endphp
+                                                        @else
+                                                            @php
+                                                                $cont=2;
+                                                            @endphp
+                                                        @endif
+                                                    @endforeach
+                                                    @if ($cont_aux==0 && $cont==2 )
+                                                        <div class="text-left"><span>No tiene asignado</span></div>
+                                                    @endif
                                                 </td>
-                                                <td>
+                                                <td style="text-align: center">
                                                     <form action="{{url("vista_solicitar_tutoria")}}" method="POST">
                                                         {{ csrf_field() }}
+                                                        @php
+                                                            $cont=0;$cont_aux=0;
+                                                        @endphp
                                                         @foreach ($users_docentes as $user_docente)
                                                             @if ($materia->usuario_id==$user_docente->id)
                                                                 <input type="hidden" name="accion" value="{{$accion}}">
                                                                 <input type="hidden" name="id_docente" value="{{$user_docente->id}}">
                                                                 <input type="hidden" name="id_materia" value="{{$materia->id}}">
                                                                 <button type="submit" class="btn btn-outline-dark btn-sm" id="borde_radio" title="Solicitar tutoría">Solicitar tutoría <span class="fas fa-check-circle"></span></button>    
+                                                                @php
+                                                                    $cont=1;$cont_aux=1;
+                                                                @endphp    
+                                                            @else
+                                                                @php
+                                                                    $cont=2;
+                                                                @endphp
                                                             @endif
                                                         @endforeach
+                                                        @if ($cont_aux==0 && $cont==2 )
+                                                            <div class="text-center"><span>---</span></div>
+                                                        @endif
                                                     </form>
                                                 </td>
                                             @endif
@@ -613,25 +1114,49 @@
                                                 <td>{{$materia->name}}
                                                 </td>
                                                 <td>
-                                                    
-                                                        @foreach ($users_docentes as $user_docente)
-                                                            @if ($materia->usuario_id==$user_docente->id)
-                                                                {{$user_docente->name}} {{$user_docente->lastname}}
-                                                            @endif
-                                                        @endforeach
-                                                    
+                                                    @php
+                                                        $cont=0;$cont_aux=0;
+                                                    @endphp
+                                                    @foreach ($users_docentes as $user_docente)
+                                                        @if ($materia->usuario_id==$user_docente->id)
+                                                            {{$user_docente->name}} {{$user_docente->lastname}}
+                                                            @php
+                                                                $cont=1;$cont_aux=1;
+                                                            @endphp
+                                                        @else
+                                                            @php
+                                                                $cont=2;
+                                                            @endphp
+                                                        @endif
+                                                    @endforeach
+                                                    @if ($cont_aux==0 && $cont==2 )
+                                                        <div class="text-left"><span>No tiene asignado</span></div>
+                                                    @endif
                                                 </td>
-                                                <td>
+                                                <td style="text-align: center">
                                                     <form action="{{url("vista_solicitar_tutoria")}}" method="POST">
                                                         {{ csrf_field() }}
+                                                        @php
+                                                            $cont=0;$cont_aux=0;
+                                                        @endphp
                                                         @foreach ($users_docentes as $user_docente)
                                                             @if ($materia->usuario_id==$user_docente->id)
                                                                 <input type="hidden" name="accion" value="{{$accion}}">
                                                                 <input type="hidden" name="id_docente" value="{{$user_docente->id}}">
                                                                 <input type="hidden" name="id_materia" value="{{$materia->id}}">
                                                                 <button type="submit" class="btn btn-outline-dark btn-sm" id="borde_radio" title="Solicitar tutoría">Solicitar tutoría <span class="fas fa-check-circle"></span></button>    
+                                                                @php
+                                                                    $cont=1;$cont_aux=1;
+                                                                @endphp    
+                                                            @else
+                                                                @php
+                                                                    $cont=2;
+                                                                @endphp
                                                             @endif
                                                         @endforeach
+                                                        @if ($cont_aux==0 && $cont==2 )
+                                                            <div class="text-center"><span>---</span></div>
+                                                        @endif
                                                     </form>
                                                 </td>
                                             @endif
@@ -640,25 +1165,49 @@
                                                 <td>{{$materia->name}}
                                                 </td>
                                                 <td>
-                                                    
-                                                        @foreach ($users_docentes as $user_docente)
-                                                            @if ($materia->usuario_id==$user_docente->id)
-                                                                {{$user_docente->name}} {{$user_docente->lastname}}
-                                                            @endif
-                                                        @endforeach
-                                                    
+                                                    @php
+                                                        $cont=0;$cont_aux=0;
+                                                    @endphp
+                                                    @foreach ($users_docentes as $user_docente)
+                                                        @if ($materia->usuario_id==$user_docente->id)
+                                                            {{$user_docente->name}} {{$user_docente->lastname}}
+                                                            @php
+                                                                $cont=1;$cont_aux=1;
+                                                            @endphp
+                                                        @else
+                                                            @php
+                                                                $cont=2;
+                                                            @endphp
+                                                        @endif
+                                                    @endforeach
+                                                    @if ($cont_aux==0 && $cont==2 )
+                                                        <div class="text-left"><span>No tiene asignado</span></div>
+                                                    @endif
                                                 </td>
-                                                <td>
+                                                <td style="text-align: center">
                                                     <form action="{{url("vista_solicitar_tutoria")}}" method="POST">
                                                         {{ csrf_field() }}
+                                                        @php
+                                                            $cont=0;$cont_aux=0;
+                                                        @endphp
                                                         @foreach ($users_docentes as $user_docente)
                                                             @if ($materia->usuario_id==$user_docente->id)
                                                                 <input type="hidden" name="accion" value="{{$accion}}">
                                                                 <input type="hidden" name="id_docente" value="{{$user_docente->id}}">
                                                                 <input type="hidden" name="id_materia" value="{{$materia->id}}">
                                                                 <button type="submit" class="btn btn-outline-dark btn-sm" id="borde_radio" title="Solicitar tutoría">Solicitar tutoría <span class="fas fa-check-circle"></span></button>    
+                                                                @php
+                                                                    $cont=1;$cont_aux=1;
+                                                                @endphp    
+                                                            @else
+                                                                @php
+                                                                    $cont=2;
+                                                                @endphp
                                                             @endif
                                                         @endforeach
+                                                        @if ($cont_aux==0 && $cont==2 )
+                                                            <div class="text-center"><span>---</span></div>
+                                                        @endif
                                                     </form>
                                                 </td>
                                             @endif
@@ -667,25 +1216,49 @@
                                                 <td>{{$materia->name}}
                                                 </td>
                                                 <td>
-                                                    
-                                                        @foreach ($users_docentes as $user_docente)
-                                                            @if ($materia->usuario_id==$user_docente->id)
-                                                                {{$user_docente->name}} {{$user_docente->lastname}}
-                                                            @endif
-                                                        @endforeach
-                                                    
+                                                    @php
+                                                        $cont=0;$cont_aux=0;
+                                                    @endphp
+                                                    @foreach ($users_docentes as $user_docente)
+                                                        @if ($materia->usuario_id==$user_docente->id)
+                                                            {{$user_docente->name}} {{$user_docente->lastname}}
+                                                            @php
+                                                                $cont=1;$cont_aux=1;
+                                                            @endphp
+                                                        @else
+                                                            @php
+                                                                $cont=2;
+                                                            @endphp
+                                                        @endif
+                                                    @endforeach
+                                                    @if ($cont_aux==0 && $cont==2 )
+                                                        <div class="text-left"><span>No tiene asignado</span></div>
+                                                    @endif
                                                 </td>
-                                                <td>
+                                                <td style="text-align: center">
                                                     <form action="{{url("vista_solicitar_tutoria")}}" method="POST">
                                                         {{ csrf_field() }}
+                                                        @php
+                                                            $cont=0;$cont_aux=0;
+                                                        @endphp
                                                         @foreach ($users_docentes as $user_docente)
                                                             @if ($materia->usuario_id==$user_docente->id)
                                                                 <input type="hidden" name="accion" value="{{$accion}}">
                                                                 <input type="hidden" name="id_docente" value="{{$user_docente->id}}">
                                                                 <input type="hidden" name="id_materia" value="{{$materia->id}}">
                                                                 <button type="submit" class="btn btn-outline-dark btn-sm" id="borde_radio" title="Solicitar tutoría">Solicitar tutoría <span class="fas fa-check-circle"></span></button>    
+                                                                @php
+                                                                    $cont=1;$cont_aux=1;
+                                                                @endphp    
+                                                            @else
+                                                                @php
+                                                                    $cont=2;
+                                                                @endphp
                                                             @endif
                                                         @endforeach
+                                                        @if ($cont_aux==0 && $cont==2 )
+                                                            <div class="text-center"><span>---</span></div>
+                                                        @endif
                                                     </form>
                                                 </td>
                                             @endif
@@ -695,25 +1268,49 @@
                                                 <td>{{$materia->name}}
                                                 </td>
                                                 <td>
-                                                    
-                                                        @foreach ($users_docentes as $user_docente)
-                                                            @if ($materia->usuario_id==$user_docente->id)
-                                                                {{$user_docente->name}} {{$user_docente->lastname}}
-                                                            @endif
-                                                        @endforeach
-                                                    
+                                                    @php
+                                                        $cont=0;$cont_aux=0;
+                                                    @endphp
+                                                    @foreach ($users_docentes as $user_docente)
+                                                        @if ($materia->usuario_id==$user_docente->id)
+                                                            {{$user_docente->name}} {{$user_docente->lastname}}
+                                                            @php
+                                                                $cont=1;$cont_aux=1;
+                                                            @endphp
+                                                        @else
+                                                            @php
+                                                                $cont=2;
+                                                            @endphp
+                                                        @endif
+                                                    @endforeach
+                                                    @if ($cont_aux==0 && $cont==2 )
+                                                        <div class="text-left"><span>No tiene asignado</span></div>
+                                                    @endif
                                                 </td>
-                                                <td>
+                                                <td style="text-align: center">
                                                     <form action="{{url("vista_solicitar_tutoria")}}" method="POST">
                                                         {{ csrf_field() }}
+                                                        @php
+                                                            $cont=0;$cont_aux=0;
+                                                        @endphp
                                                         @foreach ($users_docentes as $user_docente)
                                                             @if ($materia->usuario_id==$user_docente->id)
                                                                 <input type="hidden" name="accion" value="{{$accion}}">
                                                                 <input type="hidden" name="id_docente" value="{{$user_docente->id}}">
                                                                 <input type="hidden" name="id_materia" value="{{$materia->id}}">
                                                                 <button type="submit" class="btn btn-outline-dark btn-sm" id="borde_radio" title="Solicitar tutoría">Solicitar tutoría <span class="fas fa-check-circle"></span></button>    
+                                                                @php
+                                                                    $cont=1;$cont_aux=1;
+                                                                @endphp    
+                                                            @else
+                                                                @php
+                                                                    $cont=2;
+                                                                @endphp
                                                             @endif
                                                         @endforeach
+                                                        @if ($cont_aux==0 && $cont==2 )
+                                                            <div class="text-center"><span>---</span></div>
+                                                        @endif
                                                     </form>
                                                 </td>
                                             @endif
@@ -722,25 +1319,49 @@
                                                 <td>{{$materia->name}}
                                                 </td>
                                                 <td>
-                                                    
-                                                        @foreach ($users_docentes as $user_docente)
-                                                            @if ($materia->usuario_id==$user_docente->id)
-                                                                {{$user_docente->name}} {{$user_docente->lastname}}
-                                                            @endif
-                                                        @endforeach
-                                                    
+                                                    @php
+                                                        $cont=0;$cont_aux=0;
+                                                    @endphp
+                                                    @foreach ($users_docentes as $user_docente)
+                                                        @if ($materia->usuario_id==$user_docente->id)
+                                                            {{$user_docente->name}} {{$user_docente->lastname}}
+                                                            @php
+                                                                $cont=1;$cont_aux=1;
+                                                            @endphp
+                                                        @else
+                                                            @php
+                                                                $cont=2;
+                                                            @endphp
+                                                        @endif
+                                                    @endforeach
+                                                    @if ($cont_aux==0 && $cont==2 )
+                                                        <div class="text-left"><span>No tiene asignado</span></div>
+                                                    @endif
                                                 </td>
-                                                <td>
+                                                <td style="text-align: center">
                                                     <form action="{{url("vista_solicitar_tutoria")}}" method="POST">
                                                         {{ csrf_field() }}
+                                                        @php
+                                                            $cont=0;$cont_aux=0;
+                                                        @endphp
                                                         @foreach ($users_docentes as $user_docente)
                                                             @if ($materia->usuario_id==$user_docente->id)
                                                                 <input type="hidden" name="accion" value="{{$accion}}">
                                                                 <input type="hidden" name="id_docente" value="{{$user_docente->id}}">
                                                                 <input type="hidden" name="id_materia" value="{{$materia->id}}">
                                                                 <button type="submit" class="btn btn-outline-dark btn-sm" id="borde_radio" title="Solicitar tutoría">Solicitar tutoría <span class="fas fa-check-circle"></span></button>    
+                                                                @php
+                                                                    $cont=1;$cont_aux=1;
+                                                                @endphp    
+                                                            @else
+                                                                @php
+                                                                    $cont=2;
+                                                                @endphp
                                                             @endif
                                                         @endforeach
+                                                        @if ($cont_aux==0 && $cont==2 )
+                                                            <div class="text-center"><span>---</span></div>
+                                                        @endif
                                                     </form>
                                                 </td>
                                             @endif
@@ -749,25 +1370,49 @@
                                                 <td>{{$materia->name}}
                                                 </td>
                                                 <td>
-                                                    
-                                                        @foreach ($users_docentes as $user_docente)
-                                                            @if ($materia->usuario_id==$user_docente->id)
-                                                                {{$user_docente->name}} {{$user_docente->lastname}}
-                                                            @endif
-                                                        @endforeach
-                                                    
+                                                    @php
+                                                        $cont=0;$cont_aux=0;
+                                                    @endphp
+                                                    @foreach ($users_docentes as $user_docente)
+                                                        @if ($materia->usuario_id==$user_docente->id)
+                                                            {{$user_docente->name}} {{$user_docente->lastname}}
+                                                            @php
+                                                                $cont=1;$cont_aux=1;
+                                                            @endphp
+                                                        @else
+                                                            @php
+                                                                $cont=2;
+                                                            @endphp
+                                                        @endif
+                                                    @endforeach
+                                                    @if ($cont_aux==0 && $cont==2 )
+                                                        <div class="text-left"><span>No tiene asignado</span></div>
+                                                    @endif
                                                 </td>
-                                                <td>
+                                                <td style="text-align: center">
                                                     <form action="{{url("vista_solicitar_tutoria")}}" method="POST">
                                                         {{ csrf_field() }}
+                                                        @php
+                                                            $cont=0;$cont_aux=0;
+                                                        @endphp
                                                         @foreach ($users_docentes as $user_docente)
                                                             @if ($materia->usuario_id==$user_docente->id)
                                                                 <input type="hidden" name="accion" value="{{$accion}}">
                                                                 <input type="hidden" name="id_docente" value="{{$user_docente->id}}">
                                                                 <input type="hidden" name="id_materia" value="{{$materia->id}}">
                                                                 <button type="submit" class="btn btn-outline-dark btn-sm" id="borde_radio" title="Solicitar tutoría">Solicitar tutoría <span class="fas fa-check-circle"></span></button>    
+                                                                @php
+                                                                    $cont=1;$cont_aux=1;
+                                                                @endphp    
+                                                            @else
+                                                                @php
+                                                                    $cont=2;
+                                                                @endphp
                                                             @endif
                                                         @endforeach
+                                                        @if ($cont_aux==0 && $cont==2 )
+                                                            <div class="text-center"><span>---</span></div>
+                                                        @endif
                                                     </form>
                                                 </td>
                                             @endif
@@ -776,25 +1421,49 @@
                                                 <td>{{$materia->name}}
                                                 </td>
                                                 <td>
-                                                    
-                                                        @foreach ($users_docentes as $user_docente)
-                                                            @if ($materia->usuario_id==$user_docente->id)
-                                                                {{$user_docente->name}} {{$user_docente->lastname}}
-                                                            @endif
-                                                        @endforeach
-                                                    
+                                                    @php
+                                                        $cont=0;$cont_aux=0;
+                                                    @endphp
+                                                    @foreach ($users_docentes as $user_docente)
+                                                        @if ($materia->usuario_id==$user_docente->id)
+                                                            {{$user_docente->name}} {{$user_docente->lastname}}
+                                                            @php
+                                                                $cont=1;$cont_aux=1;
+                                                            @endphp
+                                                        @else
+                                                            @php
+                                                                $cont=2;
+                                                            @endphp
+                                                        @endif
+                                                    @endforeach
+                                                    @if ($cont_aux==0 && $cont==2 )
+                                                        <div class="text-left"><span>No tiene asignado</span></div>
+                                                    @endif
                                                 </td>
-                                                <td>
+                                                <td style="text-align: center">
                                                     <form action="{{url("vista_solicitar_tutoria")}}" method="POST">
                                                         {{ csrf_field() }}
+                                                        @php
+                                                            $cont=0;$cont_aux=0;
+                                                        @endphp
                                                         @foreach ($users_docentes as $user_docente)
                                                             @if ($materia->usuario_id==$user_docente->id)
                                                                 <input type="hidden" name="accion" value="{{$accion}}">
                                                                 <input type="hidden" name="id_docente" value="{{$user_docente->id}}">
                                                                 <input type="hidden" name="id_materia" value="{{$materia->id}}">
                                                                 <button type="submit" class="btn btn-outline-dark btn-sm" id="borde_radio" title="Solicitar tutoría">Solicitar tutoría <span class="fas fa-check-circle"></span></button>    
+                                                                @php
+                                                                    $cont=1;$cont_aux=1;
+                                                                @endphp    
+                                                            @else
+                                                                @php
+                                                                    $cont=2;
+                                                                @endphp
                                                             @endif
                                                         @endforeach
+                                                        @if ($cont_aux==0 && $cont==2 )
+                                                            <div class="text-center"><span>---</span></div>
+                                                        @endif
                                                     </form>
                                                 </td>
                                             @endif
@@ -804,25 +1473,49 @@
                                                 <td>{{$materia->name}}
                                                 </td>
                                                 <td>
-                                                    
-                                                        @foreach ($users_docentes as $user_docente)
-                                                            @if ($materia->usuario_id==$user_docente->id)
-                                                                {{$user_docente->name}} {{$user_docente->lastname}}
-                                                            @endif
-                                                        @endforeach
-                                                    
+                                                    @php
+                                                        $cont=0;$cont_aux=0;
+                                                    @endphp
+                                                    @foreach ($users_docentes as $user_docente)
+                                                        @if ($materia->usuario_id==$user_docente->id)
+                                                            {{$user_docente->name}} {{$user_docente->lastname}}
+                                                            @php
+                                                                $cont=1;$cont_aux=1;
+                                                            @endphp
+                                                        @else
+                                                            @php
+                                                                $cont=2;
+                                                            @endphp
+                                                        @endif
+                                                    @endforeach
+                                                    @if ($cont_aux==0 && $cont==2 )
+                                                        <div class="text-left"><span>No tiene asignado</span></div>
+                                                    @endif
                                                 </td>
-                                                <td>
+                                                <td style="text-align: center">
                                                     <form action="{{url("vista_solicitar_tutoria")}}" method="POST">
                                                         {{ csrf_field() }}
+                                                        @php
+                                                            $cont=0;$cont_aux=0;
+                                                        @endphp
                                                         @foreach ($users_docentes as $user_docente)
                                                             @if ($materia->usuario_id==$user_docente->id)
                                                                 <input type="hidden" name="accion" value="{{$accion}}">
                                                                 <input type="hidden" name="id_docente" value="{{$user_docente->id}}">
                                                                 <input type="hidden" name="id_materia" value="{{$materia->id}}">
                                                                 <button type="submit" class="btn btn-outline-dark btn-sm" id="borde_radio" title="Solicitar tutoría">Solicitar tutoría <span class="fas fa-check-circle"></span></button>    
+                                                                @php
+                                                                    $cont=1;$cont_aux=1;
+                                                                @endphp    
+                                                            @else
+                                                                @php
+                                                                    $cont=2;
+                                                                @endphp
                                                             @endif
                                                         @endforeach
+                                                        @if ($cont_aux==0 && $cont==2 )
+                                                            <div class="text-center"><span>---</span></div>
+                                                        @endif
                                                     </form>
                                                 </td>
                                             @endif
@@ -831,25 +1524,49 @@
                                                 <td>{{$materia->name}}
                                                 </td>
                                                 <td>
-                                                    
-                                                        @foreach ($users_docentes as $user_docente)
-                                                            @if ($materia->usuario_id==$user_docente->id)
-                                                                {{$user_docente->name}} {{$user_docente->lastname}}
-                                                            @endif
-                                                        @endforeach
-                                                    
+                                                    @php
+                                                        $cont=0;$cont_aux=0;
+                                                    @endphp
+                                                    @foreach ($users_docentes as $user_docente)
+                                                        @if ($materia->usuario_id==$user_docente->id)
+                                                            {{$user_docente->name}} {{$user_docente->lastname}}
+                                                            @php
+                                                                $cont=1;$cont_aux=1;
+                                                            @endphp
+                                                        @else
+                                                            @php
+                                                                $cont=2;
+                                                            @endphp
+                                                        @endif
+                                                    @endforeach
+                                                    @if ($cont_aux==0 && $cont==2 )
+                                                        <div class="text-left"><span>No tiene asignado</span></div>
+                                                    @endif
                                                 </td>
-                                                <td>
+                                                <td style="text-align: center">
                                                     <form action="{{url("vista_solicitar_tutoria")}}" method="POST">
                                                         {{ csrf_field() }}
+                                                        @php
+                                                            $cont=0;$cont_aux=0;
+                                                        @endphp
                                                         @foreach ($users_docentes as $user_docente)
                                                             @if ($materia->usuario_id==$user_docente->id)
                                                                 <input type="hidden" name="accion" value="{{$accion}}">
                                                                 <input type="hidden" name="id_docente" value="{{$user_docente->id}}">
                                                                 <input type="hidden" name="id_materia" value="{{$materia->id}}">
                                                                 <button type="submit" class="btn btn-outline-dark btn-sm" id="borde_radio" title="Solicitar tutoría">Solicitar tutoría <span class="fas fa-check-circle"></span></button>    
+                                                                @php
+                                                                    $cont=1;$cont_aux=1;
+                                                                @endphp    
+                                                            @else
+                                                                @php
+                                                                    $cont=2;
+                                                                @endphp
                                                             @endif
                                                         @endforeach
+                                                        @if ($cont_aux==0 && $cont==2 )
+                                                            <div class="text-center"><span>---</span></div>
+                                                        @endif
                                                     </form>
                                                 </td>
                                             @endif
@@ -858,25 +1575,49 @@
                                                 <td>{{$materia->name}}
                                                 </td>
                                                 <td>
-                                                    
-                                                        @foreach ($users_docentes as $user_docente)
-                                                            @if ($materia->usuario_id==$user_docente->id)
-                                                                {{$user_docente->name}} {{$user_docente->lastname}}
-                                                            @endif
-                                                        @endforeach
-                                                    
+                                                    @php
+                                                        $cont=0;$cont_aux=0;
+                                                    @endphp
+                                                    @foreach ($users_docentes as $user_docente)
+                                                        @if ($materia->usuario_id==$user_docente->id)
+                                                            {{$user_docente->name}} {{$user_docente->lastname}}
+                                                            @php
+                                                                $cont=1;$cont_aux=1;
+                                                            @endphp
+                                                        @else
+                                                            @php
+                                                                $cont=2;
+                                                            @endphp
+                                                        @endif
+                                                    @endforeach
+                                                    @if ($cont_aux==0 && $cont==2 )
+                                                        <div class="text-left"><span>No tiene asignado</span></div>
+                                                    @endif
                                                 </td>
-                                                <td>
+                                                <td style="text-align: center">
                                                     <form action="{{url("vista_solicitar_tutoria")}}" method="POST">
                                                         {{ csrf_field() }}
+                                                        @php
+                                                            $cont=0;$cont_aux=0;
+                                                        @endphp
                                                         @foreach ($users_docentes as $user_docente)
                                                             @if ($materia->usuario_id==$user_docente->id)
                                                                 <input type="hidden" name="accion" value="{{$accion}}">
                                                                 <input type="hidden" name="id_docente" value="{{$user_docente->id}}">
                                                                 <input type="hidden" name="id_materia" value="{{$materia->id}}">
                                                                 <button type="submit" class="btn btn-outline-dark btn-sm" id="borde_radio" title="Solicitar tutoría">Solicitar tutoría <span class="fas fa-check-circle"></span></button>    
+                                                                @php
+                                                                    $cont=1;$cont_aux=1;
+                                                                @endphp    
+                                                            @else
+                                                                @php
+                                                                    $cont=2;
+                                                                @endphp
                                                             @endif
                                                         @endforeach
+                                                        @if ($cont_aux==0 && $cont==2 )
+                                                            <div class="text-center"><span>---</span></div>
+                                                        @endif
                                                     </form>
                                                 </td>
                                             @endif
@@ -885,25 +1626,49 @@
                                                 <td>{{$materia->name}}
                                                 </td>
                                                 <td>
-                                                    
-                                                        @foreach ($users_docentes as $user_docente)
-                                                            @if ($materia->usuario_id==$user_docente->id)
-                                                                {{$user_docente->name}} {{$user_docente->lastname}}
-                                                            @endif
-                                                        @endforeach
-                                                    
+                                                    @php
+                                                        $cont=0;$cont_aux=0;
+                                                    @endphp
+                                                    @foreach ($users_docentes as $user_docente)
+                                                        @if ($materia->usuario_id==$user_docente->id)
+                                                            {{$user_docente->name}} {{$user_docente->lastname}}
+                                                            @php
+                                                                $cont=1;$cont_aux=1;
+                                                            @endphp
+                                                        @else
+                                                            @php
+                                                                $cont=2;
+                                                            @endphp
+                                                        @endif
+                                                    @endforeach
+                                                    @if ($cont_aux==0 && $cont==2 )
+                                                        <div class="text-left"><span>No tiene asignado</span></div>
+                                                    @endif
                                                 </td>
-                                                <td>
+                                                <td style="text-align: center">
                                                     <form action="{{url("vista_solicitar_tutoria")}}" method="POST">
                                                         {{ csrf_field() }}
+                                                        @php
+                                                            $cont=0;$cont_aux=0;
+                                                        @endphp
                                                         @foreach ($users_docentes as $user_docente)
                                                             @if ($materia->usuario_id==$user_docente->id)
                                                                 <input type="hidden" name="accion" value="{{$accion}}">
                                                                 <input type="hidden" name="id_docente" value="{{$user_docente->id}}">
                                                                 <input type="hidden" name="id_materia" value="{{$materia->id}}">
                                                                 <button type="submit" class="btn btn-outline-dark btn-sm" id="borde_radio" title="Solicitar tutoría">Solicitar tutoría <span class="fas fa-check-circle"></span></button>    
+                                                                @php
+                                                                    $cont=1;$cont_aux=1;
+                                                                @endphp    
+                                                            @else
+                                                                @php
+                                                                    $cont=2;
+                                                                @endphp
                                                             @endif
                                                         @endforeach
+                                                        @if ($cont_aux==0 && $cont==2 )
+                                                            <div class="text-center"><span>---</span></div>
+                                                        @endif
                                                     </form>
                                                 </td>
                                             @endif
@@ -913,25 +1678,49 @@
                                                 <td>{{$materia->name}}
                                                 </td>
                                                 <td>
-                                                    
-                                                        @foreach ($users_docentes as $user_docente)
-                                                            @if ($materia->usuario_id==$user_docente->id)
-                                                                {{$user_docente->name}} {{$user_docente->lastname}}
-                                                            @endif
-                                                        @endforeach
-                                                    
+                                                    @php
+                                                        $cont=0;$cont_aux=0;
+                                                    @endphp
+                                                    @foreach ($users_docentes as $user_docente)
+                                                        @if ($materia->usuario_id==$user_docente->id)
+                                                            {{$user_docente->name}} {{$user_docente->lastname}}
+                                                            @php
+                                                                $cont=1;$cont_aux=1;
+                                                            @endphp
+                                                        @else
+                                                            @php
+                                                                $cont=2;
+                                                            @endphp
+                                                        @endif
+                                                    @endforeach
+                                                    @if ($cont_aux==0 && $cont==2 )
+                                                        <div class="text-left"><span>No tiene asignado</span></div>
+                                                    @endif
                                                 </td>
-                                                <td>
+                                                <td style="text-align: center">
                                                     <form action="{{url("vista_solicitar_tutoria")}}" method="POST">
                                                         {{ csrf_field() }}
+                                                        @php
+                                                            $cont=0;$cont_aux=0;
+                                                        @endphp
                                                         @foreach ($users_docentes as $user_docente)
                                                             @if ($materia->usuario_id==$user_docente->id)
                                                                 <input type="hidden" name="accion" value="{{$accion}}">
                                                                 <input type="hidden" name="id_docente" value="{{$user_docente->id}}">
                                                                 <input type="hidden" name="id_materia" value="{{$materia->id}}">
                                                                 <button type="submit" class="btn btn-outline-dark btn-sm" id="borde_radio" title="Solicitar tutoría">Solicitar tutoría <span class="fas fa-check-circle"></span></button>    
+                                                                @php
+                                                                    $cont=1;$cont_aux=1;
+                                                                @endphp    
+                                                            @else
+                                                                @php
+                                                                    $cont=2;
+                                                                @endphp
                                                             @endif
                                                         @endforeach
+                                                        @if ($cont_aux==0 && $cont==2 )
+                                                            <div class="text-center"><span>---</span></div>
+                                                        @endif
                                                     </form>
                                                 </td>
                                             @endif
@@ -940,25 +1729,49 @@
                                                 <td>{{$materia->name}}
                                                 </td>
                                                 <td>
-                                                    
-                                                        @foreach ($users_docentes as $user_docente)
-                                                            @if ($materia->usuario_id==$user_docente->id)
-                                                                {{$user_docente->name}} {{$user_docente->lastname}}
-                                                            @endif
-                                                        @endforeach
-                                                    
+                                                    @php
+                                                        $cont=0;$cont_aux=0;
+                                                    @endphp
+                                                    @foreach ($users_docentes as $user_docente)
+                                                        @if ($materia->usuario_id==$user_docente->id)
+                                                            {{$user_docente->name}} {{$user_docente->lastname}}
+                                                            @php
+                                                                $cont=1;$cont_aux=1;
+                                                            @endphp
+                                                        @else
+                                                            @php
+                                                                $cont=2;
+                                                            @endphp
+                                                        @endif
+                                                    @endforeach
+                                                    @if ($cont_aux==0 && $cont==2 )
+                                                        <div class="text-left"><span>No tiene asignado</span></div>
+                                                    @endif
                                                 </td>
-                                                <td>
+                                                <td style="text-align: center">
                                                     <form action="{{url("vista_solicitar_tutoria")}}" method="POST">
                                                         {{ csrf_field() }}
+                                                        @php
+                                                            $cont=0;$cont_aux=0;
+                                                        @endphp
                                                         @foreach ($users_docentes as $user_docente)
                                                             @if ($materia->usuario_id==$user_docente->id)
                                                                 <input type="hidden" name="accion" value="{{$accion}}">
                                                                 <input type="hidden" name="id_docente" value="{{$user_docente->id}}">
                                                                 <input type="hidden" name="id_materia" value="{{$materia->id}}">
                                                                 <button type="submit" class="btn btn-outline-dark btn-sm" id="borde_radio" title="Solicitar tutoría">Solicitar tutoría <span class="fas fa-check-circle"></span></button>    
+                                                                @php
+                                                                    $cont=1;$cont_aux=1;
+                                                                @endphp    
+                                                            @else
+                                                                @php
+                                                                    $cont=2;
+                                                                @endphp
                                                             @endif
                                                         @endforeach
+                                                        @if ($cont_aux==0 && $cont==2 )
+                                                            <div class="text-center"><span>---</span></div>
+                                                        @endif
                                                     </form>
                                                 </td>
                                             @endif
@@ -967,25 +1780,49 @@
                                                 <td>{{$materia->name}}
                                                 </td>
                                                 <td>
-                                                    
-                                                        @foreach ($users_docentes as $user_docente)
-                                                            @if ($materia->usuario_id==$user_docente->id)
-                                                                {{$user_docente->name}} {{$user_docente->lastname}}
-                                                            @endif
-                                                        @endforeach
-                                                    
+                                                    @php
+                                                        $cont=0;$cont_aux=0;
+                                                    @endphp
+                                                    @foreach ($users_docentes as $user_docente)
+                                                        @if ($materia->usuario_id==$user_docente->id)
+                                                            {{$user_docente->name}} {{$user_docente->lastname}}
+                                                            @php
+                                                                $cont=1;$cont_aux=1;
+                                                            @endphp
+                                                        @else
+                                                            @php
+                                                                $cont=2;
+                                                            @endphp
+                                                        @endif
+                                                    @endforeach
+                                                    @if ($cont_aux==0 && $cont==2 )
+                                                        <div class="text-left"><span>No tiene asignado</span></div>
+                                                    @endif
                                                 </td>
-                                                <td>
+                                                <td style="text-align: center">
                                                     <form action="{{url("vista_solicitar_tutoria")}}" method="POST">
                                                         {{ csrf_field() }}
+                                                        @php
+                                                            $cont=0;$cont_aux=0;
+                                                        @endphp
                                                         @foreach ($users_docentes as $user_docente)
                                                             @if ($materia->usuario_id==$user_docente->id)
                                                                 <input type="hidden" name="accion" value="{{$accion}}">
                                                                 <input type="hidden" name="id_docente" value="{{$user_docente->id}}">
                                                                 <input type="hidden" name="id_materia" value="{{$materia->id}}">
                                                                 <button type="submit" class="btn btn-outline-dark btn-sm" id="borde_radio" title="Solicitar tutoría">Solicitar tutoría <span class="fas fa-check-circle"></span></button>    
+                                                                @php
+                                                                    $cont=1;$cont_aux=1;
+                                                                @endphp    
+                                                            @else
+                                                                @php
+                                                                    $cont=2;
+                                                                @endphp
                                                             @endif
                                                         @endforeach
+                                                        @if ($cont_aux==0 && $cont==2 )
+                                                            <div class="text-center"><span>---</span></div>
+                                                        @endif
                                                     </form>
                                                 </td>
                                             @endif
@@ -994,25 +1831,49 @@
                                                 <td>{{$materia->name}}
                                                 </td>
                                                 <td>
-                                                    
-                                                        @foreach ($users_docentes as $user_docente)
-                                                            @if ($materia->usuario_id==$user_docente->id)
-                                                                {{$user_docente->name}} {{$user_docente->lastname}}
-                                                            @endif
-                                                        @endforeach
-                                                    
+                                                    @php
+                                                        $cont=0;$cont_aux=0;
+                                                    @endphp
+                                                    @foreach ($users_docentes as $user_docente)
+                                                        @if ($materia->usuario_id==$user_docente->id)
+                                                            {{$user_docente->name}} {{$user_docente->lastname}}
+                                                            @php
+                                                                $cont=1;$cont_aux=1;
+                                                            @endphp
+                                                        @else
+                                                            @php
+                                                                $cont=2;
+                                                            @endphp
+                                                        @endif
+                                                    @endforeach
+                                                    @if ($cont_aux==0 && $cont==2 )
+                                                        <div class="text-left"><span>No tiene asignado</span></div>
+                                                    @endif
                                                 </td>
-                                                <td>
+                                                <td style="text-align: center">
                                                     <form action="{{url("vista_solicitar_tutoria")}}" method="POST">
                                                         {{ csrf_field() }}
+                                                        @php
+                                                            $cont=0;$cont_aux=0;
+                                                        @endphp
                                                         @foreach ($users_docentes as $user_docente)
                                                             @if ($materia->usuario_id==$user_docente->id)
                                                                 <input type="hidden" name="accion" value="{{$accion}}">
                                                                 <input type="hidden" name="id_docente" value="{{$user_docente->id}}">
                                                                 <input type="hidden" name="id_materia" value="{{$materia->id}}">
                                                                 <button type="submit" class="btn btn-outline-dark btn-sm" id="borde_radio" title="Solicitar tutoría">Solicitar tutoría <span class="fas fa-check-circle"></span></button>    
+                                                                @php
+                                                                    $cont=1;$cont_aux=1;
+                                                                @endphp    
+                                                            @else
+                                                                @php
+                                                                    $cont=2;
+                                                                @endphp
                                                             @endif
                                                         @endforeach
+                                                        @if ($cont_aux==0 && $cont==2 )
+                                                            <div class="text-center"><span>---</span></div>
+                                                        @endif
                                                     </form>
                                                 </td>
                                             @endif
@@ -1022,25 +1883,49 @@
                                                 <td>{{$materia->name}}
                                                 </td>
                                                 <td>
-                                                    
-                                                        @foreach ($users_docentes as $user_docente)
-                                                            @if ($materia->usuario_id==$user_docente->id)
-                                                                {{$user_docente->name}} {{$user_docente->lastname}}
-                                                            @endif
-                                                        @endforeach
-                                                    
+                                                    @php
+                                                        $cont=0;$cont_aux=0;
+                                                    @endphp
+                                                    @foreach ($users_docentes as $user_docente)
+                                                        @if ($materia->usuario_id==$user_docente->id)
+                                                            {{$user_docente->name}} {{$user_docente->lastname}}
+                                                            @php
+                                                                $cont=1;$cont_aux=1;
+                                                            @endphp
+                                                        @else
+                                                            @php
+                                                                $cont=2;
+                                                            @endphp
+                                                        @endif
+                                                    @endforeach
+                                                    @if ($cont_aux==0 && $cont==2 )
+                                                        <div class="text-left"><span>No tiene asignado</span></div>
+                                                    @endif
                                                 </td>
-                                                <td>
+                                                <td style="text-align: center">
                                                     <form action="{{url("vista_solicitar_tutoria")}}" method="POST">
                                                         {{ csrf_field() }}
+                                                        @php
+                                                            $cont=0;$cont_aux=0;
+                                                        @endphp
                                                         @foreach ($users_docentes as $user_docente)
                                                             @if ($materia->usuario_id==$user_docente->id)
                                                                 <input type="hidden" name="accion" value="{{$accion}}">
                                                                 <input type="hidden" name="id_docente" value="{{$user_docente->id}}">
                                                                 <input type="hidden" name="id_materia" value="{{$materia->id}}">
                                                                 <button type="submit" class="btn btn-outline-dark btn-sm" id="borde_radio" title="Solicitar tutoría">Solicitar tutoría <span class="fas fa-check-circle"></span></button>    
+                                                                @php
+                                                                    $cont=1;$cont_aux=1;
+                                                                @endphp    
+                                                            @else
+                                                                @php
+                                                                    $cont=2;
+                                                                @endphp
                                                             @endif
                                                         @endforeach
+                                                        @if ($cont_aux==0 && $cont==2 )
+                                                            <div class="text-center"><span>---</span></div>
+                                                        @endif
                                                     </form>
                                                 </td>
                                             @endif
@@ -1049,25 +1934,49 @@
                                                 <td>{{$materia->name}}
                                                 </td>
                                                 <td>
-                                                    
-                                                        @foreach ($users_docentes as $user_docente)
-                                                            @if ($materia->usuario_id==$user_docente->id)
-                                                                {{$user_docente->name}} {{$user_docente->lastname}}
-                                                            @endif
-                                                        @endforeach
-                                                    
+                                                    @php
+                                                        $cont=0;$cont_aux=0;
+                                                    @endphp
+                                                    @foreach ($users_docentes as $user_docente)
+                                                        @if ($materia->usuario_id==$user_docente->id)
+                                                            {{$user_docente->name}} {{$user_docente->lastname}}
+                                                            @php
+                                                                $cont=1;$cont_aux=1;
+                                                            @endphp
+                                                        @else
+                                                            @php
+                                                                $cont=2;
+                                                            @endphp
+                                                        @endif
+                                                    @endforeach
+                                                    @if ($cont_aux==0 && $cont==2 )
+                                                        <div class="text-left"><span>No tiene asignado</span></div>
+                                                    @endif
                                                 </td>
-                                                <td>
+                                                <td style="text-align: center">
                                                     <form action="{{url("vista_solicitar_tutoria")}}" method="POST">
                                                         {{ csrf_field() }}
+                                                        @php
+                                                            $cont=0;$cont_aux=0;
+                                                        @endphp
                                                         @foreach ($users_docentes as $user_docente)
                                                             @if ($materia->usuario_id==$user_docente->id)
                                                                 <input type="hidden" name="accion" value="{{$accion}}">
                                                                 <input type="hidden" name="id_docente" value="{{$user_docente->id}}">
                                                                 <input type="hidden" name="id_materia" value="{{$materia->id}}">
                                                                 <button type="submit" class="btn btn-outline-dark btn-sm" id="borde_radio" title="Solicitar tutoría">Solicitar tutoría <span class="fas fa-check-circle"></span></button>    
+                                                                @php
+                                                                    $cont=1;$cont_aux=1;
+                                                                @endphp    
+                                                            @else
+                                                                @php
+                                                                    $cont=2;
+                                                                @endphp
                                                             @endif
                                                         @endforeach
+                                                        @if ($cont_aux==0 && $cont==2 )
+                                                            <div class="text-center"><span>---</span></div>
+                                                        @endif
                                                     </form>
                                                 </td>
                                             @endif
@@ -1076,25 +1985,49 @@
                                                 <td>{{$materia->name}}
                                                 </td>
                                                 <td>
-                                                    
-                                                        @foreach ($users_docentes as $user_docente)
-                                                            @if ($materia->usuario_id==$user_docente->id)
-                                                                {{$user_docente->name}} {{$user_docente->lastname}}
-                                                            @endif
-                                                        @endforeach
-                                                    
+                                                    @php
+                                                        $cont=0;$cont_aux=0;
+                                                    @endphp
+                                                    @foreach ($users_docentes as $user_docente)
+                                                        @if ($materia->usuario_id==$user_docente->id)
+                                                            {{$user_docente->name}} {{$user_docente->lastname}}
+                                                            @php
+                                                                $cont=1;$cont_aux=1;
+                                                            @endphp
+                                                        @else
+                                                            @php
+                                                                $cont=2;
+                                                            @endphp
+                                                        @endif
+                                                    @endforeach
+                                                    @if ($cont_aux==0 && $cont==2 )
+                                                        <div class="text-left"><span>No tiene asignado</span></div>
+                                                    @endif
                                                 </td>
-                                                <td>
+                                                <td style="text-align: center">
                                                     <form action="{{url("vista_solicitar_tutoria")}}" method="POST">
                                                         {{ csrf_field() }}
+                                                        @php
+                                                            $cont=0;$cont_aux=0;
+                                                        @endphp
                                                         @foreach ($users_docentes as $user_docente)
                                                             @if ($materia->usuario_id==$user_docente->id)
                                                                 <input type="hidden" name="accion" value="{{$accion}}">
                                                                 <input type="hidden" name="id_docente" value="{{$user_docente->id}}">
                                                                 <input type="hidden" name="id_materia" value="{{$materia->id}}">
                                                                 <button type="submit" class="btn btn-outline-dark btn-sm" id="borde_radio" title="Solicitar tutoría">Solicitar tutoría <span class="fas fa-check-circle"></span></button>    
+                                                                @php
+                                                                    $cont=1;$cont_aux=1;
+                                                                @endphp    
+                                                            @else
+                                                                @php
+                                                                    $cont=2;
+                                                                @endphp
                                                             @endif
                                                         @endforeach
+                                                        @if ($cont_aux==0 && $cont==2 )
+                                                            <div class="text-center"><span>---</span></div>
+                                                        @endif
                                                     </form>
                                                 </td>
                                             @endif
@@ -1103,25 +2036,49 @@
                                                 <td>{{$materia->name}}
                                                 </td>
                                                 <td>
-                                                    
-                                                        @foreach ($users_docentes as $user_docente)
-                                                            @if ($materia->usuario_id==$user_docente->id)
-                                                                {{$user_docente->name}} {{$user_docente->lastname}}
-                                                            @endif
-                                                        @endforeach
-                                                    
+                                                    @php
+                                                        $cont=0;$cont_aux=0;
+                                                    @endphp
+                                                    @foreach ($users_docentes as $user_docente)
+                                                        @if ($materia->usuario_id==$user_docente->id)
+                                                            {{$user_docente->name}} {{$user_docente->lastname}}
+                                                            @php
+                                                                $cont=1;$cont_aux=1;
+                                                            @endphp
+                                                        @else
+                                                            @php
+                                                                $cont=2;
+                                                            @endphp
+                                                        @endif
+                                                    @endforeach
+                                                    @if ($cont_aux==0 && $cont==2 )
+                                                        <div class="text-left"><span>No tiene asignado</span></div>
+                                                    @endif
                                                 </td>
-                                                <td>
+                                                <td style="text-align: center">
                                                     <form action="{{url("vista_solicitar_tutoria")}}" method="POST">
                                                         {{ csrf_field() }}
+                                                        @php
+                                                            $cont=0;$cont_aux=0;
+                                                        @endphp
                                                         @foreach ($users_docentes as $user_docente)
                                                             @if ($materia->usuario_id==$user_docente->id)
                                                                 <input type="hidden" name="accion" value="{{$accion}}">
                                                                 <input type="hidden" name="id_docente" value="{{$user_docente->id}}">
                                                                 <input type="hidden" name="id_materia" value="{{$materia->id}}">
                                                                 <button type="submit" class="btn btn-outline-dark btn-sm" id="borde_radio" title="Solicitar tutoría">Solicitar tutoría <span class="fas fa-check-circle"></span></button>    
+                                                                @php
+                                                                    $cont=1;$cont_aux=1;
+                                                                @endphp    
+                                                            @else
+                                                                @php
+                                                                    $cont=2;
+                                                                @endphp
                                                             @endif
                                                         @endforeach
+                                                        @if ($cont_aux==0 && $cont==2 )
+                                                            <div class="text-center"><span>---</span></div>
+                                                        @endif
                                                     </form>
                                                 </td>
                                             @endif

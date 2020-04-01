@@ -198,7 +198,7 @@
                                             <input type="radio" name="modalidad" id="modalidad" value="presencial"> Presencial
                                         </div>
                                         <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12">
-                                            <input type="radio" name="modalidad" id="modalidad" value="virtual"> Virtual
+                                            <input type="radio" name="modalidad" id="modalidad" value="virtual" disabled> Virtual
                                         </div>
                                     </div>
                                     <hr>
@@ -4128,7 +4128,7 @@
                                             <input type="radio" name="modalidad" id="modalidad" value="presencial"> Presencial
                                         </div>
                                         <div class="col-lg-3 col-xs-12 col-sm-12 col-md-12">
-                                            <input type="radio" name="modalidad" id="modalidad" value="virtual"> Virtual
+                                            <input type="radio" name="modalidad" id="modalidad" value="virtual" disabled> Virtual
                                         </div>
                                     </div>
                                     <hr>
