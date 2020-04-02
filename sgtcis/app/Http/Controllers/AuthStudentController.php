@@ -836,7 +836,8 @@ class AuthStudentController extends Controller
                     }
                 }
                 /* Retorna a la vista cuando todo se haya realizado correctamente */
-                flash("Ha solicitado tutoría $tipo al docente $user_docente->name $user_docente->lastname, espere la confirmación por parte del docente.")->success();
+                flash("Ha solicitado tutoría $tipo al docente $user_docente->name $user_docente->lastname, 
+                    espere la confirmación por parte del docente.")->success();
                 return redirect()->route('vista_general_student');   
             }else{
                 return redirect()->route('show_login_form_student');
@@ -1021,14 +1022,25 @@ class AuthStudentController extends Controller
             $user_student = Auth::user();
             if($user_student->is_estudiante==true){
                 $solitutoria_id=$request->input("solitutoria_id");
-                /* Obtengo y cargo el id de la tabla invitacionestudiantes referente al campo solitutoria_id a eliminar */
-                $invitacion_estudiante=DB::table('invitacionestudiantes')->where('solitutoria_id',$solitutoria_id)->first();
-                $id_invitacion_estudiante=$invitacion_estudiante->id;
-                $invitacion_estudiante='App\Invitacionestudiante'::find($id_invitacion_estudiante);
-                $invitacion_estudiante->delete();
+                $solitutoria=DB::table('solitutorias')->where('id',$solitutoria_id)->first();
+                $tipo_tutoria=$solitutoria->tipo;
+                if($solitutoria->tipo=="grupal"){
+                    /* Obtengo y cargo el id de la tabla invitacionestudiantes referente al campo solitutoria_id a eliminar */
+                    $invitacion_estudiante=DB::table('invitacionestudiantes')->where('solitutoria_id',$solitutoria_id)->first();
+                    $id_invitacion_estudiante=$invitacion_estudiante->id;
+                    $invitacion_estudiante='App\Invitacionestudiante'::find($id_invitacion_estudiante);
+                    $invitacion_estudiante->delete();
+                }
                 /* Obtengo y cargo el id de la tabla solitutoria a eliminar */
                 $solitutoria = Solitutoria::find($solitutoria_id);
                 $solitutoria->delete();
+                $fecha=now();
+                Log::create([
+                    'detalle'=>"El estudiante ".$user_student->name." ".$user_student->lastname." ha eliminado la tutoría (".$tipo_tutoria.") solicitada.",
+                    'fecha'=>$fecha,
+                    'tipo'=>5,
+                    'tipo_usuario'=>2
+                ]);
                 
                 $solitutorias=DB::table('solitutorias')->where('estudiante_id',$user_student->id)->get();
                 flash("La tutoría ha sido eliminada correctamente")->success();

@@ -141,15 +141,11 @@
                 <hr>
                 <div class="container my-4">
                     <div class="row">
-                          <!-- Grid column -->
                         <div class="col-xl-6 mb-4 mb-xl-0">
-                        <!-- Title -->
                         <h2 class="secondary-heading mb-3">
                             Inicios de Sesión
                         </h2>
-                        <!-- Description -->
                         <p class="mb-4">Registros de inicio de sesión al sistema</p>
-                        <!-- Section: Live preview -->
                         <section>
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item waves-effect waves-light">
@@ -160,8 +156,7 @@
                                 </li>
                             </ul>
                             <div class="tab-content" id="myTabContent">
-                                <div class="tab-pane fade active show" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                    <br>
+                                <div class="tab-pane fade active show" id="home" role="tabpanel" aria-labelledby="home-tab"><br>
                                     @if($login_estudiantes->isNotEmpty())
                                         <table class="table" id="dataTable2">
                                             <thead>
@@ -186,8 +181,7 @@
                                                     </tr>
                                                 @endforeach
                                             </tbody>
-                                        </table>
-                                        <br>
+                                        </table><br>
                                     @else
                                         <h6 class="tit_general">No existen registros</h6>
                                     @endif

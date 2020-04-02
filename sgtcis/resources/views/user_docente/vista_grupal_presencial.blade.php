@@ -8,8 +8,8 @@
             <div class="container" style="background: white">
                 <h1 id="txt_opcion_menu_vertical"><span class="negrita">Solicitud de tutoría presencial - grupal</span></h1>
                 <br>
-                <h5 id="txt_opcion_menu_vertical" class="text-justify">{{$estudiante->name}} {{$estudiante->lastname}} alumno del {{$estudiante->ciclo}} ciclo, paralelo
-                        {{$estudiante->paralelo}} le ha solicitado tutoría con respecto a la materia  <span class="negrita">{{$materia->name}}</span> impartida por Ud.</span>
+                <h5 id="txt_opcion_menu_vertical" class="text-justify">{{$estudiante->name}} {{$estudiante->lastname}} alumno del {{$estudiante->ciclo}} ciclo paralelo
+                    {{$estudiante->paralelo}}, le ha solicitado tutoría con respecto a la materia  <span class="negrita">{{$materia->name}}</span> impartida por Ud.</span>
                 </h5>
                 @php
                     $mensaje_error="";
@@ -23,7 +23,7 @@
                         @endphp
                     @endforeach
                 @endif
-                <form action="{{url("confirmar_tutoria")}}" method="POST">
+                <form action="{{url("confirmar_tutoria")}}" method="POST" name="form_confirmar_grupal_presencial">
                     {{method_field("PUT")}}
                     {{ csrf_field() }}
                     <input type="hidden" name="solitutoria_id" value="{{$datos_tut->id}}">
@@ -65,7 +65,6 @@
                         </div>
                         <hr>
                         <h6 id="txt_opcion_menu_vertical"><span class="negrita">Fecha para impartir la tutoría</span></h6>
-                        <hr>
                         @if ($verifica_fecha_tutoria==true)
                             <div class="caja_error" id="caja_error">
                                 <h6 class="titulo_error">{{$error}}</h6>
@@ -74,6 +73,25 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1"><i class="fas fa-calendar-week"></i></span>
                             <input type="text" id="fecha" placeholder="Haga clic y seleccione la fecha para impartir la tutoría." class="form-control" name="fecha_tutoria" autocomplete="off">
+                        </div>
+                        <hr>
+                        <h6 id="txt_opcion_menu_vertical"><span class="negrita">Lugar</span></h6>
+                        <div class="container">
+                            <h6 id="txt_opcion_menu_vertical">
+                                <input type="radio" name="lugar_grupal" id="lugar_grupal" value="Oficina del docente" onclick="mostrar_otro_lugar();"> Oficina
+                            </h6>
+                            <h6 id="txt_opcion_menu_vertical">
+                                <input type="radio" name="lugar_grupal" id="lugar_grupal" value="Salón de clases" onclick="mostrar_otro_lugar();"> Salón de clases 
+                            </h6>
+                            <h6 id="txt_opcion_menu_vertical">
+                                <input type="radio" name="lugar_grupal" id="lugar_grupal" value="Otro" onclick="mostrar_otro_lugar();"> Otro
+                            </h6>
+                            <div class="input-group mb-3" id="otro_grupal" style="display:none;">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1"><i class="fas fa-keyboard"></i></span>
+                                    <input type="text" name="otro_grupal" placeholder="Escriba el lugar en dónde se impartirá la tutoría" class="form-control">
+                                </div>
+                            </div>
                         </div>
                         <hr>
                         <button type="button" class="btn btn-success btn-sm" onclick="capturar_fecha();">Confirmar <i class="fas fa-check-circle"></i></button>  
@@ -92,6 +110,7 @@
                                         <h6>Al confirmar, aceptará impartir la tutoría solicitada en el siguiente horario:</h6>
                                         <h6 class="negrita">Día: <span class="quita_negrita">{{$datos_tut->dia}}</span></h6>
                                         <h6 class="negrita">Fecha: <span class="quita_negrita" id="fecha_modal"></span><span class="quita_negrita"> de {{$datos_tut->hora_inicio}}:{{$datos_tut->minutos_inicio}} a {{$datos_tut->hora_fin}}:{{$datos_tut->minutos_fin}}</span></h6>
+                                        <h6 class="negrita">Lugar: <span class="quita_negrita" id="lugar_modal"></span></h6>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="submit" class="btn btn-success">Aceptar</button>

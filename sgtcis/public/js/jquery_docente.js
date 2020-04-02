@@ -100,17 +100,48 @@ function validar_evaluacion_estudiante(){
 function capturar_fecha(){
     var fecha=document.getElementById("fecha").value;
     if(fecha==""){
-        alert("El campo fecha es obligatorio");
+        return alertify.error("El campo fecha es obligatorio");
     }else{
-        var fecha_format=formato(fecha);
-        if (valida_fecha(fecha_format)==true){
-            $('#ventana').modal('show');
-            document.getElementById("fecha_modal").innerHTML=fecha_format;
-        }else
-            return alert("La fecha seleccionada no es válida");
+        if(!document.querySelector('input[name="lugar_grupal"]:checked')){
+            return alertify.error("Seleccione el lugar de tutoría");
+        }else{
+            if(document.form_confirmar_grupal_presencial.lugar_grupal[2].checked){
+                lugar=document.form_confirmar_grupal_presencial.otro_grupal.value;
+                if(lugar === ""){
+                    return alertify.error("No ha ingresado lugar de tutoría");
+                }
+            }
+            for(var i=0;i<3;i++){
+                if(document.form_confirmar_grupal_presencial.lugar_grupal[2].checked){
+                    lugar=document.form_confirmar_grupal_presencial.otro_grupal.value;
+                }
+                if(document.form_confirmar_grupal_presencial.lugar_grupal[1].checked){
+                    lugar=document.form_confirmar_grupal_presencial.lugar_grupal.value;
+                }
+                if(document.form_confirmar_grupal_presencial.lugar_grupal[0].checked){
+                    lugar=document.form_confirmar_grupal_presencial.lugar_grupal.value;
+                }
+            }
+            var fecha_format=formato(fecha);
+            if (valida_fecha(fecha_format)==true){
+                $('#ventana').modal('show');
+                document.getElementById("fecha_modal").innerHTML=fecha_format;
+                document.getElementById("lugar_modal").innerHTML=lugar;
+            }else
+                return alertify.error("La fecha seleccionada no es válida");
+        }
     }
 }
-
+function mostrar_otro_lugar(){
+    var cont=document.form_confirmar_grupal_presencial.lugar_grupal.length;
+    for (i=0;i<cont;i++){ 
+        if (document.form_confirmar_grupal_presencial.lugar_grupal[2].checked){
+            document.getElementById('otro_grupal').style.display='block';
+        }else{
+            document.getElementById('otro_grupal').style.display='none';
+        }
+    }
+}
 function valida_fecha(fecha_format){
     var x=new Date();
       var fecha1 = fecha_format.split("/");

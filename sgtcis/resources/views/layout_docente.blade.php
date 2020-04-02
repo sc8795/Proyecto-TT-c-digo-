@@ -15,6 +15,8 @@
 	<link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/estilos_docente.css')}}">
 	<link rel="stylesheet" href="{{asset('css/estilos_pag_inicio.css')}}">
+	<link rel="stylesheet" href="{{asset('alertifyjs/css/alertify.css')}}">
+	<link rel="stylesheet" href="{{asset('alertifyjs/css/themes/default.css')}}">
 	<link rel="stylesheet" href="{{asset('css/hint.min.css')}}">
 
 	<link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
@@ -30,7 +32,9 @@
 	@yield('content4')
 
 <script src="{{asset('js/jquery.js')}}"></script>
+<script src="{{asset('alertifyjs/alertify.js')}}"></script>
 <script src="{{asset('js/jquery_docente.js')}}"></script>
+<script src="{{asset('js/jquery_administrador.js')}}"></script>
 
 <!--Para el calendario-->
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>

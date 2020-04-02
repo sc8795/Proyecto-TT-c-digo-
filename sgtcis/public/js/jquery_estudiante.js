@@ -183,13 +183,21 @@ function valida_confirmacion_docente(){
 function ayuda_tut_sin_confirmar(){
     alertify.alert(
         'Ayuda', 
-        'La tutoría que solicitó aún no ha sido confirmada por parte del docente. Por ahora podrá invitar a más estudiantes a participar de la tutoría o cancelar (borrar) la tutoría.', 
+        'La tutoría que solicitó aún no ha sido confirmada por parte del docente. Por ahora podrá invitar a más de sus compañeros a participar de la tutoría o eliminar la tutoría.', 
         function(){ 
             //alertify.success('Ok'); 
         }
     );
 }
-
+function ayuda_tut_sin_confirmar_individual(){
+    alertify.alert(
+        'Ayuda', 
+        'La tutoría que solicitó aún no ha sido confirmada por parte del docente.', 
+        function(){ 
+            //alertify.success('Ok'); 
+        }
+    );
+}
 function ayuda_tut_confirmada(){
     alertify.alert(
         'Ayuda', 

@@ -1,7 +1,7 @@
 <div class="d-flex" id="wrapper">
     <!-- Sidebar -->
     <div id="fondo_img_menu_vertical">
-    <div class="bg-light border-right" id="sidebar-wrapper">
+    <div class="bg-light border-right" id="sidebar-wrapper-docente">
         <div class="centrar_img_menu_vertical" id="fondo_img_menu_vertical">
             <img src="{{asset('images/usuario_logueo.png')}}" class="img_usuario_logueo">
         </div>
@@ -67,7 +67,7 @@
 <div id="page-content-wrapper">
     <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
         <div class="menu">
-            <button class="btn btn-outline-primary btn-sm" id="menu-toggle"><span class="navbar-toggler-icon"></span></button>
+            <button class="btn btn-outline-primary btn-sm" id="menu-toggle-docente"><span class="navbar-toggler-icon"></span></button>
         </div>
         <div class="nombre_menu">
             @if (Auth::check())
@@ -78,7 +78,7 @@
     
 @section('scripts')
     <script>
-    $("#menu-toggle").click(function(e) {
+    $("#menu-toggle-docente").click(function(e) {
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
     });

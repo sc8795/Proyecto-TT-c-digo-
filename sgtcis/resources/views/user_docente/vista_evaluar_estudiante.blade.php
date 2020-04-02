@@ -56,6 +56,9 @@
                             </table>
                         </div>
                     </div>
+                    @if ($unique_noti_estudiantes->count()==1)
+                        <br><br><br>
+                    @endif
                 @else
                     <div class="d-flex p-2 bd-highlight" id="contenedor_2">
                         <span class="tit_datos">Aviso</span>

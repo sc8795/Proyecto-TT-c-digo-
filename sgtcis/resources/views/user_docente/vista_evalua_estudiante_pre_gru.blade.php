@@ -6,12 +6,11 @@
             @include('user_docente.vistas_iguales.menu_vertical')
             <div class="container-fluid" id="espacio_menu_texto"></div>
             <div class="container" style="background: white">
-                <h1 id="txt_opcion_menu_vertical"><span class="negrita">Evaluación estudiante</span></h1>
-                <br>
-                <h4 id="txt_opcion_menu_vertical"><span class="negrita">Proceso de evaluación al estudiante {{$user_estudiante->name}} {{$user_estudiante->lastname}}</span></h4>
+                <h1 id="txt_opcion_menu_vertical"><span class="negrita">Evaluación de tutoría grupal</span></h1>
+                <hr>
+                <h4 id="txt_opcion_menu_vertical"><span>Proceso de evaluación a la tutoría solicitada por {{$user_estudiante->name}} {{$user_estudiante->lastname}}</span></h4>
                 <hr>
                 <div class="container" id="contenedor_general_op2"> 
-                    <br>
                         Conteste la siguiente pregunta:
                         <br><br>
                         <span class="negrita">
@@ -232,15 +231,17 @@
                                     </div>
                                     <button type="submit" class="btn btn-outline-dark btn-block" name="asistencia" value="si" title="Evaluar y registrar asistencia del estudiante {{$user_estudiante->name}} {{$user_estudiante->lastname}}">Registrar evaluación <span class="fas fa-user-check"></span></button>
                                 </form>
+                                <br>
                             </div>
                         </div>
-                    <br>
                 </div>
                 <div class="input-group mb-3" id="asistencia_no" style="display:none;">
+                    <hr>
                     <form action="{{url("evaluacion_estudiante/{$user_estudiante->id}/{$solitutoria_id}")}}" method="POST">
                         {{ csrf_field() }}
-                        <button type="submit" class="btn btn-primary btn-sm btn-block" name="asistencia" value="no" title="Evaluar y registrar inasistencia del estudiante {{$user_estudiante->name}} {{$user_estudiante->lastname}}">Enviar <span class="fas fa-user-times"></span></button>
+                        <button type="submit" class="btn btn-outline-dark btn-block" name="asistencia" value="no" title="Evaluar y registrar inasistencia del estudiante {{$user_estudiante->name}} {{$user_estudiante->lastname}}">Registrar evaluación <span class="fas fa-user-times"></span></button>
                     </form>
+                    <br>
                 </div>
             </div>
             <div class="container-fluid" id="espacio_menu_texto"></div>

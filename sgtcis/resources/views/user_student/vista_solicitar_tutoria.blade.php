@@ -179,7 +179,6 @@
                                     </div>
                                 </div>
                                 <hr>
-
                                 <!--FORMULARIO GENERAL PARA SOLICITAR TUTORÍA AL DOCENTE - CUANTO SE SOLICITA TUTORÍA GRUPAL-->
                                 <form action="{{url("solicitar_tutoria_student")}}" method="POST" onsubmit="return valida_form_solicita_tutoria();" name="form_grupal">
                                     {{ csrf_field() }}

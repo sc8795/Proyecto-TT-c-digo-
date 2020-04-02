@@ -136,7 +136,7 @@
                                                             @endif
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <button type="button" class="btn btn-warning" data-dismiss="modal">Cerar</button>
+                                                            <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
                                                         </div>
                                                     </div>
                                                 </div>

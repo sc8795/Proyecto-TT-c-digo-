@@ -97,11 +97,37 @@
                                                 <td>{{$materia->name}}</td>
                                                 <td>{{$fecha_solicita}}</td>
                                                 @if ($solitutoria->fecha_tutoria==null)
+                                                    <td><p>NA</p></td>
                                                     <td><h6 style="background-color: #f78181" id="borde_radio" class="text-center">Por confirmar</h6></td>
                                                 @else
+                                                    <td><p>{{$fecha_tutoria_aux}}</p></td>
                                                     <td><h6 style="background-color: #81c784" id="borde_radio" class="text-center">Confirmada</h6></td>
                                                 @endif
-                                                
+                                                <td> 
+                                                    <!--Cuando el docente aún no confirma tutoría-->
+                                                    @if ($solitutoria->fecha_tutoria==null)  
+                                                        <form action="{{url("eliminar_tutoria")}}" method="POST">
+                                                            {{ csrf_field() }}
+                                                            {{method_field('DELETE')}}
+                                                            <input type="hidden" name="solitutoria_id" value="{{$solitutoria->id}}">
+                                                            <button type="button" class="hint--top-left btn btn-outline-dark btn-sm" data-hint="Ayuda" id="borde_radio" onclick="ayuda_tut_sin_confirmar_individual();"><span class="fas fa-question"></span></button>
+                                                            <button type="submit" class="hint--top-left btn btn-outline-danger btn-sm" data-hint="Borrar tutoría" id="borde_radio"><span class="fas fa-trash"></span></button>
+                                                        </form>
+                                                    @else
+                                                        @if ($fecha_tutoria > $fecha_actual)
+                                                            <button type="button" class="hint--top-left btn btn-outline-dark btn-sm" data-hint="Ayuda" id="borde_radio" onclick="ayuda_tut_confirmada();"><span class="fas fa-question"></span></button>
+                                                            <a href="{{url("invitar_est_desp/{$solitutoria->id}")}}" class="hint--top btn btn-outline-warning btn-sm" data-hint="Invitar" id="borde_radio"><span class="fas fa-check-circle"></span></a>
+                                                        @else
+                                                            @if ($fecha_tutoria == $fecha_actual)
+                                                                <button type="button" class="hint--top-left btn btn-outline-dark btn-sm" data-hint="Ayuda" id="borde_radio" onclick="ayuda_tut_confirmada_fecha_igual();"><span class="fas fa-question"></span></button>
+                                                            @else
+                                                                @if ($fecha_tutoria < $fecha_actual)
+                                                                    <button type="button" class="hint--top-left btn btn-outline-dark btn-sm" data-hint="Ayuda" id="borde_radio" onclick="ayuda_tut_confirmada_fecha_menor();"><span class="fas fa-question"></span></button>
+                                                                @endif
+                                                            @endif
+                                                        @endif
+                                                    @endif
+                                                </td>
                                             @endif
                                             @if ($solitutoria->tipo=="individual" && $solitutoria->modalidad=="virtual")
                                                 virtual individual

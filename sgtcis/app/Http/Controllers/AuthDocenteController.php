@@ -161,6 +161,10 @@ class AuthDocenteController extends Controller
                 $fecha_tutoria=$request->input("fecha_tutoria");
                 $medio_virtual=$request->input("medio_virtual");
                 $cuenta_virtual=$request->input("cuenta_virtual");
+                $lugar_tutoria=$request->input("lugar_grupal");
+                if($lugar_tutoria=='Otro'){
+                    $lugar_tutoria=$request->input('otro_grupal');
+                }
         
                 $datos_tut=Solitutoria::find($solitutoria_id);
                 $estudiante=DB::table('users')->where('id',$datos_tut->estudiante_id)->first();
@@ -171,11 +175,19 @@ class AuthDocenteController extends Controller
                 $datos_tut->hora_fin=$hora_fin;
                 $datos_tut->minutos_fin=$minutos_fin;
                 $datos_tut->modalidad=$modalidad;
+                $datos_tut->lugar=$lugar_tutoria;
                 $datos_tut->fecha_tutoria=$fecha_tutoria;
                 $datos_tut->medio_virtual=$medio_virtual;
                 $datos_tut->cuenta_virtual=$cuenta_virtual;
                 $datos_tut->fecha_confirma=now();
                 $datos_tut->save();
+
+                Log::create([
+                    'detalle'=>"El estudiante ".$estudiante->name." ".$estudiante->lastname." ha sido notificado por la confirmación de tutoría solicitada por el docente ".$docente->name." ".$docente->lastname.".",
+                    'fecha'=>now(),
+                    'tipo'=>3,
+                    'tipo_usuario'=>3
+                ]);
                 
                 /* Codigo para eliminar la tutoria solicitada al docente por parte del estudiante */
                 $elimina_tutoria_solicitada = DB::table('notifications')->where('id',$notificacion_id);

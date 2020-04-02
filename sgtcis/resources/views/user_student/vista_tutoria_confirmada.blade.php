@@ -46,7 +46,7 @@
                             , el <span class="negrita">{{$fecha_tutoria}}</span>.
                         </span>
                     </h6>
-                    <h6 class="negrita">Lugar de tutoría: <span class="quita_negrita">Salón de clases</span></h6>
+                    <h6 class="negrita">Lugar de tutoría: <span class="quita_negrita">{{$datos_tut->lugar}}</span></h6>
                     <h6 class="negrita">Motivo a tratar: <span class="quita_negrita">{{$datos_tut->motivo}}</span></h6>
                     <hr>
                     @if ($fecha_tutoria==$fecha_actual)

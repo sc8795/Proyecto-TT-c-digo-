@@ -211,7 +211,7 @@
 
 
 
-#sidebar-wrapper {
+#sidebar-wrapper-docente {
     /*min-height: 100vh;*/
     margin-left: -15rem;
     -webkit-transition: margin .25s ease-out;
@@ -220,13 +220,13 @@
     transition: margin .25s ease-out;
   }
   
-  #sidebar-wrapper .sidebar-heading {
+  #sidebar-wrapper-docente .sidebar-heading {
     /*padding: 0.875rem 1.25rem;*/
     padding: 0.875rem 1.25rem;
     font-size: 1.2rem;
   }
   
-  #sidebar-wrapper .list-group {
+  #sidebar-wrapper-docente .list-group {
     width: 15rem;
   }
   
@@ -234,12 +234,12 @@
     min-width: 100vw;
   }
   
-  #wrapper.toggled #sidebar-wrapper {
+  #wrapper.toggled #sidebar-wrapper-docente {
     margin-left: 0;
   }
   
   @media (min-width: 768px) {
-    #sidebar-wrapper {
+    #sidebar-wrapper-docente {
       margin-left: 0;
     }
   
@@ -248,7 +248,7 @@
       width: 100%;
     }
   
-    #wrapper.toggled #sidebar-wrapper {
+    #wrapper.toggled #sidebar-wrapper-docente {
       margin-left: -15rem;
     }
   }
