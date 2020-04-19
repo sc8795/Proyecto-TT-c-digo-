@@ -1164,22 +1164,29 @@ class AuthStudentController extends Controller
         return view('user_student.vista_evaluar_docente',compact('user_estudiante_id','notification','solitutoria_id','materia','docente'));
     }
     public function evaluacion_docente($user_evaluado_id,$solitutoria_id,$notification, Request $request){
-        $elimina_tutoria_confirmada = DB::table('notifications')->where('id',$notification);
-        $elimina_tutoria_confirmada->delete();
-        $pr1=$request->input('pr1');
-        $pr2=$request->input('pr2');
-        $pr3=$request->input('pr3');
-        $pr4=$request->input('pr4');
-        $pr5=$request->input('pr5');
-        $suma=($pr1)+($pr2)+($pr3)+($pr4)+($pr5);
-        $total=$suma/5;
-        Evaluacion::create([
-            'user_evaluado_id'=>$user_evaluado_id,
-            'solitutoria_id'=>$solitutoria_id,
-            'asistencia'=>"si",
-            'evaluacion'=>$total
-        ]);
-        flash("Se ha registrado la evaluación al docente")->success();
-        return redirect()->route('vista_general_student');
+        if (Auth::check()) {
+            $user_student = Auth::user();
+            if($user_student->is_estudiante==true){
+                $elimina_tutoria_confirmada = DB::table('notifications')->where('id',$notification);
+                $elimina_tutoria_confirmada->delete();
+                $pr1=$request->input('pr1');
+                $pr2=$request->input('pr2');
+                $pr3=$request->input('pr3');
+                $pr4=$request->input('pr4');
+                $pr5=$request->input('pr5');
+                $suma=($pr1)+($pr2)+($pr3)+($pr4)+($pr5);
+                $total=$suma/5;
+                Evaluacion::create([
+                    'user_evaluado_id'=>$user_evaluado_id,
+                    'solitutoria_id'=>$solitutoria_id,
+                    'asistencia'=>"si",
+                    'evaluacion'=>$total
+                ]);
+                flash("Se ha registrado la evaluación al docente")->success();
+                return redirect()->route('vista_general_student');
+            }else{
+                return redirect()->route('show_login_form_student');
+            }
+        }
     }
 }

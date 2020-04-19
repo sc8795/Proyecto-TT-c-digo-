@@ -25,7 +25,7 @@
                                     <a href="{{route('docentes_registrados')}}"><i class="icono izquierda fas fa-user-check"></i>Docentes registrados</a>
                                 </li>
                                 <li>
-                                    <a href="{{route('asignar_horario_tutoria')}}"><i class="icono izquierda fas fa-clock"></i>Asignar horario tutoría</a>
+                                    <a href="{{route('asignar_horario_tutoria')}}"><i class="icono izquierda fas fa-clock"></i>Asignar horario de tutoría</a>
                                 </li>
                             </ul>
                         </li>
@@ -60,31 +60,15 @@
     <!-- Page Content -->
     <div id="page-content-wrapper">
         <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-        
-            <button class="btn btn-outline-primary btn-sm" id="menu-toggle"><span class="navbar-toggler-icon"></span></button>
-    
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="fas fa-user"></span>
-            </button>
-    
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                @if (Auth::check())
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item dropdown" id="txt_opcion_menu_vertical">
-                        <a class="nav-link dropdown-toggle btn btn-outline-success btn-sm m-1" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: black">
-                            {{auth()->user()->name}} {{auth()->user()->lastname}}
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="opcion_logueo">
-                            <form method="POST" action="{{route('logout_student')}}" class="boton_logout" id="logout">
-                                {{ csrf_field() }}
-                                <button class="btn btn-outline-danger btn-sm">Cerrar sesion <span class="fas fa-sign-out-alt"></span></button>
-                            </form>
-                        </div>
-                    </li>
-                </ul>
-                @endif
+            <div class="menu">
+                <button class="btn btn-outline-primary btn-sm" id="menu-toggle"><span class="navbar-toggler-icon"></span></button>
             </div>
-        </nav>
+            <div class="nombre_menu">
+                @if (Auth::check())
+                    {{auth()->user()->name}} {{auth()->user()->lastname}}
+                @endif
+            </div>            
+      </nav>
         
     @section('scripts')
         <script>

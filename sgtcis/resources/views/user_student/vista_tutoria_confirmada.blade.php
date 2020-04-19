@@ -11,10 +11,13 @@
                 <div class="container" id="txt_opcion_menu_vertical">
                     <h6>
                         Los datos que se muestran a continuación corresponden al día, fecha y hora que recibirá la tutoría.
+                    </h6><hr>
+                    <h6 class="negrita">Materia: 
+                        <span class="quita_negrita">{{$materia->name}}</span>
                     </h6>
-                    <hr>
-                    <h6 class="negrita">Materia: <span class="quita_negrita">{{$materia->name}}</span></h6>
-                    <h6 class="negrita">Docente que impartirá la tutoría: <span class="quita_negrita">{{$docente->name}} {{$docente->lastname}}</span></h6>
+                    <h6 class="negrita">Docente que impartirá la tutoría: 
+                        <span class="quita_negrita">{{$docente->name}} {{$docente->lastname}}</span>
+                    </h6>
                     @php
                         $fecha_tutoria=$datos_tut->fecha_tutoria;
                         $date = date_create($fecha_tutoria);
@@ -46,8 +49,12 @@
                             , el <span class="negrita">{{$fecha_tutoria}}</span>.
                         </span>
                     </h6>
-                    <h6 class="negrita">Lugar de tutoría: <span class="quita_negrita">{{$datos_tut->lugar}}</span></h6>
-                    <h6 class="negrita">Motivo a tratar: <span class="quita_negrita">{{$datos_tut->motivo}}</span></h6>
+                    <h6 class="negrita">Lugar de tutoría: 
+                        <span class="quita_negrita">{{$datos_tut->lugar}}</span>
+                    </h6>
+                    <h6 class="negrita">Motivo a tratar: 
+                        <span class="quita_negrita">{{$datos_tut->motivo}}</span>
+                    </h6>
                     <hr>
                     @if ($fecha_tutoria==$fecha_actual)
                         @if ($datos_tut->hora_fin == $hora_actual)

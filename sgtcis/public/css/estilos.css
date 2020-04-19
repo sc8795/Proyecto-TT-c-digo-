@@ -28,6 +28,7 @@ body{
     left: 50%;
     transform: translate(-50%,-50%);
     /*background-color: rgba(49, 44, 44, 0.9);*/
+    background-color: white;
     padding: 10px;
 }
 
@@ -42,4 +43,9 @@ body{
 /*estilos para mover texto de registro de estudiante a la izquierda del formulario de logueo*/
 .texto_volver{
     text-align: center;
+}
+#txt_opcion_menu_vertical{
+    color: black;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 200;
 }

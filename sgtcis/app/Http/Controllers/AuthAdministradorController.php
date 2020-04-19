@@ -82,8 +82,9 @@ public function editar_admin(){
             }else{
                 unset($data["password"]);
             }
-            
             $user->update($data);
+            flash('Perfil editado correctamente.')
+                ->success();
             return redirect()->route('vista_general_admin');
         }else{
             return view('user_administrador.login_administrador');
@@ -118,10 +119,9 @@ public function editar_admin(){
                     'name.required'=>'El campo nombre es obligatorio',
                     'lastname.required'=>'El campo apellido es obligatorio',
                     'email.required'=>'El campo email es obligatorio',
-                    'email.unique'=>'Usuario ocupado',
+                    'email.unique'=>'El correo con el que intenta registrar docente, ya se encuentra registrado. Por favor intente nuevamente.',
                     'password.required'=>'El campo contraseña es obligatorio',
-                ]);        
-        
+                ]);      
                 factory(User::class)->create([
                     'name'=>$data['name'],
                     'lastname'=>$data['lastname'],

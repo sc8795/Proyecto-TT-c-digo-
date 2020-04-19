@@ -167,9 +167,10 @@ class AuthDocenteController extends Controller
                 }
         
                 $datos_tut=Solitutoria::find($solitutoria_id);
-                $estudiante=DB::table('users')->where('id',$datos_tut->estudiante_id)->first();
+                $estudiante=DB::table('users')
+                    ->where('id',$datos_tut->estudiante_id)->first();
                 
-                /* Codigo para cuando el docente decida editar datos aqui los actualiza */
+                /* Actualizar tutoría solicitada a confirmada */
                 $datos_tut->hora_inicio=$hora_inicio;
                 $datos_tut->minutos_inicio=$minutos_inicio;
                 $datos_tut->hora_fin=$hora_fin;
@@ -324,37 +325,44 @@ class AuthDocenteController extends Controller
         return view('user_docente.vista_evalua_estudiante_pre_gru',compact('user_estudiante','solitutoria_id'));
     }
     public function evaluacion_estudiante($user_evaluado_id, $solitutoria_id, Request $request){
-        $asistencia=$request->input('asistencia');
-        if($asistencia=="no"){
-            Evaluacion::create([
-                'user_evaluado_id'=>$user_evaluado_id,
-                'solitutoria_id'=>$solitutoria_id,
-                'asistencia'=>$asistencia,
-                'evaluacion'=>0
-            ]);
-            flash("Se ha registrado la evaluación del estudiante (Inasistencia).")->success();
-            return redirect()->route('vista_general_docente');
-        }
-        if($asistencia=="si"){
-            $tema_tutoria=$request->input('tema_de_tutoria');
-            $descripcion_tutoria=$request->input('descripcion_de_tutoria');
-            $pr1=$request->input('pr1');
-            $pr2=$request->input('pr2');
-            $pr3=$request->input('pr3');
-            $pr4=$request->input('pr4');
-            $pr5=$request->input('pr5');
-            $suma=($pr1)+($pr2)+($pr3)+($pr4)+($pr5);
-            $total=$suma/5;
-            Evaluacion::create([
-                'user_evaluado_id'=>$user_evaluado_id,
-                'solitutoria_id'=>$solitutoria_id,
-                'asistencia'=>$asistencia,
-                'evaluacion'=>$total,
-                'tema'=>$tema_tutoria,
-                'descripcion'=>$descripcion_tutoria
-            ]);
-            flash("Se ha registrado la evaluación de tutoría al estudiante.")->success();
-            return redirect()->route('vista_general_docente');
+        if (Auth::check()) {
+            $docente = Auth::user();
+            if($docente->is_docente==true){
+                $asistencia=$request->input('asistencia');
+                if($asistencia=="no"){
+                    Evaluacion::create([
+                        'user_evaluado_id'=>$user_evaluado_id,
+                        'solitutoria_id'=>$solitutoria_id,
+                        'asistencia'=>$asistencia,
+                        'evaluacion'=>0
+                    ]);
+                    flash("Se ha registrado la evaluación del estudiante (Inasistencia).")->success();
+                    return redirect()->route('vista_general_docente');
+                }
+                if($asistencia=="si"){
+                    $tema_tutoria=$request->input('tema_de_tutoria');
+                    $descripcion_tutoria=$request->input('descripcion_de_tutoria');
+                    $pr1=$request->input('pr1');
+                    $pr2=$request->input('pr2');
+                    $pr3=$request->input('pr3');
+                    $pr4=$request->input('pr4');
+                    $pr5=$request->input('pr5');
+                    $suma=($pr1)+($pr2)+($pr3)+($pr4)+($pr5);
+                    $total=$suma/5;
+                    Evaluacion::create([
+                        'user_evaluado_id'=>$user_evaluado_id,
+                        'solitutoria_id'=>$solitutoria_id,
+                        'asistencia'=>$asistencia,
+                        'evaluacion'=>$total,
+                        'tema'=>$tema_tutoria,
+                        'descripcion'=>$descripcion_tutoria
+                    ]);
+                    flash("Se ha registrado la evaluación de tutoría al estudiante.")->success();
+                    return redirect()->route('vista_general_docente');
+                }
+            }else{
+                return redirect()->route('show_login_form_docente');
+            }
         }
     }
 /* 

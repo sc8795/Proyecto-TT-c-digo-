@@ -14,6 +14,15 @@
                 <div id="mensaje_siete">
                     @include('flash::message')
                 </div>
+                @if ($errors->any())
+                    <div class="alert alert-danger" id="mensaje_siete">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                {{ $error }}
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <hr>
                 <div class="row">
                     <div class="col-6">
@@ -82,7 +91,7 @@
                                                 </h6>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-warning" data-dismiss="modal">Cerar</button>
+                                                <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
                                             </div>
                                         </div>
                                     </div>

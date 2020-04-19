@@ -49,7 +49,9 @@
                                                     <p style="background-color: #f78181" id="borde_radio" class="text-center">Tutoría por evaluar</p>
                                                 @endif
                                             </td>
-                                            <td><a href="{{url("lista_tutorias_confirmadas/{$user_estudiante->id}/".auth()->user()->id)."/{$materia->id}"}}" class="hint--top btn btn-outline-dark btn-sm" data-hint="Evaluar estudiante" id="borde_radio"><span class="fas fa-check-circle"></span></a></td>
+                                            <td>
+                                                <a href="{{url("lista_tutorias_confirmadas/{$user_estudiante->id}/".auth()->user()->id)."/{$materia->id}"}}" class="hint--top btn btn-outline-dark btn-sm" data-hint="Evaluar estudiante" id="borde_radio"><span class="fas fa-check-circle"></span></a>
+                                            </td>
                                         </tr>
                                     </tbody>
                                 @endforeach
