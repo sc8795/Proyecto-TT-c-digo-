@@ -42,7 +42,7 @@
                                         <h6><input type="radio" name="gender" id="gender" value="Segundo"> Segundo</h6> <br>
                                         <h6><input type="radio" name="gender" id="gender" value="Quinto"> Quinto</h6> <br>
                                         <h6><input type="radio" name="gender" id="gender" value="Octavo"> Octavo</h6> <br>
-                                        <h6><input type="radio" name="gender" id="gender" value="Décimo"> Décimo</h6> <br>
+                                        <h6><input type="radio" name="gender" id="gender" value="Décimo"> Décimo</h6>
                                     </div>
                                     <div class="col-4">
                                         <h6><input type="radio" name="gender" id="gender" value="Tercero"> Tercero</h6> <br>
@@ -125,8 +125,8 @@
                                                 <h6 class="negrita">id_docente:
                                                     <span class="quita_negrita">Id del docente que imparte la materia (lo puede consultar en el menú configuración docente, submenú docentes registrados).</span>
                                                 </h6>
-                                                <h6 class="negrita">paralelo_a (b,c,d):
-                                                    <span class="quita_negrita">Corresponden al paralelo en el cual el docente imparte la materia. Por ejemplo si el docente imparte la materia en los paralelos A y C, deberá poner en el campo paralelo_a "A" y en paralelo_c "C"; en el caso de los paralelos que no imparte (B y D en el ejemplo), en los campos correspondientes deberá escribir "NA" lo que significa No Asignado.</span>
+                                                <h6 class="negrita">paralelo:
+                                                    <span class="quita_negrita">Corresponden al paralelo en el cual el docente imparte la materia. Por ejemplo si el docente imparte la materia en los paralelos A y C, deberá poner A,C. Si el docente no tiene paralelo y materias asignadas, deberá proceder a llenar el campo con "NA" que significa no asignado.</span>
                                                 </h6>
                                             </div>
                                             <div class="modal-footer">
