@@ -34,7 +34,7 @@
                             <input type="password" class="form-control" name="password" id="password" placeholder="********">
                         </div>
                         <hr>
-                        <button type="submit" class="btn btn-dark">Guardar perfil</button>
+                        <button type="submit" class="btn btn-dark">Editar</button>
                     </form>
                     <br>
                 </div>

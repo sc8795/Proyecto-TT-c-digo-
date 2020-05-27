@@ -37,12 +37,15 @@
                                     <a href="{{url("editar_perfil_docente/{$user->id}")}}" class="hint--top hint--success btn btn-outline-success" data-hint="Editar">
                                       <span class="oi oi-pencil"></span>
                                     </a>
-                                    <button type="button" class="hint--top hint--error btn btn-outline-danger" data-hint="Eliminar" data-toggle="modal" data-target="#confirmaEliminacion">
+                                    <button type="button" class="hint--top hint--error btn btn-outline-danger" data-hint="Eliminar" data-toggle="modal" data-target="#confirmaEliminacion_{{ ($user->id) }}">
                                       <span class="oi oi-trash"></span>
                                     </button>
+                                    <button type="button" class="hint--top hint--warning btn btn-outline-warning" data-hint="Ver id" data-toggle="modal" data-target="#verId_{{ ($user->id) }}">
+                                      <span class="fas fa-eye"></span>
+                                    </button>
                                     
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="confirmaEliminacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <!-- Modal confirmación eliminación docente-->
+                                    <div class="modal fade" id="confirmaEliminacion_{{ ($user->id) }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                       <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                           <div class="modal-header">
@@ -51,8 +54,8 @@
                                               <span aria-hidden="true">&times;</span>
                                             </button>
                                           </div>
-                                          <div class="modal-body">
-                                            <span>¿Está seguro que desea eliminar docente?</span>
+                                          <div class="modal-body" style="text-align: left">
+                                            <span>¿Está seguro que desea eliminar docente al(la) docente {{$user->name}} {{$user->lastname}}?</span>
                                           </div>
                                           <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">NO</button>
@@ -61,6 +64,25 @@
                                               {{method_field('DELETE')}}
                                               <button type="submit" class="btn btn-primary">SI</button>
                                             </form>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <!-- Modal ver Id del docente-->
+                                    <div class="modal fade" id="verId_{{ ($user->id) }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                      <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                          <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Información</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                              <span aria-hidden="true">&times;</span>
+                                            </button>
+                                          </div>
+                                          <div class="modal-body" style="text-align: left">
+                                            <span>El docente {{$user->name}} {{$user->lastname}} tiene el Id: <span class="negrita">{{ ($user->id) }}</span></span>
+                                          </div>
+                                          <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button>
                                           </div>
                                         </div>
                                       </div>
