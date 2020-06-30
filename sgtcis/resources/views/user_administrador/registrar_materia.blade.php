@@ -58,7 +58,7 @@
                                 </label>
                                 <br>
                                 <select name="docente" id="docente">
-                                    <option value="">Seleccione docente</option>
+                                    <option value=1>Seleccione docente</option>
                                     @foreach ($users as $user)
                                         <option value="{{$user->id}}">
                                             {{$user->name}} {{$user->lastname}}

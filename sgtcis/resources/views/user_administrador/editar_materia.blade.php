@@ -32,7 +32,7 @@
                     {{method_field("PUT")}}
                     {{ csrf_field() }}
                     <div class="input-group-prepend">
-                        <span class="input-group-text">Nombres</span>
+                        <span class="input-group-text">Nombre</span>
                         <input type="text" class="form-control" name="name" id="name" value="{{$materia->name}}">
                         @if ($verifica_nombre==true)
                             <h6 class="titulo_error">{{$error}}</h6>
@@ -168,24 +168,42 @@
                     </div>
                     <hr>
                     <div class="form-group">
-                        <label><span class="negrita">Docente que la imparte</span></label>
+                        <label>
+                            <span class="negrita">Docente que la imparte</span>
+                            <span class="hint--top-right hint--info" data-hint='En el caso de que la materia no tenga docente asignado, escoja la opción "-- Seleccione docente --"'><i class="fas fa-question-circle"></i></span>
+                        </label>
                         <select name="usuario_id" id="usuario_id">
+                            @php
+                                //este contador sirve para verificar si la materia está registrada con algún docente 0:NO 1:SI
+                                $cont=0;
+                            @endphp
                             @foreach ($users as $user)
                                 @if ($user->id==$materia->usuario_id)
                                     <option value="{{$user->id}}">
                                         {{$user->name}} {{$user->lastname}}
                                     </option>
+                                    @php
+                                        $cont=1;
+                                    @endphp
                                 @endif
                             @endforeach
+                            @if ($cont==0)
+                                <option value=1>-- Seleccione docente --</option>
+                            @endif
                             @foreach ($users as $user)
-                                <option value="{{$user->id}}">
-                                    {{$user->name}} {{$user->lastname}}
-                                </option>
+                                @if ($user->id!==$materia->usuario_id)
+                                    <option value="{{$user->id}}">
+                                        {{$user->name}} {{$user->lastname}}
+                                    </option>
+                                @endif
                             @endforeach
+                            @if ($cont==1)
+                                <option value=1>-- Seleccione docente --</option>
+                            @endif
                         </select>
                     </div>
                     <hr>
-                    <button type="submit" class="btn btn-dark">Guardar cambios</button>
+                    <button type="submit" class="btn btn-dark">Editar</button>
                     <hr>
                 </form>
             </div>
