@@ -55,7 +55,7 @@
                                             </button>
                                           </div>
                                           <div class="modal-body" style="text-align: left">
-                                            <span>¿Está seguro que desea eliminar docente al(la) docente {{$user->name}} {{$user->lastname}}?</span>
+                                            <span>¿Está seguro que desea eliminar al docente <span class="negrita">{{$user->name}} {{$user->lastname}}</span>?</span>
                                           </div>
                                           <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">NO</button>
