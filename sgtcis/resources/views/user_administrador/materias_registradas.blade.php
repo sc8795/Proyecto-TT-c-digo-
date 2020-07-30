@@ -69,7 +69,7 @@
                                     <button type="button" class="hint--top hint--error btn btn-danger btn-sm" data-hint="Eliminar" data-toggle="modal" data-target="#confirmaEliminacionMateria_{{ ($materia->id) }}">
                                       <span class="oi oi-trash"></span>
                                     </button>
-                                    <a href="{{url("registrar_materia_diferente_docente")}}" class="hint--top hint--info btn btn-info btn-sm" data-hint="Registrar materia con diferente docente">
+                                    <a href="{{url("registrar_materia_diferente_docente/{$materia->id}")}}" class="hint--top hint--info btn btn-info btn-sm" data-hint="Registrar materia con diferente docente">
                                       <span class="fas fa-plus-circle"></span>
                                     </a>
                                     <!-- Modal confirmación eliminación materia-->

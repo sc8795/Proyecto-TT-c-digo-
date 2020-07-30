@@ -73,6 +73,10 @@ Route::get('registrar_materia','AuthAdministradorController@registrar_materia')-
 Route::post('crear_materia','AuthAdministradorController@crear_materia')->name('crear_materia');
 Route::post('registrar_materia_excel','AuthAdministradorController@registrar_materia_excel')->name('registrar_materia_excel');
 
+/* Rutas para registrar una  misma materia con el mismo docente */
+Route::get('registrar_materia_diferente_docente/{materia}','AuthAdministradorController@registrar_materia_diferente_docente')->name('registrar_materia_diferente_docente');
+Route::post('crear_materia_diferente_docente','AuthAdministradorController@crear_materia_diferente_docente')->name('crear_materia_diferente_docente');
+
 /* Rutas para descargar plantillas excel (para registrar materia y docentes) */
 Route::get('descargar_plantilla/{aux}','AuthAdministradorController@descargar_plantilla')->name('descargar_plantilla');
 

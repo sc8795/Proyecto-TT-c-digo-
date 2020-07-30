@@ -21,7 +21,20 @@ function validar(){
         error=" El campo paralelo es obligatorio.";
     }
     if(!datosCorrectos){
-        alert('¡AVISO!'+error);
+        alertify.error(error);
+    }
+    return datosCorrectos;
+}
+/* Funciones para validar formulario de registro de materia con diferente docente*/
+function validarDiferenteDocente(){
+    var datosCorrectos=true;
+    var error="";
+    if(document.getElementById("docente").value==""){
+        datosCorrectos=false;
+        error=" El campo docente es obligatorio.";
+    }
+    if(!datosCorrectos){
+        alertify.error(error);
     }
     return datosCorrectos;
 }

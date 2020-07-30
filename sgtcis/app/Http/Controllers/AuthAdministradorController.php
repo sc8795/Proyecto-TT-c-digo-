@@ -454,6 +454,70 @@ public function editar_admin(){
     }
 /* 
 |--------------------------------------------------------------------------
+| Funciones para registrar una materia con diferente docente
+|--------------------------------------------------------------------------
+*/
+    public function registrar_materia_diferente_docente(Materia $materia){
+        if (Auth::check()){
+            $user_admin = Auth::user();
+            if($user_admin->is_admin==true){
+                $users=DB::table('users')->where('is_docente',true)->get();
+                return view('user_administrador.registrar_materia_diferente_docente',compact('materia','users'));
+            }else{
+                return view('user_administrador.login_administrador');
+            }
+        }
+    }
+
+    public function crear_materia_diferente_docente(Request $request){
+        if (Auth::check()){
+            $user_admin = Auth::user();
+            if($user_admin->is_admin==true){
+                $data=request()->validate([
+                    'paralelo'=>'required',
+                ]);
+                $name=$request->input('name');
+                $ciclo=$request->input('ciclo');
+                $docente=$request->input('docente');
+                $paralelo=$request->input('paralelo');
+                $paralelo = implode(',', $paralelo);
+                $existeMateria=DB::table('materias')
+                    ->where('usuario_id',$docente)
+                    ->where('ciclo',$ciclo)
+                    ->exists();
+
+                if($existeMateria){
+                    return back()
+                        ->with('mensaje','La materia ya tiene asignado el docente. Por favor revise el formulario e intente nuevamente.')
+                        ->withInput();
+                }else{
+                    $existeMateria=DB::table('materias')
+                        ->where('usuario_id',$docente)
+                        ->where('paralelo',$paralelo)
+                        ->exists();
+                    if($existeMateria){
+                        return back()
+                            ->with('mensaje','La materia ya tiene asignado el docente. Por favor revise el formulario e intente nuevamente.')
+                            ->withInput();
+                    }else{
+                        DB::table('materias')->insert([
+                            'usuario_id'=>$docente,
+                            'name'=>$name,
+                            'ciclo'=>$ciclo,
+                            'paralelo'=>$paralelo,            
+                        ]);
+                        flash('Materia registrada correctamente')
+                            ->success();
+                        return redirect()->route('materias_registradas');
+                    }
+                }
+            }else{
+                return view('user_administrador.login_administrador');
+            }
+        }
+    }
+/* 
+|--------------------------------------------------------------------------
 | Funciones para editar una materia registrada
 |--------------------------------------------------------------------------
 */

@@ -195,7 +195,7 @@
                                         @endif
         
                                         @if ($materia->ciclo=="Noveno")
-                                            <h6><input type="radio" checked="checked" name="ciclo" id="ciclo" {{$materia->ciclo}}> Noveno</h6> <br> 
+                                            <h6><input type="radio" checked="checked" name="ciclo" id="ciclo" value="{{$materia->ciclo}}"> Noveno</h6> <br> 
                                         @else     
                                             <h6><input type="radio" name="ciclo" id="ciclo" value="Noveno"> Noveno</h6> <br>
                                         @endif
