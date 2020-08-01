@@ -3,7 +3,7 @@ function validar_registro_manual(){
     var error="";
     if(document.getElementById("email").value==""){
         datosCorrectos=false;
-        error=" El campo apellido es obligatorio";
+        error=" El campo email es obligatorio";
     } 
     if(document.getElementById("lastname").value==""){
         datosCorrectos=false;
@@ -14,7 +14,7 @@ function validar_registro_manual(){
         error=" El campo nombre es obligatorio";
     }
     if(!datosCorrectos){
-        alert('¡AVISO!'+error);
+        alertify.error(error);
     }
     return datosCorrectos;
 }

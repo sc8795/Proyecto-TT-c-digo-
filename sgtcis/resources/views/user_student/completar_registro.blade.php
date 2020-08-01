@@ -148,23 +148,21 @@
                             </span>
                             <div class="row">
                                 <div class="col-lg-6 col-xs-12 col-sm-12 col-md-12">
-                                    <hr>
                                     <!--Formulario para buscar materia-->
-                                    <form class="card" method="GET" action="{{url("buscar_materia_arrastre")}}">
+                                    <!--form class="card" method="GET" action="{{url("buscar_materia_arrastre")}}">
                                         <div class="row no-gutters align-items-center">
                                             <!--solicita nombre de materia a buscar-->
-                                            <div class="col">
+                                            <!--div class="col">
                                                 <input class="form-control form-control-borderless form-control-sm" name="name" type="search" placeholder="Nombre de materia a añadir" title="Escriba el nombre de la materia" value="{{old('name')}}">
                                             </div>                                                
                                             <!--botón buscar-->
-                                            <div class="col-auto">
+                                            <!--div class="col-auto">
                                                 <button class="btn btn-success btn-sm" type="submit" title="Buscar materia por nombre">
                                                     Buscar <span class="fas fa-search"></span>
                                                 </button>
                                             </div>
                                         </div>
-                                    </form>
-                                    <hr>
+                                    </form-->
                                     <!--Muestra mensajes de alerta sobre campos requeridos-->
                                     @if ($verifica_paralelo==true)
                                         <div class="alert alert-danger" id="mensaje_uno">
@@ -190,7 +188,7 @@
                                         </div>
                                         <hr>
                                         <!--Muestra materias y dentro se encuentra el formulario para añadir materias-->
-                                        <table class="table table-bordered table-sm table-responsive table-striped">
+                                        <table class="table table-bordered table-sm table-responsive table-striped" id="dataTableMateriasArrastre">
                                             <!--Muestra columnas (materia, paralelo, docente y acción)-->
                                             <thead>
                                                 <tr>
@@ -200,50 +198,49 @@
                                                     <th class="col-lg-2">Acción</th>
                                                 </tr>
                                             </thead>
-                                            @foreach ($materias as $materia) 
-                                            <form action="{{url("agregar_materia_arrastre")}}" method="POST">
-                                                {{ csrf_field() }}
-                                                <tbody>
-                                                    <tr>
-                                                        <!--Presenta nombre de la materia-->
-                                                        <td>
-                                                            <input type="hidden" id="materia" name="materia" value="{{$materia->id}}">{{$materia->name}}
-                                                        </td>
-                                                        <!--Presenta opciones paralelo (solicita uno)-->
-                                                        <td>
-                                                            <select name="paralelo" id="paralelo">
-                                                                <option value="">-</option>
-                                                                <option value="A">A</option>
-                                                                <option value="B">B</option>
-                                                                <option value="C">C</option>
-                                                                <option value="D">D</option>
-                                                            </select>
-                                                        
-                                                        
-                                                        
-                                                        </td>
-                                                        <!--Presenta docentes registrados (solicita uno)-->
-                                                        <td>
-                                                            <select name="docente" id="docente">
-                                                                <option value="">-</option>
-                                                                @foreach ($docentes as $user)
-                                                                    <option value="{{$user->id}}">
-                                                                        {{$user->name}} {{$user->lastname}}
-                                                                    </option>
-                                                                @endforeach
-                                                            </select>
-                                                        </td>
-                                                        <td>                    
-                                                            <button type="submit" class="hint--top btn btn-block btn-success btn-sm" data-hint="Añadir">
-                                                                <span class="fas fa-check-circle"></span>
-                                                            </button>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </form>
-                                            @endforeach
+                                            <tbody>
+                                                @foreach ($materias as $materia) 
+                                                    <form action="{{url("agregar_materia_arrastre")}}" method="POST">
+                                                        {{ csrf_field() }}
+                                                        <tr>
+                                                            <!--Presenta nombre de la materia-->
+                                                            <td>
+                                                                <input type="hidden" id="materia" name="materia" value="{{$materia->id}}">{{$materia->name}}
+                                                            </td>
+                                                            <!--Presenta opciones paralelo (solicita uno)-->
+                                                            <td>
+                                                                <select name="paralelo" id="paralelo">
+                                                                    <option value="">-</option>
+                                                                    <option value="A">A</option>
+                                                                    <option value="B">B</option>
+                                                                    <option value="C">C</option>
+                                                                    <option value="D">D</option>
+                                                                </select>
+                                                            
+                                                            
+                                                            
+                                                            </td>
+                                                            <!--Presenta docentes registrados (solicita uno)-->
+                                                            <td>
+                                                                <select name="docente" id="docente">
+                                                                    <option value="">-</option>
+                                                                    @foreach ($docentes as $user)
+                                                                        <option value="{{$user->id}}">
+                                                                            {{$user->name}} {{$user->lastname}}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </td>
+                                                            <td>                    
+                                                                <button type="submit" class="hint--top btn btn-block btn-success btn-sm" data-hint="Añadir">
+                                                                    <span class="fas fa-check-circle"></span>
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                    </form>
+                                                @endforeach
+                                            </tbody>
                                         </table>
-                                        {{$materias->render()}}
                                     @else
                                         <div class="alert alert-danger">
                                             No se han encontrado resultados

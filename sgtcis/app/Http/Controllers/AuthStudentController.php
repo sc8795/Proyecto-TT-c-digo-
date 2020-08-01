@@ -93,8 +93,9 @@ class AuthStudentController extends Controller
             $user_student = Auth::user();
             if($user_student->is_estudiante==true){
                 if($user_student->paralelo=="NA" && $user_student->ciclo=="NA"){
-                    $materias=Materia::orderBy('id','DESC')
-                        ->paginate(1);
+                    /*$materias=Materia::orderBy('id','DESC')
+                        ->paginate(1);*/
+                    $materias = DB::table('materias')->get();
                     $verifica_arrastre=DB::table('arrastres')
                         ->where('user_estudiante_id',$user_student->id)->exists();
                     $docentes=DB::table('users')->where('is_docente',true)->get();

@@ -11,6 +11,9 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <!--llamado a los estilos de la página de inicio-->
     <link rel="stylesheet" href="css/estilos_pag_inicio.css">
+    <!--llamado a librería alertify-->
+    <link rel="stylesheet" href="{{asset('alertifyjs/css/alertify.css')}}">
+	<link rel="stylesheet" href="{{asset('alertifyjs/css/themes/default.css')}}">
     <!-- Fuente de letra -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
     <!--titulo del proyecto, aparecerá en todas las vistas que llamen a esta vista-->
@@ -23,6 +26,7 @@
 <!--llamado a jquery-->        
 <script src="{{asset('js/jquery.js')}}"></script>
 <script src="{{asset('js/jquery_inicio.js')}}"></script>
+<script src="{{asset('alertifyjs/alertify.js')}}"></script>
 <!--para llamar a librerias o archivos js en las vistas-->
 @yield('scripts')
 </body>

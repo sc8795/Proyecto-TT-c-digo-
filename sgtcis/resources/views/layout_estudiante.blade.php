@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="{{asset('css/estilos_estudiante.css')}}">
 	<link rel="stylesheet" href="{{asset('css/estilos_pag_inicio.css')}}">
 	<link rel="stylesheet" href="{{asset('css/hint.min.css')}}">
+	<link rel="stylesheet" href="{{asset('DataTables/datatables.min.css')}}">
 	<!-- Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">	
 	<title>@yield('title')SGTCIS</title>
@@ -32,6 +33,7 @@
 		@yield('footer')
 	
 <script src="{{asset('js/jquery.js')}}"></script>
+<script src="{{asset('DataTables/datatables.min.js')}}"></script>
 <script src="{{asset('alertifyjs/alertify.js')}}"></script>
 <script src="{{asset('js/jquery_estudiante.js')}}"></script>
 @yield('scripts')

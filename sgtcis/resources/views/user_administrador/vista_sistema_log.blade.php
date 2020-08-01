@@ -7,134 +7,139 @@
             <div class="container-fluid" id="espacio_menu_texto"></div>
             <div class="container-fluid" style="background: white" id="txt_opcion_menu_vertical">
                 <h1><span class="negrita">Registro de actividades realizadas en el sistema</span></h1>
+                <hr>
                 <div class="row">
                     <!--TUTORÍAS-->
                     <div class="col-7" style="margin-left: 15px;">
                         <div class="row">
-                            <div class="col-4 border-right border-white">
-                                <div class="row" style="background:  #1e8449">
+                            <div class="col-4 border-right border-white" id="fondoLogTutoria">
+                                <div class="row">
                                     <div class="col-2">
-                                        <span class="fas fa-user text-white" style="margin-top: 20px;"></span>
+                                        <span class="fas fa-paper-plane" style="margin-top: 20px; color:#f7dc6f;"></span>
                                     </div>
                                     <div class="col-10 text-right">
-                                        <span class="text-white" style="font-size: 35px;">{{$tutorias_solicitadas->count()}}</span>
+                                        <span style="font-size: 35px; color:#f7dc6f;">{{$tutorias_solicitadas->count()}}</span>
                                     </div>
                                 </div>
-                                <div class="row" style="background:  #1e8449;color:white">
-                                    <div class="col-12 text-center">Solicitadas</div>
+                                <div class="row">
+                                    <div class="col-12 text-center" style="color: white">Solicitadas</div>
                                 </div>
                             </div>
-                            <div class="col-4 border-right border-white">
-                                <div class="row" style="background:  #1e8449">
+                            <div class="col-4 border-right border-white" id="fondoLogTutoria">
+                                <div class="row">
                                     <div class="col-2">
-                                        <span class="fas fa-user-tie text-white" style="margin-top: 20px;"></span>
+                                        <span class="fas fa-check-circle" style="margin-top: 20px; color:#a2d9ce"></span>
                                     </div>
                                     <div class="col-10 text-right">
-                                        <span class="text-white" style="font-size: 35px;">{{$login_docentes->count()}}</span>
+                                        <span style="font-size: 35px;color:#a2d9ce">{{$login_docentes->count()}}</span>
                                     </div>
                                 </div>
-                                <div class="row" style="background:  #1e8449;color:white">
-                                    <div class="col-12 text-center">Confirmadas</div>
+                                <div class="row">
+                                    <div class="col-12 text-center" style="color: white">Confirmadas</div>
                                 </div>
                             </div>
-                            <div class="col-4">
-                                <div class="row" style="background:  #1e8449">
+                            <div class="col-4" id="fondoLogTutoria">
+                                <div class="row">
                                     <div class="col-2">
-                                        <span class="fas fa-user-tie text-white" style="margin-top: 20px;"></span>
+                                        <span class="fas fa-times-circle" style="margin-top: 20px;color:#f1948a;"></span>
                                     </div>
                                     <div class="col-10 text-right">
-                                        <span class="text-white" style="font-size: 35px;">{{$login_docentes->count()}}</span>
+                                        <span style="font-size: 35px;color:#f1948a;">{{$login_docentes->count()}}</span>
                                     </div>
                                 </div>
-                                <div class="row" style="background:  #1e8449; color:white">
-                                    <div class="col-12 text-center">Rechazadas</div>
+                                <div class="row">
+                                    <div class="col-12 text-center" style="color: white">Rechazadas</div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row border" style="background:  #186a3b; color:white">
-                            <div class="col-12 text-center">Tutorías</div>
+                        <div class="row border" id="fondoLogTutoria">
+                            <div class="col-12 text-center" style="color: white"><span class="negrita">Tutorías</span></div>
                         </div>
                     </div>
                     <!--INICIOS DE SESIÓN-->
                     <div class="col-4" style="margin-left: 15px;">
                         <div class="row">
-                            <div class="col-6">
-                                <div class="row" style="background: #922b21">
+                            <div class="col-6" id="fondoLogInicioSesion">
+                                <div class="row">
                                     <div class="col-2">
-                                        <span class="fas fa-user text-white" style="margin-top: 20px;"></span>
+                                        <span class="fas fa-user" style="margin-top: 20px;color: white;"></span>
                                     </div>
                                     <div class="col-10 text-right border-right border-white">
-                                        <span class="text-white" style="font-size: 35px;">{{$login_estudiantes->count()}}</span>
+                                        <span style="font-size: 35px;color: white;">{{$login_estudiantes->count()}}</span>
                                     </div>
                                 </div>
-                                <div class="row border-right border-white" style="background: #922b21">
-                                    <div class="col-12 text-center" style="color:white">Estudiantes</div>
+                                <div class="row border-right border-white">
+                                    <div class="col-12 text-center">Estudiantes</div>
                                 </div>
                             </div>
-                            <div class="col-6">
-                                <div class="row" style="background: #922b21">
+                            <div class="col-6" id="fondoLogInicioSesion">
+                                <div class="row">
                                     <div class="col-2">
-                                        <span class="fas fa-user-tie text-white" style="margin-top: 20px;"></span>
+                                        <span class="fas fa-user-tie" style="margin-top: 20px;color: white;"></span>
                                     </div>
                                     <div class="col-10 text-right">
-                                        <span class="text-white" style="font-size: 35px;">{{$login_docentes->count()}}</span>
+                                        <span style="font-size: 35px;color: white;">{{$login_docentes->count()}}</span>
                                     </div>
                                 </div>
-                                <div class="row" style="background: #922b21;color:white">
+                                <div class="row">
                                     <div class="col-12 text-center">Docentes</div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row border" style="background: #641e16;color:white">
-                            <div class="col-12 text-center">Inicios de sesión</div>
+                        <div class="row border" id="fondoLogInicioSesion">
+                            <div class="col-12 text-center"><span class="negrita">Inicios de sesión</span></div>
                         </div>
                     </div>
                 </div> <br>
                 <div class="row">
+                    <!--NOTIFICACIONES-->
                     <div class="col-7" style="margin-left: 15px;">
                         <div class="row">
-                            <div class="col-4 border-right border-white">
-                                <div class="row" style="background: #1f618d">
+                            <div class="col-4 border-right border-white" id="fondoLogNotificacion">
+                                <div class="row">
                                     <div class="col-2">
-                                        <span class="fas fa-user text-white" style="margin-top: 20px;"></span>
+                                        <span class="fas fa-user" style="margin-top: 20px;color:#d9d0cd;"></span>
                                     </div>
                                     <div class="col-10 text-right">
-                                        <span class="text-white" style="font-size: 35px;">{{$notificaciones_estudiantes->count()}}</span>
+                                        <span style="font-size: 35px;color:#d9d0cd;">{{$notificaciones_estudiantes->count()}}</span>
                                     </div>
                                 </div>
-                                <div class="row" style="background:#1f618d;color:white">
-                                    <div class="col-12 text-center">Estudiantes</div>
+                                <div class="row">
+                                    <div class="col-12 text-center" style="color: white">Estudiantes</div>
                                 </div>
                             </div>
-                            <div class="col-4 border-right border-white">
-                                <div class="row" style="background:#1f618d">
+                            <div class="col-4 border-right border-white" id="fondoLogNotificacion">
+                                <div class="row">
                                     <div class="col-2">
-                                        <span class="fas fa-user-tie text-white" style="margin-top: 20px;"></span>
+                                        <span class="fas fa-user-tie" style="margin-top: 20px;color:#d9d0cd;"></span>
                                     </div>
                                     <div class="col-10 text-right">
-                                        <span class="text-white" style="font-size: 35px;">{{$notificaciones_docentes->count()}}</span>
+                                        <span style="font-size: 35px;color:#d9d0cd;">{{$notificaciones_docentes->count()}}</span>
                                     </div>
                                 </div>
-                                <div class="row" style="background:#1f618d;color:white">
-                                    <div class="col-12 text-center">Docentes</div>
+                                <div class="row">
+                                    <div class="col-12 text-center" style="color: white">Docentes</div>
                                 </div>
                             </div>
-                            <div class="col-4">
-                                <div class="row" style="background:#1f618d">
+                            <div class="col-4" id="fondoLogNotificacion">
+                                <div class="row">
                                     <div class="col-2">
-                                        <span class="fas fa-user-tie text-white" style="margin-top: 20px;"></span>
+                                        <span class="far fa-id-card" style="margin-top: 20px;color:#d9d0cd;"></span>
                                     </div>
                                     <div class="col-10 text-right">
-                                        <span class="text-white" style="font-size: 35px;">{{$invitaciones_estudiantes->count()}}</span>
+                                        <span style="font-size: 35px;color:#d9d0cd;">{{$invitaciones_estudiantes->count()}}</span>
                                     </div>
                                 </div>
-                                <div class="row" style="background:#1f618d; color:white">
-                                    <div class="col-12 text-center">Invitaciones</div>
+                                <div class="row">
+                                    <div class="col-12 text-center" style="color: white">Invitaciones</div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row border" style="background:#154360; color:white">
-                            <div class="col-12 text-center">Notificaciones</div>
+                        <div class="row border" id="fondoLogNotificacion">
+                            <div class="col-12 text-center" style="color: white">
+                                <span class="fas fa-bell"></span>
+                                <span class="negrita">Notificaciones</span>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -63,6 +63,13 @@ $('div#mensaje_cuatro').delay(4000).slideUp(1500);
 $('div#mensaje_siete').delay(7000).slideUp(1500);
 $('div#mensaje_veinte').delay(20000).slideUp(1500);
 
+$('#dataTableMateriasArrastre').DataTable({
+    "language": {
+        "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+    },
+    "lengthMenu":[[1,5, 10, 20, 25, 50, -1], [1,5, 10, 20, 25, 50, "Todos"]],
+});
+
 //evaluar estudiante - validar preguntas de asistencia
 function validar_evaluacion_docente(){
     var datosCorrectos=true;
